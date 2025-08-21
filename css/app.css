@@ -1,0 +1,98 @@
+/* إعدادات الخط والخلفية */
+body {
+    background-color: #f8f9fa;
+    font-family: "Cairo", sans-serif;
+    direction: rtl;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* رأس الصفحة */
+  header {
+    background-color: #ffffff;
+    padding: 2rem;
+    text-align: center;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  header h1 {
+    font-size: 2.5rem;
+    color: #343a40;
+    margin-bottom: 1rem;
+  }
+  
+  /* أزرار التنقل */
+  header button {
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    border-radius: 0.375rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  header button:hover {
+    background-color: #0b5ed7;
+  }
+  
+  header button a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  /* العنوان الرئيسي داخل main */
+  main h1 {
+    text-align: center;
+    margin-top: 2rem;
+    color: #212529;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  /* تصميم البطاقات */
+  .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    border: none;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card-title {
+    color: #0d6efd;
+    font-weight: bold;
+  }
+  
+  .card-footer {
+    background-color: #f1f3f5;
+    text-align: left;
+    font-size: 0.85rem;
+  }
+  
+  /* الصور داخل البطاقات */
+  .card-img-top {
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  /* استجابة الهاتف */
+  @media (max-width: 768px) {
+    header h1 {
+      font-size: 2rem;
+    }
+  
+    header button {
+      margin: 0.25rem 0;
+      display: block;
+      width: 100%;
+    }
+  
+    .card-img-top {
+      height: 150px;
+    }
+  }
+  

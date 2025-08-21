@@ -1,0 +1,124 @@
+/* أساسيات واتجاه RTL */
+:root{
+    --bg: #0f172a;        /* slate-900 */
+    --bg-soft:#111827;    /* gray-900 */
+    --card:#0b1224;
+    --text:#e5e7eb;       /* gray-200 */
+    --muted:#9ca3af;      /* gray-400 */
+    --accent:#22d3ee;     /* cyan-400 */
+    --accent-2:#818cf8;   /* indigo-400 */
+  }
+  html{scroll-behavior:smooth;}
+  body{
+    direction: rtl;
+    background: radial-gradient(1200px 800px at 100% -10%, rgba(34,211,238,.12), transparent 60%),
+                radial-gradient(900px 700px at 0% 110%, rgba(129,140,248,.12), transparent 60%),
+                var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+  
+  /* رأس الصفحة */
+  header{
+    background:
+      linear-gradient(180deg, rgba(2,6,23,.0), rgba(2,6,23,.6)),
+      url("/img/physics.jpg") center/cover no-repeat;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    box-shadow: 0 1px 0 rgba(255,255,255,.04) inset;
+    padding: 3rem 1rem;
+    text-align: center;
+  }
+  header h1{
+    font-weight: 800;
+    letter-spacing: .5px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  header p{
+    max-width: 900px;
+    margin: .5rem auto 0;
+    color: var(--muted);
+  }
+  
+  /* عناوين القسم */
+  main > h1{
+    font-size: 1.6rem;
+    margin: 1.5rem 0 .5rem;
+    color: #ffffff;
+  }
+  
+  /* شبكة البطاقات */
+  .row.g-4{margin-right: 0; margin-left: 0;}
+  .card{
+    background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)) , var(--card);
+    border: 1px solid rgba(255,255,255,.06);
+    color: var(--text);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,.25);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .card:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(0,0,0,.35);
+    border-color: rgba(34,211,238,.35);
+  }
+  .card-img-top{
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    filter: saturate(1.05);
+  }
+  .card-title{
+    font-weight: 700;
+  }
+  .card-text{
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  
+  /* زر Next داخل التذييل */
+  .card-footer{
+    background: transparent;
+    border-top: 1px solid rgba(255,255,255,.06);
+  }
+  .card-footer .next-btn{
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .55rem 1rem;
+    border-radius: .75rem;
+    border: 1px solid rgba(34,211,238,.5);
+    background: linear-gradient(180deg, rgba(34,211,238,.15), rgba(129,140,248,.15));
+    color: #e6fbff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: filter .2s ease, transform .1s ease;
+  }
+  .card-footer .next-btn:hover{ filter: brightness(1.1); }
+  .card-footer .next-btn:active{ transform: translateY(1px); }
+  .card-footer .next-btn span{ text-decoration: none; color: inherit; }
+  
+  /* زر العودة للأعلى */
+  #backToTop{
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 1040;
+    border: none;
+    border-radius: 999px;
+    padding: .8rem 1rem;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    color: #001018;
+    font-weight: 800;
+    display: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  }
+  #backToTop.show{ display: inline-flex; }
+  
+  /* تصحيحات بسيطة */
+  a{ color: inherit; }
+  button{ cursor: pointer; }
+  
