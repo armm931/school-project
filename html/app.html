@@ -3,25 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>النجاح</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <title>EduHub - Comprehensive Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/css/app.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
 <body>
-    <header>
-        <h1>تعلم بنجاح </h1>
-        <br>
-     <button><samp><a href="/html/chat.html">chat ai</a></samp></button>   
-    <button><samp><a href="/html/app.html">home</a></samp></button>
-    <button><samp><a href="/html/sign up .html">sign up</a></samp></button>
-    <button><samp><a href="/html/log in.html">log in</a></samp></button>
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-40">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-graduation-cap text-3xl text-purple-600"></i>
+                    <h1 class="text-2xl font-bold text-gray-800">EduHub</h1>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#home" class="nav-link text-gray-600 hover:text-purple-600 transition">Home</a>
+                    <a href="#subjects" class="nav-link text-gray-600 hover:text-purple-600 transition">Subjects</a>
+                    <a href="#about" class="nav-link text-gray-600 hover:text-purple-600 transition">About</a>
+                    <a href="#contact" class="nav-link text-gray-600 hover:text-purple-600 transition">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button onclick="showLoginModal()" class="text-gray-600 hover:text-purple-600 transition">
+                        <i class="fas fa-user mr-2"></i>Login
+                    </button>
+                    <button onclick="showRegisterModal()" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">
+                        Sign Up
+                    </button>
+                    <button class="md:hidden" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-2xl text-gray-600"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4">
+                <a href="#home" class="block py-2 text-gray-600 hover:text-purple-600">Home</a>
+                <a href="#subjects" class="block py-2 text-gray-600 hover:text-purple-600">Subjects</a>
+                <a href="#about" class="block py-2 text-gray-600 hover:text-purple-600">About</a>
+                <a href="#contact" class="block py-2 text-gray-600 hover:text-purple-600">Contact</a>
+            </div>
+        </nav>
     </header>
-    <main>
-        <h1>المادة التعليم </h1>
-        <br>
+     <section id="home" class="gradient-bg text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-5xl font-bold mb-6 animate-fade-in">مرحباً بكم في EduHub</h2>
+            <p class="text-xl mb-8 animate-fade-in">منصتك التعليمية الشاملة لجميع التخصصات الأكاديمية</p>
+            <div class="flex flex-wrap justify-center gap-4 animate-fade-in">
+                <button onclick="scrollToSubjects()" class="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                   استكشاف المواضيع
+                </button>
+                <button onclick="showRegisterModal()" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition">
+                البدء
+                </button>
+            </div>
+        </div>
+    </section>
+    <br>
+
+    <!-- Statistics Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="stat-card">
+                    <i class="fas fa-book text-4xl text-purple-600 mb-2"></i>
+                    <h3 class="text-3xl font-bold text-gray-800">500+</h3>
+                    <p class="text-gray-600">الدورات</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-users text-4xl text-purple-600 mb-2"></i>
+                    <h3 class="text-3xl font-bold text-gray-800">10K+</h3>
+                    <p class="text-gray-600">طلاب</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-chalkboard-teacher text-4xl text-purple-600 mb-2"></i>
+                    <h3 class="text-3xl font-bold text-gray-800">100+</h3>
+                    <p class="text-gray-600">المدربون</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-certificate text-4xl text-purple-600 mb-2"></i>
+                    <h3 class="text-3xl font-bold text-gray-800">95%</h3>
+                    <p class="text-gray-600">معدل النجاح</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+      <!-- Subjects Section -->
+    <section id="subjects" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">استكشف مواضيعنا</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Chemistry Card -->
+                <div class="subject-card card-hover rounded-xl p-6 cursor-pointer" onclick="showSubjectDetails('chemistry')">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-flask text-4xl text-purple-600 mr-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-800">كيمياء</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">استكشف العالم الرائع للذرات والجزيئات والتفاعلات الكيميائية</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">عضوي</span>
+                        <span class="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">غير عضوي</span>
+                        <span class="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">بدني</span>
+                        <span class="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">تحليلي</span>
+                    </div>
+                </div>
+
+                <!-- Physics Card -->
+                <div class="subject-card card-hover rounded-xl p-6 cursor-pointer" onclick="showSubjectDetails('physics')">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-atom text-4xl text-blue-600 mr-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-800">Physics</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Understand the fundamental laws that govern our universe.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">Mechanics</span>
+                        <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">Quantum</span>
+                        <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">Thermodynamics</span>
+                        <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">Electromagnetism</span>
+                    </div>
+                </div>
+
+                <!-- Mathematics Card -->
+                <div class="subject-card card-hover rounded-xl p-6 cursor-pointer" onclick="showSubjectDetails('mathematics')">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-calculator text-4xl text-green-600 mr-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-800">Mathematics</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Master the language of numbers, patterns, and logical reasoning.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">Algebra</span>
+                        <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">Calculus</span>
+                        <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">Statistics</span>
+                        <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">Geometry</span>
+                    </div>
+                </div>
+
+                <!-- Programming Card -->
+                <div class="subject-card card-hover rounded-xl p-6 cursor-pointer" onclick="showSubjectDetails('programming')">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-code text-4xl text-orange-600 mr-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-800">Programming</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Learn to create software and applications with modern programming languages.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded">Python</span>
+                        <span class="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded">JavaScript</span>
+                        <span class="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded">Java</span>
+                        <span class="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded">C++</span>
+                    </div>
+                </div>
+
+                <!-- Design Card -->
+                <div class="subject-card card-hover rounded-xl p-6 cursor-pointer" onclick="showSubjectDetails('design')">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-palette text-4xl text-pink-600 mr-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-800">Design</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Create visually stunning designs with professional tools and techniques.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs bg-pink-100 text-pink-700 px-2 py-1 rounded">UI/UX</span>
+                        <span class="text-xs bg-pink-100 text-pink-700 px-2 py-1 rounded">Graphic</span>
+                        <span class="text-xs bg-pink-100 text-pink-700 px-2 py-1 rounded">Web</span>
+                        <span class="text-xs bg-pink-100 text-pink-700 px-2 py-1 rounded">Motion</span>
+                    </div>
+                </div>
+
+                <!-- 3D Design Card -->
+                <div class="subject-card card-hover rounded-xl p-6 cursor-pointer" onclick="showSubjectDetails('3ddesign')">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-cube text-4xl text-indigo-600 mr-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-800">3D Design</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Bring your imagination to life with 3D modeling and animation.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded">Blender</span>
+                        <span class="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded">Maya</span>
+                        <span class="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded">3DS Max</span>
+                        <span class="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded">ZBrush</span>
+                    </div>
+                </div>
+
+                <!-- Languages Card -->
+                <div class="subject-card card-hover rounded-xl p-6 cursor-pointer" onclick="showSubjectDetails('languages')">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-language text-4xl text-red-600 mr-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-800">Languages</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Master English and Arabic with comprehensive language courses.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded">English</span>
+                        <span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded">Arabic</span>
+                        <span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded">Grammar</span>
+                        <span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded">Conversation</span>
+                    </div>
+                </div>
+
+                <!-- Biology Card -->
+                <div class="subject-card card-hover rounded-xl p-6 cursor-pointer" onclick="showSubjectDetails('biology')">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-dna text-4xl text-teal-600 mr-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-800">Biology</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Explore the science of life and living organisms.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs bg-teal-100 text-teal-700 px-2 py-1 rounded">Genetics</span>
+                        <span class="text-xs bg-teal-100 text-teal-700 px-2 py-1 rounded">Ecology</span>
+                        <span class="text-xs bg-teal-100 text-teal-700 px-2 py-1 rounded">Anatomy</span>
+                        <span class="text-xs bg-teal-100 text-teal-700 px-2 py-1 rounded">Microbiology</span>
+                    </div>
+                </div>
+
+                <!-- Geology Card -->
+                <div class="subject-card card-hover rounded-xl p-6 cursor-pointer" onclick="showSubjectDetails('geology')">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-mountain text-4xl text-yellow-600 mr-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-800">Geology</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Study the Earth's structure, materials, and processes.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">Mineralogy</span>
+                        <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">Petrology</span>
+                        <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">Seismology</span>
+                        <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">Paleontology</span>
+                    </div>
+                </div>
+    </section>
+    <section>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
-              <div class="card h-100">
+              <div class="card h-100">  
                 <img src="/img/chemistry.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">الكيمياء</h5>
@@ -60,23 +275,287 @@
               </div>
             </div>
           </div>
-          <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-              <div class="card h-100">
-                <img src="/img/أشهر-لغات-البرمجة.webp" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">البرمجة</h5>
-                  <p class="card-text">البرمجة هي عملية كتابة تعليمات وتوجيه أوامر لجهاز الحاسوب أو أي جهاز آخر مثل قارئات أقراص الدي في دي أو أجهزة استقبال الصوت والصورة في نظم الاتصالات الحديثة، لتوجيه هذا الجهاز وإعلامه بكيفية التعامل مع البيانات أو كيفية تنفيذ سلسلة من الأعمال المطلوبة تسمى خوارزمية.</p>
+          <br>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col">
+    <div class="card h-100">
+      <img src="/img/أشهر-لغات-البرمجة.webp" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">البرمجة</h5>
+        <p class="card-text">البرمجة هي عملية كتابة تعليمات وتوجيه أوامر لجهاز الحاسوب أو أي جهاز آخر مثل قارئات أقراص الدي في دي أو أجهزة استقبال الصوت والصورة في نظم الاتصالات الحديثة، لتوجيه هذا الجهاز وإعلامه بكيفية التعامل مع البيانات أو كيفية تنفيذ سلسلة من الأعمال المطلوبة تسمى خوارزمية.</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-body-secondary"><button><span><a href="/html/Programming/Programming.html\">next</a></span></button></small>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100">
+      <img src="/img/1711444560NWnqpDREYy.jpg" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">الاحياء</h5>
+        <p class="card-text">
+علم الأحياء هو علم طبيعي يُعنى بدراسة الحياة والكائنات الحية، بما في ذلك هياكلها ووظائفها ونموها وتطورها وتوزيعها وتصنيفها. الأحياء الحديثة هي ميدانٌ واسعٌ يتألف من العديد من الفروع والتخصصات الفرعيَّة، لكنها تتضمن بعض المفاهيم العامّة الموحدة التي تربط بين فروعها المُختلفة وتسير عليها جميع الدراسات والبحوث.</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-body-secondary"><button><span><a href="/html/Biology/Biology.html">next</a></span></button></small>
+      </div>
+    </div>
+  </div>
+<div class="card">
+    <img src="/img/geology.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">الجيولوجيا</h5>
+      <p class="card-text">الجيولوجيا، أو علم الأرض، هو العلم الذي يدرس الأرض الصلبة وصخورها، والعمليات التي تحدث عليها، وتاريخها، ومحتوياتها، ومظاهرها التضاريسية، وذلك لفهم تركيبها وبنيتها والعمليات التي شكلتها على مر الزمن. تشمل دراساتها البحث عن الموارد الطبيعية كالمعادن والنفط والمياه الجوفية، وفهم الظواهر الطبيعية مثل الزلازل والبراكين، وتقييم المخاطر الجيولوجية، ومعالجة المشكلات البيئية.</p>
+    <div class="card-footer">
+      <small class="text-body-secondary"><button><span><a href="/html/Geology/Geology.html">next</a></span></button></small>
+    </div>
+    </div>
+</div>
+<br>
+<div class="card-group">
+  <div class="card">
+    <img src="/img/Design.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">تصميم</h5>
+      <p class="card-text">التصميم هو عملية إبداعية منهجية لتخطيط وابتكار حلول عملية ووظيفية وجمالية لمشكلة معينة، ويشمل جمع العناصر وتكوينها في شكل نهائي يهدف لتلبية احتياجات المستخدم وتحقيق غرض محدد، مع استخدام الفكر الإنساني والخبرات الشخصية لتطوير الأفكار وصياغتها في منتج أو نظام متكامل، سواء كان ماديًا أو غير مادي. </p>
+    </div>
+    <div class="card-footer">
+      <small class="text-body-secondary"><button><span><a href="">next</a></span></button></small>
+    </div>
+  </div>
+  <div class="card">
+    <img src="/img/3D Design.jpeg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">تصميم ثلاثي الأبعاد</h5>
+      <p class="card-text">العرض ثلاثي الأبعاد هو عملية تصميم صور ثنائية الأبعاد واقعية من موديلات ثلاثية الأبعاد. يعتبر العرض ثلاثي الأبعاد الخطوة الأخيرة في عملية التصور المرئي ثلاثية الأبعاد، ويتضمن تصميم نماذج للعناصر وتصميم ملمس لتلك العناصر وإضافة الإضاءة إلى المشهد.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-body-secondary"><button><span><a href="/html/3D Design/3D Design.html">next</a></span></button></small>
+    </div>
+  </div>
+  <div class="card">
+    <img src="/img/1-989985.webp" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">اللغات</h5>
+      <p class="card-text">اللغات هي أنظمة معقدة من الإشارات والرموز، وهي أساس التواصل والتفكير البشري. هناك آلاف اللغات في العالم، ويمكن تعلمها من خلال الممارسة المنتظمة واستخدام تقنيات مثل التعرض للتواصل مع الناطقين الأصليين وتحديد أهداف واضحة للدراسة اليومية</p>
+    <div class="card-footer">
+      <small class="text-body-secondary"><button><span><a href="/html/">next</a></span></button></small>
+    </div>
+</div>
+  </div>
+</section>
+<br>
+    <!-- Features Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Why Choose EduHub?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <i class="fas fa-laptop-house text-5xl text-purple-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Learn Anywhere</h3>
+                    <p class="text-gray-600">Access courses from any device, anytime, anywhere with our flexible learning platform.</p>
                 </div>
-                <div class="card-footer">
-                  <small class="text-body-secondary"><button><a href="/html/Programming/Programming.html">next</a></button></small>
+                <div class="text-center">
+                    <i class="fas fa-certificate text-5xl text-purple-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Certified Courses</h3>
+                    <p class="text-gray-600">Earn industry-recognized certificates upon successful completion of courses.</p>
                 </div>
-              </div>
+                <div class="text-center">
+                    <i class="fas fa-users-cog text-5xl text-purple-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Expert Instructors</h3>
+                    <p class="text-gray-600">Learn from industry professionals and academic experts with years of experience.</p>
+                </div>
             </div>
-            
-    </main>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-6 text-gray-800">About EduHub</h2>
+                <p class="text-lg text-gray-600 mb-6">
+                    EduHub is a comprehensive online learning platform dedicated to providing high-quality education across multiple disciplines. Our mission is to make learning accessible, engaging, and effective for students worldwide.
+                </p>
+                <p class="text-lg text-gray-600">
+                    With courses ranging from fundamental sciences to cutting-edge technologies, we empower learners to achieve their educational and career goals through interactive content, expert instruction, and a supportive learning community.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Get In Touch</h2>
+            <div class="max-w-2xl mx-auto">
+                <form onsubmit="handleContactSubmit(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Name</label>
+                            <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Email</label>
+                            <input type="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Subject</label>
+                        <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Message</label>
+                        <textarea rows="5" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">EduHub</h3>
+                    <p class="text-gray-400">Your gateway to comprehensive online education.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#home" class="hover:text-white transition">Home</a></li>
+                        <li><a href="#subjects" class="hover:text-white transition">Subjects</a></li>
+                        <li><a href="#about" class="hover:text-white transition">About</a></li>
+                        <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Subjects</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Chemistry</a></li>
+                        <li><a href="#" class="hover:text-white transition">Physics</a></li>
+                        <li><a href="#" class="hover:text-white transition">Mathematics</a></li>
+                        <li><a href="#" class="hover:text-white transition">Programming</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 EduHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 z-50 hidden">
+        <div class="modal-backdrop absolute inset-0 bg-black bg-opacity-50" onclick="closeModal('loginModal')"></div>
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8 relative animate-fade-in">
+                <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+                <h2 class="text-3xl font-bold text-center mb-6">Welcome Back</h2>
+                <form onsubmit="handleLogin(event)">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">Email</label>
+                        <input type="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500">
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 mb-2">Password</label>
+                        <input type="password" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500">
+                    </div>
+                    <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition mb-4">
+                        Login
+                    </button>
+                    <p class="text-center text-gray-600">
+                        Don't have an account? 
+                        <a href="#" onclick="switchToRegister()" class="text-purple-600 hover:underline">Sign Up</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- Register Modal -->
+    <div id="registerModal" class="fixed inset-0 z-50 hidden">
+        <div class="modal-backdrop absolute inset-0 bg-black bg-opacity-50" onclick="closeModal('registerModal')"></div>
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8 relative animate-fade-in">
+                <button onclick="closeModal('registerModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+                <h2 class="text-3xl font-bold text-center mb-6">Create Account</h2>
+                <form onsubmit="handleRegister(event)">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">Full Name</label>
+                        <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">Email</label>
+                        <input type="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">Password</label>
+                        <input type="password" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500">
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 mb-2">Confirm Password</label>
+                        <input type="password" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500">
+                    </div>
+                    <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition mb-4">
+                        Sign Up
+                    </button>
+                    <p class="text-center text-gray-600">
+                        Already have an account? 
+                        <a href="#" onclick="switchToLogin()" class="text-purple-600 hover:underline">Login</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Subject Details Modal -->
+    <div id="subjectModal" class="fixed inset-0 z-50 hidden">
+        <div class="modal-backdrop absolute inset-0 bg-black bg-opacity-50" onclick="closeModal('subjectModal')"></div>
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative animate-fade-in">
+                <button onclick="closeModal('subjectModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 z-10">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+                <div id="subjectContent" class="p-8">
+                    <!-- Subject content will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer" class="fixed top-20 right-4 z-50 space-y-2"></div>
+
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
-<script src="/ts/app.js"></script>
+<script src="/js/app.js"></script>
 </html>

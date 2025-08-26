@@ -1,98 +1,138 @@
-/* إعدادات الخط والخلفية */
-body {
-    background-color: #f8f9fa;
-    font-family: "Cairo", sans-serif;
-    direction: rtl;
-    margin: 10px;
-    padding: 10px;
-  }
-  
-  /* رأس الصفحة */
-  header {
-    background-color: #ffffff;
-    padding: 2rem;
-    text-align: center;
-    border-bottom: 1px solid #dee2e6;
-  }
-  
-  header h1 {
-    font-size: 2.5rem;
-    color: #343a40;
-    margin-bottom: 1rem;
-  }
-  
-  /* أزرار التنقل */
-  header button {
-    background-color: #0d6efd;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    margin: 0 0.5rem;
-    border-radius: 0.375rem;
-    transition: background-color 0.3s ease;
-  }
-  
-  header button:hover {
-    background-color: #0b5ed7;
-  }
-  
-  header button a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  /* العنوان الرئيسي داخل main */
-  main h1 {
-    text-align: center;
-    margin-top: 2rem;
-    color: #212529;
-    font-size: 2rem;
-    font-weight: bold;
-  }
-  
-  /* تصميم البطاقات */
-  .card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-    border: none;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .card:hover {
+/* Custom Styles for EduHub Platform */
+
+/* Gradient Background for Hero Section */
+.gradient-bg {
+    background: linear-gradient(135deg, #6b46c1 0%, #8b5cf6 100%);
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Subject Cards Styling */
+.subject-card {
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.subject-card:hover {
     transform: translateY(-5px);
-  }
-  
-  .card-title {
-    color: #0d6efd;
-    font-weight: bold;
-  }
-  
-  .card-footer {
-    background-color: #f1f3f5;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Statistics Cards */
+.stat-card {
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Subject Details Modal */
+#subjectContent {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+#subjectContent h2 {
+    color: #6b46c1;
+    margin-bottom: 1rem;
+}
+
+#subjectContent .course-item {
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1rem 0;
+}
+
+#subjectContent .course-item:last-child {
+    border-bottom: none;
+}
+
+#subjectContent .instructor {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+#subjectContent .instructor img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 0.75rem;
+}
+
+/* Notification Styling */
+.notification {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+.notification.success {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.notification.error {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.notification i {
+    margin-right: 0.75rem;
+    font-size: 1.25rem;
+}
+
+/* RTL Support for Arabic Content */
+[dir="rtl"] .row {
+    direction: rtl;
+}
+
+[dir="rtl"] .card {
+    text-align: right;
+}
+
+[dir="rtl"] .card-footer {
     text-align: left;
-    font-size: 0.85rem;
-  }
-  
-  /* الصور داخل البطاقات */
-  .card-img-top {
-    height: 200px;
-    object-fit: cover;
-  }
-  
-  /* استجابة الهاتف */
-  @media (max-width: 768px) {
-    header h1 {
-      font-size: 2rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .stat-card {
+        margin-bottom: 1rem;
     }
-  
-    header button {
-      margin: 0.25rem 0;
-      display: block;
-      width: 100%;
+    
+    #subjectContent {
+        padding: 1rem;
     }
-  
-    .card-img-top {
-      height: 150px;
-    }
-  }
-  
+}
