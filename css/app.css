@@ -1,138 +1,353 @@
-/* Custom Styles for EduHub Platform */
+/* Custom CSS for EduHub Educational Platform */
 
-/* Gradient Background for Hero Section */
-.gradient-bg {
-    background: linear-gradient(135deg, #6b46c1 0%, #8b5cf6 100%);
+/* Variables */
+:root {
+    --primary-color: #7e22ce;
+    --secondary-color: #6b21a8;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --bg-light: #f9fafb;
+    --bg-gray: #f3f4f6;
+    --white: #ffffff;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-/* Fade-in Animation */
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-dark);
+    background-color: var(--white);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+section {
+    padding: 4rem 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+button {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Header Styles */
+header {
+    box-shadow: var(--shadow);
+}
+
+.nav-link {
+    position: relative;
+    font-weight: 500;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.gradient-bg {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+.gradient-bg::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    animation: pulse 15s infinite linear;
+}
+
+@keyframes pulse {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-.animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
-}
-
-/* Subject Cards Styling */
-.subject-card {
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-}
-
-.subject-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-}
-
-.card-hover {
-    transition: all 0.3s ease;
-}
-
-.card-hover:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Statistics Cards */
+/* Statistics Section */
 .stat-card {
     padding: 1.5rem;
     border-radius: 0.5rem;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .stat-card:hover {
     transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
 }
 
-/* Subject Details Modal */
-#subjectContent {
-    max-height: 80vh;
-    overflow-y: auto;
+/* Subjects Section */
+.card {
+    border: none;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
 }
 
-#subjectContent h2 {
-    color: #6b46c1;
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+.card-title {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.card-footer {
+    background-color: transparent;
+    border-top: none;
+    padding: 1rem 1.25rem;
+}
+
+.card-footer button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.card-footer button:hover {
+    background-color: var(--secondary-color);
+}
+
+.card-footer button a {
+    color: var(--white);
+}
+
+/* Features Section */
+.py-16 > div > div {
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.py-16 > div > div:hover {
+    transform: translateY(-5px);
+}
+
+/* Contact Form */
+form input, form textarea {
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form input:focus, form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(126, 34, 206, 0.1);
+}
+
+form button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Footer */
+footer {
+    background-color: #1f2937;
+    color: #d1d5db;
+}
+
+footer a {
+    color: #d1d5db;
+}
+
+footer a:hover {
+    color: var(--white);
+}
+
+footer h3, footer h4 {
+    color: var(--white);
     margin-bottom: 1rem;
 }
 
-#subjectContent .course-item {
-    border-bottom: 1px solid #e5e7eb;
-    padding: 1rem 0;
+footer ul {
+    list-style: none;
+    padding: 0;
 }
 
-#subjectContent .course-item:last-child {
-    border-bottom: none;
+footer ul li {
+    margin-bottom: 0.5rem;
 }
 
-#subjectContent .instructor {
+footer .fab {
+    font-size: 1.25rem;
+    width: 2.5rem;
+    height: 2.5rem;
     display: flex;
     align-items: center;
-    margin-top: 0.5rem;
-}
-
-#subjectContent .instructor img {
-    width: 40px;
-    height: 40px;
+    justify-content: center;
     border-radius: 50%;
-    margin-right: 0.75rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Notification Styling */
+footer .fab:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+/* Modal Styles */
+.modal-backdrop {
+    backdrop-filter: blur(5px);
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content {
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.modal-header {
+    border-bottom: none;
+    padding: 1.5rem 1.5rem 1rem;
+}
+
+.modal-body {
+    padding: 1rem 1.5rem 1.5rem;
+}
+
+.modal-footer {
+    border-top: none;
+    padding: 1rem 1.5rem 1.5rem;
+}
+
+/* Notification Styles */
+#notificationContainer {
+    z-index: 100;
+}
+
 .notification {
+    background-color: var(--white);
+    border-left: 4px solid var(--primary-color);
+    box-shadow: var(--shadow-lg);
     padding: 1rem;
+    border-radius: 0.25rem;
     margin-bottom: 0.5rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     animation: slideIn 0.3s ease-out;
 }
 
 @keyframes slideIn {
-    from { transform: translateX(100%); }
-    to { transform: translateX(0); }
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
 }
 
 .notification.success {
-    background-color: #d1fae5;
-    color: #065f46;
+    border-left-color: #10b981;
 }
 
 .notification.error {
-    background-color: #fee2e2;
-    color: #991b1b;
+    border-left-color: #ef4444;
 }
 
-.notification i {
-    margin-right: 0.75rem;
-    font-size: 1.25rem;
+.notification.warning {
+    border-left-color: #f59e0b;
 }
 
-/* RTL Support for Arabic Content */
-[dir="rtl"] .row {
-    direction: rtl;
-}
-
-[dir="rtl"] .card {
-    text-align: right;
-}
-
-[dir="rtl"] .card-footer {
-    text-align: left;
+.notification.info {
+    border-left-color: #3b82f6;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
+    .gradient-bg h2 {
+        font-size: 2.5rem;
+    }
+    
     .stat-card {
         margin-bottom: 1rem;
     }
     
-    #subjectContent {
-        padding: 1rem;
+    .card {
+        margin-bottom: 1.5rem;
+    }
+    
+    footer .grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
 }

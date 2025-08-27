@@ -1,288 +1,32 @@
-// Subject data
-const subjectsData = {
-    chemistry: {
-        title: 'Chemistry',
-        icon: 'fa-flask',
-        color: 'purple',
-        departments: [
-            {
-                name: 'الكيمياء العضوية',
-                description: 'Study of carbon-containing compounds and their properties.',
-                courses: ['Introduction to Organic Chemistry', 'Reaction Mechanisms', 'Synthesis Methods']
-            },
-            {
-                name: 'Inorganic Chemistry',
-                description: 'Study of inorganic compounds, typically those lacking carbon-hydrogen bonds.',
-                courses: ['Coordination Chemistry', 'Main Group Elements', 'Transition Metals']
-            },
-            {
-                name: 'Physical Chemistry',
-                description: 'Study of macroscopic and particulate phenomena in chemical systems.',
-                courses: ['Thermodynamics', 'Quantum Chemistry', 'Kinetics']
-            },
-            {
-                name: 'Analytical Chemistry',
-                description: 'Science of obtaining, processing, and communicating information about matter.',
-                courses: ['Spectroscopy', 'Chromatography', 'Electrochemistry']
-            }
-        ]
-    },
-    physics: {
-        title: 'Physics',
-        icon: 'fa-atom',
-        color: 'blue',
-        departments: [
-            {
-                name: 'Classical Mechanics',
-                description: 'Study of motion of bodies under the influence of forces.',
-                courses: ['Newtonian Mechanics', 'Lagrangian Mechanics', 'Hamiltonian Mechanics']
-            },
-            {
-                name: 'Quantum Physics',
-                description: 'Study of matter and energy at the most fundamental level.',
-                courses: ['Quantum Mechanics', 'Quantum Field Theory', 'Quantum Computing']
-            },
-            {
-                name: 'Thermodynamics',
-                description: 'Study of heat, work, and energy transfer.',
-                courses: ['Statistical Mechanics', 'Thermal Physics', 'Entropy']
-            },
-            {
-                name: 'Electromagnetism',
-                description: 'Study of electric and magnetic fields and their interactions.',
-                courses: ['Electrostatics', 'Magnetism', 'Electromagnetic Waves']
-            }
-        ]
-    },
-    mathematics: {
-        title: 'Mathematics',
-        icon: 'fa-calculator',
-        color: 'green',
-        departments: [
-            {
-                name: 'Algebra',
-                description: 'Study of mathematical symbols and rules for manipulating these symbols.',
-                courses: ['Linear Algebra', 'Abstract Algebra', 'Number Theory']
-            },
-            {
-                name: 'Calculus',
-                description: 'Mathematical study of continuous change.',
-                courses: ['Differential Calculus', 'Integral Calculus', 'Multivariable Calculus']
-            },
-            {
-                name: 'Statistics',
-                description: 'Collection, analysis, interpretation, and presentation of data.',
-                courses: ['Probability Theory', 'Statistical Inference', 'Data Analysis']
-            },
-            {
-                name: 'Geometry',
-                description: 'Study of shapes, sizes, and properties of space.',
-                courses: ['Euclidean Geometry', 'Differential Geometry', 'Topology']
-            }
-        ]
-    },
-    programming: {
-        title: 'Programming',
-        icon: 'fa-code',
-        color: 'orange',
-        departments: [
-            {
-                name: 'Web Development',
-                description: 'Building websites and web applications.',
-                courses: ['HTML/CSS', 'JavaScript', 'React', 'Node.js']
-            },
-            {
-                name: 'Mobile Development',
-                description: 'Creating applications for mobile devices.',
-                courses: ['iOS Development', 'Android Development', 'React Native', 'Flutter']
-            },
-            {
-                name: 'Data Science',
-                description: 'Extracting insights from structured and unstructured data.',
-                courses: ['Python for Data Science', 'Machine Learning', 'Data Visualization']
-            },
-            {
-                name: 'System Programming',
-                description: 'Programming at the system level.',
-                courses: ['C Programming', 'Operating Systems', 'Computer Architecture']
-            }
-        ]
-    },
-    design: {
-        title: 'Design',
-        icon: 'fa-palette',
-        color: 'pink',
-        departments: [
-            {
-                name: 'UI/UX Design',
-                description: 'Creating intuitive and engaging user interfaces and experiences.',
-                courses: ['User Research', 'Wireframing', 'Prototyping', 'Usability Testing']
-            },
-            {
-                name: 'Graphic Design',
-                description: 'Visual communication through typography, imagery, and layout.',
-                courses: ['Typography', 'Brand Identity', 'Print Design', 'Digital Illustration']
-            },
-            {
-                name: 'Web Design',
-                description: 'Designing websites and web interfaces.',
-                courses: ['Responsive Design', 'CSS Frameworks', 'Design Systems', 'Accessibility']
-            },
-            {
-                name: 'Motion Design',
-                description: 'Creating animated graphics and visual effects.',
-                courses: ['After Effects', 'Animation Principles', 'Motion Graphics', 'VFX']
-            }
-        ]
-    },
-    '3ddesign': {
-        title: '3D Design',
-        icon: 'fa-cube',
-        color: 'indigo',
-        departments: [
-            {
-                name: '3D Modeling',
-                description: 'Creating three-dimensional representations of objects.',
-                courses: ['Polygonal Modeling', 'NURBS Modeling', 'Sculpting', 'Hard Surface Modeling']
-            },
-            {
-                name: 'Animation',
-                description: 'Bringing 3D models to life through movement.',
-                courses: ['Character Animation', 'Rigging', 'Motion Capture', 'Physics Simulation']
-            },
-            {
-                name: 'Rendering',
-                description: 'Generating photorealistic images from 3D models.',
-                courses: ['Lighting', 'Materials', 'Texturing', 'Compositing']
-            },
-            {
-                name: 'Game Development',
-                description: 'Creating interactive 3D experiences for games.',
-                courses: ['Game Engines', 'Level Design', 'Character Design', 'Game Mechanics']
-            }
-        ]
-    },
-    languages: {
-        title: 'Languages',
-        icon: 'fa-language',
-        color: 'red',
-        departments: [
-            {
-                name: 'English Language',
-                description: 'Master the English language for academic and professional success.',
-                courses: ['Grammar', 'Vocabulary', 'Writing Skills', 'Business English']
-            },
-            {
-                name: 'Arabic Language',
-                description: 'Learn Arabic for communication and cultural understanding.',
-                courses: ['Modern Standard Arabic', 'Classical Arabic', 'Dialects', 'Arabic Literature']
-            },
-            {
-                name: 'Translation Studies',
-                description: 'Study of translation theory and practice.',
-                courses: ['Translation Theory', 'Technical Translation', 'Literary Translation', 'Interpretation']
-            },
-            {
-                name: 'Linguistics',
-                description: 'Scientific study of language and its structure.',
-                courses: ['Phonetics', 'Syntax', 'Semantics', 'Sociolinguistics']
-            }
-        ]
-    },
-    biology: {
-        title: 'Biology',
-        icon: 'fa-dna',
-        color: 'teal',
-        departments: [
-            {
-                name: 'Genetics',
-                description: 'Study of genes, genetic variation, and heredity.',
-                courses: ['Molecular Genetics', 'Population Genetics', 'Genomics', 'Gene Therapy']
-            },
-            {
-                name: 'Ecology',
-                description: 'Study of organisms and their environment.',
-                courses: ['Ecosystem Ecology', 'Conservation Biology', 'Marine Biology', 'Behavioral Ecology']
-            },
-            {
-                name: 'Anatomy & Physiology',
-                description: 'Study of the structure and function of living organisms.',
-                courses: ['Human Anatomy', 'Comparative Anatomy', 'Physiology', 'Pathophysiology']
-            },
-            {
-                name: 'Microbiology',
-                description: 'Study of microscopic organisms.',
-                courses: ['Bacteriology', 'Virology', 'Immunology', 'Parasitology']
-            }
-        ]
-    },
-    geology: {
-        title: 'Geology',
-        icon: 'fa-mountain',
-        color: 'yellow',
-        departments: [
-            {
-                name: 'Mineralogy',
-                description: 'Study of minerals and their properties.',
-                courses: ['Crystallography', 'Optical Mineralogy', 'X-ray Crystallography', 'Mineral Physics']
-            },
-            {
-                name: 'Petrology',
-                description: 'Study of rocks and their formation.',
-                courses: ['Igneous Petrology', 'Metamorphic Petrology', 'Sedimentary Petrology', 'Petrography']
-            },
-            {
-                name: 'Seismology',
-                description: 'Study of earthquakes and seismic waves.',
-                courses: ['Earthquake Mechanics', 'Seismic Wave Propagation', 'Seismotectonics', 'Hazard Assessment']
-            },
-            {
-                name: 'Paleontology',
-                description: 'Study of fossils and ancient life forms.',
-                courses: ['Invertebrate Paleontology', 'Vertebrate Paleontology', 'Paleobotany', 'Evolutionary Biology']
-            }
-        ]
-    },
-    ai: {
-        title: 'Artificial Intelligence',
-        icon: 'fa-brain',
-        color: 'purple',
-        departments: [
-            {
-                name: 'Machine Learning',
-                description: 'Algorithms that improve through experience.',
-                courses: ['Supervised Learning', 'Unsupervised Learning', 'Reinforcement Learning', 'Deep Learning']
-            },
-            {
-                name: 'Neural Networks',
-                description: 'Computational models inspired by the human brain.',
-                courses: ['CNNs', 'RNNs', 'Transformers', 'GANs']
-            },
-            {
-                name: 'Natural Language Processing',
-                description: 'Interaction between computers and human language.',
-                courses: ['Text Processing', 'Sentiment Analysis', 'Machine Translation', 'Chatbots']
-            },
-            {
-                name: 'Computer Vision',
-                description: 'Enabling computers to interpret and understand visual information.',
-                courses: ['Image Processing', 'Object Detection', 'Facial Recognition', '3D Reconstruction']
-            }
-        ]
-    }
-};
+// app.js - Main JavaScript file for EduHub Educational Platform
 
-// Modal functions
+// DOM Elements
+const mobileMenu = document.getElementById('mobileMenu');
+const loginModal = document.getElementById('loginModal');
+const registerModal = document.getElementById('registerModal');
+const subjectModal = document.getElementById('subjectModal');
+const notificationContainer = document.getElementById('notificationContainer');
+
+// Mobile Menu Toggle
+function toggleMobileMenu() {
+    mobileMenu.classList.toggle('hidden');
+}
+
+// Modal Functions
 function showLoginModal() {
-    document.getElementById('loginModal').classList.remove('hidden');
+    loginModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
 }
 
 function showRegisterModal() {
-    document.getElementById('registerModal').classList.remove('hidden');
+    registerModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
 }
 
 function closeModal(modalId) {
-    document.getElementById(modalId).classList.add('hidden');
+    const modal = document.getElementById(modalId);
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
 }
 
 function switchToRegister() {
@@ -295,138 +39,272 @@ function switchToLogin() {
     showLoginModal();
 }
 
-// Form handlers
+// Subject Modal Functions
+function showSubjectModal(subjectName) {
+    // This would typically fetch subject data from an API
+    // For demo purposes, we'll use static content
+    const subjectContent = document.getElementById('subjectContent');
+    
+    // Sample subject content based on subject name
+    let content = '';
+    
+    switch(subjectName) {
+        case 'Chemistry':
+            content = `
+                <h2 class="text-3xl font-bold mb-6">الكيمياء</h2>
+                <div class="mb-6">
+                    <img src="/img/chemistry.jpg" alt="Chemistry" class="w-full h-64 object-cover rounded-lg mb-4">
+                    <p class="text-lg mb-4">عِلْمُ الكِيمِيَاءِ هو العلم الذي يدرس المادة والتغيُّرات التي تطرأ عليها، تحديدًا بدراسة خواصها، بِنيتها، تركيبها، سلوكها، تفاعلاتها وما تحدثه من خلالها.</p>
+                    <h3 class="text-xl font-semibold mb-3">الفروع الرئيسية:</h3>
+                    <ul class="list-disc pl-6 mb-4">
+                        <li>الكيمياء العضوية</li>
+                        <li>الكيمياء غير العضوية</li>
+                        <li>الكيمياء التحليلية</li>
+                        <li>الكيمياء الفيزيائية</li>
+                        <li>الكيمياء الحيوية</li>
+                    </ul>
+                </div>
+                <div class="flex justify-end">
+                    <button onclick="closeModal('subjectModal')" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">إغلاق</button>
+                </div>
+            `;
+            break;
+        case 'Physics':
+            content = `
+                <h2 class="text-3xl font-bold mb-6">الفيزياء</h2>
+                <div class="mb-6">
+                    <img src="/img/physics.jpg" alt="Physics" class="w-full h-64 object-cover rounded-lg mb-4">
+                    <p class="text-lg mb-4">الفِيزِيَاءُ أو علم الفيزياء أو الفِيزِيقَا هو العلم الذي يدرس المفاهيم الأساسية مثل الطاقة، القوة، والزمان، وكل ما ينبع من هذا، مثل الكتلة، المادة وحركتها.</p>
+                    <h3 class="text-xl font-semibold mb-3">الفروع الرئيسية:</h3>
+                    <ul class="list-disc pl-6 mb-4">
+                        <li>الفيزياء الكلاسيكية</li>
+                        <li>الفيزياء الحديثة</li>
+                        <li>الكهرومغناطيسية</li>
+                        <li>الفيزياء النووية</li>
+                        <li>ميكانيكا الكم</li>
+                    </ul>
+                </div>
+                <div class="flex justify-end">
+                    <button onclick="closeModal('subjectModal')" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">إغلاق</button>
+                </div>
+            `;
+            break;
+        case 'Mathematics':
+            content = `
+                <h2 class="text-3xl font-bold mb-6">الرياضيات</h2>
+                <div class="mb-6">
+                    <img src="/img/Noj7cPv62g-571.jpg_729x410.jpg" alt="Mathematics" class="w-full h-64 object-cover rounded-lg mb-4">
+                    <p class="text-lg mb-4">الرِّيَاضِيَّات هي مجموعة من المعارف المجردة الناتجة عن الاستنتاجات المنطقية المطبقة على مُختلف الكائنات الرياضية مثل المجموعات، والأعداد، والأشكال والبنيات والتحويلات.</p>
+                    <h3 class="text-xl font-semibold mb-3">الفروع الرئيسية:</h3>
+                    <ul class="list-disc pl-6 mb-4">
+                        <li>الجبر</li>
+                        <li>التفاضل والتكامل</li>
+                        <li>الهندسة</li>
+                        <li>الإحصاء والاحتمالات</li>
+                        <li>الرياضيات المتقدمة</li>
+                    </ul>
+                </div>
+                <div class="flex justify-end">
+                    <button onclick="closeModal('subjectModal')" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">إغلاق</button>
+                </div>
+            `;
+            break;
+        default:
+            content = `
+                <h2 class="text-3xl font-bold mb-6">موضوع غير معروف</h2>
+                <div class="mb-6">
+                    <p class="text-lg mb-4">عذرًا، لا توجد معلومات متاحة حول هذا الموضوع حاليًا.</p>
+                </div>
+                <div class="flex justify-end">
+                    <button onclick="closeModal('subjectModal')" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">إغلاق</button>
+                </div>
+            `;
+    }
+    
+    subjectContent.innerHTML = content;
+    subjectModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+// Navigation Functions
+function scrollToSubjects() {
+    const subjectsSection = document.getElementById('subjects');
+    subjectsSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Form Handlers
 function handleLogin(event) {
     event.preventDefault();
-    showNotification('Login successful! Welcome back to EduHub.', 'success');
-    closeModal('loginModal');
-    // Here you would typically send the login data to your backend
+    
+    // Get form values
+    const email = event.target.querySelector('input[type="email"]').value;
+    const password = event.target.querySelector('input[type="password"]').value;
+    
+    // Simple validation (in a real app, this would be server-side)
+    if (email && password) {
+        // Simulate login process
+        showNotification('تم تسجيل الدخول بنجاح!', 'success');
+        closeModal('loginModal');
+        
+        // In a real app, you would redirect or update the UI
+        // window.location.href = '/dashboard';
+    } else {
+        showNotification('يرجى إدخال البريد الإلكتروني وكلمة المرور', 'error');
+    }
 }
 
 function handleRegister(event) {
     event.preventDefault();
-    showNotification('Registration successful! Welcome to EduHub.', 'success');
+    
+    // Get form values
+    const fullName = event.target.querySelector('input[type="text"]').value;
+    const email = event.target.querySelector('input[type="email"]').value;
+    const password = event.target.querySelectorAll('input[type="password"]')[0].value;
+    const confirmPassword = event.target.querySelectorAll('input[type="password"]')[1].value;
+    
+    // Simple validation
+    if (!fullName || !email || !password || !confirmPassword) {
+        showNotification('يرجى ملء جميع الحقول', 'error');
+        return;
+    }
+    
+    if (password !== confirmPassword) {
+        showNotification('كلمات المرور غير متطابقة', 'error');
+        return;
+    }
+    
+    // Simulate registration process
+    showNotification('تم إنشاء الحساب بنجاح!', 'success');
     closeModal('registerModal');
-    // Here you would typically send the registration data to your backend
+    
+    // In a real app, you might automatically log the user in
+    // or redirect to a verification page
 }
 
 function handleContactSubmit(event) {
     event.preventDefault();
-    showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
+    
+    // Get form values
+    const name = event.target.querySelector('input[type="text"]').value;
+    const email = event.target.querySelector('input[type="email"]').value;
+    const subject = event.target.querySelectorAll('input[type="text"]')[1].value;
+    const message = event.target.querySelector('textarea').value;
+    
+    // Simple validation
+    if (!name || !email || !subject || !message) {
+        showNotification('يرجى ملء جميع الحقول', 'error');
+        return;
+    }
+    
+    // Simulate form submission
+    showNotification('تم إرسال رسالتك بنجاح! سنتواصل معك قريبًا.', 'success');
+    
+    // Reset form
     event.target.reset();
-    // Here you would typically send the contact form data to your backend
 }
 
-// Subject details
-function showSubjectDetails(subjectKey) {
-    const subject = subjectsData[subjectKey];
-    const content = document.getElementById('subjectContent');
+// Notification System
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
     
-    let departmentsHTML = subject.departments.map(dept => `
-        <div class="mb-8">
-            <h3 class="text-2xl font-semibold mb-3 text-${subject.color}-600">${dept.name}</h3>
-            <p class="text-gray-600 mb-4">${dept.description}</p>
-            <div class="bg-gray-50 rounded-lg p-4">
-                <h4 class="font-semibold mb-2">Available Courses:</h4>
-                <div class="flex flex-wrap gap-2">
-                    ${dept.courses.map(course => `
-                        <span class="bg-${subject.color}-100 text-${subject.color}-700 px-3 py-1 rounded-full text-sm">
-                            ${course}
-                        </span>
-                    `).join('')}
-                </div>
-            </div>
-        </div>
-    `).join('');
+    // Add icon based on type
+    let icon = '';
+    switch(type) {
+        case 'success':
+            icon = '<i class="fas fa-check-circle mr-2"></i>';
+            break;
+        case 'error':
+            icon = '<i class="fas fa-exclamation-circle mr-2"></i>';
+            break;
+        case 'warning':
+            icon = '<i class="fas fa-exclamation-triangle mr-2"></i>';
+            break;
+        default:
+            icon = '<i class="fas fa-info-circle mr-2"></i>';
+    }
     
-    content.innerHTML = `
-        <div class="text-center mb-8">
-            <i class="fas ${subject.icon} text-6xl text-${subject.color}-600 mb-4"></i>
-            <h2 class="text-4xl font-bold text-gray-800">${subject.title}</h2>
-        </div>
-        ${departmentsHTML}
-        <div class="text-center mt-8">
-            <button onclick="showRegisterModal(); closeModal('subjectModal');" class="bg-${subject.color}-600 text-white px-6 py-3 rounded-lg hover:bg-${subject.color}-700 transition">
-                Enroll Now
+    notification.innerHTML = `
+        <div class="flex items-center">
+            ${icon}
+            <span>${message}</span>
+            <button class="ml-4 text-gray-500 hover:text-gray-700" onclick="this.parentElement.parentElement.remove()">
+                <i class="fas fa-times"></i>
             </button>
         </div>
     `;
     
-    document.getElementById('subjectModal').classList.remove('hidden');
-}
-
-// Notification system
-function showNotification(message, type = 'info') {
-    const container = document.getElementById('notificationContainer');
-    const notification = document.createElement('div');
-    const bgColor = type === 'success' ? 'bg-green-500' : type === 'error' ? 'bg-red-500' : 'bg-blue-500';
+    notificationContainer.appendChild(notification);
     
-    notification.className = `notification ${bgColor} text-white px-6 py-4 rounded-lg shadow-lg flex items-center space-x-3`;
-    notification.innerHTML = `
-        <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
-        <span>${message}</span>
-    `;
-    
-    container.appendChild(notification);
-    
+    // Auto-remove notification after 5 seconds
     setTimeout(() => {
-        notification.style.opacity = '0';
-        notification.style.transform = 'translateX(100%)';
-        setTimeout(() => notification.remove(), 300);
-    }, 3000);
-}
-
-// Mobile menu toggle
-function toggleMobileMenu() {
-    const menu = document.getElementById('mobileMenu');
-    menu.classList.toggle('hidden');
-}
-
-// Smooth scroll
-function scrollToSubjects() {
-    document.getElementById('subjects').scrollIntoView({ behavior: 'smooth' });
-}
-
-// Smooth scroll for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-            // Close mobile menu if open
-            document.getElementById('mobileMenu').classList.add('hidden');
+        if (notification.parentElement) {
+            notification.remove();
         }
-    });
-});
+    }, 5000);
+}
 
-// Add scroll effect to header
-window.addEventListener('scroll', function() {
-    const header = document.querySelector('header');
-    if (window.scrollY > 100) {
-        header.classList.add('shadow-lg');
-    } else {
-        header.classList.remove('shadow-lg');
-    }
-});
-
-// Initialize animations on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in');
-        }
-    });
-}, observerOptions);
-
-// Observe all cards
+// Add click event listeners to subject cards
 document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.subject-card, .stat-card, .card').forEach(card => {
-        observer.observe(card);
+    // Get all subject cards
+    const subjectCards = document.querySelectorAll('.card');
+    
+    // Add click event to each card
+    subjectCards.forEach(card => {
+        const titleElement = card.querySelector('.card-title');
+        if (titleElement) {
+            const title = titleElement.textContent.trim();
+            
+            // Make the entire card clickable (except the footer button)
+            card.addEventListener('click', function(e) {
+                // Check if the click is on the footer button
+                if (!e.target.closest('.card-footer')) {
+                    // Map Arabic titles to English for the modal function
+                    let subjectName = '';
+                    switch(title) {
+                        case 'الكيمياء':
+                            subjectName = 'Chemistry';
+                            break;
+                        case 'الفيزياء':
+                            subjectName = 'Physics';
+                            break;
+                        case 'الرياضيات':
+                            subjectName = 'Mathematics';
+                            break;
+                        default:
+                            subjectName = title;
+                    }
+                    showSubjectModal(subjectName);
+                }
+            });
+            
+            // Add cursor pointer to indicate clickable
+            card.style.cursor = 'pointer';
+        }
     });
+    
+    // Add smooth scrolling to all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                // Close mobile menu if open
+                if (!mobileMenu.classList.contains('hidden')) {
+                    toggleMobileMenu();
+                }
+            }
+        });
+    });
+});
+
+// Initialize tooltips if using Bootstrap
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
 });

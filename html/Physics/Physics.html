@@ -1,179 +1,244 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width= initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>الفيزياء</title>
     <link rel="stylesheet" href="/css/phyics.css">
 </head>
 <body>
-    <header>
-    <h1>ما اقسم الفيزياء</h1>
-    <br>
-    <p>الفيزياء تنقسم إلى عدة أقسام رئيسية، وكل قسم يركز على نوع معين من الظواهر الطبيعية، مثل الحركة، الطاقة، المادة، الضوء، وغيرها.</p>
-</header>
-<main>
-    <h1>أقسام الفيزياء الأساسية:</h1>
-    <br>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-          <div class="card h-100">
-            <img src="/img/img physics/Modernphysicsfields_2.svg.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">1. الفيزياء الكلاسيكية (Classical Physics)</h5>
-              <p class="card-text">تدرس: الحركة، القوى، الطاقة، والمادة ضمن السرعات العادية (ليست قريبة من سرعة الضوء).
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky-top">
+        <nav class="container py-3">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-graduation-cap text-3xl text-purple-600 me-2"></i>
+                        <h1 class="h2 mb-0 text-gray-800">EduHub</h1>
+                    </div>
+                </div>
+                <div class="col-md-6 text-center">
+                    <h1 class="h3 mb-1">أقسام الفيزياء</h1>
+                    <p class="mb-0">الفيزياء تنقسم إلى عدة أقسام رئيسية، وكل قسم يركز على نوع معين من الظواهر الطبيعية</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="d-flex justify-content-end align-items-center">
+                        <button onclick="showLoginModal()" class="btn btn-link text-purple-600 text-decoration-none">
+                            <i class="fas fa-user ms-1"></i>تسجيل الدخول
+                        </button>
+                        <button onclick="showRegisterModal()" class="btn btn-purple text-white">
+                            إنشاء حساب
+                        </button>
+                        <button class="btn btn-link d-md-none" onclick="toggleMobileMenu()">
+                            <i class="fas fa-bars text-2xl text-gray-600"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <div class="d-none d-md-block mt-3">
+                <div class="d-flex justify-content-center">
+                    <a href="/html/app.html" class="mx-3 text-gray-600 text-decoration-none hover-purple">الرئيسية</a>
+                    <a href="#subjects" class="mx-3 text-gray-600 text-decoration-none hover-purple">المواد</a>
+                    <a href="#about" class="mx-3 text-gray-600 text-decoration-none hover-purple">من نحن</a>
+                    <a href="#contact" class="mx-3 text-gray-600 text-decoration-none hover-purple">اتصل بنا</a>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="d-md-none mt-3">
+                <div class="d-flex flex-column text-center">
+                    <a href="#home" class="py-2 text-gray-600 text-decoration-none hover-purple">الرئيسية</a>
+                    <a href="#subjects" class="py-2 text-gray-600 text-decoration-none hover-purple">المواد</a>
+                    <a href="#about" class="py-2 text-gray-600 text-decoration-none hover-purple">من نحن</a>
+                    <a href="#contact" class="py-2 text-gray-600 text-decoration-none hover-purple">اتصل بنا</a>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-                تشمل:
-                
-                الميكانيكا (حركة الأجسام – قوانين نيوتن)
-                
-                الصوت (الاهتزازات والموجات الصوتية)
-                
-                الضوء (الانعكاس، الانكسار، العدسات)
-                
-                الحرارة (الديناميكا الحرارية)</p>
+    <main class="container my-5">
+        <h1 class="text-center mb-4">أقسام الفيزياء الأساسية:</h1>
+        
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <!-- Classical Physics -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="/img/img%20physics/Modernphysicsfields_2.svg.png" class="card-img-top" alt="الفيزياء الكلاسيكية">
+                    <div class="card-body">
+                        <h5 class="card-title">1. الفيزياء الكلاسيكية</h5>
+                        <p class="card-text">تدرس: الحركة، القوى، الطاقة، والمادة ضمن السرعات العادية.</p>
+                        <ul class="small">
+                            <li>الميكانيكا (حركة الأجسام – قوانين نيوتن)</li>
+                            <li>الصوت (الاهتزازات والموجات الصوتية)</li>
+                            <li>الضوء (الانعكاس، الانكسار، العدسات)</li>
+                            <li>الحرارة (الديناميكا الحرارية)</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="#" class="btn btn-sm btn-purple w-100">التالي</a>
+                    </div>
+                </div>
             </div>
-            <div class="card-footer">
-              <small class="text-body-secondary"><button><span><a href="">next</a></span></button></small>
+            
+            <!-- Modern Physics -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="/img/img%20physics/Modern%20Physics.webp" class="card-img-top" alt="الفيزياء الحديثة">
+                    <div class="card-body">
+                        <h5 class="card-title">2. الفيزياء الحديثة</h5>
+                        <p class="card-text">تدرس: الظواهر التي لا تفسرها الفيزياء الكلاسيكية.</p>
+                        <ul class="small">
+                            <li>النظرية النسبية (آينشتاين – السرعات العالية والزمن)</li>
+                            <li>فيزياء الكم (سلوك الجسيمات الذرية)</li>
+                            <li>الطاقة النووية (الانشطار والاندماج)</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="#" class="btn btn-sm btn-purple w-100">التالي</a>
+                    </div>
+                </div>
             </div>
-          </div>
+            
+            <!-- Atomic Physics -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="/img/img%20physics/Atomic%20Physics.jpg" class="card-img-top" alt="الفيزياء الذرية">
+                    <div class="card-body">
+                        <h5 class="card-title">3. الفيزياء الذرية</h5>
+                        <p class="card-text">تدرس: بنية الذرة، الإلكترونات، المستويات الطاقية.</p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="#" class="btn btn-sm btn-purple w-100">التالي</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col">
-          <div class="card h-100">
-            <img src="/img/img physics/Modern Physics.webp" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">2. الفيزياء الحديثة (Modern Physics)</h5>
-              <p class="card-text">تدرس: الظواهر التي لا تفسرها الفيزياء الكلاسيكية.
-                تشمل:
-                
-                النظرية النسبية (آينشتاين – السرعات العالية والزمن)
-                
-                فيزياء الكم (سلوك الجسيمات الذرية)
-                
-                الطاقة النووية (الانشطار والاندماج)</p>
+        
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+            <!-- Particle Physics -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="/img/img%20physics/Particle%20Physics.png" class="card-img-top" alt="فيزياء الجسيمات">
+                    <div class="card-body">
+                        <h5 class="card-title">4. فيزياء الجسيمات</h5>
+                        <p class="card-text">تدرس: الجسيمات الأساسية مثل الكواركات، الإلكترونات، النيوترونات.</p>
+                        <ul class="small">
+                            <li>النموذج القياسي</li>
+                            <li>المسرّعات الذرية</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="#" class="btn btn-sm btn-purple w-100">التالي</a>
+                    </div>
+                </div>
             </div>
-            <div class="card-footer">
-              <small class="text-body-secondary"><button><span><a href="">next</a></span></button></small>
+            
+            <!-- Nuclear Physics -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="/img/img%20physics/Nuclear%20Physics.png" class="card-img-top" alt="الفيزياء النووية">
+                    <div class="card-body">
+                        <h5 class="card-title">5. الفيزياء النووية</h5>
+                        <p class="card-text">تركز على نواة الذرة، والتفاعلات النووية (مثل الانشطار والاندماج).</p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="#" class="btn btn-sm btn-purple w-100">التالي</a>
+                    </div>
+                </div>
             </div>
-          </div>
+            
+            <!-- Solid State Physics -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="/img/img%20physics/Solid%20State%20Physics.png" class="card-img-top" alt="فيزياء الحالة الصلبة">
+                    <div class="card-body">
+                        <h5 class="card-title">6. فيزياء الحالة الصلبة</h5>
+                        <p class="card-text">تدرس: خصائص المواد الصلبة، مثل المعادن، البلورات، الموصلات والعوازل.</p>
+                        <p class="small mb-0">أساس في تصميم: أشباه الموصلات والدوائر الإلكترونية.</p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="#" class="btn btn-sm btn-purple w-100">التالي</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col">
-          <div class="card h-100">
-            <img src="/img/img physics/Atomic Physics.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">3. الفيزياء الذرية (Atomic Physics)</h5>
-              <p class="card-text">تدرس: بنية الذرة، الإلكترونات، المستويات الطاقية.</p>.
+        
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+            <!-- Electromagnetism -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="/img/img%20physics/Electromagnetism.png" class="card-img-top" alt="الكهرباء والمغناطيسية">
+                    <div class="card-body">
+                        <h5 class="card-title">7. الكهرباء والمغناطيسية</h5>
+                        <p class="card-text">تدرس: الشحنات الكهربائية، التيارات، الحقول المغناطيسية.</p>
+                        <p class="small mb-0">التطبيقات: الكهرباء، المحركات، الهواتف، الحواسيب.</p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="#" class="btn btn-sm btn-purple w-100">التالي</a>
+                    </div>
+                </div>
             </div>
-            <div class="card-footer">
-              <small class="text-body-secondary"><button><span><a href="">next</a></span></button></small>
+            
+            <!-- Astrophysics -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="/img/img%20physics/Astrophysics.jpg" class="card-img-top" alt="الفيزياء الفلكية">
+                    <div class="card-body">
+                        <h5 class="card-title">8. الفيزياء الفلكية</h5>
+                        <p class="card-text">تدمج الفيزياء مع علم الفلك.</p>
+                        <ul class="small">
+                            <li>تدرس: النجوم، الكواكب، المجرات</li>
+                            <li>الثقوب السوداء، أصل الكون</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="#" class="btn btn-sm btn-purple w-100">التالي</a>
+                    </div>
+                </div>
             </div>
-          </div>
+            
+            <!-- Medical Physics -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="/img/img%20physics/Medical%20Physics.jpg" class="card-img-top" alt="الفيزياء الطبية">
+                    <div class="card-body">
+                        <h5 class="card-title">9. الفيزياء الطبية</h5>
+                        <p class="card-text">تطبيق الفيزياء في المجال الطبي.</p>
+                        <ul class="small">
+                            <li>الأشعة</li>
+                            <li>التصوير بالرنين</li>
+                            <li>العلاج الإشعاعي</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="#" class="btn btn-sm btn-purple w-100">التالي</a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <br>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-          <div class="card h-100">
-            <img src="/img/img physics/Particle Physics.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">4. فيزياء الجسيمات (Particle Physics)</h5>
-              <p class="card-text">تدرس: الجسيمات الأساسية مثل الكواركات، الإلكترونات، النيوترونات.
+        
+        <div class="row mt-2">
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <img src="/img/img%20physics/plasma%20physics.jpg" class="card-img-top" alt="فيزياء البلازما">
+                    <div class="card-body">
+                        <h5 class="card-title">10. فيزياء البلازما</h5>
+                        <p class="card-text">تدرس: الحالة الرابعة من المادة – البلازما (غاز مشحون كهربائيًا).</p>
+                        <p class="small mb-0">تستخدم في: شاشات البلازما، الاندماج النووي.</p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="#" class="btn btn-sm btn-purple w-100">التالي</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-                تشمل: النموذج القياسي، المسرّعات الذرية.</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-body-secondary"><button><span><a href="">next</a></span></button></small>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card h-100">
-            <img src="/img/img physics/Nuclear Physics.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">5. الفيزياء النووية (Nuclear Physics)</h5>
-              <p class="card-text">تركز على نواة الذرة، والتفاعلات النووية (مثل الانشطار والاندماج).</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-body-secondary"><button><span><a href="">next</a></span></button></small>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card h-100">
-            <img src="/img/img physics/Solid State Physics.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">6. فيزياء الحالة الصلبة (Solid State Physics)</h5>
-              <p class="card-text">تدرس: خصائص المواد الصلبة، مثل المعادن، البلورات، الموصلات والعوازل.
-
-                أساس في تصميم: أشباه الموصلات والدوائر الإلكترونية.</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-body-secondary"><button><span><a href="">next</a></span></button></small>
-            </div>>
-          </div>
-        </div>
-      </div>
-      <br>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-          <div class="card h-100">
-            <img src="/img/img physics/Electromagnetism.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">7. فيزياء الكهرباء والمغناطيسية (Electromagnetism)</h5>
-              <p class="card-text">تدرس: الشحنات الكهربائية، التيارات، الحقول المغناطيسية.
-
-                التطبيقات: الكهرباء، المحركات، الهواتف، الحواسيب.</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-body-secondary"><button><span><a href="">next</a></span></button></small>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card h-100">
-            <img src="/img/img physics/Astrophysics.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">8. الفيزياء الفلكية (Astrophysics)</h5>
-              <p class="card-text">تدمج الفيزياء مع علم الفلك.
-
-                تدرس: النجوم، الكواكب، المجرات، الثقوب السوداء، أصل الكون.</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-body-secondary"><button><span><a href="">next</a></span></button></small>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card h-100">
-            <img src="/img/img physics/Medical Physics.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">9. الفيزياء الطبية (Medical Physics)</h5>
-                  <p class="card-text">تطبيق الفيزياء في المجال الطبي.
-
-                    تشمل: الأشعة، التصوير بالرنين، العلاج الإشعاعي.</p>
-                <div class="card-footer">
-              <small class="text-body-secondary"><button><span><a href="">next</a></span></button></small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-          <div class="card h-100">
-            <img src="/img/img physics/plasma physics.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">10. فيزياء البلازما (Plasma Physics)</h5>
-              <p class="card-text">تدرس: الحالة الرابعة من المادة – البلازما (غاز مشحون كهربائيًا).تستخدم في: شاشات البلازما، الاندماج النووي.</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-body-secondary"><button><span><a href="">next</a></span></button></small>
-            </div>
-          </div>
-        </div>
-</main>
-<script src="physics.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <script src="physics.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>
 </html>

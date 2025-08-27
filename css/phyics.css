@@ -1,124 +1,160 @@
-/* أساسيات واتجاه RTL */
-:root{
-    --bg: #0f172a;        /* slate-900 */
-    --bg-soft:#111827;    /* gray-900 */
-    --card:#0b1224;
-    --text:#e5e7eb;       /* gray-200 */
-    --muted:#9ca3af;      /* gray-400 */
-    --accent:#22d3ee;     /* cyan-400 */
-    --accent-2:#818cf8;   /* indigo-400 */
-  }
-  html{scroll-behavior:smooth;}
-  body{
-    direction: rtl;
-    background: radial-gradient(1200px 800px at 100% -10%, rgba(34,211,238,.12), transparent 60%),
-                radial-gradient(900px 700px at 0% 110%, rgba(129,140,248,.12), transparent 60%),
-                var(--bg);
-    color: var(--text);
-    min-height: 100vh;
+/* physics.css */
+:root {
+  --purple-600: #7c3aed;
+  --purple-700: #6d28d9;
+  --gray-600: #4b5563;
+  --gray-800: #1f2937;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.me-2 {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+.ms-1 {
+  margin-right: 0.25rem;
+  margin-left: 0;
+}
+
+.mx-3 {
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+/* Custom text utilities */
+.text-purple-600 {
+  color: var(--purple-600);
+}
+
+.text-gray-600 {
+  color: var(--gray-600);
+}
+
+.text-gray-800 {
+  color: var(--gray-800);
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+}
+
+/* Button styles */
+.btn-purple {
+  background-color: var(--purple-600);
+  border-color: var(--purple-600);
+}
+
+.btn-purple:hover {
+  background-color: var(--purple-700);
+  border-color: var(--purple-700);
+}
+
+/* Hover effects */
+.hover-purple:hover {
+  color: var(--purple-600) !important;
+}
+
+/* Card styling */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 0.5rem;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.card-title {
+  color: var(--gray-800);
+  font-weight: 600;
+}
+
+.card-text {
+  color: var(--gray-600);
+}
+
+.card-footer {
+  padding-top: 0;
+}
+
+/* Navigation adjustments */
+.sticky-top {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile menu styling */
+#mobileMenu {
+  display: none;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 0.5rem;
+}
+
+#mobileMenu.show {
+  display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  .card-img-top {
+    height: 160px;
   }
   
-  /* رأس الصفحة */
-  header{
-    background:
-      linear-gradient(180deg, rgba(2,6,23,.0), rgba(2,6,23,.6)),
-      url("/img/physics.jpg") center/cover no-repeat;
-    border-bottom: 1px solid rgba(255,255,255,.06);
-    box-shadow: 0 1px 0 rgba(255,255,255,.04) inset;
-    padding: 3rem 1rem;
-    text-align: center;
-  }
-  header h1{
-    font-weight: 800;
-    letter-spacing: .5px;
-    background: linear-gradient(90deg, var(--accent), var(--accent-2));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  header p{
-    max-width: 900px;
-    margin: .5rem auto 0;
-    color: var(--muted);
+  .text-3xl {
+    font-size: 1.5rem;
   }
   
-  /* عناوين القسم */
-  main > h1{
-    font-size: 1.6rem;
-    margin: 1.5rem 0 .5rem;
-    color: #ffffff;
+  h1.h2 {
+    font-size: 1.5rem;
   }
   
-  /* شبكة البطاقات */
-  .row.g-4{margin-right: 0; margin-left: 0;}
-  .card{
-    background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)) , var(--card);
-    border: 1px solid rgba(255,255,255,.06);
-    color: var(--text);
-    border-radius: 1rem;
-    overflow: hidden;
-    box-shadow: 0 8px 30px rgba(0,0,0,.25);
-    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  h1.h3 {
+    font-size: 1.25rem;
   }
-  .card:hover{
-    transform: translateY(-4px);
-    box-shadow: 0 12px 36px rgba(0,0,0,.35);
-    border-color: rgba(34,211,238,.35);
-  }
-  .card-img-top{
-    aspect-ratio: 16/9;
-    object-fit: cover;
-    border-bottom: 1px solid rgba(255,255,255,.06);
-    filter: saturate(1.05);
-  }
-  .card-title{
-    font-weight: 700;
-  }
-  .card-text{
-    color: var(--muted);
-    line-height: 1.8;
-  }
-  
-  /* زر Next داخل التذييل */
-  .card-footer{
-    background: transparent;
-    border-top: 1px solid rgba(255,255,255,.06);
-  }
-  .card-footer .next-btn{
-    display: inline-flex;
-    align-items: center;
-    gap: .5rem;
-    padding: .55rem 1rem;
-    border-radius: .75rem;
-    border: 1px solid rgba(34,211,238,.5);
-    background: linear-gradient(180deg, rgba(34,211,238,.15), rgba(129,140,248,.15));
-    color: #e6fbff;
-    text-decoration: none;
-    font-weight: 600;
-    transition: filter .2s ease, transform .1s ease;
-  }
-  .card-footer .next-btn:hover{ filter: brightness(1.1); }
-  .card-footer .next-btn:active{ transform: translateY(1px); }
-  .card-footer .next-btn span{ text-decoration: none; color: inherit; }
-  
-  /* زر العودة للأعلى */
-  #backToTop{
-    position: fixed;
-    right: 1rem;
-    bottom: 1rem;
-    z-index: 1040;
-    border: none;
-    border-radius: 999px;
-    padding: .8rem 1rem;
-    background: linear-gradient(90deg, var(--accent), var(--accent-2));
-    color: #001018;
-    font-weight: 800;
-    display: none;
-    box-shadow: 0 10px 30px rgba(0,0,0,.35);
-  }
-  #backToTop.show{ display: inline-flex; }
-  
-  /* تصحيحات بسيطة */
-  a{ color: inherit; }
-  button{ cursor: pointer; }
-  
+}
+
+/* Animation for page elements */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.row > div {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Stagger animation for cards */
+.row > div:nth-child(1) { animation-delay: 0.1s; }
+.row > div:nth-child(2) { animation-delay: 0.2s; }
+.row > div:nth-child(3) { animation-delay: 0.3s; }
+
+.row > div:nth-child(4) { animation-delay: 0.4s; }
+.row > div:nth-child(5) { animation-delay: 0.5s; }
+.row > div:nth-child(6) { animation-delay: 0.6s; }
+
+.row > div:nth-child(7) { animation-delay: 0.7s; }
+.row > div:nth-child(8) { animation-delay: 0.8s; }
+.row > div:nth-child(9) { animation-delay: 0.9s; }
+
+.row > div:nth-child(10) { animation-delay: 1s; }
+
+/* Custom button hover effect */
+.btn-purple {
+  transition: all 0.3s ease;
+}
+
+.btn-purple:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(124, 58, 237, 0.3);
+}
