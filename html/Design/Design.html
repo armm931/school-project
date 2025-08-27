@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عالم التصميم - استكشف مجالات التصميم المختلفة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #e74c3c;
+            --secondary: #2c3e50;
+            --accent: #f39c12;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --info: #3498db;
+            --graphic: #e74c3c;
+            --ui: #9b59b6;
+            --web: #3498db;
+            --motion: #e67e22;
+            --industrial: #16a085;
+            --interior: #d35400;
+            --fashion: #8e44ad;
+            --branding: #c0392b;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            direction: rtl;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 2rem;
+            color: var(--accent);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(231, 76, 60, 0.8)), url('https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+            margin-bottom: 40px;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #d68910;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Sections */
+        .section {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--secondary);
+            display: inline-block;
+            padding: 0 15px;
+            background-color: #f5f7fa;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: #ddd;
+            z-index: 1;
+        }
+        
+        /* Design Fields */
+        .fields {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .field-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .field-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .field-header {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .field-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .graphic { background-color: var(--graphic); }
+        .ui { background-color: var(--ui); }
+        .web { background-color: var(--web); }
+        .motion { background-color: var(--motion); }
+        .industrial { background-color: var(--industrial); }
+        .interior { background-color: var(--interior); }
+        .fashion { background-color: var(--fashion); }
+        .branding { background-color: var(--branding); }
+        
+        .field-title {
+            flex: 1;
+        }
+        
+        .field-title h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+        
+        .field-title p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .field-content {
+            padding: 20px;
+            flex: 1;
+        }
+        
+        .tech-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .tech-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tech-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .tech-list i {
+            color: var(--primary);
+        }
+        
+        .field-footer {
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #eee;
+        }
+        
+        .salary-range {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .salary-label {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .salary-value {
+            color: var(--success);
+            font-weight: 600;
+        }
+        
+        .job-market {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .market-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--success);
+        }
+        
+        .market-text {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* Design Tools Section */
+        .tools {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+        
+        .tools h3 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--secondary);
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        
+        .tool-item {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .tool-item:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        .tool-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .tool-item:hover .tool-icon {
+            color: white;
+        }
+        
+        .tool-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .tool-category {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .tool-item:hover .tool-category {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        /* Portfolio Section */
+        .portfolio {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+        
+        .portfolio h3 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--secondary);
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .portfolio-img {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            color: white;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .portfolio-category {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Learning Path Section */
+        .learning-path {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+        
+        .learning-path h3 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--secondary);
+        }
+        
+        .path-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .path-step {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-right: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .path-step:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-content h4 {
+            margin-bottom: 5px;
+            color: var(--secondary);
+        }
+        
+        .step-content p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Features Section */
+        .features {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature {
+            text-align: center;
+        }
+        
+        .feature i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .feature h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .feature p {
+            color: #666;
+        }
+        
+        /* Resources Section */
+        .resources {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .resource-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .resource-item {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-item:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        .resource-item i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .resource-item:hover i {
+            color: white;
+        }
+        
+        .resource-item h4 {
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-right: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .fields {
+                grid-template-columns: 1fr;
+            }
+            
+            .resource-tabs {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+            }
+            
+            .tab {
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-palette"></i>
+                    <h1>عالم التصميم</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active">الرئيسية</a></li>
+                        <li><a href="#fields">المجالات</a></li>
+                        <li><a href="#tools">الأدوات</a></li>
+                        <li><a href="#portfolio">معرض الأعمال</a></li>
+                        <li><a href="#path">مسار التعلم</a></li>
+                        <li><a href="#resources">المصادر</a></li>
+                        <li><a href="#contact">تواصل معنا</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>مرحباً بك في عالم التصميم</h2>
+            <p>اكتشف مجالات التصميم المختلفة وطور مهاراتك الإبداعية لبناء مسار مهني ناجح</p>
+            <a href="#fields" class="btn">استكشف المجالات</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Design Fields Section -->
+        <section id="fields" class="section">
+            <div class="section-title">
+                <h2>مجالات التصميم</h2>
+            </div>
+            
+            <div class="fields">
+                <!-- Graphic Design Field -->
+                <div class="field-card">
+                    <div class="field-header">
+                        <div class="field-icon graphic">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="field-title">
+                            <h3>التصميم الجرافيكي</h3>
+                            <p>إنشاء تصاميم بصرية للتواصل البصري</p>
+                        </div>
+                    </div>
+                    <div class="field-content">
+                        <ul class="tech-list">
+                            <li><i class="fas fa-check-circle"></i> هوية بصرية</li>
+                            <li><i class="fas fa-check-circle"></i> تصميم الشعارات</li>
+                            <li><i class="fas fa-check-circle"></i> الطباعة والنشر</li>
+                            <li><i class="fas fa-check-circle"></i> الرسوم التوضيحية</li>
+                            <li><i class="fas fa-check-circle"></i> تصميم الإعلانات</li>
+                        </ul>
+                    </div>
+                    <div class="field-footer">
+                        <div class="salary-range">
+                            <span class="salary-label">متوسط الراتب:</span>
+                            <span class="salary-value">$40,000 - $80,000</span>
+                        </div>
+                        <div class="job-market">
+                            <div class="market-indicator"></div>
+                            <span class="market-text">سوق العمل: مرتفع الطلب</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- UI/UX Design Field -->
+                <div class="field-card">
+                    <div class="field-header">
+                        <div class="field-icon ui">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="field-title">
+                            <h3>تصميم واجهة المستخدم</h3>
+                            <p>تصميم تجارب مستخدم متميزة</p>
+                        </div>
+                    </div>
+                    <div class="field-content">
+                        <ul class="tech-list">
+                            <li><i class="fas fa-check-circle"></i> تصميم التطبيقات</li>
+                            <li><i class="fas fa-check-circle"></i> تجربة المستخدم</li>
+                            <li><i class="fas fa-check-circle"></i> النماذج الأولية</li>
+                            <li><i class="fas fa-check-circle"></i> اختبار قابلية الاستخدام</li>
+                            <li><i class="fas fa-check-circle"></i> تصميم المواقع</li>
+                        </ul>
+                    </div>
+                    <div class="field-footer">
+                        <div class="salary-range">
+                            <span class="salary-label">متوسط الراتب:</span>
+                            <span class="salary-value">$50,000 - $100,000</span>
+                        </div>
+                        <div class="job-market">
+                            <div class="market-indicator"></div>
+                            <span class="market-text">سوق العمل: مرتفع جداً</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Web Design Field -->
+                <div class="field-card">
+                    <div class="field-header">
+                        <div class="field-icon web">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="field-title">
+                            <h3>تصميم المواقع</h3>
+                            <p>إنشاء وتصميم المواقع الإلكترونية</p>
+                        </div>
+                    </div>
+                    <div class="field-content">
+                        <ul class="tech-list">
+                            <li><i class="fas fa-check-circle"></i> تصميم الواجهات</li>
+                            <li><i class="fas fa-check-circle"></i> التجاوب مع الأجهزة</li>
+                            <li><i class="fas fa-check-circle"></i> تحسين تجربة المستخدم</li>
+                            <li><i class="fas fa-check-circle"></i> تحسين محركات البحث</li>
+                            <li><i class="fas fa-check-circle"></i> التجارة الإلكترونية</li>
+                        </ul>
+                    </div>
+                    <div class="field-footer">
+                        <div class="salary-range">
+                            <span class="salary-label">متوسط الراتب:</span>
+                            <span class="salary-value">$45,000 - $90,000</span>
+                        </div>
+                        <div class="job-market">
+                            <div class="market-indicator"></div>
+                            <span class="market-text">سوق العمل: مرتفع</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Motion Design Field -->
+                <div class="field-card">
+                    <div class="field-header">
+                        <div class="field-icon motion">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <div class="field-title">
+                            <h3>التصميم الحركي</h3>
+                            <p>إنشاء رسوم متحركة ومرئيات</p>
+                        </div>
+                    </div>
+                    <div class="field-content">
+                        <ul class="tech-list">
+                            <li><i class="fas fa-check-circle"></i> الرسوم المتحركة</li>
+                            <li><i class="fas fa-check-circle"></i> المؤثرات البصرية</li>
+                            <li><i class="fas fa-check-circle"></i> الموشن جرافيك</li>
+                            <li><i class="fas fa-check-circle"></i> الرسوم ثلاثية الأبعاد</li>
+                            <li><i class="fas fa-check-circle"></i> تصميم الشعارات المتحركة</li>
+                        </ul>
+                    </div>
+                    <div class="field-footer">
+                        <div class="salary-range">
+                            <span class="salary-label">متوسط الراتب:</span>
+                            <span class="salary-value">$50,000 - $95,000</span>
+                        </div>
+                        <div class="job-market">
+                            <div class="market-indicator"></div>
+                            <span class="market-text">سوق العمل: نمو سريع</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Industrial Design Field -->
+                <div class="field-card">
+                    <div class="field-header">
+                        <div class="field-icon industrial">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <div class="field-title">
+                            <h3>التصميم الصناعي</h3>
+                            <p>تصميم المنتجات والمنتجات المادية</p>
+                        </div>
+                    </div>
+                    <div class="field-content">
+                        <ul class="tech-list">
+                            <li><i class="fas fa-check-circle"></i> تصميم المنتجات</li>
+                            <li><i class="fas fa-check-circle"></i> النمذجة ثلاثية الأبعاد</li>
+                            <li><i class="fas fa-check-circle"></i> تصميم الأثاث</li>
+                            <li><i class="fas fa-check-circle"></i> تصميم الأجهزة</li>
+                            <li><i class="fas fa-check-circle"></i> النماذج الأولية</li>
+                        </ul>
+                    </div>
+                    <div class="field-footer">
+                        <div class="salary-range">
+                            <span class="salary-label">متوسط الراتب:</span>
+                            <span class="salary-value">$55,000 - $100,000</span>
+                        </div>
+                        <div class="job-market">
+                            <div class="market-indicator"></div>
+                            <span class="market-text">سوق العمل: متوسط</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Interior Design Field -->
+                <div class="field-card">
+                    <div class="field-header">
+                        <div class="field-icon interior">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="field-title">
+                            <h3>التصميم الداخلي</h3>
+                            <p>تصميم وتنظيم المساحات الداخلية</p>
+                        </div>
+                    </div>
+                    <div class="field-content">
+                        <ul class="tech-list">
+                            <li><i class="fas fa-check-circle"></i> تصميم المنازل</li>
+                            <li><i class="fas fa-check-circle"></i> تصميم المكاتب</li>
+                            <li><i class="fas fa-check-circle"></i> تصميم المحلات التجارية</li>
+                            <li><i class="fas fa-check-circle"></i> اختيار الأثاث</li>
+                            <li><i class="fas fa-check-circle"></i> الألوان والإضاءة</li>
+                        </ul>
+                    </div>
+                    <div class="field-footer">
+                        <div class="salary-range">
+                            <span class="salary-label">متوسط الراتب:</span>
+                            <span class="salary-value">$40,000 - $85,000</span>
+                        </div>
+                        <div class="job-market">
+                            <div class="market-indicator"></div>
+                            <span class="market-text">سوق العمل: مستقر</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fashion Design Field -->
+                <div class="field-card">
+                    <div class="field-header">
+                        <div class="field-icon fashion">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <div class="field-title">
+                            <h3>تصميم الأزياء</h3>
+                            <p>تصميم الملابس والإكسسوارات</p>
+                        </div>
+                    </div>
+                    <div class="field-content">
+                        <ul class="tech-list">
+                            <li><i class="fas fa-check-circle"></i> تصميم الملابس</li>
+                            <li><i class="fas fa-check-circle"></i> تصميم الإكسسوارات</li>
+                            <li><i class="fas fa-check-circle"></i> تصميم الأزياء الراقية</li>
+                            <li><i class="fas fa-check-circle"></i> الخياطة والتفصيل</li>
+                            <li><i class="fas fa-check-circle"></i> اتجاهات الموضة</li>
+                        </ul>
+                    </div>
+                    <div class="field-footer">
+                        <div class="salary-range">
+                            <span class="salary-label">متوسط الراتب:</span>
+                            <span class="salary-value">$45,000 - $90,000</span>
+                        </div>
+                        <div class="job-market">
+                            <div class="market-indicator"></div>
+                            <span class="market-text">سوق العمل: تنافسي</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Branding Design Field -->
+                <div class="field-card">
+                    <div class="field-header">
+                        <div class="field-icon branding">
+                            <i class="fas fa-trademark"></i>
+                        </div>
+                        <div class="field-title">
+                            <h3>تصميم الهوية التجارية</h3>
+                            <p>بناء هويات بصرية للشركات والعلامات</p>
+                        </div>
+                    </div>
+                    <div class="field-content">
+                        <ul class="tech-list">
+                            <li><i class="fas fa-check-circle"></i> تصميم الشعارات</li>
+                            <li><i class="fas fa-check-circle"></i> الهوية البصرية</li>
+                            <li><i class="fas fa-check-circle"></i> تصميم العبوات</li>
+                            <li><i class="fas fa-check-circle"></i> استراتيجية العلامة</li>
+                            <li><i class="fas fa-check-circle"></i> تصميم المواد الترويجية</li>
+                        </ul>
+                    </div>
+                    <div class="field-footer">
+                        <div class="salary-range">
+                            <span class="salary-label">متوسط الراتب:</span>
+                            <span class="salary-value">$50,000 - $95,000</span>
+                        </div>
+                        <div class="job-market">
+                            <div class="market-indicator"></div>
+                            <span class="market-text">سوق العمل: مرتفع</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Design Tools Section -->
+        <section id="tools" class="section">
+            <div class="tools">
+                <h3>أدوات التصميم الأساسية</h3>
+                <div class="tools-grid">
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fab fa-adobe"></i>
+                        </div>
+                        <div class="tool-name">Adobe Photoshop</div>
+                        <div class="tool-category">تحرير الصور</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fab fa-adobe"></i>
+                        </div>
+                        <div class="tool-name">Adobe Illustrator</div>
+                        <div class="tool-category">رسوميات متجهة</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fab fa-adobe"></i>
+                        </div>
+                        <div class="tool-name">Adobe XD</div>
+                        <div class="tool-category">تصميم واجهة</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fab fa-adobe"></i>
+                        </div>
+                        <div class="tool-name">Adobe InDesign</div>
+                        <div class="tool-category">النشر المكتبي</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fab fa-figma"></i>
+                        </div>
+                        <div class="tool-name">Figma</div>
+                        <div class="tool-category">تصميم تعاوني</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fab fa-sketch"></i>
+                        </div>
+                        <div class="tool-name">Sketch</div>
+                        <div class="tool-category">تصميم واجهة</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <div class="tool-name">Blender</div>
+                        <div class="tool-category">نمذجة 3D</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <div class="tool-name">After Effects</div>
+                        <div class="tool-category">حركة ومرئيات</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="tool-name">Procreate</div>
+                        <div class="tool-category">رسم رقمي</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <div class="tool-name">Cinema 4D</div>
+                        <div class="tool-category">نمذجة 3D</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="tool-name">CorelDRAW</div>
+                        <div class="tool-category">رسوميات متجهة</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="tool-name">SketchUp</div>
+                        <div class="tool-category">نمذجة 3D</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="section">
+            <div class="portfolio">
+                <h3>معرض الأعمال</h3>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-title">تصميم هوية بصرية</div>
+                            <div class="portfolio-category">تصميم جرافيكي</div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1559028006-44a36fda3a56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-title">تصميم تطبيق جوال</div>
+                            <div class="portfolio-category">تصميم واجهة</div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-title">تصميم موقع إلكتروني</div>
+                            <div class="portfolio-category">تصميم مواقع</div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-title">تصميم داخلي حديث</div>
+                            <div class="portfolio-category">تصميم داخلي</div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-title">تصميم منتج صناعي</div>
+                            <div class="portfolio-category">تصميم صناعي</div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-title">تصميم أزياء</div>
+                            <div class="portfolio-category">تصميم أزياء</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Learning Path Section -->
+        <section id="path" class="section">
+            <div class="learning-path">
+                <h3>مسار التعلم المقترح</h3>
+                <div class="path-steps">
+                    <div class="path-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>أساسيات التصميم</h4>
+                            <p>تعلم المبادئ الأساسية للتصميم ونظرية الألوان</p>
+                        </div>
+                    </div>
+                    <div class="path-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>اختيار التخصص</h4>
+                            <p>حدد مجال التصميم الذي تريد التركيز عليه</p>
+                        </div>
+                    </div>
+                    <div class="path-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>تعلم الأدوات</h4>
+                            <p>أتقن استخدام أدوات التصميم الأساسية في مجالك</p>
+                        </div>
+                    </div>
+                    <div class="path-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>بناء معرض أعمال</h4>
+                            <p>قم بإنشاء مشاريع عملية لعرض مهاراتك</p>
+                        </div>
+                    </div>
+                    <div class="path-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>التخصص المتقدم</h4>
+                            <p>تعلم التقنيات المتقدمة في مجالك المختار</p>
+                        </div>
+                    </div>
+                    <div class="path-step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h4>العمل الحر أو التوظيف</h4>
+                            <p>ابدأ في بناء مسارك المهني كمصمم محترف</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section id="features" class="section">
+            <div class="section-title">
+                <h2>مميزات الموقع</h2>
+            </div>
+            
+            <div class="features">
+                <div class="features-grid">
+                    <div class="feature">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>محتوى تعليمي شامل</h3>
+                        <p>دروس وشرحات مفصلة لجميع مجالات التصميم من المستوى المبتدئ إلى المتقدم</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-laptop-code"></i>
+                        <h3>مشاريع عملية</h3>
+                        <p>مشاريع حقيقية تطبيقية لتعزيز المهارات وبناء معرض أعمال قوي</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-users"></i>
+                        <h3>مجتمع نشط</h3>
+                        <p>انضم إلى مجتمع من المصممين لتبادل الخبرات والمساعدة المتبادلة</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-certificate"></i>
+                        <h3>شهادات معتمدة</h3>
+                        <p>احصل على شهادات معتمدة بعد إكمال المسارات التعليمية</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-briefcase"></i>
+                        <h3>توجيه مهني</h3>
+                        <p>نصائح وإرشادات للبحث عن وظائف في مجال التصميم</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-sync-alt"></i>
+                        <h3>محتوى محدث</h3>
+                        <p>محتوى دائم التحديث لمواكبة أحدث الاتجاهات في عالم التصميم</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Resources Section -->
+        <section id="resources" class="section">
+            <div class="section-title">
+                <h2>المصادر التعليمية</h2>
+            </div>
+            
+            <div class="resources">
+                <div class="resource-tabs">
+                    <div class="tab active" data-tab="courses">الدورات</div>
+                    <div class="tab" data-tab="books">الكتب</div>
+                    <div class="tab" data-tab="videos">الفيديوهات</div>
+                    <div class="tab" data-tab="practice">التدريب</div>
+                </div>
+                
+                <div class="tab-content active" id="courses">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-paint-brush"></i>
+                            <h4>التصميم الجرافيكي الشامل</h4>
+                            <p>دورة متكاملة لتعلم التصميم الجرافيكي</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>تصميم واجهة المستخدم</h4>
+                            <p>أساسيات تصميم UI/UX</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-globe"></i>
+                            <h4>تصميم المواقع الحديث</h4>
+                            <p>تصميم مواقع متجاوبة وجذابة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-film"></i>
+                            <h4>التصميم الحركي</h4>
+                            <p>إنشاء رسوم متحركة احترافية</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-home"></i>
+                            <h4>التصميم الداخلي</h4>
+                            <p>مبادئ التصميم الداخلي</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="books">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>مبادئ التصميم</h4>
+                            <p>أساسيات نظرية التصميم</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>نظرية الألوان</h4>
+                            <p>فهم واستخدام الألوان في التصميم</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>تصميم تجربة المستخدم</h4>
+                            <p>مبادئ UX وتطبيقاتها</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>الطباعة والنشر</h4>
+                            <p>فنون الطباعة الحديثة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>الهوية التجارية</h4>
+                            <p>بناء هويات بصرية قوية</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="videos">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>سلسلة التصميم للمبتدئين</h4>
+                            <p>دروس تفصيلية خطوة بخطوة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>تعلم Adobe Photoshop</h4>
+                            <p>دورة شاملة للبرنامج</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>تصميم الشعارات</h4>
+                            <p>إنشاء شعارات احترافية</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>أحدث اتجاهات التصميم</h4>
+                            <p>مواكبة أحدث الاتجاهات</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>نصائح احترافية</h4>
+                            <p>نصائح من الخبراء</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="practice">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-tasks"></i>
+                            <h4>تمارين عملية</h4>
+                            <p>تمارين لتعزيز المهارات</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-project-diagram"></i>
+                            <h4>مشاريع جاهزة</h4>
+                            <p>أفكار لمشاريع تطبيقية</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-users"></i>
+                            <h4>ورش عمل</h4>
+                            <p>ممارسة مع مصممين آخرين</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-trophy"></i>
+                            <h4>مسابقات تصميم</h4>
+                            <p>شارك في مسابقات عالمية</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-comments"></i>
+                            <h4>نقد الأعمال</h4>
+                            <p>احصل على ملاحظات على أعمالك</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>عن الموقع</h3>
+                    <p>موقع عالم التصميم هو منصة تعليمية شاملة تهدف إلى مساعدة المصممين على تطوير مهاراتهم وبناء مسار مهني ناجح في مجال التصميم.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">الرئيسية</a></li>
+                        <li><a href="#">المجالات</a></li>
+                        <li><a href="#">الأدوات</a></li>
+                        <li><a href="#">معرض الأعمال</a></li>
+                        <li><a href="#">مسار التعلم</a></li>
+                        <li><a href="#">المصادر</a></li>
+                        <li><a href="#">المدونة</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>المجالات</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">التصميم الجرافيكي</a></li>
+                        <li><a href="#">تصميم واجهة المستخدم</a></li>
+                        <li><a href="#">تصميم المواقع</a></li>
+                        <li><a href="#">التصميم الحركي</a></li>
+                        <li><a href="#">التصميم الصناعي</a></li>
+                        <li><a href="#">التصميم الداخلي</a></li>
+                        <li><a href="#">تصميم الأزياء</a></li>
+                        <li><a href="#">تصميم الهوية التجارية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@designworld.com</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع عالم التصميم. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab functionality for resources section
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update active nav link
+                        document.querySelectorAll('nav a').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                });
+            });
+            
+            // Add animation to field cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.field-card').forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+            
+            // Add animation to path steps on scroll
+            document.querySelectorAll('.path-step').forEach(step => {
+                step.style.opacity = 0;
+                step.style.transform = 'translateX(-20px)';
+                step.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(step);
+            });
+            
+            // Add animation to portfolio items on scroll
+            document.querySelectorAll('.portfolio-item').forEach(item => {
+                item.style.opacity = 0;
+                item.style.transform = 'translateY(20px)';
+                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(item);
+            });
+            
+            // Add interactivity to tool items
+            document.querySelectorAll('.tool-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const toolName = this.querySelector('.tool-name').textContent;
+                    const toolInfo = getToolInfo(toolName);
+                    alert(`${toolName}: ${toolInfo}`);
+                });
+            });
+            
+            // Function to get tool information
+            function getToolInfo(toolName) {
+                const info = {
+                    'Adobe Photoshop': 'برنامج قوي لتحرير الصور والرسوميات النقطية',
+                    'Adobe Illustrator': 'برنامج متخصص في إنشاء الرسوميات المتجهة والشعارات',
+                    'Adobe XD': 'أداة تصميم واجهة المستخدم وتجربة المستخدم',
+                    'Adobe InDesign': 'برنامج احترافي للنشر المكتبي وتصميم المجلات',
+                    'Figma': 'أداة تصميم تعاونية قائمة على الويب',
+                    'Sketch': 'أداة تصميم واجهة المستخدم لنظام macOS',
+                    'Blender': 'برنامج مجاني ومفتوح المصدر للنمذجة ثلاثية الأبعاد',
+                    'After Effects': 'برنامج متخصص في إنشاء الرسوم المتحركة والمؤثرات البصرية',
+                    'Procreate': 'تطبيق رسم رقمي قوي لأجهزة iPad',
+                    'Cinema 4D': 'برنامج احترافي للنمذجة ثلاثية الأبعاد والرسوم المتحركة',
+                    'CorelDRAW': 'حزمة برامج للرسوميات المتجهة وتصميم الشعارات',
+                    'SketchUp': 'برنامج سهل الاستخدام للنمذجة ثلاثية الأبعاد'
+                };
+                return info[toolName] || 'معلومات غير متاحة';
+            }
+        });
+    </script>
+</body>
+</html>

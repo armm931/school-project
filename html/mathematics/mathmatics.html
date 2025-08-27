@@ -1,11 +1,401 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>الرياضيات</title>
+    <link rel="stylesheet" href="/css/mathmatics.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    
+    <!-- Header -->
+    <header>
+     <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-square-root-alt"></i>
+                    <h1>الرياضيات</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="/html/app.html" class="active">الرئيسية</a></li>
+                        <li><a href="#categories">الأقسام</a></li>
+                        <li><a href="#features">المميزات</a></li>
+                        <li><a href="#resources">المصادر</a></li>
+                        <li><a href="#contact">تواصل معنا</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>مرحباً بك في عالم الرياضيات</h2>
+            <p>اكتشف جمال الرياضيات وتعلم مفاهيمها الأساسية والمتقدمة من خلال أقسامنا المتنوعة والمصادر التعليمية الشاملة</p>
+            <a href="#categories" class="btn">استكشف الأقسام</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Math Categories Section -->
+        <section id="categories" class="section">
+            <div class="section-title">
+                <h2>أقسام الرياضيات</h2>
+            </div>
+            
+            <div class="categories">
+                <!-- Algebra Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon algebra">
+                            <i class="fas fa-superscript"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>الجبر</h3>
+                            <p>دراسة المعادلات والهياكل الجبرية</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> الجبر الابتدائي</li>
+                            <li><i class="fas fa-check-circle"></i> الجبر الخطي</li>
+                            <li><i class="fas fa-check-circle"></i> الجبر المجرد</li>
+                            <li><i class="fas fa-check-circle"></i> نظرية الأعداد</li>
+                            <li><i class="fas fa-check-circle"></i> المعادلات التفاضلية</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Geometry Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon geometry">
+                            <i class="fas fa-shapes"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>الهندسة</h3>
+                            <p>دراسة الأشكال والمساحات والأحجام</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> الهندسة الإقليدية</li>
+                            <li><i class="fas fa-check-circle"></i> الهندسة التحليلية</li>
+                            <li><i class="fas fa-check-circle"></i> المثلثات</li>
+                            <li><i class="fas fa-check-circle"></i> الهندسة الفراغية</li>
+                            <li><i class="fas fa-check-circle"></i> الهندسة غير الإقليدية</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Calculus Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon calculus">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>التفاضل والتكامل</h3>
+                            <p>دراسة التغير ومعدلات التغيير</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> التفاضل</li>
+                            <li><i class="fas fa-check-circle"></i> التكامل</li>
+                            <li><i class="fas fa-check-circle"></i> المتتاليات والمتسلسلات</li>
+                            <li><i class="fas fa-check-circle"></i> الدوال متعددة المتغيرات</li>
+                            <li><i class="fas fa-check-circle"></i> المعادلات التفاضلية</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Statistics Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon statistics">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>الإحصاء والاحتمالات</h3>
+                            <p>تحليل البيانات ودراسة الاحتمالات</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> الإحصاء الوصفي</li>
+                            <li><i class="fas fa-check-circle"></i> الاحتمالات</li>
+                            <li><i class="fas fa-check-circle"></i> التوزيعات الاحتمالية</li>
+                            <li><i class="fas fa-check-circle"></i> الاستدلال الإحصائي</li>
+                            <li><i class="fas fa-check-circle"></i> الانحدار والارتباط</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Discrete Math Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon discrete">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>الرياضيات المتقطعة</h3>
+                            <p>دراسة الهياكل الرياضية المنفصلة</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> نظرية المجموعات</li>
+                            <li><i class="fas fa-check-circle"></i> المنطق الرياضي</li>
+                            <li><i class="fas fa-check-circle"></i> نظرية البيان</li>
+                            <li><i class="fas fa-check-circle"></i> التوافقيات</li>
+                            <li><i class="fas fa-check-circle"></i> الخوارزميات</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section id="features" class="section">
+            <div class="section-title">
+                <h2>مميزات الموقع</h2>
+            </div>
+            
+            <div class="features">
+                <div class="features-grid">
+                    <div class="feature">
+                        <i class="fas fa-book-open"></i>
+                        <h3>محتوى تعليمي شامل</h3>
+                        <p>دروس وشرحات مفصلة لجميع مفاهيم الرياضيات من المستوى الأساسي إلى المتقدم</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-calculator"></i>
+                        <h3>أدوات تفاعلية</h3>
+                        <p>حاسبات وأدوات لحل المسائل الرياضية المعقدة بسهولة وسرعة</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-video"></i>
+                        <h3>فيديوهات تعليمية</h3>
+                        <p>مكتبة ضخمة من الفيديوهات التوضيحية لجميع المواضيع الرياضية</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-tasks"></i>
+                        <h3>تمارين واختبارات</h3>
+                        <p>مجموعة متنوعة من التمارين والاختبارات لتقييم فهمك وتقدمك</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-users"></i>
+                        <h3>مجتمع تعليمي</h3>
+                        <p>انضم إلى مجتمع من المهتمين بالرياضيات لتبادل المعرفة والخبرات</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>تجربة متعددة المنصات</h3>
+                        <p>وصول كامل إلى جميع المحتويات من أي جهاز (كمبيوتر، هاتف، تابلت)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Resources Section -->
+        <section id="resources" class="section">
+            <div class="section-title">
+                <h2>المصادر التعليمية</h2>
+            </div>
+            
+            <div class="resources">
+                <div class="resource-tabs">
+                    <div class="tab active" data-tab="books">الكتب</div>
+                    <div class="tab" data-tab="videos">الفيديوهات</div>
+                    <div class="tab" data-tab="tools">الأدوات</div>
+                    <div class="tab" data-tab="exercises">التمارين</div>
+                </div>
+                
+                <div class="tab-content active" id="books">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>مبادئ الجبر</h4>
+                            <p>دليل شامل للمفاهيم الأساسية</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>الهندسة التحليلية</h4>
+                            <p>الجبر والهندسة معاً</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>التفاضل والتكامل</h4>
+                            <p>من الأساسيات إلى التطبيقات</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>الإحصاء الاحتمالي</h4>
+                            <p>تحليل البيانات والتنبؤ</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>الرياضيات المتقطعة</h4>
+                            <p>أساسيات علوم الحاسب</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="videos">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>سلسلة الجبر للمبتدئين</h4>
+                            <p>دروس تفصيلية خطوة بخطوة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>مفاهيم التفاضل</h4>
+                            <p>شرح مبسط للمشتقات وتطبيقاتها</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>هندسة الفراغ</h4>
+                            <p>الأشكال ثلاثية الأبعاد</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>الاحتمالات في الحياة</h4>
+                            <p>تطبيقات عملية لنظرية الاحتمالات</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>خوارزميات الرياضيات</h4>
+                            <p>حل المسائل برمجياً</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="tools">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-calculator"></i>
+                            <h4>حاسبة المعادلات</h4>
+                            <p>حل المعادلات الخطية وغير الخطية</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-drafting-compass"></i>
+                            <h4>أدوات هندسية</h4>
+                            <p>رسم الأشكال الهندسية بدقة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-chart-area"></i>
+                            <h4>ممثل بياني</h4>
+                            <p>رسم الدوال والمنحنيات</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-percentage"></i>
+                            <h4>حاسبة احتمالات</h4>
+                            <p>حساب الاحتمالات المختلفة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-project-diagram"></i>
+                            <h4>محلل البيان</h4>
+                            <p>تحليل ورسم البيانات</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="exercises">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-pencil-alt"></i>
+                            <h4>تمارين الجبر</h4>
+                            <p>من البسيط إلى المتقدم</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-pencil-alt"></i>
+                            <h4>مسائل هندسية</h4>
+                            <p>تطبيقات عملية للمفاهيم</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-pencil-alt"></i>
+                            <h4>مسائل تفاضل</h4>
+                            <p>تطبيقات في الفيزياء والهندسة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-pencil-alt"></i>
+                            <h4>تمارين إحصائية</h4>
+                            <p>تحليل مجموعات بيانات حقيقية</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-pencil-alt"></i>
+                            <h4>تحديات رياضية</h4>
+                            <p>مسائل تفكير إبداعي</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>عن الموقع</h3>
+                    <p>موقع الرياضيات الشامل هو منصة تعليمية تهدف إلى تقديم محتوى رياضي عالي الجودة للطلاب والمعلمين والمهتمين بمجال الرياضيات.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">الرئيسية</a></li>
+                        <li><a href="#">الأقسام</a></li>
+                        <li><a href="#">المصادر</a></li>
+                        <li><a href="#">المدونة</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>الأقسام</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">الجبر</a></li>
+                        <li><a href="#">الهندسة</a></li>
+                        <li><a href="#">التفاضل والتكامل</a></li>
+                        <li><a href="#">الإحصاء والاحتمالات</a></li>
+                        <li><a href="#">الرياضيات المتقطعة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@mathsite.com</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع الرياضيات الشامل. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+<script src="/js/mathmatics.js"></script>
 </body>
 </html>

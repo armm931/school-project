@@ -1,207 +1,413 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الكيمياء</title>
-    <link rel="stylesheet" href="/css/Chemistry.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <title> الكيمياء </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ <link rel="stylesheet" href="/css/Chemistry.css">
+
 </head>
 <body>
-    <header class="text-center py-4">
-        <h1>ما اقسم الكيمياء</h1>
-        <p>علم الكيمياء يُقسَّم إلى عدة فروع رئيسية، وكل فرع يركّز على جانب معيّن من المادة وتفاعلاتها. إليك الأقسام الأساسية للكيمياء:</p>
-    <br>
-      <!-- Header -->
-    <header class="bg-white shadow-md sticky top-0 z-40">
-        <nav class="container mx-auto px-4 py-4">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <i class="fas fa-graduation-cap text-3xl text-purple-600"></i>
-                    <h1 class="text-2xl font-bold text-gray-800">EduHub</h1>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-flask"></i>
+                    <h1>الكيمياء </h1>
                 </div>
-                
-                <div class="hidden md:flex items-center space-x-6">
-                    <a href="#home" class="nav-link text-gray-600 hover:text-purple-600 transition">Home</a>
-                    <a href="#subjects" class="nav-link text-gray-600 hover:text-purple-600 transition">Subjects</a>
-                    <a href="#about" class="nav-link text-gray-600 hover:text-purple-600 transition">About</a>
-                    <a href="#contact" class="nav-link text-gray-600 hover:text-purple-600 transition">Contact</a>
-                </div>
-                
-                <div class="flex items-center space-x-4">
-                    <button onclick="showLoginModal()" class="text-gray-600 hover:text-purple-600 transition">
-                        <i class="fas fa-user mr-2"></i>Login
-                    </button>
-                    <button onclick="showRegisterModal()" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">
-                        Sign Up
-                    </button>
-                    <button class="md:hidden" onclick="toggleMobileMenu()">
-                        <i class="fas fa-bars text-2xl text-gray-600"></i>
-                    </button>
-                </div>
+                <nav>
+                    <ul>
+                        <li><a href="/html/app.html" class="active">الرئيسية</a></li>
+                        <li><a href="#categories">الأقسام</a></li>
+                        <li><a href="#periodic">الجدول الدوري</a></li>
+                        <li><a href="#features">المميزات</a></li>
+                        <li><a href="#resources">المصادر</a></li>
+                        <li><a href="#contact">تواصل معنا</a></li>
+                    </ul>
+                </nav>
             </div>
-            
-            <!-- Mobile Menu -->
-            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4">
-                <a href="#home" class="block py-2 text-gray-600 hover:text-purple-600">Home</a>
-                <a href="#subjects" class="block py-2 text-gray-600 hover:text-purple-600">Subjects</a>
-                <a href="#about" class="block py-2 text-gray-600 hover:text-purple-600">About</a>
-                <a href="#contact" class="block py-2 text-gray-600 hover:text-purple-600">Contact</a>
-            </div>
-        </nav>
+        </div>
     </header>
 
-    </header>
-    
-    <main class="container my-4">
-        <h1 class="text-center mb-4">🧪 أقسام الكيمياء الرئيسية:</h1>
-        
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <!-- Card 1 -->
-            <div class="col">
-                <div class="card h-100">
-                    <img src="/img/img Chemistry/1. الكيمياء العامة (General Chemistry).jpg" class="card-img-top" alt="General Chemistry">
-                    <div class="card-body">
-                        <h5 class="card-title">1. الكيمياء العامة (General Chemistry)</h5>
-                        <p class="card-text">الكيمياء العامة هو مجموعة من المبادئ الأساسية في الكيمياء، يهتم بالتركيب الذري والتوزيع الإلكتروني للعناصر - الجدول الدوري والتوزيع الإلكتروني - الروابط الكيميائية المختلفة - رتبة الرابطة التساهمية وبعض خصائصها - الرنين - الجزيئات القطبية والسالبية الكهربية - الأكسدة والاختزال وأعداد التأكسد - الربط التساهمي والبنية ...</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-body-secondary"><button class="btn btn-sm btn-primary"><a href="" class="text-white">next</a></button></small>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Card 2 -->
-            <div class="col">
-                <div class="card h-100">
-                    <img src="/img/img Chemistry/2. الكيمياء العضوية (Organic Chemistry).png" class="card-img-top" alt="Organic Chemistry">
-                    <div class="card-body">
-                        <h5 class="card-title">2. الكيمياء العضوية (Organic Chemistry)</h5>
-                        <p class="card-text">الكيمياء العضوية هي دراسة المركبات التي تحتوي على الكربون، وتسمى أيضاً كيمياء الكربون. وهي تهتم بتركيب، الخصائص، التفاعلات، وتفاعلات هذه المركبات، وخصوصاً تلك الموجودة في الكائنات الحية أو المشتقة منها.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-body-secondary"><button class="btn btn-sm btn-primary"><a href="" class="text-white">next</a></button></small>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Card 3 -->
-            <div class="col">
-                <div class="card h-100">
-                    <img src="/img/img Chemistry/OsCl4structure.jpg" class="card-img-top" alt="Inorganic Chemistry">
-                    <div class="card-body">
-                        <h5 class="card-title">3. الكيمياء غير العضوية (Inorganic Chemistry)</h5>
-                        <p class="card-text">الكيمياء غير العضوية (Inorganic Chemistry) هي دراسة المركبات الكيميائية التي لا تحتوي على الكربون، باستثناء بعض المركبات التي تحتوي على الكربون مثل الكربون والأكسيد. يركز هذا المجال على سلوك وتفاعل العناصر المختلفة، بما في ذلك المعادن وغير المعدنية, وتركيب المركبات الأيونية والمعدنية.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-body-secondary"><button class="btn btn-sm btn-primary"><a href="" class="text-white">next</a></button></small>
-                    </div>
-                </div>
-            </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>مرحباً بك في عالم الكيمياء</h2>
+            <p>اكتشف أسرار المادة والتفاعلات الكيميائية من خلال أقسامنا المتنوعة والمصادر التعليمية الشاملة</p>
+            <a href="#categories" class="btn">استكشف الأقسام</a>
         </div>
-        
-        <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
-            <!-- Card 4 -->
-            <div class="col">
-                <div class="card h-100">
-                    <img src="/img/img Chemistry/4. الكيمياء الفيزيائية (Physical Chemistry).jpg" class="card-img-top" alt="Physical Chemistry">
-                    <div class="card-body">
-                        <h5 class="card-title">4. الكيمياء الفيزيائية (Physical Chemistry)</h5>
-                        <p class="card-text">الكيمياء الفيزيائية (بالإنجليزية: Physical Chemistry) هي فرع من فروع الكيمياء يهتم بدراسة الخصائص والظواهر الفيزيائية التي تحكم سلوك المواد والظواهر الكيميائية، مع التركيز على المبادئ الفيزيائية مثل الديناميكا الحرارية، الكيمياء الكمومية، والميكانيكا الإحصائية.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-body-secondary"><button class="btn btn-sm btn-primary"><a href="" class="text-white">next</a></button></small>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Card 5 -->
-            <div class="col">
-                <div class="card h-100">
-                    <img src="/img/img Chemistry/الكيمياء التحليلية.jpg" class="card-img-top" alt="Analytical Chemistry">
-                    <div class="card-body">
-                        <h5 class="card-title">5. الكيمياء التحليلية (Analytical Chemistry)</h5>
-                        <p class="card-text">تهتم بكشف مكونات المادة وتحديد نسبها.
-                        نوعان:
-                        تحليل نوعي: ما هي المواد الموجودة 
-                        تحليل كمي: كم كمية كل مادة موجودة
-                        مثال: تحليل الدم، تحليل جودة الماء.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-body-secondary"><button class="btn btn-sm btn-primary"><a href="" class="text-white">next</a></button></small>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Card 6 -->
-            <div class="col">
-                <div class="card h-100">
-                    <img src="/img/img Chemistry/الكيمياء الحيوية.png" class="card-img-top" alt="Biochemistry">
-                    <div class="card-body">
-                        <h5 class="card-title">6. الكيمياء الحيوية (Biochemistry)</h5>
-                        <p class="card-text">تدرس التفاعلات الكيميائية في الكائنات الحية.
-                        تركز على: البروتينات، الإنزيمات، DNA، التمثيل الغذائي.
-                        مثال: كيف يهضم الجسم الطعام، أو كيف يُنتج الجسم الطاقة.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-body-secondary"><button class="btn btn-sm btn-primary"><a href="" class="text-white">next</a></button></small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
-            <!-- Card 7 -->
-            <div class="col">
-                <div class="card h-100">
-                    <img src="/img/img Chemistry/industrial-chemistry.jpg" class="card-img-top" alt="Industrial Chemistry">
-                    <div class="card-body">
-                        <h5 class="card-title">7. الكيمياء الصناعية (Industrial Chemistry)</h5>
-                        <p class="card-text">تطبيق المبادئ الكيميائية في الصناعات مثل:
-                        إنتاج الأدوية، البلاستيك، الأسمدة، المنظفات.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-body-secondary"><button class="btn btn-sm btn-primary"><a href="" class="text-white">next</a></button></small>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Card 8 -->
-            <div class="col">
-                <div class="card h-100">
-                    <img src="/img/img Chemistry/Environmental Chemistry.jpg" class="card-img-top" alt="Environmental Chemistry">
-                    <div class="card-body">
-                        <h5 class="card-title">8. الكيمياء البيئية (Environmental Chemistry)</h5>
-                        <p class="card-text">تدرس تأثير المواد الكيميائية على البيئة.
-                        مثل: تلوث الهواء والماء، تحلل المواد في الطبيعة.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-body-secondary"><button class="btn btn-sm btn-primary"><a href="" class="text-white">next</a></button></small>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Card 9 -->
-            <div class="col">
-                <div class="card h-100">
-                    <img src="/img/img Chemistry/Nuclear Chemistry.png" class="card-img-top" alt="Nuclear Chemistry">
-                    <div class="card-body">
-                        <h5 class="card-title">9. الكيمياء النووية (Nuclear Chemistry)</h5>
-                        <p class="card-text">تدرس التفاعلات النووية والعناصر المشعة.
-                        مثال: الانشطار النووي، استخدام النظائر المشعة.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-body-secondary"><button class="btn btn-sm btn-primary"><a href="" class="text-white">next</a></button></small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+    </section>
 
-    <footer class="text-center py-4 mt-5">
-        <p>&copy; 2024 EduHub - جميع الحقوق محفوظة</p>
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Chemistry Categories Section -->
+        <section id="categories" class="section">
+            <div class="section-title">
+                <h2>أقسام الكيمياء</h2>
+            </div>
+            
+            <div class="categories">
+                <!-- Organic Chemistry Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon organic">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>الكيمياء العضوية</h3>
+                            <p>دراسة مركبات الكربون وتفاعلاتها</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i><a href="/html/Chemistry/Organic Chemistry/hydrocarbons.html">الهيدروكربونات</a></li>
+                            <li><i class="fas fa-check-circle"></i> <a href="/html/Chemistry/Organic Chemistry/Functional compounds.html">المركبات الوظيفية</a></li>
+                            <li><i class="fas fa-check-circle"></i> <a href="/html/Chemistry/Organic Chemistry/organic reactions.html">التفاعلات العضوية</a></li>
+                            <li><i class="fas fa-check-circle"></i><a href="/html/Chemistry/Organic Chemistry/polymers.html">البوليمرات</a></li>
+                            <li><i class="fas fa-check-circle"></i><a href="/html/Chemistry/Organic Chemistry/Pharmaceutical Chemistry.html">الكيمياء الصيدلانية</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Inorganic Chemistry Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon inorganic">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>الكيمياء غير العضوية</h3>
+                            <p>دراسة المواد غير العضوية وخواصها</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> <a href="/html/Chemistry/inorganic chemistry/Metals and their oxides.html">المعادن وأكاسيدها</a></li>
+                            <li><i class="fas fa-check-circle"></i><a href="/html/Chemistry/inorganic chemistry/Acids and bases.html">الأحماض والقواعد</a></li>
+                            <li><i class="fas fa-check-circle"></i><a href="/html/Chemistry/inorganic chemistry/salts.html">الأملاح</a></li>
+                            <li><i class="fas fa-check-circle"></i><a href="/html/Chemistry/inorganic chemistry/coordination chemistry.html">الكيمياء التناسقية</a></li>
+                            <li><i class="fas fa-check-circle"></i><a href="/html/Chemistry/inorganic chemistry/Solid Chemistry.html">الكيمياء الصلبة</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Physical Chemistry Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon physical">
+                            <i class="fas fa-thermometer-half"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>الكيمياء الفيزيائية</h3>
+                            <p>دراسة الظواهر الفيزيائية في الأنظمة الكيميائية</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i><a href="/html/Chemistry/physical chemistry/Thermodynamics.html">الديناميكا الحرارية</a></li>
+                            <li><i class="fas fa-check-circle"></i> حركية التفاعلات</li>
+                            <li><i class="fas fa-check-circle"></i> التوازن الكيميائي</li>
+                            <li><i class="fas fa-check-circle"></i> الكهروكيمياء</li>
+                            <li><i class="fas fa-check-circle"></i> الكيمياء الكمية</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Analytical Chemistry Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon analytical">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>الكيمياء التحليلية</h3>
+                            <p>دراسة طرق تحليل المواد وتحديد مكوناتها</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> التحليل النوعي</li>
+                            <li><i class="fas fa-check-circle"></i> التحليل الكمي</li>
+                            <li><i class="fas fa-check-circle"></i> التحليل الطيفي</li>
+                            <li><i class="fas fa-check-circle"></i> الكروماتوغرافيا</li>
+                            <li><i class="fas fa-check-circle"></i> التحليل الكهربائي</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Biochemistry Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon biochemistry">
+                            <i class="fas fa-dna"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>الكيمياء الحيوية</h3>
+                            <p>دراسة العمليات الكيميائية في الكائنات الحية</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> الكربوهيدرات</li>
+                            <li><i class="fas fa-check-circle"></i> البروتينات</li>
+                            <li><i class="fas fa-check-circle"></i> الدهون</li>
+                            <li><i class="fas fa-check-circle"></i> الأحماض النووية</li>
+                            <li><i class="fas fa-check-circle"></i> الإنزيمات</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Periodic Table Section -->
+        <section id="periodic" class="section">
+            <div class="periodic-table">
+                <h3>الجدول الدوري للعناصر</h3>
+                <div class="elements-container" id="periodicTable">
+                    <!-- Elements will be generated by JavaScript -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section id="features" class="section">
+            <div class="section-title">
+                <h2>مميزات الموقع</h2>
+            </div>
+            
+            <div class="features">
+                <div class="features-grid">
+                    <div class="feature">
+                        <i class="fas fa-book-open"></i>
+                        <h3>محتوى تعليمي شامل</h3>
+                        <p>دروس وشرحات مفصلة لجميع مفاهيم الكيمياء من المستوى الأساسي إلى المتقدم</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-flask"></i>
+                        <h3>تجارب افتراضية</h3>
+                        <p>محاكاة للتجارب الكيميائية في بيئة آمنة وتفاعلية</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-video"></i>
+                        <h3>فيديوهات تعليمية</h3>
+                        <p>مكتبة ضخمة من الفيديوهات التوضيحية لجميع المواضيع الكيميائية</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-atom"></i>
+                        <h3>نماذج جزيئية</h3>
+                        <p>نماذج ثلاثية الأبعاد للجزيئات والتراكيب الكيميائية</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-calculator"></i>
+                        <h3>أدوات حسابية</h3>
+                        <p>حاسبات للمولات، التراكيز، والتوازنات الكيميائية</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-users"></i>
+                        <h3>مجتمع تعليمي</h3>
+                        <p>انضم إلى مجتمع من المهتمين بالكيمياء لتبادل المعرفة والخبرات</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Resources Section -->
+        <section id="resources" class="section">
+            <div class="section-title">
+                <h2>المصادر التعليمية</h2>
+            </div>
+            
+            <div class="resources">
+                <div class="resource-tabs">
+                    <div class="tab active" data-tab="books">الكتب</div>
+                    <div class="tab" data-tab="videos">الفيديوهات</div>
+                    <div class="tab" data-tab="tools">الأدوات</div>
+                    <div class="tab" data-tab="experiments">التجارب</div>
+                </div>
+                
+                <div class="tab-content active" id="books">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>مبادئ الكيمياء العامة</h4>
+                            <p>أساسيات الكيمياء للمبتدئين</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>الكيمياء العضوية</h4>
+                            <p>مركبات الكربون وتفاعلاتها</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>الكيمياء الفيزيائية</h4>
+                            <p>الأسس الفيزيائية للكيمياء</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>الكيمياء التحليلية</h4>
+                            <p>طرق التحليل والتطبيقات</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>الكيمياء الحيوية</h4>
+                            <p>الكيمياء في الكائنات الحية</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="videos">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>سلسلة الكيمياء العامة</h4>
+                            <p>دروس تفصيلية خطوة بخطوة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>التفاعلات الكيميائية</h4>
+                            <p>شرح تفاعلات المواد المختلفة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>التجارب المعملية</h4>
+                            <p>تجارب عملية مع شرح مفصل</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>الجدول الدوري</h4>
+                            <p>شرح خصائص العناصر</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>الكيمياء في الحياة</h4>
+                            <p>تطبيقات الكيمياء اليومية</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="tools">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-calculator"></i>
+                            <h4>حاسبة المولات</h4>
+                            <p>تحويل بين الوحدات الكيميائية</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-balance-scale"></i>
+                            <h4>موازنة المعادلات</h4>
+                            <p>موازنة المعادلات الكيميائية</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-vial"></i>
+                            <h4>حاسبة التراكيز</h4>
+                            <p>حساب تركيز المحاليل</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-project-diagram"></i>
+                            <h4>راسم الجزيئات</h4>
+                            <p>رسم التراكيب الجزيئية</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-atom"></i>
+                            <h4>محاكي التفاعلات</h4>
+                            <p>محاكاة التفاعلات الكيميائية</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="experiments">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-flask"></i>
+                            <h4>تجارب الأحماض والقواعد</h4>
+                            <p>تفاعلات التعادل والحموضة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-flask"></i>
+                            <h4>تجارب الأكسدة والاختزال</h4>
+                            <p>تفاعلات نقل الإلكترونات</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-flask"></i>
+                            <h4>تجارب الترسيب</h4>
+                            <p>تكوين الرواسب وتطبيقاتها</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-flask"></i>
+                            <h4>تجارب الغازات</h4>
+                            <p>خصائص الغازات وتفاعلاتها</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-flask"></i>
+                            <h4>تجارب البوليمرات</h4>
+                            <p>تصنيع البوليمرات وخصائصها</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>عن الموقع</h3>
+                    <p>موقع الكيمياء الشامل هو منصة تعليمية تهدف إلى تقديم محتوى كيميائي عالي الجودة للطلاب والمعلمين والمهتمين بمجال الكيمياء.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">الرئيسية</a></li>
+                        <li><a href="#">الأقسام</a></li>
+                        <li><a href="#">الجدول الدوري</a></li>
+                        <li><a href="#">المصادر</a></li>
+                        <li><a href="#">المدونة</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>الأقسام</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">الكيمياء العضوية</a></li>
+                        <li><a href="#">الكيمياء غير العضوية</a></li>
+                        <li><a href="#">الكيمياء الفيزيائية</a></li>
+                        <li><a href="#">الكيمياء التحليلية</a></li>
+                        <li><a href="#">الكيمياء الحيوية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@chemistrysite.com</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع الكيمياء الشامل. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
     </footer>
-<script src="/js/chemistry.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+    <script src="/js/chemistry.js"></script>
 </body>
 </html>

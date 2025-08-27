@@ -1,0 +1,1913 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع عالم اللغات الإنسانية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            direction: rtl;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1a237e, #4a148c);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo i {
+            font-size: 2.2rem;
+            color: #ff9800;
+        }
+        
+        .logo h1 {
+            font-size: 1.9rem;
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 5px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: rgba(255,255,255,0.15);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 35, 126, 0.85), rgba(74, 20, 140, 0.85)), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 140px 0;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon points="50,0 100,50 50,100 0,50" fill="rgba(255,255,255,0.03)"/></svg>');
+            background-size: 100px 100px;
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100px, 100px); }
+        }
+        
+        .hero h2 {
+            font-size: 3.2rem;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            position: relative;
+            z-index: 2;
+            font-weight: 500;
+            line-height: 1.8;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #ff9800;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .btn:hover {
+            background-color: #f57c00;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        
+        /* Sections */
+        .section {
+            margin-bottom: 80px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #1a237e;
+            display: inline-block;
+            padding: 0 20px;
+            background-color: #f8f9fa;
+            position: relative;
+            z-index: 2;
+            font-weight: 700;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #e0e0e0;
+            z-index: 1;
+        }
+        
+        /* Language Categories */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #1a237e, #4a148c);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+        
+        .category-header {
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .category-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        
+        .by-region { background: linear-gradient(135deg, #1a237e, #3949ab); }
+        .by-family { background: linear-gradient(135deg, #4a148c, #7b1fa2); }
+        .by-speakers { background: linear-gradient(135deg, #b71c1c, #e53935); }
+        .by-status { background: linear-gradient(135deg, #2e7d32, #43a047); }
+        .by-history { background: linear-gradient(135deg, #ef6c00, #ff9800); }
+        .by-structure { background: linear-gradient(135deg, #0277bd, #29b6f6); }
+        
+        .category-title {
+            flex: 1;
+        }
+        
+        .category-title h3 {
+            font-size: 1.7rem;
+            margin-bottom: 8px;
+            color: #1a237e;
+            font-weight: 700;
+        }
+        
+        .category-title p {
+            color: #666;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        .category-content {
+            padding: 30px;
+            flex: 1;
+        }
+        
+        .topic-list {
+            list-style: none;
+        }
+        
+        .topic-list li {
+            padding: 12px 0;
+            border-bottom: 1px dashed #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+        }
+        
+        .topic-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .topic-list i {
+            color: #1a237e;
+            font-size: 1.1rem;
+        }
+        
+        /* Language Stats */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #1a237e, #4a148c);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+        
+        .stat-number {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: #1a237e;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #1a237e, #4a148c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .stat-label {
+            font-size: 1.2rem;
+            color: #424242;
+            font-weight: 600;
+        }
+        
+        /* Language Grid */
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 25px;
+        }
+        
+        .language-item {
+            background: white;
+            border-radius: 12px;
+            padding: 25px 15px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .language-item:hover {
+            background-color: #1a237e;
+            color: white;
+            transform: translateY(-8px);
+            border-color: #1a237e;
+            box-shadow: 0 15px 30px rgba(26, 35, 126, 0.2);
+        }
+        
+        .language-icon {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: #1a237e;
+        }
+        
+        .language-item:hover .language-icon {
+            color: white;
+        }
+        
+        .language-name {
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+        
+        .language-speakers {
+            font-size: 0.9rem;
+            color: #757575;
+        }
+        
+        .language-item:hover .language-speakers {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        /* Language Details */
+        .language-details {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            margin-bottom: 60px;
+        }
+        
+        .language-tabs {
+            display: flex;
+            margin-bottom: 35px;
+            border-bottom: 2px solid #f0f0f0;
+            overflow-x: auto;
+        }
+        
+        .lang-tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #616161;
+            border-bottom: 4px solid transparent;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            white-space: nowrap;
+        }
+        
+        .lang-tab.active {
+            color: #1a237e;
+            border-bottom-color: #1a237e;
+        }
+        
+        .lang-tab-content {
+            display: none;
+        }
+        
+        .lang-tab-content.active {
+            display: block;
+        }
+        
+        .lang-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .lang-info-left img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .lang-info-right h3 {
+            font-size: 2rem;
+            color: #1a237e;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .lang-info-right p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #424242;
+        }
+        
+        .lang-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .lang-stat {
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .lang-stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a237e;
+            margin-bottom: 5px;
+        }
+        
+        .lang-stat-label {
+            color: #616161;
+            font-weight: 500;
+        }
+        
+        /* Learning Resources */
+        .resources {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            margin-bottom: 60px;
+        }
+        
+        .resource-tabs {
+            display: flex;
+            margin-bottom: 35px;
+            border-bottom: 2px solid #f0f0f0;
+            overflow-x: auto;
+        }
+        
+        .res-tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #616161;
+            border-bottom: 4px solid transparent;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            white-space: nowrap;
+        }
+        
+        .res-tab.active {
+            color: #1a237e;
+            border-bottom-color: #1a237e;
+        }
+        
+        .res-tab-content {
+            display: none;
+        }
+        
+        .res-tab-content.active {
+            display: block;
+        }
+        
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+        }
+        
+        .resource-item {
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .resource-item:hover {
+            background-color: #1a237e;
+            color: white;
+            transform: translateY(-8px);
+            border-color: #1a237e;
+            box-shadow: 0 15px 30px rgba(26, 35, 126, 0.2);
+        }
+        
+        .resource-item i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #1a237e;
+        }
+        
+        .resource-item:hover i {
+            color: white;
+        }
+        
+        .resource-item h4 {
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        
+        .resource-item p {
+            font-size: 0.95rem;
+            color: #616161;
+        }
+        
+        .resource-item:hover p {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        /* Translation Tool */
+        .translation-tool {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            margin-bottom: 60px;
+        }
+        
+        .translation-tool h3 {
+            text-align: center;
+            margin-bottom: 35px;
+            color: #1a237e;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .translation-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .translation-box {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .translation-box label {
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #1a237e;
+            font-size: 1.1rem;
+        }
+        
+        .translation-box select,
+        .translation-box textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .translation-box select:focus,
+        .translation-box textarea:focus {
+            outline: none;
+            border-color: #1a237e;
+        }
+        
+        .translation-box textarea {
+            min-height: 180px;
+            resize: vertical;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .translate-btn {
+            display: block;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #1a237e, #4a148c);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .translate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        
+        /* Community Section */
+        .community-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            margin-bottom: 60px;
+        }
+        
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .community-card {
+            background: linear-gradient(135deg, #f5f5f5, #eeeeee);
+            border-radius: 12px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .community-card:hover {
+            background: linear-gradient(135deg, #1a237e, #4a148c);
+            color: white;
+            transform: translateY(-8px);
+            border-color: #1a237e;
+            box-shadow: 0 15px 30px rgba(26, 35, 126, 0.2);
+        }
+        
+        .community-card i {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            color: #1a237e;
+        }
+        
+        .community-card:hover i {
+            color: white;
+        }
+        
+        .community-card h4 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        
+        .community-card p {
+            margin-bottom: 25px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .community-card a {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: #1a237e;
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .community-card:hover a {
+            background-color: white;
+            color: #1a237e;
+        }
+        
+        /* Features Section */
+        .features {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            margin-bottom: 60px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 25px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-5px);
+        }
+        
+        .feature i {
+            font-size: 3.5rem;
+            color: #1a237e;
+            margin-bottom: 20px;
+        }
+        
+        .feature h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #1a237e;
+            font-weight: 700;
+        }
+        
+        .feature p {
+            color: #616161;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a237e, #4a148c);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+            font-weight: 700;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 60px;
+            height: 3px;
+            background-color: #ff9800;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-right: 8px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: #ff9800;
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 1rem;
+            color: #bdbdbd;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .lang-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .language-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .translation-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .resource-tabs {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+            }
+            
+            .res-tab {
+                white-space: nowrap;
+            }
+            
+            .language-tabs {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+            }
+            
+            .lang-tab {
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-language"></i>
+                    <h1>عالم اللغات الإنسانية</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active">الرئيسية</a></li>
+                        <li><a href="#categories">التصنيفات</a></li>
+                        <li><a href="#languages">اللغات</a></li>
+                        <li><a href="#learning">التعلم</a></li>
+                        <li><a href="#translation">الترجمة</a></li>
+                        <li><a href="#community">المجتمع</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>استكشف عالم اللغات الإنسانية</h2>
+            <p>رحلة عبر تنوع اللغات والثقافات حول العالم، من اللغات الأكثر انتشاراً إلى اللغات النادرة والمهددة بالانقراض</p>
+            <a href="#categories" class="btn">ابدأ الرحلة</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Language Categories Section -->
+        <section id="categories" class="section">
+            <div class="section-title">
+                <h2>تصنيفات اللغات</h2>
+            </div>
+            
+            <div class="categories">
+                <!-- By Region Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon by-region">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>حسب المنطقة الجغرافية</h3>
+                            <p>تصنيف اللغات حسب القارات والمناطق</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> لغات آسيا</li>
+                            <li><i class="fas fa-check-circle"></i> لغات أوروبا</li>
+                            <li><i class="fas fa-check-circle"></i> لغات أفريقيا</li>
+                            <li><i class="fas fa-check-circle"></i> لغات الأمريكتين</li>
+                            <li><i class="fas fa-check-circle"></i> لغات أوقيانوسيا</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- By Family Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon by-family">
+                            <i class="fas fa-sitemap"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>حسب العائلة اللغوية</h3>
+                            <p>تصنيف اللغات حسب أصلها وتطورها</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> اللغات الهندوأوروبية</li>
+                            <li><i class="fas fa-check-circle"></i> اللغات السامية</li>
+                            <li><i class="fas fa-check-circle"></i> اللغات الأطلسية</li>
+                            <li><i class="fas fa-check-circle"></i> اللغات النيلو-Saharan</li>
+                            <li><i class="fas fa-check-circle"></i> اللغات الأورالية</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- By Speakers Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon by-speakers">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>حسب عدد المتحدثين</h3>
+                            <p>تصنيف اللغات حسب عدد المتحدثين</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> لغات عالمية (أكثر من 100 مليون)</li>
+                            <li><i class="fas fa-check-circle"></i> لغات واسعة الانتشار (10-100 مليون)</li>
+                            <li><i class="fas fa-check-circle"></i> لغات إقليمية (1-10 مليون)</li>
+                            <li><i class="fas fa-check-circle"></i> لغات محلية (أقل من مليون)</li>
+                            <li><i class="fas fa-check-circle"></i> لغات مهددة بالانقراض</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- By Status Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon by-status">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>حسب الوضع الرسمي</h3>
+                            <p>تصنيف اللغات حسب وضعها الرسمي</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> لغات رسمية في الأمم المتحدة</li>
+                            <li><i class="fas fa-check-circle"></i> لغات وطنية</li>
+                            <li><i class="fas fa-check-circle"></i> لغات إقليمية معترف بها</li>
+                            <li><i class="fas fa-check-circle"></i> لغات أقليات</li>
+                            <li><i class="fas fa-check-circle"></i> لغات غير معترف بها</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- By History Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon by-history">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>حسب التاريخ</h3>
+                            <p>تصنيف اللغات حسب تاريخها وأصلها</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> لغات قديمة (قبل الميلاد)</li>
+                            <li><i class="fas fa-check-circle"></i> لغات كلاسيكية</li>
+                            <li><i class="fas fa-check-circle"></i> لغات وسطى</li>
+                            <li><i class="fas fa-check-circle"></i> لغات حديثة</li>
+                            <li><i class="fas fa-check-circle"></i> لغات معاصرة</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- By Structure Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon by-structure">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>حسب البنية اللغوية</h3>
+                            <p>تصنيف اللغات حسب بنيتها النحوية</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> لغات تحليلية</li>
+                            <li><i class="fas fa-check-circle"></i> لغات تركيبية</li>
+                            <li><i class="fas fa-check-circle"></i> لغات اشتقاقية</li>
+                            <li><i class="fas fa-check-circle"></i> لغات متعددة الدمج</li>
+                            <li><i class="fas fa-check-circle"></i> لغات معزولة</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Language Stats Section -->
+        <section class="section">
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number">7,100+</div>
+                    <div class="stat-label">لغة إنسانية حول العالم</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">142</div>
+                    <div class="stat-label">لغة رسمية على الأقل في دولة واحدة</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2,300+</div>
+                    <div class="stat-label">لغة مهددة بالانقراض</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">40%</div>
+                    <div class="stat-label">من سكان العالم يتحدثون لغة واحدة فقط</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Major Languages Section -->
+        <section id="languages" class="section">
+            <div class="section-title">
+                <h2>أهم اللغات الإنسانية</h2>
+            </div>
+            
+            <div class="language-grid">
+                <div class="language-item">
+                    <div class="language-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="language-name">الإنجليزية</div>
+                    <div class="language-speakers">1.5 مليار متحدث</div>
+                </div>
+                <div class="language-item">
+                    <div class="language-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="language-name">الصينية (ماندرين)</div>
+                    <div class="language-speakers">1.1 مليار متحدث</div>
+                </div>
+                <div class="language-item">
+                    <div class="language-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="language-name">الهندية</div>
+                    <div class="language-speakers">600 مليون متحدث</div>
+                </div>
+                <div class="language-item">
+                    <div class="language-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="language-name">الإسبانية</div>
+                    <div class="language-speakers">550 مليون متحدث</div>
+                </div>
+                <div class="language-item">
+                    <div class="language-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="language-name">العربية</div>
+                    <div class="language-speakers">420 مليون متحدث</div>
+                </div>
+                <div class="language-item">
+                    <div class="language-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="language-name">الفرنسية</div>
+                    <div class="language-speakers">280 مليون متحدث</div>
+                </div>
+                <div class="language-item">
+                    <div class="language-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="language-name">البرتغالية</div>
+                    <div class="language-speakers">260 مليون متحدث</div>
+                </div>
+                <div class="language-item">
+                    <div class="language-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="language-name">الروسية</div>
+                    <div class="language-speakers">255 مليون متحدث</div>
+                </div>
+                <div class="language-item">
+                    <div class="language-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="language-name">الأوردية</div>
+                    <div class="language-speakers">230 مليون متحدث</div>
+                </div>
+                <div class="language-item">
+                    <div class="language-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="language-name">الإندونيسية</div>
+                    <div class="language-speakers">200 مليون متحدث</div>
+                </div>
+                <div class="language-item">
+                    <div class="language-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="language-name">الألمانية</div>
+                    <div class="language-speakers">130 مليون متحدث</div>
+                </div>
+                <div class="language-item">
+                    <div class="language-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="language-name">اليابانية</div>
+                    <div class="language-speakers">125 مليون متحدث</div>
+                </div>
+                <div class="language-item">
+                    <div class="language-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="language-name">البنغالية</div>
+                    <div class="language-speakers">120 مليون متحدث</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Language Details Section -->
+        <section class="section">
+            <div class="language-details">
+                <div class="language-tabs">
+                    <div class="lang-tab active" data-lang="arabic">العربية</div>
+                    <div class="lang-tab" data-lang="english">الإنجليزية</div>
+                    <div class="lang-tab" data-lang="chinese">الصينية</div>
+                    <div class="lang-tab" data-lang="spanish">الإسبانية</div>
+                    <div class="lang-tab" data-lang="french">الفرنسية</div>
+                </div>
+                
+                <div class="lang-tab-content active" id="arabic">
+                    <div class="lang-info">
+                        <div class="lang-info-left">
+                            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="اللغة العربية">
+                        </div>
+                        <div class="lang-info-right">
+                            <h3>اللغة العربية</h3>
+                            <p>اللغة العربية هي لغة سامية من أقدم اللغات المستخدمة حتى اليوم، وتتميز بكتابتها من اليمين إلى اليسار. هي اللغة الرسمية في 25 دولة، ولغة القرآن الكريم، مما يمنحها مكانة خاصة في العالم الإسلامي.</p>
+                            <p>تنتمي العربية إلى عائلة اللغات السامية، وتنقسم إلى العربية الفصحى (اللغة الأدبية والرسمية) واللهجات العامية المحكية في مختلف الدول العربية.</p>
+                            <div class="lang-stats">
+                                <div class="lang-stat">
+                                    <div class="lang-stat-number">420M+</div>
+                                    <div class="lang-stat-label">عدد المتحدثين</div>
+                                </div>
+                                <div class="lang-stat">
+                                    <div class="lang-stat-number">25</div>
+                                    <div class="lang-stat-label">دولة رسمية</div>
+                                </div>
+                                <div class="lang-stat">
+                                    <div class="lang-stat-number">5</div>
+                                    <div class="lang-stat-label">قارات</div>
+                                </div>
+                                <div class="lang-stat">
+                                    <div class="lang-stat-number">1,500</div>
+                                    <div class="lang-stat-label">سنة من التاريخ</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lang-tab-content" id="english">
+                    <div class="lang-info">
+                        <div class="lang-info-left">
+                            <img src="https://images.unsplash.com/photo-1529248690383-a8600679f0dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="اللغة الإنجليزية">
+                        </div>
+                        <div class="lang-info-right">
+                            <h3>اللغة الإنجليزية</h3>
+                            <p>اللغة الإنجليزية هي لغة جرمانية نشأت في إنجلترا، وأصبحت اليوم اللغة الأكثر انتشاراً في العالم كلغة ثانية وثالثة. هي اللغة الرسمية في 67 دولة، ولغة العمل والتجارة الدولية.</p>
+                            <p>تتميز الإنجليزية ببساطة قواعدها النحوية مقارنة باللغات الأخرى، وتنقسم إلى عدة لهجات رئيسية مثل الإنجليزية البريطانية والأمريكية والأسترالية.</p>
+                            <div class="lang-stats">
+                                <div class="lang-stat">
+                                    <div class="lang-stat-number">1.5B+</div>
+                                    <div class="lang-stat-label">عدد المتحدثين</div>
+                                </div>
+                                <div class="lang-stat">
+                                    <div class="lang-stat-number">67</div>
+                                    <div class="lang-stat-label">دولة رسمية</div>
+                                </div>
+                                <div class="lang-stat">
+                                    <div class="lang-stat-number">6</div>
+                                    <div class="lang-stat-label">قارات</div>
+                                </div>
+                                <div class="lang-stat">
+                                    <div class="lang-stat-number">1,400</div>
+                                    <div class="lang-stat-label">سنة من التاريخ</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lang-tab-content" id="chinese">
+                    <div class="lang-info">
+                        <div class="lang-info-left">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="اللغة الصينية">
+                        </div>
+                        <div class="lang-info-right">
+                            <h3>اللغة الصينية</h3>
+                            <p>اللغة الصينية هي واحدة من أقدم اللغات المستمرة في العالم، وتنتمي إلى عائلة اللغات السينو-تيبتية. تتميز بنظام كتابتها المعقد الذي يستخدم الآلاف من الرموز بدلاً من الأبجدية.</p>
+                            <p>الماندرين هو لهجة الصينية الرسمية والأكثر انتشاراً، وتستخدم في الصين، تايوان، وسنغافورة. تتميز الصينية بنظامها النغمي الذي يغير معنى الكلمة حسب نبرة الصوت.</p>
+                            <div class="lang-stats">
+                                <div class="lang-stat">
+                                    <div class="lang-stat-number">1.1B+</div>
+                                    <div class="lang-stat-label">عدد المتحدثين</div>
+                                </div>
+                                <div class="lang-stat">
+                                    <div class="lang-stat-number">5</div>
+                                    <div class="lang-stat-label">دولة رسمية</div>
+                                </div>
+                                <div class="lang-stat">
+                                    <div class="lang-stat-number">2</div>
+                                    <div class="lang-stat-label">قارات</div>
+                                </div>
+                                <div class="lang-stat">
+                                    <div class="lang-stat-number">3,000+</div>
+                                    <div class="lang-stat-label">سنة من التاريخ</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lang-tab-content" id="spanish">
+                    <div class="lang-info">
+                        <div class="lang-info-left">
+                            <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="اللغة الإسبانية">
+                        </div>
+                        <div class="lang-info-right">
+                            <h3>اللغة الإسبانية</h3>
+                            <p>اللغة الإسبانية هي لغة رومانية نشأت في شبه الجزيرة الإيبيرية، وهي اليوم ثاني أكثر اللغات تحدثاً في العالم كلغة أم. هي اللغة الرسمية في 20 دولة، وتنتشر بشكل واسع في أمريكا اللاتينية.</p>
+                            <p>تتميز الإسبانية بنظامها الصوتي الواضح وقواعدها النحوية المنتظمة. توجد عدة لهجات إسبانية مثل الإسبانية الإيبيرية والأمريكية اللاتينية.</p>
+                            <div class="lang-stats">
+                                <div class="lang-stat">
+                                    <div class="lang-stat-number">550M+</div>
+                                    <div class="lang-stat-label">عدد المتحدثين</div>
+                                </div>
+                                <div class="lang-stat">
+                                    <div class="lang-stat-number">20</div>
+                                    <div class="lang-stat-label">دولة رسمية</div>
+                                </div>
+                                <div class="lang-stat">
+                                    <div class="lang-stat-number">4</div>
+                                    <div class="lang-stat-label">قارات</div>
+                                </div>
+                                <div class="lang-stat">
+                                    <div class="lang-stat-number">1,000</div>
+                                    <div class="lang-stat-label">سنة من التاريخ</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lang-tab-content" id="french">
+                    <div class="lang-info">
+                        <div class="lang-info-left">
+                            <img src="https://images.unsplash.com/photo-1502602898536-47ad22581b52?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="اللغة الفرنسية">
+                        </div>
+                        <div class="lang-info-right">
+                            <h3>اللغة الفرنسية</h3>
+                            <p>اللغة الفرنسية هي لغة رومانية نشأت في فرنسا، وتعتبر من أهم اللغات في العالم للدبلوماسية والثقافة. هي اللغة الرسمية في 29 دولة، ولغة رسمية في العديد من المنظمات الدولية.</p>
+                            <p>تتميز الفرنسية بنطقها الأنيق ودقتها اللغوية. تنتشر بشكل واسع في أوروبا وأفريقيا وأجزاء من كندا، وتعتبر لغة ثانية في العديد من الأنظمة التعليمية حول العالم.</p>
+                            <div class="lang-stats">
+                                <div class="lang-stat">
+                                    <div class="lang-stat-number">280M+</div>
+                                    <div class="lang-stat-label">عدد المتحدثين</div>
+                                </div>
+                                <div class="lang-stat">
+                                    <div class="lang-stat-number">29</div>
+                                    <div class="lang-stat-label">دولة رسمية</div>
+                                </div>
+                                <div class="lang-stat">
+                                    <div class="lang-stat-number">5</div>
+                                    <div class="lang-stat-label">قارات</div>
+                                </div>
+                                <div class="lang-stat">
+                                    <div class="lang-stat-number">1,200</div>
+                                    <div class="lang-stat-label">سنة من التاريخ</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Learning Resources Section -->
+        <section id="learning" class="section">
+            <div class="section-title">
+                <h2>مصادر تعلم اللغات</h2>
+            </div>
+            
+            <div class="resources">
+                <div class="resource-tabs">
+                    <div class="res-tab active" data-res="courses">الدورات</div>
+                    <div class="res-tab" data-res="apps">التطبيقات</div>
+                    <div class="res-tab" data-res="books">الكتب</div>
+                    <div class="res-tab" data-res="media">الوسائط</div>
+                </div>
+                
+                <div class="res-tab-content active" id="courses">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h4>دورات اللغة الإنجليزية</h4>
+                            <p>من المستوى المبتدئ إلى المتقدم</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h4>دورات اللغة الإسبانية</h4>
+                            <p>تعلم الإسبانية بسهولة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h4>دورات اللغة الفرنسية</h4>
+                            <p>لغة الرومانسية والثقافة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h4>دورات اللغة الصينية</h4>
+                            <p>الماندرين للمبتدئين</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h4>دورات اللغة الألمانية</h4>
+                            <p>لغة العلوم والفلسفة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h4>دورات اللغة اليابانية</h4>
+                            <p>الهيراغانا والكانجي</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="res-tab-content" id="apps">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>Duolingo</h4>
+                            <p>تعلم اللغات باللعب</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>Babbel</h4>
+                            <p>دروس محادثة عملية</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>Rosetta Stone</h4>
+                            <p>الطريقة الغامرة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>Memrise</h4>
+                            <p>تعلم باستخدام البطاقات</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>HelloTalk</h4>
+                            <p>تحدث مع الناطقين الأصليين</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>Tandem</h4>
+                            <p>تبادل اللغات مع المتحدثين</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="res-tab-content" id="books">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>قواعد اللغة الإنجليزية</h4>
+                            <p>مرجع شامل</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>اللغة الإسبانية في 30 يوماً</h4>
+                            <p>تعلم سريع</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>الفرنسية للمبتدئين</h4>
+                            <p>أساسيات اللغة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>المفردات الألمانية</h4>
+                            <p>بناء المفردات</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>اليابانية للجميع</h4>
+                            <p>من الألف إلى الياء</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>الصينية العملية</h4>
+                            <p>للعمل والسفر</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="res-tab-content" id="media">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-podcast"></i>
+                            <h4>بودكاست تعلم اللغات</h4>
+                            <p>استمع أينما كنت</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-video"></i>
+                            <h4>قنوات يوتيوب</h4>
+                            <p>دروس مجانية</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-tv"></i>
+                            <h4>أفلام ومسلسلات</h4>
+                            <p>تعلم بالمشاهدة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-music"></i>
+                            <h4>أغاني بلغات مختلفة</h4>
+                            <p>تعلم بالموسيقى</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-newspaper"></i>
+                            <h4>صحف ومجلات</h4>
+                            <p>باللغة المستهدفة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-headphones"></i>
+                            <i class="fas fa-headphones"></i>
+                            <h4>كتب صوتية</h4>
+                            <p>للمتعلم أثناء التنقل</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Translation Tool Section -->
+        <section id="translation" class="section">
+            <div class="translation-tool">
+                <h3>أداة الترجمة السريعة</h3>
+                <div class="translation-form">
+                    <div class="translation-box">
+                        <label>من اللغة:</label>
+                        <select id="fromLanguage">
+                            <option value="ar">العربية</option>
+                            <option value="en">الإنجليزية</option>
+                            <option value="es">الإسبانية</option>
+                            <option value="fr">الفرنسية</option>
+                            <option value="de">الألمانية</option>
+                            <option value="zh">الصينية</option>
+                            <option value="ja">اليابانية</option>
+                            <option value="ru">الروسية</option>
+                            <option value="hi">الهندية</option>
+                            <option value="pt">البرتغالية</option>
+                            <option value="it">الإيطالية</option>
+                        </select>
+                        <textarea id="sourceText" placeholder="أدخل النص للترجمة..."></textarea>
+                    </div>
+                    <div class="translation-box">
+                        <label>إلى اللغة:</label>
+                        <select id="toLanguage">
+                            <option value="en">الإنجليزية</option>
+                            <option value="ar">العربية</option>
+                            <option value="es">الإسبانية</option>
+                            <option value="fr">الفرنسية</option>
+                            <option value="de">الألمانية</option>
+                            <option value="zh">الصينية</option>
+                            <option value="ja">اليابانية</option>
+                            <option value="ru">الروسية</option>
+                            <option value="hi">الهندية</option>
+                            <option value="pt">البرتغالية</option>
+                            <option value="it">الإيطالية</option>
+                        </select>
+                        <textarea id="translatedText" placeholder="الترجمة ستظهر هنا..." readonly></textarea>
+                    </div>
+                </div>
+                <button class="translate-btn" onclick="translateText()">ترجمة</button>
+            </div>
+        </section>
+        
+        <!-- Community Section -->
+        <section id="community" class="section">
+            <div class="section-title">
+                <h2>انضم إلى مجتمعنا</h2>
+            </div>
+            
+            <div class="community-section">
+                <div class="community-grid">
+                    <div class="community-card">
+                        <i class="fas fa-comments"></i>
+                        <h4>منتدى النقاش</h4>
+                        <p>شارك في مناقشات حول تعلم اللغات وتبادل الخبرات مع متعلمين من حول العالم</p>
+                        <a href="#">انضم الآن</a>
+                    </div>
+                    <div class="community-card">
+                        <i class="fas fa-users"></i>
+                        <h4>شركاء اللغة</h4>
+                        <p>جد شريك لغة لممارسة المحادثة وتحسين مهاراتك اللغوية بطريقة تفاعلية</p>
+                        <a href="#">ابحث عن شريك</a>
+                    </div>
+                    <div class="community-card">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h4>فعاليات لغوية</h4>
+                        <p>شارك في فعالياتنا الأسبوعية والشهرية مثل ورش العمل والمحاضرات</p>
+                        <a href="#">عرض الفعاليات</a>
+                    </div>
+                    <div class="community-card">
+                        <i class="fas fa-trophy"></i>
+                        <h4>مسابقات لغوية</h4>
+                        <p>شارك في مسابقاتنا الشهرية وارشف جوائز قيمة وشهادات معتمدة</p>
+                        <a href="#">المسابقات الحالية</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section class="section">
+            <div class="section-title">
+                <h2>مميزات الموقع</h2>
+            </div>
+            
+            <div class="features">
+                <div class="features-grid">
+                    <div class="feature">
+                        <i class="fas fa-globe-americas"></i>
+                        <h3>شامل لجميع اللغات</h3>
+                        <p>نغطي آلاف اللغات من حول العالم مع معلومات مفصلة عن كل لغة</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>موارد تعليمية</h3>
+                        <p>مصادر متنوعة لتعلم أي لغة تختارها بدءاً من المبتدئ حتى المتقدم</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-language"></i>
+                        <h3>أدوات ترجمة</h3>
+                        <p>ترجمة سريعة ودقيقة بين أكثر من 12 لغة مختلفة</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-users"></i>
+                        <h3>مجتمع نشط</h3>
+                        <p>تواصل مع متعلمي اللغات من حول العالم وشارك الخبرات</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>متعدد المنصات</h3>
+                        <p>وصول كامل من أي جهاز (كمبيوتر، هاتف، تابلت) مع تجربة مستخدم سلسة</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-certificate"></i>
+                        <h3>شهادات معتمدة</h3>
+                        <p>احصل على شهادات معتمدة بعد إكمال المسارات التعليمية بنجاح</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>عن الموقع</h3>
+                    <p>موقع عالم اللغات الإنسانية هو المنصة الرائدة لاستكشاف وتعلم اللغات المختلفة حول العالم. نقدم معلومات شاملة وموارد تعليمية لمساعدتك في رحلتك اللغوية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">الرئيسية</a></li>
+                        <li><a href="#">التصنيفات</a></li>
+                        <li><a href="#">اللغات</a></li>
+                        <li><a href="#">التعلم</a></li>
+                        <li><a href="#">الترجمة</a></li>
+                        <li><a href="#">المجتمع</a></li>
+                        <li><a href="#">المدونة</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>اللغات الرئيسية</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">العربية</a></li>
+                        <li><a href="#">الإنجليزية</a></li>
+                        <li><a href="#">الصينية</a></li>
+                        <li><a href="#">الهندية</a></li>
+                        <li><a href="#">الإسبانية</a></li>
+                        <li><a href="#">الفرنسية</a></li>
+                        <li><a href="#">البرتغالية</a></li>
+                        <li><a href="#">الروسية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@humanlanguages.com</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع عالم اللغات الإنسانية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab functionality for language details
+            const langTabs = document.querySelectorAll('.lang-tab');
+            const langContents = document.querySelectorAll('.lang-tab-content');
+            
+            langTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs and contents
+                    langTabs.forEach(t => t.classList.remove('active'));
+                    langContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    const langId = this.getAttribute('data-lang');
+                    document.getElementById(langId).classList.add('active');
+                });
+            });
+            
+            // Tab functionality for resources
+            const resTabs = document.querySelectorAll('.res-tab');
+            const resContents = document.querySelectorAll('.res-tab-content');
+            
+            resTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs and contents
+                    resTabs.forEach(t => t.classList.remove('active'));
+                    resContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    const resId = this.getAttribute('data-res');
+                    document.getElementById(resId).classList.add('active');
+                });
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update active nav link
+                        document.querySelectorAll('nav a').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                });
+            });
+            
+            // Translation functionality
+            function translateText() {
+                constfromLanguage='.value'; 
+                fromLang = document.getElementById(' const toLang = document.getElementById(toLanguage.value');
+                const sourceText = document.getElementById('sourceText').value;
+                const translatedText = document.getElementById('translatedText');
+                
+                // Simple translation mapping (in a real app, this would use an API)
+                const translations = {
+                    'ar-en': {
+                        'مرحبا': 'Hello',
+                        'كيف حالك': 'How are you',
+                        'شكرا': 'Thank you',
+                        'مع السلامة': 'Goodbye',
+                        'اسمي': 'My name is',
+                        'أين': 'Where',
+                        'متى': 'When',
+                        'لماذا': 'Why',
+                        'كم': 'How much'
+                    },
+                    'en-ar': {
+                        'Hello': 'مرحبا',
+                        'How are you': 'كيف حالك',
+                        'Thank you': 'شكرا',
+                        'Goodbye': 'مع السلامة',
+                        'My name is': 'اسمي',
+                        'Where': 'أين',
+                        'When': 'متى',
+                        'Why': 'لماذا',
+                        'How much': 'كم'
+                    },
+                    'ar-es': {
+                        'مرحبا': 'Hola',
+                        'كيف حالك': '¿Cómo estás?',
+                        'شكرا': 'Gracias',
+                        'مع السلامة': 'Adiós',
+                        'اسمي': 'Mi nombre es',
+                        'أين': 'Dónde',
+                        'متى': 'Cuándo',
+                        'لماذا': 'Por qué',
+                        'كم': 'Cuánto'
+                    },
+                    'es-ar': {
+                        'Hola': 'مرحبا',
+                        '¿Cómo estás?': 'كيف حالك',
+                        'Gracias': 'شكرا',
+                        'Adiós': 'مع السلامة',
+                        'Mi nombre es': 'اسمي',
+                        'Dónde': 'أين',
+                        'Cuándo': 'متى',
+                        'Por qué': 'لماذا',
+                        'Cuánto': 'كم'
+                    }
+                };
+                
+                const key = `${fromLang}-${toLang}`;
+                const translationMap = translations[key];
+                
+                if (translationMap && sourceText.trim()) {
+                    let translated = sourceText;
+                    for (const [source, target] of Object.entries(translationMap)) {
+                        translated = translated.replace(new RegExp(source, 'gi'), target);
+                    }
+                    translatedText.value = translated;
+                } else {
+                    translatedText.value = 'الترجمة غير متاحة لهذه اللغات أو النص فارغ';
+                }
+            }
+            
+            // Add animation to category cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+            
+            // Add animation to stat cards on scroll
+            document.querySelectorAll('.stat-card').forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+            
+            // Add animation to language items on scroll
+            document.querySelectorAll('.language-item').forEach(item => {
+                item.style.opacity = 0;
+                item.style.transform = 'translateY(30px)';
+                item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(item);
+            });
+            
+            // Add animation to community cards on scroll
+            document.querySelectorAll('.community-card').forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+            
+            // Add animation to feature items on scroll
+            document.querySelectorAll('.feature').forEach(feature => {
+                feature.style.opacity = 0;
+                feature.style.transform = 'translateY(30px)';
+                feature.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(feature);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,18 +1,764 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>البرمجة</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-<link rel="stylesheet" href="">
+    <title>عالم البرمجة - استكشف مجالات البرمجة المختلفة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/Programming.css">
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <h1>ما اقسم البرمجة</h1>
-        <br>
-        <p>تقسم البرمجة إلى عدة فروع أو أقسام بناءً على الأهداف، والتقنيات المستخدمة، ونوع التطبيقات. إليك التصنيف الأشهر:</p>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-code"></i>
+                    <h1>عالم البرمجة</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active">الرئيسية</a></li>
+                        <li><a href="#fields">المجالات</a></li>
+                        <li><a href="#languages">اللغات</a></li>
+                        <li><a href="#path">مسار التعلم</a></li>
+                        <li><a href="#tools">الأدوات</a></li>
+                        <li><a href="#resources">المصادر</a></li>
+                        <li><a href="#contact">تواصل معنا</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </header>
 
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>مرحباً بك في عالم البرمجة</h2>
+            <p>اكتشف مجالات البرمجة المختلفة واختر المسار المناسب لك لبناء مستقبل مهني ناجح</p>
+            <a href="#fields" class="btn">استكشف المجالات</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Programming Fields Section -->
+        <section id="fields" class="section">
+            <div class="section-title">
+                <h2>مجالات البرمجة</h2>
+            </div>
+            
+            <div class="fields">
+                <!-- Web Development Field -->
+                <div class="field-card">
+                    <div class="field-header">
+                        <div class="field-icon web">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="field-title">
+                            <h3>تطوير الويب</h3>
+                            <p>بناء وتصميم المواقع والتطبيقات الإلكترونية</p>
+                        </div>
+                    </div>
+                    <div class="field-content">
+                        <ul class="tech-list">
+                            <li><i class="fas fa-check-circle"></i> HTML, CSS, JavaScript</li>
+                            <li><i class="fas fa-check-circle"></i> React, Angular, Vue</li>
+                            <li><i class="fas fa-check-circle"></i> Node.js, PHP, Python</li>
+                            <li><i class="fas fa-check-circle"></i> قواعد البيانات</li>
+                            <li><i class="fas fa-check-circle"></i> استضافة المواقع</li>
+                        </ul>
+                    </div>
+                    <div class="field-footer">
+                        <div class="salary-range">
+                            <span class="salary-label">متوسط الراتب:</span>
+                            <span class="salary-value">$60,000 - $120,000</span>
+                        </div>
+                        <div class="job-market">
+                            <div class="market-indicator"></div>
+                            <span class="market-text">سوق العمل: مرتفع الطلب</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Development Field -->
+                <div class="field-card">
+                    <div class="field-header">
+                        <div class="field-icon mobile">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="field-title">
+                            <h3>تطوير تطبيقات الجوال</h3>
+                            <p>إنشاء تطبيقات للأجهزة المحمولة</p>
+                        </div>
+                    </div>
+                    <div class="field-content">
+                        <ul class="tech-list">
+                            <li><i class="fas fa-check-circle"></i> Swift (iOS)</li>
+                            <li><i class="fas fa-check-circle"></i> Kotlin (Android)</li>
+                            <li><i class="fas fa-check-circle"></i> React Native</li>
+                            <li><i class="fas fa-check-circle"></i> Flutter</li>
+                            <li><i class="fas fa-check-circle"></i> Xamarin</li>
+                        </ul>
+                    </div>
+                    <div class="field-footer">
+                        <div class="salary-range">
+                            <span class="salary-label">متوسط الراتب:</span>
+                            <span class="salary-value">$70,000 - $130,000</span>
+                        </div>
+                        <div class="job-market">
+                            <div class="market-indicator"></div>
+                            <span class="market-text">سوق العمل: مرتفع جداً</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Data Science Field -->
+                <div class="field-card">
+                    <div class="field-header">
+                        <div class="field-icon data">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div class="field-title">
+                            <h3>علم البيانات</h3>
+                            <p>تحليل البيانات واستخلاص الرؤى</p>
+                        </div>
+                    </div>
+                    <div class="field-content">
+                        <ul class="tech-list">
+                            <li><i class="fas fa-check-circle"></i> Python, R</li>
+                            <li><i class="fas fa-check-circle"></i> SQL, NoSQL</li>
+                            <li><i class="fas fa-check-circle"></i> TensorFlow, PyTorch</li>
+                            <li><i class="fas fa-check-circle"></i> Pandas, NumPy</li>
+                            <li><i class="fas fa-check-circle"></i> Tableau, Power BI</li>
+                        </ul>
+                    </div>
+                    <div class="field-footer">
+                        <div class="salary-range">
+                            <span class="salary-label">متوسط الراتب:</span>
+                            <span class="salary-value">$80,000 - $150,000</span>
+                        </div>
+                        <div class="job-market">
+                            <div class="market-indicator"></div>
+                            <span class="market-text">سوق العمل: نمو سريع</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Artificial Intelligence Field -->
+                <div class="field-card">
+                    <div class="field-header">
+                        <div class="field-icon ai">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="field-title">
+                            <h3>الذكاء الاصطناعي</h3>
+                            <p>بناء أنظمة ذكية قادرة على التعلم</p>
+                        </div>
+                    </div>
+                    <div class="field-content">
+                        <ul class="tech-list">
+                            <li><i class="fas fa-check-circle"></i> التعلم الآلي</li>
+                            <li><i class="fas fa-check-circle"></i> التعلم العميق</li>
+                            <li><i class="fas fa-check-circle"></i> معالجة اللغات الطبيعية</li>
+                            <li><i class="fas fa-check-circle"></i> رؤية الحاسوب</li>
+                            <li><i class="fas fa-check-circle"></i> الروبوتات</li>
+                        </ul>
+                    </div>
+                    <div class="field-footer">
+                        <div class="salary-range">
+                            <span class="salary-label">متوسط الراتب:</span>
+                            <span class="salary-value">$90,000 - $180,000</span>
+                        </div>
+                        <div class="job-market">
+                            <div class="market-indicator"></div>
+                            <span class="market-text">سوق العمل: نمو هائل</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Game Development Field -->
+                <div class="field-card">
+                    <div class="field-header">
+                        <div class="field-icon game">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="field-title">
+                            <h3>تطوير الألعاب</h3>
+                            <p>إنشاء ألعاب فيديو وتطبيقات تفاعلية</p>
+                        </div>
+                    </div>
+                    <div class="field-content">
+                        <ul class="tech-list">
+                            <li><i class="fas fa-check-circle"></i> Unity</li>
+                            <li><i class="fas fa-check-circle"></i> Unreal Engine</li>
+                            <li><i class="fas fa-check-circle"></i> C#, C++</li>
+                            <li><i class="fas fa-check-circle"></i> Blender</li>
+                            <li><i class="fas fa-check-circle"></i> تصميم الألعاب</li>
+                        </ul>
+                    </div>
+                    <div class="field-footer">
+                        <div class="salary-range">
+                            <span class="salary-label">متوسط الراتب:</span>
+                            <span class="salary-value">$65,000 - $125,000</span>
+                        </div>
+                        <div class="job-market">
+                            <div class="market-indicator"></div>
+                            <span class="market-text">سوق العمل: متوسط</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cybersecurity Field -->
+                <div class="field-card">
+                    <div class="field-header">
+                        <div class="field-icon security">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="field-title">
+                            <h3>الأمن السيبراني</h3>
+                            <p>حماية الأنظمة والبيانات من التهديدات</p>
+                        </div>
+                    </div>
+                    <div class="field-content">
+                        <ul class="tech-list">
+                            <li><i class="fas fa-check-circle"></i> اختبار الاختراق</li>
+                            <li><i class="fas fa-check-circle"></i> التشفير</li>
+                            <li><i class="fas fa-check-circle"></i> الشبكات الآمنة</li>
+                            <li><i class="fas fa-check-circle"></i> كشف التسلل</li>
+                            <li><i class="fas fa-check-circle"></i> إدارة المخاطر</li>
+                        </ul>
+                    </div>
+                    <div class="field-footer">
+                        <div class="salary-range">
+                            <span class="salary-label">متوسط الراتب:</span>
+                            <span class="salary-value">$75,000 - $140,000</span>
+                        </div>
+                        <div class="job-market">
+                            <div class="market-indicator"></div>
+                            <span class="market-text">سوق العمل: مرتفع جداً</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cloud Computing Field -->
+                <div class="field-card">
+                    <div class="field-header">
+                        <div class="field-icon cloud">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="field-title">
+                            <h3>الحوسبة السحابية</h3>
+                            <p>بناء وإدارة الحلول السحابية</p>
+                        </div>
+                    </div>
+                    <div class="field-content">
+                        <ul class="tech-list">
+                            <li><i class="fas fa-check-circle"></i> AWS</li>
+                            <li><i class="fas fa-check-circle"></i> Microsoft Azure</li>
+                            <li><i class="fas fa-check-circle"></i> Google Cloud</li>
+                            <li><i class="fas fa-check-circle"></i> Docker, Kubernetes</li>
+                            <li><i class="fas fa-check-circle"></i> الخدمات السحابية</li>
+                        </ul>
+                    </div>
+                    <div class="field-footer">
+                        <div class="salary-range">
+                            <span class="salary-label">متوسط الراتب:</span>
+                            <span class="salary-value">$85,000 - $160,000</span>
+                        </div>
+                        <div class="job-market">
+                            <div class="market-indicator"></div>
+                            <span class="market-text">سوق العمل: نمو سريع</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- DevOps Field -->
+                <div class="field-card">
+                    <div class="field-header">
+                        <div class="field-icon devops">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="field-title">
+                            <h3>DevOps</h3>
+                            <p>دمج التطوير والعمليات</p>
+                        </div>
+                    </div>
+                    <div class="field-content">
+                        <ul class="tech-list">
+                            <li><i class="fas fa-check-circle"></i> CI/CD</li>
+                            <li><i class="fas fa-check-circle"></i> Jenkins, GitLab CI</li>
+                            <li><i class="fas fa-check-circle"></i> Ansible, Terraform</li>
+                            <li><i class="fas fa-check-circle"></i> مراقبة الأداء</li>
+                            <li><i class="fas fa-check-circle"></i> إدارة البنية التحتية</li>
+                        </ul>
+                    </div>
+                    <div class="field-footer">
+                        <div class="salary-range">
+                            <span class="salary-label">متوسط الراتب:</span>
+                            <span class="salary-value">$80,000 - $150,000</span>
+                        </div>
+                        <div class="job-market">
+                            <div class="market-indicator"></div>
+                            <span class="market-text">سوق العمل: مرتفع</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Programming Languages Section -->
+        <section id="languages" class="section">
+            <div class="languages">
+                <h3>أشهر لغات البرمجة</h3>
+                <div class="languages-grid">
+                    <div class="language-item">
+                        <div class="language-icon">
+                            <i class="fab fa-js-square"></i>
+                        </div>
+                        <div class="language-name">JavaScript</div>
+                        <div class="language-type">ويب</div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-icon">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div class="language-name">Python</div>
+                        <div class="language-type">عام</div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-icon">
+                            <i class="fab fa-java"></i>
+                        </div>
+                        <div class="language-name">Java</div>
+                        <div class="language-type">تطبيقات</div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-icon">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <div class="language-name">HTML/CSS</div>
+                        <div class="language-type">ويب</div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="language-name">C++</div>
+                        <div class="language-type">نظام</div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-icon">
+                            <i class="fab fa-php"></i>
+                        </div>
+                        <div class="language-name">PHP</div>
+                        <div class="language-type">ويب</div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-icon">
+                            <i class="fab fa-swift"></i>
+                        </div>
+                        <div class="language-name">Swift</div>
+                        <div class="language-type">iOS</div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="language-name">Kotlin</div>
+                        <div class="language-type">Android</div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-icon">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <div class="language-name">React</div>
+                        <div class="language-type">إطار عمل</div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="language-name">SQL</div>
+                        <div class="language-type">قواعد بيانات</div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-icon">
+                            <i class="fab fa-rust"></i>
+                        </div>
+                        <div class="language-name">Rust</div>
+                        <div class="language-type">نظام</div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-icon">
+                            <i class="fab fa-go"></i>
+                        </div>
+                        <div class="language-name">Go</div>
+                        <div class="language-type">سحابي</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Learning Path Section -->
+        <section id="path" class="section">
+            <div class="learning-path">
+                <h3>مسار التعلم المقترح</h3>
+                <div class="path-steps">
+                    <div class="path-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>أساسيات البرمجة</h4>
+                            <p>تعلم المفاهيم الأساسية للبرمجة والمنطق البرمجي</p>
+                        </div>
+                    </div>
+                    <div class="path-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>اختيار لغة البرمجة الأولى</h4>
+                            <p>ابدأ بلغة سهلة مثل Python أو JavaScript</p>
+                        </div>
+                    </div>
+                    <div class="path-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>هياكل البيانات والخوارزميات</h4>
+                            <p>تعلم كيفية تنظيم البيانات وحل المشكلات بكفاءة</p>
+                        </div>
+                    </div>
+                    <div class="path-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>اختيار التخصص</h4>
+                            <p>حدد المجال الذي تريد التخصص فيه (ويب، جوال، ذكاء اصطناعي، إلخ)</p>
+                        </div>
+                    </div>
+                    <div class="path-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>بناء المشاريع</h4>
+                            <p>طبق ما تعلمته في مشاريع عملية لبناء معرض أعمال</p>
+                        </div>
+                    </div>
+                    <div class="path-step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h4>التخصص المتقدم</h4>
+                            <p>تعلم التقنيات المتقدمة في مجالك المختار</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Tools Section -->
+        <section id="tools" class="section">
+            <div class="tools">
+                <h3>أدوات البرمجة الأساسية</h3>
+                <div class="tools-grid">
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <div class="tool-name">Git</div>
+                        <div class="tool-description">نظام التحكم في الإصدارات</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="tool-name">GitHub</div>
+                        <div class="tool-description">منصة استضافة الكود</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-terminal"></i>
+                        </div>
+                        <div class="tool-name">VS Code</div>
+                        <div class="tool-description">محرر الأكواد</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-docker"></i>
+                        </div>
+                        <div class="tool-name">Docker</div>
+                        <div class="tool-description">تطبيقات الحاويات</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="tool-name">MySQL</div>
+                        <div class="tool-description">قاعدة بيانات</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="tool-name">AWS</div>
+                        <div class="tool-description">خدمات سحابية</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <div class="tool-name">Postman</div>
+                        <div class="tool-description">اختبار واجهات API</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="tool-name">Jupyter</div>
+                        <div class="tool-description">مفكرات البيانات</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section id="features" class="section">
+            <div class="section-title">
+                <h2>مميزات الموقع</h2>
+            </div>
+            
+            <div class="features">
+                <div class="features-grid">
+                    <div class="feature">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>محتوى تعليمي شامل</h3>
+                        <p>دروس وشرحات مفصلة لجميع مجالات البرمجة من المستوى المبتدئ إلى المتقدم</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-laptop-code"></i>
+                        <h3>مشاريع عملية</h3>
+                        <p>مشاريع حقيقية تطبيقية لتعزيز المهارات وبناء معرض أعمال قوي</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-users"></i>
+                        <h3>مجتمع نشط</h3>
+                        <p>انضم إلى مجتمع من المبرمجين لتبادل الخبرات والمساعدة المتبادلة</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-certificate"></i>
+                        <h3>شهادات معتمدة</h3>
+                        <p>احصل على شهادات معتمدة بعد إكمال المسارات التعليمية</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-briefcase"></i>
+                        <h3>توجيه مهني</h3>
+                        <p>نصائح وإرشادات للبحث عن وظائف في مجال البرمجة</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-sync-alt"></i>
+                        <h3>محتوى محدث</h3>
+                        <p>محتوى دائم التحديث لمواكبة أحدث التقنيات والاتجاهات</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Resources Section -->
+        <section id="resources" class="section">
+            <div class="section-title">
+                <h2>المصادر التعليمية</h2>
+            </div>
+            
+            <div class="resources">
+                <div class="resource-tabs">
+                    <div class="tab active" data-tab="courses">الدورات</div>
+                    <div class="tab" data-tab="books">الكتب</div>
+                    <div class="tab" data-tab="videos">الفيديوهات</div>
+                    <div class="tab" data-tab="practice">التدريب</div>
+                </div>
+                
+                <div class="tab-content active" id="courses">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-globe"></i>
+                            <h4>تطوير الويب الشامل</h4>
+                            <p>دورة متكاملة لتطوير المواقع</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>تطوير تطبيقات الجوال</h4>
+                            <p>إنشاء تطبيقات iOS وAndroid</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-brain"></i>
+                            <h4>الذكاء الاصطناعي</h4>
+                            <p>مقدمة في التعلم الآلي</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>الأمن السيبراني</h4>
+                            <p>أساسيات حماية الأنظمة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-cloud"></i>
+                            <h4>الحوسبة السحابية</h4>
+                            <p>AWS و Azure للمبتدئين</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="books">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>تعلم Python</h4>
+                            <p>دليل شامل للمبتدئين</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>JavaScript المتقدم</h4>
+                            <p>مفاهيم متقدمة في JS</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>هياكل البيانات</h4>
+                            <p>الخوارزميات وهياكل البيانات</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>تصميم الأنظمة</h4>
+                            <p>مبادئ تصميم الأنظمة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>البرمجة الوظيفية</h4>
+                            <p>مفاهيم البرمجة الوظيفية</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="videos">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>سلسلة البرمجة للمبتدئين</h4>
+                            <p>دروس تفصيلية خطوة بخطوة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>مشاريع عملية</h4>
+                            <p>بناء مشاريع من الصفر</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>مقابلات تقنية</h4>
+                            <p>تحضير للمقابلات الوظيفية</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>أحدث التقنيات</h4>
+                            <p>مواكبة أحدث الاتجاهات</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>نصائح احترافية</h4>
+                            <p>نصائح من الخبراء</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="practice">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-code"></i>
+                            <h4>تحديات البرمجة</h4>
+                            <p>تحديات يومية لحل المشكلات</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-project-diagram"></i>
+                            <h4>مشاريع جاهزة</h4>
+                            <p>أفكار لمشاريع تطبيقية</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-tasks"></i>
+                            <h4>تمارين عملية</h4>
+                            <p>تمارين لتعزيز المهارات</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-users"></i>
+                            <h4>برمجة زوجية</h4>
+                            <p>ممارسة مع مبرمجين آخرين</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-trophy"></i>
+                            <h4>مسابقات برمجية</h4>
+                            <p>شارك في مسابقات عالمية</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>عن الموقع</h3>
+                    <p>موقع عالم البرمجة هو منصة تعليمية شاملة تهدف إلى مساعدة المبرمجين على تطوير مهاراتهم وبناء مسار مهني ناجح في مجال التكنولوجيا.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">الرئيسية</a></li>
+                        <li><a href="#">المجالات</a></li>
+                        <li><a href="#">اللغات</a></li>
+                        <li><a href="#">مسار التعلم</a></li>
+                        <li><a href="#">الأدوات</a></li>
+                        <li><a href="#">المصادر</a></li>
+                        <li><a href="#">المدونة</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>المجالات</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">تطوير الويب</a></li>
+                        <li><a href="#">تطوير تطبيقات الجوال</a></li>
+                        <li><a href="#">علم البيانات</a></li>
+                        <li><a href="#">الذكاء الاصطناعي</a></li>
+                        <li><a href="#">تطوير الألعاب</a></li>
+                        <li><a href="#">الأمن السيبراني</a></li>
+                        <li><a href="#">الحوسبة السحابية</a></li>
+                        <li><a href="#">DevOps</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@programmingworld.com</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع عالم البرمجة. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="/js/Programming.js"></script>
 </body>
 </html>

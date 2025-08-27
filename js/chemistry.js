@@ -1,425 +1,181 @@
-// Chemistry.js - Interactive features for the Chemistry subject page
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize 3D card effects
-    init3DCards();
-    
-    // Initialize parallax effects
-    initParallaxEffect();
-    
-    // Initialize card interactions
-    initCardInteractions();
-    
-    // Initialize search functionality
-    initSearchFunctionality();
-    
-    // Initialize smooth scrolling
-    initSmoothScrolling();
-    
-    // Initialize animations on scroll
-    initScrollAnimations();
-});
-
-// 3D Card Effects
-function init3DCards() {
-    const cards = document.querySelectorAll('.card');
-    
-    cards.forEach(card => {
-        card.addEventListener('mousemove', function(e) {
-            const cardRect = card.getBoundingClientRect();
-            const cardCenterX = cardRect.left + cardRect.width / 2;
-            const cardCenterY = cardRect.top + cardRect.height / 2;
+        // Sample data for periodic table (first 20 elements)
+        const elements = [
+            {number: 1, symbol: 'H', name: 'هيدروجين', weight: '1.008'},
+            {number: 2, symbol: 'He', name: 'هيليوم', weight: '4.003'},
+            {number: 3, symbol: 'Li', name: 'ليثيوم', weight: '6.941'},
+            {number: 4, symbol: 'Be', name: 'بريليوم', weight: '9.012'},
+            {number: 5, symbol: 'B', name: 'بورون', weight: '10.81'},
+            {number: 6, symbol: 'C', name: 'كربون', weight: '12.01'},
+            {number: 7, symbol: 'N', name: 'نيتروجين', weight: '14.01'},
+            {number: 8, symbol: 'O', name: 'أكسجين', weight: '16.00'},
+            {number: 9, symbol: 'F', name: 'فلور', weight: '19.00'},
+            {number: 10, symbol: 'Ne', name: 'نيون', weight: '20.18'},
+            {number: 11, symbol: 'Na', name: 'صوديوم', weight: '22.99'},
+            {number: 12, symbol: 'Mg', name: 'مغنيسيوم', weight: '24.31'},
+            {number: 13, symbol: 'Al', name: 'ألومنيوم', weight: '26.98'},
+            {number: 14, symbol: 'Si', name: 'سيليكون', weight: '28.09'},
+            {number: 15, symbol: 'P', name: 'فوسفور', weight: '30.97'},
+            {number: 16, symbol: 'S', name: 'كبريت', weight: '32.07'},
+            {number: 17, symbol: 'Cl', name: 'كلور', weight: '35.45'},
+            {number: 18, symbol: 'Ar', name: 'أرجون', weight: '39.95'},
+            {number: 19, symbol: 'K', name: 'بوتاسيوم', weight: '39.10'},
+            {number: 20, symbol: 'Ca', name: 'كالسيوم', weight: '40.08'}
+        ];
+        
+        // Generate periodic table
+        document.addEventListener('DOMContentLoaded', function() {
+            const periodicTable = document.getElementById('periodicTable');
             
-            const mouseX = e.clientX - cardCenterX;
-            const mouseY = e.clientY - cardCenterY;
-            
-            const rotateY = (mouseX / cardRect.width) * 20; // Max rotation 20 degrees
-            const rotateX = -(mouseY / cardRect.height) * 20; // Max rotation 20 degrees
-            
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            card.style.transform = 'perspective(1000px) rotateX(5deg) rotateY(-5deg) translateZ(0)';
-        });
-    });
-}
-
-// Parallax Effect
-function initParallaxEffect() {
-    const parallaxElements = document.querySelectorAll('.parallax-element');
-    
-    window.addEventListener('scroll', function() {
-        const scrollPosition = window.pageYOffset;
-        
-        parallaxElements.forEach(element => {
-            const speed = element.dataset.speed || 0.5;
-            const yPos = -(scrollPosition * speed);
-            element.style.transform = `translateY(${yPos}px)`;
-        });
-    });
-}
-
-// Card Interactions
-function initCardInteractions() {
-    const cards = document.querySelectorAll('.card');
-    
-    cards.forEach(card => {
-        const nextButton = card.querySelector('button');
-        
-        if (nextButton) {
-            nextButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                const cardTitle = card.querySelector('.card-title').textContent;
-                showNotification(`جاري تحميل معلومات عن ${cardTitle}`, 'info');
-                
-                // Simulate loading delay
-                setTimeout(() => {
-                    showNotification(`تم تحميل معلومات عن ${cardTitle} بنجاح`, 'success');
-                }, 1500);
-            });
-        }
-        
-        // Add ripple effect on click
-        card.addEventListener('click', function(e) {
-            createRipple(e, card);
-        });
-    });
-}
-
-// Search Functionality
-function initSearchFunctionality() {
-    // Create search element if it doesn't exist
-    if (!document.querySelector('#chemistry-search')) {
-        const searchContainer = document.createElement('div');
-        searchContainer.className = 'search-container mb-4';
-        searchContainer.innerHTML = `
-            <div class="input-group">
-                <input type="text" id="chemistry-search" class="form-control" placeholder="ابحث في أقسام الكيمياء...">
-                <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        `;
-        
-        const mainHeading = document.querySelector('main h1');
-        if (mainHeading) {
-            mainHeading.parentNode.insertBefore(searchContainer, mainHeading.nextSibling);
-        }
-    }
-    
-    const searchInput = document.getElementById('chemistry-search');
-    if (searchInput) {
-        searchInput.addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            const cards = document.querySelectorAll('.card');
-            
-            cards.forEach(card => {
-                const title = card.querySelector('.card-title').textContent.toLowerCase();
-                const text = card.querySelector('.card-text').textContent.toLowerCase();
-                
-                if (title.includes(searchTerm) || text.includes(searchTerm)) {
-                    card.style.display = 'block';
-                    card.parentElement.style.display = 'block';
-                    
-                    // Highlight search term
-                    if (searchTerm.length > 2) {
-                        highlightSearchTerm(card, searchTerm);
+            // Create empty cells for proper layout
+            for (let i = 1; i <= 18; i++) {
+                if (i === 1 || i === 18) {
+                    // Add elements in first and last column
+                    const element = elements.find(el => el.number === i);
+                    if (element) {
+                        const elementDiv = createElementDiv(element);
+                        periodicTable.appendChild(elementDiv);
                     } else {
-                        removeHighlight(card);
+                        const emptyDiv = document.createElement('div');
+                        emptyDiv.className = 'element';
+                        periodicTable.appendChild(emptyDiv);
                     }
                 } else {
-                    card.style.display = 'none';
-                    card.parentElement.style.display = 'none';
+                    // Add empty cells
+                    const emptyDiv = document.createElement('div');
+                    emptyDiv.className = 'element';
+                    periodicTable.appendChild(emptyDiv);
                 }
+            }
+            
+            // Add second row
+            for (let i = 1; i <= 18; i++) {
+                if (i === 1 || i === 2 || (i >= 13 && i <= 18)) {
+                    const elementNumber = i === 1 ? 3 : i === 2 ? 4 : i - 10;
+                    const element = elements.find(el => el.number === elementNumber);
+                    if (element) {
+                        const elementDiv = createElementDiv(element);
+                        periodicTable.appendChild(elementDiv);
+                    } else {
+                        const emptyDiv = document.createElement('div');
+                        emptyDiv.className = 'element';
+                        periodicTable.appendChild(emptyDiv);
+                    }
+                } else {
+                    const emptyDiv = document.createElement('div');
+                    emptyDiv.className = 'element';
+                    periodicTable.appendChild(emptyDiv);
+                }
+            }
+            
+            // Add third row
+            for (let i = 1; i <= 18; i++) {
+                if (i === 1 || i === 2 || (i >= 13 && i <= 18)) {
+                    const elementNumber = i === 1 ? 11 : i === 2 ? 12 : i + 2;
+                    const element = elements.find(el => el.number === elementNumber);
+                    if (element) {
+                        const elementDiv = createElementDiv(element);
+                        periodicTable.appendChild(elementDiv);
+                    } else {
+                        const emptyDiv = document.createElement('div');
+                        emptyDiv.className = 'element';
+                        periodicTable.appendChild(emptyDiv);
+                    }
+                } else {
+                    const emptyDiv = document.createElement('div');
+                    emptyDiv.className = 'element';
+                    periodicTable.appendChild(emptyDiv);
+                }
+            }
+            
+            // Add fourth row
+            for (let i = 1; i <= 18; i++) {
+                const elementNumber = i + 18;
+                const element = elements.find(el => el.number === elementNumber);
+                if (element) {
+                    const elementDiv = createElementDiv(element);
+                    periodicTable.appendChild(elementDiv);
+                } else {
+                    const emptyDiv = document.createElement('div');
+                    emptyDiv.className = 'element';
+                    periodicTable.appendChild(emptyDiv);
+                }
+            }
+            
+            // Tab functionality for resources section
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
             });
             
-            // Show message if no results
-            const visibleCards = Array.from(cards).filter(card => card.style.display !== 'none');
-            const noResults = document.getElementById('no-results');
-            
-            if (visibleCards.length === 0 && searchTerm.length > 0) {
-                if (!noResults) {
-                    const noResultsMsg = document.createElement('div');
-                    noResultsMsg.id = 'no-results';
-                    noResultsMsg.className = 'alert alert-info text-center';
-                    noResultsMsg.textContent = 'لا توجد نتائج للبحث عن "' + searchTerm + '"';
-                    document.querySelector('.container').appendChild(noResultsMsg);
-                }
-            } else if (noResults) {
-                noResults.remove();
-            }
-        });
-    }
-}
-
-// Highlight search term in text
-function highlightSearchTerm(card, term) {
-    const titleElement = card.querySelector('.card-title');
-    const textElement = card.querySelector('.card-text');
-    
-    [titleElement, textElement].forEach(element => {
-        const text = element.textContent;
-        const regex = new RegExp(`(${term})`, 'gi');
-        element.innerHTML = text.replace(regex, '<mark>$1</mark>');
-    });
-}
-
-// Remove highlight from text
-function removeHighlight(card) {
-    const titleElement = card.querySelector('.card-title');
-    const textElement = card.querySelector('.card-text');
-    
-    [titleElement, textElement].forEach(element => {
-        element.innerHTML = element.textContent;
-    });
-}
-
-// Smooth Scrolling
-function initSmoothScrolling() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update active nav link
+                        document.querySelectorAll('nav a').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
                 });
-            }
+            });
+            
+            // Add animation to category cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
         });
-    });
-}
-
-// Scroll Animations
-function initScrollAnimations() {
-    const cards = document.querySelectorAll('.card');
-    
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-    
-    cards.forEach(card => {
-        // Set initial state
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         
-        // Observe element
-        observer.observe(card);
-    });
-}
-
-// Create Ripple Effect
-function createRipple(event, element) {
-    const circle = document.createElement('span');
-    const diameter = Math.max(element.clientWidth, element.clientHeight);
-    const radius = diameter / 2;
-    
-    circle.style.width = circle.style.height = `${diameter}px`;
-    circle.style.left = `${event.clientX - element.offsetLeft - radius}px`;
-    circle.style.top = `${event.clientY - element.offsetTop - radius}px`;
-    circle.classList.add('ripple');
-    
-    const ripple = element.getElementsByClassName('ripple')[0];
-    if (ripple) {
-        ripple.remove();
-    }
-    
-    element.appendChild(circle);
-}
-
-// Notification System
-function showNotification(message, type = 'info') {
-    // Create notification container if it doesn't exist
-    let notificationContainer = document.getElementById('notification-container');
-    if (!notificationContainer) {
-        notificationContainer = document.createElement('div');
-        notificationContainer.id = 'notification-container';
-        notificationContainer.className = 'notification-container';
-        document.body.appendChild(notificationContainer);
-    }
-    
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    
-    // Add icon based on type
-    let icon = '';
-    switch(type) {
-        case 'success':
-            icon = '<i class="fas fa-check-circle"></i>';
-            break;
-        case 'error':
-            icon = '<i class="fas fa-exclamation-circle"></i>';
-            break;
-        case 'warning':
-            icon = '<i class="fas fa-exclamation-triangle"></i>';
-            break;
-        default:
-            icon = '<i class="fas fa-info-circle"></i>';
-    }
-    
-    notification.innerHTML = `
-        <div class="notification-content">
-            ${icon}
-            <span>${message}</span>
-            <button class="notification-close">&times;</button>
-        </div>
-    `;
-    
-    notificationContainer.appendChild(notification);
-    
-    // Add close functionality
-    const closeButton = notification.querySelector('.notification-close');
-    closeButton.addEventListener('click', () => {
-        notification.classList.add('notification-hiding');
-        setTimeout(() => notification.remove(), 300);
-    });
-    
-    // Auto-remove after 5 seconds
-    setTimeout(() => {
-        if (notification.parentNode) {
-            notification.classList.add('notification-hiding');
-            setTimeout(() => notification.remove(), 300);
+        // Function to create element div
+        function createElementDiv(element) {
+            const elementDiv = document.createElement('div');
+            elementDiv.className = 'element';
+            elementDiv.innerHTML = `
+                <div class="element-number">${element.number}</div>
+                <div class="element-symbol">${element.symbol}</div>
+                <div class="element-name">${element.name}</div>
+                <div class="element-weight">${element.weight}</div>
+            `;
+            return elementDiv;
         }
-    }, 5000);
-}
-
-// Add CSS for ripple effect
-const style = document.createElement('style');
-style.textContent = `
-    .ripple {
-        position: absolute;
-        border-radius: 50%;
-        background-color: rgba(255, 255, 255, 0.6);
-        transform: scale(0);
-        animation: ripple-animation 0.6s linear;
-        pointer-events: none;
-    }
-    
-    @keyframes ripple-animation {
-        to {
-            transform: scale(4);
-            opacity: 0;
-        }
-    }
-    
-    .notification-container {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 1000;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .notification {
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        padding: 16px;
-        display: flex;
-        align-items: center;
-        min-width: 300px;
-        animation: slide-in 0.3s ease-out;
-        transition: all 0.3s ease;
-    }
-    
-    .notification-success {
-        border-left: 4px solid #4caf50;
-    }
-    
-    .notification-error {
-        border-left: 4px solid #f44336;
-    }
-    
-    .notification-warning {
-        border-left: 4px solid #ff9800;
-    }
-    
-    .notification-info {
-        border-left: 4px solid #2196f3;
-    }
-    
-    .notification-content {
-        display: flex;
-        align-items: center;
-        width: 100%;
-    }
-    
-    .notification-content i {
-        margin-right: 12px;
-        font-size: 20px;
-    }
-    
-    .notification-success i {
-        color: #4caf50;
-    }
-    
-    .notification-error i {
-        color: #f44336;
-    }
-    
-    .notification-warning i {
-        color: #ff9800;
-    }
-    
-    .notification-info i {
-        color: #2196f3;
-    }
-    
-    .notification-close {
-        margin-right: 0;
-        margin-left: auto;
-        background: none;
-        border: none;
-        font-size: 18px;
-        cursor: pointer;
-        color: #777;
-    }
-    
-    .notification-hiding {
-        opacity: 0;
-        transform: translateX(100%);
-    }
-    
-    @keyframes slide-in {
-        from {
-            opacity: 0;
-            transform: translateX(100%);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-    
-    mark {
-        background-color: #ffeb3b;
-        padding: 0;
-    }
-    
-    .search-container {
-        max-width: 600px;
-        margin: 0 auto 2rem;
-    }
-`;
-document.head.appendChild(style);

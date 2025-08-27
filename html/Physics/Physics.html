@@ -3,242 +3,532 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <title>موقع الفيزياء الشامل</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>الفيزياء</title>
     <link rel="stylesheet" href="/css/phyics.css">
 </head>
 <body>
     <!-- Header -->
-    <header class="bg-white shadow-sm sticky-top">
-        <nav class="container py-3">
-            <div class="row align-items-center">
-                <div class="col-md-3">
-                    <div class="d-flex align-items-center">
-                        <i class="fas fa-graduation-cap text-3xl text-purple-600 me-2"></i>
-                        <h1 class="h2 mb-0 text-gray-800">EduHub</h1>
-                    </div>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-atom"></i>
+                    <h1>الفيزياء</h1>
                 </div>
-                <div class="col-md-6 text-center">
-                    <h1 class="h3 mb-1">أقسام الفيزياء</h1>
-                    <p class="mb-0">الفيزياء تنقسم إلى عدة أقسام رئيسية، وكل قسم يركز على نوع معين من الظواهر الطبيعية</p>
-                </div>
-                <div class="col-md-3">
-                    <div class="d-flex justify-content-end align-items-center">
-                        <button onclick="showLoginModal()" class="btn btn-link text-purple-600 text-decoration-none">
-                            <i class="fas fa-user ms-1"></i>تسجيل الدخول
-                        </button>
-                        <button onclick="showRegisterModal()" class="btn btn-purple text-white">
-                            إنشاء حساب
-                        </button>
-                        <button class="btn btn-link d-md-none" onclick="toggleMobileMenu()">
-                            <i class="fas fa-bars text-2xl text-gray-600"></i>
-                        </button>
-                    </div>
-                </div>
+                <nav>
+                    <ul>
+                        <li><a href="/html/app.html" class="active">الرئيسية</a></li>
+                        <li><a href="#categories">الأقسام</a></li>
+                        <li><a href="#laws">القوانين</a></li>
+                        <li><a href="#scientists">العلماء</a></li>
+                        <li><a href="#features">المميزات</a></li>
+                        <li><a href="#resources">المصادر</a></li>
+                        <li><a href="#contact">تواصل معنا</a></li>
+                    </ul>
+                </nav>
             </div>
-            
-            <!-- Desktop Navigation -->
-            <div class="d-none d-md-block mt-3">
-                <div class="d-flex justify-content-center">
-                    <a href="/html/app.html" class="mx-3 text-gray-600 text-decoration-none hover-purple">الرئيسية</a>
-                    <a href="#subjects" class="mx-3 text-gray-600 text-decoration-none hover-purple">المواد</a>
-                    <a href="#about" class="mx-3 text-gray-600 text-decoration-none hover-purple">من نحن</a>
-                    <a href="#contact" class="mx-3 text-gray-600 text-decoration-none hover-purple">اتصل بنا</a>
-                </div>
-            </div>
-            
-            <!-- Mobile Menu -->
-            <div id="mobileMenu" class="d-md-none mt-3">
-                <div class="d-flex flex-column text-center">
-                    <a href="#home" class="py-2 text-gray-600 text-decoration-none hover-purple">الرئيسية</a>
-                    <a href="#subjects" class="py-2 text-gray-600 text-decoration-none hover-purple">المواد</a>
-                    <a href="#about" class="py-2 text-gray-600 text-decoration-none hover-purple">من نحن</a>
-                    <a href="#contact" class="py-2 text-gray-600 text-decoration-none hover-purple">اتصل بنا</a>
-                </div>
-            </div>
-        </nav>
+        </div>
     </header>
 
-    <main class="container my-5">
-        <h1 class="text-center mb-4">أقسام الفيزياء الأساسية:</h1>
-        
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <!-- Classical Physics -->
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <img src="/img/img%20physics/Modernphysicsfields_2.svg.png" class="card-img-top" alt="الفيزياء الكلاسيكية">
-                    <div class="card-body">
-                        <h5 class="card-title">1. الفيزياء الكلاسيكية</h5>
-                        <p class="card-text">تدرس: الحركة، القوى، الطاقة، والمادة ضمن السرعات العادية.</p>
-                        <ul class="small">
-                            <li>الميكانيكا (حركة الأجسام – قوانين نيوتن)</li>
-                            <li>الصوت (الاهتزازات والموجات الصوتية)</li>
-                            <li>الضوء (الانعكاس، الانكسار، العدسات)</li>
-                            <li>الحرارة (الديناميكا الحرارية)</li>
-                        </ul>
-                    </div>
-                    <div class="card-footer bg-white border-0">
-                        <a href="#" class="btn btn-sm btn-purple w-100">التالي</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Modern Physics -->
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <img src="/img/img%20physics/Modern%20Physics.webp" class="card-img-top" alt="الفيزياء الحديثة">
-                    <div class="card-body">
-                        <h5 class="card-title">2. الفيزياء الحديثة</h5>
-                        <p class="card-text">تدرس: الظواهر التي لا تفسرها الفيزياء الكلاسيكية.</p>
-                        <ul class="small">
-                            <li>النظرية النسبية (آينشتاين – السرعات العالية والزمن)</li>
-                            <li>فيزياء الكم (سلوك الجسيمات الذرية)</li>
-                            <li>الطاقة النووية (الانشطار والاندماج)</li>
-                        </ul>
-                    </div>
-                    <div class="card-footer bg-white border-0">
-                        <a href="#" class="btn btn-sm btn-purple w-100">التالي</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Atomic Physics -->
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <img src="/img/img%20physics/Atomic%20Physics.jpg" class="card-img-top" alt="الفيزياء الذرية">
-                    <div class="card-body">
-                        <h5 class="card-title">3. الفيزياء الذرية</h5>
-                        <p class="card-text">تدرس: بنية الذرة، الإلكترونات، المستويات الطاقية.</p>
-                    </div>
-                    <div class="card-footer bg-white border-0">
-                        <a href="#" class="btn btn-sm btn-purple w-100">التالي</a>
-                    </div>
-                </div>
-            </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>مرحباً بك في عالم الفيزياء</h2>
+            <p>اكتشف أسرار الكون والقوانين الطبيعية التي تحكمه من خلال أقسامنا المتنوعة والمصادر التعليمية الشاملة</p>
+            <a href="#categories" class="btn">استكشف الأقسام</a>
         </div>
-        
-        <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
-            <!-- Particle Physics -->
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <img src="/img/img%20physics/Particle%20Physics.png" class="card-img-top" alt="فيزياء الجسيمات">
-                    <div class="card-body">
-                        <h5 class="card-title">4. فيزياء الجسيمات</h5>
-                        <p class="card-text">تدرس: الجسيمات الأساسية مثل الكواركات، الإلكترونات، النيوترونات.</p>
-                        <ul class="small">
-                            <li>النموذج القياسي</li>
-                            <li>المسرّعات الذرية</li>
-                        </ul>
-                    </div>
-                    <div class="card-footer bg-white border-0">
-                        <a href="#" class="btn btn-sm btn-purple w-100">التالي</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Nuclear Physics -->
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <img src="/img/img%20physics/Nuclear%20Physics.png" class="card-img-top" alt="الفيزياء النووية">
-                    <div class="card-body">
-                        <h5 class="card-title">5. الفيزياء النووية</h5>
-                        <p class="card-text">تركز على نواة الذرة، والتفاعلات النووية (مثل الانشطار والاندماج).</p>
-                    </div>
-                    <div class="card-footer bg-white border-0">
-                        <a href="#" class="btn btn-sm btn-purple w-100">التالي</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Solid State Physics -->
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <img src="/img/img%20physics/Solid%20State%20Physics.png" class="card-img-top" alt="فيزياء الحالة الصلبة">
-                    <div class="card-body">
-                        <h5 class="card-title">6. فيزياء الحالة الصلبة</h5>
-                        <p class="card-text">تدرس: خصائص المواد الصلبة، مثل المعادن، البلورات، الموصلات والعوازل.</p>
-                        <p class="small mb-0">أساس في تصميم: أشباه الموصلات والدوائر الإلكترونية.</p>
-                    </div>
-                    <div class="card-footer bg-white border-0">
-                        <a href="#" class="btn btn-sm btn-purple w-100">التالي</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
-            <!-- Electromagnetism -->
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <img src="/img/img%20physics/Electromagnetism.png" class="card-img-top" alt="الكهرباء والمغناطيسية">
-                    <div class="card-body">
-                        <h5 class="card-title">7. الكهرباء والمغناطيسية</h5>
-                        <p class="card-text">تدرس: الشحنات الكهربائية، التيارات، الحقول المغناطيسية.</p>
-                        <p class="small mb-0">التطبيقات: الكهرباء، المحركات، الهواتف، الحواسيب.</p>
-                    </div>
-                    <div class="card-footer bg-white border-0">
-                        <a href="#" class="btn btn-sm btn-purple w-100">التالي</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Astrophysics -->
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <img src="/img/img%20physics/Astrophysics.jpg" class="card-img-top" alt="الفيزياء الفلكية">
-                    <div class="card-body">
-                        <h5 class="card-title">8. الفيزياء الفلكية</h5>
-                        <p class="card-text">تدمج الفيزياء مع علم الفلك.</p>
-                        <ul class="small">
-                            <li>تدرس: النجوم، الكواكب، المجرات</li>
-                            <li>الثقوب السوداء، أصل الكون</li>
-                        </ul>
-                    </div>
-                    <div class="card-footer bg-white border-0">
-                        <a href="#" class="btn btn-sm btn-purple w-100">التالي</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Medical Physics -->
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <img src="/img/img%20physics/Medical%20Physics.jpg" class="card-img-top" alt="الفيزياء الطبية">
-                    <div class="card-body">
-                        <h5 class="card-title">9. الفيزياء الطبية</h5>
-                        <p class="card-text">تطبيق الفيزياء في المجال الطبي.</p>
-                        <ul class="small">
-                            <li>الأشعة</li>
-                            <li>التصوير بالرنين</li>
-                            <li>العلاج الإشعاعي</li>
-                        </ul>
-                    </div>
-                    <div class="card-footer bg-white border-0">
-                        <a href="#" class="btn btn-sm btn-purple w-100">التالي</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="row mt-2">
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm">
-                    <img src="/img/img%20physics/plasma%20physics.jpg" class="card-img-top" alt="فيزياء البلازما">
-                    <div class="card-body">
-                        <h5 class="card-title">10. فيزياء البلازما</h5>
-                        <p class="card-text">تدرس: الحالة الرابعة من المادة – البلازما (غاز مشحون كهربائيًا).</p>
-                        <p class="small mb-0">تستخدم في: شاشات البلازما، الاندماج النووي.</p>
-                    </div>
-                    <div class="card-footer bg-white border-0">
-                        <a href="#" class="btn btn-sm btn-purple w-100">التالي</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+    </section>
 
-    <script src="physics.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Physics Categories Section -->
+        <section id="categories" class="section">
+            <div class="section-title">
+                <h2>أقسام الفيزياء</h2>
+            </div>
+            
+            <div class="categories">
+                <!-- Mechanics Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon mechanics">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>الميكانيكا</h3>
+                            <p>دراسة الحركة والقوى</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> الحركة الخطية</li>
+                            <li><i class="fas fa-check-circle"></i> الحركة الدورانية</li>
+                            <li><i class="fas fa-check-circle"></i> ديناميكا الجسيمات</li>
+                            <li><i class="fas fa-check-circle"></i> الميكانيكا التحليلية</li>
+                            <li><i class="fas fa-check-circle"></i> الميكانيكا السماوية</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Electromagnetism Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon electromagnetism">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>الكهرباء والمغناطيسية</h3>
+                            <p>دراسة الظواهر الكهربائية والمغناطيسية</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> الكهرباء الساكنة</li>
+                            <li><i class="fas fa-check-circle"></i> التيار الكهربائي</li>
+                            <li><i class="fas fa-check-circle"></i> المجالات المغناطيسية</li>
+                            <li><i class="fas fa-check-circle"></i> الحث الكهرومغناطيسي</li>
+                            <li><i class="fas fa-check-circle"></i> الموجات الكهرومغناطيسية</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Thermodynamics Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon thermodynamics">
+                            <i class="fas fa-temperature-high"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>الديناميكا الحرارية</h3>
+                            <p>دراسة الحرارة والطاقة والعمل</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> قوانين الديناميكا الحرارية</li>
+                            <li><i class="fas fa-check-circle"></i> نظرية الحركة الحرارية</li>
+                            <li><i class="fas fa-check-circle"></i> انتقال الحرارة</li>
+                            <li><i class="fas fa-check-circle"></i> المحركات الحرارية</li>
+                            <li><i class="fas fa-check-circle"></i> الإنتروبيا</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Modern Physics Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon modern">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>الفيزياء الحديثة</h3>
+                            <p>دراسة الظواهر الفيزيائية الحديثة</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> النسبية الخاصة</li>
+                            <li><i class="fas fa-check-circle"></i> النسبية العامة</li>
+                            <li><i class="fas fa-check-circle"></i> فيزياء الجسيمات</li>
+                            <li><i class="fas fa-check-circle"></i> نظرية المجالات</li>
+                            <li><i class="fas fa-check-circle"></i> فيزياء الطاقة العالية</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Quantum Physics Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon quantum">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>ميكانيكا الكم</h3>
+                            <p>دراسة الظواهر على المستوى الذري</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> مبادئ ميكانيكا الكم</li>
+                            <li><i class="fas fa-check-circle"></i> معادلة شرودنجر</li>
+                            <li><i class="fas fa-check-circle"></i> مبدأ عدم اليقين</li>
+                            <li><i class="fas fa-check-circle"></i> الترابط الكمي</li>
+                            <li><i class="fas fa-check-circle"></i> الحوسبة الكمومية</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Nuclear Physics Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon nuclear">
+                            <i class="fas fa-radiation"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>الفيزياء النووية</h3>
+                            <p>دراسة النواة الذرية والتفاعلات النووية</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> بنية النواة الذرية</li>
+                            <li><i class="fas fa-check-circle"></i> النشاط الإشعاعي</li>
+                            <li><i class="fas fa-check-circle"></i> الانشطار النووي</li>
+                            <li><i class="fas fa-check-circle"></i> الاندماج النووي</li>
+                            <li><i class="fas fa-check-circle"></i> تطبيقات الطاقة النووية</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Astrophysics Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon astrophysics">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="category-title">
+                            <h3>الفيزياء الفلكية</h3>
+                            <p>دراسة الكون والأجرام السماوية</p>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> علم الكونيات</li>
+                            <li><i class="fas fa-check-circle"></i> فيزياء النجوم</li>
+                            <li><i class="fas fa-check-circle"></i> المجرات والتجمعات</li>
+                            <li><i class="fas fa-check-circle"></i> الثقوب السوداء</li>
+                            <li><i class="fas fa-check-circle"></i> المادة المظلمة والطاقة المظلمة</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Physics Laws Section -->
+        <section id="laws" class="section">
+            <div class="physics-laws">
+                <h3>أشهر قوانين الفيزياء</h3>
+                <div class="laws-grid">
+                    <div class="law-card">
+                        <h4>قوانين نيوتن للحركة</h4>
+                        <p>قانون القصور الذاتي، قانون العلاقة بين القوة والتسارع، قانون الفعل ورد الفعل</p>
+                    </div>
+                    <div class="law-card">
+                        <h4>قانون الجاذبية العام</h4>
+                        <p>قوة الجاذبية بين جسمين تتناسب طردياً مع حاصل ضرب كتلتيهما وعكسياً مع مربع المسافة بينهما</p>
+                    </div>
+                    <div class="law-card">
+                        <h4>قوانين الديناميكا الحرارية</h4>
+                        <p>حفظ الطاقة، زيادة الإنتروبيا، استحالة الوصول إلى الصفر المطلق</p>
+                    </div>
+                    <div class="law-card">
+                        <h4>قوانين ماكسويل</h4>
+                        <p>توصيف العلاقة بين المجالات الكهربائية والمغناطيسية والشحنات والتيارات</p>
+                    </div>
+                    <div class="law-card">
+                        <h4>مبدأ عدم اليقين لهايزنبرغ</h4>
+                        <p>استحالة تحديد موقع وكمية حركة الجسيم بدقة في نفس الوقت</p>
+                    </div>
+                    <div class="law-card">
+                        <h4>نظرية النسبية لأينشتاين</h4>
+                        <p>تكافؤ الكتلة والطاقة، ثبات سرعة الضوء، انحناء الزمكان</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Scientists Section -->
+        <section id="scientists" class="section">
+            <div class="scientists">
+                <h3>أشهر علماء الفيزياء</h3>
+                <div class="scientists-grid">
+                    <div class="scientist-card">
+                        <div class="scientist-img">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Isaac_Newton_2.jpg/220px-Isaac_Newton_2.jpg" alt="إسحاق نيوتن">
+                        </div>
+                        <div class="scientist-name">إسحاق نيوتن</div>
+                        <div class="scientist-contribution">قوانين الحركة والجاذبية</div>
+                    </div>
+                    <div class="scientist-card">
+                        <div class="scientist-img">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Einstein_1921_by_F_Schmutzer_-_restoration.jpg/220px-Einstein_1921_by_F_Schmutzer_-_restoration.jpg" alt="ألبرت أينشتاين">
+                        </div>
+                        <div class="scientist-name">ألبرت أينشتاين</div>
+                        <div class="scientist-contribution">نظرية النسبية</div>
+                    </div>
+                    <div class="scientist-card">
+                        <div class="scientist-img">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Max_Planck_1933.jpg/220px-Max_Planck_1933.jpg" alt="ماكس بلانك">
+                        </div>
+                        <div class="scientist-name">ماكس بلانك</div>
+                        <div class="scientist-contribution">ميكانيكا الكم</div>
+                    </div>
+                    <div class="scientist-card">
+                        <div class="scientist-img">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Marie_Curie_c._1920s.jpg/220px-Marie_Curie_c._1920s.jpg" alt="ماري كوري">
+                        </div>
+                        <div class="scientist-name">ماري كوري</div>
+                        <div class="scientist-contribution">النشاط الإشعاعي</div>
+                    </div>
+                    <div class="scientist-card">
+                        <div class="scientist-img">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Richard_Feynman_ID_badge.jpg/220px-Richard_Feynman_ID_badge.jpg" alt="ريتشارد فاينمان">
+                        </div>
+                        <div class="scientist-name">ريتشارد فاينمان</div>
+                        <div class="scientist-contribution">الكهروديناميكا الكمية</div>
+                    </div>
+                    <div class="scientist-card">
+                        <div class="scientist-img">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Stephen_Hawking_in_Cambridge_3.jpg/220px-Stephen_Hawking_in_Cambridge_3.jpg" alt="ستيفن هوكينغ">
+                        </div>
+                        <div class="scientist-name">ستيفن هوكينغ</div>
+                        <div class="scientist-contribution">الثقوب السوداء وعلم الكونيات</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section id="features" class="section">
+            <div class="section-title">
+                <h2>مميزات الموقع</h2>
+            </div>
+            
+            <div class="features">
+                <div class="features-grid">
+                    <div class="feature">
+                        <i class="fas fa-book-open"></i>
+                        <h3>محتوى تعليمي شامل</h3>
+                        <p>دروس وشرحات مفصلة لجميع مفاهيم الفيزياء من المستوى الأساسي إلى المتقدم</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-flask"></i>
+                        <h3>تجارب افتراضية</h3>
+                        <p>محاكاة للتجارب الفيزيائية في بيئة آمنة وتفاعلية</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-video"></i>
+                        <h3>فيديوهات تعليمية</h3>
+                        <p>مكتبة ضخمة من الفيديوهات التوضيحية لجميع المواضيع الفيزيائية</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-calculator"></i>
+                        <h3>أدوات حسابية</h3>
+                        <p>حاسبات للمسائل الفيزيائية المعقدة</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>تمارين واختبارات</h3>
+                        <p>مجموعة متنوعة من التمارين والاختبارات لتقييم فهمك وتقدمك</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-users"></i>
+                        <h3>مجتمع تعليمي</h3>
+                        <p>انضم إلى مجتمع من المهتمين بالفيزياء لتبادل المعرفة والخبرات</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Resources Section -->
+        <section id="resources" class="section">
+            <div class="section-title">
+                <h2>المصادر التعليمية</h2>
+            </div>
+            
+            <div class="resources">
+                <div class="resource-tabs">
+                    <div class="tab active" data-tab="books">الكتب</div>
+                    <div class="tab" data-tab="videos">الفيديوهات</div>
+                    <div class="tab" data-tab="tools">الأدوات</div>
+                    <div class="tab" data-tab="experiments">التجارب</div>
+                </div>
+                
+                <div class="tab-content active" id="books">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>مبادئ الفيزياء</h4>
+                            <p>أساسيات الفيزياء للمبتدئين</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>الميكانيكا الكلاسيكية</h4>
+                            <p>قوانين نيوتن وتطبيقاتها</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>الكهرباء والمغناطيسية</h4>
+                            <p>المجالات الكهرومغناطيسية</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>الفيزياء الحديثة</h4>
+                            <p>النسبية وميكانيكا الكم</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <h4>الفيزياء الفلكية</h4>
+                            <p>أسرار الكون والنجوم</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="videos">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>سلسلة الفيزياء العامة</h4>
+                            <p>دروس تفصيلية خطوة بخطوة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>قوانين نيوتن</h4>
+                            <p>شرح مبسط مع أمثلة تطبيقية</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>الكهرباء والمغناطيسية</h4>
+                            <p>المفاهيم الأساسية والتطبيقات</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>نظرية النسبية</h4>
+                            <p>مفاهيم متقدمة للفيزياء الحديثة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>مقدمة في ميكانيكا الكم</h4>
+                            <p>عالم الجسيمات دون الذرية</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="tools">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-calculator"></i>
+                            <h4>حاسبة القوى</h4>
+                            <p>حساب القوى والتسارع</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-calculator"></i>
+                            <h4>حاسبة الطاقة</h4>
+                            <p>حساب الطاقة الحركية والكامنة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-calculator"></i>
+                            <h4>حاسبة الكهرباء</h4>
+                            <p>حساب التيار والجهد والمقاومة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-calculator"></i>
+                            <h4>محول الوحدات</h4>
+                            <p>تحويل بين وحدات القياس المختلفة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-calculator"></i>
+                            <h4>محاكي المدارات</h4>
+                            <p>محاكاة حركة الكواكب والأقمار</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="experiments">
+                    <div class="resource-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-flask"></i>
+                            <h4>تجارب السقوط الحر</h4>
+                            <p>دراسة تسارع الجاذبية</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-flask"></i>
+                            <h4>تجارب البندول</h4>
+                            <p>دراسة الاهتزازات والتردد</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-flask"></i>
+                            <h4>تجارب البصريات</h4>
+                            <p>انعكاس وانكسار الضوء</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-flask"></i>
+                            <h4>تجارب الكهرباء</h4>
+                            <p>الدوائر الكهربائية البسيطة</p>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-flask"></i>
+                            <h4>تجارب الموجات</h4>
+                            <p>خصائص الموجات الميكانيكية</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>عن الموقع</h3>
+                    <p>موقع الفيزياء الشامل هو منصة تعليمية تهدف إلى تقديم محتوى فيزيائي عالي الجودة للطلاب والمعلمين والمهتمين بمجال الفيزياء.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">الرئيسية</a></li>
+                        <li><a href="#">الأقسام</a></li>
+                        <li><a href="#">القوانين</a></li>
+                        <li><a href="#">العلماء</a></li>
+                        <li><a href="#">المصادر</a></li>
+                        <li><a href="#">المدونة</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>الأقسام</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">الميكانيكا</a></li>
+                        <li><a href="#">الكهرباء والمغناطيسية</a></li>
+                        <li><a href="#">الديناميكا الحرارية</a></li>
+                        <li><a href="#">الفيزياء الحديثة</a></li>
+                        <li><a href="#">ميكانيكا الكم</a></li>
+                        <li><a href="#">الفيزياء النووية</a></li>
+                        <li><a href="#">الفيزياء الفلكية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@physicssite.com</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع الفيزياء الشامل. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
 </body>
+<script src="/js/physics.js"></script>
 </html>
