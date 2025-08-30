@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الجدول الدوري للعناصر الكيميائية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(90deg, #2c3e50, #3498db);
+            border-radius: 10px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 10px 15px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: #e74c3c;
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .periodic-table {
+            display: grid;
+            grid-template-columns: repeat(18, 1fr);
+            grid-auto-rows: minmax(70px, auto);
+            gap: 3px;
+            margin-bottom: 30px;
+        }
+
+        .element {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            padding: 5px;
+            min-height: 70px;
+        }
+
+        .element:hover {
+            transform: scale(1.1);
+            z-index: 10;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .element.hidden {
+            display: none;
+        }
+
+        .atomic-number {
+            font-size: 0.7rem;
+            font-weight: bold;
+            align-self: flex-start;
+            margin-right: 5px;
+        }
+
+        .symbol {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin: 2px 0;
+        }
+
+        .name {
+            font-size: 0.7rem;
+            text-align: center;
+        }
+
+        .atomic-mass {
+            font-size: 0.6rem;
+            align-self: flex-end;
+            margin-left: 5px;
+        }
+
+        /* فئات العناصر */
+        .nonmetal { background-color: #ff9e80; }
+        .noble-gas { background-color: #80d8ff; }
+        .alkali-metal { background-color: #ea80fc; }
+        .alkaline-earth-metal { background-color: #b388ff; }
+        .metalloid { background-color: #8c9eff; }
+        .halogen { background-color: #82b1ff; }
+        .metal { background-color: #80deea; }
+        .transition-metal { background-color: #a7ffeb; }
+        .lanthanide { background-color: #b9f6ca; }
+        .actinide { background-color: #ccff90; }
+        .post-transition-metal { background-color: #fff59d; }
+
+        /* مواضع خاصة */
+        .element[data-period="1"] { grid-row: 1; }
+        .element[data-period="2"] { grid-row: 2; }
+        .element[data-period="3"] { grid-row: 3; }
+        .element[data-period="4"] { grid-row: 4; }
+        .element[data-period="5"] { grid-row: 5; }
+        .element[data-period="6"] { grid-row: 6; }
+        .element[data-period="7"] { grid-row: 7; }
+        
+        .element[data-group="1"] { grid-column: 1; }
+        .element[data-group="2"] { grid-column: 2; }
+        .element[data-group="3"] { grid-column: 3; }
+        .element[data-group="4"] { grid-column: 4; }
+        .element[data-group="5"] { grid-column: 5; }
+        .element[data-group="6"] { grid-column: 6; }
+        .element[data-group="7"] { grid-column: 7; }
+        .element[data-group="8"] { grid-column: 8; }
+        .element[data-group="9"] { grid-column: 9; }
+        .element[data-group="10"] { grid-column: 10; }
+        .element[data-group="11"] { grid-column: 11; }
+        .element[data-group="12"] { grid-column: 12; }
+        .element[data-group="13"] { grid-column: 13; }
+        .element[data-group="14"] { grid-column: 14; }
+        .element[data-group="15"] { grid-column: 15; }
+        .element[data-group="16"] { grid-column: 16; }
+        .element[data-group="17"] { grid-column: 17; }
+        .element[data-group="18"] { grid-column: 18; }
+
+        /* العناصر الانتقالية الداخلية */
+        .lanthanide-row, .actinide-row {
+            display: grid;
+            grid-template-columns: repeat(15, 1fr);
+            grid-auto-rows: minmax(70px, auto);
+            gap: 3px;
+            margin-top: 20px;
+        }
+
+        .lanthanide-row .element, .actinide-row .element {
+            grid-column: span 1;
+        }
+
+        /* نافذة التفاصيل */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalFadeIn 0.4s;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #777;
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: #e74c3c;
+        }
+
+        .element-details h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .detail-label {
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .detail-value {
+            text-align: left;
+        }
+
+        .element-details .symbol-large {
+            font-size: 4rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 15px 0;
+            color: #2c3e50;
+        }
+
+        .element-details .category {
+            text-align: center;
+            padding: 8px 15px;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            margin: 15px auto;
+            display: inline-block;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 1200px) {
+            .periodic-table {
+                grid-template-columns: repeat(18, 1fr);
+                font-size: 0.9rem;
+            }
+            
+            .element {
+                min-height: 60px;
+            }
+            
+            .symbol {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+            
+            .periodic-table {
+                grid-template-columns: repeat(9, 1fr);
+                gap: 2px;
+            }
+            
+            .element {
+                min-height: 50px;
+                font-size: 0.8rem;
+            }
+            
+            .symbol {
+                font-size: 1rem;
+            }
+            
+            .name {
+                display: none;
+            }
+            
+            .atomic-mass {
+                display: none;
+            }
+            
+            .lanthanide-row, .actinide-row {
+                grid-template-columns: repeat(8, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .periodic-table {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .element {
+                min-height: 45px;
+            }
+            
+            .symbol {
+                font-size: 0.9rem;
+            }
+            
+            .atomic-number {
+                font-size: 0.6rem;
+            }
+            
+            .lanthanide-row, .actinide-row {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>الجدول الدوري للعناصر الكيميائية</h1>
+            <p class="subtitle">استكشف عناصر الطبيعة الأساسية وخصائصها</p>
+        </header>
+
+        <div class="controls">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search" placeholder="ابحث عن عنصر بالاسم أو الرمز...">
+            </div>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">الكل</button>
+                <button class="filter-btn" data-category="nonmetal">لا فلز</button>
+                <button class="filter-btn" data-category="metal">فلز</button>
+                <button class="filter-btn" data-category="metalloid">شبه فلز</button>
+                <button class="filter-btn" data-category="alkali-metal">قلوي</button>
+                <button class="filter-btn" data-category="alkaline-earth-metal">قلوي ترابي</button>
+                <button class="filter-btn" data-category="transition-metal">انتقالي</button>
+                <button class="filter-btn" data-category="post-transition-metal">انتقالي بعدي</button>
+                <button class="filter-btn" data-category="lanthanide">لانثانيد</button>
+                <button class="filter-btn" data-category="actinide">أكتينيد</button>
+                <button class="filter-btn" data-category="halogen">هالوجين</button>
+                <button class="filter-btn" data-category="noble-gas">غاز نبيل</button>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #ff9e80;"></div>
+                <span>لا فلز</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #80d8ff;"></div>
+                <span>غاز نبيل</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #ea80fc;"></div>
+                <span>فلز قلوي</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #b388ff;"></div>
+                <span>فلز قلوي ترابي</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #8c9eff;"></div>
+                <span>شبه فلز</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #82b1ff;"></div>
+                <span>هالوجين</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #80deea;"></div>
+                <span>فلز</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #a7ffeb;"></div>
+                <span>فلز انتقالي</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #b9f6ca;"></div>
+                <span>لانثانيد</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #ccff90;"></div>
+                <span>أكتينيد</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #fff59d;"></div>
+                <span>فلز انتقالي بعدي</span>
+            </div>
+        </div>
+
+        <div class="periodic-table" id="periodic-table"></div>
+
+        <div class="lanthanide-row" id="lanthanide-row"></div>
+        <div class="actinide-row" id="actinide-row"></div>
+
+        <footer>
+            <p>© 2023 الجدول الدوري للعناصر الكيميائية | جميع الحقوق محفوظة</p>
+        </footer>
+    </div>
+
+    <div id="element-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="element-details" id="element-details"></div>
+        </div>
+    </div>
+
+    <script>
+        // بيانات العناصر الكيميائية
+        const elements = [
+            // الدورة 1
+            { atomicNumber: 1, symbol: "H", name: "هيدروجين", atomicMass: "1.008", category: "nonmetal", group: 1, period: 1 },
+            { atomicNumber: 2, symbol: "He", name: "هيليوم", atomicMass: "4.0026", category: "noble-gas", group: 18, period: 1 },
+            
+            // الدورة 2
+            { atomicNumber: 3, symbol: "Li", name: "ليثيوم", atomicMass: "6.94", category: "alkali-metal", group: 1, period: 2 },
+            { atomicNumber: 4, symbol: "Be", name: "بريليوم", atomicMass: "9.0122", category: "alkaline-earth-metal", group: 2, period: 2 },
+            { atomicNumber: 5, symbol: "B", name: "بورون", atomicMass: "10.81", category: "metalloid", group: 13, period: 2 },
+            { atomicNumber: 6, symbol: "C", name: "كربون", atomicMass: "12.011", category: "nonmetal", group: 14, period: 2 },
+            { atomicNumber: 7, symbol: "N", name: "نيتروجين", atomicMass: "14.007", category: "nonmetal", group: 15, period: 2 },
+            { atomicNumber: 8, symbol: "O", name: "أكسجين", atomicMass: "15.999", category: "nonmetal", group: 16, period: 2 },
+            { atomicNumber: 9, symbol: "F", name: "فلور", atomicMass: "18.998", category: "halogen", group: 17, period: 2 },
+            { atomicNumber: 10, symbol: "Ne", name: "نيون", atomicMass: "20.180", category: "noble-gas", group: 18, period: 2 },
+            
+            // الدورة 3
+            { atomicNumber: 11, symbol: "Na", name: "صوديوم", atomicMass: "22.990", category: "alkali-metal", group: 1, period: 3 },
+            { atomicNumber: 12, symbol: "Mg", name: "مغنيسيوم", atomicMass: "24.305", category: "alkaline-earth-metal", group: 2, period: 3 },
+            { atomicNumber: 13, symbol: "Al", name: "ألومنيوم", atomicMass: "26.982", category: "post-transition-metal", group: 13, period: 3 },
+            { atomicNumber: 14, symbol: "Si", name: "سيليكون", atomicMass: "28.085", category: "metalloid", group: 14, period: 3 },
+            { atomicNumber: 15, symbol: "P", name: "فوسفور", atomicMass: "30.974", category: "nonmetal", group: 15, period: 3 },
+            { atomicNumber: 16, symbol: "S", name: "كبريت", atomicMass: "32.06", category: "nonmetal", group: 16, period: 3 },
+            { atomicNumber: 17, symbol: "Cl", name: "كلور", atomicMass: "35.45", category: "halogen", group: 17, period: 3 },
+            { atomicNumber: 18, symbol: "Ar", name: "أرجون", atomicMass: "39.948", category: "noble-gas", group: 18, period: 3 },
+            
+            // الدورة 4
+            { atomicNumber: 19, symbol: "K", name: "بوتاسيوم", atomicMass: "39.098", category: "alkali-metal", group: 1, period: 4 },
+            { atomicNumber: 20, symbol: "Ca", name: "كالسيوم", atomicMass: "40.078", category: "alkaline-earth-metal", group: 2, period: 4 },
+            { atomicNumber: 21, symbol: "Sc", name: "سكانديوم", atomicMass: "44.956", category: "transition-metal", group: 3, period: 4 },
+            { atomicNumber: 22, symbol: "Ti", name: "تيتانيوم", atomicMass: "47.867", category: "transition-metal", group: 4, period: 4 },
+            { atomicNumber: 23, symbol: "V", name: "فاناديوم", atomicMass: "50.942", category: "transition-metal", group: 5, period: 4 },
+            { atomicNumber: 24, symbol: "Cr", name: "كروم", atomicMass: "51.996", category: "transition-metal", group: 6, period: 4 },
+            { atomicNumber: 25, symbol: "Mn", name: "منجنيز", atomicMass: "54.938", category: "transition-metal", group: 7, period: 4 },
+            { atomicNumber: 26, symbol: "Fe", name: "حديد", atomicMass: "55.845", category: "transition-metal", group: 8, period: 4 },
+            { atomicNumber: 27, symbol: "Co", name: "كوبالت", atomicMass: "58.933", category: "transition-metal", group: 9, period: 4 },
+            { atomicNumber: 28, symbol: "Ni", name: "نيكل", atomicMass: "58.693", category: "transition-metal", group: 10, period: 4 },
+            { atomicNumber: 29, symbol: "Cu", name: "نحاس", atomicMass: "63.546", category: "transition-metal", group: 11, period: 4 },
+            { atomicNumber: 30, symbol: "Zn", name: "زنك", atomicMass: "65.38", category: "transition-metal", group: 12, period: 4 },
+            { atomicNumber: 31, symbol: "Ga", name: "جاليوم", atomicMass: "69.723", category: "post-transition-metal", group: 13, period: 4 },
+            { atomicNumber: 32, symbol: "Ge", name: "جرمانيوم", atomicMass: "72.630", category: "metalloid", group: 14, period: 4 },
+            { atomicNumber: 33, symbol: "As", name: "زرنيخ", atomicMass: "74.922", category: "metalloid", group: 15, period: 4 },
+            { atomicNumber: 34, symbol: "Se", name: "سيلينيوم", atomicMass: "78.971", category: "nonmetal", group: 16, period: 4 },
+            { atomicNumber: 35, symbol: "Br", name: "بروم", atomicMass: "79.904", category: "halogen", group: 17, period: 4 },
+            { atomicNumber: 36, symbol: "Kr", name: "كريبتون", atomicMass: "83.798", category: "noble-gas", group: 18, period: 4 },
+            
+            // الدورة 5
+            { atomicNumber: 37, symbol: "Rb", name: "روبيديوم", atomicMass: "85.468", category: "alkali-metal", group: 1, period: 5 },
+            { atomicNumber: 38, symbol: "Sr", name: "سترونتيوم", atomicMass: "87.62", category: "alkaline-earth-metal", group: 2, period: 5 },
+            { atomicNumber: 39, symbol: "Y", name: "يتيريوم", atomicMass: "88.906", category: "transition-metal", group: 3, period: 5 },
+            { atomicNumber: 40, symbol: "Zr", name: "زركونيوم", atomicMass: "91.224", category: "transition-metal", group: 4, period: 5 },
+            { atomicNumber: 41, symbol: "Nb", name: "نيوبيوم", atomicMass: "92.906", category: "transition-metal", group: 5, period: 5 },
+            { atomicNumber: 42, symbol: "Mo", name: "موليبدينوم", atomicMass: "95.95", category: "transition-metal", group: 6, period: 5 },
+            { atomicNumber: 43, symbol: "Tc", name: "تكنيشيوم", atomicMass: "98", category: "transition-metal", group: 7, period: 5 },
+            { atomicNumber: 44, symbol: "Ru", name: "روثينيوم", atomicMass: "101.07", category: "transition-metal", group: 8, period: 5 },
+            { atomicNumber: 45, symbol: "Rh", name: "روديوم", atomicMass: "102.91", category: "transition-metal", group: 9, period: 5 },
+            { atomicNumber: 46, symbol: "Pd", name: "بالاديوم", atomicMass: "106.42", category: "transition-metal", group: 10, period: 5 },
+            { atomicNumber: 47, symbol: "Ag", name: "فضة", atomicMass: "107.87", category: "transition-metal", group: 11, period: 5 },
+            { atomicNumber: 48, symbol: "Cd", name: "كادميوم", atomicMass: "112.41", category: "transition-metal", group: 12, period: 5 },
+            { atomicNumber: 49, symbol: "In", name: "إنديوم", atomicMass: "114.82", category: "post-transition-metal", group: 13, period: 5 },
+            { atomicNumber: 50, symbol: "Sn", name: "قصدير", atomicMass: "118.71", category: "post-transition-metal", group: 14, period: 5 },
+            { atomicNumber: 51, symbol: "Sb", name: "أنتيمون", atomicMass: "121.76", category: "metalloid", group: 15, period: 5 },
+            { atomicNumber: 52, symbol: "Te", name: "تيلوريوم", atomicMass: "127.60", category: "metalloid", group: 16, period: 5 },
+            { atomicNumber: 53, symbol: "I", name: "يود", atomicMass: "126.90", category: "halogen", group: 17, period: 5 },
+            { atomicNumber: 54, symbol: "Xe", name: "زينون", atomicMass: "131.29", category: "noble-gas", group: 18, period: 5 },
+            
+            // الدورة 6
+            { atomicNumber: 55, symbol: "Cs", name: "سيزيوم", atomicMass: "132.91", category: "alkali-metal", group: 1, period: 6 },
+            { atomicNumber: 56, symbol: "Ba", name: "باريوم", atomicMass: "137.33", category: "alkaline-earth-metal", group: 2, period: 6 },
+            { atomicNumber: 57, symbol: "La", name: "لانثانوم", atomicMass: "138.91", category: "lanthanide", group: 3, period: 6 },
+            { atomicNumber: 72, symbol: "Hf", name: "هافنيوم", atomicMass: "178.49", category: "transition-metal", group: 4, period: 6 },
+            { atomicNumber: 73, symbol: "Ta", name: "تانتالوم", atomicMass: "180.95", category: "transition-metal", group: 5, period: 6 },
+            { atomicNumber: 74, symbol: "W", name: "تنجستن", atomicMass: "183.84", category: "transition-metal", group: 6, period: 6 },
+            { atomicNumber: 75, symbol: "Re", name: "رينيوم", atomicMass: "186.21", category: "transition-metal", group: 7, period: 6 },
+            { atomicNumber: 76, symbol: "Os", name: "أوزميوم", atomicMass: "190.23", category: "transition-metal", group: 8, period: 6 },
+            { atomicNumber: 77, symbol: "Ir", name: "إيريديوم", atomicMass: "192.22", category: "transition-metal", group: 9, period: 6 },
+            { atomicNumber: 78, symbol: "Pt", name: "بلاتين", atomicMass: "195.08", category: "transition-metal", group: 10, period: 6 },
+            { atomicNumber: 79, symbol: "Au", name: "ذهب", atomicMass: "196.97", category: "transition-metal", group: 11, period: 6 },
+            { atomicNumber: 80, symbol: "Hg", name: "زئبق", atomicMass: "200.59", category: "transition-metal", group: 12, period: 6 },
+            { atomicNumber: 81, symbol: "Tl", name: "ثاليوم", atomicMass: "204.38", category: "post-transition-metal", group: 13, period: 6 },
+            { atomicNumber: 82, symbol: "Pb", name: "رصاص", atomicMass: "207.2", category: "post-transition-metal", group: 14, period: 6 },
+            { atomicNumber: 83, symbol: "Bi", name: "بيزموت", atomicMass: "208.98", category: "post-transition-metal", group: 15, period: 6 },
+            { atomicNumber: 84, symbol: "Po", name: "بولونيوم", atomicMass: "209", category: "post-transition-metal", group: 16, period: 6 },
+            { atomicNumber: 85, symbol: "At", name: "أستاتين", atomicMass: "210", category: "halogen", group: 17, period: 6 },
+            { atomicNumber: 86, symbol: "Rn", name: "رادون", atomicMass: "222", category: "noble-gas", group: 18, period: 6 },
+            
+            // الدورة 7
+            { atomicNumber: 87, symbol: "Fr", name: "فرانسيوم", atomicMass: "223", category: "alkali-metal", group: 1, period: 7 },
+            { atomicNumber: 88, symbol: "Ra", name: "راديوم", atomicMass: "226", category: "alkaline-earth-metal", group: 2, period: 7 },
+            { atomicNumber: 89, symbol: "Ac", name: "أكتينيوم", atomicMass: "227", category: "actinide", group: 3, period: 7 },
+            { atomicNumber: 104, symbol: "Rf", name: "رذرفورديوم", atomicMass: "267", category: "transition-metal", group: 4, period: 7 },
+            { atomicNumber: 105, symbol: "Db", name: "دوبنيوم", atomicMass: "268", category: "transition-metal", group: 5, period: 7 },
+            { atomicNumber: 106, symbol: "Sg", name: "سيبورجيوم", atomicMass: "271", category: "transition-metal", group: 6, period: 7 },
+            { atomicNumber: 107, symbol: "Bh", name: "بوريوم", atomicMass: "272", category: "transition-metal", group: 7, period: 7 },
+            { atomicNumber: 108, symbol: "Hs", name: "هاسيوم", atomicMass: "270", category: "transition-metal", group: 8, period: 7 },
+            { atomicNumber: 109, symbol: "Mt", name: "مايتنيريوم", atomicMass: "276", category: "transition-metal", group: 9, period: 7 },
+            { atomicNumber: 110, symbol: "Ds", name: "دارمشتادتيوم", atomicMass: "281", category: "transition-metal", group: 10, period: 7 },
+            { atomicNumber: 111, symbol: "Rg", name: "رونتجينيوم", atomicMass: "280", category: "transition-metal", group: 11, period: 7 },
+            { atomicNumber: 112, symbol: "Cn", name: "كوبرنيكيوم", atomicMass: "285", category: "transition-metal", group: 12, period: 7 },
+            { atomicNumber: 113, symbol: "Nh", name: "نيهونيوم", atomicMass: "286", category: "post-transition-metal", group: 13, period: 7 },
+            { atomicNumber: 114, symbol: "Fl", name: "فلروفيوم", atomicMass: "289", category: "post-transition-metal", group: 14, period: 7 },
+            { atomicNumber: 115, symbol: "Mc", name: "موسكوفيوم", atomicMass: "289", category: "post-transition-metal", group: 15, period: 7 },
+            { atomicNumber: 116, symbol: "Lv", name: "ليفرموريوم", atomicMass: "293", category: "post-transition-metal", group: 16, period: 7 },
+            { atomicNumber: 117, symbol: "Ts", name: "تينيسين", atomicMass: "294", category: "halogen", group: 17, period: 7 },
+            { atomicNumber: 118, symbol: "Og", name: "أوغانيسون", atomicMass: "294", category: "noble-gas", group: 18, period: 7 },
+            
+            // اللانثانيدات
+            { atomicNumber: 58, symbol: "Ce", name: "سيريوم", atomicMass: "140.12", category: "lanthanide", group: 4, period: 8 },
+            { atomicNumber: 59, symbol: "Pr", name: "براسيوديميوم", atomicMass: "140.91", category: "lanthanide", group: 5, period: 8 },
+            { atomicNumber: 60, symbol: "Nd", name: "نيوديميوم", atomicMass: "144.24", category: "lanthanide", group: 6, period: 8 },
+            { atomicNumber: 61, symbol: "Pm", name: "بروميثيوم", atomicMass: "145", category: "lanthanide", group: 7, period: 8 },
+            { atomicNumber: 62, symbol: "Sm", name: "ساماريوم", atomicMass: "150.36", category: "lanthanide", group: 8, period: 8 },
+            { atomicNumber: 63, symbol: "Eu", name: "يوروبيوم", atomicMass: "151.96", category: "lanthanide", group: 9, period: 8 },
+            { atomicNumber: 64, symbol: "Gd", name: "جادولينيوم", atomicMass: "157.25", category: "lanthanide", group: 10, period: 8 },
+            { atomicNumber: 65, symbol: "Tb", name: "تربيوم", atomicMass: "158.93", category: "lanthanide", group: 11, period: 8 },
+            { atomicNumber: 66, symbol: "Dy", name: "ديسبروسيوم", atomicMass: "162.50", category: "lanthanide", group: 12, period: 8 },
+            { atomicNumber: 67, symbol: "Ho", name: "هولميوم", atomicMass: "164.93", category: "lanthanide", group: 13, period: 8 },
+            { atomicNumber: 68, symbol: "Er", name: "إيربيوم", atomicMass: "167.26", category: "lanthanide", group: 14, period: 8 },
+            { atomicNumber: 69, symbol: "Tm", name: "توليوم", atomicMass: "168.93", category: "lanthanide", group: 15, period: 8 },
+            { atomicNumber: 70, symbol: "Yb", name: "يتربيوم", atomicMass: "173.05", category: "lanthanide", group: 16, period: 8 },
+            { atomicNumber: 71, symbol: "Lu", name: "لوتيتيوم", atomicMass: "174.97", category: "lanthanide", group: 17, period: 8 },
+            
+            // الأكتينيدات
+            { atomicNumber: 90, symbol: "Th", name: "ثوريوم", atomicMass: "232.04", category: "actinide", group: 4, period: 9 },
+            { atomicNumber: 91, symbol: "Pa", name: "بروتكتينيوم", atomicMass: "231.04", category: "actinide", group: 5, period: 9 },
+            { atomicNumber: 92, symbol: "U", name: "يورانيوم", atomicMass: "238.03", category: "actinide", group: 6, period: 9 },
+            { atomicNumber: 93, symbol: "Np", name: "نبتونيوم", atomicMass: "237", category: "actinide", group: 7, period: 9 },
+            { atomicNumber: 94, symbol: "Pu", name: "بلوتونيوم", atomicMass: "244", category: "actinide", group: 8, period: 9 },
+            { atomicNumber: 95, symbol: "Am", name: "أمريسيوم", atomicMass: "243", category: "actinide", group: 9, period: 9 },
+            { atomicNumber: 96, symbol: "Cm", name: "كوريوم", atomicMass: "247", category: "actinide", group: 10, period: 9 },
+            { atomicNumber: 97, symbol: "Bk", name: "بيركليوم", atomicMass: "247", category: "actinide", group: 11, period: 9 },
+            { atomicNumber: 98, symbol: "Cf", name: "كاليفورنيوم", atomicMass: "251", category: "actinide", group: 12, period: 9 },
+            { atomicNumber: 99, symbol: "Es", name: "أينشتاينيوم", atomicMass: "252", category: "actinide", group: 13, period: 9 },
+            { atomicNumber: 100, symbol: "Fm", name: "فرميوم", atomicMass: "257", category: "actinide", group: 14, period: 9 },
+            { atomicNumber: 101, symbol: "Md", name: "ميندليفيوم", atomicMass: "258", category: "actinide", group: 15, period: 9 },
+            { atomicNumber: 102, symbol: "No", name: "نوبليوم", atomicMass: "259", category: "actinide", group: 16, period: 9 },
+            { atomicNumber: 103, symbol: "Lr", name: "لورنسيوم", atomicMass: "262", category: "actinide", group: 17, period: 9 }
+        ];
+
+        // إنشاء الجدول الدوري
+        function createPeriodicTable() {
+            const periodicTable = document.getElementById('periodic-table');
+            const lanthanideRow = document.getElementById('lanthanide-row');
+            const actinideRow = document.getElementById('actinide-row');
+            
+            elements.forEach(element => {
+                const elementDiv = document.createElement('div');
+                elementDiv.className = `element ${element.category}`;
+                elementDiv.setAttribute('data-category', element.category);
+                elementDiv.setAttribute('data-group', element.group);
+                elementDiv.setAttribute('data-period', element.period);
+                elementDiv.setAttribute('data-name', element.name);
+                elementDiv.setAttribute('data-symbol', element.symbol);
+                
+                elementDiv.innerHTML = `
+                    <div class="atomic-number">${element.atomicNumber}</div>
+                    <div class="symbol">${element.symbol}</div>
+                    <div class="name">${element.name}</div>
+                    <div class="atomic-mass">${element.atomicMass}</div>
+                `;
+                
+                elementDiv.addEventListener('click', () => showElementDetails(element));
+                
+                if (element.period === 8) {
+                    lanthanideRow.appendChild(elementDiv);
+                } else if (element.period === 9) {
+                    actinideRow.appendChild(elementDiv);
+                } else {
+                    periodicTable.appendChild(elementDiv);
+                }
+            });
+        }
+
+        // عرض تفاصيل العنصر
+        function showElementDetails(element) {
+            const modal = document.getElementById('element-modal');
+            const detailsDiv = document.getElementById('element-details');
+            
+            const categoryNames = {
+                'nonmetal': 'لا فلز',
+                'noble-gas': 'غاز نبيل',
+                'alkali-metal': 'فلز قلوي',
+                'alkaline-earth-metal': 'فلز قلوي ترابي',
+                'metalloid': 'شبه فلز',
+                'halogen': 'هالوجين',
+                'metal': 'فلز',
+                'transition-metal': 'فلز انتقالي',
+                'lanthanide': 'لانثانيد',
+                'actinide': 'أكتينيد',
+                'post-transition-metal': 'فلز انتقالي بعدي'
+            };
+            
+            detailsDiv.innerHTML = `
+                <div class="symbol-large">${element.symbol}</div>
+                <h2>${element.name}</h2>
+                <div class="category ${element.category}">${categoryNames[element.category]}</div>
+                
+                <div class="detail-row">
+                    <span class="detail-label">الرقم الذري:</span>
+                    <span class="detail-value">${element.atomicNumber}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">الكتلة الذرية:</span>
+                    <span class="detail-value">${element.atomicMass}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">المجموعة:</span>
+                    <span class="detail-value">${element.group}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">الدورة:</span>
+                    <span class="detail-value">${element.period}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">الفئة:</span>
+                    <span class="detail-value">${categoryNames[element.category]}</span>
+                </div>
+            `;
+            
+            modal.style.display = 'flex';
+        }
+
+        // إغلاق النافذة المنبثقة
+        document.querySelector('.close').addEventListener('click', () => {
+            document.getElementById('element-modal').style.display = 'none';
+        });
+
+        window.addEventListener('click', (event) => {
+            const modal = document.getElementById('element-modal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // البحث عن العناصر
+        document.getElementById('search').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const allElements = document.querySelectorAll('.element');
+            
+            allElements.forEach(element => {
+                const name = element.getAttribute('data-name').toLowerCase();
+                const symbol = element.getAttribute('data-symbol').toLowerCase();
+                
+                if (name.includes(searchTerm) || symbol.includes(searchTerm)) {
+                    element.classList.remove('hidden');
+                } else {
+                    element.classList.add('hidden');
+                }
+            });
+        });
+
+        // فلترة العناصر حسب الفئة
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // تحديث الزر النشط
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const category = button.getAttribute('data-category');
+                const allElements = document.querySelectorAll('.element');
+                
+                allElements.forEach(element => {
+                    if (category === 'all' || element.getAttribute('data-category') === category) {
+                        element.classList.remove('hidden');
+                    } else {
+                        element.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // تهيئة الجدول عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', createPeriodicTable);
+    </script>
+</body>
+</html>

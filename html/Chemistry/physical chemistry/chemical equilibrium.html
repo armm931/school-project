@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التوازن الكيميائي - فهم ديناميكية التفاعلات الكيميائية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #7c3aed;
+            --secondary: #06b6d4;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --info: #3b82f6;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(124, 58, 237, 0.85), rgba(6, 182, 212, 0.85)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/><circle cx="20" cy="20" r="1.5" fill="white" opacity="0.1"/><circle cx="80" cy="30" r="1" fill="white" opacity="0.1"/><circle cx="30" cy="70" r="1.5" fill="white" opacity="0.1"/><circle cx="70" cy="80" r="1" fill="white" opacity="0.1"/></svg>') repeat;
+            animation: float 30s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn:hover {
+            background-color: #d97706;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #334155;
+            line-height: 1.8;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Equilibrium Types */
+        .equilibrium-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .eq-type-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .eq-type-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .eq-type-card:hover::before {
+            opacity: 1;
+        }
+
+        .eq-type-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .eq-type-header {
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .eq-type-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .eq-type-body {
+            padding: 25px;
+        }
+
+        .eq-type-body p {
+            color: #334155;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .eq-example {
+            background-color: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            border-right: 3px solid var(--secondary);
+            font-family: 'Courier New', monospace;
+            margin-top: 15px;
+        }
+
+        /* Le Chatelier Section */
+        .le-chatelier-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .principle-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 10px;
+            transition: all 0.3s;
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+        }
+
+        .principle-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .principle-icon {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-left: 20px;
+            flex-shrink: 0;
+        }
+
+        .principle-content h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .principle-content p {
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        /* K Calculator */
+        .calculator-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .reaction-input {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 2px dashed #cbd5e1;
+        }
+
+        .reaction-input h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .reaction-formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .concentrations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .conc-input {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .conc-input label {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .conc-input input {
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .conc-input input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            border-right: 4px solid var(--primary);
+            display: none;
+        }
+
+        .result-box h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .result-box p {
+            color: #334155;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        /* Interactive Simulation */
+        .simulation-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .simulation-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.3);
+        }
+
+        .simulation-display {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 30px;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .molecule {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            transition: all 0.5s ease;
+        }
+
+        .molecule-a {
+            background: var(--danger);
+        }
+
+        .molecule-b {
+            background: var(--success);
+        }
+
+        .molecule-ab {
+            background: var(--primary);
+        }
+
+        .equilibrium-info {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 10px;
+        }
+
+        .equilibrium-info h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        /* Applications Grid */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .app-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-icon {
+            height: 120px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .app-content {
+            padding: 25px;
+        }
+
+        .app-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .app-content p {
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            color: var(--primary);
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #f8fafc;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 300px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #cbd5e1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .principle-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .principle-icon {
+                margin-left: 0;
+                margin-bottom: 15px;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-balance-scale"></i>
+                <span>التوازن الكيميائي</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#types">أنواع التوازن</a></li>
+                    <li><a href="#lechatelier">مبدأ لوشاتلييه</a></li>
+                    <li><a href="#calculator">الحاسبة</a></li>
+                    <li><a href="#simulation">محاكاة</a></li>
+                    <li><a href="#applications">تطبيقات</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>عالم التوازن الكيميائي</h1>
+            <p>اكتشف كيف تتحقق حالة التوازن في التفاعلات الكيميائية القابلة للعكس وتطبيقاتها في الصناعة والحياة</p>
+            <a href="#intro" class="btn">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>ما هو التوازن الكيميائي؟</h2>
+                <p>فهم أساسيات التوازن الكيميائي وأهميته في الكيمياء</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>مفهوم التوازن الكيميائي</h3>
+                    <p>التوازن الكيميائي هو حالة ديناميكية تتحقق في التفاعلات الكيميائية القابلة للعكس عندما تتساوى سرعة التفاعل الأمامي مع سرعة التفاعل العكسي. في هذه الحالة، تظل تركيزات المتفاعلات والنواتج ثابتة مع مرور الزمن، على الرغم من استمرار التفاعل في كلا الاتجاهين.</p>
+                    <p>يتميز التوازن الكيميائي بأنه توازن ديناميكي وليس ساكناً، حيث تستمر الجزيئات في التفاعل ولكن بمعدلات متساوية في الاتجاهين. هذا يعني أن التفاعل لم يتوقف، بل وصل إلى حالة استقرار.</p>
+                    <p>يتم التعبير عن حالة التوازن رياضياً باستخدام ثابت التوازن (K)، الذي يربط بين تركيزات المتفاعلات والنواتج عند التوازن. قيمة هذا الثابت تعتمد فقط على درجة الحرارة ولا تتأثر بتركيزات المواد الأولية أو وجود عوامل حفازة.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1532187853251-7069d5eed128?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="التوازن الكيميائي">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equilibrium Types Section -->
+    <section id="types" class="types">
+        <div class="container">
+            <div class="section-title">
+                <h2>أنواع التوازن الكيميائي</h2>
+                <p>التصنيفات المختلفة لأنظمة التوازن الكيميائي</p>
+            </div>
+            <div class="equilibrium-types">
+                <div class="eq-type-card">
+                    <div class="eq-type-header">
+                        <h3>التوازن المتجانس</h3>
+                        <p>Homogeneous Equilibrium</p>
+                    </div>
+                    <div class="eq-type-body">
+                        <p>يحدث عندما تكون جميع المتفاعلات والنواتج في نفس الحالة الفيزيائية (كلها غازات أو كلها في المحلول). يكون التفاعل في طور واحد فقط.</p>
+                        <div class="eq-example">
+                            N₂(g) + 3H₂(g) ⇌ 2NH₃(g)
+                        </div>
+                        <p>في هذا المثال، جميع المواد في الحالة الغازية، لذلك يعتبر توازناً متجانساً.</p>
+                    </div>
+                </div>
+                
+                <div class="eq-type-card">
+                    <div class="eq-type-header">
+                        <h3>التوازن غير المتجانس</h3>
+                        <p>Heterogeneous Equilibrium</p>
+                    </div>
+                    <div class="eq-type-body">
+                        <p>يحدث عندما تكون المتفاعلات والنواتج في حالات فيزيائية مختلفة (صلبة، سائلة، غازية). يشمل التفاعل أكثر من طور واحد.</p>
+                        <div class="eq-example">
+                            CaCO₃(s) ⇌ CaO(s) + CO₂(g)
+                        </div>
+                        <p>هنا نجد مواد صلبة وغازية، لذلك يعتبر توازناً غير متجانس. تركيز المواد الصلبة لا يدخل في حساب ثابت التوازن.</p>
+                    </div>
+                </div>
+                
+                <div class="eq-type-card">
+                    <div class="eq-type-header">
+                        <h3>التوازن الأيوني</h3>
+                        <p>Ionic Equilibrium</p>
+                    </div>
+                    <div class="eq-type-body">
+                        <p>يتعلق بتفكك الأحماض والقواعد والأملاح في المحاليل المائية. يشمل توازنات مثل تفكك الماء وتفكك الأحماض الضعيفة.</p>
+                        <div class="eq-example">
+                            CH₃COOH(aq) ⇌ H⁺(aq) + CH₃COO⁻(aq)
+                        </div>
+                        <p>مثال على تفكك حمض الخليك الضعيف في الماء. يستخدم ثابت تفكك الحمض (Ka) للتعبير عن هذا التوازن.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Le Chatelier Principle Section -->
+    <section id="lechatelier" class="lechatelier">
+        <div class="container">
+            <div class="section-title">
+                <h2>مبدأ لوشاتلييه</h2>
+                <p>كيف يتأثر التوازن بالتغيرات في الظروف الخارجية</p>
+            </div>
+            <div class="le-chatelier-container">
+                <div class="principle-item">
+                    <div class="principle-icon">
+                        <i class="fas fa-thermometer-half"></i>
+                    </div>
+                    <div class="principle-content">
+                        <h3>تأثير درجة الحرارة</h3>
+                        <p>عند زيادة درجة الحرارة، يتحول التوازن في الاتجاه الماص للحرارة (التفاعل الماص). عند خفض درجة الحرارة، يتحول التوازن في الاتجاه الطارد للحرارة (التفاعل الطارد). هذا لأن النظام يحاول مقاومة التغير في درجة الحرارة.</p>
+                    </div>
+                </div>
+                
+                <div class="principle-item">
+                    <div class="principle-icon">
+                        <i class="fas fa-compress-arrows-alt"></i>
+                    </div>
+                    <div class="principle-content">
+                        <h3>تأثير الضغط (للغازات)</h3>
+                        <p>عند زيادة الضغط، يتحول التوازن في الاتجاه الذي يقلل عدد مولات الغاز. عند خفض الضغط، يتحول التوازن في الاتجاه الذي يزيد عدد مولات الغاز. الضغط لا يؤثر على التوازن إذا كان عدد مولات الغاز متساوياً في كلا الاتجاهين.</p>
+                    </div>
+                </div>
+                
+                <div class="principle-item">
+                    <div class="principle-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <div class="principle-content">
+                        <h3>تأثير التركيز</h3>
+                        <p>عند زيادة تركيز أحد المتفاعلات، يتحول التوازن في الاتجاه الأمامي لاستهلاك الزيادة. عند زيادة تركيز أحد النواتج، يتحول التوازن في الاتجاه العكسي. النظام يحاول دائماً استعادة حالة التوازن عن طريق تعويض التغير في التركيز.</p>
+                    </div>
+                </div>
+                
+                <div class="principle-item">
+                    <div class="principle-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <div class="principle-content">
+                        <h3>تأثير العوامل الحفازة</h3>
+                        <p>العوامل الحفازة تسرع من الوصول إلى حالة التوازن ولكنها لا تغير من موقع التوازن أو قيمة ثابت التوازن. تعمل العوامل الحفازة على تقليل طاقة التنشيط لكل من التفاعل الأمامي والعكسي بنفس القدر.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- K Calculator Section -->
+    <section id="calculator" class="calculator">
+        <div class="container">
+            <div class="section-title">
+                <h2>حاسبة ثابت التوازن</h2>
+                <p>احسب ثابت التوازن K للتفاعلات الكيميائية</p>
+            </div>
+            <div class="calculator-container">
+                <div class="reaction-input">
+                    <h3>تفاعل Haber-Bosch (مثال)</h3>
+                    <div class="reaction-formula">
+                        N₂(g) + 3H₂(g) ⇌ 2NH₃(g)
+                    </div>
+                    <div class="concentrations-grid">
+                        <div class="conc-input">
+                            <label>[N₂] عند التوازن (مول/لتر):</label>
+                            <input type="number" id="n2" step="0.001" placeholder="0.5">
+                        </div>
+                        <div class="conc-input">
+                            <label>[H₂] عند التوازن (مول/لتر):</label>
+                            <input type="number" id="h2" step="0.001" placeholder="1.5">
+                        </div>
+                        <div class="conc-input">
+                            <label>[NH₃] عند التوازن (مول/لتر):</label>
+                            <input type="number" id="nh3" step="0.001" placeholder="1.0">
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button class="btn" onclick="calculateK()">
+                        <i class="fas fa-calculator"></i> احسب K
+                    </button>
+                </div>
+                
+                <div class="result-box" id="k-result">
+                    <h4>النتيجة:</h4>
+                    <p id="k-result-text"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Simulation Section -->
+    <section id="simulation" class="simulation">
+        <div class="container">
+            <div class="section-title">
+                <h2>محاكاة تفاعلية</h2>
+                <p>استكشف كيف يتغير التوازن مع تغير الظروف</p>
+            </div>
+            <div class="simulation-container">
+                <div class="simulation-controls">
+                    <button class="control-btn" onclick="addReactant()">
+                        <i class="fas fa-plus"></i> إضافة متفاعل
+                    </button>
+                    <button class="control-btn" onclick="addProduct()">
+                        <i class="fas fa-plus"></i> إضافة ناتج
+                    </button>
+                    <button class="control-btn" onclick="increaseTemp()">
+                        <i class="fas fa-temperature-high"></i> زيادة الحرارة
+                    </button>
+                    <button class="control-btn" onclick="decreaseTemp()">
+                        <i class="fas fa-temperature-low"></i> خفض الحرارة
+                    </button>
+                    <button class="control-btn" onclick="resetSimulation()">
+                        <i class="fas fa-redo"></i> إعادة تعيين
+                    </button>
+                </div>
+                
+                <div class="simulation-display" id="sim-display">
+                    <!-- Molecules will be added dynamically here -->
+                </div>
+                
+                <div class="equilibrium-info">
+                    <h4>معلومات التوازن</h4>
+                    <p id="equilibrium-status">التفاعل: A + B ⇌ AB</p>
+                    <p id="equilibrium-ratio">نسبة التوازن: 1:1</p>
+                    <p id="temperature">درجة الحرارة: 298 K</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="applications">
+        <div class="container">
+            <div class="section-title">
+                <h2>تطبيقات التوازن الكيميائي</h2>
+                <p>أمثلة عملية على استخدام مبادئ التوازن في الصناعة والحياة</p>
+            </div>
+            <div class="applications-grid">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>صناعة الأمونيا (هابر-بوش)</h3>
+                        <p>تستخدم مبادئ التوازن في إنتاج الأمونيا من النيتروجين والهيدروجين. يتم التحكم في الضغط العالي (200-300 ضغط جوي) ودرجة الحرارة المنخفضة (400-450°C) لزيادة إنتاج الأمونيا.</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>توازن الماء في الدم</h3>
+                        <p>يحافظ الجسم على توازن حمضي-قاعدي في الدم باستخدام نظام الكربونات/حمض الكربونيك. هذا التوازن حيوي لوظائف الجسم المختلفة وتنظيم درجة الحموضة (pH).</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>توازن ثاني أكسيد الكربون</h3>
+                        <p>يتحكم توازن ثاني أكسيد الكربون بين المحيطات والغلاف الجوي في مناخ الأرض. يؤثر هذا التوازن على ظاهرة الاحتباس الحراري والتغير المناخي.</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-prescription-bottle"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>توازن الأدوية في الجسم</h3>
+                        <p>يؤثر توازن الأدوية بين الدم والأنسجة على فعالية العلاج. يتم تصميم الأدوية مع مراعاة ثوابت التوازن لضمان التركيزات العلاجية المناسبة في الجسم.</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>التوازن في عملية التمثيل الضوئي</h3>
+                        <p>تعتمد عملية التمثيل الضوئي في النباتات على توازن معقد بين امتصاص الضوء وثاني أكسيد الكربون وإنتاج الأكسجين والجلوكوز. هذا التوازن أساسي للحياة على الأرض.</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>البطاريات الكهروكيميائية</h3>
+                        <p>تعمل البطاريات بناءً على توازن التفاعلات الأكسدة-الاختزال. عندما تصل البطارية إلى حالة التوازن، تنتهي شحنتها. يمكن عكس التفاعل في البطاريات القابلة لإعادة الشحن.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>الأسئلة الشائعة</h2>
+                <p>إجابات على الأسئلة الأكثر شيوعاً حول التوازن الكيميائي</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما الفرق بين التوازن الديناميكي والساكن؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>التوازن الديناميكي (مثل التوازن الكيميائي) يستمر فيه التفاعل في كلا الاتجاهين ولكن بمعدلات متساوية، بينما التوازن الساكن (مثل توازن جسم على طاولة) لا يوجد فيه أي حركة أو تفاعل. في التوازن الكيميائي، تظل التركيزات ثابتة لأن سرعة التفاعل الأمامي تساوي سرعة التفاعل العكسي.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>لماذا لا تتغير قيمة ثابت التوازن مع تغير التركيزات؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>ثابت التوازن (K) هو ثابت عند درجة حرارة معينة لأنه يعبر عن النسبة بين سرعات التفاعل الأمامي والعكسي عند التوازن. عندما تتغير التركيزات الأولية، يتحول التوازن لاستعادة نفس النسبة، مما يحافظ على قيمة K ثابتة. يتأثر K فقط بتغير درجة الحرارة.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كيف يؤثر العامل الحفاز على التوازن؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>العامل الحفاز لا يؤثر على موقع التوازن أو قيمة ثابت التوازن. يعمل العامل الحفاز على تقليل طاقة التنشيط لكل من التفاعل الأمامي والعكسي بنفس القدر، مما يسرع من الوصول إلى حالة التوازن دون تغييرها. هذا يعني أن العامل الحفاز يساعد النظام على الوصول إلى التوازن بشكل أسرع فقط.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هي علاقة ثابت التوازن بالطاقة الحرة؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>ترتبط قيمة ثابت التوازن بالتغير في الطاقة الحرة القياسية (ΔG°) بالعلاقة: ΔG° = -RT ln K. عندما تكون K > 1، يكون ΔG° سالباً والتفاعل تلقائي في الاتجاه الأمامي. عندما تكون K < 1، يكون ΔG° موجباً والتفاعل غير تلقائي. عندما تكون K = 1، يكون ΔG° = صفر والنظام في حالة توازن.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كيف نحدد اتجاه التفاعل عند إضافة مادة؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>عند إضافة مادة (تفاعل أو ناتج)، يحاول النظام مقاومة هذا التغير وفقاً لمبدأ لوشاتلييه. إذا أضيفت مادة متفاعلة، يتحول التوازن في الاتجاه الأمامي لاستهلاك الزيادة. إذا أضيفت مادة ناتج، يتحول التوازن في الاتجاه العكسي. يمكن حساب اتجاه التفاعل باستخدام حاصل التفاعل (Q) ومقارنته بثابت التوازن (K).</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>لماذا لا تدخل المواد الصلبة في حساب ثابت التوازن؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>لا تدخل المواد الصلبة في حساب ثابت التوازن لأن تركيزها يعتبر ثابتاً. في المواد الصلبة، تكون الجزيئات مرتبة بشكل ثابت ولا يمكن تغيير تركيزها. لذلك، يتم دمج تركيز المواد الصلبة في قيمة ثابت التوازن نفسه، ولا تظهر في المعادلة الرياضية لـ K.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع التوازن الكيميائي</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى عالي الجودة حول مبادئ وتطبيقات التوازن الكيميائي في الصناعة والحياة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#types">أنواع التوازن</a></li>
+                        <li><a href="#lechatelier">مبدأ لوشاتلييه</a></li>
+                        <li><a href="#calculator">الحاسبة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">دروس تفاعلية</a></li>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">امتحانات تجريبية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@equilibrium.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع التوازن الكيميائي. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // K Calculator
+        function calculateK() {
+            const n2 = parseFloat(document.getElementById('n2').value) || 0;
+            const h2 = parseFloat(document.getElementById('h2').value) || 0;
+            const nh3 = parseFloat(document.getElementById('nh3').value) || 0;
+            
+            if (n2 === 0 || h2 === 0) {
+                alert('الرجاء إدخال قيم صحيحة لتركيزات المتفاعلات');
+                return;
+            }
+            
+            // For N₂ + 3H₂ ⇌ 2NH₃
+            // K = [NH₃]² / ([N₂] × [H₂]³)
+            const K = (nh3 * nh3) / (n2 * Math.pow(h2, 3));
+            
+            const resultText = `ثابت التوازن K = ${K.toExponential(4)}<br>
+                              المعادلة المستخدمة: K = [NH₃]² / ([N₂] × [H₂]³)<br>
+                              [N₂] = ${n2} مول/لتر<br>
+                              [H₂] = ${h2} مول/لتر<br>
+                              [NH₃] = ${nh3} مول/لتر<br>
+                              <br>
+                              ${K > 1 ? 'التفاعل يميل نحو تكوين النواتج' : 'التفاعل يميل نحو المتفاعلات'}`;
+            
+            document.getElementById('k-result-text').innerHTML = resultText;
+            document.getElementById('k-result').style.display = 'block';
+        }
+
+        // Interactive Simulation
+        let molecules = [];
+        let temperature = 298;
+        let equilibriumRatio = 1;
+
+        function initSimulation() {
+            const display = document.getElementById('sim-display');
+            display.innerHTML = '';
+            molecules = [];
+            
+            // Create initial molecules
+            for (let i = 0; i < 10; i++) {
+                createMolecule('A');
+                createMolecule('B');
+            }
+            for (let i = 0; i < 5; i++) {
+                createMolecule('AB');
+            }
+            
+            updateEquilibriumInfo();
+            animateMolecules();
+        }
+
+        function createMolecule(type) {
+            const display = document.getElementById('sim-display');
+            const molecule = document.createElement('div');
+            molecule.className = `molecule molecule-${type.toLowerCase()}`;
+            molecule.textContent = type;
+            
+            const x = Math.random() * (display.offsetWidth - 40);
+            const y = Math.random() * (display.offsetHeight - 40);
+            
+            molecule.style.left = x + 'px';
+            molecule.style.top = y + 'px';
+            
+            display.appendChild(molecule);
+            molecules.push({ element: molecule, type: type, x: x, y: y });
+        }
+
+        function animateMolecules() {
+            molecules.forEach(mol => {
+                const speed = temperature / 298; // Speed depends on temperature
+                const dx = (Math.random() - 0.5) * 2 * speed;
+                const dy = (Math.random() - 0.5) * 2 * speed;
+                
+                mol.x += dx;
+                mol.y += dy;
+                
+                // Boundary check
+                const display = document.getElementById('sim-display');
+                if (mol.x < 0 || mol.x > display.offsetWidth - 40) mol.x -= dx;
+                if (mol.y < 0 || mol.y > display.offsetHeight - 40) mol.y -= dy;
+                
+                mol.element.style.left = mol.x + 'px';
+                mol.element.style.top = mol.y + 'px';
+            });
+            
+            requestAnimationFrame(animateMolecules);
+        }
+
+        function updateEquilibriumInfo() {
+            const countA = molecules.filter(m => m.type === 'A').length;
+            const countB = molecules.filter(m => m.type === 'B').length;
+            const countAB = molecules.filter(m => m.type === 'AB').length;
+            
+            document.getElementById('equilibrium-ratio').textContent = 
+                `نسبة التوازن: A:${countA} B:${countB} AB:${countAB}`;
+            document.getElementById('temperature').textContent = 
+                `درجة الحرارة: ${temperature} K`;
+        }
+
+        function addReactant() {
+            createMolecule('A');
+            createMolecule('B');
+            updateEquilibriumInfo();
+        }
+
+        function addProduct() {
+            createMolecule('AB');
+            updateEquilibriumInfo();
+        }
+
+        function increaseTemp() {
+            temperature += 20;
+            updateEquilibriumInfo();
+        }
+
+        function decreaseTemp() {
+            temperature = Math.max(200, temperature - 20);
+            updateEquilibriumInfo();
+        }
+
+        function resetSimulation() {
+            temperature = 298;
+            initSimulation();
+        }
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Initialize simulation on page load
+        window.addEventListener('load', function() {
+            initSimulation();
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

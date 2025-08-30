@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التفاعلات العضوية - عالم الكيمياء العضوية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(90deg, #2c3e50, #3498db);
+            border-radius: 10px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .nav-tab {
+            padding: 12px 20px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0 5px;
+            transition: all 0.3s;
+            color: #555;
+        }
+
+        .nav-tab:hover {
+            background: #e9ecef;
+        }
+
+        .nav-tab.active {
+            background: #3498db;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: #3498db;
+            border-radius: 2px;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .reaction-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .reaction-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .reaction-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: #3498db;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-left: 15px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+        }
+
+        .substitution .card-icon { background: #3498db; }
+        .addition .card-icon { background: #e74c3c; }
+        .elimination .card-icon { background: #2ecc71; }
+        .rearrangement .card-icon { background: #f39c12; }
+        .oxidation .card-icon { background: #9b59b6; }
+        .reduction .card-icon { background: #1abc9c; }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .card-content {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .reaction-equation {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+            direction: ltr;
+        }
+
+        .mechanism-steps {
+            margin-top: 20px;
+        }
+
+        .mechanism-step {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #3498db;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-left: 20px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .step-description {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .example-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .example-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .example-name {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .example-reaction {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+            direction: ltr;
+        }
+
+        .example-conditions {
+            font-size: 0.95rem;
+            color: #666;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .interactive-demo {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            color: white;
+            text-align: center;
+        }
+
+        .demo-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .reaction-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .reaction-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .reaction-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .reaction-btn.active {
+            background: white;
+            color: #667eea;
+        }
+
+        .reaction-display {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            color: #333;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .reaction-info {
+            margin-top: 20px;
+        }
+
+        .reaction-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .reaction-formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            color: #667eea;
+            margin-bottom: 10px;
+            direction: ltr;
+        }
+
+        .reaction-description {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .molecule-structure {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .structure-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .structure-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .factors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .factor-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .factor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .factor-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #3498db;
+        }
+
+        .factor-title {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .factor-description {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .nav-tab {
+                margin: 5px 0;
+                border-radius: 10px;
+            }
+            
+            .reaction-types-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .factors-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>التفاعلات العضوية</h1>
+            <p class="subtitle">عالم التفاعلات الكيميائية في المركبات العضوية</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-tab="introduction">مقدمة</button>
+            <button class="nav-tab" data-tab="types">أنواع التفاعلات</button>
+            <button class="nav-tab" data-tab="mechanisms">آليات التفاعل</button>
+            <button class="nav-tab" data-tab="examples">أمثلة عملية</button>
+            <button class="nav-tab" data-tab="factors">العوامل المؤثرة</button>
+            <button class="nav-tab" data-tab="interactive">تجربة تفاعلية</button>
+        </div>
+
+        <div id="introduction" class="tab-content active">
+            <div class="section">
+                <h2>ما هي التفاعلات العضوية؟</h2>
+                <p>
+                    التفاعلات العضوية هي التفاعلات الكيميائية التي تحدث بين المركبات العضوية، والتي تتميز بوجود ذرات الكربون كعنصر أساسي. هذه التفاعلات تشكل أساس الكيمياء العضوية وتلعب دوراً حيوياً في الحياة اليومية والصناعات المختلفة.
+                </p>
+                <p>
+                    تتميز التفاعلات العضوية بتنوعها الكبير وتعقيدها النسبي مقارنة بالتفاعلات غير العضوية. هذا التنوع يرجع إلى قدرة ذرة الكربون على تكوين أربع روابط كيميائية وتكوين سلاسل وحلقات معقدة.
+                </p>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">أهمية التفاعلات العضوية</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Organic_reactions_overview.svg/800px-Organic_reactions_overview.svg.png" alt="نظرة عامة على التفاعلات العضوية" class="structure-image">
+                    <p>نظرة عامة على أنواع التفاعلات العضوية الرئيسية</p>
+                </div>
+                
+                <p>
+                    في هذا الموقع، سنتعرف على أنواع التفاعلات العضوية المختلفة، آلياتها، والعوامل التي تؤثر عليها، بالإضافة إلى أمثلة عملية وتطبيقاتها في الحياة اليومية.
+                </p>
+            </div>
+        </div>
+
+        <div id="types" class="tab-content">
+            <div class="section">
+                <h2>أنواع التفاعلات العضوية الرئيسية</h2>
+                <div class="reaction-types-grid">
+                    <div class="reaction-card substitution">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-exchange-alt"></i></div>
+                            <div class="card-title">تفاعلات الاستبدال</div>
+                        </div>
+                        <div class="card-content">
+                            <p>تفاعلات يتم فيها استبدال ذرة أو مجموعة ذرية بمجموعة أخرى.</p>
+                            <div class="reaction-equation">R-X + Y⁻ → R-Y + X⁻</div>
+                            <p>تكون شائعة في المركبات المشبعة مثل هاليدات الألكيل.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="reaction-card addition">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-plus"></i></div>
+                            <div class="card-title">تفاعلات الإضافة</div>
+                        </div>
+                        <div class="card-content">
+                            <p>تفاعلات تتم فيها إضافة ذرات أو مجموعات ذرية إلى مركب يحتوي على روابط متعددة.</p>
+                            <div class="reaction-equation">C=C + X-Y → X-C-C-Y</div>
+                            <p>تكون شائعة في الألكينات والألكاينات.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="reaction-card elimination">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-minus"></i></div>
+                            <div class="card-title">تفاعلات الحذف</div>
+                        </div>
+                        <div class="card-content">
+                            <p>تفاعلات يتم فيها إزالة ذرات أو مجموعات ذرية من المركب، مما يؤدي إلى تكوين روابط متعددة.</p>
+                            <div class="reaction-equation">X-C-C-Y → C=C + X-Y</div>
+                            <p>عكس تفاعلات الإضافة.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="reaction-card rearrangement">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-random"></i></div>
+                            <div class="card-title">تفاعلات إعادة الترتيب</div>
+                        </div>
+                        <div class="card-content">
+                            <p>تفاعلات يتم فيها إعادة ترتيب الذرات داخل الجزيء دون تغيير التركيب الجزيئي العام.</p>
+                            <div class="reaction-equation">A-B-C → A-C-B</div>
+                            <p>تحدث غالباً في التفاعلات التي تشكل كربونات متجاورة.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="reaction-card oxidation">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-fire"></i></div>
+                            <div class="card-title">تفاعلات الأكسدة</div>
+                        </div>
+                        <div class="card-content">
+                            <p>تفاعلات يتم فيها فقدان الإلكترونات أو زيادة عدد أكسدة الكربون.</p>
+                            <div class="reaction-equation">R-CH₂OH → R-CHO → R-COOH</div>
+                            <p>شائعة في أكسدة الكحولات والألدهيدات.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="reaction-card reduction">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-compress"></i></div>
+                            <div class="card-title">تفاعلات الاختزال</div>
+                        </div>
+                        <div class="card-content">
+                            <p>تفاعلات يتم فيها اكتساب الإلكترونات أو نقصان عدد أكسدة الكربون.</p>
+                            <div class="reaction-equation">R-COOH → R-CHO → R-CH₂OH</div>
+                            <p>عكس تفاعلات الأكسدة.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">مخطط تصنيف التفاعلات العضوية</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Organic_reaction_classification.svg/800px-Organic_reaction_classification.svg.png" alt="تصنيف التفاعلات العضوية" class="structure-image">
+                    <p>تصنيف التفاعلات العضوية حسب نوع التحول الهيكلي</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="mechanisms" class="tab-content">
+            <div class="section">
+                <h2>آليات التفاعل العضوي</h2>
+                <p>
+                    آلية التفاعل هي الوصف الخطي لخطوات التفاعل الكيميائي على المستوى الجزيئي، بما في ذلك كسر الروابط وتكوين روابط جديدة. فهم الآليات يساعد في التنبؤ بنتائج التفاعلات وتصميم تفاعلات جديدة.
+                </p>
+                
+                <h3 style="color: #2c3e50; margin: 30px 0 20px; text-align: center;">آلية تفاعل الاستبدال النويفيلي من النوع الثاني (SN2)</h3>
+                
+                <div class="mechanism-steps">
+                    <div class="mechanism-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">اقتراب النويفيل</div>
+                            <div class="step-description">
+                                يقترب النويفيل (Nu⁻) من ذرة الكربون المرتبطة بالمجموعة المغادرة (X) من الاتجاه المعاكس لها.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mechanism-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">حالة الانتقال</div>
+                            <div class="step-description">
+                                يتكون مركب انتقالي خماسي التساند حيث يكون الكربون مرتبطاً جزئياً بالنويفيل والمجموعة المغادرة.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mechanism-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">انفصال المجموعة المغادرة</div>
+                            <div class="step-description">
+                                تنفصل المجموعة المغادرة (X⁻) مع زوج الإلكترونات، ويكتمل تكوين الرابط الجديد بين الكربون والنويفيل.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mechanism-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <div class="step-title">عكس التهيئة الفراغية</div>
+                            <div class="step-description">
+                                يحدث انعكاس في التهيئة الفراغية لذرة الكربون المركزية (مثل انقلاب المظلة).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">آلية تفاعل SN2</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/SN2_Reaction_Mechanism.svg/600px-SN2_Reaction_Mechanism.svg.png" alt="آلية تفاعل SN2" class="structure-image">
+                    <p>خطوات آلية تفاعل الاستبدال النويفيلي من النوع الثاني</p>
+                </div>
+                
+                <h3 style="color: #2c3e50; margin: 30px 0 20px; text-align: center;">آلية تفاعل الإضافة إلى الألكينات</h3>
+                
+                <div class="mechanism-steps">
+                    <div class="mechanism-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">تكوين كربونات أيونية</div>
+                            <div class="step-description">
+                                يتكون كربون أيوني مستقر نتيجة إضافة البروتون إلى أحد ذرتي الكربون في الرابط المزدوج.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mechanism-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">هجوم النويفيل</div>
+                            <div class="step-description">
+                                يهاجم النويفيل الكربون الأيوني، مما يؤدي إلى تكوين المركب النهائي.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="examples" class="tab-content">
+            <div class="section">
+                <h2>أمثلة عملية على التفاعلات العضوية</h2>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="example-name">تفاعل هاليدات الألكيل مع الهيدروكسيد</div>
+                        <div class="example-reaction">CH₃CH₂Br + NaOH → CH₃CH₂OH + NaBr</div>
+                        <div class="example-conditions">تفاعل استبدال نويفيلي (SN2)</div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <div class="example-name">إضافة الهالوجين إلى الألكينات</div>
+                        <div class="example-reaction">CH₂=CH₂ + Br₂ → BrCH₂-CH₂Br</div>
+                        <div class="example-conditions">تفاعل إضافة كهروفيلى</div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <div class="example-name">تجفيف الكحولات</div>
+                        <div class="example-reaction">CH₃CH₂OH → CH₂=CH₂ + H₂O</div>
+                        <div class="example-conditions">تفاعل حذف (E1 أو E2)</div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <div class="example-name">أكسدة الكحول الأولي</div>
+                        <div class="example-reaction">CH₃CH₂OH → CH₃CHO → CH₃COOH</div>
+                        <div class="example-conditions">تفاعل أكسدة متدرج</div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <div class="example-name">تفاعل فريدل-كرافتس</div>
+                        <div class="example-reaction">C₆H₆ + CH₃Cl → C₆H₅CH₃ + HCl</div>
+                        <div class="example-conditions">تفاعل استبدال كهروفيلى</div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <div class="example-name">تفاعل كلايزن التكثيفي</div>
+                        <div class="example-reaction">2 CH₃COOC₂H₅ → CH₃COCH₂COOC₂H₅ + C₂H₅OH</div>
+                        <div class="example-conditions">تفاعل تكثيف للإسترات</div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">أمثلة تطبيقية في الصناعة</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Esterification.svg/600px-Esterification.svg.png" alt="تفاعل تكوين الإستر" class="structure-image">
+                    <p>تفاعل تكوين الإستر في الصناعة الكيميائية</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="factors" class="tab-content">
+            <div class="section">
+                <h2>العوامل المؤثرة على التفاعلات العضوية</h2>
+                <p>
+                    تتأثر التفاعلات العضوية بعدة عوامل تحدد سرعة التفاعل ونواتجه. فهم هذه العوامل ضروري للتحكم في التفاعلات وتحقيق النتائج المرجوة.
+                </p>
+                
+                <div class="factors-grid">
+                    <div class="factor-card">
+                        <div class="factor-icon"><i class="fas fa-temperature-high"></i></div>
+                        <div class="factor-title">درجة الحرارة</div>
+                        <div class="factor-description">
+                            تزيد درجة الحرارة من سرعة التفاعلات العضوية بشكل عام. كما تؤثر على انتقائية التفاعل ونوع الآلية المتبعة.
+                        </div>
+                    </div>
+                    
+                    <div class="factor-card">
+                        <div class="factor-icon"><i class="fas fa-flask"></i></div>
+                        <div class="factor-title">المذيب</div>
+                        <div class="factor-description">
+                            يؤثر نوع المذيب على سرعة التفاعل وآليته. المذيبات القطبية تفضل التفاعلات الأيونية، بينما المذيبات غير القطبية تفضل التفاعلات الجزيئية.
+                        </div>
+                    </div>
+                    
+                    <div class="factor-card">
+                        <div class="factor-icon"><i class="fas fa-vial"></i></div>
+                        <div class="factor-title">المحفز</div>
+                        <div class="factor-description">
+                            المحفزات تزيد من سرعة التفاعل دون استهلاكها. يمكن أن تكون حمضية أو قاعدية أو معدنية وتغير مسار التفاعل.
+                        </div>
+                    </div>
+                    
+                    <div class="factor-card">
+                        <div class="factor-icon"><i class="fas fa-atom"></i></div>
+                        <div class="factor-title">البنية الجزيئية</div>
+                        <div class="factor-description">
+                            تؤثر بنية المركبات المتفاعلة على سرعة التفاعل ونوعيته. العوامل الفراغية والإلكترونية تلعب دوراً مهماً.
+                        </div>
+                    </div>
+                    
+                    <div class="factor-card">
+                        <div class="factor-icon"><i class="fas fa-balance-scale"></i></div>
+                        <div class="factor-title">التركيز</div>
+                        <div class="factor-description">
+                            زيادة تركيز المتفاعلات تزيد من سرعة التفاعل حسب قانون الفعل. كما تؤثر على توازن التفاعلات العكسية.
+                        </div>
+                    </div>
+                    
+                    <div class="factor-card">
+                        <div class="factor-icon"><i class="fas fa-compress-arrows-alt"></i></div>
+                        <div class="factor-title">الضغط</div>
+                        <div class="factor-description">
+                            يؤثر الضغط بشكل خاص على التفاعلات التي تتضمن غازات. زيادة الضغط تزيد من سرعة التفاعلات التي تنقص فيها الحجم الجزيئي.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">تأثير العوامل على آليات التفاعل</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Reaction_coordinate_diagram.svg/600px-Reaction_coordinate_diagram.svg.png" alt="مخطط طاقة التفاعل" class="structure-image">
+                    <p>مخطط طاقة التفاعل يوضح تأثير العوامل المختلفة</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="interactive" class="tab-content">
+            <div class="section">
+                <h2>تجربة تفاعلية</h2>
+                <p>
+                    استكشف أنواع التفاعلات العضوية المختلفة وتعرف على خصائصها من خلال هذه التجربة التفاعلية. اختر نوع التفاعل من القائمة لعرض معلومات مفصلة عنه.
+                </p>
+                
+                <div class="interactive-demo">
+                    <h3 class="demo-title">مستكشف التفاعلات العضوية</h3>
+                    
+                    <div class="reaction-selector">
+                        <button class="reaction-btn active" data-reaction="substitution">الاستبدال</button>
+                        <button class="reaction-btn" data-reaction="addition">الإضافة</button>
+                        <button class="reaction-btn" data-reaction="elimination">الحذف</button>
+                        <button class="reaction-btn" data-reaction="oxidation">الأكسدة</button>
+                        <button class="reaction-btn" data-reaction="reduction">الاختزال</button>
+                    </div>
+                    
+                    <div class="reaction-display" id="reaction-display">
+                        <div class="reaction-info">
+                            <div class="reaction-name">تفاعلات الاستبدال</div>
+                            <div class="reaction-formula">R-X + Y⁻ → R-Y + X⁻</div>
+                            <div class="reaction-description">
+                                تفاعلات الاستبدال هي تفاعلات يتم فيها استبدال ذرة أو مجموعة ذرية (المجموعة المغادرة) بمجموعة أخرى (النويفيل أو الكهروفيل). تنقسم إلى نوعين رئيسيين: SN1 (استبدال نويفيلي أحادي الخطوة) وSN2 (استبدال نويفيلي ثنائي الخطوة). تعتمد الآلية المتبعة على بنية المركب وطبيعة المذيب والمجموعات المتفاعلة.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">مقارنة بين آليات التفاعل</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/SN1_SN2_comparison.svg/800px-SN1_SN2_comparison.svg.png" alt="مقارنة SN1 و SN2" class="structure-image">
+                    <p>مقارنة بين آليتي الاستبدال النويفيلي SN1 و SN2</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2023 موقع التفاعلات العضوية | جميع الحقوق محفوظة</p>
+            <p>موقع تعليمي يهدف إلى نشر الوعي بعالم التفاعلات العضوية وأهميتها</p>
+        </footer>
+    </div>
+
+    <script>
+        // تبديل التبويبات
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // إزالة الفئة النشطة من جميع التبويبات والمحتويات
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // إضافة الفئة النشطة للتبويب المحدد
+                tab.classList.add('active');
+                
+                // إظهار المحتوى المرتبط
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // التجربة التفاعلية
+        const reactionData = {
+            substitution: {
+                name: "تفاعلات الاستبدال",
+                formula: "R-X + Y⁻ → R-Y + X⁻",
+                description: "تفاعلات الاستبدال هي تفاعلات يتم فيها استبدال ذرة أو مجموعة ذرية (المجموعة المغادرة) بمجموعة أخرى (النويفيل أو الكهروفيل). تنقسم إلى نوعين رئيسيين: SN1 (استبدال نويفيلي أحادي الخطوة) وSN2 (استبدال نويفيلي ثنائي الخطوة). تعتمد الآلية المتبعة على بنية المركب وطبيعة المذيب والمجموعات المتفاعلة."
+            },
+            addition: {
+                name: "تفاعلات الإضافة",
+                formula: "C=C + X-Y → X-C-C-Y",
+                description: "تفاعلات الإضافة تحدث في المركبات غير المشبعة التي تحتوي على روابط مزدوجة أو ثلاثية. يتم فيها إضافة ذرات أو مجموعات ذرية إلى ذرتي الكربون المرتبطتين برابط متعدد. تشمل تفاعلات الإضافة الكهروفيلية، الإضافة النويفيلية، والإضافة الراديكالية."
+            },
+            elimination: {
+                name: "تفاعلات الحذف",
+                formula: "X-C-C-Y → C=C + X-Y",
+                description: "تفاعلات الحذف هي عكس تفاعلات الإضافة، حيث يتم إزالة ذرات أو مجموعات ذرية من مركب مشبع لتكوين رابط متعدد. تشمل تفاعلات الحذف من النوع E1 (أحادي الخطوة) وE2 (ثنائي الخطوة). تنتج الألكينات أو الألكاينات حسب نوع المركب الأصلي."
+            },
+            oxidation: {
+                name: "تفاعلات الأكسدة",
+                formula: "R-CH₂OH → R-CHO → R-COOH",
+                description: "تفاعلات الأكسدة تتضمن زيادة عدد أكسدة الكربون. في الكيمياء العضوية، تشمل أكسدة الكحولات إلى ألدهيدات ثم إلى أحماض كربوكسيلية، وأكسدة الألكينات إلى أكسيدات وإيبوكسيدات. تستخدم عوامل أكسدة مثل KMnO₄، K₂Cr₂O₧، وO₃."
+            },
+            reduction: {
+                name: "تفاعلات الاختزال",
+                formula: "R-COOH → R-CHO → R-CH₂OH",
+                description: "تفاعلات الاختزال تتضمن نقصان عدد أكسدة الكربون. تشمل اختزال الأحماض الكربوكسيلية إلى ألدهيدات ثم إلى كحولات، واختزال الألكينات إلى ألكانات. تستخدم عوامل اختزال مثل LiAlH₄، NaBH₄، وH₂ مع محفز."
+            }
+        };
+
+        document.querySelectorAll('.reaction-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // إزالة الفئة النشطة من جميع الأزرار
+                document.querySelectorAll('.reaction-btn').forEach(b => b.classList.remove('active'));
+                
+                // إضافة الفئة النشطة للزر المحدد
+                btn.classList.add('active');
+                
+                // عرض معلومات التفاعل المحدد
+                const reactionType = btn.getAttribute('data-reaction');
+                const reaction = reactionData[reactionType];
+                
+                document.getElementById('reaction-display').innerHTML = `
+                    <div class="reaction-info">
+                        <div class="reaction-name">${reaction.name}</div>
+                        <div class="reaction-formula">${reaction.formula}</div>
+                        <div class="reaction-description">${reaction.description}</div>
+                    </div>
+                `;
+            });
+        });
+
+        // إضافة تأثيرات تفاعلية للبطاقات
+        document.querySelectorAll('.reaction-card, .example-card, .factor-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

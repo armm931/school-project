@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الديناميكا الحرارية - عالم الطاقة والحرارة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #f59e0b;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --accent: #3b82f6;
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30, 58, 138, 0.85), rgba(59, 130, 246, 0.85)), url('https://images.unsplash.com/photo-1536987333706-fc9c1d2751b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #d97706;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #334155;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Laws Section */
+        .laws-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .law-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .law-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .law-header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .law-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .law-header p {
+            opacity: 0.9;
+        }
+
+        .law-body {
+            padding: 25px;
+        }
+
+        .law-body p {
+            color: #334155;
+            margin-bottom: 15px;
+        }
+
+        .law-formula {
+            background-color: #f1f5f9;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 15px 0;
+        }
+
+        /* Applications Section */
+        .apps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .app-card {
+            background: white;
+            border-radius: 15px;
+            width: 300px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .app-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .app-card p {
+            color: #64748b;
+        }
+
+        /* Calculator Section */
+        .calculator {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .calculator h3 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #334155;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #f0f9ff;
+            border-radius: 10px;
+            border-right: 4px solid var(--accent);
+            display: none;
+        }
+
+        .result h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .result p {
+            color: #334155;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #cbd5e1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                <span>الديناميكا الحرارية</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#laws">القوانين</a></li>
+                    <li><a href="#apps">التطبيقات</a></li>
+                    <li><a href="#calc">الحاسبة</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>عالم الديناميكا الحرارية</h1>
+            <p>استكشف قوانين الطاقة والحرارة التي تحكم كوننا وتطبيقاتها في حياتنا اليومية</p>
+            <a href="#intro" class="btn">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>مقدمة في الديناميكا الحرارية</h2>
+                <p>الديناميكا الحرارية هي فرع من الفيزياء يدرس العلاقة بين الحرارة والطاقة والشغل</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>ما هي الديناميكا الحرارية؟</h3>
+                    <p>الديناميكا الحرارية هي علم يدرس تحويلات الطاقة من شكل إلى آخر، وخاصة تحويل الطاقة الحرارية إلى شغل ميكانيكي والعكس. تعتبر أساساً لفهم العديد من الظواهر الطبيعية والتطبيقات الهندسية.</p>
+                    <p>تستند الديناميكا الحرارية إلى أربعة قوانين أساسية تصف سلوك الطاقة في الأنظمة المختلفة. هذه القوانين لها تطبيقات واسعة في مجالات متنوعة مثل محركات السيارات، أنظمة التبريد، محطات الطاقة، والعمليات الكيميائية.</p>
+                    <p>من خلال فهم مبادئ الديناميكا الحرارية، يمكننا تصميم أنظمة أكثر كفاءة واستدامة، مما يساهم في الحفاظ على الطاقة وحماية البيئة.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الديناميكا الحرارية">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Laws Section -->
+    <section id="laws" class="laws">
+        <div class="container">
+            <div class="section-title">
+                <h2>قوانين الديناميكا الحرارية</h2>
+                <p>الأسس النظرية التي تحكم تحولات الطاقة في الكون</p>
+            </div>
+            <div class="laws-grid">
+                <div class="law-card">
+                    <div class="law-header">
+                        <h3>القانون الصفري</h3>
+                        <p>قانون التوازن الحراري</p>
+                    </div>
+                    <div class="law-body">
+                        <p>إذا كان نظامان في حالة توازن حراري مع نظام ثالث، فإنهما يكونان في حالة توازن حراري مع بعضهما البعض. هذا القانون يسمح بتعريف مفهوم درجة الحرارة.</p>
+                        <div class="law-formula">
+                            إذا (A = C) و (B = C) فإن (A = B)
+                        </div>
+                        <p>هذا القانون هو أساس قياس درجات الحرارة وتصميم موازين الحرارة.</p>
+                    </div>
+                </div>
+                
+                <div class="law-card">
+                    <div class="law-header">
+                        <h3>القانون الأول</h3>
+                        <p>قانون حفظ الطاقة</p>
+                    </div>
+                    <div class="law-body">
+                        <p>الطاقة لا تفنى ولا تستحدث من العدم، بل تتحول من شكل إلى آخر. في أي نظام مغلق، مجموع الطاقة الداخلة والخارجة يساوي التغير في الطاقة الكلية للنظام.</p>
+                        <div class="law-formula">
+                            ΔU = Q - W
+                        </div>
+                        <p>حيث ΔU هو التغير في الطاقة الداخلية، Q هو الحرارة المضافة، وW هو الشغل الذي يقوم به النظام.</p>
+                    </div>
+                </div>
+                
+                <div class="law-card">
+                    <div class="law-header">
+                        <h3>القانون الثاني</h3>
+                        <p>قانون الإنتروبيا</p>
+                    </div>
+                    <div class="law-body">
+                        <p>في أي عملية عفوية، الإنتروبيا (قياس الفوضى) للكون تزداد. لا يمكن لعملية أن تحدث بشكل عفوي إذا أدت إلى تقليل الإنتروبيا الكلية.</p>
+                        <div class="law-formula">
+                            ΔS ≥ 0
+                        </div>
+                        <p>هذا القانون يحدد اتجاه العمليات الطبيعية ويضع حدوداً لكفاءة تحويل الطاقة الحرارية إلى شغل.</p>
+                    </div>
+                </div>
+                
+                <div class="law-card">
+                    <div class="law-header">
+                        <h3>القانون الثالث</h3>
+                        <p>قانون الصفر المطلق</p>
+                    </div>
+                    <div class="law-body">
+                        <p>عندما تقترب درجة حرارة نظام إلى الصفر المطلق (0 كلفن)، تقترب الإنتروبيا إلى قيمة صغرى ثابتة. لا يمكن الوصول إلى الصفر المطلق في عدد محدود من الخطوات.</p>
+                        <div class="law-formula">
+                            lim T→0 S = 0
+                        </div>
+                        <p>هذا القانون له تطبيقات في فيزياء المواد المكثفة وعلم المواد عند درجات الحرارة المنخفضة جداً.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="apps" class="apps">
+        <div class="container">
+            <div class="section-title">
+                <h2>تطبيقات الديناميكا الحرارية</h2>
+                <p>كيف تؤثر هذه القوانين في حياتنا اليومية والتكنولوجيا الحديثة</p>
+            </div>
+            <div class="apps-container">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>محركات الاحتراق</h3>
+                    <p>تستخدم محركات السيارات مبدأ دورة كارنو لتحويل الطاقة الكيميائية في الوقود إلى شغل ميكانيكي لدفع السيارة.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-snowflake"></i>
+                    </div>
+                    <h3>أنظمة التبريد</h3>
+                    <p>تعمل الثلاجات ومكيفات الهواء عن طريق عكس دورة كارنو، حيث يتم نقل الحرارة من مكان بارد إلى مكان دافئ باستخدام الشغل.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>محطات الطاقة</h3>
+                    <p>تستخدم محطات الطاقة الحرارية والنووية مبادئ الديناميكا الحرارية لتحويل الطاقة الحرارية إلى طاقة كهربائية بكفاءة عالية.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-temperature-high"></i>
+                    </div>
+                    <h3>الأنظمة الحرارية</h3>
+                    <p>تصميم أنظمة التدفئة والتهوية وتكييف الهواء (HVAC) يعتمد بشكل كامل على مبادئ انتقال الحرارة والديناميكا الحرارية.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>العمليات الكيميائية</h3>
+                    <p>في الصناعات الكيميائية، تُستخدم الديناميكا الحرارية لتحديد شروط التفاعل الأمثل وزيادة كفاءة الإنتاج.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-satellite"></i>
+                    </div>
+                    <h3>الأنظمة الفضائية</h3>
+                    <p>تصميم المركبات الفضائية والأقمار الصناعية يتطلب فهماً عميقاً لانتقال الحرارة في الفراغ والظروف القاسية للفضاء.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calc" class="calc">
+        <div class="container">
+            <div class="section-title">
+                <h2>حاسبة الديناميكا الحرارية</h2>
+                <p>احسب قيم الديناميكا الحرارية الأساسية بسهولة</p>
+            </div>
+            <div class="calculator">
+                <h3>حساب الطاقة الداخلية</h3>
+                <form id="thermo-form">
+                    <div class="form-group">
+                        <label for="heat">الحرارة المضافة (Q) بالجول:</label>
+                        <input type="number" id="heat" placeholder="أدخل قيمة الحرارة">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="work">الشغل المبذول (W) بالجول:</label>
+                        <input type="number" id="work" placeholder="أدخل قيمة الشغل">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="process">نوع العملية:</label>
+                        <select id="process">
+                            <option value="isobaric">ضغط ثابت (إيزوباريك)</option>
+                            <option value="isochoric">حجم ثابت (إيزوكوريك)</option>
+                            <option value="isothermal">درجة حرارة ثابتة (إيزوثيرمال)</option>
+                            <option value="adiabatic">ديناميكية حرارية (أدياباتيك)</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn">احسب</button>
+                </form>
+                
+                <div class="result" id="result">
+                    <h4>النتيجة:</h4>
+                    <p id="result-text"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>اتصل بنا</h2>
+                <p>لديك أسئلة أو اقتراحات؟ تواصل معنا</p>
+            </div>
+            <div style="text-align: center;">
+                <p style="font-size: 1.2rem; margin-bottom: 30px; color: #334155;">نرحب بجميع استفساراتكم واقتراحاتكم حول محتوى موقع الديناميكا الحرارية</p>
+                <a href="mailto:info@thermodynamics.edu" class="btn"><i class="fas fa-envelope"></i> أرسل رسالة</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع الديناميكا الحرارية</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى عالي الجودة حول مبادئ وتطبيقات الديناميكا الحرارية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#laws">القوانين</a></li>
+                        <li><a href="#apps">التطبيقات</a></li>
+                        <li><a href="#calc">الحاسبة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">دروس تفاعلية</a></li>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">امتحانات تجريبية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@thermodynamics.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع الديناميكا الحرارية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Thermodynamics Calculator
+        document.getElementById('thermo-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const heat = parseFloat(document.getElementById('heat').value);
+            const work = parseFloat(document.getElementById('work').value);
+            const process = document.getElementById('process').value;
+            
+            if (isNaN(heat) || isNaN(work)) {
+                alert('الرجاء إدخال قيم صحيحة للحرارة والشغل');
+                return;
+            }
+            
+            let resultText = '';
+            let deltaU = heat - work;
+            
+            switch(process) {
+                case 'isobaric':
+                    resultText = `في عملية الضغط الثابت:<br>
+                    التغير في الطاقة الداخلية (ΔU) = ${deltaU} جول<br>
+                    الشغل = ${work} جول (الضغط × التغير في الحجم)<br>
+                    الحرارة = ${heat} جول`;
+                    break;
+                case 'isochoric':
+                    resultText = `في عملية الحجم الثابت:<br>
+                    التغير في الطاقة الداخلية (ΔU) = ${deltaU} جول<br>
+                    الشغل = 0 جول (لأن الحجم ثابت)<br>
+                    الحرارة = ${heat} جول`;
+                    break;
+                case 'isothermal':
+                    resultText = `في عملية درجة الحرارة الثابتة:<br>
+                    التغير في الطاقة الداخلية (ΔU) = 0 جول<br>
+                    الشغل = ${work} جول<br>
+                    الحرارة = ${heat} جول`;
+                    break;
+                case 'adiabatic':
+                    resultText = `في العملية الديناميكية الحرارية:<br>
+                    التغير في الطاقة الداخلية (ΔU) = ${deltaU} جول<br>
+                    الشغل = ${work} جول<br>
+                    الحرارة = 0 جول (لا يوجد انتقال حراري)`;
+                    break;
+            }
+            
+            document.getElementById('result-text').innerHTML = resultText;
+            document.getElementById('result').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

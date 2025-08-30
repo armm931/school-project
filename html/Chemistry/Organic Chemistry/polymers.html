@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>البوليمرات - عالم المواد الضخمة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(90deg, #2c3e50, #3498db);
+            border-radius: 10px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .nav-tab {
+            padding: 12px 20px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0 5px;
+            transition: all 0.3s;
+            color: #555;
+        }
+
+        .nav-tab:hover {
+            background: #e9ecef;
+        }
+
+        .nav-tab.active {
+            background: #3498db;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: #3498db;
+            border-radius: 2px;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .polymer-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .polymer-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .polymer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: #3498db;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-left: 15px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+        }
+
+        .natural .card-icon { background: #27ae60; }
+        .synthetic .card-icon { background: #e74c3c; }
+        .addition .card-icon { background: #3498db; }
+        .condensation .card-icon { background: #f39c12; }
+        .thermoplastic .card-icon { background: #9b59b6; }
+        .thermoset .card-icon { background: #1abc9c; }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .card-content {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .properties-list {
+            margin-top: 15px;
+        }
+
+        .property-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .property-icon {
+            font-size: 0.9rem;
+            margin-left: 10px;
+            color: #3498db;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .example-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .example-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .example-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .example-formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .example-use {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .application-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .application-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .application-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+
+        .application-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .application-description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .process-steps {
+            margin-top: 30px;
+        }
+
+        .process-step {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: #3498db;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-left: 20px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .step-description {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .molecule-structure {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .structure-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .structure-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .environment-impact {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .impact-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .impact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #e74c3c;
+        }
+
+        .impact-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .impact-description {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .interactive-demo {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            color: white;
+            text-align: center;
+        }
+
+        .demo-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .polymer-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .polymer-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .polymer-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .polymer-btn.active {
+            background: white;
+            color: #667eea;
+        }
+
+        .polymer-display {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            color: #333;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .polymer-info {
+            margin-top: 20px;
+        }
+
+        .polymer-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .polymer-formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .polymer-description {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .nav-tab {
+                margin: 5px 0;
+                border-radius: 10px;
+            }
+            
+            .polymer-types-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .applications-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>البوليمرات</h1>
+            <p class="subtitle">عالم المواد الضخمة وتطبيقاتها في حياتنا</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-tab="introduction">مقدمة</button>
+            <button class="nav-tab" data-tab="types">أنواع البوليمرات</button>
+            <button class="nav-tab" data-tab="synthesis">طرق التصنيع</button>
+            <button class="nav-tab" data-tab="examples">أمثلة شائعة</button>
+            <button class="nav-tab" data-tab="applications">التطبيقات</button>
+            <button class="nav-tab" data-tab="environment">التأثير البيئي</button>
+            <button class="nav-tab" data-tab="interactive">تجربة تفاعلية</button>
+        </div>
+
+        <div id="introduction" class="tab-content active">
+            <div class="section">
+                <h2>ما هي البوليمرات؟</h2>
+                <p>
+                    البوليمرات هي مواد ضخمة تتكون من وحدات صغيرة متكررة تسمى "المونومرات". تتميز هذه المواد بخصائصها الفريدة وقدرتها على التشكل في أشكال مختلفة، مما يجعلها أساسية في العديد من الصناعات والتطبيقات اليومية.
+                </p>
+                <p>
+                    يمكن أن تكون البوليمرات طبيعية مثل البروتينات والDNA والسليلوز، أو صناعية مثل البلاستيك والألياف الصناعية. تختلف خصائص البوليمرات حسب نوع المونومرات وطريقة ارتباطها معاً، مما يمنحها تنوعاً هائلاً في الاستخدامات.
+                </p>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">بنية البوليمر الأساسية</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Polymer_formation.svg/800px-Polymer_formation.svg.png" alt="تشكيل البوليمر" class="structure-image">
+                    <p>عملية تكوين البوليمر من خلال ارتباط المونومرات</p>
+                </div>
+                
+                <p>
+                    تتميز البوليمرات بخصائص فيزيائية متميزة مثل المرونة، المتانة، مقاومة التآكل، والعزل الكهربائي. هذه الخصائص تجعلها مثالية للاستخدام في العديد من المجالات starting من التغليف الغذائي إلى التطبيقات الطبية المتقدمة.
+                </p>
+            </div>
+        </div>
+
+        <div id="types" class="tab-content">
+            <div class="section">
+                <h2>أنواع البوليمرات الرئيسية</h2>
+                <div class="polymer-types-grid">
+                    <div class="polymer-card natural">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-leaf"></i></div>
+                            <div class="card-title">البوليمرات الطبيعية</div>
+                        </div>
+                        <div class="card-content">
+                            <p>بوليمرات توجد في الطبيعة وتشكل جزءاً أساسياً من الكائنات الحية.</p>
+                            <div class="properties-list">
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>قابلة للتحلل البيولوجي</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>صديقة للبيئة</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>متجددة</span>
+                                </div>
+                            </div>
+                            <p><strong>أمثلة:</strong> السليلوز، البروتينات، DNA، اللاتكس</p>
+                        </div>
+                    </div>
+                    
+                    <div class="polymer-card synthetic">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-industry"></i></div>
+                            <div class="card-title">البوليمرات الصناعية</div>
+                        </div>
+                        <div class="card-content">
+                            <p>بوليمرات يتم تصنيعها في المختبرات والمصانع للاستخدامات المختلفة.</p>
+                            <div class="properties-list">
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>خصائص قابلة للتعديل</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>تكلفة إنتاج منخفضة</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>متانة عالية</span>
+                                </div>
+                            </div>
+                            <p><strong>أمثلة:</strong> البولي إيثيلين، البولي بروبيلين، PVC</p>
+                        </div>
+                    </div>
+                    
+                    <div class="polymer-card addition">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-plus"></i></div>
+                            <div class="card-title">بوليمرات الإضافة</div>
+                        </div>
+                        <div class="card-content">
+                            <p>تتكون من خلال إضافة المونومرات إلى سلسلة متزايدة دون فقدان أي ذرات.</p>
+                            <div class="properties-list">
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>تفاعل سلسلة</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>تحتاج لمحفز</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>سريعة التكوين</span>
+                                </div>
+                            </div>
+                            <p><strong>أمثلة:</strong> البولي إيثيلين، البولي ستايرين، PVC</p>
+                        </div>
+                    </div>
+                    
+                    <div class="polymer-card condensation">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-compress"></i></div>
+                            <div class="card-title">بوليمرات التكثيف</div>
+                        </div>
+                        <div class="card-content">
+                            <p>تتكون من خلال اتحاد المونومرات مع إطلاق جزيئات صغيرة مثل الماء.</p>
+                            <div class="properties-list">
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>تفاعل خطوة بخطوة</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>تنتج مركبات ثانوية</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>غالباً ما تكون خطية</span>
+                                </div>
+                            </div>
+                            <p><strong>أمثلة:</strong> النيلون، البوليستر، الداكرون</p>
+                        </div>
+                    </div>
+                    
+                    <div class="polymer-card thermoplastic">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-fire"></i></div>
+                            <div class="card-title">البلاستيك الحراري</div>
+                        </div>
+                        <div class="card-content">
+                            <p>بوليمرات تذوب عند التسخين وتتصلب عند التبريد ويمكن إعادة تشكيلها.</p>
+                            <div class="properties-list">
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>قابلة لإعادة التدوير</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>مرنة</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>سهولة التشكيل</span>
+                                </div>
+                            </div>
+                            <p><strong>أمثلة:</strong> البولي إيثيلين، البولي بروبيلين، PVC</p>
+                        </div>
+                    </div>
+                    
+                    <div class="polymer-card thermoset">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-cube"></i></div>
+                            <div class="card-title">البلاستيك الحراري</div>
+                        </div>
+                        <div class="card-content">
+                            <p>بوليمرات تتصلب بشكل دائم عند التسخين ولا يمكن إعادة تشكيلها.</p>
+                            <div class="properties-list">
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>صلبة ومتينة</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>مقاومة للحرارة</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>شبكية الهيكل</span>
+                                </div>
+                            </div>
+                            <p><strong>أمثلة:</strong> الباكليت، الميلامين، الإيبوكسي</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">مقارنة بين أنواع البوليمرات</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Polymer_classification.svg/800px-Polymer_classification.svg.png" alt="تصنيف البوليمرات" class="structure-image">
+                    <p>تصنيف البوليمرات حسب طريقة التكوين والخصائص</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="synthesis" class="tab-content">
+            <div class="section">
+                <h2>طرق تصنيع البوليمرات</h2>
+                <p>
+                    يتم تصنيع البوليمرات من خلال عمليات كيميائية معقدة تسمى "البلمرة". تختلف طرق التصنيع حسب نوع البوليمر المراد الحصول عليه والخصائص المطلوبة. بشكل عام، يمكن تقسيم طرق التصنيع إلى نوعين رئيسيين: بلمرة الإضافة وبلمرة التكثيف.
+                </p>
+                
+                <h3 style="color: #2c3e50; margin: 30px 0 20px; text-align: center;">عملية بلمرة الإضافة</h3>
+                
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">البدء</div>
+                            <div class="step-description">
+                                يتم بدء التفاعل باستخدام مادة بادئة (مثل البيروكسيدات) التي تتحلل لتكوين جذور حرة نشطة.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">النمو</div>
+                            <div class="step-description">
+                                تهاجم الجذور الحرة المونومرات وتضيفها إلى السلسلة المتنامية بشكل مستمر.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">الإنهاء</div>
+                            <div class="step-description">
+                                يتوقف النمو عندما تتفاعل سلسلتان معاً أو مع مادة إنهاء، مما يؤدي إلى تكوين البوليمر النهائي.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 style="color: #2c3e50; margin: 30px 0 20px; text-align: center;">عملية بلمرة التكثيف</h3>
+                
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">التفاعل الأولي</div>
+                            <div class="step-description">
+                                تتفاعل مونومران يحتويان على مجموعات وظيفية متفاعلة (مثل -OH و-COOH).
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">التكثيف</div>
+                            <div class="step-description">
+                                يتم تكوين رابط جديد بين المونومرات مع إطلاق جزيء صغير (مثل H₂O).
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">الاستمرار</div>
+                            <div class="step-description">
+                                تستمر العملية مع إضافة المزيد من المونومرات حتى الوصول إلى الطول المطلوب للسلسلة.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">مقارنة بين طرق البلمرة</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Addition_polymerisation.svg/600px-Addition_polymerisation.svg.png" alt="بلمرة الإضافة" class="structure-image">
+                    <p>عملية بلمرة الإضافة (أعلى) مقارنة ببلمرة التكثيف (أسفل)</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="examples" class="tab-content">
+            <div class="section">
+                <h2>أمثلة شائعة للبوليمرات</h2>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="example-name">البولي إيثيلين</div>
+                        <div class="example-formula">-(CH₂-CH₂)ₙ-</div>
+                        <div class="example-use">أكياس التسوق، الزجاجات البلاستيكية، الألعاب</div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <div class="example-name">البولي بروبيلين</div>
+                        <div class="example-formula">-(CH₂-CH(CH₃))ₙ-</div>
+                        <div class="example-use">أغلفة الطعام، الأثاث، أجزاء السيارات</div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <div class="example-name">PVC</div>
+                        <div class="example-formula">-(CH₂-CHCl)ₙ-</div>
+                        <div class="example-use">أنابيب المياه، الأرضيات، التغليف الطبي</div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <div class="example-name">البولي ستايرين</div>
+                        <div class="example-formula">-(CH₂-CH(C₆H₅))ₙ-</div>
+                        <div class="example-use">أكواب القهوة، علب التغليف، العزل الحراري</div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <div class="example-name">النيلون</div>
+                        <div class="example-formula">-(NH-(CH₂)₆-NH-CO-(CH₂)₄-CO)ₙ-</div>
+                        <div class="example-use">الملابس، الحقائب، أجزاء السيارات</div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <div class="example-name">التيفلون</div>
+                        <div class="example-formula">-(CF₂-CF₂)ₙ-</div>
+                        <div class="example-use">أواني الطهي غير اللاصقة، الأختام الطبية</div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <div class="example-name">البوليستر</div>
+                        <div class="example-formula">-(O-CO-C₆H₄-CO-O-CH₂-CH₂)ₙ-</div>
+                        <div class="example-use">الملابس، الزجاجات، الألياف الصناعية</div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <div class="example-name">السيليكون</div>
+                        <div class="example-formula">-(SiR₂-O)ₙ-</div>
+                        <div class="example-use">الجراحة التجميلية، مواد التشحيم، الأختام</div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">تراكيب بوليمرات شائعة</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Common_polymers.svg/800px-Common_polymers.svg.png" alt="بوليمرات شائعة" class="structure-image">
+                    <p>تراكيب بعض البوليمرات الصناعية الشائعة</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="applications" class="tab-content">
+            <div class="section">
+                <h2>تطبيقات البوليمرات في الحياة اليومية</h2>
+                <p>
+                    تدخل البوليمرات في几乎所有 جوانب حياتنا اليومية، من التغليف الغذائي إلى التطبيقات الطبية المتقدمة. تنوع خصائصها يجعلها الخيار الأمثل للعديد من الاستخدامات الصناعية والتجارية.
+                </p>
+                
+                <div class="applications-grid">
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-shopping-bag"></i></div>
+                        <div class="application-title">التغليف</div>
+                        <div class="application-description">
+                            تستخدم البوليمرات بشكل واسع في تغليف المواد الغذائية، الأدوية، والمنتجات الاستهلاكية بفضل خفة وزنها ومرونتها وقدرتها على العزل.
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-tshirt"></i></div>
+                        <div class="application-title">المنسوجات</div>
+                        <div class="application-description">
+                            الألياف الصناعية مثل النيلون والبوليستر تستخدم في صناعة الملابس، الأغطية، والمفروشات بفضل متانتها ومقاومتها للتجعد.
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-car"></i></div>
+                        <div class="application-title">صناعة السيارات</div>
+                        <div class="application-description">
+                            تستخدم البوليمرات في تصنيع أجزاء السيارات لتقليل الوزن، تحسين كفاءة الوقود، وزيادة السلامة.
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-home"></i></div>
+                        <div class="application-title">البناء والتشييد</div>
+                        <div class="application-description">
+                            تستخدم في العزل الحراري، الأنابيب، الأرضيات، والدهانات بفضل متانتها ومقاومتها للعوامل الجوية.
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-heartbeat"></i></div>
+                        <div class="application-title">التطبيقات الطبية</div>
+                        <div class="application-description">
+                            تستخدم في تصنيع الأطراف الصناعية، الأدوات الطبية، العبوات الدوائية، وزراعة الأنسجة.
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-plug"></i></div>
+                        <div class="application-title">الإلكترونيات</div>
+                        <div class="application-description">
+                            تستخدم في عزل الأسلاك، تصنيع الهياكل، والمكونات الإلكترونية بفضل خصائصها العازلة.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">تطبيقات متقدمة للبوليمرات</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Polymer_applications.svg/800px-Polymer_applications.svg.png" alt="تطبيقات البوليمرات" class="structure-image">
+                    <p>مجالات تطبيق البوليمرات المتقدمة في الصناعة والتكنولوجيا</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="environment" class="tab-content">
+            <div class="section">
+                <h2>التأثير البيئي للبوليمرات</h2>
+                <p>
+                    رغم الفوائد الهائلة للبوليمرات في حياتنا اليومية، إلا أن استخدامها المفرط يؤدي إلى مشاكل بيئية خطيرة تحتاج إلى حلول مستدامة. التلوث البلاستيكي أصبح أحد أكبر التحديات البيئية في العصر الحديث.
+                </p>
+                
+                <div class="environment-impact">
+                    <div class="impact-grid">
+                        <div class="impact-card">
+                            <div class="impact-icon"><i class="fas fa-trash-alt"></i></div>
+                            <div class="impact-title">النفايات البلاستيكية</div>
+                            <div class="impact-description">
+                                تتراكم ملايين الأطنان من النفايات البلاستيكية سنوياً، مما يؤدي إلى تلوث الأراضي والمحيطات.
+                            </div>
+                        </div>
+                        
+                        <div class="impact-card">
+                            <div class="impact-icon"><i class="fas fa-fish"></i></div>
+                            <div class="impact-title">تأثير على الكائنات البحرية</div>
+                            <div class="impact-description">
+                                تؤدي النفايات البلاستيكية إلى موت الكائنات البحرية وتدمير النظم البيئية البحرية.
+                            </div>
+                        </div>
+                        
+                        <div class="impact-card">
+                            <div class="impact-icon"><i class="fas fa-microscope"></i></div>
+                            <div class="impact-title">الجسيمات الدقيقة</div>
+                            <div class="impact-description">
+                                تتحلل البلاستيك إلى جسيمات دقيقة تدخل السلسلة الغذائية وتؤثر على صحة الإنسان.
+                            </div>
+                        </div>
+                        
+                        <div class="impact-card">
+                            <div class="impact-icon"><i class="fas fa-industry"></i></div>
+                            <div class="impact-title">استهلاك الموارد</div>
+                            <div class="impact-description">
+                                يعتمد إنتاج البوليمرات على البترول، وهو مورد غير متجدد يساهم في تغير المناخ.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">نحو مستقبل مستدام</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Biodegradable_plastics.svg/600px-Biodegradable_plastics.svg.png" alt="بوليمرات قابلة للتحلل" class="structure-image">
+                    <p>البوليمرات القابلة للتحلل البيولوجي كحل مستدام</p>
+                </div>
+                
+                <h3 style="color: #2c3e50; margin: 30px 0 20px; text-align: center;">حلول مستدامة</h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px;">
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-recycle"></i></div>
+                        <div class="application-title">إعادة التدوير</div>
+                        <div class="application-description">
+                            تطوير تقنيات إعادة تدوير أكثر كفاءة وتقليل النفايات البلاستيكية.
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-leaf"></i></div>
+                        <div class="application-title">بوليمرات حيوية</div>
+                        <div class="application-description">
+                            تطوير بوليمرات من مصادر متجددة مثل النباتات والكائنات الحية الدقيقة.
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-seedling"></i></div>
+                        <div class="application-title">قابلة للتحلل</div>
+                        <div class="application-description">
+                            تصميم بوليمرات قابلة للتحلل البيولوجي في البيئة الطبيعية.
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-ban"></i></div>
+                        <div class="application-title">تقليل الاستخدام</div>
+                        <div class="application-description">
+                            تقليل استخدام البلاستيك غير الضروري وتشجيع البدائل الصديقة للبيئة.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="interactive" class="tab-content">
+            <div class="section">
+                <h2>تجربة تفاعلية</h2>
+                <p>
+                    استكشف عالم البوليمرات من خلال هذه التجربة التفاعلية. اختر بوليمراً من القائمة لعرض معلومات مفصلة عنه وتطبيقاته.
+                </p>
+                
+                <div class="interactive-demo">
+                    <h3 class="demo-title">مستكشف البوليمرات</h3>
+                    
+                    <div class="polymer-selector">
+                        <button class="polymer-btn active" data-polymer="polyethylene">البولي إيثيلين</button>
+                        <button class="polymer-btn" data-polymer="polypropylene">البولي بروبيلين</button>
+                        <button class="polymer-btn" data-polymer="pvc">PVC</button>
+                        <button class="polymer-btn" data-polymer="nylon">النيلون</button>
+                        <button class="polymer-btn" data-polymer="teflon">التيفلون</button>
+                    </div>
+                    
+                    <div class="polymer-display" id="polymer-display">
+                        <div class="polymer-info">
+                            <div class="polymer-name">البولي إيثيلين</div>
+                            <div class="polymer-formula">-(CH₂-CH₂)ₙ-</div>
+                            <div class="polymer-description">
+                                البولي إيثيلين هو أحد أكثر البوليمرات استخداماً في العالم. يتميز بخصائصه الممتازة مثل المرونة، مقاومة الماء، والعزل الكهربائي. يستخدم في تصنيع أكياس التسوق، الزجاجات البلاستيكية، الألعاب، والعديد من المنتجات اليومية. يوجد منه نوعان رئيسيان: HDPE (الكثافة العالية) وLDPE (الكثافة المنخفضة)، ويختلفان في خصائصهما واستخداماتهما.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">مقارنة بين البوليمرات الشائعة</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Common_polymers_comparison.svg/800px-Common_polymers_comparison.svg.png" alt="مقارنة البوليمرات" class="structure-image">
+                    <p>مقارنة بين خصائص واستخدامات البوليمرات الشائعة</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2023 موقع البوليمرات | جميع الحقوق محفوظة</p>
+            <p>موقع تعليمي يهدف إلى نشر الوعي بعالم البوليمرات وأهميتها</p>
+        </footer>
+    </div>
+
+    <script>
+        // تبديل التبويبات
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // إزالة الفئة النشطة من جميع التبويبات والمحتويات
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // إضافة الفئة النشطة للتبويب المحدد
+                tab.classList.add('active');
+                
+                // إظهار المحتوى المرتبط
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // التجربة التفاعلية
+        const polymerData = {
+            polyethylene: {
+                name: "البولي إيثيلين",
+                formula: "-(CH₂-CH₂)ₙ-",
+                description: "البولي إيثيلين هو أحد أكثر البوليمرات استخداماً في العالم. يتميز بخصائصه الممتازة مثل المرونة، مقاومة الماء، والعزل الكهربائي. يستخدم في تصنيع أكياس التسوق، الزجاجات البلاستيكية، الألعاب، والعديد من المنتجات اليومية. يوجد منه نوعان رئيسيان: HDPE (الكثافة العالية) وLDPE (الكثافة المنخفضة)، ويختلفان في خصائصهما واستخداماتهما."
+            },
+            polypropylene: {
+                name: "البولي بروبيلين",
+                formula: "-(CH₂-CH(CH₃))ₙ-",
+                description: "البولي بروبيلين هو بوليمر حراري يتميز بمقاومته العالية للحرارة والمواد الكيميائية. يستخدم في تصنيع أغلفة الطعام، الأثاث، أجزاء السيارات، والألياف النسيجية. يتميز بوزنه الخفيف وقوته العالية، مما يجعله مثالياً للتطبيقات التي تتطلب متانة وخفة وزن."
+            },
+            pvc: {
+                name: "PVC (بولي فينيل كلورايد)",
+                formula: "-(CH₂-CHCl)ₙ-",
+                description: "PVC هو بوليمر متعدد الاستخدامات يستخدم في أنابيب المياه، الأرضيات، التغليف الطبي، والعديد من التطبيقات الأخرى. يمكن أن يكون صلباً أو مرناً حسب إضافة مواد plastisizer. يتميز بمقاومته للهب والمواد الكيميائية، لكنه يثير مخاوف بيئية بسبب إطلاق مركبات الكلور عند احتراقه."
+            },
+            nylon: {
+                name: "النيلون",
+                formula: "-(NH-(CH₂)₆-NH-CO-(CH₂)₄-CO)ₙ-",
+                description: "النيلون هو أول بوليمر صناعي يتم إنتاجه تجارياً. يتميز بقوته العالية ومرونته ومقاومته للتآكل. يستخدم بشكل واسع في صناعة الملابس، الحقائب، أجزاء السيارات، والمعدات الرياضية. يوجد منه عدة أنواع مثل نيلون 6،6 ونيلون 6، ويختلفان في خصائصهما."
+            },
+            teflon: {
+                name: "التيفلون (بولي تترا فلورو إيثيلين)",
+                formula: "-(CF₂-CF₂)ₙ-",
+                description: "التيفلون هو بوليمر يتميز بخصائص فريدة مثل مقاومة الحرارة العالية، عدم الالتصاق، ومقاومة المواد الكيميائية. يستخدم في أواني الطهي غير اللاصقة، الأختام الطبية، والمعدات الصناعية. يعتبر من أكثر البوليمرات استقراراً كيميائياً ولا يتفاعل مع معظم المواد."
+            }
+        };
+
+        document.querySelectorAll('.polymer-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // إزالة الفئة النشطة من جميع الأزرار
+                document.querySelectorAll('.polymer-btn').forEach(b => b.classList.remove('active'));
+                
+                // إضافة الفئة النشطة للزر المحدد
+                btn.classList.add('active');
+                
+                // عرض معلومات البوليمر المحدد
+                const polymerType = btn.getAttribute('data-polymer');
+                const polymer = polymerData[polymerType];
+                
+                document.getElementById('polymer-display').innerHTML = `
+                    <div class="polymer-info">
+                        <div class="polymer-name">${polymer.name}</div>
+                        <div class="polymer-formula">${polymer.formula}</div>
+                        <div class="polymer-description">${polymer.description}</div>
+                    </div>
+                `;
+            });
+        });
+
+        // إضافة تأثيرات تفاعلية للبطاقات
+        document.querySelectorAll('.polymer-card, .example-card, .application-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

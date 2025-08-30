@@ -19,7 +19,9 @@
             {number: 17, symbol: 'Cl', name: 'كلور', weight: '35.45'},
             {number: 18, symbol: 'Ar', name: 'أرجون', weight: '39.95'},
             {number: 19, symbol: 'K', name: 'بوتاسيوم', weight: '39.10'},
-            {number: 20, symbol: 'Ca', name: 'كالسيوم', weight: '40.08'}
+            {number: 20, symbol: 'Ca', name: 'كالسيوم', weight: '40.08'},
+            {number:21, symbol:'Sc', name:'سكانديوم', weight:'44.95'},
+            {number:22,symbol:''}
         ];
         
         // Generate periodic table

@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكيمياء الصيدلانية - عالم الأدوية والعلاجات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(90deg, #2c3e50, #3498db);
+            border-radius: 10px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .nav-tab {
+            padding: 12px 20px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0 5px;
+            transition: all 0.3s;
+            color: #555;
+        }
+
+        .nav-tab:hover {
+            background: #e9ecef;
+        }
+
+        .nav-tab.active {
+            background: #3498db;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: #3498db;
+            border-radius: 2px;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .process-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: #3498db;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-left: 15px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+        }
+
+        .discovery .card-icon { background: #e74c3c; }
+        .design .card-icon { background: #3498db; }
+        .testing .card-icon { background: #2ecc71; }
+        .approval .card-icon { background: #f39c12; }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .card-content {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .drug-classes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .drug-class-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .drug-class-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .antibiotics .card-icon { background: #27ae60; }
+        .analgesics .card-icon { background: #e74c3c; }
+        .antivirals .card-icon { background: #3498db; }
+        .anticancer .card-icon { background: #9b59b6; }
+        .cardiovascular .card-icon { background: #f39c12; }
+        .cns .card-icon { background: #1abc9c; }
+
+        .mechanism-steps {
+            margin-top: 30px;
+        }
+
+        .mechanism-step {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: #3498db;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-left: 20px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .step-description {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .molecule-structure {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .structure-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .structure-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .example-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .example-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .example-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .example-formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .example-use {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .interactive-demo {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            color: white;
+            text-align: center;
+        }
+
+        .demo-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .drug-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .drug-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .drug-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .drug-btn.active {
+            background: white;
+            color: #667eea;
+        }
+
+        .drug-display {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            color: #333;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .drug-info {
+            margin-top: 20px;
+        }
+
+        .drug-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .drug-formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .drug-description {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #3498db;
+            transform: translateX(50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            width: 50%;
+            padding: 0 30px;
+        }
+
+        .timeline-item:nth-child(odd) {
+            right: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 0;
+            text-align: left;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .timeline-description {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .nav-tab {
+                margin: 5px 0;
+                border-radius: 10px;
+            }
+            
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .drug-classes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline::before {
+                right: 20px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-right: 50px;
+                text-align: right !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>الكيمياء الصيدلانية</h1>
+            <p class="subtitle">عالم اكتشاف وتطوير الأدوية والعلاجات</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-tab="introduction">مقدمة</button>
+            <button class="nav-tab" data-tab="discovery">اكتشاف الدواء</button>
+            <button class="nav-tab" data-tab="development">تطوير الدواء</button>
+            <button class="nav-tab" data-tab="classes">فئات الأدوية</button>
+            <button class="nav-tab" data-tab="mechanisms">آليات العمل</button>
+            <button class="nav-tab" data-tab="interactive">تجربة تفاعلية</button>
+        </div>
+
+        <div id="introduction" class="tab-content active">
+            <div class="section">
+                <h2>ما هي الكيمياء الصيدلانية؟</h2>
+                <p>
+                    الكيمياء الصيدلانية هي فرع متخصص من الكيمياء يركز على تصميم وتصنيع وتطوير الأدوية والعوامل العلاجية. تجمع بين مبادئ الكيمياء العضوية، الكيمياء الحيوية، والصيدلة لفهم كيفية تفاعل الأدوية مع الجسم وتطوير علاجات أكثر فعالية وأماناً.
+                </p>
+                <p>
+                    تلعب الكيمياء الصيدلانية دوراً حيوياً في تحسين صحة الإنسان من خلال تطوير أدوية جديدة لعلاج الأمراض المختلفة، وتحسين الأدوية الموجودة لزيادة فعاليتها وتقليل آثارها الجانبية.
+                </p>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">أهمية الكيمياء الصيدلانية</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Medicinal_chemistry_overview.svg/800px-Medicinal_chemistry_overview.svg.png" alt="نظرة عامة على الكيمياء الصيدلانية" class="structure-image">
+                    <p>العلاقة بين الكيمياء الصيدلانية والعلوم الأخرى</p>
+                </div>
+                
+                <p>
+                    تشمل مجالات الكيمياء الصيدلانية: تصميم الجزيئات الدوائية، تحسين الخصائص الدوائية، دراسة العلاقة بين التركيب الكيميائي والنشاط الدوائي (SAR)، وتطوير طرق تصنيع الأدوية على نطاق واسع.
+                </p>
+            </div>
+        </div>
+
+        <div id="discovery" class="tab-content">
+            <div class="section">
+                <h2>مراحل اكتشاف الدواء</h2>
+                <p>
+                    عملية اكتشاف الدواء هي رحلة معقدة وطويلة تتطلب تعاون فرق متعددة التخصصات. تبدأ بتحديد هدف علاجي وتنتهي بتطوير دواء آمن وفعال. تستغرق هذه العملية عادة 10-15 سنة وتكلف مليارات الدولارات.
+                </p>
+                
+                <div class="process-grid">
+                    <div class="process-card discovery">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-search"></i></div>
+                            <div class="card-title">تحديد الهدف العلاجي</div>
+                        </div>
+                        <div class="card-content">
+                            <p>تحديد البروتين أو الإنزيم أو المستقبل الذي يلعب دوراً في المرض. يتم هذا من خلال دراسات الجينوم والبروتيوم وفهم آليات المرض.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-card design">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-flask"></i></div>
+                            <div class="card-title">الفحص الأولي</div>
+                        </div>
+                        <div class="card-content">
+                            <p>فحص مكتبات المركبات الكيميائية للعثور على مركبات تتفاعل مع الهدف العلاجي. يمكن أن يكون هذا فحصاً عشوائياً أو موجهاً.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-card testing">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-vial"></i></div>
+                            <div class="card-title">تحسين المركبات</div>
+                        </div>
+                        <div class="card-content">
+                            <p>تعديل التركيب الكيميائي للمركبات الواعدة لتحسين فعاليتها، تقليل سميةها، وتحسين خصائصها الدوائية.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-card approval">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-check-circle"></i></div>
+                            <div class="card-title">اختيار المرشح</div>
+                        </div>
+                        <div class="card-content">
+                            <p>اختيار أفضل مركب ليكون مرشحاً للتطوير السريري. يجب أن يفي بمعايير صارمة من حيث الفعالية والسلامة.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">عملية اكتشاف الدواء</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Drug_discovery_process.svg/800px-Drug_discovery_process.svg.png" alt="عملية اكتشاف الدواء" class="structure-image">
+                    <p>الخطوات الرئيسية في عملية اكتشاف الدواء</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="development" class="tab-content">
+            <div class="section">
+                <h2>مراحل تطوير الدواء</h2>
+                <p>
+                    بعد اكتشاف مركب واعد، تبدأ مرحلة التطوير التي تشمل اختبارات ما قبل السريرية والسريرية لضمان سلامة وفعالية الدواء قبل طرحه في السوق. هذه المراحل خاضعة لرقابة صارمة من هيئات تنظيمية مثل FDA وEMA.
+                </p>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">المرحلة ما قبل السريرية</div>
+                            <div class="timeline-title">الدراسات المختبرية والحيوانية</div>
+                            <div class="timeline-description">
+                                اختبار الدواء على الخلايا والحيوانات لتقييم الفعالية والسمية والجرعات الآمنة. تستغرق هذه المرحلة 1-3 سنوات.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">المرحلة السريرية الأولى</div>
+                            <div class="timeline-title">اختبار السلامة على البشر</div>
+                            <div class="timeline-description">
+                                اختبار الدواء على عدد صغير من المتطوعين الأصحاء (20-80) لتقييم السلامة والجرعات المناسبة. تستغرق عدة أشهر.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">المرحلة السريرية الثانية</div>
+                            <div class="timeline-title">اختبار الفعالية</div>
+                            <div class="timeline-description">
+                                اختبار الدواء على عدد أكبر من المرضى (100-300) لتقييم فعاليته في علاج المرض المستهدف. تستغرق 1-2 سنوات.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">المرحلة السريرية الثالثة</div>
+                            <div class="timeline-title">الدراسات واسعة النطاق</div>
+                            <div class="timeline-description">
+                                اختبار الدواء على آلاف المرضى لمقارنته بالعلاجات الموجودة وتقييم آثاره الجانبية. تستغرق 2-4 سنوات.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">الموافقة التنظيمية</div>
+                            <div class="timeline-title">مراجعة واعتماد الدواء</div>
+                            <div class="timeline-description">
+                                تقديم جميع البيانات للهيئات التنظيمية للموافقة على تسويق الدواء. تستغرق هذه العملية 1-2 سنوات.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">التكلفة والوقت في تطوير الدواء</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Drug_development_cost_timeline.svg/600px-Drug_development_cost_timeline.svg.png" alt="تكلفة ووقت تطوير الدواء" class="structure-image">
+                    <p>متوسط التكلفة والوقت اللازم لتطوير دواء جديد</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="classes" class="tab-content">
+            <div class="section">
+                <h2>فئات الأدوية الرئيسية</h2>
+                <p>
+                    تصنف الأدوية إلى فئات مختلفة حسب تركيبها الكيميائي، آلية عملها، أو الاستخدام العلاجي. كل فئة لها خصائص مميزة واستخدامات محددة في علاج الأمراض المختلفة.
+                </p>
+                
+                <div class="drug-classes-grid">
+                    <div class="drug-class-card antibiotics">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-shield-virus"></i></div>
+                            <div class="card-title">المضادات الحيوية</div>
+                        </div>
+                        <div class="card-content">
+                            <p>أدوية تستخدم لعلاج الالتهابات البكتيرية عن طريق قتل البكتيريا أو منع تكاثرها.</p>
+                            <div class="examples-grid">
+                                <div class="example-card">
+                                    <div class="example-name">البنسلين</div>
+                                    <div class="example-formula">C₁₆H₁₈N₂O₄S</div>
+                                    <div class="example-use">علاج الالتهابات البكتيرية</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="drug-class-card analgesics">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-heartbeat"></i></div>
+                            <div class="card-title">المسكنات</div>
+                        </div>
+                        <div class="card-content">
+                            <p>أدوية تستخدم لتخفيف الألم، وتشمل مسكنات غير مخدرة ومسكنات أفيونية.</p>
+                            <div class="examples-grid">
+                                <div class="example-card">
+                                    <div class="example-name">الباراسيتامول</div>
+                                    <div class="example-formula">C₈H₉NO₂</div>
+                                    <div class="example-use">تخفيف الألم والحمى</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="drug-class-card antivirals">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-virus"></i></div>
+                            <div class="card-title">المضادات الفيروسية</div>
+                        </div>
+                        <div class="card-content">
+                            <p>أدوية تستخدم لعلاج الالتهابات الفيروسية عن طريق منع تكاثر الفيروسات.</p>
+                            <div class="examples-grid">
+                                <div class="example-card">
+                                    <div class="example-name">الأسيكلوفير</div>
+                                    <div class="example-formula">C₈H₁₁N₅O₃</div>
+                                    <div class="example-use">علاج الهربس</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="drug-class-card anticancer">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-ribbon"></i></div>
+                            <div class="card-title">مضادات السرطان</div>
+                        </div>
+                        <div class="card-content">
+                            <p>أدوية تستخدم لعلاج السرطان عن طريق قتل الخلايا السرطانية أو منع نموها.</p>
+                            <div class="examples-grid">
+                                <div class="example-card">
+                                    <div class="example-name">الميثوتريكسيت</div>
+                                    <div class="example-formula">C₂₀H₂₂N₈O₅</div>
+                                    <div class="example-use">علاج سرطان الدم</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="drug-class-card cardiovascular">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-heart"></i></div>
+                            <div class="card-title">أدوية القلب والأوعية</div>
+                        </div>
+                        <div class="card-content">
+                            <p>أدوية تستخدم لعلاج أمراض القلب والأوعية الدموية مثل ارتفاع ضغط الدم والذبحة الصدرية.</p>
+                            <div class="examples-grid">
+                                <div class="example-card">
+                                    <div class="example-name">البروبرانولول</div>
+                                    <div class="example-formula">C₁₆H₂₁NO₂</div>
+                                    <div class="example-use">خافض ضغط الدم</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="drug-class-card cns">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-brain"></i></div>
+                            <div class="card-title">أدوية الجهاز العصبي</div>
+                        </div>
+                        <div class="card-content">
+                            <p>أدوية تؤثر على الجهاز العصبي المركزي، وتشمل مضادات الاكتئاب والمهدئات.</p>
+                            <div class="examples-grid">
+                                <div class="example-card">
+                                    <div class="example-name">الديازيبام</div>
+                                    <div class="example-formula">C₁₆H₁₃ClN₂O</div>
+                                    <div class="example-use">مهدئ ومنوم</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="mechanisms" class="tab-content">
+            <div class="section">
+                <h2>آليات عمل الأدوية</h2>
+                <p>
+                    تفهم آليات عمل الأدوية أساسي في الكيمياء الصيدلانية. تعمل الأدوية من خلال التفاعل مع أهداف محددة في الجسم مثل المستقبلات، الإنزيمات، أو القنوات الأيونية لتعديل الوظيفة الفسيولوجية.
+                </p>
+                
+                <h3 style="color: #2c3e50; margin: 30px 0 20px; text-align: center">آليات العمل الرئيسية</h3>
+                
+                <div class="mechanism-steps">
+                    <div class="mechanism-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">الارتباط بالمستقبلات</div>
+                            <div class="step-description">
+                                العديد من الأدوية تعمل من خلال الارتباط بالمستقبلات على سطح الخلايا. يمكن أن تكون ناهضات (تنشط المستقبل) أو مضادات (تمنع تنشيط المستقبل).
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mechanism-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">تثبيط الإنزيمات</div>
+                            <div class="step-description">
+                                تعمل بعض الأدوية عن طريق تثبيط إنزيمات معينة، مما يمنع حدوث تفاعلات كيميائية غير مرغوبة في الجسم.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mechanism-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">التأثير على القنوات الأيونية</div>
+                            <div class="step-description">
+                                بعض الأدوية تعدل حركة الأيونات عبر أغشية الخلايا من خلال التأثير على القنوات الأيونية، مما يؤثر على إشارات الخلايا العصبية والعضلية.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mechanism-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <div class="step-title">التدخل في نقل النواقل العصبية</div>
+                            <div class="step-description">
+                                تعمل أدوية الجهاز العصبي من خلال التأثير على تركيز أو تأثير النواقل العصبية في المشابك العصبية.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">أمثلة على آليات العمل</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Drug_mechanism_examples.svg/800px-Drug_mechanism_examples.svg.png" alt="آليات عمل الأدوية" class="structure-image">
+                    <p>أمثلة توضيحية لآليات عمل الأدوية المختلفة</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="interactive" class="tab-content">
+            <div class="section">
+                <h2>تجربة تفاعلية</h2>
+                <p>
+                    استكشف عالم الأدوية من خلال هذه التجربة التفاعلية. اختر دواءً من القائمة لعرض معلومات مفصلة عنه وآلية عمله واستخداماته العلاجية.
+                </p>
+                
+                <div class="interactive-demo">
+                    <h3 class="demo-title">مستكشف الأدوية</h3>
+                    
+                    <div class="drug-selector">
+                        <button class="drug-btn active" data-drug="aspirin">الأسبرين</button>
+                        <button class="drug-btn" data-drug="penicillin">البنسلين</button>
+                        <button class="drug-btn" data-drug="insulin">الأنسولين</button>
+                        <button class="drug-btn" data-drug="morphine">المورفين</button>
+                        <button class="drug-btn" data-drug="caffeine">الكافيين</button>
+                    </div>
+                    
+                    <div class="drug-display" id="drug-display">
+                        <div class="drug-info">
+                            <div class="drug-name">الأسبرين (حمض الساليسيليك)</div>
+                            <div class="drug-formula">C₉H₈O₄</div>
+                            <div class="drug-description">
+                                الأسبرين هو أحد أكثر الأدوية استخداماً في العالم. يعمل كمضاد للالتهابات ومسكن ومخفض للحرارة. آلية عمله الرئيسية هي تثبيط إنزيم سيكلوأوكسيجيناز (COX)، مما يقلل من إنتاج البروستاجلاندينات التي تسبب الالتهاب والألم. يستخدم أيضاً بجرعات منخفضة للوقاية من النوبات القلبية والسكتات الدماغية.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">تراكيب أدوية شائعة</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Common_drugs_structures.svg/800px-Common_drugs_structures.svg.png" alt="تراكيب أدوية شائعة" class="structure-image">
+                    <p>تراكيب بعض الأدوية الشائعة واستخداماتها</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2023 موقع الكيمياء الصيدلانية | جميع الحقوق محفوظة</p>
+            <p>موقع تعليمي يهدف إلى نشر الوعي بعالم الكيمياء الصيدلانية وأهميتها</p>
+        </footer>
+    </div>
+
+    <script>
+        // تبديل التبويبات
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // إزالة الفئة النشطة من جميع التبويبات والمحتويات
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // إضافة الفئة النشطة للتبويب المحدد
+                tab.classList.add('active');
+                
+                // إظهار المحتوى المرتبط
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // التجربة التفاعلية
+        const drugData = {
+            aspirin: {
+                name: "الأسبرين (حمض الساليسيليك)",
+                formula: "C₉H₈O₄",
+                description: "الأسبرين هو أحد أكثر الأدوية استخداماً في العالم. يعمل كمضاد للالتهابات ومسكن ومخفض للحرارة. آلية عمله الرئيسية هي تثبيط إنزيم سيكلوأوكسيجيناز (COX)، مما يقلل من إنتاج البروستاجلاندينات التي تسبب الالتهاب والألم. يستخدم أيضاً بجرعات منخفضة للوقاية من النوبات القلبية والسكتات الدماغية."
+            },
+            penicillin: {
+                name: "البنسلين",
+                formula: "C₁₆H₁₈N₂O₄S",
+                description: "البنسلين هو أول مضاد حيوي تم اكتشافه. يعمل عن طريق منع تكوين جدار الخلية البكتيرية، مما يؤدي إلى موت البكتيريا. فعال بشكل خاص ضد البكتيريا موجبة الجرام. أدى اكتشافه إلى ثورة في علاج الالتهابات البكتيرية وإنقاذ ملايين الأرواح."
+            },
+            insulin: {
+                name: "الأنسولين",
+                formula: "C₂₅₄H₃₇₇N₆₅O₇₅S₆",
+                description: "الأنسولين هو هرمون بروتيني ينتجه البنكرياس وينظم مستوى السكر في الدم. يستخدم كعلاج لمرض السكري. يعمل عن طريق الارتباط بمستقبلات على سطح الخلايا لتمكينها من امتصاص الجلوكوز من الدم. يتوفر في أشكال مختلفة تعمل بسرعات مختلفة."
+            },
+            morphine: {
+                name: "المورفين",
+                formula: "C₁₇H₁₉NO₃",
+                description: "المورفين هو مسكن أفيوني قوي يستخدم لتخفيف الآلام الشديدة. يعمل عن طريق الارتباط بمستقبلات الأفيون في الدماغ والحبل الشوكي، مما يغير إدراك الألم. يعتبر من أقوى المسكنات المتاحة ولكنه يسبب الإدمان والاعتماد."
+            },
+            caffeine: {
+                name: "الكافيين",
+                formula: "C₈H₁₀N₄O₂",
+                description: "الكافيين هو منبه طبيعي يوجد في القهوة والشاي. يعمل عن طريق منع مستقبلات الأدينوزين في الدماغ، مما يزيد من اليقظة ويقلل الشعور بالتعب. له تأثيرات محفزة على الجهاز العصبي المركزي ويستخدم على نطاق واسع في المشروبات والمكملات الغذائية."
+            }
+        };
+
+        document.querySelectorAll('.drug-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // إزالة الفئة النشطة من جميع الأزرار
+                document.querySelectorAll('.drug-btn').forEach(b => b.classList.remove('active'));
+                
+                // إضافة الفئة النشطة للزر المحدد
+                btn.classList.add('active');
+                
+                // عرض معلومات الدواء المحدد
+                const drugType = btn.getAttribute('data-drug');
+                const drug = drugData[drugType];
+                
+                document.getElementById('drug-display').innerHTML = `
+                    <div class="drug-info">
+                        <div class="drug-name">${drug.name}</div>
+                        <div class="drug-formula">${drug.formula}</div>
+                        <div class="drug-description">${drug.description}</div>
+                    </div>
+                `;
+            });
+        });
+
+        // إضافة تأثيرات تفاعلية للبطاقات
+        document.querySelectorAll('.process-card, .drug-class-card, .example-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

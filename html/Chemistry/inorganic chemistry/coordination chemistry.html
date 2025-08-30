@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكيمياء التناسقية - عالم المركبات المعقدة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(90deg, #2c3e50, #3498db);
+            border-radius: 10px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .nav-tab {
+            padding: 12px 20px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0 5px;
+            transition: all 0.3s;
+            color: #555;
+        }
+
+        .nav-tab:hover {
+            background: #e9ecef;
+        }
+
+        .nav-tab.active {
+            background: #3498db;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: #3498db;
+            border-radius: 2px;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .concept-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: #3498db;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-left: 15px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+        }
+
+        .central .card-icon { background: #e74c3c; }
+        .ligand .card-icon { background: #3498db; }
+        .coordination .card-icon { background: #2ecc71; }
+        .oxidation .card-icon { background: #f39c12; }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .card-content {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .type-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .type-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .type-name {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .type-formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            color: #3498db;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .type-description {
+            font-size: 0.95rem;
+            color: #666;
+            text-align: center;
+        }
+
+        .nomenclature-section {
+            margin-top: 30px;
+        }
+
+        .nomenclature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .nomenclature-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nomenclature-icon {
+            margin-left: 10px;
+            color: #e74c3c;
+        }
+
+        .nomenclature-example {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .isomerism-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .isomerism-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .isomerism-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .isomerism-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .isomerism-description {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .theories-section {
+            margin-top: 30px;
+        }
+
+        .theory-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .theory-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .theory-icon {
+            margin-left: 10px;
+            color: #3498db;
+        }
+
+        .theory-content {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .application-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .application-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .application-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+
+        .application-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .application-description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .molecule-structure {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .structure-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .structure-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .interactive-demo {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            color: white;
+            text-align: center;
+        }
+
+        .demo-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .compound-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .compound-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .compound-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .compound-btn.active {
+            background: white;
+            color: #667eea;
+        }
+
+        .compound-display {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            color: #333;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .compound-info {
+            margin-top: 20px;
+        }
+
+        .compound-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .compound-formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .compound-description {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .geometry-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .geometry-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .geometry-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .geometry-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .geometry-coordination {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .geometry-description {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .nav-tab {
+                margin: 5px 0;
+                border-radius: 10px;
+            }
+            
+            .concepts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .types-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .isomerism-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .applications-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .geometry-types {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>الكيمياء التناسقية</h1>
+            <p class="subtitle">عالم المركبات التناسقية والتركيبات المعقدة</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-tab="introduction">مقدمة</button>
+            <button class="nav-tab" data-tab="concepts">المفاهيم الأساسية</button>
+            <button class="nav-tab" data-tab="types">أنواع المركبات</button>
+            <button class="nav-tab" data-tab="nomenclature">التسمية</button>
+            <button class="nav-tab" data-tab="isomerism">التشابه</button>
+            <button class="nav-tab" data-tab="theories">نظريات الرابطة</button>
+            <button class="nav-tab" data-tab="applications">التطبيقات</button>
+            <button class="nav-tab" data-tab="interactive">تجربة تفاعلية</button>
+        </div>
+
+        <div id="introduction" class="tab-content active">
+            <div class="section">
+                <h2>ما هي الكيمياء التناسقية؟</h2>
+                <p>
+                    الكيمياء التناسقية هي فرع من الكيمياء يدرس المركبات التناسقية، وهي مركبات تحتوي على ذرة مركزية (عادة فلز) مرتبطة بجزيئات أو أيونات أخرى تسمى الليجاندات عبر روابط تناسقية. هذه الروابط تشكل ما يعرف بالمجمع التناسقي.
+                </p>
+                <p>
+                    تعتبر الكيمياء التناسقية مجالاً مهماً يربط بين الكيمياء العضوية وغير العضوية، وتلعب دوراً حيوياً في العديد من العمليات البيولوجية والصناعية. من الهيموجلوبين في الدم إلى الإنزيمات والفيتامينات، ومن المحفزات الصناعية إلى الأصباغ، نجد المركبات التناسقية في كل مكان حولنا.
+                </p>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">مثال على المركب التناسقي</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Hexamminecobalt%28III%29_chloride_3D_balls.png/320px-Hexamminecobalt%28III%29_chloride_3D_balls.png" alt="مركب تناسقي" class="structure-image">
+                    <p>مركب هكسا أمين كوبالت (III) كلورايد كمثال على المركبات التناسقية</p>
+                </div>
+                
+                <p>
+                    بدأت الكيمياء التناسقية مع اكتشاف ألفرد فيرنر في أواخر القرن التاسع عشر، حيث لاحظ أن بعض مركبات الكوبالت لها خصائص مختلفة رغم تشابهها التركيبي. أدى هذا الاكتشاف إلى ثورة في فهم الترابط الكيميائي وفتح الباب أمام تطوير العديد من التطبيقات العملية.
+                </p>
+            </div>
+        </div>
+
+        <div id="concepts" class="tab-content">
+            <div class="section">
+                <h2>المفاهيم الأساسية</h2>
+                <div class="concepts-grid">
+                    <div class="concept-card central">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-atom"></i></div>
+                            <div class="card-title">الذرة المركزية</div>
+                        </div>
+                        <div class="card-content">
+                            <p>هي الذرة المعدنية المركزية في المركب التناسقي. عادة ما تكون فلز انتقالي، ولكن يمكن أن تكون أيضاً فلز قلوي أو قلوي ترابي.</p>
+                            <div class="properties-list">
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>تقبل أزواج إلكترونات من الليجاندات</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>تحدد عدد التناسق للمركب</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>تكون في حالة أكسدة موجبة</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="concept-card ligand">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-link"></i></div>
+                            <div class="card-title">الليجاندات</div>
+                        </div>
+                        <div class="card-content">
+                            <p>هي الجزيئات أو الأيونات المرتبطة بالذرة المركزية. يمكن أن تكون حيادية أو سالبة الشحنة.</p>
+                            <div class="properties-list">
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>تتبرع بقاعدة HSAB (صلبة-لينة)</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>تحدد خصائص المركب التناسقي</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>يمكن أن تكون أحادية أو متعددة السن</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="concept-card coordination">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-project-diagram"></i></div>
+                            <div class="card-title">عدد التناسق</div>
+                        </div>
+                        <div class="card-content">
+                            <p>هو عدد الليجاندات المرتبطة مباشرة بالذرة المركزية. يحدد الهندسة الجزيئية للمركب.</p>
+                            <div class="properties-list">
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>يعتمد على حجم وشحنة الذرة المركزية</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>الأعداد الشائعة: 2, 4, 6</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>يحدد الشكل الهندسي للمركب</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="concept-card oxidation">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-bolt"></i></div>
+                            <div class="card-title">حالة الأكسدة</div>
+                        </div>
+                        <div class="card-content">
+                            <p>هي الشحنة الكهربائية الافتراضية للذرة المركزية إذا كانت جميع الروابط أيونية.</p>
+                            <div class="properties-list">
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>تحدد ثبات المركب التناسقي</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>تؤثر على الخصائص المغناطيسية</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>تساعد في تحديد التسمية الصحيحة</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">الهندسة الجزيئية حسب عدد التناسق</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Coordination_geometries.svg/600px-Coordination_geometries.svg.png" alt="الهندسة الجزيئية" class="structure-image">
+                    <p>الهندسة الجزيئية للمركبات التناسقية حسب عدد التناسق</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="types" class="tab-content">
+            <div class="section">
+                <h2>أنواع المركبات التناسقية</h2>
+                <div class="types-grid">
+                    <div class="type-card">
+                        <div class="type-name">المركبات التناسقية الكاتيونية</div>
+                        <div class="type-formula">[Co(NH₃)₆]³⁺</div>
+                        <div class="type-description">تحمل شحنة موجبة وتحتوي على ذرة مركزية موجبة الشحنة</div>
+                    </div>
+                    
+                    <div class="type-card">
+                        <div class="type-name">المركبات التناسقية الأنيونية</div>
+                        <div class="type-formula">[Fe(CN)₆]⁴⁻</div>
+                        <div class="type-description">تحمل شحنة سالبة وتحتوي على ذرة مركزية موجبة الشحنة</div>
+                    </div>
+                    
+                    <div class="type-card">
+                        <div class="type-name">المركبات التناسقية المحايدة</div>
+                        <div class="type-formula">[Ni(CO)₄]</div>
+                        <div class="type-description">لا تحمل شحنة كهربائية صافية</div>
+                    </div>
+                    
+                    <div class="type-card">
+                        <div class="type-name">المركبات الكيلاتية</div>
+                        <div class="type-formula">[Ca(EDTA)]²⁻</div>
+                        <div class="type-description">تحتوي على ليجاندات متعددة السن تشكل حلقات</div>
+                    </div>
+                    
+                    <div class="type-card">
+                        <div class="type-name">مركبات الساندويتش</div>
+                        <div class="type-formula">[(C₅H₅)₂Fe]</div>
+                        <div class="type-description">ذرة مركزية بين حلقتين من الليجاندات العضوية</div>
+                    </div>
+                    
+                    <div class="type-card">
+                        <div class="type-name">مركبات العناقيد</div>
+                        <div class="type-formula">[Re₂Cl₈]²⁻</div>
+                        <div class="type-description">تحتوي على رابطة معدن-معدن مباشرة</div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">أمثلة على أنواع المركبات التناسقية</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Coordination_compound_types.svg/600px-Coordination_compound_types.svg.png" alt="أنواع المركبات التناسقية" class="structure-image">
+                    <p>تراكيب مختلفة لأنواع المركبات التناسقية</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="nomenclature" class="tab-content">
+            <div class="section">
+                <h2>تسمية المركبات التناسقية</h2>
+                <p>
+                    تتبع تسمية المركبات التناسقية قواعد محددة وضعتها IUPAC (الاتحاد الدولي للكيمياء البحتة والتطبيقية). تعتمد التسمية على ترتيب الليجاندات ألفائياً مع ذكر عدد التناسق وحالة أكسدة الذرة المركزية.
+                </p>
+                
+                <div class="nomenclature-section">
+                    <div class="nomenclature-card">
+                        <div class="nomenclature-title">
+                            <i class="fas fa-list-ol nomenclature-icon"></i>
+                            قواعد التسمية الأساسية
+                        </div>
+                        <div class="nomenclature-example">
+                            1. ذكر الليجاندات ألفائياً (قبل الليجاندات العضوية)<br>
+                            2. استخدام بادئات للأعداد: di, tri, tetra, penta, hexa<br>
+                            3. ذكر الذرة المركزية مع حالة أكسدتها بين قوسين<br>
+                            4. ذكر الشحنة الكلية للمركب إذا كانت موجبة أو سالبة
+                        </div>
+                    </div>
+                    
+                    <div class="nomenclature-card">
+                        <div class="nomenclature-title">
+                            <i class="fas fa-flask nomenclature-icon"></i>
+                            أمثلة عملية
+                        </div>
+                        <div class="nomenclature-example">
+                            [Co(NH₃)₆]Cl₃ → Hexaamminecobalt(III) chloride<br>
+                            K₄[Fe(CN)₆] → Potassium hexacyanoferrate(II)<br>
+                            [Ni(CO)₄] → Tetracarbonylnickel(0)
+                        </div>
+                    </div>
+                    
+                    <div class="nomenclature-card">
+                        <div class="nomenclature-title">
+                            <i class="fas fa-exclamation-triangle nomenclature-icon"></i>
+                            حالات خاصة
+                        </div>
+                        <div class="nomenclature-example">
+                            - الليجاندات العضوية تسمى قبل الليجاندات غير العضوية<br>
+                            - الليجاندات السالبة تنتهي بـ -o<br>
+                            - الماء يسمى aqua، الأمونيا تسمى ammine<br>
+                            - المركبات الكيلاتية تذكر اسم الليجاند الكيلاتي
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">مخطط تسمية المركبات التناسقية</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Coordination_nomenclature_flowchart.svg/600px-Coordination_nomenclature_flowchart.svg.png" alt="مخطط التسمية" class="structure-image">
+                    <p>خطوات تسمية المركبات التناسقية حسب قواعد IUPAC</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="isomerism" class="tab-content">
+            <div class="section">
+                <h2>التشابه في المركبات التناسقية</h2>
+                <p>
+                    التشابه (Isomerism) في المركبات التناسقية هو ظاهرة وجود مركبات لها نفس الصيغة الكيميائية ولكنها تختلف في الترتيب الفراغي للذرات أو في توزيع الإلكترونات. هذا يؤدي إلى اختلاف في الخصائص الفيزيائية والكيميائية.
+                </p>
+                
+                <div class="isomerism-grid">
+                    <div class="isomerism-card">
+                        <div class="isomerism-name">التشابه الهيكلي</div>
+                        <div class="isomerism-description">
+                            اختلاف في ترتيب الليجاندات حول الذرة المركزية
+                        </div>
+                    </div>
+                    
+                    <div class="isomerism-card">
+                        <div class="isomerism-name">التشابه الفراغي</div>
+                        <div class="isomerism-description">
+                            اختلاف في الترتيب الفراغي للذرات دون تغيير الروابط
+                        </div>
+                    </div>
+                    
+                    <div class="isomerism-card">
+                        <div class="isomerism-name">التشابه الضوئي</div>
+                        <div class="isomerism-description">
+                            اختلاف في توزيع الإلكترونات d في المدارات
+                        </div>
+                    </div>
+                    
+                    <div class="isomerism-card">
+                        <div class="isomerism-name">التشابه الترابطي</div>
+                        <div class="isomerism-description">
+                            اختلاف في نوع الروابط بين الذرات المركزية والليجاندات
+                        </div>
+                    </div>
+                    
+                    <div class="isomerism-card">
+                        <div class="isomerism-name">التشابه التناسقي</div>
+                        <div class="isomerism-description">
+                            اختلاف في الذرة المركزية مع نفس الليجاندات
+                        </div>
+                    </div>
+                    
+                    <div class="isomerism-card">
+                        <div class="isomerism-name">التشابه الأيوني</div>
+                        <div class="isomerism-description">
+                            اختلاف في توزيع الأيونات داخل وخارج المجمع التناسقي
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">أمثلة على التشابه</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Coordination_isomerism_examples.svg/600px-Coordination_isomerism_examples.svg.png" alt="أمثلة التشابه" class="structure-image">
+                    <p>أمثلة توضيحية لأنواع التشابه في المركبات التناسقية</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="theories" class="tab-content">
+            <div class="section">
+                <h2>نظريات الرابطة في المركبات التناسقية</h2>
+                <p>
+                    تم تطوير عدة نظريات لفهم طبيعة الروابط في المركبات التناسقية. كل نظرية تقدم منظوراً مختلفاً لشرح الخصائص المختلفة لهذه المركبات.
+                </p>
+                
+                <div class="theories-section">
+                    <div class="theory-card">
+                        <div class="theory-title">
+                            <i class="fas fa-atom theory-icon"></i>
+                            نظرية رابطة التكافؤ (VB)
+                        </div>
+                        <div class="theory-content">
+                            <p>تفترض هذه النظرية أن الروابط التناسقية تتكون من تداخل مدارات ذرية للذرة المركزية مع مدارات الليجاندات. تستخدم المدارات d, s, p في التهجين لتكوين مدارات تهجينية متكافئة الطاقة.</p>
+                            <p><strong>المزايا:</strong> تشرح الهندسة الجزيئية والخصائص المغناطيسية</p>
+                            <p><strong>العيوب:</strong> لا تشرح لون المركبات التناسقية</p>
+                        </div>
+                    </div>
+                    
+                    <div class="theory-card">
+                        <div class="theory-title">
+                            <i class="fas fa-project-diagram theory-icon"></i>
+                            نظرية مجال التكافؤ البلوري (CFT)
+                        </div>
+                        <div class="theory-content">
+                            <p>تفترض أن الليجاندات تعامل كمجالات كهربائية سالبة الشحنة تؤثر على مدارات d للذرة المركزية. هذا يؤدي إلى انقسام مدارات d إلى مجموعتين: t₂g وeg.</p>
+                            <p><strong>المزايا:</strong> تشرح اللون والخصائص المغناطيسية والاستقرار النسبي</p>
+                            <p><strong>العيوب:</strong> تبسيط مفرط، لا تأخذ في الاعتبار الطبيعة التشاركية للروابط</p>
+                        </div>
+                    </div>
+                    
+                    <div class="theory-card">
+                        <div class="theory-title">
+                            <i class="fas fa-wave-square theory-icon"></i>
+                            نظرية المدارات الجزيئية (MO)
+                        </div>
+                        <div class="theory-content">
+                            <p>تعتبر هذه النظرية أن المدارات الجزيئية تتكون من تركيب خطي لمجموعات المدارات الذرية للذرة المركزية والليجاندات. توفر صورة أكثر دقة للروابط.</p>
+                            <p><strong>المزايا:</strong> تشرح جميع خصائص المركبات التناسقية بشكل شامل</p>
+                            <p><strong>العيوب:</strong> معقدة رياضياً وتتطلب حسابات معقدة</p>
+                        </div>
+                    </div>
+                    
+                    <div class="theory-card">
+                        <div class="theory-title">
+                            <i class="fas fa-balance-scale theory-icon"></i>
+                            نظرية الزوج الإلكتروني (LFT)
+                        </div>
+                        <div class="theory-content">
+                            <p>توسع لنظرية CFT لتأخذ في الاعتبار الطبيعة التشاركية للروابط. تفسر التفاعل بين المدارات d للذرة المركزية ومدارات الليجاندات بشكل أفضل.</p>
+                            <p><strong>المزايا:</strong> تجمع بين مزايا CFT وVB</p>
+                            <p><strong>العيوب:</strong> لا تزال تبسيطاً لبعض الجوانب المعقدة</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">مقارنة بين النظريات</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Coordination_bonding_theories_comparison.svg/600px-Coordination_bonding_theories_comparison.svg.png" alt="مقارنة النظريات" class="structure-image">
+                    <p>مقارنة بين النظريات المختلفة لشرح الروابط التناسقية</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="applications" class="tab-content">
+            <div class="section">
+                <h2>تطبيقات الكيمياء التناسقية</h2>
+                <p>
+                    تلعب المركبات التناسقية دوراً حيوياً في العديد من المجالات العلمية والصناعية. من الطب إلى الصناعة، ومن الزراعة إلى البيئة، نجد تطبيقات عديدة لهذه المركبات المدهشة.
+                </p>
+                
+                <div class="applications-grid">
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-heartbeat"></i></div>
+                        <div class="application-title">التطبيقات الطبية</div>
+                        <div class="application-description">
+                            تستخدم المركبات التناسقية في العلاج الكيميائي للسرطان (مثل سيسبلاتين)، في التصوير الطبي (مركبات الجادولينيوم)، وفي علاج فقر الدم (مركبات الحديد).
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-industry"></i></div>
+                        <div class="application-title">الصناعة الكيميائية</div>
+                        <div class="application-description">
+                            تستخدم كمحفزات في تفاعلات هابر (حديد)، هابر-بوش (حديد وموليبدينوم)، وفي صناعة البلاستيك (مركبات الزركونيوم والتيتانيوم).
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-tint"></i>
+                        <div class="application-title">تحليل المياه</div>
+                        <div class="application-description">
+                            تستخدم في إزالة العناصر الثقيلة من المياه باستخدام الكيلات مثل EDTA، وفي تحليل العناصر النادرة باستخدام مركبات التناسقية المعقدة.
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-paint-brush"></i>
+                        <div class="application-title">الأصباغ والطلاء</div>
+                        <div class="application-description">
+                            تستخدم مركبات الكروم والكوبالت والنيكل في صناعة الأصباغ والطلاء بسبب ألوانها الزاهية وثباتها العالي.
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-seedling"></i></div>
+                        <div class="application-title">الزراعة</div>
+                        <div class="application-description">
+                            تستخدم في الأسمدة الدقيقة لتوفير العناصر النادرة للنباتات، وفي مبيدات الآفات الحاوية على معادن انتقالية.
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-microscope"></i>
+                        <div class="application-title">البحث العلمي</div>
+                        <div class="application-description">
+                            تستخدم في تطوير مواد جديدة، في دراسة التفاعلات الحفزية، وفي تطوير تقنيات التخزين والطاقة المتجددة.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">تطبيقات متقدمة</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Coordination_chemistry_applications.svg/600px-Coordination_chemistry_applications.svg.png" alt="تطبيقات متقدمة" class="structure-image">
+                    <p>التطبيقات المتقدمة للكيمياء التناسقية في التكنولوجيا الحديثة</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="interactive" class="tab-content">
+            <div class="section">
+                <h2>تجربة تفاعلية</h2>
+                <p>
+                    استكشف عالم المركبات التناسقية من خلال هذه التجربة التفاعلية. اختر مركباً تناسقياً من القائمة لعرض معلومات مفصلة عنه وخصائصه وتطبيقاته.
+                </p>
+                
+                <div class="interactive-demo">
+                    <h3 class="demo-title">مستكشف المركبات التناسقية</h3>
+                    
+                    <div class="compound-selector">
+                        <button class="compound-btn active" data-compound="hemoglobin">الهيموجلوبين</button>
+                        <button class="compound-btn" data-compound="chlorophyll">الكلوروفيل</button>
+                        <button class="compound-btn" data-compound="cisplatin">سيسبلاتين</button>
+                        <button class="compound-btn" data-compound="vitaminb12">فيتامين B12</button>
+                        <button class="compound-btn" data-compound="ferrocene">فيروسين</button>
+                    </div>
+                    
+                    <div class="compound-display" id="compound-display">
+                        <div class="compound-info">
+                            <div class="compound-name">الهيموجلوبين</div>
+                            <div class="compound-formula">الصيغة: C₂₉₅₂H₄₆₄FeN₄O₄</div>
+                            <div class="compound-description">
+                                الهيموجلوبين هو بروتين تناسقي موجود في خلايا الدم الحمراء مسؤول عن نقل الأكسجين من الرئتين إلى الأنسجة. يحتوي على ذرة حديد مركزية (Fe²⁺) مرتبطة بمجموعة هيم وأربعة سلاسل بروتينية. يغير الحديد تناسقه من 6 إلى 5 عند ربط الأكسجين، مما يغير لونه من الأحمر القاتم إلى الأحمر الفاتح.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">الهندسة الجزيئية للمركبات التناسقية</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Common_coordination_geometries.svg/600px-Common_coordination_geometries.svg.png" alt="الهندسة الجزيئية" class="structure-image">
+                    <p>الهندسة الجزيئية الشائعة للمركبات التناسقية</p>
+                </div>
+                
+                <div class="geometry-types">
+                    <div class="geometry-card">
+                        <div class="geometry-name">خطي</div>
+                        <div class="geometry-coordination">التناسق: 2</div>
+                        <div class="geometry-description">زاوية رابطة 180°</div>
+                    </div>
+                    
+                    <div class="geometry-card">
+                        <div class="geometry-name">مربع مستوي</div>
+                        <div class="geometry-coordination">التناسق: 4</div>
+                        <div class="geometry-description">زاوية رابطة 90°</div>
+                    </div>
+                    
+                    <div class="geometry-card">
+                        <div class="geometry-name">رباعي السطوح</div>
+                        <div class="geometry-coordination">التناسق: 4</div>
+                        <div class="geometry-description">زاوية رابطة 109.5°</div>
+                    </div>
+                    
+                    <div class="geometry-card">
+                        <div class="geometry-name">ثماني السطوح</div>
+                        <div class="geometry-coordination">التناسق: 6</div>
+                        <div class="geometry-description">زاوية رابطة 90°</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2023 موقع الكيمياء التناسقية | جميع الحقوق محفوظة</p>
+            <p>موقع تعليمي يهدف إلى نشر الوعي بعالم الكيمياء التناسقية وأهميتها</p>
+        </footer>
+    </div>
+
+    <script>
+        // تبديل التبويبات
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // إزالة الفئة النشطة من جميع التبويبات والمحتويات
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // إضافة الفئة النشطة للتبويب المحدد
+                tab.classList.add('active');
+                
+                // إظهار المحتوى المرتبط
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // التجربة التفاعلية
+        const compoundData = {
+            hemoglobin: {
+                name: "الهيموجلوبين",
+                formula: "الصيغة: C₂₉₅₂H₄₆₄FeN₄O₄",
+                description: "الهيموجلوبين هو بروتين تناسقي موجود في خلايا الدم الحمراء مسؤول عن نقل الأكسجين من الرئتين إلى الأنسجة. يحتوي على ذرة حديد مركزية (Fe²⁺) مرتبطة بمجموعة هيم وأربعة سلاسل بروتينية. يغير الحديد تناسقه من 6 إلى 5 عند ربط الأكسجين، مما يغير لونه من الأحمر القاتم إلى الأحمر الفاتح."
+            },
+            chlorophyll: {
+                name: "الكلوروفيل",
+                formula: "الصيغة: C₅₅H₇₂MgN₄O₅",
+                description: "الكلوروفيل هو صبغة خضراء تناسقية مسؤولة عن عملية البناء الضوئي في النباتات. يحتوي على ذرة مغنيسيوم مركزية مرتبطة بحلقة بورفيرين. يمتص الضوء في المنطقة الزرقاء والحمراء من الطيف المرئي وينقل الطاقة لإنتاج الجلوكوز والأكسجين."
+            },
+            cisplatin: {
+                name: "سيسبلاتين",
+                formula: "الصيغة: [Pt(NH₃)₂Cl₂]",
+                description: "سيسبلاتين هو مركب تناسقي بلاتيني يستخدم في علاج السرطان. يعمل عن طريق الارتباط بـ DNA ومنع انقسام الخلايا السرطانية. يتميز بوجود تشابه هيكلي حيث تكون مجموعات الأمونيا على نفس الجانب من ذرة البلاتين، وهو أمر ضروري لنشاطه المضاد للسرطان."
+            },
+            vitaminb12: {
+                name: "فيتامين B12",
+                formula: "الصيغة: C₆₃H₈₈CoN₁₄O₁₄P",
+                description: "فيتامين B12 هو فيتامين تناسقي يحتوي على ذرة كوبالت مركزية مرتبطة بحلقة كورين. ضروري لإنتاج خلايا الدم الحمراء ووظيفة الجهاز العصبي. هو الفيتامين الوحيد الذي يحتوي على عنصر معدني في تركيبه."
+            },
+            ferrocene: {
+                name: "فيروسين",
+                formula: "الصيغة: [Fe(C₅H₅)₂]",
+                description: "فيروسين هو مركب عضوي فلزي من نوع الساندويتش. يحتوي على ذرة حديد بين حلقتين من السيكلوبنتادينيل. يعتبر من أوائل المركبات العضوية الفلزية المكتشفة وله أهمية تاريخية في تطوير الكيمياء العضوية الفلزية."
+            }
+        };
+
+        document.querySelectorAll('.compound-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // إزالة الفئة النشطة من جميع الأزرار
+                document.querySelectorAll('.compound-btn').forEach(b => b.classList.remove('active'));
+                
+                // إضافة الفئة النشطة للزر المحدد
+                btn.classList.add('active');
+                
+                // عرض معلومات المركب المحدد
+                const compoundType = btn.getAttribute('data-compound');
+                const compound = compoundData[compoundType];
+                
+                document.getElementById('compound-display').innerHTML = `
+                    <div class="compound-info">
+                        <div class="compound-name">${compound.name}</div>
+                        <div class="compound-formula">${compound.formula}</div>
+                        <div class="compound-description">${compound.description}</div>
+                    </div>
+                `;
+            });
+        });
+
+        // إضافة تأثيرات تفاعلية للبطاقات
+        document.querySelectorAll('.concept-card, .type-card, .application-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكيمياء الصلبة - عالم المواد الصلبة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(90deg, #2c3e50, #3498db);
+            border-radius: 10px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .nav-tab {
+            padding: 12px 20px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0 5px;
+            transition: all 0.3s;
+            color: #555;
+        }
+
+        .nav-tab:hover {
+            background: #e9ecef;
+        }
+
+        .nav-tab.active {
+            background: #3498db;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: #3498db;
+            border-radius: 2px;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .crystal-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .crystal-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .crystal-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: #3498db;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-left: 15px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+        }
+
+        .cubic .card-icon { background: #e74c3c; }
+        .tetragonal .card-icon { background: #3498db; }
+        .orthorhombic .card-icon { background: #2ecc71; }
+        .hexagonal .card-icon { background: #f39c12; }
+        .monoclinic .card-icon { background: #9b59b6; }
+        .triclinic .card-icon { background: #1abc9c; }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .card-content {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .property-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .property-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .property-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+
+        .property-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .property-description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .bonding-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .bonding-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .bonding-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .bonding-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .bonding-description {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .defects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .defect-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .defect-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .defect-name {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .defect-description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .application-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .application-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .application-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+
+        .application-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .application-description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .molecule-structure {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .structure-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .structure-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .interactive-demo {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            color: white;
+            text-align: center;
+        }
+
+        .demo-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .crystal-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .crystal-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .crystal-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .crystal-btn.active {
+            background: white;
+            color: #667eea;
+        }
+
+        .crystal-display {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            color: #333;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .crystal-info {
+            margin-top: 20px;
+        }
+
+        .crystal-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .crystal-formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .crystal-description {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .unit-cell {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .unit-cell-title {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .unit-cell-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .unit-cell-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .unit-cell-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .unit-cell-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .unit-cell-description {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .nav-tab {
+                margin: 5px 0;
+                border-radius: 10px;
+            }
+            
+            .crystal-types-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .bonding-types {
+                grid-template-columns: 1fr;
+            }
+            
+            .defects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .applications-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .unit-cell-types {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>الكيمياء الصلبة</h1>
+            <p class="subtitle">عالم المواد الصلبة وبنيتها البلورية</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-tab="introduction">مقدمة</button>
+            <button class="nav-tab" data-tab="structures">البنى البلورية</button>
+            <button class="nav-tab" data-tab="properties">الخصائص</button>
+            <button class="nav-tab" data-tab="bonding">الروابط</button>
+            <button class="nav-tab" data-tab="defects">العيوب البلورية</button>
+            <button class="nav-tab" data-tab="applications">التطبيقات</button>
+            <button class="nav-tab" data-tab="interactive">تجربة تفاعلية</button>
+        </div>
+
+        <div id="introduction" class="tab-content active">
+            <div class="section">
+                <h2>ما هي الكيمياء الصلبة؟</h2>
+                <p>
+                    الكيمياء الصلبة هي فرع من الكيمياء يدرس تركيب وخصائص وتفاعلات المواد في الحالة الصلبة. تتميز المواد الصلبة بترتيب ذراتها المنتظم وبنيتها البلورية التي تمنحها خصائص فريدة تختلف عن المواد في الحالات الأخرى (غازية وسائلة).
+                </p>
+                <p>
+                    تعتبر الكيمياء الصلبة مجالاً متعدد التخصصات يجمع بين الكيمياء والفيزياء وهندسة المواد. تلعب دوراً حيوياً في تطوير المواد الجديدة وتحسين المواد الموجودة للاستخدامات المختلفة في التكنولوجيا الحديثة.
+                </p>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">أهمية الكيمياء الصلبة</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Solid_state_chemistry_overview.svg/600px-Solid_state_chemistry_overview.svg.png" alt="نظرة عامة على الكيمياء الصلبة" class="structure-image">
+                    <p>نظرة عامة على مجالات الكيمياء الصلبة وتطبيقاتها</p>
+                </div>
+                
+                <p>
+                    تشمل دراسات الكيمياء الصلبة فهم البنى البلورية، الخصائص الإلكترونية، الخصائص الميكانيكية، والتفاعلات السطحية. هذه الدراسات أساسية لتطوير مواد جديدة مثل أشباه الموصلات، المواد المغناطيسية، المواد الفائقة، والخزائن.
+                </p>
+            </div>
+        </div>
+
+        <div id="structures" class="tab-content">
+            <div class="section">
+                <h2>البنى البلورية</h2>
+                <p>
+                    البنى البلورية هي الترتيب المنتظم للذرات أو الأيونات أو الجزيئات في المادة الصلبة. يحدد هذا الترتيب خصائص المادة وسلوكها. توجد سبعة أنظمة بلورية أساسية تصنف جميع المواد البلورية المعروفة.
+                </p>
+                
+                <div class="crystal-types-grid">
+                    <div class="crystal-card cubic">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-cube"></i></div>
+                            <div class="card-title">النظام المكعب</div>
+                        </div>
+                        <div class="card-content">
+                            <p>يتميز بوجود ثلاثة محاور متساوية الطول وزوايا قائمة بينها.</p>
+                            <div class="properties-list">
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>أعلى درجة من التماثل</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>أمثلة: النحاس، الذهب، الفضة</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="crystal-card tetragonal">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-cube"></i></div>
+                            <div class="card-title">النظام الرباعي</div>
+                        </div>
+                        <div class="card-content">
+                            <p>محوران متساويان والثالث مختلف، جميع الزوايا قائمة.</p>
+                            <div class="properties-list">
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>شبه مكعب مع امتداد في اتجاه واحد</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>أمثلة: التيتانيوم، القصدير، الزركونيوم</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="crystal-card orthorhombic">
+                        <div class="card-header">
+                            <div class="card-icon"><i><i class="fas fa-cube"></i></div>
+                            <div class="card-title">النظام المائل</div>
+                        </div>
+                        <div class="card-content">
+                            <p>ثلاثة محاور مختلفة الطول، جميع الزوايا قائمة.</p>
+                            <div class="properties-list">
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>شبه مكعب مع امتداد في اتجاهين</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>أمثلة: الكبريت، اليود، البوتاسيوم</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="crystal-card hexagonal">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-shapes"></i></div>
+                            <div class="card-title">النظام السداسي</div>
+                        </div>
+                        <div class="card-content">
+                            <p>محوران متساويان بزاوية 120°، والثالث عمودي عليهما.</p>
+                            <div class="properties-list">
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>بنية تشبه خلية النحل</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>أمثلة: الجرافيت، الزنك، المغنيسيوم</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="crystal-card monoclinic">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-cube"></i></div>
+                            <div class="card-title">النظام الأحادي الميل</div>
+                        </div>
+                        <div class="card-content">
+                            <p>ثلاثة محاور مختلفة الطول، زاويتان قائمتان وزاوية واحدة غير قائمة.</p>
+                            <div class="properties-list">
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>انحراف في مستوى واحد</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>أمثلة: الجبس، السكر، الصوديوم</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="crystal-card triclinic">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-cube"></i></div>
+                            <div class="card-title">النظام ثلاثي الميل</div>
+                        </div>
+                        <div class="card-content">
+                            <p>ثلاثة محاور مختلفة الطول، جميع الزوايا غير قائمة.</p>
+                            <div class="properties-list">
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>أقل درجة من التماثل</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>أمثلة: التورمالين، الكاولين، الأنابيب</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">الخلايا الوحدية البلورية</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Crystal_systems_and_bravais_lattices.svg/600px-Crystal_systems_and_bravais_lattices.svg.png" alt="الأنظمة البلورية" class="structure-image">
+                    <p>الأنظمة البلورية السبعة والشبكات البرافيه المرتبطة بها</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="properties" class="tab-content">
+            <div class="section">
+                <h2>الخصائص الفيزيائية للمواد الصلبة</h2>
+                <p>
+                    تتميز المواد الصلبة بمجموعة من الخصائص الفيزيائية التي تحدد استخداماتها وتطبيقاتها. هذه الخصائص ناتجة عن البنية البلورية وطبيعة الروابط بين الذرات.
+                </p>
+                
+                <div class="properties-grid">
+                    <div class="property-card">
+                        <div class="property-icon"><i class="fas fa-temperature-high"></i></div>
+                        <div class="property-title">نقطة الانصهار</div>
+                        <div class="property-description">
+                            درجة الحرارة التي تتحول عندها المادة الصلبة إلى سائلة. تعتمد على قوة الروابط والبنية البلورية.
+                        </div>
+                    </div>
+                    
+                    <div class="property-card">
+                        <div class="property-icon"><i class="fas fa-tint"></i></div>
+                        <div class="property-title">الكثافة</div>
+                        <div class="property-description">
+                            كتلة الوحدة الحجمية للمادة. تزداد بزيادة الكتلة الذرية وضغط التعبئة البلورية.
+                        </div>
+                    </div>
+                    
+                    <div class="property-card">
+                        <div class="property-icon"><i class="fas fa-bolt"></i></div>
+                        <div class="property-title">الموصلية الكهربائية</div>
+                        <div class="property-description">
+                            قدرة المادة على توصيل الكهرباء. تختلف بين الموصلات وأشباه الموصلات والعوازل.
+                        </div>
+                    </div>
+                    
+                    <div class="property-card">
+                        <div class="property-icon"><i class="fas fa-magnet"></i></div>
+                        <div class="property-title">الخصائص المغناطيسية</div>
+                        <div class="property-description">
+                            استجابة المادة للمجال المغناطيسي. تشمل مواد حديدية، حديدية زائدة، ومضادة للبرم.
+                        </div>
+                    </div>
+                    
+                    <div class="property-card">
+                        <div class="property-icon"><i class="fas fa-expand-arrows-alt"></i></div>
+                        <div class="property-title">المرونة والصلابة</div>
+                        <div class="property-description">
+                            قدرة المادة على التحمل تحت الضغط والانفعال. تعتمد على طبيعة الروابط والبنية البلورية.
+                        </div>
+                    </div>
+                    
+                    <div class="property-card">
+                        <div class="property-icon"><i class="fas fa-sun"></i></div>
+                        <div class="property-title">الخصائص البصرية</div>
+                        <div class="property-description">
+                            كيفية تفاعل المادة مع الضوء. تشمل الشفافية، الانعكاس، الانكسار، واللون.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">علاقة البنية بالخصائص</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Structure_property_relationship.svg/600px-Structure_property_relationship.svg.png" alt="علاقة البنية بالخصائص" class="structure-image">
+                    <p>كيف تؤثر البنية البلورية على الخصائص الفيزيائية للمواد</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="bonding" class="tab-content">
+            <div class="section">
+                <h2>أنواع الروابط في المواد الصلبة</h2>
+                <p>
+                    الروابط بين الذرات في المواد الصلبة تحدد العديد من خصائصها. تختلف أنواع الروابط من مادة لأخرى، مما يؤدي إلى تنوع هائل في خصائص وسلوك المواد الصلبة.
+                </p>
+                
+                <div class="bonding-types">
+                    <div class="bonding-card">
+                        <div class="bonding-name">الروابط الأيونية</div>
+                        <div class="bonding-description">
+                            تنشأ بين فلزات ولا فلزات عن طريق نقل الإلكترونات. تنتج مواد صلبة ذات نقاط انصهار عالية وموصلية كهربائية جيدة في الحالة المنصهرة.
+                        </div>
+                    </div>
+                    
+                    <div class="bonding-card">
+                        <div class="bonding-name">الروابط التساهمية</div>
+                        <div class="bonding-description">
+                            تنشأ عن طريق مشاركة الإلكترونات بين ذرات متشابهة. تنتج مواد مثل الماس والجرافيت ذات صلابة عالية وموصلية متغيرة.
+                        </div>
+                    </div>
+                    
+                    <div class="bonding-card">
+                        <div class="bonding-name">الروابط الفلزية</div>
+                        <div class="bonding-description">
+                            توجد في المعادن النقية حيث تكون الإلكترونات حرة الحركة في "بحر إلكتروني". تنتج مواد ذات موصلية كهربائية وحرارية عالية.
+                        </div>
+                    </div>
+                    
+                    <div class="bonding-card">
+                        <div class="bonding-name">الروابط الجزيئية</div>
+                        <div class="bonding-description">
+                            توجد في المواد الجزيئية الصلبة حيث ترتبط الجزيئات بقوى فان دير فالس. تنتج مواد مثل الجليد والبارافين ذات نقاط انصهار منخفضة.
+                        </div>
+                    </div>
+                    
+                    <div class="bonding-card">
+                        <div class="bonding-name">الروابط الهجينة</div>
+                        <div class="bonding-description">
+                            تجمع بين خصائص الروابط المختلفة. توجد في أشباه الموصلات حيث يكون هناك تداخل بين المدارات الذرية.
+                        </div>
+                    </div>
+                    
+                    <div class="bonding-card">
+                        <div class="bonding-name">الروابط الهيدروجينية</div>
+                        <div class="bonding-description">
+                            روابط ضعيفة بين جزيئات الماء. تلعب دوراً مهماً في تحديد بنية الجليد والبروتينات.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">مقارنة بين أنواع الروابط</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Bonding_types_in_solids.svg/600px-Bonding_types_in_solids.svg.png" alt="أنواع الروابط" class="structure-image">
+                    <p>مقارنة بين أنواع الروابط المختلفة في المواد الصلبة</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="defects" class="tab-content">
+            <div class="section">
+                <h2>العيوب البلورية</h2>
+                <p>
+                    العيوب البلورية هي انحرافات عن الترتيب المثالي للذرات في البنية البلورية. هذه العيوب ليست بالضرورة عيوباً في المادة، بل يمكن أن تكون مفيدة وتؤثر بشكل كبير على خصائص المادة.
+                </p>
+                
+                <div class="defects-grid">
+                    <div class="defect-card">
+                        <div class="defect-name">العيوب النقطية</div>
+                        <div class="defect-description">
+                            انحراف في مواقع الذرات الفردية. تشمل الفراغات (ذرة مفقودة)، الذرات العابرة (ذرة زائدة)، الذرات البديلة (ذرة مختلفة).
+                        </div>
+                    </div>
+                    
+                    <div class="defect-card">
+                        <div class="defect-name">العيوب الخطية</div>
+                        <div class="defect-description">
+                            أخطاء في ترتيب الذرات على طول خط واحد. تشمل حواف الانزلاق والبروشات الحلزونية. تؤثر على الخصائص الميكانيكية للمادة.
+                        </div>
+                    </div>
+                    
+                    <div class="defect-card">
+                        <div class="defect-name">العيوب السطحية</div>
+                        <div class="defect-description">
+                            انحرافات في ترتيب الذرات على سطح المادة. تشمل الدرجات، الحواف، والزوايا. مهمة في التفاعلات السطحية والتحفيز.
+                        </div>
+                    </div>
+                    
+                    <div class="defect-card">
+                        <div class="defect-name">العيوب الحجمية</div>
+                        <div class="defect-description">
+                            أخطاء ثلاثية الأبعاد في البنية البلورية. تشمل المسام والشقوق والفراغات الكبيرة. تؤثر على الكثافة والخصائص الميكانيكية.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">أهمية العيوب البلورية</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Crystal_defects_and_their_effects.svg/600px-Crystal_defects_and_their_effects.svg.png" alt="أهمية العيوب" class="structure-image">
+                    <p>كيف تؤثر العيوب البلورية على خصائص المواد</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="applications" class="tab-content">
+            <div class="section">
+                <h2>تطبيقات الكيمياء الصلبة</h2>
+                <p>
+                    تلعب الكيمياء الصلبة دوراً حيوياً في العديد من التطبيقات التكنولوجية الحديثة. من الإلكترونيات إلى الطاقة، ومن الطب إلى الفضاء، تعتمد العديد من الصناعات على فهم وتطوير المواد الصلبة.
+                </p>
+                
+                <div class="applications-grid">
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-microchip"></i></div>
+                        <div class="application-title">الإلكترونيات</div>
+                        <div class="application-description">
+                            أشباه الموصلات مثل السيليوم والجرمانيوم هي أساس صناعة الإلكترونيات. تستخدم في الرقائق، الدوائر المتكاملة، والخلايا الشمسية.
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-battery-full"></i></div>
+                        <div class="application-title">تخزين الطاقة</div>
+                        <div class="application-description">
+                            البطاريات وخلايا الوقود تعتمد على مواد صلبة مثل الليثيوم والجرافيت. تطوير مواد جديدة لزيادة كفاءة التخزين.
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-heartbeat"></i></div>
+                        <div class="application-title">التطبيقات الطبية</div>
+                        <div class="application-description">
+                            المواد الحيوية المتوافقة، السيراميك الطبي، والمواد المغناطيسية تستخدم في الأطراف الصناعية والأجهزة الطبية.
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-rocket"></i></div>
+                        <div class="application-title">الفضاء والدفاع</div>
+                        <div class="application-description">
+                            سبائك فائقة، مواد مقاومة للحرارة، ومواد مركبة تستخدم في صناعة الطائرات والمركبات الفضائية.
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-solar-panel"></i></div>
+                        <div class="application-title">الطاقة المتجددة</div>
+                        <div class="application-description">
+                            الخلايا الشمسية، توربينات الرياح، وخلايا الوقود تعتمد على مواد صلبة متقدمة لتحويل الطاقة بكفاءة.
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-cogs"></i></div>
+                        <div class="application-title">المواد المتقدمة</div>
+                        <div class="application-description">
+                            المواد النانوية، المواد الذكية، والمواد القابلة للبرمجة تمثل الجيل القادم من التكنولوجيا.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">تطبيقات متقدمة</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Advanced_materials_applications.svg/600px-Advanced_materials_applications.svg.png" alt="تطبيقات متقدمة" class="structure-image">
+                    <p>التطبيقات المتقدمة للمواد الصلبة في التكنولوجيا الحديثة</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="interactive" class="tab-content">
+            <div class="section">
+                <h2>تجربة تفاعلية</h2>
+                <p>
+                    استكشف عالم المواد الصلبة من خلال هذه التجربة التفاعلية. اختر مادة صلبة من القائمة لعرض معلومات مفصلة عن بنيتها وخصائصها وتطبيقاتها.
+                </p>
+                
+                <div class="interactive-demo">
+                    <h3 class="demo-title">مستكشف المواد الصلبة</h3>
+                    
+                    <div class="crystal-selector">
+                        <button class="crystal-btn active" data-crystal="silicon">السيليكون</button>
+                        <button class="crystal-btn" data-crystal="diamond">الماس</button>
+                        <button class="crystal-btn" data-crystal="graphite">الجرافيت</button>
+                        <button class="crystal-btn" data-crystal="nacl">ملح الطعام</button>
+                        <button class="crystal-btn" data-crystal="iron">الحديد</button>
+                    </div>
+                    
+                    <div class="crystal-display" id="crystal-display">
+                        <div class="crystal-info">
+                            <div class="crystal-name">السيليكون (Si)</div>
+                            <div class="crystal-formula">الصيغة الكيميائية: Si</div>
+                            <div class="crystal-description">
+                                السيليكون هو أشهر أشباه الموصلات وأساس صناعة الإلكترونيات الحديثة. يتميز ببنية بلورية مكعبة شبكية ماسية. يستخدم في تصنيع الرقائق الإلكترونية، الخلايا الشمسية، والدوائر المتكاملة. عند درجات حرارة الغرفة يكون موصلية متوسطة، وتزداد موصليته بارتفاع درجة الحرارة.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="unit-cell">
+                    <h3 class="unit-cell-title">الخلايا الوحدية البلورية</h3>
+                    <div class="unit-cell-types">
+                        <div class="unit-cell-card">
+                            <div class="unit-cell-name">بسيطة مكعبة</div>
+                            <div class="unit-cell-description">ذرة واحدة عند كل رأس وزاوية</div>
+                        </div>
+                        <div class="unit-cell-card">
+                            <div class="unit-cell-name">مكعبة مركزية الجسم</div>
+                            <div class="unit-cell-description">ذرة في المركز وذرات عند الرؤوس</div>
+                        </div>
+                        <div class="unit-cell-card">
+                            <div class="unit-cell-name">مكعبة مركزية الوجه</div>
+                            <div class="unit-cell-description">ذرات في مراكز الوجوه والرؤوس</div>
+                        </div>
+                        <div class="unit-cell-card">
+                            <div class="unit-cell-name">مكعبة مركزية الحافة</div>
+                            <div class="unit-cell-description">ذرات في مراكز الحواف والرؤوس</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2023 موقع الكيمياء الصلبة | جميع الحقوق محفوظة</p>
+            <p>موقع تعليمي يهدف إلى نشر الوعي بعالم الكيمياء الصلبة وأهميتها</p>
+        </footer>
+    </div>
+
+    <script>
+        // تبديل التبويبات
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // إزالة الفئة النشطة من جميع التبويبات والمحتويات
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // إضافة الفئة النشطة للتبويب المحدد
+                tab.classList.add('active');
+                
+                // إظهار المحتوى المرتبط
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // التجربة التفاعلية
+        const crystalData = {
+            silicon: {
+                name: "السيليكون (Si)",
+                formula: "الصيغة الكيميائية: Si",
+                description: "السيليكون هو أشهر أشباه الموصلات وأساس صناعة الإلكترونيات الحديثة. يتميز ببنية بلورية مكعبة شبكية ماسية. يستخدم في تصنيع الرقائق الإلكترونية، الخلايا الشمسية، والدوائر المتكاملة. عند درجات حرارة الغرفة يكون موصلية متوسطة، وتزداد موصليته بارتفاع درجة الحرارة."
+            },
+            diamond: {
+                name: "الماس (C)",
+                formula: "الصيغة الكيميائية: C",
+                description: "الماس هو أصلب المواد المعروفة وأكثرها بريقاً. يتكون من ذرات الكربون مرتبطة في بنية بلورية مكعبة. يتميز بصلابته العالية، موصلية حرارية ممتازة، وشفافية للضوء المرئي. يستخدم في الأدوات القطع، الأدوات الصناعية، والمجوهرات."
+            },
+            graphite: {
+                name: "الجرافيت (C)",
+                formula: "الصيغة الكيميائية: C",
+                description: "الجرافيت شكل من أشكال الكربون يتميز ببنية طبقية. يتميز بليونته، موصلية كهربائية جيدة في مستوى الطبقات، واستخدامه كمادة تشحيم. يستخدم في الأقلام الرصاص، الأقطاب الكهربائية، والمواد المركبة."
+            },
+            nacl: {
+                name: "ملح الطعام (NaCl)",
+                formula: "الصيغة الكيميائية: NaCl",
+                description: "ملح الطعام هو مركب أيوني يتكون من أيونات الصوديوم والكلوريد. يتميز ببنية بلورية مكعبة مركزية الوجه. يتميز بذوبانيته العالية في الماء، ونقطة انصهار عالية، واستخدامه في الطعام والحفظ."
+            },
+            iron: {
+                name: "الحديد (Fe)",
+                formula: "الصيغة الكيميائية: Fe",
+                description: "الحديد هو فلز انتقالي يستخدم على نطاق واسع في الصناعة. يتميز ببنية بلورية مكعبة مركزية الجسم عند درجة الحرارة العادية. يتميز بقوته، مرونته، وخواصه المغناطيسية. يستخدم في البناء، السيارات، والآلات."
+            }
+        };
+
+        document.querySelectorAll('.crystal-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // إزالة الفئة النشطة من جميع الأزرار
+                document.querySelectorAll('.crystal-btn').forEach(b => b.classList.remove('active'));
+                
+                // إضافة الفئة النشطة للزر المحدد
+                btn.classList.add('active');
+                
+                // عرض معلومات المادة المحددة
+                const crystalType = btn.getAttribute('data-crystal');
+                const crystal = crystalData[crystalType];
+                
+                document.getElementById('crystal-display').innerHTML = `
+                    <div class="crystal-info">
+                        <div class="crystal-name">${crystal.name}</div>
+                        <div class="crystal-formula">${crystal.formula}</div>
+                        <div class="crystal-description">${crystal.description}</div>
+                    </div>
+                `;
+            });
+        });
+
+        // إضافة تأثيرات تفاعلية للبطاقات
+        document.querySelectorAll('.crystal-card, .property-card, .application-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

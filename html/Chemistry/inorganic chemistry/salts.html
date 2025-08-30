@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأملاح - عالم المركبات الأيونية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(90deg, #2c3e50, #3498db);
+            border-radius: 10px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .nav-tab {
+            padding: 12px 20px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0 5px;
+            transition: all 0.3s;
+            color: #555;
+        }
+
+        .nav-tab:hover {
+            background: #e9ecef;
+        }
+
+        .nav-tab.active {
+            background: #3498db;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: #3498db;
+            border-radius: 2px;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .salt-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .salt-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .salt-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: #3498db;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-left: 15px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+        }
+
+        .normal .card-icon { background: #3498db; }
+        .acidic .card-icon { background: #e74c3c; }
+        .basic .card-icon { background: #2ecc71; }
+        .double .card-icon { background: #f39c12; }
+        .complex .card-icon { background: #9b59b6; }
+        .hydrated .card-icon { background: #1abc9c; }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .card-content {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .properties-list {
+            margin-top: 15px;
+        }
+
+        .property-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .property-icon {
+            font-size: 0.9rem;
+            margin-left: 10px;
+            color: #3498db;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .example-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .example-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .example-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .example-formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .example-use {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .preparation-methods {
+            margin-top: 30px;
+        }
+
+        .method-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .method-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .method-icon {
+            margin-left: 10px;
+            color: #e74c3c;
+        }
+
+        .method-equation {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+            direction: ltr;
+        }
+
+        .method-description {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .application-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .application-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .application-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+
+        .application-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .application-description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .molecule-structure {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .structure-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .structure-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .crystal-structures {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .crystal-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .crystal-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .crystal-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .crystal-description {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .interactive-demo {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            color: white;
+            text-align: center;
+        }
+
+        .demo-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .salt-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .salt-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .salt-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .salt-btn.active {
+            background: white;
+            color: #667eea;
+        }
+
+        .salt-display {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            color: #333;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .salt-info {
+            margin-top: 20px;
+        }
+
+        .salt-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .salt-formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .salt-description {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .solubility-chart {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-title {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .solubility-rules {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .rule-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .rule-icon {
+            font-size: 1.2rem;
+            margin-left: 15px;
+            color: #3498db;
+        }
+
+        .rule-text {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .nav-tab {
+                margin: 5px 0;
+                border-radius: 10px;
+            }
+            
+            .salt-types-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .applications-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .crystal-structures {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>الأملاح</h1>
+            <p class="subtitle">عالم المركبات الأيونية وتطبيقاتها المتعددة</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-tab="introduction">مقدمة</button>
+            <button class="nav-tab" data-tab="types">أنواع الأملاح</button>
+            <button class="nav-tab" data-tab="properties">الخصائص</button>
+            <button class="nav-tab" data-tab="preparation">طرق التحضير</button>
+            <button class="nav-tab" data-tab="applications">التطبيقات</button>
+            <button class="nav-tab" data-tab="solubility">الذوبانية</button>
+            <button class="nav-tab" data-tab="interactive">تجربة تفاعلية</button>
+        </div>
+
+        <div id="introduction" class="tab-content active">
+            <div class="section">
+                <h2>ما هي الأملاح؟</h2>
+                <p>
+                    الأملاح هي مركبات أيونية تتكون من اتحاد أيون موجب (كاتيون) مع أيون سالب (أنيون) عبر روابط أيونية. تتكون هذه المركبات عادة من تفاعل الأحماض مع القواعد في تفاعل يسمى تفاعل التعادل، حيث ينتج الملح والماء.
+                </p>
+                <p>
+                    تتميز الأملاح ببنيتها البلورية المنتظمة وخصائصها الفيزيائية المميزة مثل نقاط الانصهار والغليان العالية، وقدرتها على توصيل الكهرباء في الحالة المنصهرة أو عند إذابتها في الماء.
+                </p>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">بنية الملح الأيونية</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Sodium_chloride_crystal_structure.svg/600px-Sodium_chloride_crystal_structure.svg.png" alt="بنية كلوريد الصوديوم" class="structure-image">
+                    <p>بنية بلورية كلوريد الصوديوم (ملح الطعام) كمثال على الأملاح الأيونية</p>
+                </div>
+                
+                <p>
+                    تلعب الأملاح دوراً حيوياً في حياتنا اليومية وفي العمليات البيولوجية. من ملح الطعام الذي نستخدمه يومياً إلى الأملاح المعدنية الضرورية لوظائف الجسم، ومن الأسمدة الزراعية إلى المواد الصناعية المتقدمة.
+                </p>
+            </div>
+        </div>
+
+        <div id="types" class="tab-content">
+            <div class="section">
+                <h2>أنواع الأملاح</h2>
+                <div class="salt-types-grid">
+                    <div class="salt-card normal">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-cube"></i></div>
+                            <div class="card-title">الأملاح المحايدة</div>
+                        </div>
+                        <div class="card-content">
+                            <p>تتكون من تفاعل حمض قوي مع قاعدة قوية. محاليلها المائية محايدة (pH = 7).</p>
+                            <div class="properties-list">
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>لا تؤثر على درجة حموضة الماء</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>مستقرة كيميائياً</span>
+                                </div>
+                            </div>
+                            <p><strong>أمثلة:</strong> كلوريد الصوديوم (NaCl)، نترات البوتاسيوم (KNO₃)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="salt-card acidic">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-flask"></i></div>
+                            <div class="card-title">الأملاح الحمضية</div>
+                        </div>
+                        <div class="card-content">
+                            <p>تتكون من تفاعل حمض قوي مع قاعدة ضعيفة. محاليلها المائية حمضية (pH < 7).</p>
+                            <div class="properties-list">
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>تعطي محاليل حمضية عند الذوبان</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>الأنيون يتفاعل مع الماء</span>
+                                </div>
+                            </div>
+                            <p><strong>أمثلة:</strong> كلوريد الأمونيوم (NH₄Cl)، نترات الأمونيوم (NH₄NO₃)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="salt-card basic">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-vial"></i></div>
+                            <div class="card-title">الأملاح القاعدية</div>
+                        </div>
+                        <div class="card-content">
+                            <p>تتكون من تفاعل حمض ضعيف مع قاعدة قوية. محاليلها المائية قاعدية (pH > 7).</p>
+                            <div class="properties-list">
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>تعطي محاليل قاعدية عند الذوبان</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>الكاتيون يتفاعل مع الماء</span>
+                                </div>
+                            </div>
+                            <p><strong>أمثلة:</strong> أسيتات الصوديوم (CH₃COONa)، كربونات الصوديوم (Na₂CO₃)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="salt-card double">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-exchange-alt"></i></div>
+                            <div class="card-title">الأملاح المزدوجة</div>
+                        </div>
+                        <div class="card-content">
+                            <p>تحتوي على أكثر من نوع واحد من الكاتيونات أو الأنيونات.</p>
+                            <div class="properties-list">
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>تحتوي على كاتيونين أو أنيونين</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>تستخدم في تحضير أملاح أخرى</span>
+                                </div>
+                            </div>
+                            <p><strong>أمثلة:</strong> كربونات الصوديوم والبوتاسيوم (NaKCO₃)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="salt-card complex">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-atom"></i></div>
+                            <div class="card-title">الأملاح المعقدة</div>
+                        </div>
+                        <div class="card-content">
+                            <p>تحتوي على أيونات معقدة تتكون من ذرة مركزية مرتبطة بجزيئات أو أيونات أخرى.</p>
+                            <div class="properties-list">
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>تحتوي على أيونات تناسقية</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>لها خصائص فريدة</span>
+                                </div>
+                            </div>
+                            <p><strong>أمثلة:</strong> سداسي أمين النحاس (II) ([Cu(NH₃)₆]²⁺)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="salt-card hydrated">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-tint"></i></div>
+                            <div class="card-title">الأملاح المائية</div>
+                        </div>
+                        <div class="card-content">
+                            <p>تحتوي على جزيئات ماء مرتبطة في بلوراتها (ماء التبلور).</p>
+                            <div class="properties-list">
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>تحتوي على جزيئات H₂O</span>
+                                </div>
+                                <div class="property-item">
+                                    <i class="fas fa-check property-icon"></i>
+                                    <span>تتغير لونها عند فقدان الماء</span>
+                                </div>
+                            </div>
+                            <p><strong>أمثلة:</strong> كبريتات النحاس المائية (CuSO₄·5H₂O)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">تصنيف الأملاح</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Salt_classification.svg/600px-Salt_classification.svg.png" alt="تصنيف الأملاح" class="structure-image">
+                    <p>طرق تصنيف الأملاح المختلفة حسب التكوين والخصائص</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="properties" class="tab-content">
+            <div class="section">
+                <h2>خصائص الأملاح</h2>
+                <p>
+                    تتميز الأملاح بمجموعة من الخصائص الفيزيائية والكيميائية المميزة التي تجعلها فريدة بين المركبات الكيميائية. هذه الخصائص ناتجة عن طبيعة الروابط الأيونية والبنية البلورية المنتظمة.
+                </p>
+                
+                <h3 style="color: #2c3e50; margin: 30px 0 20px; text-align: center;">الخصائص الفيزيائية</h3>
+                
+                <div class="properties-list" style="margin-right: 20px;">
+                    <div class="property-item">
+                        <i class="fas fa-temperature-high property-icon"></i>
+                        <span><strong>نقاط انصهار وغليان عالية:</strong> بسبب القوة الكبيرة للروابط الأيونية</span>
+                    </div>
+                    <div class="property-item">
+                        <i class="fas fa-bolt property-icon"></i>
+                        <span><strong>موصلية كهربائية:</strong> توصل الكهرباء في الحالة المنصهرة أو عند الذوبان في الماء</span>
+                    </div>
+                    <div class="property-item">
+                        <i class="fas fa-cubes property-icon"></i>
+                        <span><strong>بنية بلورية:</strong> تتكون من شبكة أيونية منتظمة ثلاثية الأبعاد</span>
+                    </div>
+                    <div class="property-item">
+                        <i class="fas fa-hammer property-icon"></i>
+                        <span><strong>قساوة وهشاشة:</strong> صلبة ولكن هشة عند الصدمة</span>
+                    </div>
+                    <div class="property-item">
+                        <i class="fas fa-tint property-icon"></i>
+                        <span><strong>ذوبانية متغيرة:</strong> تختلف ذوبانيتها حسب نوع الأيونات ودرجة الحرارة</span>
+                    </div>
+                </div>
+                
+                <h3 style="color: #2c3e50; margin: 30px 0 20px; text-align: center;">الخصائص الكيميائية</h3>
+                
+                <div class="properties-list" style="margin-right: 20px;">
+                    <div class="property-item">
+                        <i class="fas fa-flask property-icon"></i>
+                        <span><strong>تفاعل التبادل الأيوني:</strong> تتفاعل مع أملاح أخرى لتكوين أملاح جديدة</span>
+                    </div>
+                    <div class="property-item">
+                        <i class="fas fa-vial property-icon"></i>
+                        <span><strong>تحليل كهربائي:</strong> تتحلل عند مرور تيار كهربائي إلى عناصرها الأولية</span>
+                    </div>
+                    <div class="property-item">
+                        <i class="fas fa-exchange-alt property-icon"></i>
+                        <span><strong>تفاعل مع الأحماض والقواعد:</strong> بعض الأملاح يتفاعل مع الأحماض أو القواعد</span>
+                    </div>
+                    <div class="property-item">
+                        <i class="fas fa-fire property-icon"></i>
+                        <span><strong>التحلل الحراري:</strong> بعض الأملاح تتحلل بالحرارة إلى مكوناتها</span>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">البنية البلورية للأملاح</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Crystal_lattice_types.svg/600px-Crystal_lattice_types.svg.png" alt="أنواع الشبكات البلورية" class="structure-image">
+                    <p>أنواع مختلفة من الشبكات البلورية في الأملاح</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="preparation" class="tab-content">
+            <div class="section">
+                <h2>طرق تحضير الأملاح</h2>
+                <p>
+                    يمكن تحضير الأملاح بعدة طرق مختلفة تعتمد على نوع الملح المراد تحضيره والمواد المتوفرة. تشمل هذه الطرق تفاعلات التعادل، التبادل الأيوني، والتفاعل المباشر بين المعادن والأحماض.
+                </p>
+                
+                <div class="preparation-methods">
+                    <div class="method-card">
+                        <div class="method-title">
+                            <i class="fas fa-balance-scale method-icon"></i>
+                            تفاعل التعادل
+                        </div>
+                        <p>
+                            تفاعل الحمض مع القاعدة لإنتاج الملح والماء. هذه هي الطريقة الأكثر شيوعاً لتحضير الأملاح.
+                        </p>
+                        <div class="method-equation">HCl + NaOH → NaCl + H₂O</div>
+                        <div class="method-description">
+                            تستخدم هذه الطريقة لتحضير الأملاح المحايدة مثل كلوريد الصوديوم. يمكن الحصول على الملح النقي عن طريق تبخير الماء.
+                        </div>
+                    </div>
+                    
+                    <div class="method-card">
+                        <div class="method-title">
+                            <i class="fas fa-exchange-alt method-icon"></i>
+                            تفاعل التبادل الأيوني
+                        </div>
+                        <p>
+                            تفاعل ملحين لإنتاج ملحين جديدين، أحدهما غير قابل للذوبان فيترسب.
+                        </p>
+                        <div class="method-equation">AgNO₃ + NaCl → AgCl↓ + NaNO₃</div>
+                        <div class="method-description">
+                            تستخدم هذه الطريقة لتحضير الأملاح غير القابلة للذوبان. يتم ترشيح الراسب وغسله للحصول على الملح النقي.
+                        </div>
+                    </div>
+                    
+                    <div class="method-card">
+                        <div class="method-title">
+                            <i class="fas fa-cube method-icon"></i>
+                            تفاعل المعدن مع الحمض
+                        </div>
+                        <p>
+                            تفاعل المعادن النشطة مع الأحماض لإنتاج ملح المعدن وغاز الهيدروجين.
+                        </p>
+                        <div class="method-equation">Zn + 2HCl → ZnCl₂ + H₂↑</div>
+                        <div class="method-description">
+                            تستخدم هذه الطريقة لتحضير أملاح المعادن النشطة مثل الزنك والمغنيسيوم والحديد. يجب إجراء التفاعل في مكان جيد التهوية.
+                        </div>
+                    </div>
+                    
+                    <div class="method-card">
+                        <div class="method-title">
+                            <i class="fas fa-atom method-icon"></i>
+                            تفاعل أكسيد المعدن مع الحمض
+                        </div>
+                        <p>
+                            تفاعل أكاسيد المعادن مع الأحماض لإنتاج الملح والماء.
+                        </p>
+                        <div class="method-equation">CuO + 2HCl → CuCl₂ + H₂O</div>
+                        <div class="method-description">
+                            تستخدم هذه الطريقة لتحضير أملاح المعادن غير النشطة مثل النحاس والفضة. تكون التفاعل أسرع وأكثر أماناً من التفاعل المباشر مع المعدن.
+                        </div>
+                    </div>
+                    
+                    <div class="method-card">
+                        <div class="method-title">
+                            <i class="fas fa-fire method-icon"></i>
+                            تفاعل الكربونات مع الأحماض
+                        </div>
+                        <p>
+                            تفاعل كربونات المعادن مع الأحماض لإنتاج الملح والماء وثاني أكسيد الكربون.
+                        </p>
+                        <div class="method-equation">CaCO₃ + 2HCl → CaCl₂ + H₂O + CO₂↑</div>
+                        <div class="method-description">
+                            تستخدم هذه الطريقة لتحضير أملاح الكالسيوم والمغنيسيوم. يمكن التعرف على اكتمال التفاعل بتوقف انبعاث ثاني أكسيد الكربون.
+                        </div>
+                    </div>
+                    
+                    <div class="method-card">
+                        <div class="method-title">
+                            <i class="fas fa-vial method-icon"></i>
+                            التبلير المباشر
+                        </div>
+                        <p>
+                            تفاعل المعدن مع غير المعدن مباشرة لتكوين الملح.
+                        </p>
+                        <div class="method-equation">2Na + Cl₂ → 2NaCl</div>
+                        <div class="method-description">
+                            تستخدم هذه الطريقة لتحضير أملاح الفلزات القلوية والقلوية الترابية. تكون التفاعلات عنيفة وتتطلب ظروف تحكم دقيقة.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">مخطط طرق تحضير الأملاح</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Salt_preparation_methods.svg/600px-Salt_preparation_methods.svg.png" alt="طرق تحضير الأملاح" class="structure-image">
+                    <p>ملخص طرق تحضير الأملاح المختلفة وشروط كل طريقة</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="applications" class="tab-content">
+            <div class="section">
+                <h2>تطبيقات الأملاح</h2>
+                <p>
+                    تدخل الأملاح في العديد من التطبيقات الحيوية في حياتنا اليومية وفي الصناعات المختلفة. من الطعام الذي نتناوله إلى الأدوية التي نتناولها، ومن الصناعات الكيميائية إلى الزراعة، تلعب الأملاح دوراً أساسياً لا يمكن الاستغناء عنه.
+                </p>
+                
+                <div class="applications-grid">
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-utensils"></i></div>
+                        <div class="application-title">الصناعات الغذائية</div>
+                        <div class="application-description">
+                            يستخدم ملح الطعام (NaCl) كتوابل ومادة حافظة. كما تستخدم أملاح أخرى مثل نترات الصوديوم في حفظ اللحوم، وبيكربونات الصوديوم في الخبز.
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-seedling"></i></div>
+                        <div class="application-title">الزراعة</div>
+                        <div class="application-description">
+                            الأسمدة تحتوي على أملاح ضرورية لنمو النباتات مثل نترات الأمونيوم (N)، فوسفات البوتاسيوم (P)، وكبريتات البوتاسيوم (K).
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-industry"></i></div>
+                        <div class="application-title">الصناعة الكيميائية</div>
+                        <div class="application-description">
+                            تستخدم الأملاح كمادة خام في صناعة المواد الكيميائية الأخرى مثل الصابون، الدهانات، البلاستيك، والألياف الصناعية.
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-heartbeat"></i></div>
+                        <div class="application-title">الطب والصحة</div>
+                        <div class="application-description">
+                            أملاح المعادن ضرورية لوظائف الجسم مثل كلوريد الصوديوم لتوازن السوائل، كبريتات المغنيسيوم كملين، وأملاح الكالسيوم للعظام.
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-tint"></div>
+                        <div class="application-title">معالجة المياه</div>
+                        <div class="application-description">
+                            تستخدم أملاح الألومنيوم في تنقية المياه من الشوائب، وأملاح الكلور في تعقيم المياه وقتل البكتيريا الضارة.
+                        </div>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="application-icon"><i class="fas fa-snowflake"></i></div>
+                        <div class="application-title">إزالة الجليد</div>
+                        <div class="application-description">
+                            تستخدم أملاح مثل كلوريد الكالسيوم وكلوريد الصوديوم لإذابة الجليد على الطرق خلال فصل الشتاء لتحسين السلامة المرورية.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">أمثلة تطبيقية متقدمة</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Salt_applications_industry.svg/600px-Salt_applications_industry.svg.png" alt="تطبيقات صناعية للأملاح" class="structure-image">
+                    <p>التطبيقات الصناعية المتقدمة للأملاح في التكنولوجيا الحديثة</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="solubility" class="tab-content">
+            <div class="section">
+                <h2>ذوبانية الأملاح</h2>
+                <p>
+                    تختلف ذوبانية الأملاح في الماء بشكل كبير حسب نوع الأيونات المكونة للملح. فهم قواعد الذوبانية يساعد في التنبؤ بحدوث التفاعلات الكيميائية وفصل المركبات عن بعضها.
+                </p>
+                
+                <div class="solubility-chart">
+                    <h3 class="chart-title">قواعد الذوبانية العامة</h3>
+                    
+                    <div class="solubility-rules">
+                        <div class="rule-item">
+                            <i class="fas fa-check-circle rule-icon"></i>
+                            <div class="rule-text">
+                                <strong>أملاح الصوديوم والبوتاسيوم والأمونيوم:</strong> قابلة للذوبان دائماً
+                            </div>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <i class="fas fa-check-circle rule-icon"></i>
+                            <div class="rule-text">
+                                <strong>النترات (NO₃⁻):</strong> جميع أملاح النترات قابلة للذوبان
+                            </div>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <i class="fas fa-check-circle rule-icon"></i>
+                            <div class="rule-text">
+                                <strong>الكلوريدات والبروميدات واليوديدات:</strong> قابلة للذوبان عدا أملاح الفضة والرصاص والزئبق(I)
+                            </div>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <i class="fas fa-times-circle rule-icon"></i>
+                            <div class="rule-text">
+                                <strong>الكبريتات (SO₄²⁻):</strong> غير قابلة للذوبان عدا كبريتات الباريوم والكالسيوم والمغنيسيوم
+                            </div>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <i class="fas fa-times-circle rule-icon"></i>
+                            <div class="rule-text">
+                                <strong>الكربونات والفوسفات:</strong> غير قابلة للذوبان عدا أملاح الصوديوم والبوتاسيوم والأمونيوم
+                            </div>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <i class="fas fa-times-circle rule-icon"></i>
+                            <div class="rule-text">
+                                <strong>الهيدروكسيدات (OH⁻):</strong> غير قابلة للذوبان عدا هيدروكسيدات البوتاسيوم والصوديوم والباريوم
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 style="color: #2c3e50; margin: 30px 0 20px; text-align: center;">العوامل المؤثرة على الذوبانية</h3>
+                
+                <div class="properties-list" style="margin-right: 20px;">
+                    <div class="property-item">
+                        <i class="fas fa-temperature-high property-icon"></i>
+                        <span><strong>درجة الحرارة:</strong> تزداد ذوبانية معظم الأملاح بزيادة درجة الحرارة</span>
+                    </div>
+                    <div class="property-item">
+                        <i class="fas fa-atom property-icon"></i>
+                        <span><strong>حجم الأيونات:</strong> الأملاح ذات الأيونات الصغيرة تكون أكثر ذوبانية</span>
+                    </div>
+                    <div class="property-item">
+                        <i class="fas fa-bolt property-icon"></i>
+                        <span><strong>شحنة الأيونات:</strong> الأملاح ذات الأيونات عالية الشحنة تكون أقل ذوبانية</span>
+                    </div>
+                    <div class="property-item">
+                        <i class="fas fa-vial property-icon"></i>
+                        <span><strong>طبيعة المذيب:</strong> تختلف الذوبانية باختلاف نوع المذيب</span>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">منحنى الذوبانية</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Solubility_curves.svg/600px-Solubility_curves.svg.png" alt="منحنيات الذوبانية" class="structure-image">
+                    <p>منحنيات ذوبانية بعض الأملاح الشائعة مع تغير درجة الحرارة</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="interactive" class="tab-content">
+            <div class="section">
+                <h2>تجربة تفاعلية</h2>
+                <p>
+                    استكشف عالم الأملاح من خلال هذه التجربة التفاعلية. اختر ملحاً من القائمة لعرض معلومات مفصلة عنه وخصائصه وتطبيقاته.
+                </p>
+                
+                <div class="interactive-demo">
+                    <h3 class="demo-title">مستكشف الأملاح</h3>
+                    
+                    <div class="salt-selector">
+                        <button class="salt-btn active" data-salt="nacl">كلوريد الصوديوم</button>
+                        <button class="salt-btn" data-salt="cuso4">كبريتات النحاس</button>
+                        <button class="salt-btn" data-salt="cacl2">كلوريد الكالسيوم</button>
+                        <button class="salt-btn" data-salt="nano3">نترات الصوديوم</button>
+                        <button class="salt-btn" data-salt="mgso4">كبريتات المغنيسيوم</button>
+                    </div>
+                    
+                    <div class="salt-display" id="salt-display">
+                        <div class="salt-info">
+                            <div class="salt-name">كلوريد الصوديوم (NaCl)</div>
+                            <div class="salt-formula">الصيغة الكيميائية: NaCl</div>
+                            <div class="salt-description">
+                                كلوريد الصوديوم هو الملح الأكثر شيوعاً واستخداماً في العالم. يعرف باسم ملح الطعام ويستخدم بشكل واسع في الطهي وحفظ الأطعمة. يتميز بذوبانيته العالية في الماء وطعمه المالح المميز. يلعب دوراً حيوياً في توازن السوائل في الجسم ووظيفة الأعصاب والعضلات.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="molecule-structure">
+                    <h3 class="structure-title">تراكيب بلورية لأملاح شائعة</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Common_salt_crystal_structures.svg/600px-Common_salt_crystal_structures.svg.png" alt="تراكيب بلورية" class="structure-image">
+                    <p>تراكيب بلورية لبعض الأملاح الشائعة واستخداماتها</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2023 موقع الأملاح | جميع الحقوق محفوظة</p>
+            <p>موقع تعليمي يهدف إلى نشر الوعي بعالم الأملاح وأهميتها</p>
+        </footer>
+    </div>
+
+    <script>
+        // تبديل التبويبات
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // إزالة الفئة النشطة من جميع التبويبات والمحتويات
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // إضافة الفئة النشطة للتبويب المحدد
+                tab.classList.add('active');
+                
+                // إظهار المحتوى المرتبط
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // التجربة التفاعلية
+        const saltData = {
+            nacl: {
+                name: "كلوريد الصوديوم (NaCl)",
+                formula: "الصيغة الكيميائية: NaCl",
+                description: "كلوريد الصوديوم هو الملح الأكثر شيوعاً واستخداماً في العالم. يعرف باسم ملح الطعام ويستخدم بشكل واسع في الطهي وحفظ الأطعمة. يتميز بذوبانيته العالية في الماء وطعمه المالح المميز. يلعب دوراً حيوياً في توازن السوائل في الجسم ووظيفة الأعصاب والعضلات."
+            },
+            cuso4: {
+                name: "كبريتات النحاس (CuSO₄)",
+                formula: "الصيغة الكيميائية: CuSO₄",
+                description: "كبريتات النحاس هو ملح أزرق اللون يستخدم في الزراعة كمبيد للفطريات، وفي الصناعة الكيميائية. الشكل المائي منه (CuSO₄·5H₂O) يسمى الزاج الأزرق ويستخدم في الكيمياء التحليلية وعلاج الأسماك. يتحول إلى اللون الأبيض عند فقدان ماء التبلور بالتسخين."
+            },
+            cacl2: {
+                name: "كلوريد الكالسيوم (CaCl₂)",
+                formula: "الصيغة الكيميائية: CaCl₂",
+                description: "كلوريد الكالسيوم هو ملح أبيض يستخدم لإذابة الجليد على الطرق، في الخرسانة لمنع التجمد، وفي صناعة الأغذية كمادة مضافة. يمتص الرطوبة بشدة ويستخدم في تجفيف الهواء. كما يستخدم في الطب لعلاج نقص الكالسيوم في الجسم."
+            },
+            nano3: {
+                name: "نترات الصوديوم (NaNO₃)",
+                formula: "الصيغة الكيميائية: NaNO₃",
+                description: "نترات الصوديوم هو ملح أبيض يستخدم في حفظ اللحوم، وفي صناعة الأسمدة والزجاج. يعرف أيضاً باسم ملح تشيلي. يستخدم في صناعة المتفجرات والأسمدة nitrogenated. يجب استخدامه بحذر لأنه يمكن أن يكون ضاراً بكميات كبيرة."
+            },
+            mgso4: {
+                name: "كبريتات المغنيسيوم (MgSO₄)",
+                formula: "الصيغة الكيميائية: MgSO₄",
+                description: "كبريتات المغنيسيوم يسمى أيضاً ملح إبسوم. يستخدم في الطب كملين ومسكن للآلام العضلية. في الزراعة يستخدم لتعويض نقص المغنيسيوم في التربة. الشكل المائي منه (MgSO₄·7H₂O) بلورات شفافة تستخدم في الحمامات العلاجية."
+            }
+        };
+
+        document.querySelectorAll('.salt-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // إزالة الفئة النشطة من جميع الأزرار
+                document.querySelectorAll('.salt-btn').forEach(b => b.classList.remove('active'));
+                
+                // إضافة الفئة النشطة للزر المحدد
+                btn.classList.add('active');
+                
+                // عرض معلومات الملح المحدد
+                const saltType = btn.getAttribute('data-salt');
+                const salt = saltData[saltType];
+                
+                document.getElementById('salt-display').innerHTML = `
+                    <div class="salt-info">
+                        <div class="salt-name">${salt.name}</div>
+                        <div class="salt-formula">${salt.formula}</div>
+                        <div class="salt-description">${salt.description}</div>
+                    </div>
+                `;
+            });
+        });
+
+        // إضافة تأثيرات تفاعلية للبطاقات
+        document.querySelectorAll('.salt-card, .example-card, .application-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
