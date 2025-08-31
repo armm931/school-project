@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التحليل الكهربائي - عالم التفاعلات الكهروكيميائية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1e40af;
+            --secondary: #3b82f6;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --info: #06b6d4;
+            --purple: #8b5cf6;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30, 64, 175, 0.85), rgba(59, 130, 246, 0.85)), url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/><circle cx="20" cy="20" r="1.5" fill="white" opacity="0.1"/><circle cx="80" cy="30" r="1" fill="white" opacity="0.1"/><circle cx="30" cy="70" r="1.5" fill="white" opacity="0.1"/><circle cx="70" cy="80" r="1" fill="white" opacity="0.1"/></svg>') repeat;
+            animation: float 30s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn:hover {
+            background-color: #d97706;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #334155;
+            line-height: 1.8;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Methods Grid */
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .method-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .method-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .method-card:hover::before {
+            opacity: 1;
+        }
+
+        .method-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .method-icon {
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-size: 3rem;
+        }
+
+        .method-body {
+            padding: 25px;
+        }
+
+        .method-body h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .method-body p {
+            color: #334155;
+            line-height: 1.8;
+        }
+
+        .method-formula {
+            background-color: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            margin-top: 15px;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* Techniques Section */
+        .techniques-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .technique-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 10px;
+            transition: all 0.3s;
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+        }
+
+        .technique-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .technique-icon {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-left: 20px;
+            flex-shrink: 0;
+        }
+
+        .technique-content h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .technique-content p {
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        /* Instruments Section */
+        .instruments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .instrument-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .instrument-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .instrument-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--info), var(--purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+
+        .instrument-content {
+            padding: 25px;
+        }
+
+        .instrument-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .instrument-content p {
+            color: #64748b;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .instrument-specs {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .instrument-specs h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .instrument-specs ul {
+            list-style: none;
+            color: #64748b;
+        }
+
+        .instrument-specs li {
+            padding: 5px 0;
+            position: relative;
+            padding-right: 20px;
+        }
+
+        .instrument-specs li::before {
+            content: '•';
+            position: absolute;
+            right: 0;
+            color: var(--accent);
+        }
+
+        /* Applications Grid */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .app-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-icon {
+            height: 120px;
+            background: linear-gradient(135deg, var(--purple), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .app-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .app-content p {
+            color: #64748b;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        /* Calculator Section */
+        .calculator-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .calculator-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #334155;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.2);
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            border-right: 4px solid var(--primary);
+            display: none;
+        }
+
+        .result-box h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .result-box p {
+            color: #334155;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            color: var(--primary);
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #f8fafc;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 300px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #cbd5e1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .technique-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .technique-icon {
+                margin-left: 0;
+                margin-bottom: 15px;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-bolt"></i>
+                <span>التحليل الكهربائي</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#methods">الطرق</a></li>
+                    <li><a href="#techniques">التقنيات</a></li>
+                    <li><a href="#instruments">الأجهزة</a></li>
+                    <li><a href="#calculator">الحاسبة</a></li>
+                    <li><a href="#applications">التطبيقات</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>عالم التحليل الكهربائي</h1>
+            <p>اكتشف قياس التفاعلات الكهروكيميائية وتطبيقاتها في الكيمياء التحليلية والصناعة والطب</p>
+            <a href="#intro" class="btn">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>ما هو التحليل الكهربائي؟</h2>
+                <p>فهم أساسيات التحليل الكهربائي وأهميته في الكيمياء التحليلية</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>مقدمة في التحليل الكهربائي</h3>
+                    <p>التحليل الكهربائي هو فرع من الكيمياء التحليلية يدرس العلاقة بين الخصائص الكهربائية والتركيب الكيميائي للمواد. يعتمد على قياس الكميات الكهربائية مثل الجهد، التيار، الشحنة، أو الموصلية لتحديد تركيز المواد أو دراسة خصائصها.</p>
+                    <p>يعتبر التحليل الكهربائي من أكثر طرق التحليل حساسية ودقة، حيث يمكنه كشف وقياس كميات صغيرة جداً من المواد. يعتمد مبدأه على أن التفاعلات الكهروكيميائية تنتج إشارات كهربائية قابلة للقياس وتتناسب مع تركيز المادة محل التحليل.</p>
+                    <p>يلعب التحليل الكهربائي دوراً حاسماً في العديد من المجالات مثل مراقبة جودة المياه، التشخيص الطبي، مراقبة العمليات الصناعية، والبحث العلمي. تطوراته المستمرة تفتح آفاقاً جديدة في تحليل المواد البيولوجية والبيئية.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1532094349884-1536987333706?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="التحليل الكهربائي">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methods Section -->
+    <section id="methods" class="methods">
+        <div class="container">
+            <div class="section-title">
+                <h2>طرق التحليل الكهربائي</h2>
+                <p>الطرق الرئيسية المستخدمة في التحليل الكهربائي</p>
+            </div>
+            <div class="methods-grid">
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-voltage-high"></i>
+                    </div>
+                    <div class="method-body">
+                        <h3>القياسات الجهدي</h3>
+                        <p>تقيس الجهد الكهربائي بين قطبين تحت ظروف عدم مرور تيار تقريباً. تستخدم لتحديد تركيز الأيونات ودرجة الحموضة والقلوية.</p>
+                        <div class="method-formula">
+                            E = E° - (RT/nF) ln Q
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-wave-square"></i>
+                    </div>
+                    <div class="method-body">
+                        <h3>الفولتمترية</h3>
+                        <p>تقيس التيار الناتج عن تطبيق جهد متغير مع الزمن. توفر معلومات عن تركيز المواد وثوابت سرعة التفاعلات.</p>
+                        <div class="method-formula">
+                            i = nFAv√(Dω)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <div class="method-body">
+                        <h3>الكولومترية</h3>
+                        <p>تقيس كمية الكهرباء المستهلكة أو المنتجة في تفاعل كهروكيميائي. تستخدم لتحديد التركيزات المطلقة بدقة عالية.</p>
+                        <div class="method-formula">
+                            Q = nF
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div class="method-body">
+                        <h3>القياسات التيارية</h3>
+                        <p>تقيس التيار عند جهد ثابت. تستخدم في تحليل المواد التي تتفاعل عند أقطاب معدنية وتوفر معلومات عن التركيز.</p>
+                        <div class="method-formula">
+                            i = nFAkC
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="method-body">
+                        <h3>المقاومة الكهربائية</h3>
+                        <p>تقيس تغير المقاومة الكهربائية للمحلول. تستخدم في تحليل المواد التي تغير من توصيل المحلول عند تفاعلها.</p>
+                        <div class="method-formula">
+                            R = ρL/A
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="method-body">
+                        <h3>الكرونوبوتنشريومتري</h3>
+                        <p>يقيس الزمن اللازم لحدوث تفاعل كهروكيميائي. يستخدم في تحليل المواد التي تتفاعل ببطء أو في التحليل التسلسلي.</p>
+                        <div class="method-formula">
+                            t = kCⁿ
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Techniques Section -->
+    <section id="techniques" class="techniques">
+        <div class="container">
+            <div class="section-title">
+                <h2>التقنيات المتقدمة</h2>
+                <p>أحدث التقنيات المستخدمة في التحليل الكهربائي</p>
+            </div>
+            <div class="techniques-container">
+                <div class="technique-item">
+                    <div class="technique-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <div class="technique-content">
+                        <h3>المطيافية الكهروكيميائية</h3>
+                        <p>تقنية قوية تجمع بين التحليل الكهربائي والطيفي. توفر معلومات هيكلية وتفاعلية دقيقة عن الجزيئات والتفاعلات الكيميائية.</p>
+                    </div>
+                </div>
+                
+                <div class="technique-item">
+                    <div class="technique-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="technique-content">
+                        <h3>الأقطاب الكيميائية المعدلة</h3>
+                        <p>أقطاب متخصصة بمواد كيميائية حساسة لأنواع معينة من المواد. توفر انتقائية عالية وحساسية فائقة للتحليل.</p>
+                    </div>
+                </div>
+                
+                <div class="technique-item">
+                    <div class="technique-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <div class="technique-content">
+                        <h3>المستشعرات الحيوية</h3>
+                        <p>أجهزة كهروكيميائية متخصصة للكشف عن المواد البيولوجية. تستخدم في التشخيص الطبي ومراقبة العمليات الحيوية.</p>
+                    </div>
+                </div>
+                
+                <div class="technique-item">
+                    <div class="technique-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="technique-content">
+                        <h3>الأنظمة الآلية</h3>
+                        <p>أنظمة تحليل كهربائية آلية بالكامل. تزيد من الدقة وتقلل من الأخطاء البشرية وتسمح بالتحليل المستمر.</p>
+                    </div>
+                </div>
+                
+                <div class="technique-item">
+                    <div class="technique-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <div class="technique-content">
+                        <h3>الأنظمة اللاسلكية</h3>
+                        <p>أجهزة تحليل كهربائية تعمل بدون أسلاك. تسمح بالتحليل في المواقع النائية والصعبة الوصول وتقلل من التلوث.</p>
+                    </div>
+                </div>
+                
+                <div class="technique-item">
+                    <div class="technique-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="technique-content">
+                        <h3>الميكروأقطاب</h3>
+                        <p>أقطاب مصغرة للغاية تسمح بالتحليل في عينات صغيرة جداً. تستخدم في البحث العلمي والتحليل الخلوي.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instruments Section -->
+    <section id="instruments" class="instruments">
+        <div class="container">
+            <div class="section-title">
+                <h2>الأجهزة الكهربائية</h2>
+                <p>الأجهزة الرئيسية المستخدمة في التحليل الكهربائي</p>
+            </div>
+            <div class="instruments-grid">
+                <div class="instrument-card">
+                    <div class="instrument-image">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <div class="instrument-content">
+                        <h3>مقياس pH</h3>
+                        <p>جهاز بسيط وشائع لقياس حموضة المحاليل. يستخدم قطب زجاجي وقطب مرجعي لقياس الجهد وتحويله إلى قيمة pH.</p>
+                        <div class="instrument-specs">
+                            <h4>المواصفات:</h4>
+                            <ul>
+                                <li>نطاق القياس: 0-14 pH</li>
+                                <li>دقة: ±0.01 pH</li>
+                                <li>زمن الاستجابة: ثوانٍ</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="instrument-card">
+                    <div class="instrument-image">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="instrument-content">
+                        <h3>الفولتمتر</h3>
+                        <p>جهاز متقدم لقياس الجهد الكهربائي بين قطبين. يستخدم في تحديد التركيزات ودراسة تفاعلات الأكسدة والاختزال.</p>
+                        <div class="instrument-specs">
+                            <h4>المواصفات:</h4>
+                            <ul>
+                                <li>نطاق الجهد: ±2V</li>
+                                <li>دقة: 0.1 mV</li>
+                                <li>أقطاب مختلفة متاحة</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="instrument-card">
+                    <div class="instrument-image">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="instrument-content">
+                        <h3>الفولتمتر الدوري</h3>
+                        <p>جهاز متطور يقيس التيار مع تغير الجهد بشكل دوري. يوفر معلومات تفصيلية عن آليات التفاعل وثوابت السرعة.</p>
+                        <div class="instrument-specs">
+                            <h4>المواصفات:</h4>
+                            <ul>
+                                <li>سرعات المسح: 1 mV/s - 10 V/s</li>
+                                <li>نطاق التيار: 1 nA - 100 mA</li>
+                                <li>برامج تحليل متعددة</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="instrument-card">
+                    <div class="instrument-image">
+                        <i class="fas fa-balance-scale-right"></i>
+                    </div>
+                    <div class="instrument-content">
+                        <h3>الكولومتر</h3>
+                        <p>جهاز دقيق لقياس كمية الكهرباء المستهلكة في التفاعلات. يستخدم في التحليل الكمي الدقيق للمواد.</p>
+                        <div class="instrument-specs">
+                            <h4>المواصفات:</h4>
+                            <ul>
+                                <li>نطاق الشحنة: 1 μC - 100 C</li>
+                                <li>دقة: 0.1%</li>
+                                <li>وضعيات تشغيل مختلفة</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="calculator">
+        <div class="container">
+            <div class="section-title">
+                <h2>الحاسبة الكهربائية</h2>
+                <p>احسب القيم الكهربائية الأساسية باستخدام المعادلات الرياضية</p>
+            </div>
+            <div class="calculator-container">
+                <div class="calculator-tabs">
+                    <button class="tab-btn active" onclick="switchTab('nerst')">معادلة نيرنست</button>
+                    <button class="tab-btn" onclick="switchTab('concentration')">التركيز</button>
+                    <button class="tab-btn" onclick="switchTab('faraday')">قوانين فاراداي</button>
+                    <button class="tab-btn" onclick="switchTab('diffusion')">انتشار</button>
+                </div>
+                
+                <!-- Nernst Equation Calculator Tab -->
+                <div id="nerst-tab" class="tab-content active">
+                    <form id="nerst-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="e0">الجهد القياسي (E°) بالفولت:</label>
+                                <input type="number" id="e0" step="0.001" placeholder="أدخل E°">
+                            </div>
+                            <div class="form-group">
+                                <label for="n">عدد الإلكترونات (n):</label>
+                                <input type="number" id="n" step="1" placeholder="أدخل n">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="temp">درجة الحرارة (T) بالكلفن:</label>
+                                <input type="number" id="temp" step="0.1" placeholder="298" value="298">
+                            </div>
+                            <div class="form-group">
+                                <label for="q">حاصل التفاعل (Q):</label>
+                                <input type="number" id="q" step="0.0001" placeholder="أدخل Q">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn">احسب الجهد</button>
+                    </form>
+                    <div class="result-box" id="nerst-result">
+                        <h4>النتيجة:</h4>
+                        <p id="nerst-result-text"></p>
+                    </div>
+                </div>
+                
+                <!-- Concentration Calculator Tab -->
+                <div id="concentration-tab" class="tab-content">
+                    <form id="concentration-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="current">التيار (i) بالأمبير:</label>
+                                <input type="number" id="current" step="0.000001" placeholder="أدخل التيار">
+                            </div>
+                            <div class="form-group">
+                                <label for="area">مساحة القطب (A) سم²:</label>
+                                <input type="number" id="area" step="0.01" placeholder="أدخل المساحة">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="n">عدد الإلكترونات (n):</label>
+                                <input type="number" id="conc-n" step="1" placeholder="أدخل n">
+                            </div>
+                            <div class="form-group">
+                                <label for="d">معامل الانتشار (D) سم²/ث:</label>
+                                <input type="number" id="d" step="1e-6" placeholder="1e-5">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="omega">سرعة الدوران (ω) راديان/ث:</label>
+                            <input type="number" id="omega" step="0.1" placeholder="100">
+                        </div>
+                        <button type="submit" class="btn">احسب التركيز</button>
+                    </form>
+                    <div class="result-box" id="concentration-result">
+                        <h4>النتيجة:</h4>
+                        <p id="concentration-result-text"></p>
+                    </div>
+                </div>
+                
+                <!-- Faraday's Laws Calculator Tab -->
+                <div id="faraday-tab" class="tab-content">
+                    <form id="faraday-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="charge">الشحنة (Q) بالكولوم:</label>
+                                <input type="number" id="charge" step="0.0001" placeholder="أدخل الشحنة">
+                            </div>
+                            <div class="form-group">
+                                <label for="faraday-n">عدد الإلكترونات (n):</label>
+                                <input type="number" id="faraday-n" step="1" placeholder="أدخل n">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="molar-mass">الكتلة المولية (M) جرام/مول:</label>
+                                <input type="number" id="molar-mass" step="0.01" placeholder="أدخل الكتلة المولية">
+                            </div>
+                            <div class="form-group">
+                                <label for="faraday-f">ثابت فاراداي (F) كولوم/مول:</label>
+                                <input type="number" id="faraday-f" value="96485" step="1" readonly>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn">احسب الكتلة</button>
+                    </form>
+                    <div class="result-box" id="faraday-result">
+                        <h4>النتيجة:</h4>
+                        <p id="faraday-result-text"></p>
+                    </div>
+                </div>
+                
+                <!-- Diffusion Calculator Tab -->
+                <div id="diffusion-tab" class="tab-content">
+                    <form id="diffusion-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="diff-coeff">معامل الانتشار (D) م²/ث:</label>
+                                <input type="number" id="diff-coeff" step="1e-10" placeholder="1e-9">
+                            </div>
+                            <div class="form-group">
+                                <label for="time">الزمن (t) بالثواني:</label>
+                                <input type="number" id="time" step="0.1" placeholder="أدخل الزمن">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn">احتب متوسط المسافة</button>
+                    </form>
+                    <div class="result-box" id="diffusion-result">
+                        <h4>النتيجة:</h4>
+                        <p id="diffusion-result-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="applications">
+        <div class="container">
+            <div class="section-title">
+                <h2>تطبيقات التحليل الكهربائي</h2>
+                <p>كيف يستخدم التحليل الكهربائي في مجالات مختلفة</p>
+            </div>
+            <div class="applications-grid">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>مراقبة جودة المياه</h3>
+                        <p>يستخدم لقياس pH، الموصلية، وتركيز الأيونات في المياه. مهم لضمان سلامة مياه الشرب ومراقبة التلوث في البيئة.</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>التشخيص الطبي</h3>
+                        <p>يستخدم في تحليل الدم والبول وغيرها من السوائل البيولوجية. يساعد في تشخيص الأمراض ومراقبة فعالية العلاجات.</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>الصناعة الكيميائية</h3>
+                        <p>يستخدم في مراقبة العمليات الصناعية، تحليل المنتجات، ومراقبة جودة المواد الخام. يساعد في تحسين الكفاءة وتقليل التكاليف.</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>الزراعة والغذاء</h3>
+                        <p>يستخدم لتحليل التربة، الأسمدة، والمحاصيل. يساعد في تحديد الاحتياجات الغذائية للنباتات وضمان جودة الأغذية.</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>البطاريات والطاقة</h3>
+                        <p>يستخدم في تطوير واختبار البطاريات، خلايا الوقود، والأنظمة الكهروكيميائية. مهم لتطوير تقنيات تخزين الطاقة.</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>الأمن والدفاع</h3>
+                        <p>يستخدم في كشف المتفجرات والمواد الخطرة. أجهزة كاشفات الغازات تعتمد على مبادئ التحليل الكهربائي.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>الأسئلة الشائعة</h2>
+                <p>إجابات على الأسئلة الأكثر شيوعاً حول التحليل الكهربائي</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هو الفرق بين التحليل الكهربائي والكهروكيمياء؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الكهروكيمياء تدرس العلاقة بين الكهرباء والتفاعلات الكيميائية بشكل عام، بينما التحليل الكهربائي هو تطبيق عملي للمبادئ الكهروكيميائية في قياس وكمية المواد. التحليل الكهربائي يركز على الجانب التحليلي والتطبيقي.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>لماذا تعتبر القياسات الجهدي مفيدة في التحليل الكهربائي؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>القياسات الجهدي لا تستهلك عينة التحليل وتوفر معلومات عن حالة التوازن الديناميكي للنظام. تسمح بتحديد تركيز المواد دون تغير تركيبتها، مما يجعلها مثالية للمراقبة المستمرة.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كيف تؤثر درجة الحرارة على دقة التحليل الكهربائي؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>درجة الحرارة تؤثر على سرعة التفاعلات الكهروكيميائية، موصلية المحاليل، واستقرار الأقطاب. زيادة الحرارة تزيد من سرعة التفاعل ولكن قد تقلل من استقرار القياسات. لذلك غالباً ما يتم التحكم في درجة الحرارة أثناء التحليل.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هي أهمية معايرة الأقطاب في التحليل الكهربائي؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>المعايرة تضمن أن الأقطاب تعطي استجابات دقيقة ومتسقة. بدون معايرة مناسبة، قد تكون القراءات غير دقيقة. تتم المعايرة باستخدام محاليل قياسية معروفة التركيز.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كيف تختار الطريقة المناسبة للتحليل الكهربائي؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>يعتمد الاختيار على عوامل مثل: نوع المادة، التركيز المتوقع، الدقة المطلوبة، توفر الجهاز، والتكلفة. القياسات الجهدي مناسبة للتركيزات العالية، بينما الفولتمتر أفضل للمواد ذات التركيز المنخفض.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هي أحدث التطورات في التحليل الكهربائي؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>تشمل التطورات: الأقطاب النانوية، الأنظمة اللاسلكية، الأجهزة المحمولة، الدمجج مع التقنيات الأخرى (مثل الطيفية)، واستخدام الذكاء الاصطناعي في تحليل البيانات. هذه التطورات تزيد من الحساسية والدقة وسهولة الاستخدام.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع التحليل الكهربائي</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى عالي الجودة حول مبادئ وتطبيقات التحليل الكهربائي في الكيمياء التحليلية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#methods">الطرق</a></li>
+                        <li><a href="#techniques">التقنيات</a></li>
+                        <li><a href="#instruments">الأجهزة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">دروس تفاعلية</a></li>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">امتحانات تجريبية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@electroanalysis.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع التحليل الكهربائي. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Tab Switching
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Nernst Equation Calculator
+        document.getElementById('nerst-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const E0 = parseFloat(document.getElementById('e0').value);
+            const n = parseFloat(document.getElementById('n').value);
+            const T = parseFloat(document.getElementById('temp').value) || 298;
+            const Q = parseFloat(document.getElementById('q').value);
+            
+            if (isNaN(E0) || isNaN(n) || isNaN(Q)) {
+                alert('الرجاء إدخال قيم صحيحة');
+                return;
+            }
+            
+            const R = 8.314; // J/(mol·K)
+            const F = 96485; // C/mol
+            
+            const E = E0 - (R * T / (n * F)) * Math.log(Q);
+            
+            const resultText = `الجهد (E) = ${E.toFixed(4)} فولت<br>
+                              المعادلة المستخدمة: E = E° - (RT/nF) ln Q<br>
+                              الجهد القياسي (E°) = ${E0} فولت<br>
+                              عدد الإلكترونات (n) = ${n}<br>
+                              درجة الحرارة (T) = ${T} كلفن<br>
+                              حاصل التفاعل (Q) = ${Q}`;
+            
+            document.getElementById('nerst-result-text').innerHTML = resultText;
+            document.getElementById('nerst-result').style.display = 'block';
+        });
+
+        // Concentration Calculator
+        document.getElementById('concentration-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const i = parseFloat(document.getElementById('current').value);
+            const A = parseFloat(document.getElementById('area').value);
+            const n = parseFloat(document.getElementById('conc-n').value);
+            const D = parseFloat(document.getElementById('d').value);
+            const omega = parseFloat(document.getElementById('omega').value);
+            
+            if (isNaN(i) || isNaN(A) || isNaN(n) || isNaN(D) || isNaN(omega)) {
+                alert('الرجاء إدخال قيم صحيحة');
+                return;
+            }
+            
+            const F = 96485; // C/mol
+            
+            const C = i / (n * F * A * Math.sqrt(D * omega / (2 * Math.PI)));
+            
+            const resultText = `التركيز (C) = ${C.toExponential(4)} مول/لتر<br>
+                              المعادلة المستخدمة: i = nFAC√(Dω/2π)<br>
+                              التيار (i) = ${i.toExponential(4)} أمبير<br>
+                              مساحة القطب (A) = ${A} سم²<br>
+                              معامل الانتشار (D) = ${D.toExponential(4)} م²/ث<br>
+                              سرعة الدوران (ω) = ${omega} راديان/ث`;
+            
+            document.getElementById('concentration-result-text').innerHTML = resultText;
+            document.getElementById('concentration-result').style.display = 'block';
+        });
+
+        // Faraday's Laws Calculator
+        document.getElementById('faraday-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const Q = parseFloat(document.getElementById('charge').value);
+            const n = parseFloat(document.getElementById('faraday-n').value);
+            const M = parseFloat(document.getElementById('molar-mass').value);
+            const F = parseFloat(document.getElementById('faraday-f').value);
+            
+            if (isNaN(Q) || isNaN(n) || isNaN(M)) {
+                alert('الرجاء إدخال قيم صحيحة');
+                return;
+            }
+            
+            const mass = (Q * M) / (n * F);
+            
+            const resultText = `الكتلة = ${mass.toExponential(4)} جرام<br>
+                              المعادلة المستخدمة: m = (Q × M) / (n × F)<br>
+                              الشحنة (Q) = ${Q} كولوم<br>
+                              الكتلة المولية (M) = ${M} جرام/مول<br>
+                              عدد الإلكترونات (n) = ${n}<br>
+                              ثابت فاراداي (F) = ${F} كولوم/مول`;
+            
+            document.getElementById('faraday-result-text').innerHTML = resultText;
+            document.getElementById('faraday-result').style.display = 'block';
+        });
+
+        // Diffusion Calculator
+        document.getElementById('diffusion-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const D = parseFloat(document.getElementById('diff-coeff').value);
+            const t = parseFloat(document.getElementById('time').value);
+            
+            if (isNaN(D) || isNaN(t)) {
+                alert('الرجاء إدخال قيم صحيحة');
+                return;
+            }
+            
+            const meanDistance = Math.sqrt(2 * D * t);
+            
+            const resultText = `متوسط مربع المسافة = ${meanDistance.toExponential(4)} متر<br>
+                              المعادلة المستخدمة: x = √(2Dt)<br>
+                              معامل الانتشار (D) = ${D.toExponential(4)} م²/ث<br>
+                              الزمن (t) = ${t} ثانية`;
+            
+            document.getElementById('diffusion-result-text').innerHTML = resultText;
+            document.getElementById('diffusion-result').style.display = 'block';
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

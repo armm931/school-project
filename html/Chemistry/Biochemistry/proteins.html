@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>البروتينات - عالم اللبنات الأساسية للحياة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #7c3aed;
+            --secondary: #a855f7;
+            --accent: #f59e0b;
+            --danger: #ef4444;
+            --success: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --info: #3b82f6;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(124, 58, 237, 0.85), rgba(168, 85, 247, 0.85)), url('https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.1"/><circle cx="60" cy="10" r="1.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="1" fill="white" opacity="0.1"/></svg>') repeat;
+            animation: float 30s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn:hover {
+            background-color: #d97706;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #334155;
+            line-height: 1.8;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Structure Section */
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .structure-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+            height: 100%;
+        }
+
+        .structure-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .structure-card:hover::before {
+            opacity: 1;
+        }
+
+        .structure-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .structure-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-size: 3rem;
+        }
+
+        .structure-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .structure-body h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .structure-body p {
+            color: #334155;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        /* Functions Section */
+        .functions-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .function-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 10px;
+            transition: all 0.3s;
+            background: linear-gradient(135deg, #faf5ff, #f3e8ff);
+        }
+
+        .function-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .function-icon {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-left: 20px;
+            flex-shrink: 0;
+        }
+
+        .function-content h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .function-content p {
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        /* Synthesis Section */
+        .synthesis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .synthesis-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .synthesis-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .synthesis-header {
+            height: 120px;
+            background: linear-gradient(135deg, var(--info), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .synthesis-content {
+            padding: 25px;
+        }
+
+        .synthesis-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .synthesis-content p {
+            color: #64748b;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .synthesis-steps {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .synthesis-steps h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .synthesis-steps ol {
+            color: #64748b;
+            padding-right: 20px;
+        }
+
+        .synthesis-steps li {
+            margin-bottom: 8px;
+        }
+
+        /* Food Sources Section */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .food-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .food-icon {
+            height: 100px;
+            background: linear-gradient(135deg, var(--success), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+        }
+
+        .food-content {
+            padding: 20px;
+        }
+
+        .food-content h3 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .food-content p {
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .food-protein {
+            margin-top: 10px;
+            padding: 8px;
+            background: #d1fae5;
+            border-radius: 6px;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        /* Calculator Section */
+        .calculator-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .calculator-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #334155;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, #faf5ff, #f3e8ff);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            border-right: 4px solid var(--primary);
+            display: none;
+        }
+
+        .result-box h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .result-box p {
+            color: #334155;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        /* Health Impact Section */
+        .health-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .health-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .health-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .health-icon {
+            height: 120px;
+            background: linear-gradient(135deg, var(--danger), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .health-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .health-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .health-content p {
+            color: #64748b;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        .health-tips {
+            margin-top: 15px;
+            padding: 12px;
+            background: #fef2f2;
+            border-radius: 8px;
+        }
+
+        .health-tips h4 {
+            color: var(--danger);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .health-tips ul {
+            color: #64748b;
+            padding-right: 20px;
+            margin: 0;
+        }
+
+        .health-tips li {
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            color: var(--primary);
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #f8fafc;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 300px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #cbd5e1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .function-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .function-icon {
+                margin-left: 0;
+                margin-bottom: 15px;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-dna"></i>
+                <span>البروتينات</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#structure">التركيب</a></li>
+                    <li><a href="#functions">الوظائف</a></li>
+                    <li><a href="#synthesis">التصنيع</a></li>
+                    <li><a href="#food">مصادر</a></li>
+                    <li><a href="#calculator">الحاسبة</a></li>
+                    <li><a href="#health">الصحة</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>عالم البروتينات</h1>
+            <p>اكتشف اللبنات الأساسية للحياة وأهميتها في بناء الجسم والحفاظ على الصحة</p>
+            <a href="#intro" class="btn">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>ما هي البروتينات؟</h2>
+                <p>فهم أساسيات البروتينات ودورها الحيوي في الكائنات الحية</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>مقدمة في البروتينات</h3>
+                    <p>البروتينات هي جزيئات معقدة تتكون من سلاسل من الأحماض الأمينية، وتعتبر من أهم المكونات الأساسية لجميع الكائنات الحية. تشكل حوالي 50% من الوزن الجاف للخلايا وتؤدي مجموعة واسعة من الوظائف الحيوية.</p>
+                    <p>تتكون البروتينات من 20 نوعاً مختلفاً من الأحماض الأمينية التي ترتبط معاً بروابط ببتيدية لتكوين سلاسل طويلة. تسلسل هذه الأحماض الأمينية يحدد الهيكل الثلاثي الأبعاد للبروتين ووظيفته النهائية.</p>
+                    <p>تلعب البروتينات دوراً حاسماً في العديد من العمليات البيولوجية بما في ذلك بناء الأنسجة، نقل المواد، حماية الجسم، تنظيم التفاعلات الكيميائية، وتخزين الطاقة. فهم بنية ووظيفة البروتينات أساسي لعلوم الحياة والطب.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1532187853251-7069d5eed128?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="البروتينات">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Structure Section -->
+    <section id="structure" class="structure">
+        <div class="container">
+            <div class="section-title">
+                <h2>تركيب البروتينات</h2>
+                <p>المستويات الهيكلية المختلفة للبروتينات</p>
+            </div>
+            <div class="structure-grid">
+                <div class="structure-card">
+                    <div class="structure-icon">
+                        <i class="fas fa-list-ol"></i>
+                    </div>
+                    <div class="structure-body">
+                        <h3>الهيكل الأولي</h3>
+                        <p>يمثل تسلسل الأحماض الأمينية في سلسلة الببتيد. هذا التسلسل يحدد جميع المستويات الهيكلية الأخرى ووظيفة البروتين النهائية.</p>
+                    </div>
+                </div>
+                
+                <div class="structure-card">
+                    <div class="structure-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <div class="structure-body">
+                        <h3>الهيكل الثانوي</h3>
+                        <p>يشمل الترتيبات المحلية للسلسلة مثل اللولبات α والصفائح β. تتشكل هذه الهياكل بسبب روابط الهيدروجين بين الأحماض الأمينية المجاورة.</p>
+                    </div>
+                </div>
+                
+                <div class="structure-card">
+                    <div class="structure-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="structure-body">
+                        <h3>الهيكل الثلاثي</h3>
+                        <p>الترتيب الفراغي الثلاثي الأبعاد للسلسلة الببتيدية بأكملها. يتحدد هذا الهيكل بالتفاعلات بين المجموعات الجانبية للأحماض الأمينية.</p>
+                    </div>
+                </div>
+                
+                <div class="structure-card">
+                    <div class="structure-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="structure-body">
+                        <h3>الهيكل الرباعي</h3>
+                        <p>التجميع النهائي لعدة سلاسل ببتيدية (وحدات فرعية) لتكوين بروتين وظيفي. يتضمن تفاعلات بين السلاسل المختلفة.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Functions Section -->
+    <section id="functions" class="functions">
+        <div class="container">
+            <div class="section-title">
+                <h2>وظائف البروتينات</h2>
+                <p>الأدوار المتعددة التي تلعبها البروتينات في الجسم</p>
+            </div>
+            <div class="functions-container">
+                <div class="function-item">
+                    <div class="function-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="function-content">
+                        <h3>وظيفة هيكلية</h3>
+                        <p>توفر الدعم والمتانة للخلايا والأنسجة. الكولاجين في الجلد والعظام، والكيراتين في الشعر والأظافر أمثلة على البروتينات الهيكلية.</p>
+                    </div>
+                </div>
+                
+                <div class="function-item">
+                    <div class="function-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="function-content">
+                        <h3>وظيفة إنزيمية</h3>
+                        <p>تعمل كعوامل حفازة لتسريع التفاعلات الكيميائية في الجسم. كل إنزيم متخصص في تفاعل معين ويقلل طاقة التنشيط اللازمة للتفاعل.</p>
+                    </div>
+                </div>
+                
+                <div class="function-item">
+                    <div class="function-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="function-content">
+                        <h3>وظيفة دفاعية</h3>
+                        <p>تحمي الجسم من العدوى والأمراض. الأجسام المضادة والإنترفيرون أمثلة على البروتينات التي تعمل في جهاز المناعة.</p>
+                    </div>
+                </div>
+                
+                <div class="function-item">
+                    <div class="function-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <div class="function-content">
+                        <h3>وظيفة نقل</h3>
+                        <p>تنقل المواد داخل الجسم وخارج الخلايا. الهيموجلوبين ينقل الأكسجين، وبروتينات النقل الغشائية تنقل المواد عبر الأغشية الخلوية.</p>
+                    </div>
+                </div>
+                
+                <div class="function-item">
+                    <div class="function-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <div class="function-content">
+                        <h3>وظيفة تنظيمية</h3>
+                        <p>تنظم العمليات البيولوجية مثل النمو والتمثيل الغذائي. الهرمونات مثل الأنسولين والنمو هي بروتينات تنظيمية.</p>
+                    </div>
+                </div>
+                
+                <div class="function-item">
+                    <div class="function-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="function-content">
+                        <h3>وظيفة حركية</h3>
+                        <p>تسمح بالحركة والانقباض. الأكتين والميوسين في العضلات، والدينين في الأهداب والأسواط أمثلة على البروتينات الحركية.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Synthesis Section -->
+    <section id="synthesis" class="synthesis">
+        <div class="container">
+            <div class="section-title">
+                <h2>تصنيع البروتينات</h2>
+                <p>كيف يقوم الجسم بتصنيع البروتينات</p>
+            </div>
+            <div class="synthesis-grid">
+                <div class="synthesis-card">
+                    <div class="synthesis-header">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <div class="synthesis-content">
+                        <h3>النسخ (Transcription)</h3>
+                        <p>عملية نسخ المعلومات الوراثية من DNA إلى mRNA في نواة الخلية. تبدأ بفصل شريطي DNA وربط النيوكليوتيدات التكميلية.</p>
+                        <div class="synthesis-steps">
+                            <h4>خطوات النسخ:</h4>
+                            <ol>
+                                <li>فصل شريطي DNA</li>
+                                <li>ربط RNA البوليميراز</li>
+                                <li>بناء سلسلة mRNA</li>
+                                <li>تعديل mRNA الناضج</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="synthesis-card">
+                    <div class="synthesis-header">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <div class="synthesis-content">
+                        <h3>الترجمة (Translation)</h3>
+                        <p>تحويل المعلومات الوراثية من mRNA إلى سلسلة بروتينية في الريبوسومات. تقرأ الشفرات الوراثية وتترجم إلى أحماض أمينية.</p>
+                        <div class="synthesis-steps">
+                            <h4>خطوات الترجمة:</h4>
+                            <ol>
+                                <li>ارتباط mRNA بالريبوسوم</li>
+                                <li>ربط tRNA مع الأحماض الأمينية</li>
+                                <li>تكوين روابط ببتيدية</li>
+                                <li>إطلاق البروتين الناضج</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="synthesis-card">
+                    <div class="synthesis-header">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="synthesis-content">
+                        <h3>الطي والتعديل</h3>
+                        <p>بعد الترجمة، تخضع السلسلة الببتيدية للطي والتعديل لتشكيل الهيكل الثلاثي النهائي. تتضمن إضافة مجموعات كيميائية وتشكيل روابط ثانوية.</p>
+                        <div class="synthesis-steps">
+                            <h4>عمليات التعديل:</h4>
+                            <ol>
+                                <li>الطي التلقائي للسلسلة</li>
+                                <li>تشكيل روابط ثنائية الكبريت</li>
+                                <li>إضافة مجموعات سكرية</li>
+                                <li>قص البروتين precursor</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Food Sources Section -->
+    <section id="food" class="food">
+        <div class="container">
+            <div class="section-title">
+                <h2>مصادر البروتينات</h2>
+                <p>أهم المصادر الغذائية للبروتينات عالية الجودة</p>
+            </div>
+            <div class="food-grid">
+                <div class="food-card">
+                    <div class="food-icon">
+                        <i class="fas fa-drumstick-bite"></i>
+                    </div>
+                    <div class="food-content">
+                        <h3>اللحوم</h3>
+                        <p>مصدر غني بالبروتينات الكاملة</p>
+                        <div class="food-protein">20-30g بروتين/100g</div>
+                    </div>
+                </div>
+                
+                <div class="food-card">
+                    <div class="food-icon">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <div class="food-content">
+                        <h3>الأسماك</h3>
+                        <p>غنية بالبروتين وأحماض أوميغا-3</p>
+                        <div class="food-protein">18-25g بروتين/100g</div>
+                    </div>
+                </div>
+                
+                <div class="food-card">
+                    <div class="food-icon">
+                        <i class="fas fa-egg"></i>
+                    </div>
+                    <div class="food-content">
+                        <h3>البيض</h3>
+                        <p>بروتين عالي الجودة وحيوي</p>
+                        <div class="food-protein">6-7g بروتين/بيضة</div>
+                    </div>
+                </div>
+                
+                <div class="food-card">
+                    <div class="food-icon">
+                        <i class="fas fa-cheese"></i>
+                    </div>
+                    <div class="food-content">
+                        <h3>منتجات الألبان</h3>
+                        <p>تحتوي على البروتين والكالسيوم</p>
+                        <div class="food-protein">8-10g بروتين/100g</div>
+                    </div>
+                </div>
+                
+                <div class="food-card">
+                    <div class="food-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="food-content">
+                        <h3>البقوليات</h3>
+                        <p>مصدر نباتي غني بالبروتين</p>
+                        <div class="food-protein">15-25g بروتين/100g</div>
+                    </div>
+                </div>
+                
+                <div class="food-card">
+                    <div class="food-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="food-content">
+                        <h3>المكسرات والبذور</h3>
+                        <p>بروتين ودهون صحية</p>
+                        <div class="food-protein">15-25g بروتين/100g</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="calculator">
+        <div class="container">
+            <div class="section-title">
+                <h2>حاسبة البروتينات</h2>
+                <p>احسب احتياجاتك اليومية من البروتينات</p>
+            </div>
+            <div class="calculator-container">
+                <div class="calculator-tabs">
+                    <button class="tab-btn active" onclick="switchTab('daily-needs')">الاحتياجات اليومية</button>
+                    <button class="tab-btn" onclick="switchTab('protein-quality')">جودة البروتين</button>
+                    <button class="tab-btn" onclick="switchTab('meal-planning')">تخطيط الوجبات</button>
+                </div>
+                
+                <!-- Daily Needs Calculator Tab -->
+                <div id="daily-needs-tab" class="tab-content active">
+                    <form id="daily-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="gender">الجنس:</label>
+                                <select id="gender">
+                                    <option value="male">ذكر</option>
+                                    <option value="female">أنثى</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="age">العمر (سنوات):</label>
+                                <input type="number" id="age" min="1" max="120" placeholder="أدخل العمر">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="weight">الوزن (كجم):</label>
+                                <input type="number" id="weight" min="20" max="300" step="0.1" placeholder="أدخل الوزن">
+                            </div>
+                            <div class="form-group">
+                                <label for="height">الطول (سم):</label>
+                                <input type="number" id="height" min="100" max="250" placeholder="أدخل الطول">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="activity">مستوى النشاط:</label>
+                                <select id="activity">
+                                    <option value="1.2">قليل النشاط (مكتب)</option>
+                                    <option value="1.375">نشاط خفيف (1-3 أيام)</option>
+                                    <option value="1.55">نشاط متوسط (3-5 أيام)</option>
+                                    <option value="1.725">نشاط عالي (6-7 أيام)</option>
+                                    <option value="1.9">نشاط شديد (رياضي)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="goal">الهدف:</label>
+                                <select id="goal">
+                                    <option value="maintain">المحافظة على الوزن</option>
+                                    <option value="lose">فقدان الوزن</option>
+                                    <option value="gain">زيادة الوزن</option>
+                                    <option value="muscle">بناء العضلات</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn">احسب الاحتياجات</button>
+                    </form>
+                    <div class="result-box" id="daily-result">
+                        <h4>النتيجة:</h4>
+                        <p id="daily-result-text"></p>
+                    </div>
+                </div>
+                
+                <!-- Protein Quality Calculator Tab -->
+                <div id="protein-quality-tab" class="tab-content">
+                    <form id="quality-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="protein-source">مصدر البروتين:</label>
+                                <select id="protein-source">
+                                    <option value="100">بيض (مرجع)</option>
+                                    <option value="92">حليب</option>
+                                    <option value="88">لحم بقري</option>
+                                    <option value="85">سمك</option>
+                                    <option value="78">فول الصويا</option>
+                                    <option value="65">فاصوليا</option>
+                                    <option value="58">قمح</option>
+                                    <option value="45">أرز</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="serving-size">حجم الحصة (جرام):</label>
+                                <input type="number" id="serving-size" min="1" max="1000" value="100" placeholder="أدخل الحجم">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn">احسب جودة البروتين</button>
+                    </form>
+                    <div class="result-box" id="quality-result">
+                        <h4>النتيجة:</h4>
+                        <p id="quality-result-text"></p>
+                    </div>
+                </div>
+                
+                <!-- Meal Planning Calculator Tab -->
+                <div id="meal-planning-tab" class="tab-content">
+                    <form id="meal-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="meal-type">نوع الوجبة:</label>
+                                <select id="meal-type">
+                                    <option value="breakfast">الفطور</option>
+                                    <option value="lunch">الغداء</option>
+                                    <option value="dinner">العشاء</option>
+                                    <option value="snack">وجبة خفيفة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="protein-grams">البروتين المستهدف (جرام):</label>
+                                <input type="number" id="protein-grams" min="5" max="100" value="25" placeholder="أدخل البروتين">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="diet-type">نوع النظام الغذائي:</label>
+                                <select id="diet-type">
+                                    <option value="omnivore">كلي</option>
+                                    <option value="vegetarian">نباتي</option>
+                                    <option value="vegan">نباتي صارم</option>
+                                    <option value="keto">كيتو</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="calories">السعرات الحرارية الإجمالية:</label>
+                                <input type="number" id="calories" min="100" max="2000" placeholder="أدخل السعرات">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn">خطط الوجبة</button>
+                    </form>
+                    <div class="result-box" id="meal-result">
+                        <h4>النتيجة:</h4>
+                        <p id="meal-result-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Impact Section -->
+    <section id="health" class="health">
+        <div class="container">
+            <div class="section-title">
+                <h2>تأثير البروتينات على الصحة</h2>
+                <p>فهم العلاقة بين البروتينات والصحة العامة</p>
+            </div>
+            <div class="health-grid">
+                <div class="health-card">
+                    <div class="health-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <div class="health-content">
+                        <h3>بناء العضلات</h3>
+                        <p>البروتينات ضرورية لنمو وإصلاح الأنسجة العضلية. توفير كمية كافية من البروتين بعد التمرين يساعد في بناء العضلات وتعزيز التعافي.</p>
+                        <div class="health-tips">
+                            <h4>نصائح:</h4>
+                            <ul>
+                                <li>تناول 1.6-2.2g بروتين/كجم وزن للرياضيين</li>
+                                <li>توزيع البروتين على 3-4 وجبات</li>
+                                <li>تناول البروتين بعد التمرين مباشرة</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="health-card">
+                    <div class="health-icon">
+                        <i class="fas fa-weight"></i>
+                    </div>
+                    <div class="health-content">
+                        <h3>إدارة الوزن</h3>
+                        <p>البروتينات تزيد من الشعور بالشبع وتساعد في الحفاظ على كتلة العضلات أثناء فقدان الوزن. تحتاج إلى طاقة أكبر للهضم مما يزيد من حرق السعرات.</p>
+                        <div class="health-tips">
+                            <h4>نصائح:</h4>
+                            <ul>
+                                <li>تناول 25-30% من السعرات من البروتين</li>
+                                <li>ابدأ الوجبة بالبروتين</li>
+                                <li>اختر مصادر البروتين قليلة الدهون</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="health-card">
+                    <div class="health-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="health-content">
+                        <h3>صحة القلب</h3>
+                        <p>البروتينات النباتية والمصادر قليلة الدهون تساعد في خفض ضغط الدم والكوليسترول. البروتينات تحتوي على أحماض أمينية مهمة لصحة القلب.</p>
+                        <div class="health-tips">
+                            <h4>نصائح:</h4>
+                            <ul>
+                                <li>اختر الأسماك والمكسرات بانتظام</li>
+                                <li>قلل من اللحوم الحمراء المصنعة</li>
+                                <li>أضف البروتينات النباتية لنظامك</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="health-card">
+                    <div class="health-icon">
+                        <i class="fas fa-bone"></i>
+                    </div>
+                    <div class="health-content">
+                        <h3>صحة العظام</h3>
+                        <p>البروتينات تعمل مع الكالسيوم لبناء العظام القوية. الكولاجين يشكل 90% من مكونات العظام ويساعد في امتصاص الكالسيوم.</p>
+                        <div class="health-tips">
+                            <h4>نصائح:</h4>
+                            <ul>
+                                <li>تناول مصادر الكالسيوم مع البروتين</li>
+                                <li>احصل على فيتامين D الكافي</li>
+                                <li>مارس الرياضة لتقوية العظام</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>الأسئلة الشائعة</h2>
+                <p>إجابات على الأسئلة الأكثر شيوعاً حول البروتينات</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كمية البروتين الموصى بها يومياً؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>توصي المنظمات الصحية بتناول 0.8-1.0 جرام من البروتين لكل كيلوجرام من وزن الجسم للبالغين. للرياضيين وكبار السن، قد تزداد الكمية إلى 1.2-2.0 جرام/كجم.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما الفرق بين البروتينات الحيوانية والنباتية؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>البروتينات الحيوانية تحتوي عادة على جميع الأحماض الأمينية الأساسية (بروتينات كاملة)، بينما قد تفتقر البروتينات النباتية لبعض الأحماض الأمينية. يمكن دمج مصادر نباتية مختلفة للحصول على بروتين كامل.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>هل الإفراط في تناول البروتين ضار؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الإفراط في تناول البروتين قد يسبب مشاكل في الكلى للأشخاص المصابين بأمراض كلوية مسبقة. للأشخاص الأصحاء، يعتبر تناول كميات كبيرة من البروتين آمناً بشكل عام ولكن قد يسبب مشاكل هضمية.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هو أفضل وقت لتناول البروتين؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>توزيع البروتين على مدار اليوم هو الأفضل. تناول البروتين بعد التمرين يساعد في التعافي وبناء العضلات. تناول البروتين في وجبة الإفطار يساعد في الشعور بالشبع لفترة أطول.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>هل يمكن الحصول على جميع البروتينات من النباتات؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، يمكن الحصول على جميع البروتينات اللازمة من المصادر النباتية من خلال التنويع في الأطعمة. دمج الحبوب والبقوليات يوفر بروتيناً كاملاً. فول الصويا، الكينوا، والعدس من المصادر النباتية الممتازة.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هي مكملات البروتين وهل هي ضرورية؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>مكملات البروتين ليست ضرورية لمعظم الناس الذين يتناولون نظاماً غذائياً متوازناً. قد تكون مفيدة للرياضيين أو الأشخاص الذين لا يستطيعون تلبية احتياجاتهم من البروتين عبر الطعام فقط.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع البروتينات</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى عالي الجودة حول البروتينات وأهميتها في التغذية والصحة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#structure">التركيب</a></li>
+                        <li><a href="#functions">الوظائف</a></li>
+                        <li><a href="#synthesis">التصنيع</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">دروس تفاعلية</a></li>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">امتحانات تجريبية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@proteins.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع البروتينات. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Tab Switching
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Daily Needs Calculator
+        document.getElementById('daily-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const gender = document.getElementById('gender').value;
+            const age = parseFloat(document.getElementById('age').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const activity = parseFloat(document.getElementById('activity').value);
+            const goal = document.getElementById('goal').value;
+            
+            if (isNaN(age) || isNaN(weight) || isNaN(height)) {
+                alert('الرجاء إدخال قيم صحيحة');
+                return;
+            }
+            
+            // Calculate protein needs based on goal
+            let proteinPerKg;
+            switch(goal) {
+                case 'lose':
+                    proteinPerKg = 1.2;
+                    break;
+                case 'gain':
+                case 'muscle':
+                    proteinPerKg = 1.8;
+                    break;
+                default:
+                    proteinPerKg = 0.8;
+            }
+            
+            const totalProtein = weight * proteinPerKg;
+            const proteinCalories = totalProtein * 4; // 4 calories per gram
+            
+            // Calculate BMR using Mifflin-St Jeor Equation
+            let bmr;
+            if (gender === 'male') {
+                bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+            } else {
+                bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+            }
+            
+            // Calculate TDEE
+            const tdee = bmr * activity;
+            
+            const proteinPercentage = (proteinCalories / tdee * 100).toFixed(1);
+            
+            const resultText = `احتياجاتك اليومية من البروتين:<br>
+                              <strong>${totalProtein.toFixed(1)} جرام</strong> (${proteinPerKg} جرام/كجم وزن)<br>
+                              <br>
+                              السعرات الحرارية من البروتين: ${proteinCalories.toFixed(0)} سعر<br>
+                              نسبة البروتين من إجمالي السعرات: ${proteinPercentage}%<br>
+                              <br>
+                              <strong>توزيع البروتين على الوجبات:</strong><br>
+                              الفطور: ${(totalProtein * 0.25).toFixed(1)} جرام<br>
+                              الغداء: ${(totalProtein * 0.35).toFixed(1)} جرام<br>
+                              العشاء: ${(totalProtein * 0.3).toFixed(1)} جرام<br>
+                              وجبات خفيفة: ${(totalProtein * 0.1).toFixed(1)} جرام`;
+            
+            document.getElementById('daily-result-text').innerHTML = resultText;
+            document.getElementById('daily-result').style.display = 'block';
+        });
+
+        // Protein Quality Calculator
+        document.getElementById('quality-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const quality = parseFloat(document.getElementById('protein-source').value);
+            const servingSize = parseFloat(document.getElementById('serving-size').value);
+            
+            if (isNaN(servingSize)) {
+                alert('الرجاء إدخال قيمة صحيحة لحجم الحصة');
+                return;
+            }
+            
+            const actualProtein = (quality * servingSize) / 100; // Assuming quality is percentage
+            
+            let classification;
+            let recommendation;
+            
+            if (quality >= 90) {
+                classification = "ممتاز";
+                recommendation = "مصدر ممتاز للبروتين، يمكن الاعتماد عليه كجزء أساسي من النظام الغذائي";
+            } else if (quality >= 80) {
+                classification = "جيد جداً";
+                recommendation = "مصدر جيد جداً للبروتين، يوصى بتضمينه بانتظام";
+            } else if (quality >= 70) {
+                classification = "جيد";
+                recommendation = "مصدر جيد للبروتين، يفضل دمجه مع مصادر أخرى";
+            } else {
+                classification = "متوسط";
+                recommendation = "مصدر متوسط الجودة، يحتاج إلى دمجه مع مصادر أخرى للحصول على بروتين كامل";
+            }
+            
+            const resultText = `جودة البروتين: ${quality}%<br>
+                              التصنيف: ${classification}<br>
+                              حجم الحصة: ${servingSize} جرام<br>
+                              البروتين الفعلي: ${actualProtein.toFixed(1)} جرام<br>
+                              <br>
+                              <strong>التوصية:</strong> ${recommendation}<br>
+                              <br>
+                              <strong>نصائح لتحسين امتصاص البروتين:</strong><br>
+                              • طهي الطعام بشكل مناسب<br>
+                              • تناول فيتامين C مع مصادر الحديد النباتية<br>
+                              • دمج مصادر مختلفة من البروتين`;
+            
+            document.getElementById('quality-result-text').innerHTML = resultText;
+            document.getElementById('quality-result').style.display = 'block';
+        });
+
+        // Meal Planning Calculator
+        document.getElementById('meal-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const mealType = document.getElementById('meal-type').value;
+            const proteinGrams = parseFloat(document.getElementById('protein-grams').value);
+            const dietType = document.getElementById('diet-type').value;
+            const calories = parseFloat(document.getElementById('calories').value);
+            
+            if (isNaN(proteinGrams) || isNaN(calories)) {
+                alert('الرجاء إدخال قيم صحيحة');
+                return;
+            }
+            
+            let mealSuggestions = [];
+            
+            switch(dietType) {
+                case 'omnivore':
+                    switch(mealType) {
+                        case 'breakfast':
+                            mealSuggestions = ['بيض مسلوق مع خبز كامل', 'شوفان مع حليب ومكسرات', 'زبادي يوناني مع فواكه'];
+                            break;
+                        case 'lunch':
+                            mealSuggestions = ['صدر دجاج مشوي مع خضروات', 'سمك مع أرز بني', 'لحم بقري مع سلطة'];
+                            break;
+                        case 'dinner':
+                            mealSuggestions = ['سمك مشوي مع بطاطس', 'دجاج مع كينوا', 'لحم مع خضروات'];
+                            break;
+                        case 'snack':
+                            mealSuggestions = ['جبن قريش', 'بيض مسلوق', 'زبادي مع مكسرات'];
+                            break;
+                    }
+                    break;
+                case 'vegetarian':
+                    switch(mealType) {
+                        case 'breakfast':
+                            mealSuggestions = ['شوفان مع حليب نباتي', 'توست مع زبدة فول سوداني', 'زبادي مع فواكه'];
+                            break;
+                        case 'lunch':
+                            mealSuggestions = ['عدس مع أرز', 'فاصوليا مع خبز', 'كينوا مع خضروات'];
+                            break;
+                        case 'dinner':
+                            mealSuggestions = ['فول مع خبز', 'عدس مع أرز', 'خضروات مع توفو'];
+                            break;
+                        case 'snack':
+                            mealSuggestions = ['مكسرات', 'جبن نباتي', 'زبادي نباتي'];
+                            break;
+                    }
+                    break;
+                case 'vegan':
+                    switch(mealType) {
+                        case 'breakfast':
+                            mealSuggestions = ['شوفان مع حليب نباتي', 'توست مع أفوكادو', 'عصير أخضر'];
+                            break;
+                        case 'lunch':
+                            mealSuggestions = ['عدس مع أرز', 'فاصوليا مع خبز', 'كينوا مع خضروات'];
+                            break;
+                        case 'dinner':
+                            mealSuggestions = ['خضروات مع توفو', 'عدس مع أرز', 'كينوا مع فطر'];
+                            break;
+                        case 'snack':
+                            mealSuggestions = ['مكسرات', 'فواكه', 'خضروات مقطعة'];
+                            break;
+                    }
+                    break;
+                case 'keto':
+                    switch(meatType) {
+                        case 'breakfast':
+                            mealSuggestions = ['بيض مع أفوكادو', 'جبن مع زيتون', 'لحم مقدد'];
+                            break;
+                        case 'lunch':
+                            mealSuggestions = ['دجاج مع خضروات', 'سمك مع زبدة', 'لحم مع سلطة'];
+                            break;
+                        case 'dinner':
+                            mealSuggestions = ['لحم مع خضروات', 'سمك مع زيت زيتون', 'دجاج مع أفوكادو'];
+                            break;
+                        case 'snack':
+                            mealSuggestions = ['مكسرات', 'جبن', 'بيض مسلوق'];
+                            break;
+                    }
+                    break;
+            }
+            
+            const resultText = `<strong>تفاصيل الوجبة:</strong><br>
+                              نوع الوجبة: ${getMealTypeName(mealType)}<br>
+                              البروتين المستهدف: ${proteinGrams} جرام<br>
+                              السعرات الحرارية: ${calories}<br>
+                              النظام الغذائي: ${getDietTypeName(dietType)}<br>
+                              <br>
+                              <strong>اقتراحات للوجبة:</strong><br>
+                              ${mealSuggestions.map((s, i) => `${i + 1}. ${s}`).join('<br>')}<br>
+                              <br>
+                              <strong>نصائح إضافية:</strong><br>
+                              • أضف خضروات لزيادة الألياف<br>
+                              • استخدم زيوت صحية للطهي<br>
+                              • اشرب كمية كافية من الماء`;
+            
+            document.getElementById('meal-result-text').innerHTML = resultText;
+            document.getElementById('meal-result').style.display = 'block';
+        });
+
+        function getMealTypeName(type) {
+            const names = {
+                'breakfast': 'الفطور',
+                'lunch': 'الغداء',
+                'dinner': 'العشاء',
+                'snack': 'وجبة خفيفة'
+            };
+            return names[type] || type;
+        }
+
+        function getDietTypeName(type) {
+            const names = {
+                'omnivore': 'كلي',
+                'vegetarian': 'نباتي',
+                'vegan': 'نباتي صارم',
+                'keto': 'كيتو'
+            };
+            return names[type] || type;
+        }
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

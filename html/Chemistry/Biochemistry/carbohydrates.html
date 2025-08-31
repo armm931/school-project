@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكربوهيدرات - عالم السكريات والنشويات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #059669;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --info: #3b82f6;
+            --purple: #8b5cf6;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(5, 150, 105, 0.85), rgba(16, 185, 129, 0.85)), url('https://images.unsplash.com/photo-1517433450456-65c75f365bd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="3" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="2" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="2.5" fill="white" opacity="0.1"/><circle cx="60" cy="10" r="2" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="1.5" fill="white" opacity="0.1"/></svg>') repeat;
+            animation: float 30s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn:hover {
+            background-color: #d97706;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #334155;
+            line-height: 1.8;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Types Grid */
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .type-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+            height: 100%;
+        }
+
+        .type-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .type-card:hover::before {
+            opacity: 1;
+        }
+
+        .type-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .type-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-size: 3rem;
+        }
+
+        .type-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .type-body h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .type-body p {
+            color: #334155;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        .type-examples {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f0fdf4;
+            border-radius: 8px;
+            border-right: 3px solid var(--secondary);
+        }
+
+        .type-examples h4 {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .type-examples p {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Structure Section */
+        .structure-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .structure-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 10px;
+            transition: all 0.3s;
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+        }
+
+        .structure-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .structure-icon {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-left: 20px;
+            flex-shrink: 0;
+        }
+
+        .structure-content h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .structure-content p {
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        /* Metabolism Section */
+        .metabolism-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .metabolism-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .metabolism-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .metabolism-header {
+            height: 120px;
+            background: linear-gradient(135deg, var(--info), var(--purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .metabolism-content {
+            padding: 25px;
+        }
+
+        .metabolism-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .metabolism-content p {
+            color: #64748b;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .metabolism-steps {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .metabolism-steps h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .metabolism-steps ol {
+            color: #64748b;
+            padding-right: 20px;
+        }
+
+        .metabolism-steps li {
+            margin-bottom: 8px;
+        }
+
+        /* Food Sources Section */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .food-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .food-icon {
+            height: 100px;
+            background: linear-gradient(135deg, var(--accent), var(--danger));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+        }
+
+        .food-content {
+            padding: 20px;
+        }
+
+        .food-content h3 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .food-content p {
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .food-amount {
+            margin-top: 10px;
+            padding: 8px;
+            background: #fef3c7;
+            border-radius: 6px;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        /* Calculator Section */
+        .calculator-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .calculator-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #334155;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2);
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            border-right: 4px solid var(--primary);
+            display: none;
+        }
+
+        .result-box h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .result-box p {
+            color: #334155;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        /* Health Impact Section */
+        .health-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .health-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .health-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .health-icon {
+            height: 120px;
+            background: linear-gradient(135deg, var(--danger), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .health-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .health-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .health-content p {
+            color: #64748b;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        .health-tips {
+            margin-top: 15px;
+            padding: 12px;
+            background: #fef2f2;
+            border-radius: 8px;
+        }
+
+        .health-tips h4 {
+            color: var(--danger);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .health-tips ul {
+            color: #64748b;
+            padding-right: 20px;
+            margin: 0;
+        }
+
+        .health-tips li {
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            color: var(--primary);
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #f8fafc;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 300px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #cbd5e1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .structure-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .structure-icon {
+                margin-left: 0;
+                margin-bottom: 15px;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-seedling"></i>
+                <span>الكربوهيدرات</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#types">الأنواع</a></li>
+                    <li><a href="#structure">التركيب</a></li>
+                    <li><a href="#metabolism">الأيض</a></li>
+                    <li><a href="#food">مصادر</a></li>
+                    <li><a href="#calculator">الحاسبة</a></li>
+                    <li><a href="#health">الصحة</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>عالم الكربوهيدرات</h1>
+            <p>اكتشف عالم السكريات والنشويات وأهميتها للجسم الصحي والطاقة</p>
+            <a href="#intro" class="btn">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>ما هي الكربوهيدرات؟</h2>
+                <p>فهم أساسيات الكربوهيدرات وأهميتها في التغذية والصحة</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>مقدمة في الكربوهيدرات</h3>
+                    <p>الكربوهيدرات هي مركبات عضوية تتكون من الكربون والهيدروجين والأكسجين، وتعتبر المصدر الرئيسي للطاقة في جسم الإنسان. تشكل حوالي 45-65% من السعرات الحرارية اليومية الموصى بها.</p>
+                    <p>توجد الكربوهيدرات في العديد من الأطعمة مثل الحبوب، الفواكه، الخضروات، ومنتجات الألبان. يتم تصنيفها بناءً على تعقيدها إلى سكريات بسيطة (مثل الجلوكوز والفركتوز) وسكريات معقدة (مثل النشاوي والألياف).</p>
+                    <p>تلعب الكربوهيدرات دوراً حيوياً في العديد من الوظائف البيولوجية، بما في ذلك توفير الطاقة للخلايا، دعم وظيفة الدماغ، والمساعدة في عملية الهضم. فهم أنواع الكربوهيدرات المختلفة وكيفية تأثيرها على الجسم ضروري للحفاظ على نظام غذائي صحي ومتوازن.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1517433450456-65c75f365bd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الكربوهيدرات">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Types Section -->
+    <section id="types" class="types">
+        <div class="container">
+            <div class="section-title">
+                <h2>أنواع الكربوهيدرات</h2>
+                <p>التصنيفات الرئيسية للكربوهيدرات وخصائصها</p>
+            </div>
+            <div class="types-grid">
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="type-body">
+                        <h3>السكريات الأحادية</h3>
+                        <p>أبسط أشكال الكربوهيدرات، تتكون من وحدة سكر واحدة. تمتص بسرعة في الدم وتوفر طاقة فورية. أهمها الجلوكوز، الفركتوز، والجالاكتوز.</p>
+                        <div class="type-examples">
+                            <h4>أمثلة:</h4>
+                            <p>العسل، الفواكه، شراب الذرة عالي الفركتوز</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="type-body">
+                        <h3>السكريات الثنائية</h3>
+                        <p>تتكون من وحدتي سكر مرتبطتين معاً. تحتاج إلى هضم قبل امتصاصها. تشمل السكروز، اللاكتوز، والمالتوز.</p>
+                        <div class="type-examples">
+                            <h4>أمثلة:</h4>
+                            <p>سكر المائدة، الحليب، الشعير</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="type-body">
+                        <h3>السكريات المتعددة المعقدة</h3>
+                        <p>سلاسل طويلة من وحدات السكر. تمتص ببطء وتوفر طاقة مستمرة. تشمل النشاوي، الجليكوجين، والسليلوز.</p>
+                        <div class="type-examples">
+                            <h4>أمثلة:</h4>
+                            <p>الأرز، الخبز، البطاطس، البقوليات</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="type-body">
+                        <h3>الألياف الغذائية</h3>
+                        <p>كربوهيدرات معقدة لا تهضمها إنزيمات الجهاز الهضمي. مهمة لصحة الجهاز الهضمي والوقاية من الأمراض.</p>
+                        <div class="type-examples">
+                            <h4>أمثلة:</h4>
+                            <p>الخضروات، الفواكه، الحبوب الكاملة، البقوليات</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Structure Section -->
+    <section id="structure" class="structure">
+        <div class="container">
+            <div class="section-title">
+                <h2>التركيب الكيميائي</h2>
+                <p>فهم البنية الجزيئية للكربوهيدرات</p>
+            </div>
+            <div class="structure-container">
+                <div class="structure-item">
+                    <div class="structure-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <div class="structure-content">
+                        <h3>التركيب الجزيئي الأساسي</h3>
+                        <p>جميع الكربوهيدرات تتكون من عناصر الكربون (C)، الهيدروجين (H)، والأكسجين (O) بنسبة عامة 1:2:1. الوحدة الأساسية هي السكر الأحادي الذي يحتوي على مجموعة الكربونيل (C=O) ومجموعات الهيدروكسيل (OH) متعددة.</p>
+                    </div>
+                </div>
+                
+                <div class="structure-item">
+                    <div class="structure-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <div class="structure-content">
+                        <h3>الروابط الجليكوزيدية</h3>
+                        <p>ترتبط وحدات السكر معاً عبر روابط جليكوزيدية. نوع الرابط (ألفا أو بيتا) يحدد خصائص الكربوهيدرات ومدى سهولة هضمها. الروابط ألفا تهضم بسهولة بينما الروابط بيتا تقاوم الهضم.</p>
+                    </div>
+                </div>
+                
+                <div class="structure-item">
+                    <div class="structure-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <div class="structure-content">
+                        <h3>الأشكال الحلقية والخطية</h3>
+                        <p>يمكن للسكريات الأحادية أن توجد في شكل خطي مفتوح أو حلقي مغلق. في المحاليل المائية، توجد معظم السكريات في الشكل الحلقي المستقر أكثر. التحويل بين الشكلين مهم للوظيفة البيولوجية.</p>
+                    </div>
+                </div>
+                
+                <div class="structure-item">
+                    <div class="structure-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <div class="structure-content">
+                        <h3>التركيب الفراغي</h3>
+                        <p>للكربوهيدرات تركيب فراغي ثلاثي الأبعاد مهم لوظيفتها. التفرعات في السلاسل المتعددة تزيد من قابلية الذوبان وتوفر مواقع تفاعل إضافية. هذا التركيب يؤثر على كيفية تفاعل الكربوهيدرات مع الإنزيمات والبروتينات الأخرى.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metabolism Section -->
+    <section id="metabolism" class="metabolism">
+        <div class="container">
+            <div class="section-title">
+                <h2>أيض الكربوهيدرات</h2>
+                <p>كيف يقوم الجسم بهضم واستخدام الكربوهيدرات</p>
+            </div>
+            <div class="metabolism-grid">
+                <div class="metabolism-card">
+                    <div class="metabolism-header">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="metabolism-content">
+                        <h3>الهضم والامتصاص</h3>
+                        <p>يبدأ هضم الكربوهيدرات في الفم بإنزيم الأميلاز، ثم يستمر في الأمعاء الدقيقة حيث تتحلل إلى سكريات أحادية تمتص في الدم.</p>
+                        <div class="metabolism-steps">
+                            <h4>خطوات الهضم:</h4>
+                            <ol>
+                                <li>مضغ الطعام وخلطه باللعاب</li>
+                                <li>تحطيم النشاوي بالأميليز</li>
+                                <li>هضم السكريات الثنائية في الأمعاء</li>
+                                <li>امتصاص السكريات الأحادية في الدم</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="metabolism-card">
+                    <div class="metabolism-header">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="metabolism-content">
+                        <h3>تحويل الجلوكوز إلى طاقة</h3>
+                        <p>يتم تحويل الجلوكوز إلى طاقة عبر عملية التنفس الخلوي، التي تشمل تحلل الجلوكوز، دورة كريبس، وسلسلة نقل الإلكترون.</p>
+                        <div class="metabolism-steps">
+                            <h4>مراحل إنتاج الطاقة:</h4>
+                            <ol>
+                                <li>تحلل الجلوكوز في السيتوبلازم</li>
+                                <li>دورة كريبس في الميتوكوندريا</li>
+                                <li>سلسلة نقل الإلكترون</li>
+                                <li>إنتاج 36-38 جزيئة ATP</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="metabolism-card">
+                    <div class="metabolism-header">
+                        <i class="fas fa-archive"></i>
+                    </div>
+                    <div class="metabolism-content">
+                        <h3>تخزين الجلوكوز</h3>
+                        <p>يخزن الجسم الجلوكوز الزائد على شكل جليكوجين في الكبد والعضلات. يمكن تحويله بسهولة إلى جلوكوز عند الحاجة للطاقة.</p>
+                        <div class="metabolism-steps">
+                            <h4>عملية التخزين:</h4>
+                            <ol>
+                                <li>ارتفاع مستوى الجلوكوز في الدم</li>
+                                <li>إفراز هرمون الأنسولين</li>
+                                <li>تحويل الجلوكوز إلى جليكوجين</li>
+                                <li>تخزين الجليكوجين في الأنسجة</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Food Sources Section -->
+    <section id="food" class="food">
+        <div class="container">
+            <div class="section-title">
+                <h2>مصادر الكربوهيدرات</h2>
+                <p>أهم المصادر الغذائية للكربوهيدرات الصحية</p>
+            </div>
+            <div class="food-grid">
+                <div class="food-card">
+                    <div class="food-icon">
+                        <i class="fas fa-bread-slice"></i>
+                    </div>
+                    <div class="food-content">
+                        <h3>الحبوب الكاملة</h3>
+                        <p>غنية بالألياف والفيتامينات والمعادن</p>
+                        <div class="food-amount">45-65% كربوهيدرات</div>
+                    </div>
+                </div>
+                
+                <div class="food-card">
+                    <div class="food-icon">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <div class="food-content">
+                        <h3>الفواكه</h3>
+                        <p>تحتوي على سكريات طبيعية وألياف</p>
+                        <div class="food-amount">15-30% كربوهيدرات</div>
+                    </div>
+                </div>
+                
+                <div class="food-card">
+                    <div class="food-icon">
+                        <i class="fas fa-carrot"></i>
+                    </div>
+                    <div class="food-content">
+                        <h3>الخضروات</h3>
+                        <p>مصدر ممتاز للفيتامينات والألياف</p>
+                        <div class="food-amount">5-20% كربوهيدرات</div>
+                    </div>
+                </div>
+                
+                <div class="food-card">
+                    <div class="food-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="food-content">
+                        <h3>البقوليات</h3>
+                        <p>غنية بالبروتين والألياف والمعادن</p>
+                        <div class="food-amount">60-65% كربوهيدرات</div>
+                    </div>
+                </div>
+                
+                <div class="food-card">
+                    <div class="food-icon">
+                        <i class="fas fa-cheese"></i>
+                    </div>
+                    <div class="food-content">
+                        <h3>منتجات الألبان</h3>
+                        <p>تحتوي على اللاكتوز والكالسيوم</p>
+                        <div class="food-amount">5-15% كربوهيدرات</div>
+                    </div>
+                </div>
+                
+                <div class="food-card">
+                    <div class="food-icon">
+                        <i class="fas fa-cookie"></i>
+                    </div>
+                    <div class="food-content">
+                        <h3>المكسرات والبذور</h3>
+                        <p>مصدر للدهون الصحية والبروتين</p>
+                        <div class="food-amount">10-20% كربوهيدرات</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="calculator">
+        <div class="container">
+            <div class="section-title">
+                <h2>الحاسبة الغذائية</h2>
+                <p>احسب احتياجاتك من الكربوهيدرات والسعرات الحرارية</p>
+            </div>
+            <div class="calculator-container">
+                <div class="calculator-tabs">
+                    <button class="tab-btn active" onclick="switchTab('daily-needs')">الاحتياجات اليومية</button>
+                    <button class="tab-btn" onclick="switchTab('glycemic-index')">المؤشر الجلايسيمي</button>
+                    <button class="tab-btn" onclick="switchTab('meal-planning')">تخطيط الوجبات</button>
+                </div>
+                
+                <!-- Daily Needs Calculator Tab -->
+                <div id="daily-needs-tab" class="tab-content active">
+                    <form id="daily-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="gender">الجنس:</label>
+                                <select id="gender">
+                                    <option value="male">ذكر</option>
+                                    <option value="female">أنثى</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="age">العمر (سنوات):</label>
+                                <input type="number" id="age" min="1" max="120" placeholder="أدخل العمر">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="weight">الوزن (كجم):</label>
+                                <input type="number" id="weight" min="20" max="300" step="0.1" placeholder="أدخل الوزن">
+                            </div>
+                            <div class="form-group">
+                                <label for="height">الطول (سم):</label>
+                                <input type="number" id="height" min="100" max="250" placeholder="أدخل الطول">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="activity">مستوى النشاط:</label>
+                                <select id="activity">
+                                    <option value="1.2">قليل النشاط (مكتب)</option>
+                                    <option value="1.375">نشاط خفيف (1-3 أيام)</option>
+                                    <option value="1.55">نشاط متوسط (3-5 أيام)</option>
+                                    <option value="1.725">نشاط عالي (6-7 أيام)</option>
+                                    <option value="1.9">نشاط شديد (رياضي)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="goal">الهدف:</label>
+                                <select id="goal">
+                                    <option value="maintain">المحافظة على الوزن</option>
+                                    <option value="lose">فقدان الوزن</option>
+                                    <option value="gain">زيادة الوزن</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn">احسب الاحتياجات</button>
+                    </form>
+                    <div class="result-box" id="daily-result">
+                        <h4>النتيجة:</h4>
+                        <p id="daily-result-text"></p>
+                    </div>
+                </div>
+                
+                <!-- Glycemic Index Calculator Tab -->
+                <div id="glycemic-index-tab" class="tab-content">
+                    <form id="gi-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="food-item">نوع الطعام:</label>
+                                <select id="food-item">
+                                    <option value="100">جلوكوز (مرجع)</option>
+                                    <option value="70">خبز أبيض</option>
+                                    <option value="55">خبز أسمر</option>
+                                    <option value="85">أرز أبيض</option>
+                                    <option value="50">أرز بني</option>
+                                    <option value="40">شوفان</option>
+                                    <option value="65">بطاطس</option>
+                                    <option value="15">بروكلي</option>
+                                    <option value="30">تفاح</option>
+                                    <option value="75">موز</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="serving-size">حجم الحصة (جرام):</label>
+                                <input type="number" id="serving-size" min="1" max="1000" value="100" placeholder="أدخل الحجم">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn">احسب المؤشر الجلايسيمي</button>
+                    </form>
+                    <div class="result-box" id="gi-result">
+                        <h4>النتيجة:</h4>
+                        <p id="gi-result-text"></p>
+                    </div>
+                </div>
+                
+                <!-- Meal Planning Calculator Tab -->
+                <div id="meal-planning-tab" class="tab-content">
+                    <form id="meal-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="meal-type">نوع الوجبة:</label>
+                                <select id="meal-type">
+                                    <option value="breakfast">الفطور</option>
+                                    <option value="lunch">الغداء</option>
+                                    <option value="dinner">العشاء</option>
+                                    <option value="snack">وجبة خفيفة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="carb-percentage">نسبة الكربوهيدرات (%):</label>
+                                <input type="number" id="carb-percentage" min="10" max="80" value="50" placeholder="50">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="calories">السعرات الحرارية المستهدفة:</label>
+                                <input type="number" id="calories" min="100" max="2000" placeholder="أدخل السعرات">
+                            </div>
+                            <div class="form-group">
+                                <label for="complex-carbs">تفضل الكربوهيدرات المعقدة:</label>
+                                <select id="complex-carbs">
+                                    <option value="yes">نعم</option>
+                                    <option value="no">لا</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn">خطط الوجبة</button>
+                    </form>
+                    <div class="result-box" id="meal-result">
+                        <h4>النتيجة:</h4>
+                        <p id="meal-result-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Impact Section -->
+    <section id="health" class="health">
+        <div class="container">
+            <div class="section-title">
+                <h2>تأثير الكربوهيدرات على الصحة</h2>
+                <p>فهم العلاقة بين الكربوهيدرات والصحة العامة</p>
+            </div>
+            <div class="health-grid">
+                <div class="health-card">
+                    <div class="health-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="health-content">
+                        <h3>صحة القلب</h3>
+                        <p>الكربوهيدرات المعقدة والألياف تساعد في خفض مستويات الكوليسترول الضار وتقليل خطر أمراض القلب. الألياف القابلة للذوبان تساعد على إزالة الكوليسترول من الجسم.</p>
+                        <div class="health-tips">
+                            <h4>نصائح:</h4>
+                            <ul>
+                                <li>اختر الحبوب الكاملة بدلاً من المصنعة</li>
+                                <li>تناول الفواكه والخضروات يومياً</li>
+                                <li>قلل من السكريات المضافة</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="health-card">
+                    <div class="health-icon">
+                        <i class="fas fa-weight"></i>
+                    </div>
+                    <div class="health-content">
+                        <h3>إدارة الوزن</h3>
+                        <p>الكربوهيدرات المعقدة تزيد من الشعور بالشبع وتساعد في التحكم في الوزن. الألياف تبطئ من عملية الهضم وتمنع تناول كميات زائدة من الطعام.</p>
+                        <div class="health-tips">
+                            <h4>نصائح:</h4>
+                            <ul>
+                                <li>ركز على الأطعمة ذات المؤشر الجلايسيمي المنخفض</li>
+                                <li>تناول البروتين مع الكربوهيدرات</li>
+                                <li>مارس الرياضة بانتظام</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="health-card">
+                    <div class="health-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="health-content">
+                        <h3>صحة الدماغ</h3>
+                        <p>الجلوكوز هو المصدر الرئيسي لطاقة الدماغ. الكربوهيدرات المعقدة توفر طاقة مستقرة للدماغ وتحسن الوظيفة المعرفية والتركيز.</p>
+                        <div class="health-tips">
+                            <h4>نصائح:</h4>
+                            <ul>
+                                <li>لا تتخطى وجبات الطعام</li>
+                                <li>اختر الكربوهيدرات ذات الهضم البطيء</li>
+                                <li>تناول وجبات خفيفة صحية بين الوجبات</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="health-card">
+                    <div class="health-icon">
+                        <i class="fas fa-capsules"></i>
+                    </div>
+                    <div class="health-content">
+                        <h3>السكري</h3>
+                        <p>الإفراط في تناول الكربوهيدرات البسيطة يزيد من خطر الإصابة بالسكري من النوع الثاني. التحكم في نوع وكمية الكربوهيدرات مهم لمرضى السكري.</p>
+                        <div class="health-tips">
+                            <h4>نصائح:</h4>
+                            <ul>
+                                <li>راقب مؤشر الجلايسيمي للأطعمة</li>
+                                <li>وزع الكربوهيدرات على الوجبات</li>
+                                <li>استشر الطبيب بانتظام</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>الأسئلة الشائعة</h2>
+                <p>إجابات على الأسئلة الأكثر شيوعاً حول الكربوهيدرات</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>هل جميع الكربوهيدرات ضارة للصحة؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>لا، الكربوهيدرات ضرورية للصحة. المشكلة تكمن في نوع الكربوهيدرات المستهلكة. الكربوهيدرات المعقدة والألياف مفيدة للصحة، بينما الكربوهيدرات البسيطة والمعالجة قد تكون ضارة عند الإفراط في تناولها.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هو الفرق بين السكر الطبيعي والمصنع؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>السكر الطبيعي الموجود في الفواكه والحليب يأتي مع ألياف وفيتامينات ومعادن تساعد في إبطاء امتصاصه. أما السكر المصنع في المعلبات والحلويات يسبب ارتفاعاً سريعاً في سكر الدم دون فوائد غذائية.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كمية الكربوهيدرات الموصى بها يومياً؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>توصي المنظمات الصحية بتناول 45-65% من السعرات الحرارية اليومية من الكربوهيدرات. للشخص البالغ الذي يحتاج 2000 سعر حراري يومياً، هذا يعادل 225-325 جراماً من الكربوهيدرات.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>هل يجب تجنب الكربوهيدرات لفقدان الوزن؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>لا يجب تجنب الكربوهيدرات تماماً. الأفضل هو اختيار الكربوهيدرات المعقدة والألياف والتحكم في الحصص. الأنظمة الغذائية منخفضة الكربوهيدرات قد تكون فعالة مؤقتاً ولكنها غير مستدامة على المدى الطويل.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هو المؤشر الجلايسيمي ولماذا هو مهم؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>المؤشر الجلايسيمي يقيس مدى سرعة رفع الطعام لمستوى السكر في الدم. الأطعمة ذات المؤشر المنخفض تسبب ارتفاعاً بطيئاً ومستقراً في سكر الدم، مما يساعد في التحكم في الشهية والوزن والوقاية من الأمراض.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>هل يمكن الرياضيون الاستغناء عن الكربوهيدرات؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>لا، الكربوهيدرات ضرورية للرياضيين كمصدر رئيسي للطاقة. يحتاج الرياضيون إلى كميات أكبر من الكربوهيدرات لتعويض الطاقة المستهلكة أثناء التدريب وتجنب الإرهاق وتحسين الأداء.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع الكربوهيدرات</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى عالي الجودة حول الكربوهيدرات وأهميتها في التغذية والصحة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#types">الأنواع</a></li>
+                        <li><a href="#structure">التركيب</a></li>
+                        <li><a href="#metabolism">الأيض</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">دروس تفاعلية</a></li>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">امتحانات تجريبية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@carbohydrates.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع الكربوهيدرات. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Tab Switching
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Daily Needs Calculator
+        document.getElementById('daily-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const gender = document.getElementById('gender').value;
+            const age = parseFloat(document.getElementById('age').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const activity = parseFloat(document.getElementById('activity').value);
+            const goal = document.getElementById('goal').value;
+            
+            if (isNaN(age) || isNaN(weight) || isNaN(height)) {
+                alert('الرجاء إدخال قيم صحيحة');
+                return;
+            }
+            
+            // Calculate BMR using Mifflin-St Jeor Equation
+            let bmr;
+            if (gender === 'male') {
+                bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+            } else {
+                bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+            }
+            
+            // Calculate TDEE
+            let tdee = bmr * activity;
+            
+            // Adjust based on goal
+            let targetCalories;
+            if (goal === 'lose') {
+                targetCalories = tdee - 500;
+            } else if (goal === 'gain') {
+                targetCalories = tdee + 500;
+            } else {
+                targetCalories = tdee;
+            }
+            
+            // Calculate carbohydrates (50% of calories)
+            const carbCalories = targetCalories * 0.5;
+            const carbGrams = carbCalories / 4; // 4 calories per gram
+            
+            const resultText = `معدل الأيض الأساسي (BMR): ${bmr.toFixed(0)} سعر حراري<br>
+                              إجمالي الطاقة اليومية (TDEE): ${tdee.toFixed(0)} سعر حراري<br>
+                              السعرات المستهدفة: ${targetCalories.toFixed(0)} سعر حراري<br>
+                              <br>
+                              <strong>احتياجاتك من الكربوهيدرات:</strong><br>
+                              ${carbGrams.toFixed(0)} جرام يومياً (${carbCalories.toFixed(0)} سعر حراري)<br>
+                              <br>
+                              <strong>توزيع الكربوهيدرات على الوجبات:</strong><br>
+                              الفطور: ${(carbGrams * 0.25).toFixed(0)} جرام<br>
+                              الغداء: ${(carbGrams * 0.35).toFixed(0)} جرام<br>
+                              العشاء: ${(carbGrams * 0.3).toFixed(0)} جرام<br>
+                              وجبات خفيفة: ${(carbGrams * 0.1).toFixed(0)} جرام`;
+            
+            document.getElementById('daily-result-text').innerHTML = resultText;
+            document.getElementById('daily-result').style.display = 'block';
+        });
+
+        // Glycemic Index Calculator
+        document.getElementById('gi-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const gi = parseFloat(document.getElementById('food-item').value);
+            const servingSize = parseFloat(document.getElementById('serving-size').value);
+            
+            if (isNaN(servingSize)) {
+                alert('الرجاء إدخال قيمة صحيحة لحجم الحصة');
+                return;
+            }
+            
+            const adjustedGI = gi; // GI is independent of serving size
+            let classification;
+            let recommendation;
+            
+            if (gi >= 70) {
+                classification = "عالي";
+                recommendation = "استهلك بكميات محدودة وامزج مع بروتين وألياف";
+            } else if (gi >= 56) {
+                classification = "متوسط";
+                recommendation = "يمكن تناوله باعتدال كجزء من نظام غذائي متوازن";
+            } else {
+                classification = "منخفض";
+                recommendation = "خيار ممتاز، يمكن تناوله بحرية";
+            }
+            
+            const resultText = `المؤشر الجلايسيمي: ${gi}<br>
+                              التصنيف: ${classification}<br>
+                              حجم الحصة: ${servingSize} جرام<br>
+                              <br>
+                              <strong>التوصية:</strong> ${recommendation}<br>
+                              <br>
+                              <strong>نصائح لخفض المؤشر الجلايسيمي:</strong><br>
+                              • تناول البروتين مع الكربوهيدرات<br>
+                              • أضف الدهون الصحية مثل زيت الزيتون<br>
+                              • اختر الحبوب الكاملة بدلاً من المصنعة<br>
+                              • تناول الفواكه كاملة بدلاً من العصائر`;
+            
+            document.getElementById('gi-result-text').innerHTML = resultText;
+            document.getElementById('gi-result').style.display = 'block';
+        });
+
+        // Meal Planning Calculator
+        document.getElementById('meal-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const mealType = document.getElementById('meal-type').value;
+            const carbPercentage = parseFloat(document.getElementById('carb-percentage').value);
+            const calories = parseFloat(document.getElementById('calories').value);
+            const complexCarbs = document.getElementById('complex-carbs').value;
+            
+            if (isNaN(carbPercentage) || isNaN(calories)) {
+                alert('الرجاء إدخال قيم صحيحة');
+                return;
+            }
+            
+            const carbCalories = calories * (carbPercentage / 100);
+            const carbGrams = carbCalories / 4;
+            
+            let mealSuggestions = [];
+            let carbType = complexCarbs === 'yes' ? 'معقدة' : 'بسيطة';
+            
+            switch(mealType) {
+                case 'breakfast':
+                    mealSuggestions = complexCarbs === 'yes' 
+                        ? ['شوفان مع فواكه ومكسرات', 'خبز أسمر مع بيض وخضروات', 'حبوب إفطار كاملة مع حليب']
+                        : ['خبز أبيض مع عسل', 'حبوب إفطار سكرية', 'عصير فواكه'];
+                    break;
+                case 'lunch':
+                    mealSuggestions = complexCarbs === 'yes'
+                        ? ['أرز بني مع دجاج وخضروات', 'كينوا مع سمك وسلطة', 'معكرونة قمح كامل مع صلصة طماطم']
+                        : ['أرز أبيض مع لحم', 'خبز أبيض مع شاورما', 'بطاطس مقلية'];
+                    break;
+                case 'dinner':
+                    mealSuggestions = complexCarbs === 'yes'
+                        ? ['بطاطس مشوية مع سمك', 'كوسا مع لحم مفروم', 'شوربة عدس مع خبز أسمر']
+                        : ['أرز أبيض مع دجاج مقلي', 'خبز أبيض مع جبن', 'بطاطس مهروسة'];
+                    break;
+                case 'snack':
+                    mealSuggestions = complexCarbs === 'yes'
+                        ? ['تفاح مع زبدة فول سوداني', 'مكسرات غير مملحة', 'خضروات مع حمص']
+                        : ['بسكويت', 'حلوى', 'مشروبات غازية'];
+                    break;
+            }
+            
+            const resultText = `<strong>تفاصيل الوجبة:</strong><br>
+                              نوع الوجبة: ${getMealTypeName(mealType)}<br>
+                              السعرات الحرارية المستهدفة: ${calories}<br>
+                              الكربوهيدرات: ${carbGrams.toFixed(0)} جرام (${carbPercentage}%)<br>
+                              النوع المفضل: ${carbType}<br>
+                              <br>
+                              <strong>اقتراحات للوجبة:</strong><br>
+                              ${mealSuggestions.map((s, i) => `${i + 1}. ${s}`).join('<br>')}<br>
+                              <br>
+                              <strong>نصائح إضافية:</strong><br>
+                              • اشرب كمية كافية من الماء<br>
+                              • تناول البروتين مع الكربوهيدرات<br>
+                              • أضف الخضروات لزيادة الألياف`;
+            
+            document.getElementById('meal-result-text').innerHTML = resultText;
+            document.getElementById('meal-result').style.display = 'block';
+        });
+
+        function getMealTypeName(type) {
+            const names = {
+                'breakfast': 'الفطور',
+                'lunch': 'الغداء',
+                'dinner': 'العشاء',
+                'snack': 'وجبة خفيفة'
+            };
+            return names[type] || type;
+        }
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

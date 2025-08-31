@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدهون - عالم الدهون والأحماض الدهنية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #f59e0b;
+            --secondary: #f97316;
+            --accent: #10b981;
+            --danger: #ef4444;
+            --success: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --info: #3b82f6;
+            --warning: #f59e0b;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(245, 158, 11, 0.85), rgba(249, 115, 22, 0.85)), url('https://images.unsplash.com/photo-1476231682828-37d571bc36f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.1"/><circle cx="60" cy="10" r="1.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="1" fill="white" opacity="0.1"/></svg>') repeat;
+            animation: float 30s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn:hover {
+            background-color: #059669;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #334155;
+            line-height: 1.8;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Types Section */
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .type-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+            height: 100%;
+        }
+
+        .type-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .type-card:hover::before {
+            opacity: 1;
+        }
+
+        .type-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .type-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-size: 3rem;
+        }
+
+        .type-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .type-body h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .type-body p {
+            color: #334155;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        .type-examples {
+            margin-top: 15px;
+            padding: 10px;
+            background: #fef3c7;
+            border-radius: 8px;
+            border-right: 3px solid var(--warning);
+        }
+
+        .type-examples h4 {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .type-examples p {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Structure Section */
+        .structure-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .structure-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 10px;
+            transition: all 0.3s;
+            background: linear-gradient(135deg, #fef3c7, #fed7aa);
+        }
+
+        .structure-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .structure-icon {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-left: 20px;
+            flex-shrink: 0;
+        }
+
+        .structure-content h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .structure-content p {
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        /* Functions Section */
+        .functions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .function-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .function-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .function-header {
+            height: 120px;
+            background: linear-gradient(135deg, var(--info), var(--primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .function-content {
+            padding: 25px;
+        }
+
+        .function-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .function-content p {
+            color: #64748b;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .function-examples {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .function-examples h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .function-examples ul {
+            color: #64748b;
+            padding-right: 20px;
+            margin: 0;
+        }
+
+        .function-examples li {
+            margin-bottom: 8px;
+        }
+
+        /* Food Sources Section */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .food-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .food-icon {
+            height: 100px;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+        }
+
+        .food-content {
+            padding: 20px;
+        }
+
+        .food-content h3 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .food-content p {
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .food-fat {
+            margin-top: 10px;
+            padding: 8px;
+            background: #d1fae5;
+            border-radius: 6px;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        /* Calculator Section */
+        .calculator-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .calculator-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #334155;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, #fef3c7, #fed7aa);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            border-right: 4px solid var(--primary);
+            display: none;
+        }
+
+        .result-box h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .result-box p {
+            color: #334155;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        /* Health Impact Section */
+        .health-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .health-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .health-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .health-icon {
+            height: 120px;
+            background: linear-gradient(135deg, var(--danger), var(--warning));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .health-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .health-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .health-content p {
+            color: #64748b;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        .health-tips {
+            margin-top: 15px;
+            padding: 12px;
+            background: #fef2f2;
+            border-radius: 8px;
+        }
+
+        .health-tips h4 {
+            color: var(--danger);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .health-tips ul {
+            color: #64748b;
+            padding-right: 20px;
+            margin: 0;
+        }
+
+        .health-tips li {
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            color: var(--primary);
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #f8fafc;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 300px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #cbd5e1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .structure-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .structure-icon {
+                margin-left: 0;
+                margin-bottom: 15px;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-oil-can"></i>
+                <span>الدهون</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#types">الأنواع</a></li>
+                    <li><a href="#structure">التركيب</a></li>
+                    <li><a href="#functions">الوظائف</a></li>
+                    <li><a href="#food">مصادر</a></li>
+                    <li><a href="#calculator">الحاسبة</a></li>
+                    <li><a href="#health">الصحة</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>عالم الدهون</h1>
+            <p>اكتشف عالم الدهون والأحماض الدهنية وأهميتها للجسم الصحي</p>
+            <a href="#intro" class="btn">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>ما هي الدهون؟</h2>
+                <p>فهم أساسيات الدهون ودورها في الجسم والصحة</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>مقدمة في الدهون</h3>
+                    <p>الدهون هي جزيئات عضوية أساسية تتكون من الكربون والهيدروجين والأكسجين. تعتبر من المغذيات الأساسية التي يحتاجها الجسم للقيام بالعديد من الوظائف الحيوية. على الرغم من سمعتها السيئة أحياناً، فإن الدهون ضرورية لصحة الجسم.</p>
+                    <p>توجد الدهون في العديد من الأطعمة وتنقسم إلى أنواع مختلفة بناءً على تركيبها الكيميائي وتأثيرها على الصحة. بعض الدهون مفيدة وتدعم الصحة، بينما البعض الآخر قد يكون ضاراً عند الإفراط في تناوله.</p>
+                    <p>تلعب الدهون دوراً حيوياً في العديد من العمليات البيولوجية بما في ذلك تخزين الطاقة، عزل الجسم، حماية الأعضاء، ونقل الفيتامينات القابلة للذوبان في الدهون. فهم الأنواع المختلفة من الدهون وكيفية تأثيرها على الجسم ضروري للحفاظ على نظام غذائي صحي.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1523293194144-4037eb016bdf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الدهون">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Types Section -->
+    <section id="types" class="types">
+        <div class="container">
+            <div class="section-title">
+                <h2>أنواع الدهون</h2>
+                <p>التصنيفات الرئيسية للدهون وخصائصها</p>
+            </div>
+            <div class="types-grid">
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="type-body">
+                        <h3>الدهون غير المشبعة</h3>
+                        <p>تعتبر الدهون الصحية التي تساعد في خفض مستويات الكوليسترول الضار. تنقسم إلى أحادية غير مشبعة ومتعددة غير مشبعة. توجد في زيوت الزيتون، الأفوكادو، والمكسرات.</p>
+                        <div class="type-examples">
+                            <h4>أمثلة:</h4>
+                            <p>زيت الزيتون، الأفوكادو، المكسرات، الأسماك الدهنية</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="type-body">
+                        <h3>الدهون المشبعة</h3>
+                        <p>دهون صلبة في درجة حرارة الغرفة. قد ترفع مستويات الكوليسترول الضار عند الإفراط في تناولها. توجد في اللحوم الحمراء، الزبدة، ومنتجات الألبان كاملة الدسم.</p>
+                        <div class="type-examples">
+                            <h4>أمثلة:</h4>
+                            <p>الزبدة، اللحوم الحمراء، جوز الهند، زيت النخيل</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="type-body">
+                        <h3>الدهون المتحولة</h3>
+                        <p>أكثر أنواع الدهون ضرراً للصحة. ترفع الكوليسترول الضار وتخفض الجيد. تنتج صناعياً عن طريق هدرجة الزيوت النباتية. توجد في الأطعمة المصنعة والمقلية.</p>
+                        <div class="type-examples">
+                            <h4>أمثلة:</h4>
+                            <p>السمن الصناعي، الأطعمة المقلية، المخبوزات التجارية</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="type-body">
+                        <h3>الأحماض الدهنية الأساسية</h3>
+                        <p>أحماض دهنية لا يستطيع الجسم تصنيعها ويجب الحصول عليها من الطعام. تشمل أوميغا-3 وأوميغا-6. مهمة لصحة الدماغ والقلب.</p>
+                        <div class="type-examples">
+                            <h4>أمثلة:</h4>
+                            <p>أسماك السلمون، بذور الكتان، الجوز، بذور الشيا</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Structure Section -->
+    <section id="structure" class="structure">
+        <div class="container">
+            <div class="section-title">
+                <h2>تركيب الدهون</h2>
+                <p>فهم البنية الجزيئية للدهون والأحماض الدهنية</p>
+            </div>
+            <div class="structure-container">
+                <div class="structure-item">
+                    <div class="structure-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <div class="structure-content">
+                        <h3>التركيب الجزيئي الأساسي</h3>
+                        <p>تتكون الدهون من جزيء جليسرول مرتبط بثلاثة أحماض دهنية. كل حمض دهني يتكون من سلسلة كربون مع مجموعة كربوكسيل في نهايتها. طول السلسلة وعدد الروابط المزدوجة يحدد خصائص الدهن.</p>
+                    </div>
+                </div>
+                
+                <div class="structure-item">
+                    <div class="structure-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <div class="structure-content">
+                        <h3>الروابط الكيميائية</h3>
+                        <p>الروابط المزدوجة بين ذرات الكربون تحدد ما إذا كان الحمض دهني مشبع أو غير مشبع. الدهون غير المشبعة لها روابط مزدوجة واحدة (أحادية) أو أكثر (متعددة).</p>
+                    </div>
+                </div>
+                
+                <div class="structure-item">
+                    <div class="structure-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="structure-content">
+                        <h3>التركيب الفراغي</h3>
+                        <p>للدهون تركيب فراغي ثلاثي الأبعاد مهم لوظيفتها. التفرعات في سلاسل الكربون تزيد من قابلية الذوبان وتوفر مواقع تفاعل إضافية. هذا التركيب يؤثر على كيفية تفاعل الدهون مع الإنزيمات.</p>
+                    </div>
+                </div>
+                
+                <div class="structure-item">
+                    <div class="structure-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="structure-content">
+                        <h3>الخصائص الفيزيائية</h3>
+                        <p>تختلف الدهون في نقطة الانصهار والذوبانية بناءً على تركيبها. الدهون المشبعة صلبة في درجة حرارة الغرفة بينما الدهون غير المشبعة سائلة. هذه الخصائص مهمة في التطبيقات الغذائية والصناعية.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Functions Section -->
+    <section id="functions" class="functions">
+        <div class="container">
+            <div class="section-title">
+                <h2>وظائف الدهون</h2>
+                <p>الأدوار المتعددة التي تلعبها الدهون في الجسم</p>
+            </div>
+            <div class="functions-grid">
+                <div class="function-card">
+                    <div class="function-header">
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                    <div class="function-content">
+                        <h3>تخزين الطاقة</h3>
+                        <p>الدهون هي أكثر أشكال تخزين الطاقة كثافة. كل جرام من الدهون يوفر 9 سعرات حرارية، مقارنة بـ 4 سعرات للبروتينات والكربوهيدرات. تخزن في الخلايا الدهنية للاستخدام عند الحاجة.</p>
+                        <div class="function-examples">
+                            <h4>أمثلة:</h4>
+                            <ul>
+                                <li>الدهون تحت الجلد</li>
+                                <li>الدهون حول الأعضاء</li>
+                                <li>الدهون في العضلات</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="function-card">
+                    <div class="function-header">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="function-content">
+                        <h3>العزل والحماية</h3>
+                        <p>توفر الدهون عزلاً حرارياً للجسم وتحمي الأعضاء الداخلية من الصدمات. الدهون تحت الجلد تساعد في الحفاظ على درجة حرارة الجسم ثابتة.</p>
+                        <div class="function-examples">
+                            <h4>أمثلة:</h4>
+                            <ul>
+                                <li>الدهون تحت الجلد</li>
+                                <li>الدهون حول الكلى</li>
+                                <li>الدهون حول القلب</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="function-card">
+                    <div class="function-header">
+                        <i class="fas fa-capsules"></i>
+                    </div>
+                    <div class="function-content">
+                        <h3>نقل الفيتامينات</h3>
+                        <p>تساعد الدهون في امتصاص ونقل الفيتامينات القابلة للذوبان في الدهون (A, D, E, K). هذه الفيتامينات ضرورية للعديد من الوظائف الحيوية في الجسم.</p>
+                        <div class="function-examples">
+                            <h4>أمثلة:</h4>
+                            <ul>
+                                <li>فيتامين A للرؤية</li>
+                                <li>فيتامين D للعظام</li>
+                                <li>فيتامين E كمضاد أكسدة</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Food Sources Section -->
+    <section id="food" class="food">
+        <div class="container">
+            <div class="section-title">
+                <h2>مصادر الدهون</h2>
+                <p>أهم المصادر الغذائية للدهون الصحية وغير الصحية</p>
+            </div>
+            <div class="food-grid">
+                <div class="food-card">
+                    <div class="food-icon">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <div class="food-content">
+                        <h3>الأسماك الدهنية</h3>
+                        <p>غنية بأوميغا-3</p>
+                        <div class="food-fat">15-25g دهون/100g</div>
+                    </div>
+                </div>
+                
+                <div class="food-card">
+                    <div class="food-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="food-content">
+                        <h3>المكسرات والبذور</h3>
+                        <p>دهون غير مشبعة صحية</p>
+                        <div class="food-fat">45-65g دهون/100g</div>
+                    </div>
+                </div>
+                
+                <div class="food-card">
+                    <div class="food-icon">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <div class="food-content">
+                        <h3>زيوت نباتية</h3>
+                        <p>مصدر للدهون غير المشبعة</p>
+                        <div class="food-fat">100g دهون/100ml</div>
+                    </div>
+                </div>
+                
+                <div class="food-card">
+                    <div class="food-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="food-content">
+                        <h3>الأفوكادو</h3>
+                        <p>دهون أحادية غير مشبعة</p>
+                        <div class="food-fat">15-20g دهون/100g</div>
+                    </div>
+                </div>
+                
+                <div class="food-card">
+                    <div class="food-icon">
+                        <i class="fas fa-cheese"></i>
+                    </div>
+                    <div class="food-content">
+                        <h3>منتجات الألبان</h3>
+                        <p>تحتوي على دهون مشبعة</p>
+                        <div class="food-fat">20-35g دهون/100g</div>
+                    </div>
+                </div>
+                
+                <div class="food-card">
+                    <div class="food-icon">
+                        <i class="fas fa-drumstick-bite"></i>
+                    </div>
+                    <div class="food-content">
+                        <h3>اللحوم الحمراء</h3>
+                        <p>مصدر للدهون المشبعة</p>
+                        <div class="food-fat">15-30g دهون/100g</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="calculator">
+        <div class="container">
+            <div class="section-title">
+                <h2>حاسبة الدهون</h2>
+                <p>احسب احتياجاتك من الدهون والسعرات الحرارية</p>
+            </div>
+            <div class="calculator-container">
+                <div class="calculator-tabs">
+                    <button class="tab-btn active" onclick="switchTab('daily-needs')">الاحتياجات اليومية</button>
+                    <button class="tab-btn" onclick="switchTab('fat-ratio')">نسبة الدهون</button>
+                    <button class="tab-btn" onclick="switchTab('meal-planning')">تخطيط الوجبات</button>
+                </div>
+                
+                <!-- Daily Needs Calculator Tab -->
+                <div id="daily-needs-tab" class="tab-content active">
+                    <form id="daily-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="gender">الجنس:</label>
+                                <select id="gender">
+                                    <option value="male">ذكر</option>
+                                    <option value="female">أنثى</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="age">العمر (سنوات):</label>
+                                <input type="number" id="age" min="1" max="120" placeholder="أدخل العمر">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="weight">الوزن (كجم):</label>
+                                <input type="number" id="weight" min="20" max="300" step="0.1" placeholder="أدخل الوزن">
+                            </div>
+                            <div class="form-group">
+                                <label for="height">الطول (سم):</label>
+                                <input type="number" id="height" min="100" max="250" placeholder="أدخل الطول">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="activity">مستوى النشاط:</label>
+                                <select id="activity">
+                                    <option value="1.2">قليل النشاط (مكتب)</option>
+                                    <option value="1.375">نشاط خفيف (1-3 أيام)</option>
+                                    <option value="1.55">نشاط متوسط (3-5 أيام)</option>
+                                    <option value="1.725">نشاط عالي (6-7 أيام)</option>
+                                    <option value="1.9">نشاط شديد (رياضي)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="goal">الهدف:</label>
+                                <select id="goal">
+                                    <option value="maintain">المحافظة على الوزن</option>
+                                    <option value="lose">فقدان الوزن</option>
+                                    <option value="gain">زيادة الوزن</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn">احسب الاحتياجات</button>
+                    </form>
+                    <div class="result-box" id="daily-result">
+                        <h4>النتيجة:</h4>
+                        <p id="daily-result-text"></p>
+                    </div>
+                </div>
+                
+                <!-- Fat Ratio Calculator Tab -->
+                <div id="fat-ratio-tab" class="tab-content">
+                    <form id="ratio-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="total-calories">السعرات الحرارية اليومية:</label>
+                                <input type="number" id="total-calories" min="1000" max="5000" placeholder="أدخل السعرات">
+                            </div>
+                            <div class="form-group">
+                                <label for="fat-percentage">نسبة الدهون (%):</label>
+                                <input type="number" id="fat-percentage" min="10" max="50" value="30" placeholder="30">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="protein-percentage">نسبة البروتين (%):</label>
+                                <input type="number" id="protein-percentage" min="10" max="50" value="30" placeholder="30">
+                            </div>
+                            <div class="form-group">
+                                <label for="carb-percentage">نسبة الكربوهيدرات (%):</label>
+                                <input type="number" id="carb-percentage" min="10" max="80" value="40" placeholder="40">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn">احسب التوزيع</button>
+                    </form>
+                    <div class="result-box" id="ratio-result">
+                        <h4>النتيجة:</h4>
+                        <p id="ratio-result-text"></p>
+                    </div>
+                </div>
+                
+                <!-- Meal Planning Calculator Tab -->
+                <div id="meal-planning-tab" class="tab-content">
+                    <form id="meal-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="meal-type">نوع الوجبة:</label>
+                                <select id="meal-type">
+                                    <option value="breakfast">الفطور</option>
+                                    <option value="lunch">الغداء</option>
+                                    <option value="dinner">العشاء</option>
+                                    <option value="snack">وجبة خفيفة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="fat-grams">الدهون المستهدفة (جرام):</label>
+                                <input type="number" id="fat-grams" min="5" max="100" value="20" placeholder="أدخل الدهون">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="diet-type">نوع النظام الغذائي:</label>
+                                <select id="diet-type">
+                                    <option value="balanced">متوازن</option>
+                                    <option value="low-fat">قليل الدهون</option>
+                                    <option value="keto">كيتو</option>
+                                    <option value="mediterranean">متوسطي</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="calories">السعرات الحرارية الإجمالية:</label>
+                                <input type="number" id="calories" min="100" max="2000" placeholder="أدخل السعرات">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn">خطط الوجبة</button>
+                    </form>
+                    <div class="result-box" id="meal-result">
+                        <h4>النتيجة:</h4>
+                        <p id="meal-result-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Impact Section -->
+    <section id="health" class="health">
+        <div class="container">
+            <div class="section-title">
+                <h2>تأثير الدهون على الصحة</h2>
+                <p>فهم العلاقة بين الدهون والصحة العامة</p>
+            </div>
+            <div class="health-grid">
+                <div class="health-card">
+                    <div class="health-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="health-content">
+                        <h3>صحة القلب</h3>
+                        <p>الدهون غير المشبعة تحسن صحة القلب عن طريق خفض الكوليسترول الضارع ورفع الجيد. أوميغا-3 تقلل من الالتهابات وتمنع تجلط الدم.</p>
+                        <div class="health-tips">
+                            <h4>نصائح:</h4>
+                            <ul>
+                                <li>اختر الأسماك الدهنية مرتين أسبوعياً</li>
+                                <li>استخدم زيت الزيتون بدلاً من الزبدة</li>
+                                <li>قلل من الدهون المشبعة</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="health-card">
+                    <div class="health-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="health-content">
+                        <h3>صحة الدماغ</h3>
+                        <p>الدهون ضرورية لصحة الدماغ. أوميغا-3 تدعم وظائف الدماغ وتحسن الذاكرة. الدهون تشكل 60% من وزن الدماغ وتدعم بناء الخلايا العصبية.</p>
+                        <div class="health-tips">
+                            <h4>نصائح:</h4>
+                            <ul>
+                                <li>تناول الأسماك والمكسرات بانتظام</li>
+                                <li>تجنب الدهون المتحولة</li>
+                                <li>احصل على قسط كافٍ من النوم</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="health-card">
+                    <div class="health-icon">
+                        <i class="fas fa-weight"></i>
+                    </div>
+                    <div class="health-content">
+                        <h3>إدارة الوزن</h3>
+                        <p>الدهون تحتوي على سعرات حرارية عالية ولكنها ضرورية للشبع. الدهون الصحية تساعد في التحكم في الشهية ومنع الإفراط في تناول الطعام.</p>
+                        <div class="health-tips">
+                            <h4>نصائح:</h4>
+                            <ul>
+                                <li>ركز على الدهون غير المشبعة</li>
+                                <li>تحكم في حجم الحصص</li>
+                                <li>مارس الرياضة بانتظام</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="health-card">
+                    <div class="health-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="health-content">
+                        <h3>مخاطر الدهون غير الصحية</h3>
+                        <p>الدهون المشبعة والمتحولة تزيد من خطر أمراض القلب والسكتة الدماغية. ترفع ضغط الدم وتساهم في تكوين الترسبات في الشرايين.</p>
+                        <div class="health-tips">
+                            <h4>نصائح:</h4>
+                            <ul>
+                                <li>اقرأ الملصقات الغذائية</li>
+                                <li>تجنب الأطعمة المقلية</li>
+                                <li>اختر الدهون غير المشبعة</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>الأسئلة الشائعة</h2>
+                <p>إجابات على الأسئلة الأكثر شيوعاً حول الدهون</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>هل جميع الدهون ضارة للصحة؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>لا، ليس جميع الدهون ضارة. الدهون غير المشبعة (مثل تلك الموجودة في زيت الزيتون والمكسرات) مفيدة للصحة وتدعم صحة القلب والدماغ. المشكلة تكمن في الدهون المشبعة والمتحولة عند الإفراط في تناولها.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هي كمية الدهون الموصى بها يومياً؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>توصي المنظمات الصحية بتناول 20-35% من السعرات الحرارية اليومية من الدهون. للشخص البالغ الذي يحتاج 2000 سعر حراري، هذا يعادل 44-78 جراماً من الدهون يومياً، مع التركيز على الدهون غير المشبعة.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما الفرق بين الدهون المشبعة وغير المشبعة؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الدهون المشبعة ليس لديها روابط مزدوجة بين ذرات الكربون وتكون صلبة في درجة حرارة الغرفة. الدهون غير المشبعة تحتوي على روابط مزدوجة واحدة أو أكثر وتكون سائلة. الدهون غير المشبعة تعتبر أكثر صحة للقلب.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هي الدهون المتحولة ولماذا هي ضارة؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الدهون المتحولة تنتج صناعياً عن طريق إضافة الهيدروجين للزيوت النباتية. هي ضارة لأنها ترفع الكوليسترول الضار (LDL) وتخفض الجيد (HDL)، وتزيد من خطر أمراض القلب والسكتة الدماغية والسكري.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>هل يجب تجنب الدهون تماماً لفقدان الوزن؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>لا، تجنب الدهون تماماً غير صحي وغير مستدام. الدهون ضرورية لامتصاص الفيتامينات، إنتاج الهرمونات، والشعور بالشبع. الأفضل هو اختيار الدهون الصحية والتحكم في الكميات المتناولة.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هي أفضل مصادر الدهون الصحية؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>أفضل المصادر تشمل: الأسماك الدهنية (السلمون، التونة)، المكسرات (الجوز، اللوز)، بذور الكتان والشيا، الأفوكادو، وزيوت نباتية غير مكررة مثل زيت الزيتون وزيت الكانولا.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع الدهون</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى عالي الجودة حول الدهون وأهميتها في التغذية والصحة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#types">الأنواع</a></li>
+                        <li><a href="#structure">التركيب</a></li>
+                        <li><a href="#functions">الوظائف</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">دروس تفاعلية</a></li>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">امتحانات تجريبية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@fats.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع الدهون. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Tab Switching
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Daily Needs Calculator
+        document.getElementById('daily-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const gender = document.getElementById('gender').value;
+            const age = parseFloat(document.getElementById('age').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const activity = parseFloat(document.getElementById('activity').value);
+            const goal = document.getElementById('goal').value;
+            
+            if (isNaN(age) || isNaN(weight) || isNaN(height)) {
+                alert('الرجاء إدخال قيم صحيحة');
+                return;
+            }
+            
+            // Calculate BMR using Mifflin-St Jeor Equation
+            let bmr;
+            if (gender === 'male') {
+                bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+            } else {
+                bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+            }
+            
+            // Calculate TDEE
+            let tdee = bmr * activity;
+            
+            // Adjust based on goal
+            let targetCalories;
+            if (goal === 'lose') {
+                targetCalories = tdee - 500;
+            } else if (goal === 'gain') {
+                targetCalories = tdee + 500;
+            } else {
+                targetCalories = tdee;
+            }
+            
+            // Calculate fat needs (25-35% of calories)
+            const fatPercentage = 30; // Recommended percentage
+            const fatCalories = targetCalories * (fatPercentage / 100);
+            const fatGrams = fatCalories / 9; // 9 calories per gram of fat
+            
+            const resultText = `معدل الأيض الأساسي (BMR): ${bmr.toFixed(0)} سعر حراري<br>
+                              إجمالي الطاقة اليومية (TDEE): ${tdee.toFixed(0)} سعر حراري<br>
+                              السعرات المستهدفة: ${targetCalories.toFixed(0)} سعر حراري<br>
+                              <br>
+                              <strong>احتياجاتك من الدهون:</strong><br>
+                              ${fatGrams.toFixed(1)} جرام يومياً (${fatCalories.toFixed(0)} سعر حراري)<br>
+                              <br>
+                              <strong>توزيع الدهون على الوجبات:</strong><br>
+                              الفطور: ${(fatGrams * 0.25).toFixed(1)} جرام<br>
+                              الغداء: ${(fatGrams * 0.35).toFixed(1)} جرام<br>
+                              العشاء: ${(fatGrams * 0.3).toFixed(1)} جرام<br>
+                              وجبات خفيفة: ${(fatGrams * 0.1).toFixed(1)} جرام`;
+            
+            document.getElementById('daily-result-text').innerHTML = resultText;
+            document.getElementById('daily-result').style.display = 'block';
+        });
+
+        // Fat Ratio Calculator
+        document.getElementById('ratio-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const totalCalories = parseFloat(document.getElementById('total-calories').value);
+            const fatPercentage = parseFloat(document.getElementById('fat-percentage').value);
+            const proteinPercentage = parseFloat(document.getElementById('protein-percentage').value);
+            const carbPercentage = parseFloat(document.getElementById('carb-percentage').value);
+            
+            if (isNaN(totalCalories) || isNaN(fatPercentage) || isNaN(proteinPercentage) || isNaN(carbPercentage)) {
+                alert('الرجاء إدخال قيم صحيحة');
+                return;
+            }
+            
+            // Check if percentages add up to 100
+            const totalPercentage = fatPercentage + proteinPercentage + carbPercentage;
+            if (Math.abs(totalPercentage - 100) > 1) {
+                alert('مجموع النسب المئوية يجب أن يكون 100%');
+                return;
+            }
+            
+            const fatCalories = totalCalories * (fatPercentage / 100);
+            const fatGrams = fatCalories / 9;
+            const proteinCalories = totalCalories * (proteinPercentage / 100);
+            const proteinGrams = proteinCalories / 4;
+            const carbCalories = totalCalories * (carbPercentage / 100);
+            const carbGrams = carbCalories / 4;
+            
+            let fatRecommendation;
+            if (fatPercentage < 20) {
+                fatRecommendation = "نسبة منخفضة جداً، قد تؤثر على امتصاص الفيتامينات";
+            } else if (fatPercentage > 35) {
+                fatRecommendation = "نسبة عالية، قد تزيد من خطر أمراض القلب";
+            } else {
+                fatRecommendation = "نسبة صحية ومتوازنة";
+            }
+            
+            const resultText = `توزيع المغذيات:<br>
+                              <strong>الدهون:</strong> ${fatPercentage}% (${fatGrams.toFixed(1)}g)<br>
+                              <strong>البروتين:</strong> ${proteinPercentage}% (${proteinGrams.toFixed(1)}g)<br>
+                              <strong>الكربوهيدرات:</strong> ${carbPercentage}% (${carbGrams.toFixed(1)}g)<br>
+                              <br>
+                              <strong>التقييم:</strong> ${fatRecommendation}<br>
+                              <br>
+                              <strong>نصائح:</strong><br>
+                              • ركز على الدهون غير المشبعة<br>
+                              • اختر مصادر البروتين قليلة الدهون<br>
+                              • اختر الكربوهيدرات المعقدة`;
+            
+            document.getElementById('ratio-result-text').innerHTML = resultText;
+            document.getElementById('ratio-result').style.display = 'block';
+        });
+
+        // Meal Planning Calculator
+        document.getElementById('meal-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const mealType = document.getElementById('meal-type').value;
+            const fatGrams = parseFloat(document.getElementById('fat-grams').value);
+            const dietType = document.getElementById('diet-type').value;
+            const calories = parseFloat(document.getElementById('calories').value);
+            
+            if (isNaN(fatGrams) || isNaN(calories)) {
+                alert('الرجاء إدخال قيم صحيحة');
+                return;
+            }
+            
+            let mealSuggestions = [];
+            
+            switch(dietType) {
+                case 'balanced':
+                    switch(mealType) {
+                        case 'breakfast':
+                            mealSuggestions = ['بيض مع أفوكادو وزيت زيتون', 'شوفان مع مكسرات وبذور', 'زبادي كامل مع فواكه ومكسرات'];
+                            break;
+                        case 'lunch':
+                            mealSuggestions = ['سلطة مع زيت زيتون وأفوكادو', 'سمك مشوي مع خضروات', 'دجاج مشوي مع بطاطس وزيت زيتون'];
+                            break;
+                        case 'dinner':
+                            mealSuggestions = ['سمك مشوي مع خضروات', 'دجاج مشوي مع أرز بني', 'لحم مشوي مع خضروات'];
+                            break;
+                        case 'snack':
+                            mealSuggestions = ['مكسرات غير مملحة', 'أفوكادو مع ملح', 'جبن قريش مع زيت زيتون'];
+                            break;
+                    }
+                    break;
+                case 'low-fat':
+                    switch(mealType) {
+                        case 'breakfast':
+                            mealSuggestions = ['بيض مسلوق بدون زيت', 'شوفان مع فواكه', 'زبادي قليل الدسم'];
+                            break;
+                        case 'lunch':
+                            mealSuggestions = ['سلطة خضروات بدون زيت', 'سمك مشوي', 'دجاج مشوي بدون جلد'];
+                            break;
+                        case 'dinner':
+                            mealSuggestions = ['خضروات مشوية', 'سمك على البخار', 'دجاج مشوي'];
+                            break;
+                        case 'snack':
+                            mealSuggestions = ['فواكه طازجة', 'خضروات مقطعة', 'زبادي قليل الدسم'];
+                            break;
+                    }
+                    break;
+                case 'keto':
+                    switch(mealType) {
+                        case 'breakfast':
+                            mealSuggestions = ['بيض مع زبدة', 'أفوكادو مع جبن', 'قهوة مع زيت جوز الهند'];
+                            break;
+                        case 'lunch':
+                            mealSuggestions = ['لحم دهني مع خضروات', 'سلمون مع زبدة', 'دجاج مع جلد وخضروات'];
+                            break;
+                        case 'dinner':
+                            mealSuggestions = ['لحم دهني مع خضروات', 'سمك دهني', 'جبن مع خضروات'];
+                            break;
+                        case 'snack':
+                            mealSuggestions = ['مكسرات', 'جبن', 'زيتون'];
+                            break;
+                    }
+                    break;
+                case 'mediterranean':
+                    switch(mealType) {
+                        case 'breakfast':
+                            mealSuggestions = ['بيض مع زيت زيتون وزيتون', 'خبز كامل مع زيت زيتون وزعتر', 'شوفان مع فواكه ومكسرات'];
+                            break;
+                        case 'lunch':
+                            mealSuggestions = ['سلطة متوسطية مع زيت زيتون', 'سمك مشوي مع خضروات وزيت زيتون', 'دجاج مشوي مع خضروات وزيتون'];
+                            break;
+                        case 'dinner':
+                            mealSuggestions = ['سمك مشوي مع خضروات وزيت زيتون', 'لحم مشوي مع خضروات وزيت زيتون', 'معكرونة مع صلصة الطماطم وزيت زيتون'];
+                            break;
+                        case 'snack':
+                            mealSuggestions = ['مكسرات', 'زيتون', 'جبن فيتا'];
+                            break;
+                    }
+                    break;
+            }
+            
+            const resultText = `<strong>تفاصيل الوجبة:</strong><br>
+                              نوع الوجبة: ${getMealTypeName(mealType)}<br>
+                              الدهون المستهدفة: ${fatGrams} جرام<br>
+                              السعرات الحرارية: ${calories}<br>
+                              النظام الغذائي: ${getDietTypeName(dietType)}<br>
+                              <br>
+                              <strong>اقتراحات للوجبة:</strong><br>
+                              ${mealSuggestions.map((s, i) => `${i + 1}. ${s}`).join('<br>')}<br>
+                              <br>
+                              <strong>نصائح إضافية:</strong><br>
+                              • استخدم زيوت صحية للطهي<br>
+                              • أضف الخضروات لزيادة الألياف<br>
+                              • اشرب كمية كافية من الماء`;
+            
+            document.getElementById('meal-result-text').innerHTML = resultText;
+            document.getElementById('meal-result').style.display = 'block';
+        });
+
+        function getMealTypeName(type) {
+            const names = {
+                'breakfast': 'الفطور',
+                'lunch': 'الغداء',
+                'dinner': 'العشاء',
+                'snack': 'وجبة خفيفة'
+            };
+            return names[type] || type;
+        }
+
+        function getDietTypeName(type) {
+            const names = {
+                'balanced': 'متوازن',
+                'low-fat': 'قليل الدهون',
+                'keto': 'كيتو',
+                'mediterranean': 'متوسطي'
+            };
+            return names[type] || type;
+        }
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

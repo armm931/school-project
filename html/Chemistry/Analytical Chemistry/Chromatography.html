@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكروماتوغرافيا - فن فصل وتحليل المركبات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #0891b2;
+            --secondary: #0e7490;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --info: #3b82f6;
+            --purple: #7c3aed;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(8, 145, 178, 0.85), rgba(14, 116, 144, 0.85)), url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/><circle cx="20" cy="20" r="1.5" fill="white" opacity="0.1"/><circle cx="80" cy="30" r="1" fill="white" opacity="0.1"/><circle cx="30" cy="70" r="1.5" fill="white" opacity="0.1"/><circle cx="70" cy="80" r="1" fill="white" opacity="0.1"/></svg>') repeat;
+            animation: float 30s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn:hover {
+            background-color: #d97706;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #334155;
+            line-height: 1.8;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Types Grid */
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .type-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .type-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .type-card:hover::before {
+            opacity: 1;
+        }
+
+        .type-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .type-icon {
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-size: 3rem;
+        }
+
+        .type-body {
+            padding: 25px;
+        }
+
+        .type-body h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .type-body p {
+            color: #334155;
+            line-height: 1.8;
+        }
+
+        .type-formula {
+            background-color: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            margin-top: 15px;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* Process Section */
+        .process-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        .process-step:not(:last-child)::after {
+            content: '\f054';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin: 0 auto 15px;
+            transition: all 0.3s;
+        }
+
+        .process-step:hover .step-icon {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(8, 145, 178, 0.3);
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .step-desc {
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Equipment Section */
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .equipment-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .equipment-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .equipment-header {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .equipment-header h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .equipment-body {
+            padding: 25px;
+        }
+
+        .equipment-specs {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .equipment-specs h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .spec-list {
+            list-style: none;
+        }
+
+        .spec-list li {
+            padding: 5px 0;
+            color: #64748b;
+            position: relative;
+            padding-right: 20px;
+        }
+
+        .spec-list li::before {
+            content: '•';
+            position: absolute;
+            right: 0;
+            color: var(--accent);
+        }
+
+        /* Applications Section */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .app-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-icon {
+            height: 120px;
+            background: linear-gradient(135deg, var(--purple), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .app-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .app-content p {
+            color: #64748b;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        /* Interactive Simulator */
+        .simulator-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .simulator-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .simulator-tab {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .simulator-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(8, 145, 178, 0.3);
+        }
+
+        .simulator-tab.active {
+            background: linear-gradient(135deg, var(--accent), var(--danger));
+        }
+
+        .chromatogram-display {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 30px;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border: 2px dashed #cbd5e1;
+        }
+
+        .chromatogram-canvas {
+            width: 100%;
+            height: 250px;
+        }
+
+        .simulator-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: linear-gradient(135deg, var(--secondary), var(--info));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(14, 116, 144, 0.3);
+        }
+
+        /* Parameters Section */
+        .parameters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .parameter-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .parameter-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .parameter-header {
+            background: linear-gradient(135deg, var(--info), var(--purple));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .parameter-header h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .parameter-body {
+            padding: 25px;
+        }
+
+        .parameter-formula {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-right: 3px solid var(--info);
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            color: var(--primary);
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #f8fafc;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 300px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #cbd5e1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+            }
+            
+            .process-step:not(:last-child)::after {
+                content: '';
+                position: static;
+                transform: none;
+            }
+            
+            .process-step::after {
+                content: '\f078';
+                position: static;
+                transform: none;
+                display: block;
+                margin: 10px 0;
+                color: var(--accent);
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-layer-group"></i>
+                <span>الكروماتوغرافيا</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#types">الأنواع</a></li>
+                    <li><a href="#process">العملية</a></li>
+                    <li><a href="#equipment">المعدات</a></li>
+                    <li><a href="#simulator">المحاكي</a></li>
+                    <li><a href="#parameters">المعاملات</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>عالم الكروماتوغرافيا</h1>
+            <p>اكتشف فن وعلم فصل وتحليل المركبات المعقدة باستخدام تقنيات الكروماتوغرافيا المتقدمة</p>
+            <a href="#intro" class="btn">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>ما هي الكروماتوغرافيا؟</h2>
+                <p>فهم أساسيات الكروماتوغرافيا وأهميتها في الكيمياء التحليلية</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>مقدمة في الكروماتوغرافيا</h3>
+                    <p>الكروماتوغرافيا هي تقنية تحليلية قوية تستخدم لفصل وتحديد وتكمية المكونات في خليط معقد. تعتمد على توزيع المكونات بين طورين: طور ثابت (الطور الثابت) وطور متحرك (طور المحمول أو المذيب).</p>
+                    <p>تعتمد فعالية الفصل على اختلاف الخصائص الفيزيائية والكيميائية للمكونات مثل الذوبانية، القطبية، الحجم الجزيئي، والتفاعل مع الطور الثابت. كل مكون يتحرك بسرعة مختلفة عبر النظام، مما يؤدي إلى فصلها عن بعضها البعض.</p>
+                    <p>تستخدم الكروماتوغرافيا على نطاق واسع في مجالات متعددة مثل الصناعة الدوائية، تحليل الأغذية، مراقبة البيئة، والبحث العلمي. توفر هذه التقنية دقة عالية وحساسية ممتازة، مما يجعلها أداة لا غنى عنها في المختبرات الحديثة.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الكروماتوغرافيا">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Types Section -->
+    <section id="types" class="types">
+        <div class="container">
+            <div class="section-title">
+                <h2>أنواع الكروماتوغرافيا</h2>
+                <p>التصنيفات الرئيسية لأنظمة الكروماتوغرافيا</p>
+            </div>
+            <div class="types-grid">
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <div class="type-body">
+                        <h3>كروماتوغرافيا السوائل-السوائل</h3>
+                        <p>LLC</p>
+                        <p>تستخدم طورين سائلين غير ممتزجين. مفيدة لفصل المركبات ذات القطبية العالية مثل الأحماض الأمينية والسكريات.</p>
+                        <div class="type-formula">
+                            Rf = مسافة المركب / مسافة المذيب
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-gas"></i>
+                    </div>
+                    <div class="type-body">
+                        <h3>كروماتوغرافيا الغاز-الغاز</h3>
+                        <p>GC</p>
+                        <p>تستخدم طورين غازيين. مثالية لفصل المركبات المتطايرة والقابلة للتبخر مثل الهيدروكربونات والمذيبات العضوية.</p>
+                        <div class="type-formula">
+                            tR = وقت الاحتباس
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <div class="type-body">
+                        <h3>كروماتوغرافيا السوائل-الغاز</h3>
+                        <p>GLC</p>
+                        <p>تستخدم طور سائل ثابت وطور غاز متحرك. تستخدم لتحليل المركبات غير المتطايرة أو الحرارة.</p>
+                        <div class="type-formula">
+                            K = Cs / Cm
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="type-body">
+                        <h3>كروماتوغرافيا الطبقة الرقيقة</h3>
+                        <p>TLC</p>
+                        <p>تستخدم طبقة رقيقة من مادة ماصة على لوح زجاجي. تستخدم للفصل السريع والتحليل النوعي.</p>
+                        <div class="type-formula">
+                            Rf = مسافة النقطة / مسافة المذيب
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div class="type-body">
+                        <h3>HPLC</h3>
+                        <p>كروماتوغرافيا السوائل عالية الأداء</p>
+                        <p>تستخدم ضغطاً عالياً لتحسين الفصل. تستخدم على نطاق واسع في الصناعة الدوائية وتحليل المركبات المعقدة.</p>
+                        <div class="type-formula">
+                            P = ضغط النظام
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="type-body">
+                        <h3>كروماتوغرافيا التبادل الأيوني</h3>
+                        <p>IEC</p>
+                        <p>تفصل الأيونات بناءًا على شحنتها. تستخدم لفصل البروتينات والأحماض الأمينية والأيونات المعدنية.</p>
+                        <div class="type-formula">
+                            pH = -log[H⁺]
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process">
+        <div class="container">
+            <div class="section-title">
+                <h2>عملية الكروماتوغرافيا</h2>
+                <p>الخطوات الأساسية في عملية الفصل الكروماتوغرافي</p>
+            </div>
+            <div class="process-container">
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <div class="step-title">إعداد العينة</div>
+                        <div class="step-desc">تحضير العينة بشكل مناسب للحقن في النظام الكروماتوغرافي</div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-icon">
+                            <i class="fas fa-syringe"></i>
+                        </div>
+                        <div class="step-title">الحقن</div>
+                        <div class="step-desc">إدخال العينة إلى نظام الكروماتوغرافيا بطريقة دقيقة</div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-icon">
+                            <i class="fas fa-arrows-alt-h"></i>
+                        </div>
+                        <div class="step-title">الفصل</div>
+                        <div class="step-desc">فصل المكونات بناءًا على اختلاف تفاعلها مع الطور الثابت</div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="step-title">الكشف</div>
+                        <div class="step-desc">كشف المكونات المفصولة باستخدام كاشف مناسب</div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="step-title">التحليل</div>
+                        <div class="step-desc">تحليل البيانات وتحديد هوية وكمية المكونات</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipment Section -->
+    <section id="equipment" class="equipment">
+        <div class="container">
+            <div class="section-title">
+                <h2>المعدات الكروماتوغرافية</h2>
+                <p>المكونات الأساسية لنظام الكروماتوغرافيا</p>
+            </div>
+            <div class="equipment-grid">
+                <div class="equipment-card">
+                    <div class="equipment-header">
+                        <h3>نظام الحقن</h3>
+                        <p>Injection System</p>
+                    </div>
+                            <div class="equipment-body">
+                        <p>يتكون من حقنة، خط حقن، وآلية حقن. يضمن إدخال العينة إلى النظام بدقة وبشكل متكرر.</p>
+                        <div class="equipment-specs">
+                            <h4>المواصفات:</h4>
+                            <ul class="spec-list">
+                                <li>حجم الحقنة: 1-1000 μL</li>
+                                <li>دقة الحقن: ± 0.1%</li>
+                                <li>تكرارية الحقن: عالية</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="equipment-card">
+                    <div class="equipment-header">
+                        <h3>المضخة</h3>
+                        <p>Pump</p>
+                    </div>
+                    <div class="equipment-body">
+                        <p>توفر تدفق ثابت للمذيب المحمول. في HPLC تكون مضخات عالية الضغط قادرة على تحمل ضغط يصل إلى 600 بار.</p>
+                        <div class="equipment-specs">
+                            <h4>المواصفات:</h4>
+                            <ul class="spec-list">
+                                <li>نطاق التدفق: 0.001-10 mL/min</li>
+                                <li>دقة التدفق: ± 0.5%</li>
+                                <li>ضغط التشغيل: حتى 600 بار</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="equipment-card">
+                    <div class="equipment-header">
+                        <h3>العمود الكروماتوغرافي</h3>
+                        <p>Column</p>
+                    </div>
+                    <div class="equipment-body">
+                        <p>قلب نظام الكروماتوغرافيا. يحتوي على الطور الثابت ويوفر السطح اللازم للفصل.</p>
+                        <div class="equipment-specs">
+                            <h4>المواصفات:</h4>
+                            <ul class="spec-list">
+                                <li>الطول: 5-30 سم</li>
+                                <li>القطر الداخلي: 1-5 مم</li>
+                                <li>حجم الجسيمات: 3-10 μm</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="equipment-card">
+                    <div class="equipment-header">
+                        <h3>الفرن</h3>
+                        <p>Oven</p>
+                    </div>
+                    <div class="equipment-body">
+                        <p>يوفر التحكم في درجة حرارة العمود. مهم في GC لتحسين الفصل وتقليل وقت التحليل.</p>
+                        <div class="equipment-specs">
+                            <h4>المواصفات:</h4>
+                            <ul class="spec-list">
+                                <li>نطاق الحرارة: 30-400°C</li>
+                                <li>دقة التحكم: ± 0.1°C</li>
+                                <li>معدل التسخين: 1-50°C/min</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="equipment-card">
+                    <div class="equipment-header">
+                        <h3>الكاشف</h3>
+                        <p>Detector</p>
+                    </div>
+                    <div class="equipment-body">
+                        <p>يكشف المكونات المفصولة ويحول إشارتها إلى إشارة كهربائية قابلة للقياس.</p>
+                        <div class="equipment-specs">
+                            <h4>المواصفات:</h4>
+                            <ul class="spec-list">
+                                <li>الحساسية: pg-ng</li>
+                                <li>المدى الدينامي: 10⁶</li>
+                                <li>زمن الاستجابة: < 1 ثانية</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="equipment-card">
+                    <div class="equipment-header">
+                        <h3>نظام جمع البيانات</h3>
+                        <p>Data System</p>
+                    </div>
+                    <div class="equipment-body">
+                        <p>يجمع ويعالج ويحلل البيانات من الكاشف. يوفر الكروماتوغرام ومعلومات كمية.</p>
+                        <div class="equipment-specs">
+                            <h4>المواصفات:</h4>
+                            <ul class="spec-list">
+                                <li>معدل جمع البيانات: 10-100 Hz</li>
+                                <li>دقة القياس: 16-24 بت</li>
+                                <li>قدرة المعالجة: عالية</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Simulator Section -->
+    <section id="simulator" class="simulator">
+        <div class="container">
+            <div class="section-title">
+                <h2>محاكي الكروماتوغرافيا</h2>
+                <p>استكشف كيفية عمل الكروماتوغرافيا من خلال المحاكاة التفاعلية</p>
+            </div>
+            <div class="simulator-container">
+                <div class="simulator-tabs">
+                    <button class="simulator-tab active" onclick="switchChromatogram('gc')">GC</button>
+                    <button class="simulator-tab" onclick="switchChromatogram('hplc')">HPLC</button>
+                    <button class="simulator-tab" onclick="switchChromatogram('tlc')">TLC</button>
+                </div>
+                
+                <div class="chromatogram-display">
+                    <canvas id="chromatogram-canvas" class="chromatogram-canvas"></canvas>
+                </div>
+                
+                <div class="simulator-controls">
+                    <button class="control-btn" onclick="generateChromatogram()">توليد كروماتوغرام</button>
+                    <button class="control-btn" onclick="addPeak()">إضافة قمة</button>
+                    <button class="control-btn" onclick="changeFlow()">تغيير التدفق</button>
+                    <button class="control-btn" onclick="resetChromatogram()">إعادة تعيين</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parameters Section -->
+    <section id="parameters" class="parameters">
+        <div class="container">
+            <div class="section-title">
+                <h2>المعاملات المؤثرة</h2>
+                <p>العوامل التي تؤثر على كفاءة الفصل الكروماتوغرافي</p>
+            </div>
+            <div class="parameters-grid">
+                <div class="parameter-card">
+                    <div class="parameter-header">
+                        <h3>معامل التوزيع</h3>
+                        <p>Partition Coefficient</p>
+                    </div>
+                    <div class="parameter-body">
+                        <p>يقيس توزيع المادة بين الطورين. كلما زاد K، زادت مودة المادة للطور الثابت وزاد وقت الاحتباس.</p>
+                        <div class="parameter-formula">
+                            K = Cs / Cm
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="parameter-card">
+                    <div class="parameter-header">
+                        <h3>عامل السعة</h3>
+                        <p>Capacity Factor</p>
+                    </div>
+                    <div class="parameter-body">
+                        <p>يقيس مدى احتباز المادة في العمود. القيم المثلى بين 2-10 لتحقيق فصل جيد.</p>
+                        <div class="parameter-formula">
+                            k' = (tR - t0) / t0
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="parameter-card">
+                    <div class="parameter-header">
+                        <h3>الانتقائية</h3>
+                        <p>Selectivity</p>
+                    </div>
+                    <div class="parameter-body">
+                        <p>قدرة النظام على التمييز بين مكونين متجاورين. كلما زادت الانتقائية، كان الفصل أفضل.</p>
+                        <div class="parameter-formula">
+                            α = k2' / k1'
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="parameter-card">
+                    <div class="parameter-header">
+                        <h3>عدد الأطباق النظرية</h3>
+                        <p>Theoretical Plates</p>
+                    </div>
+                    <div class="parameter-body">
+                        <p>يقيس كفاءة العمود. كلما زاد عدد الأطباق، زادت كفاءة الفصل.</p>
+                        <div class="parameter-formula">
+                            N = 16 (tR / W)²
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="parameter-card">
+                    <div class="parameter-header">
+                        <h3>الارتفاع المكافئ للطبق</h3>
+                        <p>HETP</p>
+                    </div>
+                    <div class="parameter-body">
+                        <p>يقيس كفاءة العمود. كلما قل HETP، زادت كفاءة العمود.</p>
+                        <div class="parameter-formula">
+                            HETP = L / N
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="parameter-card">
+                    <div class="parameter-header">
+                        <h3>الدقة</h3>
+                        <p>Resolution</p>
+                    </div>
+                    <div class="parameter-body">
+                        <p>يقيس قدرة النظام على فصل قمتين متجاورتين. قيمة > 1.5 تشير إلى فصل كامل.</p>
+                        <div class="parameter-formula">
+                            Rs = 2(tR2 - tR1) / (W1 + W2)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="applications">
+        <div class="container">
+            <div class="section-title">
+                <h2>تطبيقات الكروماتوغرافيا</h2>
+                <p>كيف تستخدم الكروماتوغرافيا في مجالات مختلفة</p>
+            </div>
+            <div class="applications-grid">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>الصناعة الدوائية</h3>
+                        <p>تستخدم لفصل وتنقية المكونات النشطة، تحديد الشوائب، ومراقبة جودة الأدوية. HPLC هو الأكثر استخداماً في هذا المجال.</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>البيئة والمناخ</h3>
+                        <p>تستخدم لتحليل الملوثات في الماء والهواء والتربة. GC-MS يستخدم لتحليل المبيدات والمواد العضوية المتطايرة.</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>علم الأحياء والطب</h3>
+                        <p>تستخدم لفصل البروتينات والأحماض الأمينية والحمض النووي. HPLC و GC مهمة في البحوث الطبية والتشخيص.</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>صناعة الأغذية والمشروبات</h3>
+                        <p>تستخدم لتحليل المكونات الغذائية، كشف المضافات الغذائية، ومراقبة جودة المنتجات.</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>الصناعة الكيميائية</h3>
+                        <p>تستخدم لمراقبة جودة المواد الخام، تحديد نقاء المنتجات، ومراقبة العمليات الصناعية.</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-gas-pump"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>صناعة البترول</h3>
+                        <p>تستخدم GC لتحليل مكونات النفط الخام والمنتجات البترولية. مهمة في ضبط جودة البنزين والديزل.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>الأسئلة الشائعة</h2>
+                <p>إجابات على الأسئلة الأكثر شيوعاً حول الكروماتوغرافيا</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما الفرق بين GC و HPLC؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>GC تستخدم طور غازي متحرك وتناسب للمركبات المتطايرة والقابلة للتبخر، بينما HPLC تستخدم طور سائل متحرك تحت ضغط عالي وتناسب للمركبات غير المتطايرة أو الحساسة للحرارة. HPLC توفر فصلاً أفضل للمركبات القطبية والكبيرة الحجم.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هو دور الطور الثابت في الكروماتوغرافيا؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الطور الثابت هو المادة الثابتة في نظام الكروماتوغرافيا التي يتفاعل مع المكونات. في LLC يكون سائل، في GC يكون سائل على دعامة صلبة، وفي TLC يكون طبقة رقيقة من مادة ماصة. اختيار الطور الثابت المناسب حاسم لتحقيق فصل فعال.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كيف تؤثر درجة الحرارة على الفصل الكروماتوغرافي؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>زيادة درجة الحرارة تقلل لزوجة المذيب وتزيد من سرعة الانتشار، مما يقلل وقت الاحتباس. لكنها قد تقلل من الانتقائية. يجب اختيار درجة الحرارة المثلى التي توازن بين سرعة الفصل والانتقائية.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هي أهمية حجم الجسيمات في العمود الكروماتوغرافي؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>حجم الجسيمات يؤثر على مساحة السطح ومقاومة التدفق. الجسيمات الأصغر توفر مساحة سطح أكبر للتفاعل، مما يحسن الفصل، لكنها تزيد من مقاومة التدفق والضغط. يجب اختيار حجم الجسيمات الأمثل حسب التطبيق.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كيف نختار الكاشف المناسب للتحليل؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>يعتمد اختيار الكاشف على: نوع المركبات (عضوية/غير عضوية)، الحساسية المطلوبة، مدى الخطي الدينامي، وتوافقه مع نظام الكروماتوغرافيا. الكواشف الشائعة تشمل UV-Vis، FLD، MS، و ELSD.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هي مصادر مشاكل الذيل في الكروماتوغرافيا؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>تشمل: تلوث العينة، عدم تجانس الحقن، تدهور العمود، تغيرات في تدفق المذيب، تقلبات في درجة الحرارة، وعدم استقرار الكاشف. يجب اتباع إجراءات صارمة للتحكم في هذه المصادر.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع الكروماتوغرافيا</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى عالي الجودة حول مبادئ وتطبيقات الكروماتوغرافيا في الكيمياء التحليلية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#types">الأنواع</a></li>
+                        <li><a href="#process">العملية</a></li>
+                        <li><a href="#equipment">المعدات</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">دروس تفاعلية</a></li>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">امتحانات تجريبية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@chromatography.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع الكروماتوغرافيا. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Chromatogram Simulator Functions
+        let currentChromatogram = 'gc';
+        let canvas, ctx;
+        let chromatogramData = [];
+        let flowRate = 1;
+
+        function initCanvas() {
+            canvas = document.getElementById('chromatogram-canvas');
+            ctx = canvas.getContext('2d');
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+
+        function switchChromatogram(type) {
+            currentChromatogram = type;
+            
+            // Update active tab
+            document.querySelectorAll('.simulator-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Generate initial chromatogram
+            generateChromatogram();
+        }
+
+        function generateChromatogram() {
+            if (!canvas) initCanvas();
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            chromatogramData = [];
+            
+            // Draw axes
+            ctx.strokeStyle = '#64748b';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(50, canvas.height - 50);
+            ctx.lineTo(canvas.width - 30, canvas.height - 50);
+            ctx.moveTo(50, canvas.height - 50);
+            ctx.lineTo(50, 30);
+            ctx.stroke();
+            
+            // Generate chromatogram based on type
+            let peaks = [];
+            switch(currentChromatogram) {
+                case 'gc':
+                    peaks = [
+                        {x: 100, y: 200, width: 20, height: 80, intensity: 0.8},
+                        {x: 200, y: 150, width: 30, height: 120, intensity: 0.9},
+                        {x: 350, y: 180, width: 25, height: 100, intensity: 0.7},
+                        {x: 450, y: 160, width: 35, height: 140, intensity: 0.6}
+                    ];
+                    break;
+                case 'hplc':
+                    peaks = [
+                        {x: 120, y: 180, width: 40, height: 100, intensity: 0.8},
+                        {x: 250, y: 140, width: 50, height: 140, intensity: 0.9},
+                        {x: 400, y: 170, width: 45, height: 110, intensity: 0.7},
+                        {x: 550, y: 150, width: 55, height: 130, intensity: 0.6}
+                    ];
+                    break;
+                case 'tlc':
+                    peaks = [
+                        {x: 150, y: 200, width: 30, height: 60, intensity: 0.7},
+                        {x: 300, y: 160, width: 40, height: 100, intensity: 0.8},
+                        {x: 450, y: 180, width: 35, height: 80, intensity: 0.6}
+                    ];
+                    break;
+            }
+            
+            // Draw baseline
+            ctx.strokeStyle = '#0891b2';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(50, canvas.height - 50);
+            
+            // Draw peaks
+            peaks.forEach(peak => {
+                drawChromatogramPeak(peak.x, peak.y, peak.width, peak.height, peak.intensity);
+            });
+            
+            ctx.stroke();
+            
+            // Add labels
+            ctx.fillStyle = '#64748b';
+            ctx.font = '12px Arial';
+            ctx.fillText('زمن الاحتباس', canvas.width / 2, canvas.height - 10);
+            ctx.save();
+            ctx.translate(20, canvas.height / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillText('الاستجابة', 0, 0);
+            ctx.restore();
+        }
+
+        function drawChromatogramPeak(x, y, width, height, intensity) {
+            const startX = x;
+            const endX = x + width;
+            const peakHeight = height * intensity;
+            
+            // Draw peak shape (Gaussian-like)
+            ctx.beginPath();
+            
+            // Draw ascending side
+            for (let i = startX; i <= x + width/2; i++) {
+                const relativeX = (i - startX) / (width/2);
+                const gaussianY = Math.exp(-Math.pow(relativeX - 1, 2) * 2);
+                const currentY = canvas.height - 50 - (gaussianY * peakHeight);
+                
+                if (i === startX) {
+                    ctx.moveTo(i, currentY);
+                } else {
+                    ctx.lineTo(i, currentY);
+                }
+            }
+            
+            // Draw descending side
+            for (let i = x + width/2; i <= endX; i++) {
+                const relativeX = (i - (x + width/2)) / (width/2);
+                const gaussianY = Math.exp(-Math.pow(relativeX, 2) * 2);
+                const currentY = canvas.height - 50 - (gaussianY * peakHeight);
+                ctx.lineTo(i, currentY);
+            }
+            
+            // Draw peak area
+            ctx.fillStyle = 'rgba(8, 145, 178, 0.2)';
+            ctx.fill();
+        }
+
+        function addPeak() {
+            if (!canvas) initCanvas();
+            
+            const x = Math.random() * (canvas.width - 150) + 50;
+            const y = Math.random() * 100 + 100;
+            const width = Math.random() * 40 + 20;
+            const height = Math.random() * 60 + 60;
+            const intensity = Math.random() * 0.5 + 0.5;
+            
+            chromatogramData.push({x, y, width, height, intensity});
+            
+            // Redraw chromatogram with new peak
+            generateChromatogram();
+        }
+
+        function changeFlow() {
+            flowRate = flowRate === 1 ? 2 : 1;
+            
+            // Simulate flow rate change by adjusting peak positions
+            chromatogramData.forEach(peak => {
+                peak.x = peak.x / flowRate;
+            });
+            
+            generateChromatogram();
+        }
+
+        function resetChromatogram() {
+            chromatogramData = [];
+            flowRate = 1;
+            generateChromatogram();
+        }
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Initialize canvas on page load
+        window.addEventListener('load', function() {
+            initCanvas();
+            generateChromatogram();
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

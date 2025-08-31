@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأحماض النووية - عالم الوراثة والجينات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #3b82f6;
+            --secondary: #2563eb;
+            --accent: #10b981;
+            --danger: #ef4444;
+            --success: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --info: #06b6d4;
+            --purple: #8b5cf6;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(59, 130, 246, 0.85), rgba(37, 99, 235, 0.85)), url('https://images.unsplash.com/photo-1620641788421-7a1c346ea94c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.1"/><circle cx="60" cy="10" r="1.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="1" fill="white" opacity="0.1"/></svg>') repeat;
+            animation: float 30s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn:hover {
+            background-color: #059669;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #334155;
+            line-height: 1.8;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Structure Section */
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .structure-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+            height: 100%;
+        }
+
+        .structure-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .structure-card:hover::before {
+            opacity: 1;
+        }
+
+        .structure-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .structure-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-size: 3rem;
+        }
+
+        .structure-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .structure-body h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .structure-body p {
+            color: #334155;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        .structure-formula {
+            background-color: #f0f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            margin-top: 15px;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* DNA vs RNA Section */
+        .comparison-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .comparison-table th:first-child {
+            background: var(--light);
+            color: var(--dark);
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #f0f9ff;
+        }
+
+        /* Functions Section */
+        .functions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .function-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .function-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .function-header {
+            height: 120px;
+            background: linear-gradient(135deg, var(--info), var(--primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .function-content {
+            padding: 25px;
+        }
+
+        .function-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .function-content p {
+            color: #64748b;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .function-examples {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .function-examples h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .function-examples ul {
+            color: #64748b;
+            padding-right: 20px;
+            margin: 0;
+        }
+
+        .function-examples li {
+            margin-bottom: 8px;
+        }
+
+        /* Replication Section */
+        .replication-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .replication-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .step-card {
+            flex: 1;
+            min-width: 200px;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0 auto 15px;
+        }
+
+        .step-card h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .step-card p {
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .step-arrow {
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        /* Mutations Section */
+        .mutations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .mutation-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mutation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .mutation-icon {
+            height: 120px;
+            background: linear-gradient(135deg, var(--danger), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .mutation-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mutation-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .mutation-content p {
+            color: #64748b;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        .mutation-examples {
+            margin-top: 15px;
+            padding: 12px;
+            background: #fef2f2;
+            border-radius: 8px;
+        }
+
+        .mutation-examples h4 {
+            color: var(--danger);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .mutation-examples p {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Applications Section */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .application-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .application-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .application-icon {
+            height: 120px;
+            background: linear-gradient(135deg, var(--success), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .application-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .application-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .application-content p {
+            color: #64748b;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        .application-link {
+            margin-top: 15px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+        .application-link:hover {
+            color: var(--secondary);
+        }
+
+        .application-link i {
+            margin-left: 5px;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            color: var(--primary);
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #f8fafc;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 300px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #cbd5e1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+            
+            .replication-steps {
+                flex-direction: column;
+            }
+            
+            .step-arrow {
+                display: none;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-dna"></i>
+                <span>الأحماض النووية</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#structure">التركيب</a></li>
+                    <li><a href="#comparison">DNA vs RNA</a></li>
+                    <li><a href="#functions">الوظائف</a></li>
+                    <li><a href="#replication">التضاعف</a></li>
+                    <li><a href="#mutations">الطفرات</a></li>
+                    <li><a href="#applications">التطبيقات</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>عالم الأحماض النووية</h1>
+            <p>اكتشف أسرار الحياة في DNA و RNA - اللبنات الأساسية للمادة الوراثية</p>
+            <a href="#intro" class="btn">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>ما هي الأحماض النووية؟</h2>
+                <p>فهم أساسيات الأحماض النووية ودورها في الحياة</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>مقدمة في الأحماض النووية</h3>
+                    <p>الأحماض النووية هي جزيئات معقدة تحتوي على المعلومات الوراثية اللازمة لنمو وتطور وعمل جميع الكائنات الحية. تتكون من وحدات تسمى النيوكليوتيدات، التي ترتبط معاً لتكوين سلاسل طويلة.</p>
+                    <p>يوجد نوعان رئيسيان من الأحماض النووية: الحمض النووي الريبوزي منقوص الأكسجين (DNA) والحمض النووي الريبوزي (RNA). DNA يحمل المعلومات الوراثية طويلة الأمد، بينما RNA يساعد في نقل وتعبئة هذه المعلومات.</p>
+                    <p>تلعب الأحماض النووية دوراً حاسماً في العديد من العمليات البيولوجية بما في ذلك تخزين المعلومات الوراثية، نقلها، وتعبئة البروتينات. فهم بنية ووظيفة الأحماض النووية أساسي لعلوم الوراثة وعلم الأحياء الجزيئي والطب.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1543425727-75e2c0e3e6c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الأحماض النووية">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Structure Section -->
+    <section id="structure" class="structure">
+        <div class="container">
+            <div class="section-title">
+                <h2>تركيب الأحماض النووية</h2>
+                <p>المكونات الأساسية للأحماض النووية</p>
+            </div>
+            <div class="structure-grid">
+                <div class="structure-card">
+                    <div class="structure-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="structure-body">
+                        <h3>النيوكليوتيدات</h3>
+                        <p>الوحدات الأساسية المكونة للأحماض النووية. كل نيوكليوتيد يتكون من ثلاثة مكونات: سكر خماسي الكربون (ريبوز في RNA، ديوكسي ريبوز في DNA)، مجموعة فوسفات، وقاعدة نيتروجينية.</p>
+                        <div class="structure-formula">
+                            سكر + فوسفات + قاعدة نيتروجينية
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="structure-card">
+                    <div class="structure-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <div class="structure-body">
+                        <h3>القواعد النيتروجينية</h3>
+                        <p>هناك أربع قواعد رئيسية في DNA: الأدينين (A)، الجوانين (G)، السيتوزين (C)، الثايمين (T). في RNA، يحل اليوراسيل (U) محل الثايمين. ترتبط القواعد معاً بروابط هيدروجينية.</p>
+                        <div class="structure-formula">
+                            A-T, G-C (DNA)<br>
+                            A-U, G-C (RNA)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="structure-card">
+                    <div class="structure-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="structure-body">
+                        <h3>السلسلة المزدوجة</h3>
+                        <p>DNA يتكون من سلسلتين متوازيتين متضادتين، ترتبط معاً بروابط هيدروجينية بين القواعد المتكاملة. هذا الهيكل المزدوج يوفر استقرارًا وآلية للنسخ.</p>
+                        <div class="structure-formula">
+                            5'-ATGC-3'<br>
+                            3'-TACG-5'
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="structure-card">
+                    <div class="structure-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <div class="structure-body">
+                        <h3>اللولب المزدوج</h3>
+                        <p>يشكل DNA لولبًا مزدوجًا حول محور مشترك. هذا التفاف يحمي القواعد الداخلية ويسمح بالتضاعف الفعال. التفاف في اتجاه عقارب الساعة في DNA.</p>
+                        <div class="structure-formula">
+                            تفاف يميني (DNA)<br>
+                            تفاف يساري (بعض الفيروسات)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DNA vs RNA Section -->
+    <section id="comparison" class="comparison">
+        <div class="container">
+            <div class="section-title">
+                <h2>مقارنة بين DNA و RNA</h2>
+                <p>الاختلافات والتشابهات بين الحمضين النوويين الرئيسيين</p>
+            </div>
+            <div class="comparison-container">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>الميزة</th>
+                            <th>DNA</th>
+                            <th>RNA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>السكر</td>
+                            <td>ديوكسي ريبوز</td>
+                            <td>ريبوز</td>
+                        </tr>
+                        <tr>
+                            <td>القواعد النيتروجينية</td>
+                            <td>A, T, G, C</td>
+                            <td>A, U, G, C</td>
+                        </tr>
+                        <tr>
+                            <td>الهيكل</td>
+                            <td>سلسلة مزدوجة (لولب مزدوج)</td>
+                            <td>سلسلة واحدة عادة</td>
+                        </tr>
+                        <tr>
+                            <td>الاستقرار</td>
+                            <td>مستقر جدًا</td>
+                            <td>أقل استقرارًا</td>
+                        </tr>
+                        <tr>
+                            <td>الوظيفة الرئيسية</td>
+                            <td>تخزين المعلومات الوراثية</td>
+                            <td>نقل وتعبئة البروتينات</td>
+                        </tr>
+                        <tr>
+                            <td>الموقع في الخلية</td>
+                    <td>النواة (باستثناء الميتوكوندريا والبلاستيدات)</td>
+                    <td>النواة والسيتوبلازم</td>
+                        </tr>
+                        <tr>
+                            <td>الأنواع</td>
+                            <td>نوع واحد رئيسي</td>
+                            <td>عدة أنواع (mRNA, tRNA, rRNA, إلخ)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Functions Section -->
+    <section id="functions" class="functions">
+        <div class="container">
+            <div class="section-title">
+                <h2>وظائف الأحماض النووية</h2>
+                <p>الأدوار الحيوية المختلفة التي تلعبها الأحماض النووية</p>
+            </div>
+            <div class="functions-grid">
+                <div class="function-card">
+                    <div class="function-header">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="function-content">
+                        <h3>تخزين المعلومات الوراثية</h3>
+                        <p>DNA يحمل المعلومات الوراثية اللازمة لتطور ونمو الكائن الحي. هذه المعلومات مشفرة في تسلسل النيوكليوتيدات وتحدد الخصائص الوراثية للفرد.</p>
+                        <div class="function-examples">
+                            <h4>أمثلة:</h4>
+                            <ul>
+                                <li>لون العين</li>
+                                <li>فصيلة الدم</li>
+                                <li>الاستعداد للأمراضى</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="function-card">
+                    <div class="function-header">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="function-content">
+                        <h3>نسخ وتعبئة البروتينات</h3>
+                        <p>RNA يعمل كوسيط لنقل المعلومات الوراثية من DNA إلى الريبوسومات لتخليق البروتينات. يشمل mRNA و tRNA و rRNA كلها تلعب أدوارًا محددة في هذه العملية.</p>
+                        <div class="function-examples">
+                            <h4>أنواع RNA:</h4>
+                            <ul>
+                                <li>mRNA: يحمل الشفرة الوراثية</li>
+                                <li>tRNA: ينقل الأحماض الأمينية</li>
+                                <li>rRNA: مكون الريبوسوم</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="function-card">
+                    <div class="function-header">
+                        <i class="fas fa-copy"></i>
+                    </div>
+                    <div class="function-content">
+                        <h3>التضاعف والانقسام</h3>
+                        <p>تضاعف DNA يضمن نقل المعلومات الوراثية بدقة إلى الخلايا الجديدة أثناء الانقسام الخلوي. هذه العملية ضرورية للنمو والتجدد والإصلاح.</p>
+                        <div class="function-examples">
+                            <h4>مراحل التضاعف:</h4>
+                            <ul>
+                                <li>فصل السلاسل</li>
+                                <li>ربط القواعد التكميلية</li>
+                                <li>ربط الروابط الفوسفاتية</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Replication Section -->
+    <section id="replication" class="replication">
+        <div class="container">
+            <div class="section-title">
+                <h2>تضاعف DNA</h2>
+                <p>كيف يتم نسخ المعلومات الوراثية بدقة</p>
+            </div>
+            <div class="replication-container">
+                <div class="replication-steps">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h4>فصل السلاسل</h4>
+                        <p>إنزيم الهليكاز يفصل السلسلتين المتضادتين لـ DNA، مما يكشف القواعد النيتروجينية.</p>
+                        <div class="step-arrow">
+                            <i class="fas fa-arrow-left"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h4>ربط البدائل</h4>
+                        <p>برايمرات قصيرة تعمل كبدائل لربط النيوكليوتيدات التكميلية مع القواعد المكشوفة.</p>
+                        <div class="step-arrow">
+                            <i class="fas fa-arrow-left"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h4>تخليق السلاسل الجديدة</h4>
+                        <p>إنزيم DNA بوليميراز يضيف نيوكليوتيدات جديدة لكل سلسلة، وفقًا لمبدأ التكميلية.</p>
+                        <div class="step-arrow">
+                            <i class="fas fa-arrow-left"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h4>التحقق والإصلاح</h4>
+                        <p>إنزيمات إصلاح DNA تتحقق من الأخطاء وتصححها لضمان دقة النسخ.</p>
+                        <div class="step-arrow">
+                            <i class="fas fa-arrow-left"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">5</div>
+                        <h4>إعادة الربط</h>
+                        <div class="step-arrow">
+                            <i class="fas fa-arrow-left"></i>
+                        </div>
+                        <h4>توصيل السلاسل</h4>
+                        <p>إنزيم ليغاز يعيد ربط السلاسل النهائية ويصلح أي فواصل متبقية.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mutations Section -->
+    <section id="mutations" class="mutations">
+        <div class="container">
+            <div class="section-title">
+                <h2>الطفرات الجينية</h2>
+                <p>التغيرات في تسلسل DNA وتأثيرها على الكائنات الحية</p>
+            </div>
+            <div class="mutations-grid">
+                <div class="mutation-card">
+                    <div class="mutation-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="mutation-content">
+                        <h3>الاستبدال</h3>
+                        <p>تغيير قاعدة نيتروجينية واحدة بأخرى. قد يكون صامتًا (لا يغير البروتين) أو غير صامت (يغير البروتين).</p>
+                        <div class="mutation-examples">
+                            <h4>مثال:</h4>
+                            <p>GAG → GTG (تغير الجلوتامين إلى فالين)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mutation-card">
+                    <div class="mutation-icon">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="mutation-content">
+                        <h3>الإدخال</h3>
+                        <p>إضافة قاعدة نيتروجينية إضافية إلى تسلسل DNA. قد يؤدي إلى إطار قراءة خاطئ أو بروتين غير وظيفي.</p>
+                        <div class="mutation-examples">
+                            <h4>مثال:</h4>
+                            <p>ATG → AATG (إدخال أدينين)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mutation-card">
+                    <div class="mutation-icon">
+                        <i class="fas fa-minus"></i>
+                    </div>
+                    <div class="mutation-content">
+                        <h3>الحذف</h3>
+                        <p>فقدان قاعدة نيتروجينية واحدة أو أكثر من تسلسل DNA. قد يؤدي إلى إطار قراءة خاطئ أو بروتين قصير.</p>
+                        <div class="mutation-examples">
+                            <h4>مثال:</h4>
+                            <p>ATCG → ATG (حذف السيتوزين)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mutation-card">
+                    <div class="mutation-icon">
+                        <i class="fas fa-random"></i>
+                    </div>
+                    <div class="mutation-content">
+                        <h3>الانزياح</h3>
+                        <p>إعادة ترتيب جزء من تسلسل DNA. قد يؤدي إلى بروتين مختلف تمامًا أو غير وظيفي.</p>
+                        <div class="mutation-examples">
+                            <h4>مثال:</h4>
+                            <p>ATCG → ATGC (انزياح TC)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="applications">
+        <div class="container">
+            <div class="section-title">
+                <h2>تطبيقات الأحماض النووية</h2>
+                <p>كيف تستخدم الأحماض النووية في العلم والتكنولوجيا والطب</p>
+            </div>
+            <div class="applications-grid">
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <div class="application-content">
+                        <h3>الهندسة الوراثية</h3>
+                        <p>تعديل الأحماض النووية لتحسين الكائنات أو إنشاء منتجات جديدة. تشمل تعديل المحاصيل وزراعة النباتات المقاومة للآفات.</p>
+                        <a href="#" class="application-link">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="application-content">
+                        <h3>الطب الجيني</h3>
+                        <p>تشخيص وعلاج الأمراض من خلال تحليل الأحماض النووية. يشمل العلاج الجيني والعلاج الخلوي والتشخيص المبكر.</p>
+                        <a href="#" class="application-link">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <div class="application-content">
+                        <h3>الطب الشرعي</h3>
+                        <p>استخدام تحليل DNA في تحديد هوية الأشخاص وحل الجرائم. يشمل تحليل البصمات الوراثية وتحديد العلاقات الأسرية.</p>
+                        <a href="#" class="application-link">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="application-content">
+                        <h3>الزراعة الحيوية</h3>
+                        <p>تطوير محاصيل محسنة وراثيًا لمقاومة الآفات والظروف البيئية القاسية. تشمل محاصيل معدلة وراثيًا.</p>
+                        <a href="#" class="application-link">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <div class="application-content">
+                        <h3>البيولوجيا الجزيئية</h3>
+                        <p>دراسة التفاعلات الجزيئية التي تنطوي على الأحماض النووية. تشمل دراسة التعبير الجيني وتنظيمه.</p>
+                        <a href="#" class="application-link">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <div class="application-content">
+                        <h3>علم الأنساب القديمة</h3>
+                        <p>دراسة التطور البشري والتاريخ البشري من خلال تحليل الحمض النووي القديم. يساعد في فهم الهجرات البشرية.</p>
+                        <a href="#" class="application-link">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>الأسئلة الشائعة</h2>
+                <p>إجابات على الأسئلة الأكثر شيوعاً حول الأحماض النووية</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هو الفرق بين DNA و RNA؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الفرق الرئيسي هو أن DNA يحتوي على ديوكسي ريبوز (سكر بذرة أكسجين إضافية) وثايمين كقاعدة نيتروجينية، بينما RNA يحتوي على ريبوز ويوراسيل بدلاً من الثايمين. DNA عادة ما يكون على شكل سلسلة مزدوجة ويخزن المعلومات الوراثية، بينما RNA يكون عادة سلسلة واحدة ويساعد في نقل وتعبئة البروتينات.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كيف يضمن DNA دقة النسخ؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>يضمن DNA دقة النسخ من خلال عدة آليات: مبدأ التكميلية (A مع T و G مع C)، وجود إنزيمات إصلاح DNA التي تكتشف وتصحح الأخطاء، ونظام فحص مزدوج حيث تعمل كل سلسلة كقالب للأخرى. هذه الآليات معًا تضمن أن معدل الخطأ منخفض جدًا (حوالي 1 في كل مليار نيوكليوتيد).</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هي الطفرات وكيفية تأثيرها؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الطفرات هي تغيرات في تسلسل DNA. يمكن أن تكون ناتجة عن أخطاء أثناء التضاعف، التعرض للإشعاع، أو مواد كيميائية. تأثيرها يعتمد على موقعها ونوعها: بعض الطفرات تكون صامتة (لا تغير البروتين)، بينما أخرى قد تسبب أمراضًا مثل سرطان أو اضطرابات وراثية.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هو الجينوم البشري؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الجينوم البشري هو مجموعة DNA الكاملة للإنسان، تحتوي على حوالي 3 مليار زوج من القواعد النيتروجينية. تم تحديد تسلسله بالكامل في مشروع الجينوم البشري، مما فتح الباب لفهم الأمراض الوراثية وتطوير علاجات جديدة.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كيف تستخدم الأحماض النووية في الطب الشرعي؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>تستخدم الأحماض النووية في الطب الشرعي لتحديد هوية الأشخاص من خلال تحليل البصمات الوراثية، حل الجرائم عن طريق مقارنة DNA من مسرح الجريمة مع المشتبهين، وتحديد العلاقات الأسرية، وتحديد هوية الضحايا في الكوارث.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هي الهندسة الوراثية ومخاطرها؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الهندسة الوراثية هي تعديل الأحماض النيوية مباشرة لتغيير خصائص الكائن. تطبيقاتها تشمل علاج الأمراض الوراثية، تحسين المحاصيل، وعلاج الأمراض. المخاطر تشمل مخاطر أخلاق غير مقصودة، قلق أخلاقي، وإمكانية سوء الاستخدام في التطبيقات غير المنظمة.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع الأحماض النووية</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى عالي الجودة حول الأحماض النووية وأهميتها في علم الأحياء.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#structure">التركيب</a></li>
+                        <li><a href="#comparison">DNA vs RNA</a></li>
+                        <li><a href="#functions">الوظائف</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">دروس تفاعلية</a></li>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">امتحانات تجريبية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@nucleicacids.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع الأحماض النووية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

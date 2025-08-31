@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التحليل الطيفي - عالم تفاعل المادة مع الإشعاع</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #7c3aed;
+            --secondary: #a855f7;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --info: #3b82f6;
+            --purple: #8b5cf6;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(124, 58, 237, 0.85), rgba(168, 85, 247, 0.85)), url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/><circle cx="20" cy="20" r="1.5" fill="white" opacity="0.1"/><circle cx="80" cy="30" r="1" fill="white" opacity="0.1"/><circle cx="30" cy="70" r="1.5" fill="white" opacity="0.1"/><circle cx="70" cy="80" r="1" fill="white" opacity="0.1"/></svg>') repeat;
+            animation: float 30s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn:hover {
+            background-color: #d97706;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #334155;
+            line-height: 1.8;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Spectrum Types Grid */
+        .spectrum-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .spectrum-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .spectrum-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .spectrum-card:hover::before {
+            opacity: 1;
+        }
+
+        .spectrum-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .spectrum-icon {
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-size: 3rem;
+        }
+
+        .spectrum-body {
+            padding: 25px;
+        }
+
+        .spectrum-body h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .spectrum-body p {
+            color: #334155;
+            line-height: 1.8;
+        }
+
+        .spectrum-range {
+            background-color: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            margin-top: 15px;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* Instruments Section */
+        .instruments-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .instrument-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 10px;
+            transition: all 0.3s;
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+        }
+
+        .instrument-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .instrument-icon {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-left: 20px;
+            flex-shrink: 0;
+        }
+
+        .instrument-content h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .instrument-content p {
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        /* Applications Grid */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .app-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-icon {
+            height: 120px;
+            background: linear-gradient(135deg, var(--purple), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .app-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .app-content p {
+            color: #64748b;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        /* Spectrum Analyzer Section */
+        .analyzer-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .analyzer-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .analyzer-tab {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .analyzer-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.3);
+        }
+
+        .analyzer-tab.active {
+            background: linear-gradient(135deg, var(--accent), var(--danger));
+        }
+
+        .spectrum-display {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 30px;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border: 2px dashed #cbd5e1;
+        }
+
+        .spectrum-canvas {
+            width: 100%;
+            height: 250px;
+        }
+
+        .spectrum-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: linear-gradient(135deg, var(--secondary), var(--info));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Data Processing Section */
+        .processing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .processing-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .processing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .processing-header {
+            background: linear-gradient(135deg, var(--info), var(--purple));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .processing-header h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .processing-body {
+            padding: 25px;
+        }
+
+        .processing-steps {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .processing-steps h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .step-list {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            padding: 8px 0;
+            padding-right: 30px;
+            position: relative;
+            color: #64748b;
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            right: 0;
+            background: var(--accent);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            color: var(--primary);
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #f8fafc;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 300px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #cbd5e1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .instrument-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .instrument-icon {
+                margin-left: 0;
+                margin-bottom: 15px;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-wave-square"></i>
+                <span>التحليل الطيفي</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#spectrum">الأنواع</a></li>
+                    <li><a href="#instruments">الأجهزة</a></li>
+                    <li><a href="#analyzer">المحلل</a></li>
+                    <li><a href="#processing">المعالجة</a></li>
+                    <li><a href="#applications">التطبيقات</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>عالم التحليل الطيفي</h1>
+            <p>اكتشف كيف تفاعل المادة مع الإشعاع الكهرومغناطيسي لكشف أسرار التركيب الجزيئي والتحليل الدقيق للمواد</p>
+            <a href="#intro" class="btn">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>ما هو التحليل الطيفي؟</h2>
+                <p>فهم أساسيات التحليل الطيفي وأهميته في الكيمياء التحليلية</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>مقدمة في التحليل الطيفي</h3>
+                    <p>التحليل الطيفي هو فرع من الكيمياء التحليلية يدرس تفاعل المادة مع الإشعاع الكهرومغناطيسي. يعتمد على مبدأ أن المواد المختلفة تمتص أو تصدر أو تنثر الإشعاع بطرق مميزة تعتمد على تركيبها الجزيئي والهيكلي.</p>
+                    <p>عندما تتعرض المادة للإشعاع، تمتص الإلكترونات طاقة وتنتقل إلى مستويات طاقة أعلى. عند عودتها إلى مستوياتها الأصلية، تصدر إشعاعاً بطول موجي مميز. هذه "البصمة" الطيفية الفريدة تسمح بتحديد وتحديد المواد بدقة عالية.</p>
+                    <p>يستخدم التحليل الطيفي في مجالات متعددة مثل الكيمياء، الفيزياء، علم الأحياء، الطب، وعلم البيئة. يوفر معلومات قيمة عن التركيب الكيميائي، البنية الجزيئية، التركيزات، وحتى الحالة الديناميكية للجزيئات.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1532187853251-7069d5eed128?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="التحليل الطيفي">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spectrum Types Section -->
+    <section id="spectrum" class="spectrum">
+        <div class="container">
+            <div class="section-title">
+                <h2>أنواع التحليل الطيفي</h2>
+                <p>التصنيفات الرئيسية للتحليل الطيفي حسب نطاق الإشعاع</p>
+            </div>
+            <div class="spectrum-grid">
+                <div class="spectrum-card">
+                    <div class="spectrum-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="spectrum-body">
+                        <h3>الأشعة فوق البنفسجية والمرئية</h3>
+                        <p>UV-Vis Spectroscopy</p>
+                        <p>تستخدم لدراسة الإلكترونات الخارجية في الجزيئات. مفيدة لتحديد المركبات العضوية وقياس التركيزات باستخدام قانون بير-لامبرت.</p>
+                        <div class="spectrum-range">
+                            190-800 نانومتر
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="spectrum-card">
+                    <div class="spectrum-icon">
+                        <i class="fas fa-infrared"></i>
+                    </div>
+                    <div class="spectrum-body">
+                        <h3>الأشعة تحت الحمراء</h3>
+                        <p>IR Spectroscopy</p>
+                        <p>تستخدم لدراسة الاهتزازات الجزيئية. توفر معلومات عن المجموعات الوظيفية والروابط الكيميائية في المركبات.</p>
+                        <div class="spectrum-range">
+                            4000-400 سم⁻¹
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="spectrum-card">
+                    <div class="spectrum-icon">
+                        <i class="fas fa-broadcast-tower"></i>
+                    </div>
+                    <div class="spectrum-body">
+                        <h3>الرنين النووي المغناطيسي</h3>
+                        <p>NMR Spectroscopy</p>
+                        <p>تستخدم لدراسة البيئة المحيطة بالنوى الذرية. توفر معلومات هيكلية مفصلة عن الجزيئات العضوية.</p>
+                        <div class="spectrum-range">
+                            60-900 ميجاهرتز
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="spectrum-card">
+                    <div class="spectrum-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <div class="spectrum-body">
+                        <h3>مطيافية الكتلة</h3>
+                        <p>Mass Spectrometry</p>
+                        <p>تستخدم لتحديد الوزن الجزيئية والهيكل. تعمل عن طريق تأيين الجزيئات وفصلها حسب نسبة الكتلة إلى الشحنة.</p>
+                        <div class="spectrum-range">
+                            m/z 10-10000
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="spectrum-card">
+                    <div class="spectrum-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <div class="spectrum-body">
+                        <h3>الامتصاص الذري</h3>
+                        <p>Atomic Absorption</p>
+                        <p>تستخدم لقياس تركيزات العناصر المعدنية. تعتمد على امتصاص الضوء ذو الطول الموجي المحدد من قبل ذرات العنصر.</p>
+                        <div class="spectrum-range">
+                            190-900 نانومتر
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="spectrum-card">
+                    <div class="spectrum-icon">
+                        <i class="fas fa-radiation"></i>
+                    </div>
+                    <div class="spectrum-body">
+                        <h3>الأشعة السينية</h3>
+                        <p>X-ray Spectroscopy</p>
+                        <p>تستخدم لدراسة البنية البلورية للمواد وتحديد العناصر. تشمل طيف الانبعاث والامتصاص والفلورسنس.</p>
+                        <div class="spectrum-range">
+                            0.01-10 نانومتر
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instruments Section -->
+    <section id="instruments" class="instruments">
+        <div class="container">
+            <div class="section-title">
+                <h2>الأجهزة الطيفية</h2>
+                <p>الأجهزة الرئيسية المستخدمة في التحليل الطيفي</p>
+            </div>
+            <div class="instruments-container">
+                <div class="instrument-item">
+                    <div class="instrument-icon">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <div class="instrument-content">
+                        <h3>مطياف UV-Vis</h3>
+                        <p>يتكون من مصدر ضوء (مصباح الديوتيريوم أو التنجستن)، منشور أو شبكة حيود، خلية عينة، وكاشف. يقيس امتصاص الضوء في نطاق الأشعة فوق البنفسجية والمرئية.</p>
+                    </div>
+                </div>
+                
+                <div class="instrument-item">
+                    <div class="instrument-icon">
+                        <i class="fas fa-wave-square"></i>
+                    </div>
+                    <div class="instrument-content">
+                        <h3>مطياف الأشعة تحت الحمراء</h3>
+                        <p>يستخدم مصدر أشعة تحت حمراء (مصباح Nernst أو Globar)، نظام مرايا، وكاشر حراري. يقيس امتصاص الأشعة تحت الحمراء من قبل الجزيئات.</p>
+                    </div>
+                </div>
+                
+                <div class="instrument-item">
+                    <div class="instrument-icon">
+                        <i class="fas fa-magnet"></i>
+                    </div>
+                    <div class="instrument-content">
+                        <h3>مطياف الرنين النووي المغناطيسي</h3>
+                        <p>يحتوي على مغناطيس قوي، جهاز إرسال واستقبال RF، وحاسوب. يقيس استجابة النوى الذرية للمجال المغناطيسي.</p>
+                    </div>
+                </div>
+                
+                <div class="instrument-item">
+                    <div class="instrument-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <div class="instrument-content">
+                        <h3>مطياف الكتلة</h3>
+                        <p>يتكون من نظام تأيين، محلل كتلة (مغناطيسي أو رباعي الأقطاب)، وكاشف. يقيس نسبة الكتلة إلى الشحنة للأيونات.</p>
+                    </div>
+                </div>
+                
+                <div class="instrument-item">
+                    <div class="instrument-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="instrument-content">
+                        <h3>مطياف الامتصاص الذري</h3>
+                        <p>يستخدم مصباح الكاثود المصنوع من العنصر المطلوب تحليله، لهب أو فرن لتحويل العينة إلى حالة غازية، ومستشعر ضوئي.</p>
+                    </div>
+                </div>
+                
+                <div class="instrument-item">
+                    <div class="instrument-icon">
+                        <i class="fas fa-x-ray"></i>
+                    </div>
+                    <div class="instrument-content">
+                        <h3>مطياف الأشعة السينية</h3>
+                        <p>يحتوي على مصدر أشعة سينية (أنبوب X-ray)، بلورة محلل، وكاشر. يستخدم لتحليل البنية البلورية وتحديد العناصر.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spectrum Analyzer Section -->
+    <section id="analyzer" class="analyzer">
+        <div class="container">
+            <div class="section-title">
+                <h2>محلل الطيف التفاعلي</h2>
+                <p>استكشف أشكال الطيف المختلفة وتفاعل معها</p>
+            </div>
+            <div class="analyzer-container">
+                <div class="analyzer-tabs">
+                    <button class="analyzer-tab active" onclick="switchSpectrum('uv')">UV-Vis</button>
+                    <button class="analyzer-tab" onclick="switchSpectrum('ir')">IR</button>
+                    <button class="analyzer-tab" onclick="switchSpectrum('nmr')">NMR</button>
+                    <button class="analyzer-tab" onclick="switchSpectrum('ms')">Mass</button>
+                </div>
+                
+                <div class="spectrum-display">
+                    <canvas id="spectrum-canvas" class="spectrum-canvas"></canvas>
+                </div>
+                
+                <div class="spectrum-controls">
+                    <button class="control-btn" onclick="generateSpectrum()">توليد طيف</button>
+                    <button class="control-btn" onclick="addPeak()">إضافة قمة</button>
+                    <button class="control-btn" onclick="smoothSpectrum">تنعيم</button>
+                    <button class="control-btn" onclick="resetSpectrum()">إعادة تعيين</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Processing Section -->
+    <section id="processing" class="processing">
+        <div class="container">
+            <div class="section-title">
+                <h2>معالجة البيانات الطيفية</h2>
+                <p>الخطوات الأساسية في معالجة وتحليل البيانات الطيفية</p>
+            </div>
+            <div class="processing-grid">
+                <div class="processing-card">
+                    <div class="processing-header">
+                        <h3>المعايرة والمعايرة</h3>
+                        <p>Calibration</p>
+                    </div>
+                    <div class="processing-body">
+                        <p>تتضمن أن الأجهزة تعطي قراءات دقيقة وصحيحة. تشمل معايرة الطول الموجي والامتصاص باستخدام معايير معتمدة.</p>
+                        <div class="processing-steps">
+                            <h4>خطوات المعايرة:</h4>
+                            <ol class="step-list">
+                                <li>اختيار المعيار المناسب</li>
+                                <li>قياس استجابة المعيار</li>
+                                <li>إنشاء منحنى المعايرة</li>
+                                <li>التحقق من الخطية</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="processing-card">
+                    <div class="processing-header">
+                        <h3>تصحيح الخط الأساسي</h3>
+                        <p>Baseline Correction</p>
+                    </div>
+                    <div class="processing-body">
+                        <p>يزيل التأثيرات الخلفية غير المرغوبها من الطيف. مهم للحصول على قياسات دقيقة للامتصاص أو الانبعاث.</p>
+                        <div class="processing-steps">
+                            <h4>طرق التصحيح:</h4>
+                            <ol class="step-list">
+                                <li>الطرق الخطية</li>
+                                <li>الطرق متعددة الحدود</li>
+                                <li>الطرق التكرارية</li>
+                                <li>الطرق الآلية</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="processing-card">
+                    <div class="processing-header">
+                        <h3>تنعيم الطيف</h3>
+                        <p>Smoothing</p>
+                    </div>
+                    <div class="processing-body">
+                        <p>يقلل الضوضاء ويحسن جودة الإشارة. يجب استخدامها بحذر لتجنب فقدان المعلومات المهمة.</p>
+                        <div class="processing-steps">
+                            <h4>خوارزميات التنعيم:</h4>
+                            <ol class="step-list">
+                                <li>المتوسط المتحرك</li>
+                                <li>سافيتسكي-غولاي</li>
+                                <li>فلتر سافيتسكي</li>
+                                <li>التحويل المويجي</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="processing-card">
+                    <div class="processing-header">
+                        <h3>فصل القمم</h3>
+                        <p>Peak Deconvolution</p>
+                    </div>
+                    <div class="processing-body">
+                        <p>يفصل القمم المتداخلة لتحديد مكونات فردية. مهم لتحليل الخلطات المعقدة.</p>
+                        <div class="processing-steps">
+                            <h4>طرق الفصل:</h4>
+                            <ol class="step-list">
+                                <li>تحليل المشتقات</li>
+                                <li>ملاءمة منحنى جاوس</li>
+                                <li>التحلل إلى مكونات</li>
+                                <li>التحليل الكيميومتري</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="processing-card">
+                    <div class="processing-header">
+                        <h3>التحليل الكمي</h3>
+                        <p>Quantitative Analysis</p>
+                    </div>
+                    <div class="processing-body">
+                        <p>يحسب تركيز المواد من بيانات الطيف. يستخدم قانون بير-لامبرت أو طرق المعايرة.</p>
+                        <div class="processing-steps">
+                            <h4>خطوات التحليل:</h4>
+                            <ol class="step-list">
+                                <li>اختيار قمة التحليل</li>
+                                <li>قياس الامتصاص أو المساحة</li>
+                                <li>تطبيق معادلة المعايرة</li>
+                                <li>حساب التركيز</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="processing-card">
+                    <div class="processing-header">
+                        <h3>قواعد البيانات</h3>
+                        <p>Database Search</p>
+                    </div>
+                    <div class="processing-body">
+                        <p>يقارن الطيف غير المعروف مع قواعد البيانات المعروفة لتحديد المركبات. يستخدم في تحديد المركبات غير المعروفة.</p>
+                        <div class="processing-steps">
+                            <h4>عملية البحث:</h4>
+                            <ol class="step-list">
+                                <li>استخراج المعالم الطيفية</li>
+                                <li>البحث في قاعدة البيانات</li>
+                                <li>مقارنة النتائج</li>
+                                <li>التحقق من الهوية</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="applications">
+        <div class="container">
+            <div class="section-title">
+                <h2>تطبيقات التحليل الطيفي</h2>
+                <p>كيف يستخدم التحليل الطيفي في مجالات مختلفة</p>
+            </div>
+            <div class="applications-grid">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>الكيمياء العضوية</h3>
+                        <p>يستخدم لتحديد الهيكل الجزيئي للمركبات العضوية. IR و NMR و MS هي الأدوات الرئيسية لتحليل الهيكل وتأكيد التركيب الكيميائي.</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>الصناعة الدوائية</h3>
+                        <p>يستخدم في مراقبة جودة الأدوية، تحديد الشوائب، ودراسة استقرار المركبات. UV-Vis و HPLC-MS شائعة في هذا المجال.</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>البيئة والمناخ</h3>
+                        <p>يستخدم لرصد الملوثات في الهواء والماء والتربة. AAS و ICP-MS تستخدم لقياس تركيزات المعادن الثقيلة والملوثات العضوية.</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>علم الأحياء والطب</h3>
+                        <p>يستخدم في تشخيص الأمراض، دراسة البروتينات والحمض النووي. UV-Vis و Fluorescence شائعة في المختبرات الطبية والبيولوجية.</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>الصناعة والتصنيع</h3>
+                        <p>يستخدم في مراقبة جودة المواد الخام والمنتجات النهائية. FTIR و Raman تستخدم لتحديد المواد ومراقبة العمليات الصناعية.</p>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>علوم الفضاء</h3>
+                        <p>يستخدم لتحليل التركيب الكيميائي للكواكب والنيازك. مطيافية الانبعاث والامتصاص تستخدم في المهمات الفضائية.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>الأسئلة الشائعة</h2>
+                <p>إجابات على الأسئلة الأكثر شيوعاً حول التحليل الطيفي</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هو الفرق بين الامتصاص والانبعاث الطيفي؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الامتصاص الطيفي يقيس كمية الضوء التي تمتصها المادة عند أطوال موجية مختلفة، بينما الانبعاث الطيفي يقيس الضوء الذي تصدره المادة عند إثارتها. الامتصاص يستخدم لتحديد التركيز، بينما الانبعاث يستخدم لتحديد الهوية والتركيب.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>لماذا نستخدم الأشعة تحت الحمراء في تحليل المجموعات الوظيفية؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>لأن كل مجموعة وظيفية (مثل OH، NH، C=O) تهتز بتردد مميز في نطاق الأشعة تحت الحمراء. هذه الترددات تعتمد على قوة الرابطة وكتل الذرات المشاركة، مما يسمح بتحديد المجموعات الوظيفية الموجودة في الجزيء.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كيف يساعد الرنين النووي المغناطيسي في تحديد الهيكل الجزيئي؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>يوفر NMR معلومات عن البيئة الكيميائية لكل نواة ذرية. الإزاحة الكيميائية تشير إلى نوع الذرات المجاورة، وانشطار الإشارة يوفر معلومات عن عدد الذرات المجاورة، والتواصل المغناطيسي يكشف عن الروابط بين الذرات.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هي أهمية دقة الطيف في التحليل الكمي؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الدقة تحدد قدرة الطيف على التمييز بين قمم متقاربة. كلما زادت الدقة، زادت القدرة على فصل القمم المتداخلة وتحديد التركيزات بدقة أعلى. الدقة تعتمد على جهاز المطياف وظروف القياس.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كيف تختار الطريقة الطيفية المناسبة للتحليل؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>يعتمد الاختيار على: نوع المادة (عضوية/غير عضوية)، المعلومات المطلوبة (هيكل/تركيز)، حساسية الطريقة، تكلفة التحليل، وتوفر الجهاز. UV-Vis للتركيزات، IR للمجموعات الوظيفية، NMR للهيكل، MS للوزن الجزيئي.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هي مصادر الخطأ الشائعة في التحليل الطيفي؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>تشمل: أخطاء في إعداد العينة، تلوث الحاويات، عدم معايرة الجهاز بشكل صحيح، تداخل القمم، ضوضاء الإشارة، وأخطاء في معالجة البيانات. يجب اتباع إجراءات صارمة لتقليل هذه الأخطاء.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع التحليل الطيفي</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى عالي الجودة حول مبادئ وتطبيقات التحليل الطيفي في الكيمياء التحليلية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#spectrum">الأنواع</a></li>
+                        <li><a href="#instruments">الأجهزة</a></li>
+                        <li><a href="#analyzer">المحلل</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">دروس تفاعلية</a></li>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">امتحانات تجريبية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@spectroscopy.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع التحليل الطيفي. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Spectrum Analyzer Functions
+        let currentSpectrum = 'uv';
+        let canvas, ctx;
+        let spectrumData = [];
+
+        function initCanvas() {
+            canvas = document.getElementById('spectrum-canvas');
+            ctx = canvas.getContext('2d');
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+
+        function switchSpectrum(type) {
+            currentSpectrum = type;
+            
+            // Update active tab
+            document.querySelectorAll('.analyzer-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Generate initial spectrum
+            generateSpectrum();
+        }
+
+        function generateSpectrum() {
+            if (!canvas) initCanvas();
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            spectrumData = [];
+            
+            // Draw axes
+            ctx.strokeStyle = '#64748b';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(50, canvas.height - 50);
+            ctx.lineTo(canvas.width - 30, canvas.height - 50);
+            ctx.moveTo(50, canvas.height - 50);
+            ctx.lineTo(50, 30);
+            ctx.stroke();
+            
+            // Generate spectrum based on type
+            let peaks = [];
+            switch(currentSpectrum) {
+                case 'uv':
+                    peaks = [
+                        {x: 100, y: 200, width: 30, intensity: 0.8},
+                        {x: 200, y: 150, width: 40, intensity: 0.6},
+                        {x: 350, y: 100, width: 50, intensity: 0.9}
+                    ];
+                    break;
+                case 'ir':
+                    peaks = [
+                        {x: 150, y: 180, width: 20, intensity: 0.7},
+                        {x: 250, y: 120, width: 30, intensity: 0.8},
+                        {x: 400, y: 160, width: 25, intensity: 0.6},
+                        {x: 500, y: 140, width: 35, intensity: 0.9}
+                    ];
+                    break;
+                case 'nmr':
+                    peaks = [
+                        {x: 120, y: 170, width: 15, intensity: 0.6},
+                        {x: 200, y: 130, width: 20, intensity: 0.8},
+                        {x: 300, y: 110, width: 25, intensity: 0.7},
+                        {x: 420, y: 150, width: 18, intensity: 0.5}
+                    ];
+                    break;
+                case 'ms':
+                    peaks = [
+                        {x: 100, y: 180, width: 10, intensity: 0.9},
+                        {x: 150, y: 100, width: 15, intensity: 1.0},
+                        {x: 200, y: 160, width: 12, intensity: 0.3},
+                        {x: 250, y: 140, width: 8, intensity: 0.2}
+                    ];
+                    break;
+            }
+            
+            // Draw spectrum
+            ctx.strokeStyle = '#7c3aed';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            
+            // Draw baseline
+            ctx.moveTo(50, canvas.height - 50);
+            
+            // Draw peaks
+            peaks.forEach(peak => {
+                drawPeak(peak.x, peak.y, peak.width, peak.intensity);
+            });
+            
+            ctx.stroke();
+            
+            // Add labels
+            ctx.fillStyle = '#64748b';
+            ctx.font = '12px Arial';
+            ctx.fillText('طول الموجة', canvas.width / 2, canvas.height - 10);
+            ctx.save();
+            ctx.translate(20, canvas.height / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillText('الامتصاص', 0, 0);
+            ctx.restore();
+        }
+
+        function drawPeak(x, y, width, intensity) {
+            const height = intensity * 150;
+            const startX = x - width / 2;
+            const endX = x + width / 2;
+            
+            // Draw peak curve
+            for (let i = startX; i <= endX; i++) {
+                const relativeX = (i - startX) / width;
+                const gaussianY = Math.exp(-Math.pow(relativeX - 0.5, 2) * 8);
+                const currentY = canvas.height - 50 - (gaussianY * height);
+                
+                if (i === startX) {
+                    ctx.moveTo(i, currentY);
+                } else {
+                    ctx.lineTo(i, currentY);
+                }
+            }
+        }
+
+        function addPeak() {
+            if (!canvas) initCanvas();
+            
+            const x = Math.random() * (canvas.width - 100) + 50;
+            const y = Math.random() * 100 + 100;
+            const width = Math.random() * 30 + 20;
+            const intensity = Math.random() * 0.5 + 0.5;
+            
+            spectrumData.push({x, y, width, intensity});
+            
+            // Redraw spectrum with new peak
+            generateSpectrum();
+        }
+
+        function smoothSpectrum() {
+            // Simple smoothing effect
+            ctx.globalAlpha = 0.3;
+            generateSpectrum();
+            ctx.globalAlpha = 1.0;
+        }
+
+        function resetSpectrum() {
+            spectrumData = [];
+            generateSpectrum();
+        }
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Initialize canvas on page load
+        window.addEventListener('load', function() {
+            initCanvas();
+            generateSpectrum();
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

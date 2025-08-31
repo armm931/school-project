@@ -1,0 +1,1918 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإنزيمات - العوامل الحفازة للحياة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #dc2626;
+            --secondary: #ef4444;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --info: #3b82f6;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --purple: #8b5cf6;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(220, 38, 38, 0.85), rgba(239, 68, 68, 0.85)), url('https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.1"/><circle cx="60" cy="10" r="1.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="1" fill="white" opacity="0.1"/></svg>') repeat;
+            animation: float 30s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn:hover {
+            background-color: #d97706;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #334155;
+            line-height: 1.8;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Structure Section */
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .structure-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+            height: 100%;
+        }
+
+        .structure-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .structure-card:hover::before {
+            opacity: 1;
+        }
+
+        .structure-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .structure-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-size: 3rem;
+        }
+
+        .structure-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .structure-body h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .structure-body p {
+            color: #334155;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        /* Mechanism Section */
+        .mechanism-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .mechanism-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 10px;
+            transition: all 0.3s;
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+        }
+
+        .mechanism-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .mechanism-icon {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-left: 20px;
+            flex-shrink: 0;
+        }
+
+        .mechanism-content h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .mechanism-content p {
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        /* Classification Section */
+        .classification-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .classification-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .classification-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .classification-header {
+            height: 120px;
+            background: linear-gradient(135deg, var(--info), var(--purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .classification-content {
+            padding: 25px;
+        }
+
+        .classification-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .classification-content p {
+            color: #64748b;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .classification-examples {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .classification-examples h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .classification-examples ul {
+            color: #64748b;
+            padding-right: 20px;
+            margin: 0;
+        }
+
+        .classification-examples li {
+            margin-bottom: 8px;
+        }
+
+        /* Factors Section */
+        .factors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .factor-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .factor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .factor-icon {
+            height: 100px;
+            background: linear-gradient(135deg, var(--success), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .factor-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .factor-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .factor-content p {
+            color: #64748b;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        .factor-graph {
+            margin-top: 15px;
+            padding: 12px;
+            background: #d1fae5;
+            border-radius: 8px;
+            text-align: center;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        /* Applications Section */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .application-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+            height: 100%;
+        }
+
+        .application-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .application-card:hover::before {
+            opacity: 1;
+        }
+
+        .application-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .application-icon {
+            background: linear-gradient(135deg, var(--purple), var(--accent));
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-size: 3rem;
+        }
+
+        .application-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .application-body h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .application-body p {
+            color: #334155;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        /* Calculator Section */
+        .calculator-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .calculator-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #334155;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            border-right: 4px solid var(--primary);
+            display: none;
+        }
+
+        .result-box h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .result-box p {
+            color: #334155;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        /* Health Section */
+        .health-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .health-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .health-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .health-icon {
+            height: 120px;
+            background: linear-gradient(135deg, var(--danger), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .health-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .health-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .health-content p {
+            color: #64748b;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        .health-tips {
+            margin-top: 15px;
+            padding: 12px;
+            background: #fef2f2;
+            border-radius: 8px;
+        }
+
+        .health-tips h4 {
+            color: var(--danger);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .health-tips ul {
+            color: #64748b;
+            padding-right: 20px;
+            margin: 0;
+        }
+
+        .health-tips li {
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            color: var(--primary);
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #f8fafc;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 300px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #cbd5e1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .mechanism-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .mechanism-icon {
+                margin-left: 0;
+                margin-bottom: 15px;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-flask"></i>
+                <span>الإنزيمات</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#structure">التركيب</a></li>
+                    <li><a href="#mechanism">الآلية</a></li>
+                    <li><a href="#classification">التصنيف</a></li>
+                    <li><a href="#factors">العوامل</a></li>
+                    <li><a href="#applications">التطبيقات</a></li>
+                    <li><a href="#calculator">الحاسبة</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>عالم الإنزيمات</h1>
+            <p>اكتشف العوامل الحفازة البيولوجية التي تجعل الحياة ممكنة</p>
+            <a href="#intro" class="btn">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>ما هي الإنزيمات؟</h2>
+                <p>فهم أساسيات الإنزيمات ودورها الحيوي في الكائنات الحية</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>مقدمة في الإنزيمات</h3>
+                    <p>الإنزيمات هي بروتينات تعمل كعوامل حفازة بيولوجية، تقوم بتسريع التفاعلات الكيميائية في الكائنات الحية دون أن تستهلك في التفاعل. تعتبر أساسية لجميع العمليات الحيوية من الهضم إلى التمثيل الغذائي وتخليق الحمض النووي.</p>
+                    <p>تتميز الإنزيمات بخصوصيتها العالية وفعاليتها الكبيرة، حيث يمكن لإنزيم واحد تسريع تفاعل ملايين المرات. تعمل في ظروف لطيفة من درجة الحرارة والحموضة، مما يجعلها مثالية للعمليات البيولوجية.</p>
+                    <p>بدون الإنزيمات، ستكون معظم التفاعلات الكيميائية في الجسم بطيئة جداً لدرجة عدم إمكانية الحياة. فهم كيفية عمل هذه العجائب البيولوجية يساعدنا على فهم الحياة نفسها وتطبيقاتها في الطب والصناعة.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1532094349884-1536987333706?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الإنزيمات">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Structure Section -->
+    <section id="structure" class="structure">
+        <div class="container">
+            <div class="section-title">
+                <h2>تركيب الإنزيمات</h2>
+                <p>المكونات الهيكلية للإنزيمات وأهميتها الوظيفية</p>
+            </div>
+            <div class="structure-grid">
+                <div class="structure-card">
+                    <div class="structure-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="structure-body">
+                        <h3>الموقع النشط</h3>
+                        <p>هو المنطقة الخاصة في الإنزيم التي ترتبط بها المادة المتفاعلة (الركيزة). يتميز هذا الموقع بشكله ثلاثي الأبعاد الفريد الذي يناسب الركيزة تماماً مثل القفل والمفتاح.</p>
+                    </div>
+                </div>
+                
+                <div class="structure-card">
+                    <div class="structure-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <div class="structure-body">
+                        <h3>الموقع المحفز</h3>
+                        <p>جزء من الموقع النشط حيث يحدث التفاعل الفعلي. يحتوي على مجموعات كيميائية خاصة تساعد في كسر وتكوين الروابط الكيميائية في الركيزة.</p>
+                    </div>
+                </div>
+                
+                <div class="structure-card">
+                    <div class="structure-icon">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <div class="structure-body">
+                        <h3>الموقع التنظيمي</h3>
+                        <p>منطقة في الإنزيم يمكن أن ترتبط بها جزيئات تنظيمية تزيد أو تقلل من نشاط الإنزيم. مهم لتنظيم العمليات الأيضية في الخلية.</p>
+                    </div>
+                </div>
+                
+                <div class="structure-card">
+                    <div class="structure-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <div class="structure-body">
+                        <h3>العوامل المساعدة</h3>
+                        <p>بعض الإنزيمات تحتاج إلى عوامل غير بروتينية للعمل مثل أيونات المعادن (Zn²⁺, Mg²⁺) أو مجموعات عضوية مساعدة (الفيتامينات). تعتبر ضرورية لوظيفة الإنزيم.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mechanism Section -->
+    <section id="mechanism" class="mechanism">
+        <div class="container">
+            <div class="section-title">
+                <h2>آلية عمل الإنزيمات</h2>
+                <p>كيف تعمل الإنزيمات لتسريع التفاعلات الكيميائية</p>
+            </div>
+            <div class="mechanism-container">
+                <div class="mechanism-item">
+                    <div class="mechanism-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="mechanism-content">
+                        <h3>نموذج القفل والمفتاح</h3>
+                        <p>يرتبط الإنزيم بالركيزة بشكل محدد في الموقع النشط. يشبه هذا الارتباط قفل ومفتاح حيث لا يناسب إلا مفتاح واحد فقط. هذه الخصوصية تضمن أن الإنزيم يعمل فقط على التفاعلات المحددة.</p>
+                    </div>
+                </div>
+                
+                <div class="mechanism-item">
+                    <div class="mechanism-icon">
+                        <i class="fas fa-compress-arrows-alt"></i>
+                    </div>
+                    <div class="mechanism-content">
+                        <h3>تقليل طاقة التنشيط</h3>
+                        <p>تعمل الإنزيمات على تقليل طاقة التنشيط اللازمة للتفاعل. تثبت الركيزة في الموقع النشط وتضعها في الوضع الأمثل للتفاعل، مما يقلل الحاجز الطاقي ويجعل التفاعل أسرع.</p>
+                    </div>
+                </div>
+                
+                <div class="mechanism-item">
+                    <div class="mechanism-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <div class="mechanism-content">
+                        <h3>دورة الإنزيم</h3>
+                        <p>بعد إتمام التفاعل، تتحول الركيزة إلى نواتج وتنطلق من الإنزيم. يعود الإنزيم إلى حالته الأصلية ويكون جاهزاً لتفاعل آخر. يمكن لإنزيم واحد إجراء آلاف التفاعلات في الثانية.</p>
+                    </div>
+                </div>
+                
+                <div class="mechanism-item">
+                    <div class="mechanism-icon">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <div class="mechanism-content">
+                        <h3>التوازن الديناميكي</h3>
+                        <p>لا تغير الإنزيمات توازن التفاعل بل فقط تسرع الوصول إليه. تزيد من سرعة التفاعل في كلا الاتجاهين بنفس المقدار، مما يحافظ على ثابت التوازن دون تغيير.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classification Section -->
+    <section id="classification" class="classification">
+        <div class="container">
+            <div class="section-title">
+                <h2>تصنيف الإنزيمات</h2>
+                <p>التصنيفات الرئيسية للإنزيمات حسب نوع التفاعل</p>
+            </div>
+            <div class="classification-grid">
+                <div class="classification-card">
+                    <div class="classification-header">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="classification-content">
+                        <h3>أوكسيدوريدكتازات</h3>
+                        <p>تنقل الإلكترونات بين الجزيئات. تشمل إنزيمات ديهيدروجيناز وأوكسيداز. مهمة في عملية التنفس الخلوي وإنتاج الطاقة.</p>
+                        <div class="classification-examples">
+                            <h4>أمثلة:</h4>
+                            <ul>
+                                <li>كاتالاز</li>
+                                <li>سيتوكروم أوكسيداز</li>
+                                <li>ألcohol ديهيدروجيناز</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="classification-card">
+                    <div class="classification-header">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <div class="classification-content">
+                        <h3>ترانسفيرازات</h3>
+                        <p>تنقل المجموعات الوظيفية بين الجزيئات. تشمل إنزيمات كيناز وفوسفاتاز. مهمة في نقل الطاقة وتنظيم العمليات الخلوية.</p>
+                        <div class="classification-examples">
+                            <h4>أمثلة:</h4>
+                            <ul>
+                                <li>هيكسوكيناز</li>
+                                <li>فوسفاتاز قلوي</li>
+                                <li>أمينوترانسفيراز</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="classification-card">
+                    <div class="classification-header">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="classification-content">
+                        <h3>هيدرولازات</h3>
+                        <p>تحطم الروابط بإضافة جزيئة ماء. تشمل إنزيمات ببتيداز وليباز. مهمة في عملية الهضم وتفكيك الجزيئات الكبيرة.</p>
+                        <div class="classification-examples">
+                            <h4>أمثلة:</h4>
+                            <ul>
+                                <li>أميليز</li>
+                                <li>ليباز بنكرياس</li>
+                                <li>بروتياز</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="classification-card">
+                    <div class="classification-header">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <div class="classification-content">
+                        <h3>ليازات</h3>
+                        <p>تكسر الروابط دون إضافة ماء أو أكسجين. تشمل إنزيمات ديكربوكسيلاز وألدولاز. مهمة في تفكيك المركبات العضوية.</p>
+                        <div class="classification-examples">
+                            <h4>أمثلة:</h4>
+                            <ul>
+                                <li>ألدولاز</li>
+                                <li>ديكربوكسيلاز</li>
+                                <li>بيفالديهيدروجيناز</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="classification-card">
+                    <div class="classification-header">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="classification-content">
+                        <h3>إيزوميرازات</h3>
+                        <p>تحول الجزيئات إلى متماكباتها. تشمل إنزيمات فوسفوجلوكوز إيزوميراز. مهمة في المسارات الأيضية وتكوين الجزيئات النشطة.</p>
+                        <div class="classification-examples">
+                            <h4>أمثلة:</h4>
+                            <ul>
+                                <li>فوسفوجلوكوز إيزوميراز</li>
+                                <li>تريوز فوسفات إيزوميراز</li>
+                                <li>ألاين إيزوميراز</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="classification-card">
+                    <div class="classification-header">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <div class="classification-content">
+                        <h3>ليغازات</h3>
+                        <p>تربط جزيئين معاً باستخدام طاقة من ATP. تشمل إنزيمات سينثيتاز. مهمة في بناء الجزيئات المعقدة وتخزين الطاقة.</p>
+                        <div class="classification-examples">
+                            <h4>أمثلة:</h4>
+                            <ul>
+                                <li>دنا بوليميراز</li>
+                                <li>أستيل كولين سينثيتاز</li>
+                                <li>جلوتامات سينثيتاز</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Factors Section -->
+    <section id="factors" class="factors">
+        <div class="container">
+            <div class="section-title">
+                <h2>العوامل المؤثرة على نشاط الإنزيمات</h2>
+                <p>كيف تؤثر الظروف المختلفة على أداء الإنزيمات</p>
+            </div>
+            <div class="factors-grid">
+                <div class="factor-card">
+                    <div class="factor-icon">
+                        <i class="fas fa-thermometer-half"></i>
+                    </div>
+                    <div class="factor-content">
+                        <h3>درجة الحرارة</h3>
+                        <p>لكل إنزيم درجة حرارة مثلى يعمل عندها بأقصى كفاءة. عند زيادة الحرارة عن هذه النقطة، يفقد الإنزيم هيكله ويتوقف عن العمل (التعطيل الحراري).</p>
+                        <div class="factor-graph">
+                            النشاط: منخفض ← مثالي ← منخفض (تعطيل)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="factor-card">
+                    <div class="factor-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="factor-content">
+                        <h3>درجة الحموضة (pH)</h3>
+                        <p>لكل إنزيم نطاق pH مثلى. التغيرات في الحموضة تؤثر على شحنة الأحماض الأمينية في الموقع النشط، مما يغير قدرة الإنزيم على الارتباط بالركيزة.</p>
+                        <div class="factor-graph">
+                            النشاط: منخفض ← مثالي ← منخفض
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="factor-card">
+                    <div class="factor-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <div class="factor-content">
+                        <h3>تركيز الركيزة</h3>
+                        <p>يزداد نشاط الإنزيم بزيادة تركيز الركيزة حتى يصل إلى أقصى سرعة (Vmax). بعد هذه النقطة، يصبح الإنزيم مشبعاً ولا يزيد نشاطه أكثر.</p>
+                        <div class="factor-graph">
+                            النشاط: يزداد ← Vmax ← ثابت
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="factor-card">
+                    <div class="factor-icon">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <div class="factor-content">
+                        <h3>المثبطات</h3>
+                        <p>جزيئات تقلل من نشاط الإنزيم. يمكن أن تكون تنافسية (تنافس الركيزة على الموقع النشط) أو غير تنافسية (ترتبط بمكان آخر وتغير شكل الإنزيم).</p>
+                        <div class="factor-graph">
+                            النشاط: ينخفض ← ينخفض بشدة
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="applications">
+        <div class="container">
+            <div class="section-title">
+                <h2>تطبيقات الإنزيمات</h2>
+                <p>كيف تستخدم الإنزيمات في الصناعة والطب والحياة اليومية</p>
+            </div>
+            <div class="applications-grid">
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <div class="application-body">
+                        <h3>الطب الصيدلاني</h3>
+                        <p>تستخدم في إنتاج الأدوية مثل المضادات الحيوية والإنسولين. تساعد في تحسين فعالية الأدوية وتقليل الآثار الجانبية. تستخدم أيضاً في التشخيص الطبي.</p>
+                    </div>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="application-body">
+                        <h3>صناعة الأغذية</h3>
+                        <p>تستخدم في إنتاج الجبن واللبن، عصير الفواكه، الخبز، والعديد من المنتجات الغذائية الأخرى. تحسن من جودة المنتجات وتزيد من مدة صلاحيتها.</p>
+                    </div>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <div class="application-body">
+                        <h3>الصناعات النسيجية</h3>
+                        <p>تستخدم في معالجة الأقمشة لإزالة الشمع والدهون. تساعد في تحسين جودة الأقمشة وجعلها أكثر نعومة ومقاومة للماء.</p>
+                    </div>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="application-body">
+                        <h3>البيئة والطاقة</h3>
+                        <p>تستخدم في معالجة المياه الملوثة وإنتاج الوقود الحيوي. تساعد في تحلل النفايات العضوية وإنتاج طاقة نظيفة ومتجددة.</p>
+                    </div>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-soap"></i>
+                    </div>
+                    <div class="application-body">
+                        <h3>منتجات التنظيف</h3>
+                        <p>تستخدم في المنظفات البيولوجية لتفكيك البقع والدهون. تعتبر صديقة للبيئة وفعالة في إزالة البقع الصعبة.</p>
+                    </div>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <div class="application-body">
+                        <h3>التكنولوجيا الحيوية</h3>
+                        <p>تستخدم في هندسة الوراثة وتقنية الحمض النووي. تساعد في تعديل الجينات وإنتاج البروتينات المؤتلفة للأبحاث والعلاج.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="calculator">
+        <div class="container">
+            <div class="section-title">
+                <h2>حاسبة الإنزيمات</h2>
+                <p>احسب معاملات الإنزيمات وسرعة التفاعلات</p>
+            </div>
+            <div class="calculator-container">
+                <div class="calculator-tabs">
+                    <button class="tab-btn active" onclick="switchTab('michaelis')">معادلة مايكليس-منتن</button>
+                    <button class="tab-btn" onclick="switchTab('inhibition')">المثبطات</button>
+                    <button class="tab-btn" onclick="switchTab('temperature')">درجة الحرارة</button>
+                </div>
+                
+                <!-- Michaelis-Menten Calculator Tab -->
+                <div id="michaelis-tab" class="tab-content active">
+                    <form id="michaelis-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="vmax">السرعة القصوى (Vmax):</label>
+                                <input type="number" id="vmax" step="0.01" placeholder="أدخل Vmax">
+                            </div>
+                            <div class="form-group">
+                                <label for="km">ثابت مايكليس (Km):</label>
+                                <input type="number" id="km" step="0.01" placeholder="أدخل Km">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="substrate">تركيز الركيزة [S]:</label>
+                            <input type="number" id="substrate" step="0.01" placeholder="أدخل [S]">
+                        </div>
+                        <button type="submit" class="btn">احسب السرعة</button>
+                    </form>
+                    <div class="result-box" id="michaelis-result">
+                        <h4>النتيجة:</h4>
+                        <p id="michaelis-result-text"></p>
+                    </div>
+                </div>
+                
+                <!-- Inhibition Calculator Tab -->
+                <div id="inhibition-tab" class="tab-content">
+                    <form id="inhibition-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="inhibition-type">نوع المثبط:</label>
+                                <select id="inhibition-type">
+                                    <option value="competitive">تنافسي</option>
+                                    <option value="noncompetitive">غير تنافسي</option>
+                                    <option value="uncompetitive">غير تنافسي عكسي</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="inhibitor-conc">تركيز المثبط [I]:</label>
+                                <input type="number" id="inhibitor-conc" step="0.01" placeholder="أدخل [I]">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="ki">ثابت التثبيط (Ki):</label>
+                                <input type="number" id="ki" step="0.01" placeholder="أدخل Ki">
+                            </div>
+                            <div class="form-group">
+                                <label for="original-vmax">Vmax الأصلي:</label>
+                                <input type="number" id="original-vmax" step="0.01" placeholder="أدخل Vmax">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="original-km">Km الأصلي:</label>
+                            <input type="number" id="original-km" step="0.01" placeholder="أدخل Km">
+                        </div>
+                        <button type="submit" class="btn">احسب تأثير المثبط</button>
+                    </form>
+                    <div class="result-box" id="inhibition-result">
+                        <h4>النتيجة:</h4>
+                        <p id="inhibition-result-text"></p>
+                    </div>
+                </div>
+                
+                <!-- Temperature Calculator Tab -->
+                <div id="temperature-tab" class="tab-content">
+                    <form id="temperature-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="optimal-temp">درجة الحرارة المثلى (°C):</label>
+                                <input type="number" id="optimal-temp" step="0.1" placeholder="37" value="37">
+                            </div>
+                            <div class="form-group">
+                                <label for="current-temp">درجة الحرارة الحالية (°C):</label>
+                                <input type="number" id="current-temp" step="0.1" placeholder="أدخل الحرارة">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="q10">معامل Q10:</label>
+                                <input type="number" id="q10" step="0.1" value="2" placeholder="2">
+                            </div>
+                            <div class="form-group">
+                                <label for="base-activity">النشاط الأساسي:</label>
+                                <input type="number" id="base-activity" step="0.01" placeholder="100" value="100">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn">احسب النشاط</button>
+                    </form>
+                    <div class="result-box" id="temperature-result">
+                        <h4>النتيجة:</h4>
+                        <p id="temperature-result-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Section -->
+    <section id="health" class="health">
+        <div class="container">
+            <div class="section-title">
+                <h2>الإنزيمات والصحة</h2>
+                <p>أمراض الإنزيمات وأهميتها في التشخيص والعلاج</p>
+            </div>
+            <div class="health-grid">
+                <div class="health-card">
+                    <div class="health-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="health-content">
+                        <h3>أمراض نقص الإنزيمات</h3>
+                        <p>اضطرابات وراثية ناتجة عن نقص أو عدم وجود إنزيم معين. تشمل مرض جالاكتوزيميا وفينيل كيتون يوريا. تسبب تراكم المواد السامة في الجسم.</p>
+                        <div class="health-tips">
+                            <h4>الأعراض الشائعة:</h4>
+                            <ul>
+                                <li>تأخر النمو والتطور</li>
+                                <li>مشاكل عصبية</li>
+                                <li>أمراض جلدية</li>
+                                <li>مشاكل في الجهاز الهضمي</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="health-card">
+                    <div class="health-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <div class="health-content">
+                        <h3>التشخيص الإنزيمي</h3>
+                        <p>قياس مستويات الإنزيمات في الدم والأنسجة لتشخيص الأمراض. ارتفاع أو انخفاض مستويات إنزيمات معينة يدل على وجود أمراض محددة.</p>
+                        <div class="health-tips">
+                            <h4>إنزيمات تشخيصية شائعة:</h4>
+                            <ul>
+                                <li>ALT و AST (الكبد)</li>
+                                <li>CPK (القلب والعضلات)</li>
+                                <li>أميليز (البنكرياس)</li>
+                                <li>لاكتات ديهيدروجيناز (القلب)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="health-card">
+                    <div class="health-icon">
+                        <i class="fas fa-capsules"></i>
+                    </div>
+                    <div class="health-content">
+                        <h3>العلاج الإنزيمي البديل</h3>
+                        <p>علاج أمراض نقص الإنزيمات عن طريق إعطاء الإنزيم الناقص للمريض. يستخدم في علاج مرض جوشر (نقص إنزيم جلوكوسيريبروزيداز).</p>
+                        <div class="health-tips">
+                            <h4>التحديات:</h4>
+                            <ul>
+                                <li>تكلفة العلاج العالية</li>
+                                <li>الحاجة للعلاج مدى الحياة</li>
+                                <li>استجابة الجهاز المناعي</li>
+                                <li>صعوبة الوصول إلى الأنسجة المستهدفة</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="health-card">
+                    <div class="health-icon">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <div class="health-content">
+                        <h3>الإنزيمات في التغذية</h3>
+                        <p>بعض الأطعمة تحتوي على إنزيمات طبيعية تساعد في الهضم. تشمل البابايا والأناناس والكيوي. هذه الإنزيمات تساعد في هضم البروتينات والكربوهيدرات.</p>
+                        <div class="health-tips">
+                            <h4>مصادر غذائية غنية بالإنزيمات:</h4>
+                            <ul>
+                                <li>البابايا (بابين)</li>
+                                <li>الأناناس (بروميلين)</li>
+                                <li>الكيوي (أكتينيدين)</li>
+                                <li>الزبادي (لاكتاز)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>الأسئلة الشائعة</h2>
+                <p>إجابات على الأسئلة الأكثر شيوعاً حول الإنزيمات</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما الفرق بين الإنزيمات والعوامل الحفازة العادية؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الإنزيمات هي بروتينات تعمل في الظروف البيولوجية اللطيفة (درجة حرارة وحموضة معتدلة)، بينما العوامل الحفازة العادية قد تكون معادن أو مركبات عضوية وتعمل في ظروف قاسية. الإنزيمات أكثر خصوصية وكفاءة من العوامل الحفازة العادية.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>لماذا لا تستهلك الإنزيمات في التفاعلات؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الإنزيمات لا تستهلك لأنها تعمل كعوامل حفازة فقط. تسرع التفاعل عن طريق تقليل طاقة التنشيط، لكنها لا تشارك في التفاعل كمتفاعل. بعد انتهاء التفاعل، تعود الإنزيمات إلى حالتها الأصلية وتكون جاهزة لتفاعل آخر.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كيف تؤثر درجة الحرارة على نشاط الإنزيمات؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>لكل إنزيم درجة حرارة مثلى يعمل عندها بأقصى كفاءة. مع زيادة الحرارة، يزداد نشاط الإنزيم حتى يصل إلى الذروة ثم يبدأ في الانخفاض بسبب تعطيل الهيكل البروتيني. عند درجات الحرارة العالية جداً، يفقد الإنزيم هيكله تماماً ويتوقف عن العمل.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هي أهمية الإنزيمات في عملية الهضم؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الإنزيمات ضرورية لعملية الهضم حيث تقوم بتفكيك الجزيئات الكبيرة (مثل البروتينات والكربوهيدرات والدهون) إلى جزيئات صغيرة قابلة للامتصاص. بدون هذه الإنزيمات، لن يتمكن الجسم من هضم الطعام واستخلاص العناصر الغذائية.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كيف يمكن زيادة نشاط الإنزيمات في الجسم؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>يمكن زيادة نشاط الإنزيمات من خلال: تناول الأطعمة الغنية بالفيتامينات والمعادن (العوامل المساعدة)، الحفاظن على درجة حرارة الجسم المثلى، تجنب الإجهاد الشديد، وتناول الأطعمة التي تحتوي على إنزيمات طبيعية.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هي العلاقة بين الإنزيمات والجينات؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الجينات تحتوي على المعلومات اللازمة لتصنيع الإنزيمات. كل إنزيم يتم إنتاجه بناءً على تعليمات جين معين. الطفرات في هذه الجينات يمكن أن تؤدي إلى إنتاج إنزيمات غير فعالة أو نقص في إنتاجها، مما يسبب أمراضاً وراثية.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع الإنزيمات</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى عالي الجودة حول الإنزيمات وأهميتها في الكيمياء الحيائية والطب.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#structure">التركيب</a></li>
+                        <li><a href="#mechanism">الآلية</a></li>
+                        <li><a href="#classification">التصنيف</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">دروس تفاعلية</a></li>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">امتحانات تجريبية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@enzymes.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع الإنزيمات. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Tab Switching
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Michaelis-Menten Calculator
+        document.getElementById('michaelis-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const Vmax = parseFloat(document.getElementById('vmax').value);
+            const Km = parseFloat(document.getElementById('km').value);
+            const S = parseFloat(document.getElementById('substrate').value);
+            
+            if (isNaN(Vmax) || isNaN(Km) || isNaN(S)) {
+                alert('الرجاء إدخال قيم صحيحة');
+                return;
+            }
+            
+            const velocity = (Vmax * S) / (Km + S);
+            const saturation = (S / (Km + S)) * 100;
+            
+            const resultText = `السرعة (v) = ${velocity.toFixed(4)}<br>
+                              المعادلة المستخدمة: v = (Vmax × [S]) / (Km + [S])<br>
+                              السرعة القصوى (Vmax) = ${Vmax}<br>
+                              ثابت مايكليس (Km) = ${Km}<br>
+                              تركيز الركيزة [S] = ${S}<br>
+                              <br>
+                              نسبة الإشباع = ${saturation.toFixed(1)}%<br>
+                              <br>
+                              ${saturation < 50 ? 'الإنزيم غير مشبع' : saturation < 90 ? 'الإنزيم مشبع جزئياً' : 'الإنزيم مشبع تقريباً'}`;
+            
+            document.getElementById('michaelis-result-text').innerHTML = resultText;
+            document.getElementById('michaelis-result').style.display = 'block';
+        });
+
+        // Inhibition Calculator
+        document.getElementById('inhibition-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const inhibitionType = document.getElementById('inhibition-type').value;
+            const I = parseFloat(document.getElementById('inhibitor-conc').value);
+            const Ki = parseFloat(document.getElementById('ki').value);
+            const originalVmax = parseFloat(document.getElementById('original-vmax').value);
+            const originalKm = parseFloat(document.getElementById('original-km').value);
+            
+            if (isNaN(I) || isNaN(Ki) || isNaN(originalVmax) || isNaN(originalKm)) {
+                alert('الرجاء إدخال قيم صحيحة');
+                return;
+            }
+            
+            let newVmax, newKm, effect;
+            
+            switch(inhibitionType) {
+                case 'competitive':
+                    newVmax = originalVmax;
+                    newKm = originalKm * (1 + I / Ki);
+                    effect = 'يزيد Km ولا يؤثر على Vmax';
+                    break;
+                case 'noncompetitive':
+                    newVmax = originalVmax / (1 + I / Ki);
+                    newKm = originalKm;
+                    effect = 'ينقص Vmax ولا يؤثر على Km';
+                    break;
+                case 'uncompetitive':
+                    newVmax = originalVmax / (1 + I / Ki);
+                    newKm = originalKm / (1 + I / Ki);
+                    effect = 'ينقص كل من Vmax و Km';
+                    break;
+            }
+            
+            const inhibitionPercent = ((originalVmax - newVmax) / originalVmax * 100).toFixed(1);
+            
+            const resultText = `نوع التثبيط: ${getInhibitionTypeName(inhibitionType)}<br>
+                              تأثير المثبط: ${effect}<br>
+                              <br>
+                              القيم الأصلية:<br>
+                              Vmax = ${originalVmax}<br>
+                              Km = ${originalKm}<br>
+                              <br>
+                              القيم بعد التثبيط:<br>
+                              Vmax' = ${newVmax.toFixed(4)}<br>
+                              Km' = ${newKm.toFixed(4)}<br>
+                              <br>
+                              نسبة التثبيط = ${inhibitionPercent}%<br>
+                              تركيز المثبط [I] = ${I}<br>
+                              ثابت التثبيط Ki = ${Ki}`;
+            
+            document.getElementById('inhibition-result-text').innerHTML = resultText;
+            document.getElementById('inhibition-result').style.display = 'block';
+        });
+
+        // Temperature Calculator
+        document.getElementById('temperature-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const optimalTemp = parseFloat(document.getElementById('optimal-temp').value);
+            const currentTemp = parseFloat(document.getElementById('current-temp').value);
+            const Q10 = parseFloat(document.getElementById('q10').value);
+            const baseActivity = parseFloat(document.getElementById('base-activity').value);
+            
+            if (isNaN(optimalTemp) || isNaN(currentTemp) || isNaN(Q10) || isNaN(baseActivity)) {
+                alert('الرجاء إدخال قيم صحيحة');
+                return;
+            }
+            
+            const tempDiff = currentTemp - optimalTemp;
+            const tempChangeIn10 = tempDiff / 10;
+            
+            let activity;
+            let status;
+            
+            if (Math.abs(tempDiff) > 20) {
+                // Severe temperature change - likely denaturation
+                if (tempDiff > 0) {
+                    activity = baseActivity * 0.1; // Severe loss of activity
+                    status = 'تعطيل حراري شديد';
+                } else {
+                    activity = baseActivity * Math.pow(Q10, tempChangeIn10);
+                    status = 'انخفاض في النشاط';
+                }
+            } else {
+                activity = baseActivity * Math.pow(Q10, tempChangeIn10);
+                status = tempDiff > 0 ? 'زيادة في النشاط' : 'انخفاض في النشاط';
+            }
+            
+            const activityPercent = (activity / baseActivity * 100).toFixed(1);
+            
+            const resultText = `درجة الحرارة الحالية: ${currentTemp}°C<br>
+                              درجة الحرارة المثلى: ${optimalTemp}°C<br>
+                              الفرق في الحرارة: ${tempDiff}°C<br>
+                              <br>
+                              النشاط الحالي: ${activity.toFixed(2)}<br>
+                              النشاط الأساسي: ${baseActivity}<br>
+                              نسبة النشاط: ${activityPercent}%<br>
+                              <br>
+                              الحالة: ${status}<br>
+                              معامل Q10: ${Q10}`;
+            
+            document.getElementById('temperature-result-text').innerHTML = resultText;
+            document.getElementById('temperature-result').style.display = 'block';
+        });
+
+        function getInhibitionTypeName(type) {
+            const names = {
+                'competitive': 'تنافسي',
+                'noncompetitive': 'غير تنافسي',
+                'uncompetitive': 'غير تنافسي عكسي'
+            };
+            return names[type] || type;
+        }
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
