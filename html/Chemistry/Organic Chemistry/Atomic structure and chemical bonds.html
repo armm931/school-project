@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>البنية الذرية والروابط الكيميائية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #5e35b1;
+            --secondary: #00bcd4;
+            --accent: #4caf50;
+            --light: #f5f5f5;
+            --dark: #263238;
+            --warning: #ff9800;
+            --danger: #f44336;
+        }
+
+        body {
+            background-color: #fafafa;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), #7e57c2);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--secondary);
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(94, 53, 177, 0.9), rgba(0, 188, 212, 0.9)), url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 180px 0 120px;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="90" r="2.5" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s 0.2s both;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn:hover {
+            background-color: #388e3c;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #546e7a;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Atomic Structure Section */
+        .atomic-structure {
+            background-color: white;
+        }
+
+        .atom-model {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 50px 0;
+            position: relative;
+            height: 400px;
+        }
+
+        .nucleus {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, var(--danger), #d32f2f);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 0 30px rgba(244, 67, 54, 0.5);
+            z-index: 10;
+        }
+
+        .nucleus::before {
+            content: 'N';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            font-size: 2rem;
+        }
+
+        .electron-orbit {
+            position: absolute;
+            border: 2px dashed rgba(0, 188, 212, 0.5);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        .orbit-1 {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .orbit-2 {
+            width: 300px;
+            height: 300px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-duration: 30s;
+        }
+
+        .orbit-3 {
+            width: 400px;
+            height: 400px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-duration: 40s;
+        }
+
+        @keyframes rotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .electron {
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, var(--secondary), #0097a7);
+            border-radius: 50%;
+            position: absolute;
+            box-shadow: 0 0 10px rgba(0, 188, 212, 0.8);
+        }
+
+        .electron-1 {
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .electron-2 {
+            top: 50%;
+            right: -10px;
+            transform: translateY(-50%);
+        }
+
+        .electron-3 {
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .atomic-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: all 0.3s;
+            border-top: 4px solid var(--primary);
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .info-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .info-card p {
+            color: #546e7a;
+        }
+
+        /* Periodic Table Section */
+        .periodic-table {
+            background-color: #f5f5f5;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 30px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .mini-table {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 5px;
+            min-width: 800px;
+        }
+
+        .element {
+            aspect-ratio: 1;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .element:hover {
+            transform: scale(1.1);
+            z-index: 10;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .element.nonmetal {
+            background-color: #e8f5e9;
+            border-color: #4caf50;
+        }
+
+        .element.metal {
+            background-color: #e3f2fd;
+            border-color: #2196f3;
+        }
+
+        .element.metalloid {
+            background-color: #fff3e0;
+            border-color: #ff9800;
+        }
+
+        .element.noble-gas {
+            background-color: #f3e5f5;
+            border-color: #9c27b0;
+        }
+
+        .element-symbol {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .element-number {
+            font-size: 0.7rem;
+            color: #757575;
+        }
+
+        /* Chemical Bonds Section */
+        .bonds-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .bond-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .bond-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .bond-header {
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .covalent-header {
+            background: linear-gradient(135deg, var(--primary), #7e57c2);
+        }
+
+        .ionic-header {
+            background: linear-gradient(135deg, var(--secondary), #00acc1);
+        }
+
+        .metallic-header {
+            background: linear-gradient(135deg, var(--accent), #66bb6a);
+        }
+
+        .hydrogen-header {
+            background: linear-gradient(135deg, var(--warning), #ffa726);
+        }
+
+        .bond-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .bond-body {
+            padding: 25px;
+        }
+
+        .bond-body p {
+            color: #546e7a;
+            margin-bottom: 15px;
+        }
+
+        .bond-example {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* Interactive Section */
+        .interactive {
+            background-color: white;
+        }
+
+        .molecule-builder {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .builder-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .element-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background-color: var(--primary);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .element-btn:hover {
+            background-color: #7e57c2;
+            transform: translateY(-3px);
+        }
+
+        .element-btn.active {
+            background-color: var(--accent);
+        }
+
+        .molecule-canvas {
+            width: 100%;
+            height: 400px;
+            border: 2px dashed #e0e0e0;
+            border-radius: 10px;
+            position: relative;
+            background-color: #fafafa;
+            overflow: hidden;
+        }
+
+        .molecule-info {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            background-color: #f5f5f5;
+        }
+
+        .calculator {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .calculator h3 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #546e7a;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.2);
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #e8f5e9;
+            border-radius: 10px;
+            border-right: 4px solid var(--accent);
+            display: none;
+        }
+
+        .result h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .result p {
+            color: #546e7a;
+            font-size: 1.1rem;
+        }
+
+        /* Applications Section */
+        .apps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .app-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            height: 100%;
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .app-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .app-card p {
+            color: #546e7a;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #b0bec5;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #b0bec5;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #37474f;
+            font-size: 0.9rem;
+            color: #78909c;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .atom-model {
+                height: 300px;
+            }
+            
+            .orbit-1 {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .orbit-2 {
+                width: 225px;
+                height: 225px;
+            }
+            
+            .orbit-3 {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                <span>البنية الذرية والروابط الكيميائية</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#atomic">البنية الذرية</a></li>
+                    <li><a href="#periodic">الجدول الدوري</a></li>
+                    <li><a href="#bonds">الروابط الكيميائية</a></li>
+                    <li><a href="#interactive">تفاعلي</a></li>
+                    <li><a href="#calc">الحاسبة</a></li>
+                    <li><a href="#apps">التطبيقات</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>عالم الذرات والروابط الكيميائية</h1>
+            <p>اكتشف أسرار المادة على المستوى الذري وتفاعلاتها التي تشكل عالمنا</p>
+            <a href="#atomic" class="btn">ابدأ الاستكشاف</a>
+        </div>
+    </section>
+
+    <!-- Atomic Structure Section -->
+    <section id="atomic" class="atomic-structure">
+        <div class="container">
+            <div class="section-title">
+                <h2>البنية الذرية</h2>
+                <p>الذرة هي الوحدة الأساسية للمادة، تتكون من نواة وإلكترونات تدور حولها</p>
+            </div>
+            
+            <div class="atom-model">
+                <div class="nucleus"></div>
+                <div class="electron-orbit orbit-1">
+                    <div class="electron electron-1"></div>
+                </div>
+                <div class="electron-orbit orbit-2">
+                    <div class="electron electron-2"></div>
+                </div>
+                <div class="electron-orbit orbit-3">
+                    <div class="electron electron-3"></div>
+                </div>
+            </div>
+            
+            <div class="atomic-info">
+                <div class="info-card">
+                    <i class="fas fa-proton"></i>
+                    <h3>البروتونات</h3>
+                    <p>جسيمات موجبة الشحنة في النواة، تحدد هوية العنصر وعدده الذري</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-atom"></i>
+                    <h3>النيوترونات</h3>
+                    <p>جسيمات متعادلة الشحنة في النواة، تساهم في كتلة الذرة واستقرارها</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>الإلكترونات</h3>
+                    <p>جسيمات سالبة الشحنة تدور حول النواة في مدارات طاقة محددة</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-layer-group"></i>
+                    <h3>المستويات الطاقية</h3>
+                    <p>مدارات الإلكترونات مرتبة في مستويات طاقة (K, L, M, N...)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Periodic Table Section -->
+    <section id="periodic" class="periodic-table">
+        <div class="container">
+            <div class="section-title">
+                <h2>الجدول الدوري</h2>
+                <p>تنظيم العناصر الكيميائية حسب خصائصها الذرية</p>
+            </div>
+            
+            <div class="table-container">
+                <div class="mini-table">
+                    <div class="element nonmetal" data-element="H">
+                        <div class="element-number">1</div>
+                        <div class="element-symbol">H</div>
+                    </div>
+                    <div class="element" style="visibility: hidden;"></div>
+                    <div class="element" style="visibility: hidden;"></div>
+                    <div class="element" style="visibility: hidden;"></div>
+                    <div class="element" style="visibility: hidden;"></div>
+                    <div class="element" style="visibility: hidden;"></div>
+                    <div class="element" style="visibility: hidden;"></div>
+                    <div class="element" style="visibility: hidden;"></div>
+                    <div class="element" style="visibility: hidden;"></div>
+                    <div class="element noble-gas" data-element="He">
+                        <div class="element-number">2</div>
+                        <div class="element-symbol">He</div>
+                    </div>
+                    
+                    <div class="element metal" data-element="Li">
+                        <div class="element-number">3</div>
+                        <div class="element-symbol">Li</div>
+                    </div>
+                    <div class="element metal" data-element="Be">
+                        <div class="element-number">4</div>
+                        <div class="element-symbol">Be</div>
+                    </div>
+                    <div class="element" style="visibility: hidden;"></div>
+                    <div class="element" style="visibility: hidden;"></div>
+                    <div class="element" style="visibility: hidden;"></div>
+                    <div class="element" style="visibility: hidden;"></div>
+                    <div class="element metalloid" data-element="B">
+                        <div class="element-number">5</div>
+                        <div class="element-symbol">B</div>
+                    </div>
+                    <div class="element nonmetal" data-element="C">
+                        <div class="element-number">6</div>
+                        <div class="element-symbol">C</div>
+                    </div>
+                    <div class="element nonmetal" data-element="N">
+                        <div class="element-number">7</div>
+                        <div class="element-symbol">N</div>
+                    </div>
+                    <div class="element nonmetal" data-element="O">
+                        <div class="element-number">8</div>
+                        <div class="element-symbol">O</div>
+                    </div>
+                    <div class="element nonmetal" data-element="F">
+                        <div class="element-number">9</div>
+                        <div class="element-symbol">F</div>
+                    </div>
+                    <div class="element noble-gas" data-element="Ne">
+                        <div class="element-number">10</div>
+                        <div class="element-symbol">Ne</div>
+                    </div>
+                    
+                    <div class="element metal" data-element="Na">
+                        <div class="element-number">11</div>
+                        <div class="element-symbol">Na</div>
+                    </div>
+                    <div class="element metal" data-element="Mg">
+                        <div class="element-number">12</div>
+                        <div class="element-symbol">Mg</div>
+                    </div>
+                    <div class="element" style="visibility: hidden;"></div>
+                    <div class="element" style="visibility: hidden;"></div>
+                    <div class="element" style="visibility: hidden;"></div>
+                    <div class="element" style="visibility: hidden;"></div>
+                    <div class="element metalloid" data-element="Al">
+                        <div class="element-number">13</div>
+                        <div class="element-symbol">Al</div>
+                    </div>
+                    <div class="element metalloid" data-element="Si">
+                        <div class="element-number">14</div>
+                        <div class="element-symbol">Si</div>
+                    </div>
+                    <div class="element nonmetal" data-element="P">
+                        <div class="element-number">15</div>
+                        <div class="element-symbol">P</div>
+                    </div>
+                    <div class="element nonmetal" data-element="S">
+                        <div class="element-number">16</div>
+                        <div class="element-symbol">S</div>
+                    </div>
+                    <div class="element nonmetal" data-element="Cl">
+                        <div class="element-number">17</div>
+                        <div class="element-symbol">Cl</div>
+                    </div>
+                    <div class="element noble-gas" data-element="Ar">
+                        <div class="element-number">18</div>
+                        <div class="element-symbol">Ar</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chemical Bonds Section -->
+    <section id="bonds" class="bonds">
+        <div class="container">
+            <div class="section-title">
+                <h2>الروابط الكيميائية</h2>
+                <p>القوى التي تربط الذرات معاً لتكوين الجزيئات والمركبات</p>
+            </div>
+            
+            <div class="bonds-grid">
+                <div class="bond-card">
+                    <div class="bond-header covalent-header">
+                        <h3>الرابطة التساهمية</h3>
+                        <p>مشاركة الإلكترونات</p>
+                    </div>
+                    <div class="bond-body">
+                        <p>تتكون عندما تشارك ذرتان أو أكثر في زوج أو أكثر من الإلكترونات. شائعة بين العناصر غير الفلزية.</p>
+                        <div class="bond-example">
+                            H₂O (الماء)<br>
+                            CH₄ (الميثان)<br>
+                            CO₂ (ثاني أكسيد الكربون)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bond-card">
+                    <div class="bond-header ionic-header">
+                        <h3>الرابطة الأيونية</h3>
+                        <p>نقل الإلكترونات</p>
+                    </div>
+                    <div class="bond-body">
+                        <p>تتكون عندما تنقل ذرة إلكتروناً أو أكثر إلى ذرة أخرى، مكونة أيونات موجبة وسالبة تجذب بعضها.</p>
+                        <div class="bond-example">
+                            NaCl (ملح الطعام)<br>
+                            CaCl₂ (كلوريد الكالسيوم)<br>
+                            MgO (أكسيد المغنيسيوم)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bond-card">
+                    <div class="bond-header metallic-header">
+                        <h3>الرابطة الفلزية</h3>
+                        <p>بحر الإلكترونات</p>
+                    </div>
+                    <div class="bond-body">
+                        <p>تتكون في الفلزات حيث تتحرر الإلكترونات الخارجية وتتحرك بحرية بين أيونات الفلز الموجبة.</p>
+                        <div class="bond-example">
+                            Fe (الحديد)<br>
+                            Cu (النحاس)<br>
+                            Al (الألومنيوم)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bond-card">
+                    <div class="bond-header hydrogen-header">
+                        <h3>الرابطة الهيدروجينية</h3>
+                        <p>جاذبية جزيئية</p>
+                    </div>
+                    <div class="bond-body">
+                        <p>قوة جذب ضعيفة بين ذرة هيدروجين مرتبطة بذرة كهربية سالبة وذرة أخرى كهربية سالبة.</p>
+                        <div class="bond-example">
+                            H₂O (الماء)<br>
+                            DNA (الحمض النووي)<br>
+                            البروتينات
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Section -->
+    <section id="interactive" class="interactive">
+        <div class="container">
+            <div class="section-title">
+                <h2>منشئ الجزيئات التفاعلي</h2>
+                <p>قم ببناء جزيئات بسيط باستخدام العناصر المختلفة</p>
+            </div>
+            
+            <div class="molecule-builder">
+                <div class="builder-controls">
+                    <button class="element-btn" data-element="H">H</button>
+                    <button class="element-btn" data-element="C">C</button>
+                    <button class="element-btn" data-element="O">O</button>
+                    <button class="element-btn" data-element="N">N</button>
+                    <button class="element-btn" data-element="Cl">Cl</button>
+                    <button class="btn" id="clear-btn">مسح الكل</button>
+                </div>
+                
+                <div class="molecule-canvas" id="canvas">
+                    <div class="molecule-info">
+                        <p>اختر عنصراً من الأعلى ثم انقر في المساحة لوضعه</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calc" class="calculator-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>حاسبة الإلكترونات</h2>
+                <p>احسب توزيع الإلكترونات في المدارات الذرية</p>
+            </div>
+            
+            <div class="calculator">
+                <h3>حاسبة التوزيع الإلكتروني</h3>
+                <form id="electron-form">
+                    <div class="form-group">
+                        <label for="element">اختر العنصر:</label>
+                        <select id="element">
+                            <option value="1">الهيدروجين (H)</option>
+                            <option value="2">الهيليوم (He)</option>
+                            <option value="3">الليثيوم (Li)</option>
+                            <option value="6">الكربون (C)</option>
+                            <option value="7">النيتروجين (N)</option>
+                            <option value="8">الأكسجين (O)</option>
+                            <option value="11">الصوديوم (Na)</option>
+                            <option value="13">الألومنيوم (Al)</option>
+                            <option value="17">الكلور (Cl)</option>
+                            <option value="20">الكالسيوم (Ca)</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn">احسب التوزيع</button>
+                </form>
+                
+                <div class="result" id="result">
+                    <h4>التوزيع الإلكتروني:</h4>
+                    <p id="result-text"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="apps" class="apps">
+        <div class="container">
+            <div class="section-title">
+                <h2>تطبيقات عملية</h2>
+                <p>كيف تؤثر البنية الذرية والروابط في حياتنا اليومية</p>
+            </div>
+            
+            <div class="apps-container">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-prescription-bottle"></i>
+                    </div>
+                    <h3>الصيدلة والأدوية</h3>
+                    <p>فهم الروابط الكيميائية يساعد في تصميم الأدوية وتوقع تفاعلاتها في الجسم البشري</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>الإلكترونيات</h3>
+                    <p>خصائص المواد شبه الموصلة تعتمد على بنيتها الذرية وتستخدم في صناعة الرقائق الإلكترونية</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>الزراعة</h3>
+                    <p>الأسمدة والمبيدات الحشرية مصممة بناءً على تفاعلات كيميائية محددة مع النباتات</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3>تنقية المياه</h3>
+                    <p>تعتمد عمليات تنقية المياه على تفاعلات كيميائية لإزالة الملوثات والشوائب</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>الأصباغ والطلاء</h3>
+                    <p>ألوان المواد تعتمد على كيفية امتصاص وانعكس الضوء بسبب البنية الإلكترونية</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                    <h3>البطاريات</h3>
+                    <p>تعمل البطاريات بناءً على تفاعلات أكسدة واختزال تتضمن نقل الإلكترونات</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع البنية الذرية</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى عالي الجودة حول البنية الذرية والروابط الكيميائية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#atomic">البنية الذرية</a></li>
+                        <li><a href="#periodic">الجدول الدوري</a></li>
+                        <li><a href="#bonds">الروابط الكيميائية</a></li>
+                        <li><a href="#interactive">تفاعلي</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">فيديوهات تعليمية</a></li>
+                        <li><a href="#">تمارين تفاعلية</a></li>
+                        <li><a href="#">محاكيات افتراضية</a></li>
+                        <li><a href="#">اختبارات ذاتية</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@atomicstructure.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع البنية الذرية والروابط الكيميائية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Periodic Table Element Info
+        const elementData = {
+            'H': { name: 'الهيدروجين', electrons: 1, config: '1s¹' },
+            'He': { name: 'الهيليوم', electrons: 2, config: '1s²' },
+            'Li': { name: 'الليثيوم', electrons: 3, config: '1s² 2s¹' },
+            'Be': { name: 'البريليوم', electrons: 4, config: '1s² 2s²' },
+            'B': { name: 'البورون', electrons: 5, config: '1s² 2s² 2p¹' },
+            'C': { name: 'الكربون', electrons: 6, config: '1s² 2s² 2p²' },
+            'N': { name: 'النيتروجين', electrons: 7, config: '1s² 2s² 2p³' },
+            'O': { name: 'الأكسجين', electrons: 8, config: '1s² 2s² 2p⁴' },
+            'F': { name: 'الفلور', electrons: 9, config: '1s² 2s² 2p⁵' },
+            'Ne': { name: 'النيون', electrons: 10, config: '1s² 2s² 2p⁶' },
+            'Na': { name: 'الصوديوم', electrons: 11, config: '1s² 2s² 2p⁶ 3s¹' },
+            'Mg': { name: 'المغنيسيوم', electrons: 12, config: '1s² 2s² 2p⁶ 3s²' },
+            'Al': { name: 'الألومنيوم', electrons: 13, config: '1s² 2s² 2p⁶ 3s² 3p¹' },
+            'Si': { name: 'السيليكون', electrons: 14, config: '1s² 2s² 2p⁶ 3s² 3p²' },
+            'P': { name: 'الفوسفور', electrons: 15, config: '1s² 2s² 2p⁶ 3s² 3p³' },
+            'S': { name: 'الكبريت', electrons: 16, config: '1s² 2s² 2p⁶ 3s² 3p⁴' },
+            'Cl': { name: 'الكلور', electrons: 17, config: '1s² 2s² 2p⁶ 3s² 3p⁵' },
+            'Ar': { name: 'الأرجون', electrons: 18, config: '1s² 2s² 2p⁶ 3s² 3p⁶' }
+        };
+
+        // Add hover effect to periodic table elements
+        document.querySelectorAll('.element').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                const elementSymbol = this.dataset.element;
+                if (elementSymbol && elementData[elementSymbol]) {
+                    const data = elementData[elementSymbol];
+                    this.title = `${data.name} - الإلكترونات: ${data.electrons}`;
+                }
+            });
+        });
+
+        // Molecule Builder
+        let selectedElement = null;
+        let elementCount = 0;
+
+        document.querySelectorAll('.element-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.element-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedElement = this.dataset.element;
+            });
+        });
+
+        document.getElementById('clear-btn').addEventListener('click', function() {
+            document.getElementById('canvas').innerHTML = '<div class="molecule-info"><p>اختر عنصراً من الأعلى ثم انقر في المساحة لوضعه</p></div>';
+            elementCount = 0;
+        });
+
+        document.getElementById('canvas').addEventListener('click', function(e) {
+            if (!selectedElement) {
+                alert('الرجاء اختيار عنصر أولاً');
+                return;
+            }
+
+            if (e.target === this || e.target.classList.contains('molecule-info')) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const atom = document.createElement('div');
+                atom.className = 'atom-placed';
+                atom.style.cssText = `
+                    position: absolute;
+                    left: ${x - 20}px;
+                    top: ${y - 20}px;
+                    width: 40px;
+                    height: 40px;
+                    background: radial-gradient(circle, var(--secondary), #0097a7);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    font-weight: bold;
+                    font-size: 1.2rem;
+                    box-shadow: 0 0 15px rgba(0, 188, 212, 0.6);
+                    cursor: pointer;
+                    animation: atomPlace 0.5s ease-out;
+                `;
+                atom.textContent = selectedElement;
+                atom.title = elementData[selectedElement]?.name || selectedElement;
+
+                this.appendChild(atom);
+                elementCount++;
+
+                // Remove initial info text
+                const info = this.querySelector('.molecule-info');
+                if (info) {
+                    info.remove();
+                }
+
+                // Add click to remove
+                atom.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    this.remove();
+                    elementCount--;
+                    if (elementCount === 0) {
+                        document.getElementById('canvas').innerHTML = '<div class="molecule-info"><p>اختر عنصراً من الأعلى ثم انقر في المساحة لوضعه</p></div>';
+                    }
+                });
+            }
+        });
+
+        // Add CSS animation for atom placement
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes atomPlace {
+                0% {
+                    transform: scale(0);
+                    opacity: 0;
+                }
+                50% {
+                    transform: scale(1.2);
+                }
+                100% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Electron Calculator
+        document.getElementById('electron-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const atomicNumber = parseInt(document.getElementById('element').value);
+            const elementName = document.getElementById('element').selectedOptions[0].text.split(' ')[0];
+            
+            // Calculate electron configuration
+            const config = calculateElectronConfig(atomicNumber);
+            
+            // Calculate electrons per shell
+            const shells = calculateElectronsPerShell(atomicNumber);
+            
+            let resultText = `
+                العنصر: ${elementName}<br>
+                العدد الذري: ${atomicNumber}<br><br>
+                التوزيع الإلكتروني: ${config}<br><br>
+                الإلكترونات في كل مستوى:<br>
+            `;
+            
+            shells.forEach((shell, index) => {
+                if (shell > 0) {
+                    resultText += `المستوى ${String.fromCharCode(75 + index)} (n=${index + 1}): ${shell} إلكترون<br>`;
+                }
+            });
+            
+            document.getElementById('result-text').innerHTML = resultText;
+            document.getElementById('result').style.display = 'block';
+        });
+
+        function calculateElectronConfig(atomicNumber) {
+            const orbitals = [
+                { name: '1s', max: 2 },
+                { name: '2s', max: 2 },
+                { name: '2p', max: 6 },
+                { name: '3s', max: 2 },
+                { name: '3p', max: 6 },
+                { name: '4s', max: 2 },
+                { name: '3d', max: 10 },
+                { name: '4p', max: 6 },
+                { name: '5s', max: 2 },
+                { name: '4d', max: 10 }
+            ];
+            
+            let remaining = atomicNumber;
+            let config = '';
+            
+            for (const orbital of orbitals) {
+                if (remaining <= 0) break;
+                
+                const electrons = Math.min(remaining, orbital.max);
+                config += `${orbital.name}${electrons > 1 ? electrons : ''} `;
+                remaining -= electrons;
+            }
+            
+            return config.trim();
+        }
+
+        function calculateElectronsPerShell(atomicNumber) {
+            const shells = [2, 8, 18, 32]; // Maximum electrons per shell
+            const result = [0, 0, 0, 0];
+            let remaining = atomicNumber;
+            
+            for (let i = 0; i < shells.length && remaining > 0; i++) {
+                result[i] = Math.min(remaining, shells[i]);
+                remaining -= result[i];
+            }
+            
+            return result;
+        }
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

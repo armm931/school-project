@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأحماض الكربوكسيلية ومشتقاتها - عالم الكيمياء العضوية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #0d9488;
+            --secondary: #0891b2;
+            --accent: #f97316;
+            --light: #f0fdfa;
+            --dark: #134e4a;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        body {
+            background-color: #f0fdfa;
+            color: #0f172a;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(13, 148, 136, 0.85), rgba(8, 145, 178, 0.85)), url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #ea580c;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #334155;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Structure Section */
+        .structure-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .structure-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .structure-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .structure-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .structure-card h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .structure-card p {
+            color: #334155;
+            text-align: center;
+        }
+
+        /* Properties Section */
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .property-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .property-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .property-card h4 {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .property-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        /* Derivatives Section */
+        .derivatives-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .derivative-card {
+            background: white;
+            border-radius: 15px;
+            width: 280px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .derivative-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .derivative-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .derivative-header h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .derivative-formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 8px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .derivative-body {
+            padding: 20px;
+        }
+
+        .derivative-body p {
+            color: #334155;
+            margin-bottom: 15px;
+        }
+
+        .derivative-examples {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .derivative-examples h4 {
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .derivative-examples ul {
+            list-style: none;
+            padding-right: 15px;
+        }
+
+        .derivative-examples li {
+            color: #334155;
+            margin-bottom: 5px;
+            position: relative;
+        }
+
+        .derivative-examples li::before {
+            content: '•';
+            color: var(--accent);
+            position: absolute;
+            right: -15px;
+        }
+
+        /* Reactions Section */
+        .reactions-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .reaction-item {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .reaction-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .reaction-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .reaction-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-left: 15px;
+        }
+
+        .reaction-title h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+
+        .reaction-content {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .reaction-description {
+            flex: 1;
+        }
+
+        .reaction-description p {
+            color: #334155;
+            margin-bottom: 15px;
+        }
+
+        .reaction-equation {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: var(--dark);
+            margin: 15px 0;
+        }
+
+        .reaction-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .reaction-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Applications Section */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .application-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .application-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .application-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .application-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .application-card:hover .application-image img {
+            transform: scale(1.1);
+        }
+
+        .application-content {
+            padding: 25px;
+        }
+
+        .application-content h3 {
+            font-size: 1.4rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .application-content p {
+            color: #334155;
+            margin-bottom: 15px;
+        }
+
+        .application-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background-color: var(--light);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #cbd5e1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .reaction-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-flask"></i>
+                <span>الأحماض الكربوكسيلية</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#structure">التركيب</a></li>
+                    <li><a href="#properties">الخصائص</a></li>
+                    <li><a href="#derivatives">المشتقات</a></li>
+                    <li><a href="#reactions">التفاعلات</a></li>
+                    <li><a href="#applications">التطبيقات</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>الأحماض الكربوكسيلية ومشتقاتها</h1>
+            <p>استكشف عالم الكيمياء العضوية من خلال فهم تركيب وخصائص وتفاعلات الأحماض الكربوكسيلية ومشتقاتها</p>
+            <a href="#intro" class="btn">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>مقدمة في الأحماض الكربوكسيلية</h2>
+                <p>الأحماض الكربوكسيلية هي فئة مهمة من المركبات العضوية تحتوي على مجموعة الكربوكسيل</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>ما هي الأحماض الكربوكسيلية؟</h3>
+                    <p>الأحماض الكربوكسيلية هي مركبات عضوية تحتوي على مجموعة وظيفية تسمى مجموعة الكربوكسيل (-COOH). تتكون هذه المجموعة من مجموعة كربونيل (C=O) ومجموعة هيدروكسيل (OH) مرتبطة بنفس ذرة الكربون.</p>
+                    <p>تعتبر الأحماض الكربوكسيلية من أهم المركبات العضوية بسبب دورها الحيوي في الكائنات الحية وتطبيقاتها الواسعة في الصناعة. توجد بشكل طبيعي في العديد من الفواكه والخضروات ومنتجات الألبان.</p>
+                    <p>تتميز هذه الأحماض بخصائص حمضية واضحة حيث يمكنها التبرون (فقدان بروتون) لتكوين أيون الكربوكسيلات (-COO⁻). تزداد حمضية المركب كلما زادت استقرار أيون الكربوكسيلات الناتج.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1603126857599-f6e157fa2fe9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الأحماض الكربوكسيلية">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Structure Section -->
+    <section id="structure" class="structure">
+        <div class="container">
+            <div class="section-title">
+                <h2>التركيب والتسمية</h2>
+                <p>فهم بنية الأحماض الكربوكسيلية وقواعد تسميتها</p>
+            </div>
+            <div class="structure-container">
+                <div class="structure-card">
+                    <div class="structure-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>التركيب العام</h3>
+                    <p>الصيغة العامة للأحماض الكربوكسيلية هي R-COOH حيث تمثل R مجموعة ألكيل أو أريل. مجموعة الكربوكسيل (-COOH) هي المجموعة الوظيفية المميزة لهذه المركبات.</p>
+                </div>
+                
+                <div class="structure-card">
+                    <div class="structure-icon">
+                        <i class="fas fa-sort-alpha-down"></i>
+                    </div>
+                    <h3>قواعد التسمية</h3>
+                    <p>تسمى الأحماض الكربوكسيلية بإضافة لاحقة "ويك" (-oic acid) إلى اسم الألكان المقابل. على سبيل المثال، حمض الميثانويك (HCOOH) وحمض الإيثانويك (CH₃COOH).</p>
+                </div>
+                
+                <div class="structure-card">
+                    <div class="structure-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>التصنيف</h3>
+                    <p>تصنف الأحماض الكربوكسيلية حسب عدد مجموعات الكربوكسيل إلى أحادية وثنائية ومتعددة. كما تصنف حسب طول السلسلة الكربونية إلى قصيرة ومتوسطة وطويلة.</p>
+                </div>
+                
+                <div class="structure-card">
+                    <div class="structure-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>الأحماض الدهنية</h3>
+                    <p>هي أحماض كربوكسيلية طويلة السلسلة تشكل اللبنة الأساسية للدهون والزيوت. تشمل الأحماض المشبعة وغير المشبعة وتلعب دوراً حيوياً في الجسم.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Properties Section -->
+    <section id="properties" class="properties">
+        <div class="container">
+            <div class="section-title">
+                <h2>الخصائص الفيزيائية والكيميائية</h2>
+                <p>الخصائص المميزة للأحماض الكربوكسيلية</p>
+            </div>
+            <div class="properties-grid">
+                <div class="property-card">
+                    <div class="property-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h4>الذوبانية</h4>
+                    <p>ذوبانية الأحماض الكربوكسيلية قصيرة السلسلة في الماء جيدة بسبب تكوين روابط هيدروجينية. تقل الذوبانية بزيادة طول السلسلة الكربونية.</p>
+                </div>
+                
+                <div class="property-card">
+                    <div class="property-icon">
+                        <i class="fas fa-temperature-high"></i>
+                    </div>
+                    <h4>نقاط الغليان</h4>
+                    <p>تمتلك نقاط غليان أعلى من المركبات المشابهة بسبب تكوين ثنائيات قوية عبر روابط هيدروجينية بين جزيئين.</p>
+                </div>
+                
+                <div class="property-card">
+                    <div class="property-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h4>الحمضية</h4>
+                    <p>تتميز بخصائص حمضية واضحة حيث يمكنها التبرون لتكوين أيونات الكربوكسيلات. تزداد قوة الحمض بوجود مجموعات ساحبة للإلكترونات.</p>
+                </div>
+                
+                <div class="property-card">
+                    <div class="property-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h4>التفاعلية</h4>
+                    <p>تتفاعل مع القلويات لتكوين أملاح الكربوكسيلات، ومع الكحولات لتكوين الإسترات، ومع عوامل أخرى لتكوين مشتقات مختلفة.</p>
+                </div>
+                
+                <div class="property-card">
+                    <div class="property-icon">
+                        <i class="fas fa-magnet"></i>
+                    </div>
+                    <h4>القطبية</h4>
+                    <p>مجموعة الكربوكسيل قطبية بشدة مما يمنح المركب خصائص قطبية واضحة تؤثر على ذوبانيته وتفاعلاته.</p>
+                </div>
+                
+                <div class="property-card">
+                    <div class="property-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h4>التشابك الهيدروجيني</h4>
+                    <p>تشكل روابط هيدروجينية قوية داخلية وخارجية مما يؤثر على خصائصها الفيزيائية مثل نقطة الغليان والذوبانية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Derivatives Section -->
+    <section id="derivatives" class="derivatives">
+        <div class="container">
+            <div class="section-title">
+                <h2>مشتقات الأحماض الكربوكسيلية</h2>
+                <p>المركبات الناتجة من استبدال مجموعة الهيدروكسيل في مجموعة الكربوكسيل</p>
+            </div>
+            <div class="derivatives-container">
+                <div class="derivative-card">
+                    <div class="derivative-header">
+                        <h3>الإسترات</h3>
+                        <div class="derivative-formula">R-COO-R'</div>
+                    </div>
+                    <div class="derivative-body">
+                        <p>تتكون من تفاعل الأحماض الكربوكسيلية مع الكحولات. تمتلك رائحة مميزة وتستخدم في العطور والنكهات.</p>
+                        <div class="derivative-examples">
+                            <h4>أمثلة:</h4>
+                            <ul>
+                                <li>إيثانوات الإيثيل (خل الإيثيل)</li>
+                                <li>ميثانوات الميثيل (ميثيل فورمات)</li>
+                                <li>بنزوات الميثيل (رائحة الفواكه)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="derivative-card">
+                    <div class="derivative-header">
+                        <h3>الأميدات</h3>
+                        <div class="derivative-formula">R-CONH₂</div>
+                    </div>
+                    <div class="derivative-body">
+                        <p>تنتج من تفاعل الأحماض الكربوكسيلية مع الأمونيا أو الأمينات. تشكل اللبنة الأساسية للبروتينات.</p>
+                        <div class="derivative-examples">
+                            <h4>أمثلة:</h4>
+                            <ul>
+                                <li>إيثاناميد (أسيتاميد)</li>
+                                <li>بنزاميد</li>
+                                <li>الروابط الببتيدية في البروتينات</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="derivative-card">
+                    <div class="derivative-header">
+                        <h3>كلوريدات الأحماض</h3>
+                        <div class="derivative-formula">R-COCl</div>
+                    </div>
+                    <div class="derivative-body">
+                        <p>مركبات نشطة جداً تستخدم في تفاعلات الأستلة. تتفاعل بسهولة مع الماء والكحولات والأمينات.</p>
+                        <div class="derivative-examples">
+                            <h4>أمثلة:</h4>
+                            <ul>
+                                <li>كلوريد الأسيتيل</li>
+                                <li>كلوريد البنزويل</li>
+                                <li>كلوريد الأكساليل</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="derivative-card">
+                    <div class="derivative-header">
+                        <h3>الأنهيدريدات</h3>
+                        <div class="derivative-formula">(R-CO)₂O</div>
+                    </div>
+                    <div class="derivative-body">
+                        <p>تتكون من اتحاد جزيئين من حمض كربوكسيلي مع فقدان جزيء ماء. تستخدم في تفاعلات الأستلة.</p>
+                        <div class="derivative-examples">
+                            <h4>أمثلة:</h4>
+                            <ul>
+                                <li>أنهيدريد الأسيتيك</li>
+                                <li>أنهيدريد المالييك</li>
+                                <li>أنهيدريد الفثاليك</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reactions Section -->
+    <section id="reactions" class="reactions">
+        <div class="container">
+            <div class="section-title">
+                <h2>التفاعلات الكيميائية</h2>
+                <p>التفاعلات الرئيسية للأحماض الكربوكسيلية ومشتقاتها</p>
+            </div>
+            <div class="reactions-container">
+                <div class="reaction-item">
+                    <div class="reaction-title">
+                        <i class="fas fa-flask reaction-icon"></i>
+                        <h3>تفاعل التعادل</h3>
+                    </div>
+                    <div class="reaction-content">
+                        <div class="reaction-description">
+                            <p>تتفاعل الأحماض الكربوكسيلية مع القلويات لتكوين أملاح الكربوكسيلات والماء. هذا التفاعل هو أساس حمضية هذه المركبات.</p>
+                            <div class="reaction-equation">
+                                R-COOH + NaOH → R-COONa + H₂O
+                            </div>
+                            <p>تستخدم أملاح الكربوكسيلات في صناعة الصابون والمواد الحافظة والأدوية.</p>
+                        </div>
+                        <div class="reaction-image">
+                            <img src="https://images.unsplash.com/photo-1533628654706-135a7935e8c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="تفاعل التعادل">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="reaction-item">
+                    <div class="reaction-title">
+                        <i class="fas fa-flask reaction-icon"></i>
+                        <h3>تفاعل الأسترة</h3>
+                    </div>
+                    <div class="reaction-content">
+                        <div class="reaction-description">
+                            <p>تتفاعل الأحماض الكربوكسيلية مع الكحولات في وجود حمض كاتاليزي لتكوين الإسترات والماء. هذا التفاعل عكسي.</p>
+                            <div class="reaction-equation">
+                                R-COOH + R'-OH ⇌ R-COO-R' + H₂O
+                            </div>
+                            <p>تستخدم الإسترات في صناعة العطور والنكهات والمذيبات العضوية والبلاستيك.</p>
+                        </div>
+                        <div class="reaction-image">
+                            <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="تفاعل الأسترة">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="reaction-item">
+                    <div class="reaction-title">
+                        <i class="fas fa-flask reaction-icon"></i>
+                        <h3>تفاعل الأميدة</h3>
+                    </div>
+                    <div class="reaction-content">
+                        <div class="reaction-description">
+                            <p>تتفاعل الأحماض الكربوكسيلية مع الأمونيا أو الأمينات لتكوين الأميدات. يمكن أن يحدث التفاعل مباشرة أو عبر مشتقات نشطة.</p>
+                            <div class="reaction-equation">
+                                R-COOH + NH₃ → R-CONH₂ + H₂O
+                            </div>
+                            <p>الأميدات مهمة جداً في الكيمياء الحيوية حيث تشكل الروابط الببتيدية في البروتينات.</p>
+                        </div>
+                        <div class="reaction-image">
+                            <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="تفاعل الأميدة">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="applications">
+        <div class="container">
+            <div class="section-title">
+                <h2>التطبيقات العملية</h2>
+                <p>استخدامات الأحماض الكربوكسيلية ومشتقاتها في الحياة اليومية والصناعة</p>
+            </div>
+            <div class="applications-grid">
+                <div class="application-card">
+                    <div class="application-image">
+                        <img src="https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الصناعات الغذائية">
+                    </div>
+                    <div class="application-content">
+                        <h3>الصناعات الغذائية</h3>
+                        <p>تستخدم الأحماض الكربوكسيلية كمواد حافظة ومنكهات في الأطعمة والمشروبات. حمض الستريك في المشروبات الغازية وحمض الخليك في الخل.</p>
+                        <div class="application-tags">
+                            <span class="tag">مواد حافظة</span>
+                            <span class="tag">منكهات</span>
+                            <span class="tag">مضادات أكسدة</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-image">
+                        <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الصناعات الدوائية">
+                    </div>
+                    <div class="application-content">
+                        <h3>الصناعات الدوائية</h3>
+                        <p>تدخل الأحماض الكربوكسيلية ومشتقاتها في تركيب العديد من الأدوية مثل الأسبرين (حمض الساليسيليك) والمضادات الحيوية.</p>
+                        <div class="application-tags">
+                            <span class="tag">مسكنات ألم</span>
+                            <span class="tag">مضادات التهاب</span>
+                            <span class="tag">فيتامينات</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-image">
+                        <img src="https://images.unsplash.com/photo-1620916566398-39f1686d7044?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الصناعات الكيميائية">
+                    </div>
+                    <div class="application-content">
+                        <h3>الصناعات الكيميائية</h3>
+                        <p>تستخدم كمذيبات ومواد وسيطة في صناعة البلاستيك والألياف الصناعية والمطاط الصناعي والمواد اللاصقة.</p>
+                        <div class="application-tags">
+                            <span class="tag">مذيبات</span>
+                            <span class="tag">بوليمرات</span>
+                            <span class="tag">مواد وسيطة</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-image">
+                        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="مستحضرات التجميل">
+                    </div>
+                    <div class="application-content">
+                        <h3>مستحضرات التجميل</h3>
+                        <p>تستخدم الإسترات في صناعة العطور والزيوت العطرية. كما تستخدم الأحماض الدهنية في صناعة الصابون والشامبو.</p>
+                        <div class="application-tags">
+                            <span class="tag">عطور</span>
+                            <span class="tag">صابون</span>
+                            <span class="tag">كريمات</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-image">
+                        <img src="https://images.unsplash.com/photo-1536244636800-a3f74db0f3cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الزراعة">
+                    </div>
+                    <div class="application-content">
+                        <h3>الزراعة</h3>
+                        <p>تستخدم بعض الأحماض العضوية في صناعة المبيدات الحشرية والأسمدة. كما تستخدم في معالجة البذور وتحسين نمو النباتات.</p>
+                        <div class="application-tags">
+                            <span class="tag">مبيدات</span>
+                            <span class="tag">أسمدة</span>
+                            <span class="tag">منشطات نمو</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-image">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الطاقة المتجددة">
+                    </div>
+                    <div class="application-content">
+                        <h3>الطاقة المتجددة</h3>
+                        <p>تستخدم الأحماض الدهنية في إنتاج الوقود الحيوي (الديزل الحيوي). كما تستخدم في خلايا الوقود وتخزين الطاقة.</p>
+                        <div class="application-tags">
+                            <span class="tag">وقود حيوي</span>
+                            <span class="tag">طاقة نظيفة</span>
+                            <span class="tag">استدامة</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع الأحماض الكربوكسيلية</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى شامل حول الأحماض الكربوكسيلية ومشتقاتها في الكيمياء العضوية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#structure">التركيب</a></li>
+                        <li><a href="#properties">الخصائص</a></li>
+                        <li><a href="#derivatives">المشتقات</a></li>
+                        <li><a href="#reactions">التفاعلات</a></li>
+                        <li><a href="#applications">التطبيقات</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">دروس تفاعلية</a></li>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">امتحانات تجريبية</a></li>
+                        <li><a href="#">محاكاة تفاعلات</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@carboxylicacids.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع الأحماض الكربوكسيلية ومشتقاتها. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

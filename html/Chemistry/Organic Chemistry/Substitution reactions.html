@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاعلات الاستبدال - الكيمياء العضوية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #059669;
+            --secondary: #f59e0b;
+            --light: #f0fdf4;
+            --dark: #064e3b;
+            --accent: #10b981;
+            --danger: #dc2626;
+            --info: #3b82f6;
+        }
+
+        body {
+            background-color: #f9fafb;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(5, 150, 105, 0.9), rgba(16, 185, 129, 0.9)), url('https://images.unsplash.com/photo-1532187863486-5118f98c6c0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #d97706;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-right: 15px;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #334155;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Types Section */
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .type-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .type-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .type-header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .type-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+        }
+
+        .type-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .type-header p {
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .type-body {
+            padding: 25px;
+        }
+
+        .type-body p {
+            color: #334155;
+            margin-bottom: 15px;
+        }
+
+        .reaction-example {
+            background-color: #f0fdf4;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin: 15px 0;
+            border-right: 4px solid var(--accent);
+        }
+
+        .mechanism-btn {
+            background-color: var(--info);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .mechanism-btn:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        /* Factors Section */
+        .factors-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .factor-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .factor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .factor-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .factor-card h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .factor-card p {
+            color: #64748b;
+        }
+
+        /* Examples Section */
+        .examples-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .example-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .example-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .example-header {
+            background-color: var(--light);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .example-header h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+
+        .example-body {
+            padding: 20px;
+        }
+
+        .reaction-display {
+            background-color: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            direction: ltr;
+        }
+
+        .arrow {
+            display: inline-block;
+            margin: 0 10px;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* Interactive Quiz */
+        .quiz-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .quiz-header h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            background-color: #f0fdf4;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-right: 4px solid var(--accent);
+        }
+
+        .question h4 {
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .option {
+            background-color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .option:hover {
+            border-color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            background-color: var(--light);
+            border-color: var(--accent);
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .quiz-result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+        }
+
+        .quiz-result.success {
+            background-color: #dcfce7;
+            color: var(--primary);
+            border: 2px solid var(--accent);
+        }
+
+        .quiz-result.error {
+            background-color: #fef2f2;
+            color: var(--danger);
+            border: 2px solid var(--danger);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #cbd5e1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Modal for Mechanism */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            animation: slideIn 0.3s;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: var(--danger);
+        }
+
+        .modal h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .mechanism-steps {
+            counter-reset: step;
+        }
+
+        .step {
+            margin-bottom: 20px;
+            padding-right: 40px;
+            position: relative;
+        }
+
+        .step::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-flask"></i>
+                <span>تفاعلات الاستبدال</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#types">الأنواع</a></li>
+                    <li><a href="#factors">العوامل</a></li>
+                    <li><a href="#examples">أمثلة</a></li>
+                    <li><a href="#quiz">اختبار</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>تفاعلات الاستبدال في الكيمياء العضوية</h1>
+            <p>استكشف عالم تفاعلات الاستبدال النووية الحمضية وأنواعها المختلفة وآلياتها العملية</p>
+            <a href="#intro" class="btn btn-outline">تعلم المزيد</a>
+            <a href="#quiz" class="btn">اختبر معرفتك</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>ما هي تفاعلات الاستبدال؟</h2>
+                <p>مقدمة شاملة عن تفاعلات الاستبدال في الكيمياء العضوية</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>مفهوم تفاعلات الاستبدال</h3>
+                    <p>تفاعلات الاستبدال هي نوع من التفاعلات الكيميائية التي يتم فيها استبدال ذرة أو مجموعة ذرية (مجموعة مغادرة) بذرة أو مجموعة ذرية أخرى (نكليوفيل) في جزيء عضوي.</p>
+                    <p>تعتبر هذه التفاعلات من أهم التفاعلات في الكيمياء العضوية نظراً لتطبيقاتها الواسعة في صناعة الأدوية، البلاستيك، والمواد الكيميائية الأخرى. تنقسم تفاعلات الاستبدال بشكل أساسي إلى نوعين رئيسيين: SN1 و SN2.</p>
+                    <p>يعتمد مسار التفاعل ونوعه على عدة عوامل منها بنية المركب العضوي، طبيعة المذيب، قوة النكليوفيل، واستقرار الكربوكاتيون المتكون.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1533689023468-3d9c3879d5d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="تفاعلات الاستبدال">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Types Section -->
+    <section id="types" class="types">
+        <div class="container">
+            <div class="section-title">
+                <h2>أنواع تفاعلات الاستبدال</h2>
+                <p>الفرق بين تفاعلات SN1 و SN2 وخصائص كل نوع</p>
+            </div>
+            <div class="types-grid">
+                <div class="type-card">
+                    <div class="type-header">
+                        <h3>تفاعل SN2</h3>
+                        <p>استبدال نووي ثنائي الجزيئات</p>
+                    </div>
+                    <div class="type-body">
+                        <p>تفاعل يحدث في خطوة واحدة حيث يقوم النكليوفيل بمهاجمة الكربون المرتبط بالمجموعة المغادرة من الخلف، مما يؤدي إلى انعكاس التهيئة الفراغية.</p>
+                        <div class="reaction-example">
+                            Nu⁻ + R-LG → Nu-R + LG⁻
+                        </div>
+                        <p><strong>الخصائص الرئيسية:</strong></p>
+                        <ul style="margin-right: 20px; color: #334155;">
+                            <li>تفاعل من خطوة واحدة</li>
+                            <li>يعتمد على تركيز كل من النكليوفيل والمركب العضوي</li>
+                            <li>يحدث انعكاس في التهيئة الفراغية</li>
+                            <li>أفضل مع المركبات الأولية</li>
+                        </ul>
+                        <a href="#" class="mechanism-btn" onclick="showMechanism('sn2')">عرض الآلية</a>
+                    </div>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-header">
+                        <h3>تفاعل SN1</h3>
+                        <p>استبدال نووي أحادي الجزيئات</p>
+                    </div>
+                    <div class="type-body">
+                        <p>تفاعل يحدث في خطوتين: الأولى تكون الكربوكاتيون، والثانية مهاجمة النكليوفيل للكربوكاتيون. يحدث خليط من التهيئات الفراغية.</p>
+                        <div class="reaction-example">
+                            R-LG → R⁺ + LG⁻ (بطيئة)<br>
+                            R⁺ + Nu⁻ → Nu-R (سريعة)
+                        </div>
+                        <p><strong>الخصائص الرئيسية:</strong></p>
+                        <ul style="margin-right: 20px; color: #334155;">
+                            <li>تفاعل من خطوتين</li>
+                            <li>يعتمد فقط على تركيز المركب العضوي</li>
+                            <li>يحدث خليط من التهيئات الفراغية</li>
+                            <li>أفضل مع المركبات الثلاثية</li>
+                        </ul>
+                        <a href="#" class="mechanism-btn" onclick="showMechanism('sn1')">عرض الآلية</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Factors Section -->
+    <section id="factors" class="factors">
+        <div class="container">
+            <div class="section-title">
+                <h2>العوامل المؤثرة على تفاعلات الاستبدال</h2>
+                <p>العوامل التي تحدد نوع التفاعل وسرعته</p>
+            </div>
+            <div class="factors-container">
+                <div class="factor-card">
+                    <div class="factor-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>بنية الكربون</h3>
+                    <p>المركبات الأولية تفضل SN2، بينما المركبات الثلاثية تفضل SN1 بسبب استقرار الكربوكاتيون.</p>
+                </div>
+                
+                <div class="factor-card">
+                    <div class="factor-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h3>طبيعة المذيب</h3>
+                    <p>المذيبات القطبية البروتونية تفضل SN1، بينما المذيبات القطبية غير البروتونية تفضل SN2.</p>
+                </div>
+                
+                <div class="factor-card">
+                    <div class="factor-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>قوة النكليوفيل</h3>
+                    <p>النكليوفيلات القوية تفضل SN2، بينما النكليوفيلات الضعيفة لا تؤثر كثيراً على SN1.</p>
+                </div>
+                
+                <div class="factor-card">
+                    <div class="factor-icon">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                    <h3>المجموعة المغادرة</h3>
+                    <p>المجموعات المغادرة الجيدة (مثل I⁻, Br⁻) تسرع كلا النوعين من التفاعلات.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Examples Section -->
+    <section id="examples" class="examples">
+        <div class="container">
+            <div class="section-title">
+                <h2>أمثلة تطبيقية</h2>
+                <p>أمثلة عملية على تفاعلات الاستبدال في المركبات العضوية</p>
+            </div>
+            <div class="examples-container">
+                <div class="example-card">
+                    <div class="example-header">
+                        <h3>تفاعل هاليد الألكيل مع الهيدروكسيد</h3>
+                    </div>
+                    <div class="example-body">
+                        <p>تفاعل هاليد الميثان مع هيدروكسيد الصوديوم لإنتاج الميثانول:</p>
+                        <div class="reaction-display">
+                            CH₃Br + NaOH <span class="arrow">→</span> CH₃OH + NaBr
+                        </div>
+                        <p><strong>نوع التفاعل:</strong> SN2</p>
+                        <p><strong>الملاحظات:</strong> تفاعل سريع بسبب أن الكربون أولي والهيدروكسيد نكليوفيل قوي.</p>
+                    </div>
+                </div>
+                
+                <div class="example-card">
+                    <div class="example-header">
+                        <h3>تفاعل هاليد الثالثي مع الماء</h3>
+                    </div>
+                    <div class="example-body">
+                        <p>تفاعل 2-برومو-2-ميثيل البروبان مع الماء:</p>
+                        <div class="reaction-display">
+                            (CH₃)₃CBr + H₂O <span class="arrow">→</span> (CH₃)₃COH + HBr
+                        </div>
+                        <p><strong>نوع التفاعل:</strong> SN1</p>
+                        <p><strong>الملاحظات:</strong> يحدث ببطء في البداية ثم يتسارع بسبب تكوين الكربوكاتيون المستقر.</p>
+                    </div>
+                </div>
+                
+                <div class="example-card">
+                    <div class="example-header">
+                        <h3>تفاعل سينثesis إيثير ويليامسون</h3>
+                    </div>
+                    <div class="example-body">
+                        <p>تفاعل ألكوكسيد الصوديوم مع هاليد الألكيل:</p>
+                        <div class="reaction-display">
+                            CH₃CH₂O⁻Na⁺ + CH₃I <span class="arrow">→</span> CH₃CH₂OCH₃ + NaI
+                        </div>
+                        <p><strong>نوع التفاعل:</strong> SN2</p>
+                        <p><strong>الملاحظات:</strong> طريقة مهمة لتحضير الإيثرات المتماثلة وغير المتماثلة.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="quiz">
+        <div class="container">
+            <div class="section-title">
+                <h2>اختبر معرفتك</h2>
+                <p>اختبار تفاعلي لقياس فهمك لتفاعلات الاستبدال</p>
+            </div>
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <h3>اختبار تفاعلات الاستبدال</h3>
+                    <p>اختر الإجابة الصحيحة لكل سؤال</p>
+                </div>
+                
+                <div class="question">
+                    <h4>1. أي من المركبات التالية يتفاعل أسرع في تفاعل SN2؟</h4>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 'q1', 'a')">A. (CH₃)₃CBr</div>
+                        <div class="option" onclick="selectOption(this, 'q1', 'b')">B. CH₃CH₂Br</div>
+                        <div class="option" onclick="selectOption(this, 'q1', 'c')">C. (CH₃)₂CHBr</div>
+                        <div class="option" onclick="selectOption(this, 'q1', 'd')">D. CH₃Br</div>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <h4>2. ما هو تأثير زيادة تركيز النكليوفيل على تفاعل SN1؟</h4>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 'q2', 'a')">A. يزيد سرعة التفاعل بشكل كبير</div>
+                        <div class="option" onclick="selectOption(this, 'q2', 'b')">B. لا يؤثر على سرعة التفاعل</div>
+                        <div class="option" onclick="selectOption(this, 'q2', 'c')">C. يقلل سرعة التفاعل</div>
+                        <div class="option" onclick="selectOption(this, 'q2', 'd')">D. يوقف التفاعل تماماً</div>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <h4>3. أي المذياب التالي يفضل تفاعل SN2؟</h4>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 'q3', 'a')">A. الماء</div>
+                        <div class="option" onclick="selectOption(this, 'q3', 'b')">B. الإيثانول</div>
+                        <div class="option" onclick="selectOption(this, 'q3', 'c')">C. DMSO</div>
+                        <div class="option" onclick="selectOption(this, 'q3', 'd')">D. حمض الخليك</div>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="checkAnswers()">تحقق من الإجابات</button>
+                
+                <div class="quiz-result" id="quiz-result">
+                    <p id="result-text"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>تفاعلات الاستبدال</h3>
+                    <p>منصة تعليمية متخصصة في شرح تفاعلات الاستبدال في الكيمياء العضوية بأسلوب مبسط وواضح.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#types">الأنواع</a></li>
+                        <li><a href="#factors">العوامل</a></li>
+                        <li><a href="#examples">أمثلة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">ملخصات</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">محاكاة تفاعلات</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@substitution.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع تفاعلات الاستبدال. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for Mechanism -->
+    <div id="mechanism-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 id="modal-title">آلية التفاعل</h3>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Quiz Functionality
+        const answers = {
+            q1: 'd',
+            q2: 'b',
+            q3: 'c'
+        };
+
+        let selectedAnswers = {};
+
+        function selectOption(element, question, answer) {
+            // Remove previous selection
+            const options = element.parentElement.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            
+            // Add selection to clicked option
+            element.classList.add('selected');
+            
+            // Store answer
+            selectedAnswers[question] = answer;
+        }
+
+        function checkAnswers() {
+            let correct = 0;
+            let total = Object.keys(answers).length;
+            
+            for (let question in answers) {
+                if (selectedAnswers[question] === answers[question]) {
+                    correct++;
+                }
+            }
+            
+            const resultDiv = document.getElementById('quiz-result');
+            const resultText = document.getElementById('result-text');
+            
+            if (correct === total) {
+                resultDiv.className = 'quiz-result success';
+                resultText.innerHTML = `ممتاز! لقد أجبت على جميع الأسئلة بشكل صحيح (${correct}/${total})`;
+            } else if (correct >= total / 2) {
+                resultDiv.className = 'quiz-result success';
+                resultText.innerHTML = `جيد جداً! لقد أجبت على ${correct} من ${total} أسئلة بشكل صحيح`;
+            } else {
+                resultDiv.className = 'quiz-result error';
+                resultText.innerHTML = `تحتاج إلى المزيد من الدراسة. لقد أجبت على ${correct} من ${total} أسئلة بشكل صحيح`;
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+
+        // Modal Functionality
+        function showMechanism(type) {
+            const modal = document.getElementById('mechanism-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            
+            if (type === 'sn2') {
+                modalTitle.textContent = 'آلية تفاعل SN2';
+                modalBody.innerHTML = `
+                    <div class="mechanism-steps">
+                        <div class="step">
+                            <p>يقوم النكليوفيل (Nu⁻) بالاقتراب من الكربون المرتبط بالمجموعة المغادرة من الخلف، على طول المحور الذي يربط الكربون بالمجموعة المغادرة.</p>
+                        </div>
+                        <div class="step">
+                            <p>يبدأ تكوين رابطة جديدة بين النكليوفيل والكربون، بينما تبدأ الرابطة بين الكربون والمجموعة المغادرة في الضعف.</p>
+                        </div>
+                        <div class="step">
+                            <p>يصل النظام إلى حالة انتقالية يكون فيها الكربون مرتبطاً بخمسة مجموعات بشكل مؤقت (ثلاث مجموعات في المستوى والنكليوفيل والمجموعة المغادرة على المحورين).</p>
+                        </div>
+                        <div class="step">
+                            <p>تنكسر الرابطة بين الكربون والمجموعة المغادرة تماماً، وتكتمل الرابطة بين الكربون والنكليوفيل، مما يؤدي إلى انعكاس التهيئة الفراغية.</p>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 20px; font-family: 'Courier New', monospace;">
+                        <p>التهيئة الأولية ← حالة انتقالية ← التهيئة النهائية (معكوسة)</p>
+                    </div>
+                `;
+            } else if (type === 'sn1') {
+                modalTitle.textContent = 'آلية تفاعل SN1';
+                modalBody.innerHTML = `
+                    <div class="mechanism-steps">
+                        <div class="step">
+                            <p>تنكسر الرابطة بين الكربون والمجموعة المغادرة بشكل تلقائي، مما يؤدي إلى تكوين كربوكاتيون ومجموعة مغادرة سالبة الشحنة. هذه هي الخطوة المحددة للسرعة.</p>
+                        </div>
+                        <div class="step">
+                            <p>يكون الكربوكاتيون مستقراً بشكل مؤقت، ويمكن للمذيب أو النكليوفيل مهاجمته من أي اتجاه.</p>
+                        </div>
+                        <div class="step">
+                            <p>يقوم النكليوفيل بمهاجمة الكربوكاتيون من أحد الجانبين، مما يؤدي إلى تكوين المنتج مع الحفاظ على التهيئة الفراغية الأصلية.</p>
+                        </div>
+                        <div class="step">
+                            <p>يمكن أيضاً مهاجمة الكربوكاتيون من الجانب الآخر، مما يؤدي إلى تكوين المنتج مع انعكاس التهيئة الفراغية. نتيجة لذلك، نحصل على خليط راسمي.</p>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 20px; font-family: 'Courier New', monospace;">
+                        <p>R-LG → R⁺ + LG⁻ (بطيئة)</p>
+                        <p>R⁺ + Nu⁻ → R-Nu (سريعة)</p>
+                    </div>
+                `;
+            }
+            
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('mechanism-modal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('mechanism-modal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

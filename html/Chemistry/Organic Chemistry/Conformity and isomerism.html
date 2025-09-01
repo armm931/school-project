@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المطابقة والإيزوميرية - الكيمياء العضوية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        :root {
+            --primary: #7c3aed;
+            --secondary: #a855f7;
+            --accent: #8b5cf6;
+            --light: #f5f3ff;
+            --dark: #1e1b4b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            --warning: #f59e0b;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--secondary);
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(124, 58, 237, 0.9), rgba(139, 92, 246, 0.9)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="a" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23a)"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #9333ea;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #334155;
+            font-size: 1.1rem;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Concepts Grid */
+        .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .concept-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .concept-header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .concept-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .concept-body {
+            padding: 25px;
+        }
+
+        .concept-formula {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 15px 0;
+            font-size: 1.1rem;
+        }
+
+        /* Isomer Types */
+        .isomer-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .isomer-type {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            width: 350px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .isomer-type:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .isomer-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .isomer-type h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .isomer-type p {
+            color: #64748b;
+            text-align: center;
+        }
+
+        /* Interactive Calculator */
+        .calculator-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .calculator-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            color: #6b7280;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+        }
+
+        .calc-result {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: var(--light);
+            border-radius: 10px;
+            border-right: 4px solid var(--primary);
+            display: none;
+        }
+
+        .calc-result h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .calc-result p {
+            color: #374151;
+            font-size: 1.1rem;
+        }
+
+        /* Structure Display */
+        .structure-display {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .molecule-canvas {
+            background: var(--light);
+            border: 2px dashed #c4b5fd;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .molecule-structure {
+            font-size: 2.5rem;
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+            line-height: 1.8;
+        }
+
+        .structure-controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .control-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .control-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Examples Section */
+        .examples-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .example-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .example-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .example-title {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .example-structure {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            margin: 15px 0;
+            border-right: 4px solid var(--secondary);
+        }
+
+        /* Quiz Section */
+        .quiz-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .question {
+            margin-bottom: 30px;
+        }
+
+        .question h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option:hover {
+            border-color: var(--accent);
+            background: var(--light);
+        }
+
+        .option.selected {
+            border-color: var(--secondary);
+            background: #f3e8ff;
+        }
+
+        .option.correct {
+            border-color: var(--success);
+            background: #f0fdf4;
+        }
+
+        .option.incorrect {
+            border-color: var(--danger);
+            background: #fef2f2;
+        }
+
+        .quiz-result {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .quiz-result.success {
+            background: #f0fdf4;
+            border: 2px solid var(--success);
+            color: var(--success);
+        }
+
+        .quiz-result.fail {
+            background: #fef2f2;
+            border: 2px solid var(--danger);
+            color: var(--danger);
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: linear-gradient(135deg, var(--light), #ede9fe);
+            border-right: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .info-box h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-box p {
+            color: #4c1d95;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+        }
+
+        .comparison-table th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: bold;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: var(--light);
+        }
+
+        .comparison-table tr:hover {
+            background-color: #ede9fe;
+        }
+
+        /* Applications Section */
+        .apps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .app-card {
+            background: white;
+            border-radius: 15px;
+            width: 300px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .app-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .app-card p {
+            color: #64748b;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #cbd5e1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
+        }
+
+        /* Molecule Visualization */
+        .molecule-viz {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .molecule-item {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .molecule-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .molecule-name {
+            color: var(--primary);
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Chirality Demo */
+        .chirality-demo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .chirality-molecule {
+            text-align: center;
+        }
+
+        .chirality-structure {
+            font-size: 3rem;
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .chirality-label {
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* Interactive 3D Toggle */
+        .toggle-3d {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin: 20px auto;
+            display: block;
+        }
+
+        .toggle-3d:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Stereochemistry Cards */
+        .stereo-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stereo-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .stereo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .stereo-header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stereo-body {
+            padding: 25px;
+        }
+
+        .stereo-structure {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-cube"></i>
+                <span>المطابقة والإيزوميرية</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#concepts">المفاهيم</a></li>
+                    <li><a href="#types">أنواع الإيزوميرية</a></li>
+                    <li><a href="#stereo">الفراغية</a></li>
+                    <li><a href="#calculator">الحاسبة</a></li>
+                    <li><a href="#examples">أمثلة</a></li>
+                    <li><a href="#quiz">اختبار</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>المطابقة والإيزوميرية</h1>
+            <p>استكشف عالم الجزيئات المتشابهة في التركيب الكيميائي والمختلفة في الخصائص</p>
+            <a href="#intro" class="btn">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>مقدمة في المطابقة والإيزوميرية</h2>
+                <p>أساسيات المطابقة والإيزوميرية في الكيمياء العضوية</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>ما هي الإيزوميرية؟</h3>
+                    <p>الإيزوميرية هي ظاهرة وجود مركبين أو أكثر لهما نفس الصيغة الكيميائية الجزيئية ولكن يختلفان في الترتيب المكاني للذرات أو في الترتيب الهيكلي. هذه المركبات تسمى الإيزوميرات.</p>
+                    <p>تعتبر الإيزوميرية من أهم المفاهيم في الكيمياء العضوية لأنها تشرح كيف يمكن لمركبات لها نفس التركيب الكيميائي أن تختلف تماماً في الخصائص الفيزيائية والكيميائية والبيولوجية.</p>
+                    <p>تنقسم الإيزوميرية بشكل رئيسي إلى نوعين: الإيزوميرية الهيكلية (التركيبية) والإيزوميرية الفراغية (الستيريوكيميائية). كل نوع له خصائص وأمثلة مميزة.</p>
+                    
+                    <div class="info-box">
+                        <h4><i class="fas fa-lightbulb"></i> معلومة مهمة</h4>
+                        <p>كلمة "إيزومير" تأتي من اليونانية (isos = متساوٍ، meros = جزء)، مما يعني "أجزاء متساوية".</p>
+                    </div>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1532187853251-6275a05a0ce0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الإيزوميرية">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Concepts Section -->
+    <section id="concepts" class="concepts">
+        <div class="container">
+            <div class="section-title">
+                <h2>المفاهيم الأساسية</h2>
+                <p>فهم المصطلحات والمبادئ الأساسية للمطابقة والإيزوميرية</p>
+            </div>
+            <div class="concepts-grid">
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <h3>الإيزوميرية الهيكلية</h3>
+                        <p>Structural Isomerism</p>
+                    </div>
+                    <div class="concept-body">
+                        <p>تحدث عندما تختلف الإيزوميرات في الترتيب الذي ترتبط به الذرات مع بعضها البعض. يمكن أن تكون الاختلافات في سلسلة الكربون، موقع المجموعات الوظيفية، أو موقع الرابطة المزدوجة.</p>
+                        <div class="concept-formula">
+                            C₄H₁₀: CH₃CH₂CH₂CH₃ (n-butane)<br>
+                            و<br>
+                            CH₃CH(CH₃)CH₃ (isobutane)
+                        </div>
+                        <p>هذان المركبان لهما نفس الصيغة الجزيئية ولكن يختلفان في هيكل سلسلة الكربون.</p>
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <h3>الإيزوميرية الفراغية</h3>
+                        <p>Stereoisomerism</p>
+                    </div>
+                    <div class="concept-body">
+                        <p>تحدث عندما تكون الإيزوميرات لها نفس الترتيب الذري ولكن تختلف في الترتيب المكاني للذرات في الفضاء. تشمل الإيزوميرية الهندسية والإيزوميرية البصرية.</p>
+                        <div class="concept-formula">
+                            cis-2-butene و trans-2-butene<br>
+                            (تختلفان في موقع المجموعات حول الرابطة المزدوجة)
+                        </div>
+                        <p>الإيزوميرات الفراغية لها خصائص فيزيائية مختلفة رغم تشابهها الكيميائي.</p>
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <h3>المطابقة البصرية</h3>
+                        <p>Optical Isomerism</p>
+                    </div>
+                    <div class="concept-body">
+                        <p>نوع من الإيزوميرية الفراغية حيث تكون الجزيئات صوراً مرآتية لبعضها البعض ولا يمكن تطابقها. تسمى هذه الإيزوميرات بالإنانتيومرات وتدور الضوء المستقطب في اتجاهين متضادين.</p>
+                        <div class="concept-formula">
+                            D-glyceraldehyde و L-glyceraldehyde<br>
+                            (صور مرآتية لبعضهما البعض)
+                        </div>
+                        <p>الإنانتيومرات لها نفس الخصائص الفيزيائية والكيميائية ما عدا تفاعلها مع الضوء المستقطب.</p>
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <h3>المطابقة الهندسية</h3>
+                        <p>Geometric Isomerism</p>
+                    </div>
+                    <div class="concept-body">
+                        <p>تحدث في المركبات التي تحتوي على روابط مزدوجة أو حلقات حيث يكون التدوير محدوداً. تصنف الإيزوميرات إلى cis (نفس الجانب) و trans (أضداد الجانب).</p>
+                        <div class="concept-formula">
+                            cis-1,2-dichloroethene<br>
+                            و<br>
+                            trans-1,2-dichloroethene
+                        </div>
+                        <p>الإيزومير cis يكون له قطبية أعلى ونقطة غليان أعلى من الإيزومير trans.</p>
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <h3>مركز التماثل</h3>
+                        <p>Chirality Center</p>
+                    </div>
+                    <div class="concept-body">
+                        <p>ذرة كربون مرتبطة بأربع مجموعات مختلفة. وجود مركز تماثل في الجزيء يجعله غير متماثل ويسمح بوجود إنانتيومرات. يرمز لمركز التماثل بنجمة (*) في الصيغ الهيكلية.</p>
+                        <div class="concept-formula">
+                            CH₃CH(OH)COOH<br>
+                            (ذرة الكربون في المنتصف هي مركز تماثل)
+                        </div>
+                        <p>عدد الإيزوميرات البصرية = 2^n حيث n هو عدد مراكز التماثل.</p>
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <h3>الإنانتيومرات</h3>
+                        <p>Enantiomers</p>
+                    </div>
+                    <div class="concept-body">
+                        <p>زوج من الإيزوميرات البصرية تكون صوراً مرآتية لبعضها البعض ولا يمكن تطابقها. لها نفس الخصائص الفيزيائية والكيميائية باستثناء تفاعلها مع الضوء المستقطب والمواد الأخرى غير المتماثلة.</p>
+                        <div class="concept-formula">
+                            D-lactic acid و L-lactic acid<br>
+                            (تدوران الضوء المستقطب في اتجاهين متضادين)
+                        </div>
+                        <p>في الطبيعة، غالباً ما يوجد أحد الإنانتيومرات فقط في الأنظمة البيولوجية.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Isomer Types Section -->
+    <section id="types" class="types">
+        <div class="container">
+            <div class="section-title">
+                <h2>أنواع الإيزوميرية</h2>
+                <p>تصنيف شامل لأنواع الإيزوميرية المختلفة</p>
+            </div>
+            
+            <div class="isomer-types">
+                <div class="isomer-type">
+                    <div class="isomer-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>إيزوميرية السلسلة</h3>
+                    <p>تختلف في ترتيب سلسلة الكربون الرئيسية. مثال: n-pentane و isopentane و neopentane لـ C₅H₁₂.</p>
+                </div>
+                
+                <div class="isomer-type">
+                    <div class="isomer-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>إيزوميرية الموقع</h3>
+                    <p>تختلف في موقع المجموعة الوظيفية أو الرابطة المزدوجة. مثال: 1-propanol و 2-propanol.</p>
+                </div>
+                
+                <div class="isomer-type">
+                    <div class="isomer-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>إيزوميرية الوظيفية</h3>
+                    <p>تختلف في نوع المجموعة الوظيفية. مثال: ethanol (كحول) و dimethyl ether (إيثر) لـ C₂H₆O.</p>
+                </div>
+                
+                <div class="isomer-type">
+                    <div class="isomer-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>إيزوميرية التكافؤ</h3>
+                    <p>تحدث بسبب التكافؤ المتبادل للذرات. مثال: cyanide (CN-) و isocyanide (NC-).</p>
+                </div>
+                
+                <div class="isomer-type">
+                    <div class="isomer-icon">
+                        <i class="fas fa-arrows-alt-h"></i>
+                    </div>
+                    <h3>إيزوميرية cis-trans</h3>
+                    <p>تحدث حول الروابط المزدوجة أو في الحلقات. مثال: cis-2-butene و trans-2-butene.</p>
+                </div>
+                
+                <div class="isomer-type">
+                    <div class="isomer-icon">
+                        <i class="fas fa-hands"></i>
+                    </div>
+                    <h3>إيزوميرية conformers</h3>
+                    <p>تختلف في التشكل المكاني بسبب الدوران الحر حول الروابط الأحادية. مثال: staggered و eclipsed ethane.</p>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <h3 style="text-align: center; color: var(--primary); margin: 50px 0 30px;">مقارنة بين أنواع الإيزوميرية الرئيسية</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>النوع</th>
+                        <th>سبب الاختلاف</th>
+                        <th>أمثلة</th>
+                        <th>الخصائص المختلفة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>الهيكلية</td>
+                        <td>الترتيب الذري</td>
+                        <td>n-butane, isobutane</td>
+                        <td>نقطة الغليان، الكثافة</td>
+                    </tr>
+                    <tr>
+                        <td>الفراغية</td>
+                        <td>الترتيب المكاني</td>
+                        <td>cis-2-butene, trans-2-butene</td>
+                        <td>القطبية، نقطة الغليان</td>
+                    </tr>
+                    <tr>
+                        <td>البصرية</td>
+                        <td>التماثل المرآتي</td>
+                        <td>D-glucose, L-glucose</td>
+                        <td>النشاط البصري، النشاط البيولوجي</td>
+                    </tr>
+                    <tr>
+                        <td>الهندسية</td>
+                        <td>موقع المجموعات</td>
+                        <td>cis-1,2-dichloroethene</td>
+                        <td>القطبية، الذوبانية</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Stereochemistry Section -->
+    <section id="stereo" class="stereo">
+        <div class="container">
+            <div class="section-title">
+                <h2>الكيمياء الفراغية (الستيريوكيميائية)</h2>
+                <p>دراسة الترتيب ثلاثي الأبعاد للذرات في الجزيئات</p>
+            </div>
+            
+            <div class="structure-display">
+                <h3 style="text-align: center; color: var(--primary); margin-bottom: 30px;">مفاهيم أساسية في الستيريوكيميائية</h3>
+                
+                <div class="chirality-demo">
+                    <div class="chirality-molecule">
+                        <div class="chirality-structure">
+                            <i class="fas fa-hand-paper" style="transform: scaleX(-1);"></i>
+                        </div>
+                        <div class="chirality-label">اليد اليسرى</div>
+                    </div>
+                    <div class="chirality-molecule">
+                        <div style="font-size: 3rem; color: var(--secondary);">≠</div>
+                    </div>
+                    <div class="chirality-molecule">
+                        <div class="chirality-structure">
+                            <i class="fas fa-hand-paper"></i>
+                        </div>
+                        <div class="chirality-label">اليد اليمنى</div>
+                    </div>
+                </div>
+                
+                <p style="text-align: center; color: #64748b; margin: 30px 0;">
+                    اليدان اليسرى واليمنى هما مثال كلاسيكي على عدم التماثل (Chirality). لا يمكن تطابقهما بغض النظر عن كيفية تدويرهما.
+                </p>
+                
+                <div class="stereo-cards">
+                    <div class="stereo-card">
+                        <div class="stereo-header">
+                            <h3>قواعد R و S</h3>
+                        </div>
+                        <div class="stereo-body">
+                            <p>تستخدم لتحديد التكوين الفراغي لمركز التماثل. تعتمد على ترتيب المجموعات حسب أولوية ذرات الكربون.</p>
+                            <div class="stereo-structure">
+                                1. رتب المجموعات حسب الأولوية<br>
+                                2. انظر من الاتجاه المعاكس لأقل أولوية<br>
+                                3. R = باتجاه عقارب الساعة<br>
+                                S = عكس عقارب الساعة
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stereo-card">
+                        <div class="stereo-header">
+                            <h3>قواعد E و Z</h3>
+                        </div>
+                        <div class="stereo-body">
+                            <p>تستخدم لوصف الإيزوميرية الهندسية حول الروابط المزدوجة. تعتمد على أولوية المجموعات على كل جانب من الرابطة المزدوجة.</p>
+                            <div class="stereo-structure">
+                                Z = Zusammen (معاً)<br>
+                                (المجموعات ذات الأولوية العالية على نفس الجانب)<br><br>
+                                E = Entgegen (مقابل)<br>
+                                (المجموعات ذات الأولوية العالية على أضداد الجانب)
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stereo-card">
+                        <div class="stereo-header">
+                            <h3>الدياستيريومرات</h3>
+                        </div>
+                        <div class="stereo-body">
+                            <p>إيزوميرات فراغية ليست صوراً مرآتية لبعضها البعض. لها خصائص فيزيائية وكيميائية مختلفة.</p>
+                            <div class="stereo-structure">
+                                (2R,3R)-tartaric acid<br>
+                                و<br>
+                                (2R,3S)-tartaric acid (meso)<br>
+                                و<br>
+                                (2S,3S)-tartaric acid
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="toggle-3d" onclick="toggle3D()">عرض ثلاثي الأبعاد</button>
+                
+                <div id="3d-view" style="display: none; text-align: center; margin-top: 30px;">
+                    <div style="background: var(--light); padding: 40px; border-radius: 15px;">
+                        <i class="fas fa-cube" style="font-size: 5rem; color: var(--primary); animation: pulse 2s infinite;"></i>
+                        <p style="margin-top: 20px; color: var(--primary); font-weight: bold;">عرض تفاعلي ثلاثي الأبعاد للجزيئات</p>
+                        <p style="color: #64748b;">يمكن تدوير الجزيئات لرؤية الترتيب الفراغي من جميع الزوايا</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="calculator">
+        <div class="container">
+            <div class="section-title">
+                <h2>حاسبات تفاعلية</h2>
+                <p>أدوات لحساب وتحليل الإيزوميرات</p>
+            </div>
+            <div class="calculator-container">
+                <div class="calculator-tabs">
+                    <button class="tab active" onclick="switchTab('isomer-count')">عدد الإيزوميرات</button>
+                    <button class="tab" onclick="switchTab('chirality-check')">فحص التماثل</button>
+                    <button class="tab" onclick="switchTab('priority-rules')">قواعد الأولوية</button>
+                </div>
+                
+                <!-- Isomer Count Calculator -->
+                <div id="isomer-count" class="tab-content active">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">حاسبة عدد الإيزوميرات</h3>
+                    <form id="isomer-form">
+                        <div class="form-group">
+                            <label for="carbon-atoms">عدد ذرات الكربون:</label>
+                            <input type="number" id="carbon-atoms" min="1" max="10" value="4" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="formula-type">نوع الصيغة:</label>
+                            <select id="formula-type">
+                                <option value="alkane">ألكان (CₙH₂ₙ₊₂)</option>
+                                <option value="alkene">ألكين (CₙH₂ₙ)</option>
+                                <option value="alkyne">ألكاين (CₙH₂ₙ₋₂)</option>
+                                <option value="alcohol">كحول (CₙH₂ₙ₊₁OH)</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn">احسب عدد الإيزوميرات</button>
+                    </form>
+                    <div class="calc-result" id="isomer-result">
+                        <h4>نتيجة حساب الإيزوميرات:</h4>
+                        <p id="isomer-text"></p>
+                    </div>
+                </div>
+                
+                <!-- Chirality Check -->
+                <div id="chirality-check" class="tab-content">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">فاحص التماثل البصري</h3>
+                    <form id="chirality-form">
+                        <div class="form-group">
+                            <label for="molecule-structure">ادخل الصيغة الهيكلية للمركب:</label>
+                            <textarea id="molecule-structure" rows="4" placeholder="مثال: CH3CH(OH)CH3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">فحص التماثل</button>
+                    </form>
+                    <div class="calc-result" id="chirality-result">
+                        <h4>نتيجة فحص التماثل:</h4>
+                        <p id="chirality-text"></p>
+                    </div>
+                </div>
+                
+                <!-- Priority Rules -->
+                <div id="priority-rules" class="tab-content">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">مساعد قواعد الأولوية (Cahn-Ingold-Prelog)</h3>
+                    <form id="priority-form">
+                        <div class="form-group">
+                            <label for="center-atom">ذرة مركز التماثل:</label>
+                            <input type="text" id="center-atom" placeholder="مثال: C" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="group1">المجموعة 1:</label>
+                            <input type="text" id="group1" placeholder="مثال: OH" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="group2">المجموعة 2:</label>
+                            <input type="text" id="group2" placeholder="مثال: CH3" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="group3">المجموعة 3:</label>
+                            <input type="text" id="group3" placeholder="مثال: H" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="group4">المجموعة 4:</label>
+                            <input type="text" id="group4" placeholder="مثال: COOH" required>
+                        </div>
+                        <button type="submit" class="btn">حدد الأولوية</button>
+                    </form>
+                    <div class="calc-result" id="priority-result">
+                        <h4>ترتيب الأولوية:</h4>
+                        <p id="priority-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Examples Section -->
+    <section id="examples" class="examples">
+        <div class="container">
+            <div class="section-title">
+                <h2>أمثلة عملية</h2>
+                <p>أمثلة توضيحية لأنواع مختلفة من الإيزوميرات</p>
+            </div>
+            <div class="examples-container">
+                <div class="example-card">
+                    <div class="example-title">
+                        <i class="fas fa-flask"></i>
+                        الجلوكوز والفركتوز
+                    </div>
+                    <p>مثال كلاسيكي على الإيزوميرية الوظيفية. كلاهما لهما نفس الصيغة الجزيئية C₆H₁₂O₆ لكنهما يختلفان في المجموعة الوظيفية.</p>
+                    <div class="example-structure">
+                        الجلوكوز: ألدههكسوز<br>
+                        الفركتوز: كيتوهكسوز
+                    </div>
+                    <p><strong>الاختلاف:</strong> الجلوكوز يحتوي على مجموعة ألدهيد بينما الفركتوز يحتوي على مجموعة كيتون.</p>
+                </div>
+                
+                <div class="example-card">
+                    <div class="example-title">
+                        <i class="fas fa-male"></i>
+                        الـ Testosterone و الـ Estradiol
+                    </div>
+                    <p>هرمونان جنسيان لهما نفس الهيكل الأساسي ولكن يختلفان في المجموعات الوظيفية، مما يؤدي إلى اختلاف وظيفتهما البيولوجية.</p>
+                    <div class="example-structure">
+                        Testosterone: C₁₉H₂₈O₂<br>
+                        Estradiol: C₁₈H₂₄O₂
+                    </div>
+                    <p><strong>الأهمية:</strong> مثال على كيفية تأثير الإيزوميرية على النشاط البيولوجي.</p>
+                </div>
+                
+                <div class="example-card">
+                    <div class="example-title">
+                        <i class="fas fa-pills"></i>
+                        الثاليدوميد
+                    </div>
+                    <p>مثال شهير على أهمية الإيزوميرية البصرية في الأدوية. أحد الإنانتيومرات علاج فعال للغثيان بينما الآخر يسبب تشوهات خلقية.</p>
+                    <div class="example-structure">
+                        (R)-thalidomide: علاج<br>
+                        (S)-thalidomide: مسبب للتشوهات
+                    </div>
+                    <p><strong>الدروس المستفادة:</strong> أهمية فصل الإنانتيومرات في الأدوية.</p>
+                </div>
+                
+                <div class="example-card">
+                    <div class="example-title">
+                        <i class="fas fa-candy"></i>
+                        السكريات البسيطة
+                    </div>
+                    <p>الجلوكوز له عدة إيزوميرات فراغية بما في ذلك D-glucose و L-glucose. في الطبيعة، يوجد فقط D-glucose في الأنظمة البيولوجية.</p>
+                    <div class="example-structure">
+                        α-D-glucose<br>
+                        β-D-glucose<br>
+                        L-glucose
+                    </div>
+                    <p><strong>الخصائص:</strong> تختلف في النشاط البصري والتفاعلات البيولوجية.</p>
+                </div>
+                
+                <div class="example-card">
+                    <div class="example-title">
+                        <i class="fas fa-palette"></i>
+                        أصباغ الطعام
+                    </div>
+                    <p>بعض أصباغ الطعام لها إيزوميرات cis و trans مختلفة في اللون والاستقرار. مثال: بيتا كاروتين.</p>
+                    <div class="example-structure">
+                        all-trans-beta-carotene (برتقالي)<br>
+                        cis-isomers (ألوان مختلفة)
+                    </div>
+                    <p><strong>التطبيق:</strong> استخدام الإيزوميرات المختلفة للحصول على ألوان متنوعة.</p>
+                </div>
+                
+                <div class="example-card">
+                    <div class="example-title">
+                        <i class="fas fa-wind"></i>
+                        الفريونات</h6>
+                    </div>
+                    <p>مركبات التبريد (الفريونات) لها إيزوميرات مختلفة تؤثر على خصائصها كمواد تبريد وعلى تأثيرها البيئي.</p>
+                    <div class="example-structure">
+                        CFC-11 (trichlorofluoromethane)<br>
+                        CFC-12 (dichlorodifluoromethane)
+                    </div>
+                    <p><strong>البيئة:</strong> تختلف الإيزوميرات في قدرتها على تدمير طبقة الأوزون.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="quiz">
+        <div class="container">
+            <div class="section-title">
+                <h2>اختبار تفاعلي</h2>
+                <p>اختبر معرفتك بالمطابقة والإيزوميرية</p>
+            </div>
+            <div class="quiz-container">
+                <div class="question">
+                    <h3>1. أي من المركبات التالية يعتبر مثالاً على الإيزوميرية الهيكلية؟</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 0)">cis-2-butene و trans-2-butene</div>
+                        <div class="option" onclick="selectOption(this, 1)">D-glucose و L-glucose</div>
+                        <div class="option" onclick="selectOption(this, 2)">n-butane و isobutane</div>
+                        <div class="option" onclick="selectOption(this, 3)">R-lactic acid و S-lactic acid</div>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <h3>2. كم عدد الإيزوميرات البصرية الممكنة لجزيء يحتوي على مركزي تماثل؟</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 0)">2</div>
+                        <div class="option" onclick="selectOption(this, 1)">3</div>
+                        <div class="option" onclick="selectOption(this, 2)">4</div>
+                        <div class="option" onclick="selectOption(this, 3)">يعتمد على هيكل الجزيء</div>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <h3>3. ما هو الفرق الرئيسي بين الإيزوميرات cis و trans؟</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 0)">الفرق في عدد ذرات الكربون</div>
+                        <div class="option" onclick="selectOption(this, 1)">الفرق في موقع المجموعات حول الرابطة المزدوجة</div>
+                        <div class="option" onclick="selectOption(this, 2)">الفرق في النشاط البصري</div>
+                        <div class="option" onclick="selectOption(this, 3)">الفرق في المجموعات الوظيفية</div>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <h3>4. أي من التالي ليس مركز تماثل؟</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 0)">ذرة كربون مرتبطة بأربع مجموعات مختلفة</div>
+                        <div class="option" onclick="selectOption(this, 1)">ذرة كربون في CH₃CH₂CH₃</div>
+                        <div class="option" onclick="selectOption(this, 2)">ذرة كربون في CH₃CH(OH)COOH</div>
+                        <div class="option" onclick="selectOption(this, 3)">ذرة كربون في CHFClBr</div>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="checkAnswers()" style="margin-top: 30px; width: 100%;">تحقق من الإجابات</button>
+                
+                <div class="quiz-result" id="quizResult">
+                    <h3 id="resultTitle"></h3>
+                    <p id="resultText"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع المطابقة والإيزوميرية</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى عالي الجودة حول المطابقة والإيزوميرية في الكيمياء العضوية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#concepts">المفاهيم</a></li>
+                        <li><a href="#types">أنواع الإيزوميرية</a></li>
+                        <li><a href="#stereo">الكيمياء الفراغية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">محاكاة ثلاثية الأبعاد</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">امتحانات تجريبية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@isomerism.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع المطابقة والإيزوميرية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="fab" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Tab Switching
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Isomer Count Calculator
+        document.getElementById('isomer-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const carbonAtoms = parseInt(document.getElementById('carbon-atoms').value);
+            const formulaType = document.getElementById('formula-type').value;
+            const result = document.getElementById('isomer-result');
+            const resultText = document.getElementById('isomer-text');
+            
+            // Simple isomer count data
+            const isomerData = {
+                alkane: {
+                    1: 1, 2: 1, 3: 1, 4: 2, 5: 3, 6: 5, 7: 9, 8: 18, 9: 35, 10: 75
+                },
+                alkene: {
+                    1: 0, 2: 1, 3: 1, 4: 3, 5: 5, 6: 13, 7: 27, 8: 66, 9: 153, 10: 377
+                },
+                alkyne: {
+                    1: 0, 2: 0, 3: 1, 4: 2, 5: 3, 6: 7, 7: 13, 8: 22, 9: 40, 10: 74
+                },
+                alcohol: {
+                    1: 1, 2: 1, 3: 2, 4: 4, 5: 8, 6: 17, 7: 39, 8: 89, 9: 211, 10: 507
+                }
+            };
+            
+            const count = isomerData[formulaType][carbonAtoms] || 'غير متوفر';
+            
+            resultText.innerHTML = `عدد الإيزوميرات لـ ${carbonAtoms} ذرات كربون (${getFormulaTypeName(formulaType)}): <strong>${count}</strong>`;
+            result.style.display = 'block';
+        });
+
+        function getFormulaTypeName(type) {
+            const names = {
+                alkane: 'ألكان',
+                alkene: 'ألكين',
+                alkyne: 'ألكاين',
+                alcohol: 'كحول'
+            };
+            return names[type] || type;
+        }
+
+        // Chirality Check
+        document.getElementById('chirality-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const structure = document.getElementById('molecule-structure').value;
+            const result = document.getElementById('chirality-result');
+            const resultText = document.getElementById('chirality-text');
+            
+            // Simple chirality detection
+            let analysis = '';
+            
+            if (structure.includes('CH(OH)') || structure.includes('C(OH)')) {
+                analysis = 'الجزيء يحتوي على مركز تماثل محتمل. قد يكون له نشاط بصري.';
+            } else if (structure.includes('CH3CH2CH3') || structure.includes('CH3CH3')) {
+                analysis = 'الجزيء متماثل ولا يحتوي على مراكز تماثل. لا نشاط بصري.';
+            } else {
+                analysis = 'يرجى تحليل الهيكل بدقة. ابحث عن ذرات كربون مرتبطة بأربع مجموعات مختلفة.';
+            }
+            
+            resultText.textContent = analysis;
+            result.style.display = 'block';
+        });
+
+        // Priority Rules
+        document.getElementById('priority-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const groups = [
+                document.getElementById('group1').value,
+                document.getElementById('group2').value,
+                document.getElementById('group3').value,
+                document.getElementById('group4').value
+            ];
+            
+            const result = document.getElementById('priority-result');
+            const resultText = document.getElementById('priority-text');
+            
+            // Simple priority assignment based on atomic numbers
+            const priorityOrder = ['I', 'Br', 'Cl', 'F', 'O', 'N', 'C', 'H'];
+            const sortedGroups = [...groups].sort((a, b) => {
+                const getPriority = (group) => {
+                    for (let i = 0; i < priorityOrder.length; i++) {
+                        if (group.includes(priorityOrder[i])) return i;
+                    }
+                    return priorityOrder.length;
+                };
+                return getPriority(a) - getPriority(b);
+            });
+            
+            resultText.innerHTML = `ترتيب الأولوية (من الأعلى إلى الأقل):<br>
+                                   <strong>1. ${sortedGroups[0]}</strong><br>
+                                   <strong>2. ${sortedGroups[1]}</strong><br>
+                                   <strong>3. ${sortedGroups[2]}</strong><br>
+                                   <strong>4. ${sortedGroups[3]}</strong>`;
+            result.style.display = 'block';
+        });
+
+        // Quiz Functions
+        const correctAnswers = [2, 2, 1, 1]; // Index of correct answers
+        let selectedOptions = [-1, -1, -1, -1]; // Track selected options
+
+        function selectOption(element, questionIndex) {
+            // Remove previous selection
+            const options = element.parentElement.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            
+            // Add selection to clicked option
+            element.classList.add('selected');
+            selectedOptions[questionIndex] = Array.from(options).indexOf(element);
+        }
+
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.question');
+            let correctCount = 0;
+
+            questions.forEach((question, index) => {
+                const options = question.querySelectorAll('.option');
+                const selectedIndex = selectedOptions[index];
+                
+                if (selectedIndex === correctAnswers[index]) {
+                    options[selectedIndex].classList.add('correct');
+                    correctCount++;
+                } else {
+                    if (selectedIndex !== -1) {
+                        options[selectedIndex].classList.add('incorrect');
+                    }
+                    options[correctAnswers[index]].classList.add('correct');
+                }
+            });
+
+            // Show result
+            const resultDiv = document.getElementById('quizResult');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultText = document.getElementById('resultText');
+
+            resultDiv.style.display = 'block';
+            
+            if (correctCount === 4) {
+                resultDiv.className = 'quiz-result success';
+                resultTitle.textContent = 'ممتاز!';
+                resultText.textContent = 'لقد أجبت على جميع الأسئلة بشكل صحيح. فهمك للمطابقة والإيزوميرية ممتاز!';
+            } else if (correctCount >= 3) {
+                resultDiv.className = 'quiz-result success';
+                resultTitle.textContent = 'جيد جداً!';
+                resultText.textContent = `لقد أجبت على ${correctCount} من 4 أسئلة بشكل صحيح. استمر في التطور!`;
+            } else {
+                resultDiv.className = 'quiz-result fail';
+                resultTitle.textContent = 'تحتاج إلى المزيد من الدراسة';
+                resultText.textContent = `لقد أجبت على ${correctCount} من 4 أسئلة بشكل صحيح. راجع المواد التعليمية وحاول مرة أخرى.`;
+            }
+
+            // Scroll to result
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // 3D Toggle
+        function toggle3D() {
+            const view3d = document.getElementById('3d-view');
+            if (view3d.style.display === 'none') {
+                view3d.style.display = 'block';
+                event.target.textContent = 'إخفاء العرض ثلاثي الأبعاد';
+            } else {
+                view3d.style.display = 'none';
+                event.target.textContent = 'عرض ثلاثي الأبعاد';
+            }
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const fab = document.querySelector('.fab');
+            if (window.pageYOffset > 300) {
+                fab.style.display = 'flex';
+            } else {
+                fab.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

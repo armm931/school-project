@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاعلات الإضافة - الكيمياء العضوية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        :root {
+            --primary: #2c5282;
+            --secondary: #d69e2e;
+            --accent: #3182ce;
+            --light: #f7fafc;
+            --dark: #1a202c;
+            --success: #38a169;
+            --danger: #e53e3e;
+            --info: #3182ce;
+            --warning: #d69e2e;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--secondary);
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 82, 130, 0.9), rgba(49, 130, 206, 0.9)), url('https://images.unsplash.com/photo-1532187853451-66c881119f8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="a" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23a)"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(214, 158, 46, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #b7791f;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(214, 158, 46, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #334155;
+            font-size: 1.1rem;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Reaction Types Section */
+        .reactions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .reaction-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .reaction-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .reaction-header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .reaction-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .reaction-body {
+            padding: 25px;
+        }
+
+        .reaction-formula {
+            background-color: #f0f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 15px 0;
+            font-size: 1.1rem;
+        }
+
+        .reaction-example {
+            background-color: #fef3c7;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .reaction-example h4 {
+            color: var(--warning);
+            margin-bottom: 10px;
+        }
+
+        .reaction-example p {
+            color: #78350f;
+        }
+
+        /* Mechanism Section */
+        .mechanism-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .mechanism-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .step-content p {
+            color: #334155;
+        }
+
+        /* Applications Section */
+        .apps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .app-card {
+            background: white;
+            border-radius: 15px;
+            width: 300px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .app-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .app-card p {
+            color: #64748b;
+        }
+
+        /* Interactive Demo */
+        .demo-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .molecule-display {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            margin: 30px 0;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .molecule {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .reaction-controls {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .control-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Quiz Section */
+        .quiz-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .question {
+            margin-bottom: 30px;
+        }
+
+        .question h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option:hover {
+            border-color: var(--accent);
+            background: #f0f9ff;
+        }
+
+        .option.selected {
+            border-color: var(--secondary);
+            background: #fef3c7;
+        }
+
+        .option.correct {
+            border-color: var(--success);
+            background: #f0fdf4;
+        }
+
+        .option.incorrect {
+            border-color: var(--danger);
+            background: #fef2f2;
+        }
+
+        .quiz-result {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .quiz-result.success {
+            background: #f0fdf4;
+            border: 2px solid var(--success);
+            color: var(--success);
+        }
+
+        .quiz-result.fail {
+            background: #fef2f2;
+            border: 2px solid var(--danger);
+            color: var(--danger);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #cbd5e1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(214, 158, 46, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(214, 158, 46, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-flask"></i>
+                <span>تفاعلات الإضافة</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#types">الأنواع</a></li>
+                    <li><a href="#mechanism">آلية العمل</a></li>
+                    <li><a href="#apps">التطبيقات</a></li>
+                    <li><a href="#demo">تجربة تفاعلية</a></li>
+                    <li><a href="#quiz">اختبار</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>تفاعلات الإضافة في الكيمياء العضوية</h1>
+            <p>اكتشف عالم تفاعلات الإضافة وأهميتها في تركيب المركبات العضوية</p>
+            <a href="#intro" class="btn">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>مقدمة في تفاعلات الإضافة</h2>
+                <p>أساسيات تفاعلات الإضافة في الكيمياء العضوية</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>ما هي تفاعلات الإضافة؟</h3>
+                    <p>تفاعلات الإضافة هي نوع من التفاعلات الكيميائية التي يتم فيها إضافة ذرتين أو مجموعتين إلى مركب يحتوي على رابطة مضاعفة أو ثلاثية، مما يؤدي إلى كسر الرابطة المتعددة وتكوين روابط أحادية جديدة.</p>
+                    <p>تعتبر هذه التفاعلات أساسية في الكيمياء العضوية لأنها تسمح ببناء جزيئات أكثر تعقيداً من جزيئات بسيطة. تشمل الأمثلة الشائعة تفاعلات الهالوجينات مع الألكينات، وإضافة الماء لتكوين الكحولات.</p>
+                    <p>تتميز تفاعلات الإضافة بأنها تحافظ على عدد الذرات في المركبات المتفاعلة، حيث لا ينتج عنها أي مركبات ثانوية. هذا يجعلها فعالة ومفيدة في الاصطناع العضوي والصناعات الكيميائية.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="تفاعلات الإضافة">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reaction Types Section -->
+    <section id="types" class="types">
+        <div class="container">
+            <div class="section-title">
+                <h2>أنواع تفاعلات الإضافة</h2>
+                <p>التصنيف الرئيسي لتفاعلات الإضافة في الكيمياء العضوية</p>
+            </div>
+            <div class="reactions-grid">
+                <div class="reaction-card">
+                    <div class="reaction-header">
+                        <h3>إضافة الهالوجينات</h3>
+                        <p>الهالوجنة</p>
+                    </div>
+                    <div class="reaction-body">
+                        <p>تفاعل إضافة ذرات الهالوجين (Cl₂, Br₂, I₂) إلى الألكينات لتكوين مركبات ثنائية الهالوجين.</p>
+                        <div class="reaction-formula">
+                            R-CH=CH₂ + X₂ → R-CHX-CH₂X
+                        </div>
+                        <div class="reaction-example">
+                            <h4>مثال:</h4>
+                            <p>إضافة البروم إلى الإيثين لتكوين 1,2-ثنائي برومو الإيثان</p>
+                        </div>
+                        <p>يحدث هذا التفاعل في الظلام وعند درجة حرارة الغرفة، ويعتبر تفاعلاً انتقائياً للرابطة المضاعفة.</p>
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-header">
+                        <h3>إضافة الهيدروجين</h3>
+                        <p>الهدرجة</p>
+                    </div>
+                    <div class="reaction-body">
+                        <p>إضافة الهيدروجين إلى الألكينات أو الألكاينات في وجود عامل حفاز لتكوين الألكانات.</p>
+                        <div class="reaction-formula">
+                            R-CH=CH₂ + H₂ → R-CH₂-CH₃
+                        </div>
+                        <div class="reaction-example">
+                            <h4>مثال:</h4>
+                            <p>هدرجة الإيثين إلى الإيثان باستخدام النيكل كعامل حفاز</p>
+                        </div>
+                        <p>يستخدم هذا التفاعل في صناعة الدهون الصلبة من الزيوت السائلة (التصبن).</p>
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-header">
+                        <h3>إضافة الماء</h3>
+                        <p>الماءنة</p>
+                    </div>
+                    <div class="reaction-body">
+                        <p>إضافة الماء إلى الألكينات في وجود حمض لتكوين الكحولات.</p>
+                        <div class="reaction-formula">
+                            R-CH=CH₂ + H₂O → R-CH(OH)-CH₃
+                        </div>
+                        <div class="reaction-example">
+                            <h4>مثال:</h4>
+                            <p>إضافة الماء إلى الإيثين لتكوين الإيثانول</p>
+                        </div>
+                        <p>يتبع هذا التفاعل قاعدة ماركونيكوف، حيث يضاف الهيدروجين إلى الكربون الأكثر هيدروجيناً.</p>
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-header">
+                        <h3>إضافة هاليد الهيدروجين</h3>
+                        <p>هالوجنة الهيدروجين</p>
+                    </div>
+                    <div class="reaction-body">
+                        <p>إضافة هاليد الهيدروجين (HCl, HBr, HI) إلى الألكينات لتكوين هاليدات الألكيل.</p>
+                        <div class="reaction-formula">
+                            R-CH=CH₂ + HX → R-CHX-CH₃
+                        </div>
+                        <div class="reaction-example">
+                            <h4>مثال:</h4>
+                            <p>إضافة HCl إلى البروبين لتكوين 2-كلورو البروبان</p>
+                        </div>
+                        <p>يتبع هذا التفاعل أيضاً قاعدة ماركونيكوف في معظم الحالات.</p>
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-header">
+                        <h3>إضافة الأوزون</h3>
+                        <p>الأوزونية</p>
+                    </div>
+                    <div class="reaction-body">
+                        <p>تفاعل الألكينات مع الأوزون لتكوين أوزونيدات، والتي يمكن تحللها إلى كيتونات وألدهيدات.</p>
+                        <div class="reaction-formula">
+                            R₁R₂C=CR₃R₄ + O₃ → R₁R₂C=O + O=CR₃R₄
+                        </div>
+                        <div class="reaction-example">
+                            <h4>مثال:</h4>
+                            <p>أوزنة الإيثين لتكوين فورمالدهايدين</p>
+                        </div>
+                        <p>يستخدم هذا التفاعل في تحديد بنية الألكينات وتحللها إلى مركبات كربونيلية.</p>
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-header">
+                        <h3>إضافة الهيدروكسيل</h3>
+                        <p>هيدروكسلة</p>
+                    </div>
+                    <div class="reaction-body">
+                        <p>إضافة مجموعتي الهيدروكسيل إلى الألكينات لتكوين جليكولات (ثنائيات الهيدروكسيل).</p>
+                        <div class="reaction-formula">
+                            R-CH=CH₂ + [O] + H₂O → R-CH(OH)-CH₂OH
+                        </div>
+                        <div class="reaction-example">
+                            <h4>مثال:</h4>
+                            <p>هيدروكسلة الإيثين لتكوين الإيثيلين جليكول</p>
+                        </div>
+                        <p>يستخدم هذا التفاعل في صناعة مضادات التجمد والمواد البلاستيكية.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mechanism Section -->
+    <section id="mechanism" class="mechanism">
+        <div class="container">
+            <div class="section-title">
+                <h2>آلية عمل تفاعلات الإضافة</h2>
+                <p>فهم الخطوات التفصيلية لآلية التفاعل</p>
+            </div>
+            <div class="mechanism-container">
+                <h3 style="text-align: center; color: var(--primary); margin-bottom: 30px;">آلية إضافة HBr إلى البروبين</h3>
+                <div class="mechanism-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>تكوين الكربوكاتيون</h4>
+                            <p>يتفاعل HBr مع البروبين، حيث يقوم البروتون (H⁺) بالارتباط بالكربون الأقل تعويضاً (C1)، مما يؤدي إلى تكوين كربوكاتيون ثانوي أكثر استقراراً على C2.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>هجوم أيون البروميد</h4>
+                            <p>يهاجم أيون البروميد (Br⁻) الكربوكاتيون الإيجابي على C2، مما يؤدي إلى تكوين الرابطة النهائية بين C2 و Br.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>المنتج النهائي</h4>
+                            <p>النتيجة النهائية هي 2-برومو البروبان، حيث يتبع التفاعل قاعدة ماركونيكوف (إضافة H إلى الكربون الأكثر H).</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: #f0f9ff; padding: 20px; border-radius: 10px; margin-top: 30px; text-align: center;">
+                    <h4 style="color: var(--primary); margin-bottom: 15px;">قاعدة ماركونيكوف</h4>
+                    <p style="color: #334155;">"في تفاعل إضافة مركب غير متماثل الهيدروجين (HX) إلى ألكين غير متماثل، يضاف الهيدروجين إلى الكربون المرتبط بعدد أكبر من ذرات الهيدروجين"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="apps" class="apps">
+        <div class="container">
+            <div class="section-title">
+                <h2>تطبيقات تفاعلات الإضافة</h2>
+                <p>كيف تُستخدم هذه التفاعلات في الصناعة والحياة اليومية</p>
+            </div>
+            <div class="apps-container">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>الصناعة البتروكيميائية</h3>
+                    <p>تستخدم تفاعلات الإضافة في إنتاج البلاستيك، المطاط الصناعي، والألياف الصناعية من خلال بلمرة الألكينات.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <h3>صناعة الكحولات</h3>
+                    <p>إنتاج الإيثانول وغيره من الكحولات من خلال إضافة الماء إلى الألكينات، وهي الطريقة الرئيسية في الصناعة.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3>الصناعات الدوائية</h3>
+                    <p>تستخدم في تركيب العديد من الأدوية والمركبات الطبية، خاصة في إنتاج المضادات الحيوية والهرمونات.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-snowflake"></i>
+                    </div>
+                    <h3>مضادات التجمد</h3>
+                    <p>إنتاج الإيثيلين جليكول المستخدم في مضادات التجمد للسيارات من خلال هيدروكسلة الإيثين.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3>الدهون والزيوت</h3>
+                    <p>تحويل الزيوت النباتية غير المشبعة إلى دهون صلبة من خلال عملية الهدرجة (إضافة الهيدروجين).</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-paint-roller"></i>
+                    </div>
+                    <h3>الطلاء والورنيش</h3>
+                    <p>إنتاج المذيبات والمواد اللاصقة المستخدمة في صناعات الطلاء والورنيش من خلال تفاعلات الإضافة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <div class="section-title">
+                <h2>تجربة تفاعلية</h2>
+                <p>جرب تفاعلات الإضافة بنفسك</p>
+            </div>
+            <div class="demo-container">
+                <h3 style="text-align: center; color: var(--primary); margin-bottom: 30px;">تفاعل الإضافة التفاعلي</h3>
+                <div class="molecule-display" id="moleculeDisplay">
+                    <div class="molecule" id="molecule">CH₂=CH₂</div>
+                    <p id="moleculeName">الإيثين</p>
+                </div>
+                <div class="reaction-controls">
+                    <button class="control-btn" onclick="addReagent('H₂')">إضافة H₂</button>
+                    <button class="control-btn" onclick="addReagent('Br₂')">إضافة Br₂</button>
+                    <button class="control-btn" onclick="addReagent('H₂O')">إضافة H₂O</button>
+                    <button class="control-btn" onclick="addReagent('HCl')">إضافة HCl</button>
+                    <button class="control-btn" onclick="resetMolecule()">إعادة تعيين</button>
+                </div>
+                <div id="reactionInfo" style="margin-top: 30px; padding: 20px; background: #f0f9ff; border-radius: 10px; display: none;">
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">معلومات التفاعل:</h4>
+                    <p id="reactionDescription"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="quiz">
+        <div class="container">
+            <div class="section-title">
+                <h2>اختبار تفاعلي</h2>
+                <p>اختبر معرفتك بتفاعلات الإضافة</p>
+            </div>
+            <div class="quiz-container">
+                <div class="question">
+                    <h3>1. ما هو المنتج الرئيسي عند إضافة HBr إلى البروبين؟</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 0)">1-برومو البروبان</div>
+                        <div class="option" onclick="selectOption(this, 1)">2-برومو البروبان</div>
+                        <div class="option" onclick="selectOption(this, 2)">برومو الإيثان</div>
+                        <div class="option" onclick="selectOption(this, 3)">برومو الميثان</div>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <h3>2. أي من التفاعلات التالية يتبع قاعدة ماركونيكوف؟</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 0)">إضافة Br₂ إلى الإيثين</div>
+                        <div class="option" onclick="selectOption(this, 1)">إضافة HCl إلى البروبين</div>
+                        <div class="option" onclick="selectOption(this, 2)">إضافة H₂ إلى الإيثين</div>
+                        <div class="option" onclick="selectOption(this, 3)">إضافة H₂O إلى الإيثين</div>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <h3>3. ما هو اسم التفاعل الذي يضيف مجموعتي OH إلى الألكين؟</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 0)">الهدرجة</div>
+                        <div class="option" onclick="selectOption(this, 1)">الهالوجنة</div>
+                        <div class="option" onclick="selectOption(this, 2)">الهيدروكسلة</div>
+                        <div class="option" onclick="selectOption(this, 3)">الأوزونية</div>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="checkAnswers()" style="margin-top: 30px; width: 100%;">تحقق من الإجابات</button>
+                
+                <div class="quiz-result" id="quizResult">
+                    <h3 id="resultTitle"></h3>
+                    <p id="resultText"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع تفاعلات الإضافة</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى عالي الجودة حول تفاعلات الإضافة في الكيمياء العضوية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#types">الأنواع</a></li>
+                        <li><a href="#mechanism">آلية العمل</a></li>
+                        <li><a href="#apps">التطبيقات</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">محاكاة تفاعلات</a></li>
+                        <li><a href="#">امتحانات تجريبية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@addition-reactions.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع تفاعلات الإضافة. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="fab" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Interactive Demo Functions
+        let currentMolecule = 'CH₂=CH₂';
+        let currentName = 'الإيثين';
+
+        function addReagent(reagent) {
+            const moleculeDisplay = document.getElementById('moleculeDisplay');
+            const molecule = document.getElementById('molecule');
+            const moleculeName = document.getElementById('moleculeName');
+            const reactionInfo = document.getElementById('reactionInfo');
+            const reactionDescription = document.getElementById('reactionDescription');
+
+            let newMolecule = '';
+            let newName = '';
+            let description = '';
+
+            switch(reagent) {
+                case 'H₂':
+                    newMolecule = 'CH₃-CH₃';
+                    newName = 'الإيثان';
+                    description = 'تفاعل الهدرجة: إضافة الهيدروجين إلى الإيثين في وجود عامل حفاز (مثل Ni) لتكوين الإيثان. هذا التفاعل مثال على تفاعل الإضافة حيث يتم كسر الرابطة المضاعفة وإضافة ذرتي هيدروجين.';
+                    break;
+                case 'Br₂':
+                    newMolecule = 'CH₂Br-CH₂Br';
+                    newName = '1,2-ثنائي برومو الإيثان';
+                    description = 'تفاعل الهالوجنة: إضافة البروم إلى الإيثين لتكوين 1,2-ثنائي برومو الإيثان. يحدث هذا التفاعل في الظلام ويعتبر تفاعلاً انتقائياً للرابطة المضاعفة.';
+                    break;
+                case 'H₂O':
+                    newMolecule = 'CH₃-CH₂OH';
+                    newName = 'الإيثانول';
+                    description = 'تفاعل الماءنة: إضافة الماء إلى الإيثين في وجود حمض الكبريتيك لتكوين الإيثانول. هذا التفاعل مهم في الصناعة لإنتاج الكحولات.';
+                    break;
+                case 'HCl':
+                    newMolecule = 'CH₃-CH₂Cl';
+                    newName = 'كلورو الإيثان';
+                    description = 'تفاعل إضافة هاليد الهيدروجين: إضافة HCl إلى الإيثين لتكوين كلورو الإيثان. يستخدم هذا المركب في صناعة المذيبات والغازات المسيلة للدموع.';
+                    break;
+            }
+
+            // Animate the change
+            molecule.style.animation = 'pulse 0.5s';
+            setTimeout(() => {
+                molecule.textContent = newMolecule;
+                moleculeName.textContent = newName;
+                currentMolecule = newMolecule;
+                currentName = newName;
+                molecule.style.animation = '';
+                
+                reactionDescription.textContent = description;
+                reactionInfo.style.display = 'block';
+            }, 250);
+        }
+
+        function resetMolecule() {
+            const molecule = document.getElementById('molecule');
+            const moleculeName = document.getElementById('moleculeName');
+            const reactionInfo = document.getElementById('reactionInfo');
+
+            molecule.style.animation = 'pulse 0.5s';
+            setTimeout(() => {
+                molecule.textContent = 'CH₂=CH₂';
+                moleculeName.textContent = 'الإيثين';
+                currentMolecule = 'CH₂=CH₂';
+                currentName = 'الإيثين';
+                molecule.style.animation = '';
+                reactionInfo.style.display = 'none';
+            }, 250);
+        }
+
+        // Quiz Functions
+        const correctAnswers = [1, 1, 2]; // Index of correct answers
+        let selectedOptions = [-1, -1, -1]; // Track selected options
+
+        function selectOption(element, questionIndex) {
+            // Remove previous selection
+            const options = element.parentElement.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            
+            // Add selection to clicked option
+            element.classList.add('selected');
+            selectedOptions[questionIndex] = Array.from(options).indexOf(element);
+        }
+
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.question');
+            let correctCount = 0;
+
+            questions.forEach((question, index) => {
+                const options = question.querySelectorAll('.option');
+                const selectedIndex = selectedOptions[index];
+                
+                if (selectedIndex === correctAnswers[index]) {
+                    options[selectedIndex].classList.add('correct');
+                    correctCount++;
+                } else {
+                    if (selectedIndex !== -1) {
+                        options[selectedIndex].classList.add('incorrect');
+                    }
+                    options[correctAnswers[index]].classList.add('correct');
+                }
+            });
+
+            // Show result
+            const resultDiv = document.getElementById('quizResult');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultText = document.getElementById('resultText');
+
+            resultDiv.style.display = 'block';
+            
+            if (correctCount === 3) {
+                resultDiv.className = 'quiz-result success';
+                resultTitle.textContent = 'ممتاز!';
+                resultText.textContent = 'لقد أجبت على جميع الأسئلة بشكل صحيح. فهمك لتفاعلات الإضافة ممتاز!';
+            } else if (correctCount >= 2) {
+                resultDiv.className = 'quiz-result success';
+                resultTitle.textContent = 'جيد جداً!';
+                resultText.textContent = `لقد أجبت على ${correctCount} من 3 أسئلة بشكل صحيح. استمر في التطور!`;
+            } else {
+                resultDiv.className = 'quiz-result fail';
+                resultTitle.textContent = 'تحتاج إلى المزيد من الدراسة';
+                resultText.textContent = `لقد أجبت على ${correctCount} من 3 أسئلة بشكل صحيح. راجع المواد التعليمية وحاول مرة أخرى.`;
+            }
+
+            // Scroll to result
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const fab = document.querySelector('.fab');
+            if (window.pageYOffset > 300) {
+                fab.style.display = 'flex';
+            } else {
+                fab.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

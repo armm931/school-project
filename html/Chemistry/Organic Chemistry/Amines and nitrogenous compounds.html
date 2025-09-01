@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأمينات والمركبات النيتروجينية - عالم الكيمياء العضوية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #7c3aed;
+            --accent: #06b6d4;
+            --light: #f0f9ff;
+            --dark: #1e293b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: #0f172a;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(37, 99, 235, 0.85), rgba(124, 58, 237, 0.85)), url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #0891b2;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #334155;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Classification Section */
+        .classification-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .class-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .class-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .class-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .class-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .class-formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 8px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .class-body {
+            padding: 25px;
+        }
+
+        .class-body p {
+            color: #334155;
+            margin-bottom: 15px;
+        }
+
+        .class-examples {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .class-examples h4 {
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .class-examples ul {
+            list-style: none;
+            padding-right: 15px;
+        }
+
+        .class-examples li {
+            color: #334155;
+            margin-bottom: 5px;
+            position: relative;
+        }
+
+        .class-examples li::before {
+            content: '•';
+            color: var(--accent);
+            position: absolute;
+            right: -15px;
+        }
+
+        /* Properties Section */
+        .properties-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .property-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .property-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .property-card h4 {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .property-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        /* Reactions Section */
+        .reactions-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .reaction-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .reaction-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .reaction-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .reaction-content {
+            flex: 1;
+        }
+
+        .reaction-content h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .reaction-content p {
+            color: #334155;
+            margin-bottom: 15px;
+        }
+
+        .reaction-equation {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        /* Applications Section */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .application-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .application-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-header {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .app-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .application-card:hover .app-header img {
+            transform: scale(1.1);
+        }
+
+        .app-content {
+            padding: 25px;
+        }
+
+        .app-content h3 {
+            font-size: 1.4rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .app-content p {
+            color: #334155;
+            margin-bottom: 15px;
+        }
+
+        .app-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background-color: var(--light);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Nitrogen Compounds Section */
+        .nitrogen-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .nitrogen-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .nitrogen-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .nitrogen-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .nitrogen-card h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .nitrogen-card p {
+            color: #334155;
+            margin-bottom: 15px;
+        }
+
+        .nitrogen-formula {
+            background-color: var(--light);
+            padding: 10px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #cbd5e1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .reaction-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                <span>الأمينات والمركبات النيتروجينية</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#classification">التصنيف</a></li>
+                    <li><a href="#properties">الخصائص</a></li>
+                    <li><a href="#reactions">التفاعلات</a></li>
+                    <li><a href="#nitrogen">مركبات نيتروجينية</a></li>
+                    <li><a href="#applications">التطبيقات</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>الأمينات والمركبات النيتروجينية</h1>
+            <p>استكشف عالم الكيمياء العضوية من خلال فهم تركيب وخصائص وتفاعلات الأمينات والمركبات النيتروجينية</p>
+            <a href="#intro" class="btn">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>مقدمة في الأمينات</h2>
+                <p>الأمينات هي مركبات عضوية تحتوي على ذرة نيتروجين مرتبطة بمجموعات كربونية</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>ما هي الأمينات؟</h3>
+                    <p>الأمينات هي مركبات عضوية مشتقة من الأمونيا (NH₃) حيث يستبدل واحد أو أكثر من ذرات الهيدروجين بمجموعات ألكيل أو أريل. تعتبر الأمينات من أهم المركبات العضوية بسبب دورها الحيوي في الكائنات الحية وتطبيقاتها الواسعة في الصناعة.</p>
+                    <p>تتميز الأمينات بوجود زوج إلكترون غير مرتبط على ذرة النيتروجين، مما يجعلها قواعد لويس قوية ونوكلوفيلات نشطة. هذا الزوج الإلكتروني هو المسؤول عن معظم تفاعلاتها الكيميائية وخصائصها الفيزيائية.</p>
+                    <p>توجد الأمينات بشكل طبيعي في العديد من المركبات الحيوية مثل الأحماض الأمينية والبروتينات والهرمونات والفيتامينات. كما تستخدم على نطاق واسع في صناعة الأدوية والمبيدات والبلاستيك والمواد اللاصقة.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1533628654706-135a7935e8c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الأمينات">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classification Section -->
+    <section id="classification" class="classification">
+        <div class="container">
+            <div class="section-title">
+                <h2>تصنيف الأمينات</h2>
+                <p>تصنف الأمينات حسب عدد مجموعات الألكيل المرتبطة بذرة النيتروجين</p>
+            </div>
+            <div class="classification-grid">
+                <div class="class-card">
+                    <div class="class-header">
+                        <h3>الأمينات الأولية</h3>
+                        <div class="class-formula">R-NH₂</div>
+                    </div>
+                    <div class="class-body">
+                        <p>تحتوي على مجموعة ألكيل واحدة مرتبطة بذرة النيتروجين. تعتبر قواعد قوية وتتفاعل بسهولة مع الأحماض لتكوين أملاح الأمونيوم.</p>
+                        <div class="class-examples">
+                            <h4>أمثلة:</h4>
+                            <ul>
+                                <li>ميثيل أمين (CH₃NH₂)</li>
+                                <li>إيثيل أمين (C₂H₅NH₂)</li>
+                                <li>أنيلين (C₆H₅NH₂)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="class-card">
+                    <div class="class-header">
+                        <h3>الأمينات الثانوية</h3>
+                        <div class="class-formula">R₂NH</div>
+                    </div>
+                    <div class="class-body">
+                        <p>تحتوي على مجموعتين ألكيل مرتبطتين بذرة النيتروجين. أقل قاعدية من الأمينات الأولية ولكنها لا تزال قواعد قوية.</p>
+                        <div class="class-examples">
+                            <h4>أمثلة:</h4>
+                            <ul>
+                                <li>ثنائي ميثيل أمين ((CH₃)₂NH)</li>
+                                <li>ثنائي إيثيل أمين ((C₂H₅)₂NH)</li>
+                                <li>ميثيل إيثيل أمين (CH₃NHC₂H₅)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="class-card">
+                    <div class="class-header">
+                        <h3>الأمينات الثلاثية</h3>
+                        <div class="class-formula">R₃N</div>
+                    </div>
+                    <div class="class-body">
+                        <p>تحتوي على ثلاث مجموعات ألكيل مرتبطة بذرة النيتروجين. لا تحتوي على ذرات هيدروجين مرتبطة بالنيتروجين.</p>
+                        <div class="class-examples">
+                            <h4>أمثلة:</h4>
+                            <ul>
+                                <li>ثلاثي ميثيل أمين ((CH₃)₃N)</li>
+                                <li>ثلاثي إيثيل أمين ((C₂H₅)₃N)</li>
+                                <li>ثلاثي فينيل أمين ((C₆H₅)₃N)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="class-card">
+                    <div class="class-header">
+                        <h3>الأمينات العطرية</h3>
+                        <div class="class-formula">Ar-NH₂</div>
+                    </div>
+                    <div class="class-body">
+                        <p>أمينات مرتبطة بحلقة عطرية. أضعف قاعدية من الأمينات الأليفاتية بسبب تأثير الرنين.</p>
+                        <div class="class-examples">
+                            <h4>أمثلة:</h4>
+                            <ul>
+                                <li>أنيلين (C₆H₅NH₂)</li>
+                                <li>تولويدين (CH₃C₆H₄NH₂)</li>
+                                <li>نفتيلامين (C₁₀H₇NH₂)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Properties Section -->
+    <section id="properties" class="properties">
+        <div class="container">
+            <div class="section-title">
+                <h2>الخصائص الفيزيائية والكيميائية</h2>
+                <p>الخصائص المميزة للأمينات والمركبات النيتروجينية</p>
+            </div>
+            <div class="properties-container">
+                <div class="property-card">
+                    <div class="property-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h4>الذوبانية</h4>
+                    <p>ذوبابة الأمينات قصيرة السلسلة في الماء جيدة بسبب تكوين روابط هيدروجينية. تقل الذوبانية بزيادة حجم المجموعة الكربونية.</p>
+                </div>
+                
+                <div class="property-card">
+                    <div class="property-icon">
+                        <i class="fas fa-temperature-high"></i>
+                    </div>
+                    <h4>نقاط الغليان</h4>
+                    <p>تمتلك نقاط غليان أعلى من المركبات الهيدروكربونية المشابهة بسبب تكوين روابط هيدروجينية بين الجزيئات.</p>
+                </div>
+                
+                <div class="property-card">
+                    <div class="property-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h4>القاعدية</h4>
+                    <p>تتميز بخصائص قاعدية واضحة حيث يمكنها قبول بروتون. تزداد قوة القاعدة بزيادة عدد مجموعات الألكيل الإلكترونية الدافعة.</p>
+                </div>
+                
+                <div class="property-card">
+                    <div class="property-icon">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <h4>الرائحة</h4>
+                    <p>تمتلك الأمينات الأليفاتية رائحة مميزة تشبه رائحة الأسماك المتعفنة. الأمينات العطرية لها رائحة أقل نفاذة.</p>
+                </div>
+                
+                <div class="property-card">
+                    <div class="property-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h4>القطبية</h4>
+                    <p>ذرة النيتروجين قطبية بشدة مما يمنح المركب خصائص قطبية واضحة تؤثر على ذوبانيته وتفاعلاته.</p>
+                </div>
+                
+                <div class="property-card">
+                    <div class="property-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h4>التفاعلية</h4>
+                    <p>تتفاعل كقواعد ونوكلوفيلات. تشكل أملاح الأمونيوم مع الأحماض، وتتفاعل مع مركبات الكربونيل لتكوين إيمينات وأميدات.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reactions Section -->
+    <section id="reactions" class="reactions">
+        <div class="container">
+            <div class="section-title">
+                <h2>التفاعلات الكيميائية</h2>
+                <p>التفاعلات الرئيسية للأمينات والمركبات النيتروجينية</p>
+            </div>
+            <div class="reactions-container">
+                <div class="reaction-card">
+                    <div class="reaction-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="reaction-content">
+                        <h3>تفاعل مع الأحماض</h3>
+                        <p>تتفاعل الأمينات مع الأحماض لتكوين أملاح الأمونيوم. هذا التفاعل هو أساس قاعدية الأمينات ويستخدم في عزلها وتنقيتها.</p>
+                        <div class="reaction-equation">
+                            R-NH₂ + HCl → R-NH₃⁺Cl⁻
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="reaction-content">
+                        <h3>تفاعل الألكلة</h3>
+                        <p>تتفاعل الأمينات مع هاليدات الألكيل لتكوين أمينات أعلى. يمكن أن يؤدي التفاعل المفرط إلى تكوين أمينات رابعية.</p>
+                        <div class="reaction-equation">
+                            R-NH₂ + R'-X → R-NHR' + HX
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="reaction-content">
+                        <h3>تفاعل مع مركبات الكربونيل</h3>
+                        <p>تتفاعل الأمينات الأولية مع الألدهيدات والكيتونات لتكوين إيمينات (Schiff bases). هذا التفاعل مهم في الكيمياء العضوية والتحليلية.</p>
+                        <div class="reaction-equation">
+                            R-NH₂ + R'₂C=O → R-N=CR'₂ + H₂O
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="reaction-content">
+                        <h3>تفاعل الأستلة</h3>
+                        <p>تتفاعل الأمينات مع كلوريدات الأحماض أو الأنهيدريدات لتكوين أميدات. الأميدات مهمة جداً في الكيمياء الحيوية.</p>
+                        <div class="reaction-equation">
+                            R-NH₂ + R'COCl → R-NHCOR' + HCl
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nitrogen Compounds Section -->
+    <section id="nitrogen" class="nitrogen">
+        <div class="container">
+            <div class="section-title">
+                <h2>مركبات نيتروجينية أخرى</h2>
+                <p>مركبات مهمة تحتوي على ذرة نيتروجين</p>
+            </div>
+            <div class="nitrogen-grid">
+                <div class="nitrogen-card">
+                    <div class="nitrogen-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>الأميدات</h3>
+                    <p>مشتقات الأحماض الكربوكسيلية حيث تستبدل مجموعة الهيدروكسيل بمجموعة أمينية.</p>
+                    <div class="nitrogen-formula">R-CONH₂</div>
+                    <p>تشكل الروابط الببتيدية في البروتينات وتستخدم في صناعة البلاستيك والألياف.</p>
+                </div>
+                
+                <div class="nitrogen-card">
+                    <div class="nitrogen-icon">
+                        <i class="fas fa-capsules"></i>
+                    </div>
+                    <h3>النيترومركبات</h3>
+                    <p>مركبات تحتوي على مجموعة نيترو (-NO₂) مرتبطة مباشرة بالكربون.</p>
+                    <div class="nitrogen-formula">R-NO₂</div>
+                    <p>تستخدم في صناعة المتفجرات والأصباغ والمبيدات الحشرية.</p>
+                </div>
+                
+                <div class="nitrogen-card">
+                    <div class="nitrogen-icon">
+                        <i class="fas fa-ring"></i>
+                    </div>
+                    <h3>مركبات النيتروجين الحلقية</h3>
+                    <p>مركبات تحتوي على ذرة نيتروجين في حلقة غير مشبعة.</p>
+                    <div class="nitrogen-formula">C₅H₅N (بايريدين)</div>
+                    <p>مثل البايريدين والبيريميدين والبورين. مهمة في الكيمياء الدوائية.</p>
+                </div>
+                
+                <div class="nitrogen-card">
+                    <div class="nitrogen-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h3>السيانيدات</h3>
+                    <p>مركبات تحتوي على مجموعة السيانو (-CN).</p>
+                    <div class="nitrogen-formula">R-CN</div>
+                    <p>تستخدم في صناعة البلاستيك والمطاط الصناعي وفي الاستخلاص المعدني.</p>
+                </div>
+                
+                <div class="nitrogen-card">
+                    <div class="nitrogen-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>الأحماض الأمينية</h3>
+                    <p>مركبات تحتوي على مجموعة أمين ومجموعة كربوكسيل.</p>
+                    <div class="nitrogen-formula">H₂N-CHR-COOH</div>
+                    <p>اللبنات الأساسية للبروتينات وتشارك في العديد من العمليات الحيوية.</p>
+                </div>
+                
+                <div class="nitrogen-card">
+                    <div class="nitrogen-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>القلويدات</h3>
+                    <p>مركبات نيتروجينية معقدة توجد بشكل طبيعي في النباتات.</p>
+                    <div class="nitrogen-formula">مركبات معقدة</div>
+                    <p>تمتلك نشاطاً بيولوجياً قوياً وتستخدم في الطب كعقاقير.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="applications">
+        <div class="container">
+            <div class="section-title">
+                <h2>التطبيقات العملية</h2>
+                <p>استخدامات الأمينات والمركبات النيتروجينية في الحياة اليومية والصناعة</p>
+            </div>
+            <div class="applications-grid">
+                <div class="application-card">
+                    <div class="app-header">
+                        <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الصناعات الدوائية">
+                    </div>
+                    <div class="app-content">
+                        <h3>الصناعات الدوائية</h3>
+                        <p>تستخدم الأمينات والمركبات النيتروجينية في صناعة العديد من الأدوية مثل المضادات الحيوية ومسكنات الألم والأدوية النفسية.</p>
+                        <div class="app-tags">
+                            <span class="tag">مضادات حيوية</span>
+                            <span class="tag">مسكنات</span>
+                            <span class="tag">أدوية نفسية</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="application-card">
+                    <div class="app-header">
+                        <img src="https://images.unsplash.com/photo-1603126857599-f6e157fa2fe9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الزراعة">
+                    </div>
+                    <div class="app-content">
+                        <h3>الزراعة</h3>
+                        <p>تستخدم في صناعة الأسمدة النيتروجينية والمبيدات الحشرية ومنظمات نمو النباتات.</p>
+                        <div class="app-tags">
+                            <span class="tag">أسمدة</span>
+                            <span class="tag">مبيدات</span>
+                            <span class="tag">منظمات نمو</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="application-card">
+                    <div class="app-header">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الصناعات الكيميائية">
+                    </div>
+                    <div class="app-content">
+                        <h3>الصناعات الكيميائية</h3>
+                        <p>تستخدم كمذيبات ومواد وسيطة في صناعة البلاستيك والألياف الصناعية والمطاط والمواد اللاصقة.</p>
+                        <div class="app-tags">
+                            <span class="tag">مذيبات</span>
+                            <span class="tag">بوليمرات</span>
+                            <span class="tag">مواد وسيطة</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="application-card">
+                    <div class="app-header">
+                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="مستحضرات التجميل">
+                    </div>
+                    <div class="app-content">
+                        <h3>مستحضرات التجميل</h3>
+                        <p>تستخدم في صناعة الشامبو والصابون والكريمات ومثبتات الشعر والعطور.</p>
+                        <div class="app-tags">
+                            <span class="tag">شامبو</span>
+                            <span class="tag">كريمات</span>
+                            <span class="tag">عطور</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="application-card">
+                    <div class="app-header">
+                        <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الطاقة">
+                    </div>
+                    <div class="app-content">
+                        <h3>الطاقة</h3>
+                        <p>تستخدم في إنتاج وقود الصواريخ وفي خلايا الوقود وفي معالجة النفط والغاز.</p>
+                        <div class="app-tags">
+                            <span class="tag">وقود الصواريخ</span>
+                            <span class="tag">خلايا وقود</span>
+                            <span class="tag">معالجة نفط</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="application-card">
+                    <div class="app-header">
+                        <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="البحث العلمي">
+                    </div>
+                    <div class="app-content">
+                        <h3>البحث العلمي</h3>
+                        <p>تستخدم ككواشف كيميائية وفي التحليل الطيفي وفي تصنيع المواد النانوية والمواد المتقدمة.</p>
+                        <div class="app-tags">
+                            <span class="tag">كواشف</span>
+                            <span class="tag">تحليل طيفي</span>
+                            <span class="tag">نانوتكنولوجيا</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع الأمينات والمركبات النيتروجينية</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى شامل حول الأمينات والمركبات النيتروجينية في الكيمياء العضوية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#classification">التصنيف</a></li>
+                        <li><a href="#properties">الخصائص</a></li>
+                        <li><a href="#reactions">التفاعلات</a></li>
+                        <li><a href="#nitrogen">مركبات نيتروجينية</a></li>
+                        <li><a href="#applications">التطبيقات</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">دروس تفاعلية</a></li>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">امتحانات تجريبية</a></li>
+                        <li><a href="#">محاكاة تفاعلات</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@amines.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع الأمينات والمركبات النيتروجينية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاعلات الحذف - الكيمياء العضوية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        :root {
+            --primary: #7c3aed;
+            --secondary: #f59e0b;
+            --accent: #8b5cf6;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            --warning: #f59e0b;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--secondary);
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(124, 58, 237, 0.9), rgba(139, 92, 246, 0.9)), url('https://images.unsplash.com/photo-1532187853451-66c881119f8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="a" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23a)"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #d97706;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #334155;
+            font-size: 1.1rem;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Reaction Types Section */
+        .reactions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .reaction-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .reaction-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .reaction-header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .reaction-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .reaction-body {
+            padding: 25px;
+        }
+
+        .reaction-formula {
+            background-color: #f3e8ff;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 15px 0;
+            font-size: 1.1rem;
+        }
+
+        .reaction-example {
+            background-color: #fef3c7;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .reaction-example h4 {
+            color: var(--warning);
+            margin-bottom: 10px;
+        }
+
+        .reaction-example p {
+            color: #78350f;
+        }
+
+        /* Mechanism Section */
+        .mechanism-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .mechanism-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .step-content p {
+            color: #334155;
+        }
+
+        /* Comparison Section */
+        .comparison-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            margin-top: 30px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        .comparison-table th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: bold;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #f3e8ff;
+        }
+
+        /* Interactive Demo */
+        .demo-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .molecule-display {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            margin: 30px 0;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .molecule {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .reaction-controls {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .control-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Applications Section */
+        .apps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .app-card {
+            background: white;
+            border-radius: 15px;
+            width: 300px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .app-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .app-card p {
+            color: #64748b;
+        }
+
+        /* Quiz Section */
+        .quiz-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .question {
+            margin-bottom: 30px;
+        }
+
+        .question h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option:hover {
+            border-color: var(--accent);
+            background: #f3e8ff;
+        }
+
+        .option.selected {
+            border-color: var(--secondary);
+            background: #fef3c7;
+        }
+
+        .option.correct {
+            border-color: var(--success);
+            background: #f0fdf4;
+        }
+
+        .option.incorrect {
+            border-color: var(--danger);
+            background: #fef2f2;
+        }
+
+        .quiz-result {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .quiz-result.success {
+            background: #f0fdf4;
+            border: 2px solid var(--success);
+            color: var(--success);
+        }
+
+        .quiz-result.fail {
+            background: #fef2f2;
+            border: 2px solid var(--danger);
+            color: var(--danger);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #cbd5e1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.6);
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: linear-gradient(135deg, #f3e8ff, #ede9fe);
+            border-right: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .info-box h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            color: #4c1d95;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                <span>تفاعلات الحذف</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#types">الأنواع</a></li>
+                    <li><a href="#mechanism">آلية العمل</a></li>
+                    <li><a href="#comparison">المقارنة</a></li>
+                    <li><a href="#apps">التطبيقات</a></li>
+                    <li><a href="#demo">تجربة تفاعلية</a></li>
+                    <li><a href="#quiz">اختبار</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>تفاعلات الحذف في الكيمياء العضوية</h1>
+            <p>اكتشف عالم تفاعلات الحذف وأهميتها في تكوين الروابط المضاعفة</p>
+            <a href="#intro" class="btn">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>مقدمة في تفاعلات الحذف</h2>
+                <p>أساسيات تفاعلات الحذف في الكيمياء العضوية</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>ما هي تفاعلات الحذف؟</h3>
+                    <p>تفاعلات الحذف هي نوع من التفاعلات الكيميائية التي يتم فيها إزالة ذرتين أو مجموعتين من المركبات العضوية، مما يؤدي إلى تكوين رابطة مضاعفة أو ثلاثية بين ذرتي الكربون.</p>
+                    <p>تعتبر هذه التفاعل عكس تفاعلات الإضافة، وتلعب دوراً مهماً في الكيمياء العضوية لأنها تسمح ببناء جزيئات غير مشبعة من مركبات مشبعة. تشمل الأمثلة الشائعة تفاعلات نزع الهاليد، ونزع الماء، ونزع الهيدروجين.</p>
+                    <p>تتميز تفاعلات الحذف بأنها تنتج جزيئات أصغر حجماً وأكثر عدم تشبعاً، مما يجعلها مفيدة في الاصطناع العضوي والصناعات الكيميائية.</p>
+                    
+                    <div class="info-box">
+                        <h4><i class="fas fa-lightbulb"></i> معلومة مهمة</h4>
+                        <p>تتبع تفاعلات الحذف عادة قاعدة زايتسيف (Zaitsev's Rule) التي تنص على أن المنتج الأكثر استقراراً هو الألكين الأكثر تعويضاً.</p>
+                    </div>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="تفاعلات الحذف">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reaction Types Section -->
+    <section id="types" class="types">
+        <div class="container">
+            <div class="section-title">
+                <h2>أنواع تفاعلات الحذف</h2>
+                <p>التصنيف الرئيسي لتفاعلات الحذف في الكيمياء العضوية</p>
+            </div>
+            <div class="reactions-grid">
+                <div class="reaction-card">
+                    <div class="reaction-header">
+                        <h3>نزع الهاليد</h3>
+                        <p>Dehydrohalogenation</p>
+                    </div>
+                    <div class="reaction-body">
+                        <p>إزالة ذرة هالوجين وذرة هيدروجين من مركبات الهاليدات لتكوين الألكينات.</p>
+                        <div class="reaction-formula">
+                            R-CH₂-CH₂-X → R-CH=CH₂ + HX
+                        </div>
+                        <div class="reaction-example">
+                            <h4>مثال:</h4>
+                            <p>نزع HBr من 2-برومو البروبان لتكوين البروبين</p>
+                        </div>
+                        <p>يتم هذا التفاعل في وجود قاعدة قوية مثل KOH في الإيثانول عند درجات حرارة عالية.</p>
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-header">
+                        <h3>نزع الماء</h3>
+                        <p>Dehydration</p>
+                    </div>
+                    <div class="reaction-body">
+                        <p>إزالة جزيء ماء من الكحولات لتكوين الألكينات.</p>
+                        <div class="reaction-formula">
+                            R-CH₂-CH₂-OH → R-CH=CH₂ + H₂O
+                        </div>
+                        <div class="reaction-example">
+                            <h4>مثال:</h4>
+                            <p>نزع الماء من الإيثانول لتكوين الإيثين</p>
+                        </div>
+                        <p>يستخدم حمض الكبريتيك المركز كعامل مساعد عند درجات حرارة 170-180°C.</p>
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-header">
+                        <h3>نزع الهيدروجين</h3>
+                        <p>Dehydrogenation</p>
+                    </div>
+                    <div class="reaction-body">
+                        <p>إزالة ذرتي هيدروجين من الألكانات لتكوين الألكينات.</p>
+                        <div class="reaction-formula">
+                            R-CH₂-CH₃ → R-CH=CH₂ + H₂
+                        </div>
+                        <div class="reaction-example">
+                            <h4>مثال:</h4>
+                            <p>نزع الهيدروجين من الإيثان لتكوين الإيثين</p>
+                        </div>
+                        <p>يتطلب هذا التفاعل عوامل حفاز مثل البلاتين أو النيكل عند درجات حرارة عالية.</p>
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-header">
+                        <h3>نزع الأمونيا</h3>
+                        <p>Deamination</p>
+                    </div>
+                    <div class="reaction-body">
+                        <p>إزالة مجموعة الأمين (-NH₂) من الأحماض الأمينية لتكوين أحماض كربوكسيلية غير مشبعة.</p>
+                        <div class="reaction-formula">
+                            R-CH(NH₂)-COOH → R-CH=COOH + NH₃
+                        </div>
+                        <div class="reaction-example">
+                            <h4>مثال:</h4>
+                            <p>نزع الأمونيا من الألانين</p>
+                        </div>
+                        <p>هذا التفاعل مهم في عمليات الأيض البيولوجي.</p>
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-header">
+                        <h3>نزع الكربوكسيل</h3>
+                        <p>Decarboxylation</p>
+                    </div>
+                    <div class="reaction-body">
+                        <p>إزالة مجموعة الكربوكسيل (-COOH) من الأحماض الكربوكسيلية.</p>
+                        <div class="reaction-formula">
+                            R-COOH → R-H + CO₂
+                        </div>
+                        <div class="reaction-example">
+                            <h4>مثال:</h4>
+                            <p>نزع الكربوكسيل من حمض الأسيتيك</p>
+                        </div>
+                        <p>يحدث هذا التفاعل عند تسخين الأحماض الكربوكسيلية مع الصودا الكاوية.</p>
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-header">
+                        <h3>نزع الهالوجين المزدوج</h3>
+                        <p>Dihalide Dehalogenation</p>
+                    </div>
+                    <div class="reaction-body">
+                        <p>إزالة ذرتي هالوجين من مركبات ثنائية الهالوجين لتكوين الألكينات.</p>
+                        <div class="reaction-formula">
+                            R-CHX-CH₂X → R-CH=CH₂ + 2HX
+                        </div>
+                        <div class="reaction-example">
+                            <h4>مثال:</h4>
+                            <p>نزع البروم من 1,2-ثنائي برومو الإيثان</p>
+                        </div>
+                        <p>يستخدم الزنك في الإيثانول كعامل مختزل لهذا التفاعل.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mechanism Section -->
+    <section id="mechanism" class="mechanism">
+        <div class="container">
+            <div class="section-title">
+                <h2>آلية عمل تفاعلات الحذف</h2>
+                <p>فهم الخطوات التفصيلية لآلية التفاعل</p>
+            </div>
+            <div class="mechanism-container">
+                <h3 style="text-align: center; color: var(--primary); margin-bottom: 30px;">آلية E2 لنزع HBr من 2-برومو البروبان</h3>
+                <div class="mechanism-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>هجوم القاعدة</h4>
+                            <p>تهاجم القاعدة (OH⁻) ذرة الهيدروجين على الكربون المجاور للكربون المرتبط بالبروم (β-carbon). يحدث هذا الهجوم في نفس الوقت الذي يبدأ فيه البروم في المغادرة.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>تكوين الحالة الانتقالية</h4>
+                            <p>في الحالة الانتقالية، تبدأ الرابطة C-H في الضعف بينما تبدأ الرابطة C-Br في الانكسار. تتشكل الرابطة المضاعفة بين الكربونين α و β تدريجياً.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>المنتجات النهائية</h4>
+                            <p>يتم تكوين البروبين (CH₃-CH=CH₂) و HBr و OH⁻. يتبع التفاعل قاعدة زايتسيف حيث يكون المنتج الأكثر استقراراً هو الألكين الأكثر تعويضاً.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: #f3e8ff; padding: 20px; border-radius: 10px; margin-top: 30px; text-align: center;">
+                    <h4 style="color: var(--primary); margin-bottom: 15px;">قاعدة زايتسيف (Zaitsev's Rule)</h4>
+                    <p style="color: #4c1d95;">"في تفاعلات الحذف، يكون المنتج الأكثر استقراراً هو الألكين الذي يحتوي على أكبر عدد من مجموعات الألكيل المرتبطة بالكربونات المشاركة في الرابطة المضاعفة"</p>
+                </div>
+                
+                <div class="info-box" style="margin-top: 30px;">
+                    <h4><i class="fas fa-info-circle"></i> آليتان رئيسيتان للحذف</h4>
+                    <p><strong>E1:</strong> تفاعل من خطوتين، يبدأ بفصل المجموعة المغادرة لتكوين كربوكاتيون، ثم إزالة البروتون.</p>
+                    <p><strong>E2:</strong> تفاعل من خطوة واحدة متزامنة، حيث تهاجم القاعدة البروتون بينما تغادر المجموعة المغادرة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section id="comparison" class="comparison">
+        <div class="container">
+            <div class="section-title">
+                <h2>مقارنة بين تفاعلات الإضافة والحذف</h2>
+                <p>الفروق الرئيسية بين نوعي التفاعلات</p>
+            </div>
+            <div class="comparison-container">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>الميزة</th>
+                            <th>تفاعلات الإضافة</th>
+                            <th>تفاعلات الحذف</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>التعريف</td>
+                            <td>إضافة ذرات أو مجموعات إلى رابطة مضاعفة</td>
+                            <td>إزالة ذرات أو مجموعات لتكوين رابطة مضاعفة</td>
+                        </tr>
+                        <tr>
+                            <td>التشبع</td>
+                            <td>تزيد من التشبع</td>
+                            <td>تقلل من التشبع</td>
+                        </tr>
+                        <tr>
+                            <td>المنتجات</td>
+                            <td>مركبات أكثر تشبعاً</td>
+                            <td>مركبات أقل تشبعاً</td>
+                        </tr>
+                        <tr>
+                            <td>الشروط</td>
+                            <td>غالباً في درجات حرارة منخفضة</td>
+                            <td>غالباً في درجات حرارة عالية</td>
+                        </tr>
+                        <tr>
+                            <td>العوامل المساعدة</td>
+                            <td>محفزات، ضغط</td>
+                            <td>قواعد قوية، أحماض</td>
+                        </tr>
+                        <tr>
+                            <td>الانتقائية</td>
+                            <td>تتبع قاعدة ماركونيكوف</td>
+                            <td>تتبع قاعدة زايتسيف</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="apps" class="apps">
+        <div class="container">
+            <div class="section-title">
+                <h2>تطبيقات تفاعلات الحذف</h2>
+                <p>كيف تُستخدم هذه التفاعلات في الصناعة والحياة اليومية</p>
+            </div>
+            <div class="apps-container">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>صناعة البلاستيك</h3>
+                    <p>إنتاج الإيثين والبروبين من خلال تفاعلات الحذف، وهي المواد الخام الأساسية لصناعة البولي إيثيلين والبولي بروبيلين.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-gas-pump"></i>
+                    </div>
+                    <h3>تكرير البترول</h3>
+                    <p>استخدام تفاعلات الحذف في تكسير الهيدروكربونات الثقيلة إلى هيدروكربونات أخف وأكثر قيمة.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-prescription-bottle"></i>
+                    </div>
+                    <h3>الصناعات الدوائية</h3>
+                    <p>تستخدم في تركيب العديد من المركبات الطبية، خاصة في إنتاج المضادات الحيوية والستيرويدات.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3>صناعة المواد الكيميائية</h3>
+                    <p>إنتاج المذيبات العضوية والمواد الوسيطة المستخدمة في صناعات الطلاء والورنيش.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>الصناعات الغذائية</h3>
+                    <p>إنتاج النكهات والروائح الاصطناعية من خلال تفاعلات الحذف في المركبات العضوية.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-biohazard"></i>
+                    </div>
+                    <h3>العمليات البيولوجية</h3>
+                    <p>تلعب تفاعلات الحذف دوراً مهماً في عمليات الأيض الخلوي، مثل دورة حمض الستريك وتكوين الأحماض الدهنية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <div class="section-title">
+                <h2>تجربة تفاعلية</h2>
+                <p>جرب تفاعلات الحذف بنفسك</p>
+            </div>
+            <div class="demo-container">
+                <h3 style="text-align: center; color: var(--primary); margin-bottom: 30px;">تفاعل الحذف التفاعلي</h3>
+                <div class="molecule-display" id="moleculeDisplay">
+                    <div class="molecule" id="molecule">CH₃-CH₂-OH</div>
+                    <p id="moleculeName">الإيثانول</p>
+                </div>
+                <div class="reaction-controls">
+                    <button class="control-btn" onclick="performDehydration('ethanol')">نزع الماء</button>
+                    <button class="control-btn" onclick="performDehalogenation('dibromoethane')">نزع البروم</button>
+                    <button class="control-btn" onclick="performDehydrogenation('propane')">نزع الهيدروجين</button>
+                    <button class="control-btn" onclick="resetMolecule()">إعادة تعيين</button>
+                </div>
+                <div id="reactionInfo" style="margin-top: 30px; padding: 20px; background: #f3e8ff; border-radius: 10px; display: none;">
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">معلومات التفاعل:</h4>
+                    <p id="reactionDescription"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="quiz">
+        <div class="container">
+            <div class="section-title">
+                <h2>اختبار تفاعلي</h2>
+                <p>اختبر معرفتك بتفاعلات الحذف</p>
+            </div>
+            <div class="quiz-container">
+                <div class="question">
+                    <h3>1. ما هو المنتج الرئيسي عند نزع الماء من 2-بروبانول؟</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 0)">البروبان</div>
+                        <div class="option" onclick="selectOption(this, 1)">البروبين</div>
+                        <div class="option" onclick="selectOption(this, 2)">البروبانال</div>
+                        <div class="option" onclick="selectOption(this, 3)">البروبانون</div>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <h3>2. أي القواعد التالية تنطبق على تفاعلات الحذف؟</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 0)">قاعدة ماركونيكوف</div>
+                        <div class="option" onclick="selectOption(this, 1)">قاعدة زايتسيف</div>
+                        <div class="option" onclick="selectOption(this, 2)">قاعدة أوكتيت</div>
+                        <div class="option" onclick="selectOption(this, 3)">قاعدة هوند</div>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <h3>3. ما هو نوع التفاعل الذي يزيل جزيء ماء من الكحول؟</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 0)">نزع الهاليد</div>
+                        <div class="option" onclick="selectOption(this, 1)">نزع الماء</div>
+                        <div class="option" onclick="selectOption(this, 2)">نزع الهيدروجين</div>
+                        <div class="option" onclick="selectOption(this, 3)">نزع الكربوكسيل</div>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="checkAnswers()" style="margin-top: 30px; width: 100%;">تحقق من الإجابات</button>
+                
+                <div class="quiz-result" id="quizResult">
+                    <h3 id="resultTitle"></h3>
+                    <p id="resultText"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع تفاعلات الحذف</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى عالي الجودة حول تفاعلات الحذف في الكيمياء العضوية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#types">الأنواع</a></li>
+                        <li><a href="#mechanism">آلية العمل</a></li>
+                        <li><a href="#apps">التطبيقات</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">محاكاة تفاعلات</a></li>
+                        <li><a href="#">امتحانات تجريبية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@elimination-reactions.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع تفاعلات الحذف. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="fab" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Interactive Demo Functions
+        let currentMolecule = 'CH₃-CH₂-OH';
+        let currentName = 'الإيثانول';
+
+        function performDehydration(type) {
+            const moleculeDisplay = document.getElementById('moleculeDisplay');
+            const molecule = document.getElementById('molecule');
+            const moleculeName = document.getElementById('moleculeName');
+            const reactionInfo = document.getElementById('reactionInfo');
+            const reactionDescription = document.getElementById('reactionDescription');
+
+            let newMolecule = '';
+            let newName = '';
+            let description = '';
+
+            if (type === 'ethanol') {
+                newMolecule = 'CH₂=CH₂';
+                newName = 'الإيثين';
+                description = 'تفاعل نزع الماء: عند تسخين الإيثانول مع حمض الكبريتيك المركز عند 170°C، يتم نزع جزيء الماء لتكوين الإيثين. هذا التفاعل مهم في الصناعة لإنتاج الإيثين المستخدم في صناعة البلاستيك.';
+            }
+
+            // Animate the change
+            molecule.style.animation = 'pulse 0.5s';
+            setTimeout(() => {
+                molecule.textContent = newMolecule;
+                moleculeName.textContent = newName;
+                currentMolecule = newMolecule;
+                currentName = newName;
+                molecule.style.animation = '';
+                
+                reactionDescription.textContent = description;
+                reactionInfo.style.display = 'block';
+            }, 250);
+        }
+
+        function performDehalogenation(type) {
+            const moleculeDisplay = document.getElementById('moleculeDisplay');
+            const molecule = document.getElementById('molecule');
+            const moleculeName = document.getElementById('moleculeName');
+            const reactionInfo = document.getElementById('reactionInfo');
+            const reactionDescription = document.getElementById('reactionDescription');
+
+            let newMolecule = '';
+            let newName = '';
+            let description = '';
+
+            if (type === 'dibromoethane') {
+                molecule.textContent = 'CH₂Br-CH₂Br';
+                moleculeName.textContent = '1,2-ثنائي برومو الإيثان';
+                
+                setTimeout(() => {
+                    newMolecule = 'CH₂=CH₂';
+                    newName = 'الإيثين';
+                    description = 'تفاعل نزع الهالوجين المزدوج: عند معالجة 1,2-ثنائي برومو الإيثان مع الزنك في الإيثانول، يتم نزع ذرتي البروم لتكوين الإيثين. يستخدم هذا التفاعل في الاصطناع العضوي.';
+                    
+                    molecule.style.animation = 'pulse 0.5s';
+                    setTimeout(() => {
+                        molecule.textContent = newMolecule;
+                        moleculeName.textContent = newName;
+                        currentMolecule = newMolecule;
+                        currentName = newName;
+                        molecule.style.animation = '';
+                        
+                        reactionDescription.textContent = description;
+                        reactionInfo.style.display = 'block';
+                    }, 250);
+                }, 1000);
+            }
+        }
+
+        function performDehydrogenation(type) {
+            const moleculeDisplay = document.getElementById('moleculeDisplay');
+            const molecule = document.getElementById('molecule');
+            const moleculeName = document.getElementById('moleculeName');
+            const reactionInfo = document.getElementById('reactionInfo');
+            const reactionDescription = document.getElementById('reactionDescription');
+
+            let newMolecule = '';
+            let newName = '';
+            let description = '';
+
+            if (type === 'propane') {
+                molecule.textContent = 'CH₃-CH₂-CH₃';
+                moleculeName.textContent = 'البروبان';
+                
+                setTimeout(() => {
+                    newMolecule = 'CH₃-CH=CH₂';
+                    newName = 'البروبين';
+                    description = 'تفاعل نزع الهيدروجين: عند تسخين البروبان مع عامل حفاز مثل البلاتين عند درجات حرارة عالية، يتم نزع ذرتي هيدروجين لتكوين البروبين. هذا التفاعل مهم في تكرير البترول.';
+                    
+                    molecule.style.animation = 'pulse 0.5s';
+                    setTimeout(() => {
+                        molecule.textContent = newMolecule;
+                        moleculeName.textContent = newName;
+                        currentMolecule = newMolecule;
+                        currentName = newName;
+                        molecule.style.animation = '';
+                        
+                        reactionDescription.textContent = description;
+                        reactionInfo.style.display = 'block';
+                    }, 250);
+                }, 1000);
+            }
+        }
+
+        function resetMolecule() {
+            const molecule = document.getElementById('molecule');
+            const moleculeName = document.getElementById('moleculeName');
+            const reactionInfo = document.getElementById('reactionInfo');
+
+            molecule.style.animation = 'pulse 0.5s';
+            setTimeout(() => {
+                molecule.textContent = 'CH₃-CH₂-OH';
+                moleculeName.textContent = 'الإيثانول';
+                currentMolecule = 'CH₃-CH₂-OH';
+                currentName = 'الإيثانول';
+                molecule.style.animation = '';
+                reactionInfo.style.display = 'none';
+            }, 250);
+        }
+
+        // Quiz Functions
+        const correctAnswers = [1, 1, 1]; // Index of correct answers
+        let selectedOptions = [-1, -1, -1]; // Track selected options
+
+        function selectOption(element, questionIndex) {
+            // Remove previous selection
+            const options = element.parentElement.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            
+            // Add selection to clicked option
+            element.classList.add('selected');
+            selectedOptions[questionIndex] = Array.from(options).indexOf(element);
+        }
+
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.question');
+            let correctCount = 0;
+
+            questions.forEach((question, index) => {
+                const options = question.querySelectorAll('.option');
+                const selectedIndex = selectedOptions[index];
+                
+                if (selectedIndex === correctAnswers[index]) {
+                    options[selectedIndex].classList.add('correct');
+                    correctCount++;
+                } else {
+                    if (selectedIndex !== -1) {
+                        options[selectedIndex].classList.add('incorrect');
+                    }
+                    options[correctAnswers[index]].classList.add('correct');
+                }
+            });
+
+            // Show result
+            const resultDiv = document.getElementById('quizResult');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultText = document.getElementById('resultText');
+
+            resultDiv.style.display = 'block';
+            
+            if (correctCount === 3) {
+                resultDiv.className = 'quiz-result success';
+                resultTitle.textContent = 'ممتاز!';
+                resultText.textContent = 'لقد أجبت على جميع الأسئلة بشكل صحيح. فهمك لتفاعلات الحذف ممتاز!';
+            } else if (correctCount >= 2) {
+                resultDiv.className = 'quiz-result success';
+                resultTitle.textContent = 'جيد جداً!';
+                resultText.textContent = `لقد أجبت على ${correctCount} من 3 أسئلة بشكل صحيح. استمر في التطور!`;
+            } else {
+                resultDiv.className = 'quiz-result fail';
+                resultTitle.textContent = 'تحتاج إلى المزيد من الدراسة';
+                resultText.textContent = `لقد أجبت على ${correctCount} من 3 أسئلة بشكل صحيح. راجع المواد التعليمية وحاول مرة أخرى.`;
+            }
+
+            // Scroll to result
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const fab = document.querySelector('.fab');
+            if (window.pageYOffset > 300) {
+                fab.style.display = 'flex';
+            } else {
+                fab.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

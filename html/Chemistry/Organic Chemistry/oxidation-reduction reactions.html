@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاعلات الأكسدة والاختزال - الكيمياء</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        :root {
+            --primary: #dc2626;
+            --secondary: #f97316;
+            --accent: #ef4444;
+            --light: #fef2f2;
+            --dark: #1f2937;
+            --success: #10b981;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            --warning: #f59e0b;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--secondary);
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(220, 38, 38, 0.9), rgba(239, 68, 68, 0.9)), url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="a" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23a)"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #ea580c;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #334155;
+            font-size: 1.1rem;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Concepts Section */
+        .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .concept-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .concept-header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .concept-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .concept-body {
+            padding: 25px;
+        }
+
+        .concept-formula {
+            background-color: #fef2f2;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 15px 0;
+            font-size: 1.1rem;
+        }
+
+        /* Examples Section */
+        .examples-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .example-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .example-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .example-title {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .example-equation {
+            background: #fef2f2;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            margin: 15px 0;
+            border-right: 4px solid var(--secondary);
+        }
+
+        /* Interactive Calculator */
+        .calculator-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .calculator-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            color: #6b7280;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+
+        .calc-result {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #fef2f2;
+            border-radius: 10px;
+            border-right: 4px solid var(--primary);
+            display: none;
+        }
+
+        .calc-result h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .calc-result p {
+            color: #374151;
+            font-size: 1.1rem;
+        }
+
+        /* Applications Section */
+        .apps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .app-card {
+            background: white;
+            border-radius: 15px;
+            width: 300px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .app-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .app-card p {
+            color: #64748b;
+        }
+
+        /* Quiz Section */
+        .quiz-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .question {
+            margin-bottom: 30px;
+        }
+
+        .question h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option:hover {
+            border-color: var(--accent);
+            background: #fef2f2;
+        }
+
+        .option.selected {
+            border-color: var(--secondary);
+            background: #fef3c7;
+        }
+
+        .option.correct {
+            border-color: var(--success);
+            background: #f0fdf4;
+        }
+
+        .option.incorrect {
+            border-color: var(--danger);
+            background: #fef2f2;
+        }
+
+        .quiz-result {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .quiz-result.success {
+            background: #f0fdf4;
+            border: 2px solid var(--success);
+            color: var(--success);
+        }
+
+        .quiz-result.fail {
+            background: #fef2f2;
+            border: 2px solid var(--danger);
+            color: var(--danger);
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+            border-right: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .info-box h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-box p {
+            color: #7f1d1d;
+        }
+
+        /* Oxidation States Table */
+        .states-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .states-table th,
+        .states-table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+        }
+
+        .states-table th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: bold;
+        }
+
+        .states-table tr:nth-child(even) {
+            background-color: #fef2f2;
+        }
+
+        .states-table tr:hover {
+            background-color: #fee2e2;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #cbd5e1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.6);
+        }
+
+        /* Interactive Demo */
+        .demo-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .reaction-display {
+            background: #fef2f2;
+            border: 2px dashed #fca5a5;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            margin: 30px 0;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .reaction-equation-display {
+            font-size: 2rem;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .reaction-controls {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .control-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-fire"></i>
+                <span>تفاعلات الأكسدة والاختزال</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#concepts">المفاهيم</a></li>
+                    <li><a href="#examples">أمثلة</a></li>
+                    <li><a href="#calculator">الحاسبة</a></li>
+                    <li><a href="#apps">التطبيقات</a></li>
+                    <li><a href="#demo">تجربة</a></li>
+                    <li><a href="#quiz">اختبار</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>تفاعلات الأكسدة والاختزال</h1>
+            <p>اكتشف عالم تفاعلات نقل الإلكترونات وأهميتها في الكيمياء والحياة</p>
+            <a href="#intro" class="btn">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>مقدمة في تفاعلات الأكسدة والاختزال</h2>
+                <p>أساسيات تفاعلات الأكسدة والاختزال في الكيمياء</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>ما هي تفاعلات الأكسدة والاختزال؟</h3>
+                    <p>تفاعلات الأكسدة والاختزال (Redox) هي تفاعلات كيميائية تتضمن نقل الإلكترونات بين المواد المتفاعلة. في هذه التفاعلات، يفقد أحد المواد الإلكترونات (أكسدة) بينما يكتسب المادة الأخرى الإلكترونات (اختزال).</p>
+                    <p>تعتبر هذه التفاعل من أهم التفاعلات في الكيمياء لأنها تحدث في العديد من العمليات الطبيعية والصناعية. من أمثلتها تنفس الخلايا، التمثيل الضوئي، التآكل، وتوليد الكهرباء في البطاريات.</p>
+                    <p>لفهم هذه التفاعل، يجب أن نتعرف على مفاهيم مثل أعداد الأكسدة، العوامل المؤكسدة والمختزلة، وكيفية موازنة المعادلات الأكسدية الاختزالية.</p>
+                    
+                    <div class="info-box">
+                        <h4><i class="fas fa-lightbulb"></i> معلومة مهمة</h4>
+                        <p>كلمة "Redox" تأتي من دمج كلمتي Reduction (اختزال) و Oxidation (أكسدة). هاتان العمليتان تحدثان معاً دائماً.</p>
+                    </div>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="تفاعلات الأكسدة والاختزال">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Concepts Section -->
+    <section id="concepts" class="concepts">
+        <div class="container">
+            <div class="section-title">
+                <h2>المفاهيم الأساسية</h2>
+                <p>فهم المصطلحات والمبادئ الأساسية لتفاعلات الأكسدة والاختزال</p>
+            </div>
+            <div class="concepts-grid">
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <h3>الأكسدة</h3>
+                        <p>Oxidation</p>
+                    </div>
+                    <div class="concept-body">
+                        <p>عملية فقدان الإلكترونات من ذرة أو أيون. تزداد حالة الأكسدة (أو عدد الأكسدة) للعنصر الذي يتأكسد.</p>
+                        <div class="concept-formula">
+                            Fe → Fe²⁺ + 2e⁻
+                        </div>
+                        <p>في هذا المثال، يفقد الحديد ذرتين من الإلكترونات ويتأكسد من Fe إلى Fe²⁺.</p>
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <h3>الاختزال</h3>
+                        <p>Reduction</p>
+                    </div>
+                    <div class="concept-body">
+                        <p>عملية اكتساب الإلكترونات بواسطة ذرة أو أيون. تقل حالة الأكسدة (أو عدد الأكسدة) للعنصر الذي يختزل.</p>
+                        <div class="concept-formula">
+                            Cu²⁺ + 2e⁻ → Cu
+                        </div>
+                        <p>في هذا المثال، يكتسب النحاس ذرتين من الإلكترونات ويختزل من Cu²⁺ إلى Cu.</p>
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <h3>العامل المؤكسد</h3>
+                        <p>Oxidizing Agent</p>
+                    </div>
+                    <div class="concept-body">
+                        <p>المادة التي تسبب أكسدة المادة الأخرى، وبالتالي تختزل هي نفسها. يقبل العامل المؤكسد الإلكترونات.</p>
+                        <div class="concept-formula">
+                            O₂ + 4e⁻ → 2O²⁻
+                        </div>
+                        <p>الأكسجين هو عامل مؤكسد شائع، حيث يكتسب الإلكترونات ويتحول إلى أيونات الأكسيد.</p>
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <h3>العامل المختزل</h3>
+                        <p>Reducing Agent</p>
+                    </div>
+                    <div class="concept-body">
+                        <p>المادة التي تسبب اختزال المادة الأخرى، وبالتالي تتأكسد هي نفسها. يعطي العامل المختزل الإلكترونات.</p>
+                        <div class="concept-formula">
+                            2I⁻ → I₂ + 2e⁻
+                        </div>
+                        <p>أيونات اليوديد تعمل كعامل مختزل، حيث تفقد الإلكترونات وتتحول إلى اليود الجزيئي.</p>
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <h3>عدد الأكسدة</h3>
+                        <p>Oxidation Number</p>
+                    </div>
+                    <div class="concept-body">
+                        <p>رقم افتراضي يمثل الشحنة التي تحملها الذرة لو كانت جميع الروابط أيونية. يساعد في تحديد ما إذا كان العنصر تأكسد أو اختزل.</p>
+                        <div class="concept-formula">
+                            في KMnO₄: K=+1, Mn=+7, O=-2
+                        </div>
+                        <p>مجموع أعداد الأكسدة في مركب محايد يساوي صفراً.</p>
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <h3>نصف التفاعل</h3>
+                        <p>Half-Reaction</p>
+                    </div>
+                    <div class="concept-body">
+                        <p>يمثل جزءاً من تفاعل الأكسدة والاختزال يظهر إما عملية الأكسدة أو الاختزال فقط. يساعد في موازنة المعادلات المعقدة.</p>
+                        <div class="concept-formula">
+                            الأكسدة: Zn → Zn²⁺ + 2e⁻<br>
+                            الاختزال: Cu²⁺ + 2e⁻ → Cu
+                        </div>
+                        <p>عند دمج النصفين، نحصل على التفاعل الكامل.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Oxidation States Table -->
+            <h3 style="text-align: center; color: var(--primary); margin: 50px 0 30px;">أعداد الأكسدة الشائعة للعناصر</h3>
+            <table class="states-table">
+                <thead>
+                    <tr>
+                        <th>العنصر</th>
+                        <th>الرمز</th>
+                        <th>أعداد الأكسدة الشائعة</th>
+                        <th>أمثلة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>الهيدروجين</td>
+                        <td>H</td>
+                        <td>+1, -1</td>
+                        <td>H₂O (+1), NaH (-1)</td>
+                    </tr>
+                    <tr>
+                        <td>الأكسجين</td>
+                        <td>O</td>
+                        <td>-2, -1, +2</td>
+                        <td>H₂O (-2), H₂O₂ (-1), OF₂ (+2)</td>
+                    </tr>
+                    <tr>
+                        <td>الكالسيوم</td>
+                        <td>Ca</td>
+                        <td>+2</td>
+                        <td>CaO, CaCl₂</td>
+                    </tr>
+                    <tr>
+                        <td>الحديد</td>
+                        <td>Fe</td>
+                        <td>+2, +3</td>
+                        <td>FeO (+2), Fe₂O₃ (+3)</td>
+                    </tr>
+                    <tr>
+                        <td>النحاس</td>
+                        <td>Cu</td>
+                        <td>+1, +2</td>
+                        <td>Cu₂O (+1), CuO (+2)</td>
+                    </tr>
+                    <tr>
+                        <td>الكبريت</td>
+                        <td>S</td>
+                        <td>-2, +4, +6</td>
+                        <td>H₂S (-2), SO₂ (+4), SO₃ (+6)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Examples Section -->
+    <section id="examples" class="examples">
+        <div class="container">
+            <div class="section-title">
+                <h2>أمثلة على تفاعلات الأكسدة والاختزال</h2>
+                <p>أمثلة عملية توضح تفاعلات الأكسدة والاختزال في سياقات مختلفة</p>
+            </div>
+            <div class="examples-container">
+                <div class="example-card">
+                    <div class="example-title">
+                        <i class="fas fa-battery-full"></i>
+                        تفاعل البطارية
+                    </div>
+                    <p>تفاعل الزنك مع النحاس في بطارية دانيال:</p>
+                    <div class="example-equation">
+                        Zn + Cu²⁺ → Zn²⁺ + Cu
+                    </div>
+                    <p><strong>الأكسدة:</strong> Zn → Zn²⁺ + 2e⁻ (الزنك يتأكسد)<br>
+                    <strong>الاختزال:</strong> Cu²⁺ + 2e⁻ → Cu (النحاس يختزل)<br>
+                    <strong>العامل المؤكسد:</strong> Cu²⁺<br>
+                    <strong>العامل المختزل:</strong> Zn</p>
+                </div>
+                
+                <div class="example-card">
+                    <div class="example-title">
+                        <i class="fas fa-fire"></i>
+                        احتراق الميثان
+                    </div>
+                    <p>تفاعل احتراق الميثان في الهواء:</p>
+                    <div class="example-equation">
+                        CH₄ + 2O₂ → CO₂ + 2H₂O
+                    </div>
+                    <p><strong>الأكسدة:</strong> C في CH₄ من -4 إلى +4 في CO₂<br>
+                    <strong>الاختزال:</strong> O في O₂ من 0 إلى -2 في H₂O و CO₂<br>
+                    <strong>العامل المؤكسد:</strong> O₂<br>
+                    <strong>العامل المختزل:</strong> CH₄</p>
+                </div>
+                
+                <div class="example-card">
+                    <div class="example-title">
+                        <i class="fas fa-flask"></i>
+                        تفاعل برمنجانات البوتاسيوم
+                    </div>
+                    <p>تفاعل برمنجانات البوتاسيوم مع أكسالات الصوديوم:</p>
+                    <div class="example-equation">
+                        2MnO₄⁻ + 5C₂O₄²⁻ + 16H⁺ → 2Mn²⁺ + 10CO₂ + 8H₂O
+                    </div>
+                    <p><strong>الأكسدة:</strong> C في C₂O₄²⁻ من +3 إلى +4 في CO₂<br>
+                    <strong>الاختزال:</strong> Mn في MnO₄⁻ من +7 إلى +2 في Mn²⁺<br>
+                    <strong>العامل المؤكسد:</strong> MnO₄⁻<br>
+                    <strong>العامل المختزل:</strong> C₂O₄²⁻</p>
+                </div>
+                
+                <div class="example-card">
+                    <div class="example-title">
+                        <i class="fas fa-tint"></i>
+                        صدأ الحديد
+                    </div>
+                    <p>تفاعل أكسدة الحديد في وجود الرطوبة:</p>
+                    <div class="example-equation">
+                        4Fe + 3O₂ + 6H₂O → 4Fe(OH)₃
+                    </div>
+                    <p><strong>الأكسدة:</strong> Fe من 0 إلى +3 في Fe(OH)₃<br>
+                    <strong>الاختزال:</strong> O من 0 في O₂ إلى -2 في Fe(OH)₃<br>
+                    <strong>العامل المؤكسد:</strong> O₂<br>
+                    <strong>العامل المختزل:</strong> Fe</p>
+                </div>
+                
+                <div class="example-card">
+                    <div class="example-title">
+                        <i class="fas fa-leaf"></i>
+                        التمثيل الضوئي
+                    </div>
+                    <p>عملية التمثيل الضوئي في النباتات:</p>
+                    <div class="example-equation">
+                        6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂
+                    </div>
+                    <p><strong>الاختزال:</strong> C في CO₂ من +4 إلى 0 في C₆H₁₂O₆<br>
+                    <strong>الأكسدة:</strong> O في H₂O من -2 إلى 0 في O₂<br>
+                    <strong>العامل المؤكسد:</strong> CO₂<br>
+                    <strong>العامل المختزل:</strong> H₂O</p>
+                </div>
+                
+                <div class="example-card">
+                    <div class="example-title">
+                        <i class="fas fa-lungs"></i>
+                        التنفس الخلوي
+                    </div>
+                    <p>عملية التنفس الخلوي في الكائنات الحية:</p>
+                    <div class="example-equation">
+                        C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + الطاقة
+                    </div>
+                    <p><strong>الأكسدة:</strong> C في C₆H₁₂O₆ من 0 إلى +4 في CO₂<br>
+                    <strong>الاختزال:</strong> O في O₂ من 0 إلى -2 في H₂O<br>
+                    <strong>العامل المؤكسد:</strong> O₂<br>
+                    <strong>العامل المختزل:</strong> C₆H₁₂O₆</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="calculator">
+        <div class="container">
+            <div class="section-title">
+                <h2>حاسبة تفاعلات الأكسدة والاختزال</h2>
+                <p>أدوات تفاعلية لحساب وموازنة تفاعلات الأكسدة والاختزال</p>
+            </div>
+            <div class="calculator-container">
+                <div class="calculator-tabs">
+                    <button class="tab active" onclick="switchTab('oxidation-numbers')">أعداد الأكسدة</button>
+                    <button class="tab" onclick="switchTab('balance-equation')">موازنة المعادلة</button>
+                    <button class="tab" onclick="switchTab('cell-potential')">جهد الخلية</button>
+                </div>
+                
+                <!-- Oxidation Numbers Calculator -->
+                <div id="oxidation-numbers" class="tab-content active">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">حاسبة أعداد الأكسدة</h3>
+                    <form id="oxidation-form">
+                        <div class="form-group">
+                            <label for="compound">ادخل الصيغة الكيميائية للمركب:</label>
+                            <input type="text" id="compound" placeholder="مثال: KMnO4" required>
+                        </div>
+                        <button type="submit" class="btn">احسب أعداد الأكسدة</button>
+                    </form>
+                    <div class="calc-result" id="oxidation-result">
+                        <h4>نتيجة حساب أعداد الأكسدة:</h4>
+                        <p id="oxidation-text"></p>
+                    </div>
+                </div>
+                
+                <!-- Equation Balancer -->
+                <div id="balance-equation" class="tab-content">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">موازنة معادلات الأكسدة والاختزال</h3>
+                    <form id="balance-form">
+                        <div class="form-group">
+                            <label for="reactants">المواد المتفاعلة:</label>
+                            <input type="text" id="reactants" placeholder="مثال: Fe + O2" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="products">المواد الناتجة:</label>
+                            <input type="text" id="products" placeholder="مثال: Fe2O3" required>
+                        </div>
+                        <button type="submit" class="btn">وازن المعادلة</button>
+                    </form>
+                    <div class="calc-result" id="balance-result">
+                        <h4>المعادلة الموازنة:</h4>
+                        <p id="balance-text"></p>
+                    </div>
+                </div>
+                
+                <!-- Cell Potential Calculator -->
+                <div id="cell-potential" class="tab-content">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">حاسبة جهد الخلية</h3>
+                    <form id="potential-form">
+                        <div class="form-group">
+                            <label for="anode">نصف تفاعل الأنود (الأكسدة):</label>
+                            <select id="anode">
+                                <option value="-0.76">Zn²⁺ + 2e⁻ → Zn (-0.76 V)</option>
+                                <option value="0.34">Cu²⁺ + 2e⁻ → Cu (0.34 V)</option>
+                                <option value="0.00">2H⁺ + 2e⁻ → H₂ (0.00 V)</option>
+                                <option value="-2.37">Mg²⁺ + 2e⁻ → Mg (-2.37 V)</option>
+                                <option value="-0.44">Fe²⁺ + 2e⁻ → Fe (-0.44 V)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cathode">نصف تفاعل الكاثود (الاختزال):</label>
+                            <select id="cathode">
+                                <option value="0.34">Cu²⁺ + 2e⁻ → Cu (0.34 V)</option>
+                                <option value="-0.76">Zn²⁺ + 2e⁻ → Zn (-0.76 V)</option>
+                                <option value="0.00">2H⁺ + 2e⁻ → H₂ (0.00 V)</option>
+                                <option value="-2.37">Mg²⁺ + 2e⁻ → Mg (-2.37 V)</option>
+                                <option value="-0.44">Fe²⁺ + 2e⁻ → Fe (-0.44 V)</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn">احسب جهد الخلية</button>
+                    </form>
+                    <div class="calc-result" id="potential-result">
+                        <h4>جهد الخلية:</h4>
+                        <p id="potential-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="apps" class="apps">
+        <div class="container">
+            <div class="section-title">
+                <h2>تطبيقات تفاعلات الأكسدة والاختزال</h2>
+                <p>كيف تُستخدم هذه التفاعلات في الصناعة والحياة اليومية</p>
+            </div>
+            <div class="apps-container">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-battery-three-quarters"></i>
+                    </div>
+                    <h3>البطاريات</h3>
+                    <p>تستخدم تفاعلات الأكسدة والاختزال لتوليد الكهرباء في جميع أنواع البطاريات، من بطاريات السيارات إلى بطاريات الليثيوم في الأجهزة المحمولة.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>الصناعة الكيميائية</h3>
+                    <p>تستخدم في إنتاج العديد من المواد الكيميائية مثل حمض النتريك، حمض الكبريتيك، والكلور من خلال تفاعلات الأكسدة والاختزال.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>مكافحة التآكل</h3>
+                    <p>فهم تفاعلات الأكسدة والاختزال يساعد في تطوير طرق لحماية المعادن من الصدأ والتآكل، مثل الطلاء الكاثودي واستخدام مثبطات التآكل.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3>تنقية المياه</h3>
+                    <p>تستخدم مواد مؤكسدة مثل الكلور والأوزون في تنقية المياه وقتل البكتيريا والكائنات الدقيقة من خلال تفاعلات الأكسدة.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>العمليات البيولوجية</h3>
+                    <p>تلعب تفاعلات الأكسدة والاختزال دوراً حيوياً في العمليات البيولوجية مثل التنفس الخلوي، التمثيل الضوئي، ونقل الإلكترون في سلسلة التنفس.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <h3>إعادة التدوير</h3>
+                    <p>تستخدم تفاعلات الأكسدة والاختزال في استخلاص المعادن من الخردة وإعادة تدويرها، مما يساهم في حماية البيئة والحفاظ على الموارد.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <div class="section-title">
+                <h2>تجربة تفاعلية</h2>
+                <p>شاهد تفاعلات الأكسدة والاختزال بشكل تفاعلي</p>
+            </div>
+            <div class="demo-container">
+                <h3 style="text-align: center; color: var(--primary); margin-bottom: 30px;">محاكاة تفاعل الأكسدة والاختزال</h3>
+                <div class="reaction-display" id="reactionDisplay">
+                    <div class="reaction-equation-display" id="reactionEquation">Zn + Cu²⁺ → Zn²⁺ + Cu</div>
+                    <p id="reactionName">تفاعل الزنك مع أيونات النحاس</p>
+                </div>
+                <div class="reaction-controls">
+                    <button class="control-btn" onclick="showReaction('zn-cu')">Zn + Cu²⁺</button>
+                    <button class="control-btn" onclick="showReaction('fe-o2')">Fe + O₂</button>
+                    <button class="control-btn" onclick="showReaction('mg-hcl')">Mg + HCl</button>
+                    <button class="control-btn" onclick="showReaction('al-cu')">Al + Cu²⁺</button>
+                    <button class="control-btn" onclick="animateReaction()">شاهد التفاعل</button>
+                </div>
+                <div id="reactionInfo" style="margin-top: 30px; padding: 20px; background: #fef2f2; border-radius: 10px; display: none;">
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">معلومات التفاعل:</h4>
+                    <p id="reactionDescription"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="quiz">
+        <div class="container">
+            <div class="section-title">
+                <h2>اختبار تفاعلي</h2>
+                <p>اختبر معرفتك بتفاعلات الأكسدة والاختزال</p>
+            </div>
+            <div class="quiz-container">
+                <div class="question">
+                    <h3>1. أي مما يلي يمثل عملية أكسدة؟</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 0)">Fe²⁺ → Fe³⁺ + e⁻</div>
+                        <div class="option" onclick="selectOption(this, 1)">Cu²⁺ + 2e⁻ → Cu</div>
+                        <div class="option" onclick="selectOption(this, 2)">O₂ + 4e⁻ → 2O²⁻</div>
+                        <div class="option" onclick="selectOption(this, 3)">Cl₂ + 2e⁻ → 2Cl⁻</div>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <h3>2. ما هو عدد أكسدة الكبريت في H₂SO₄؟</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 0)">-2</div>
+                        <div class="option" onclick="selectOption(this, 1)">+4</div>
+                        <div class="option" onclick="selectOption(this, 2)">+6</div>
+                        <div class="option" onclick="selectOption(this, 3)">+8</div>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <h3>3. أي المواد التالية تعمل كعامل مؤكسد في تفاعل احتراق الميثان؟</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, 0)">CH₄</div>
+                        <div class="option" onclick="selectOption(this, 1)">O₂</div>
+                        <div class="option" onclick="selectOption(this, 2)">CO₂</div>
+                        <div class="option" onclick="selectOption(this, 3)">H₂O</div>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="checkAnswers()" style="margin-top: 30px; width: 100%;">تحقق من الإجابات</button>
+                
+                <div class="quiz-result" id="quizResult">
+                    <h3 id="resultTitle"></h3>
+                    <p id="resultText"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع تفاعلات الأكسدة والاختزال</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى عالي الجودة حول تفاعلات الأكسدة والاختزال في الكيمياء.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#concepts">المفاهيم</a></li>
+                        <li><a href="#examples">أمثلة</a></li>
+                        <li><a href="#calculator">الحاسبة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">محاكاة تفاعلات</a></li>
+                        <li><a href="#">امتحانات تجريبية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@redox-reactions.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع تفاعلات الأكسدة والاختزال. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="fab" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Tab Switching
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Oxidation Numbers Calculator
+        document.getElementById('oxidation-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const compound = document.getElementById('compound').value;
+            const result = document.getElementById('oxidation-result');
+            const resultText = document.getElementById('oxidation-text');
+            
+            // Simple oxidation number calculation for common compounds
+            let oxidationInfo = '';
+            
+            switch(compound.toLowerCase()) {
+                case 'kmno4':
+                    oxidationInfo = 'K: +1, Mn: +7, O: -2';
+                    break;
+                case 'h2so4':
+                    oxidationInfo = 'H: +1, S: +6, O: -2';
+                    break;
+                case 'fe2o3':
+                    oxidationInfo = 'Fe: +3, O: -2';
+                    break;
+                case 'co2':
+                    oxidationInfo = 'C: +4, O: -2';
+                    break;
+                case 'h2o':
+                    oxidationInfo = 'H: +1, O: -2';
+                    break;
+                case 'nacl':
+                    oxidationInfo = 'Na: +1, Cl: -1';
+                    break;
+                default:
+                    oxidationInfo = 'يرجى إدخال مركب شائع مثل KMnO4, H2SO4, Fe2O3, CO2, H2O, أو NaCl';
+            }
+            
+            resultText.textContent = oxidationInfo;
+            result.style.display = 'block';
+        });
+
+        // Equation Balancer
+        document.getElementById('balance-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const reactants = document.getElementById('reactants').value;
+            const products = document.getElementById('products').value;
+            const result = document.getElementById('balance-result');
+            const resultText = document.getElementById('balance-text');
+            
+            // Simple equation balancing for common reactions
+            let balancedEquation = '';
+            
+            if (reactants.toLowerCase().includes('fe') && products.toLowerCase().includes('fe2o3')) {
+                balancedEquation = '4Fe + 3O₂ → 2Fe₂O₃';
+            } else if (reactants.toLowerCase().includes('h2') && products.toLowerCase().includes('h2o')) {
+                balancedEquation = '2H₂ + O₂ → 2H₂O';
+            } else if (reactants.toLowerCase().includes('zn') && products.toLowerCase().includes('zno')) {
+                balancedEquation = '2Zn + O₂ → 2ZnO';
+            } else {
+                balancedEquation = 'يرجى إدخال تفاعل شائع مثل Fe + O₂ → Fe2O3 أو H2 + O2 → H2O';
+            }
+            
+            resultText.textContent = balancedEquation;
+            result.style.display = 'block';
+        });
+
+        // Cell Potential Calculator
+        document.getElementById('potential-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const anode = parseFloat(document.getElementById('anode').value);
+            const cathode = parseFloat(document.getElementById('cathode').value);
+            const result = document.getElementById('potential-result');
+            const resultText = document.getElementById('potential-text');
+            
+            const cellPotential = cathode - anode;
+            
+            resultText.innerHTML = `جهد الخلية = E°cathode - E°anode<br>
+                                   = ${cathode} V - (${anode} V)<br>
+                                   = ${cellPotential.toFixed(2)} V<br><br>
+                                   ${cellPotential > 0 ? 'التفاعل تلقائي' : 'التفاعل غير تلقائي'}`;
+            result.style.display = 'block';
+        });
+
+        // Interactive Demo Functions
+        let currentReaction = {
+            equation: 'Zn + Cu²⁺ → Zn²⁺ + Cu',
+            name: 'تفاعل الزنك مع أيونات النحاس',
+            description: 'في هذا التفاعل، يفقد الزنك إلكترونين (يتأكسد) بينما يكتسب النحاس الإلكترونين (يختزل). الزنك يعمل كعامل مختزل والنحاس كعامل مؤكسد.'
+        };
+
+        function showReaction(type) {
+            const reactionEquation = document.getElementById('reactionEquation');
+            const reactionName = document.getElementById('reactionName');
+            const reactionInfo = document.getElementById('reactionInfo');
+            const reactionDescription = document.getElementById('reactionDescription');
+            
+            switch(type) {
+                case 'zn-cu':
+                    currentReaction = {
+                        equation: 'Zn + Cu²⁺ → Zn²⁺ + Cu',
+                        name: 'تفاعل الزنك مع أيونات النحاس',
+                        description: 'في هذا التفاعل، يفقد الزنك إلكترونين (يتأكسد) بينما يكتسب النحاس الإلكترونين (يختزل). الزنك يعمل كعامل مختزل والنحاس كعامل مؤكسد.'
+                    };
+                    break;
+                case 'fe-o2':
+                    currentReaction = {
+                        equation: '4Fe + 3O₂ → 2Fe₂O₃',
+                        name: 'تفاعل صدأ الحديد',
+                        description: 'يتأكسد الحديد من 0 إلى +3 بينما يختزل الأكسجين من 0 إلى -2. هذا التفاعل مسؤول عن صدأ الحديد وتآكل المعادن.'
+                    };
+                    break;
+                case 'mg-hcl':
+                    currentReaction = {
+                        equation: 'Mg + 2HCl → MgCl₂ + H₂',
+                        name: 'تفاعل المغنيسيوم مع حمض الهيدروكلوريك',
+                        description: 'يتأكسد المغنيسيوم من 0 إلى +2 بينما يختزل الهيدروجين من +1 إلى 0. ينتج غاز الهيدروجين في هذا التفاعل.'
+                    };
+                    break;
+                case 'al-cu':
+                    currentReaction = {
+                        equation: '2Al + 3Cu²⁺ → 2Al³⁺ + 3Cu',
+                        name: 'تفاعل الألومنيوم مع أيونات النحاس',
+                        description: 'يتأكسد الألومنيوم من 0 إلى +3 بينما يختزل النحاس من +2 إلى 0. الألومنيوم أكثر نشاطاً من النحاس.'
+                    };
+                    break;
+            }
+            
+            reactionEquation.textContent = currentReaction.equation;
+            reactionName.textContent = currentReaction.name;
+            reactionDescription.textContent = currentReaction.description;
+            reactionInfo.style.display = 'block';
+        }
+
+        function animateReaction() {
+            const reactionEquation = document.getElementById('reactionEquation');
+            const originalText = reactionEquation.textContent;
+            
+            // Animate the reaction
+            reactionEquation.style.animation = 'pulse 0.5s';
+            reactionEquation.textContent = 'التفاعل جاري...';
+            
+            setTimeout(() => {
+                reactionEquation.textContent = originalText;
+                reactionEquation.style.animation = '';
+            }, 2000);
+        }
+
+        // Quiz Functions
+        const correctAnswers = [0, 2, 1]; // Index of correct answers
+        let selectedOptions = [-1, -1, -1]; // Track selected options
+
+        function selectOption(element, questionIndex) {
+            // Remove previous selection
+            const options = element.parentElement.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            
+            // Add selection to clicked option
+            element.classList.add('selected');
+            selectedOptions[questionIndex] = Array.from(options).indexOf(element);
+        }
+
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.question');
+            let correctCount = 0;
+
+            questions.forEach((question, index) => {
+                const options = question.querySelectorAll('.option');
+                const selectedIndex = selectedOptions[index];
+                
+                if (selectedIndex === correctAnswers[index]) {
+                    options[selectedIndex].classList.add('correct');
+                    correctCount++;
+                } else {
+                    if (selectedIndex !== -1) {
+                        options[selectedIndex].classList.add('incorrect');
+                    }
+                    options[correctAnswers[index]].classList.add('correct');
+                }
+            });
+
+            // Show result
+            const resultDiv = document.getElementById('quizResult');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultText = document.getElementById('resultText');
+
+            resultDiv.style.display = 'block';
+            
+            if (correctCount === 3) {
+                resultDiv.className = 'quiz-result success';
+                resultTitle.textContent = 'ممتاز!';
+                resultText.textContent = 'لقد أجبت على جميع الأسئلة بشكل صحيح. فهمك لتفاعلات الأكسدة والاختزال ممتاز!';
+            } else if (correctCount >= 2) {
+                resultDiv.className = 'quiz-result success';
+                resultTitle.textContent = 'جيد جداً!';
+                resultText.textContent = `لقد أجبت على ${correctCount} من 3 أسئلة بشكل صحيح. استمر في التطور!`;
+            } else {
+                resultDiv.className = 'quiz-result fail';
+                resultTitle.textContent = 'تحتاج إلى المزيد من الدراسة';
+                resultText.textContent = `لقد أجبت على ${correctCount} من 3 أسئلة بشكل صحيح. راجع المواد التعليمية وحاول مرة أخرى.`;
+            }
+
+            // Scroll to result
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const fab = document.querySelector('.fab');
+            if (window.pageYOffset > 300) {
+                fab.style.display = 'flex';
+            } else {
+                fab.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

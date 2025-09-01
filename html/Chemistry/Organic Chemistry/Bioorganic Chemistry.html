@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكيمياء العضوية الحيوية - عالم الجزيئات الحيوية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #065f46;
+            --secondary: #10b981;
+            --accent: #3b82f6;
+            --light: #f0fdf4;
+            --dark: #064e3b;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        body {
+            background-color: #f9fafb;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--warning);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--warning);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--warning);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(6, 95, 70, 0.85), rgba(16, 185, 129, 0.85)), url('https://images.unsplash.com/photo-1532187853244-bc373e8b8a2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,112C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') bottom/cover no-repeat;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--warning);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn:hover {
+            background-color: #d97706;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #334155;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Biomolecules Section */
+        .biomolecules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .biomolecule-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .biomolecule-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .biomolecule-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .biomolecule-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.3; }
+            100% { transform: scale(0.8); opacity: 0.5; }
+        }
+
+        .biomolecule-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .biomolecule-header p {
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .biomolecule-body {
+            padding: 25px;
+        }
+
+        .biomolecule-body p {
+            color: #334155;
+            margin-bottom: 15px;
+        }
+
+        .biomolecule-structure {
+            background-color: #f1f5f9;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+            margin: 15px 0;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Reactions Section */
+        .reactions-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .reaction-card {
+            background: white;
+            border-radius: 15px;
+            width: 350px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reaction-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background-color: var(--secondary);
+        }
+
+        .reaction-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .reaction-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .reaction-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .reaction-card p {
+            color: #64748b;
+            margin-bottom: 15px;
+        }
+
+        .reaction-equation {
+            background-color: #f0fdf4;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+            margin-top: 15px;
+            border: 1px dashed var(--secondary);
+        }
+
+        /* Applications Section */
+        .apps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .app-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            background-color: var(--light);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .app-card:hover .app-icon {
+            background-color: var(--secondary);
+            color: white;
+            transform: rotate(360deg);
+        }
+
+        .app-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .app-card p {
+            color: #64748b;
+            flex-grow: 1;
+        }
+
+        /* Calculator Section */
+        .calculator {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .calculator h3 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #334155;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: var(--light);
+            border-radius: 10px;
+            border-right: 4px solid var(--secondary);
+            display: none;
+        }
+
+        .result h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .result p {
+            color: #334155;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #cbd5e1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Molecule Animation */
+        .molecule-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .molecule {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-dna"></i>
+                <span>الكيمياء العضوية الحيوية</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#biomolecules">الجزيئات الحيوية</a></li>
+                    <li><a href="#reactions">التفاعلات</a></li>
+                    <li><a href="#apps">التطبيقات</a></li>
+                    <li><a href="#calc">الحاسبة</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="molecule-animation" id="molecule-animation"></div>
+            <h1>عالم الكيمياء العضوية الحيوية</h1>
+            <p>استكشف التفاعلات المعقدة التي تحدث داخل الكائنات الحية وتكوين الجزيئات الحيوية</p>
+            <a href="#intro" class="btn">ابدأ الرحلة</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>مقدمة في الكيمياء العضوية الحيوية</h2>
+                <p>العلم الذي يدرس التفاعلات الكيميائية في الكائنات الحية</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>ما هي الكيمياء العضوية الحيوية؟</h3>
+                    <p>الكيمياء العضوية الحيوية هي فرع من الكيمياء يدرس التفاعلات الكيميائية التي تحدث داخل الكائنات الحية. تجمع بين مبادئ الكيمياء العضوية والكيمياء الحيوية لفهم كيفية تكوين وتفاعل الجزيئات الحيوية.</p>
+                    <p>تهتم هذه العلوم بدراسة البنية والوظيفة والتفاعلات للجزيئات العضوية في الأنظمة البيولوجية. تشمل هذه الجزيئات البروتينات، الكربوهيدرات، الدهون، الأحماض النووية، والإنزيمات.</p>
+                    <p>تلعب الكيمياء العضوية الحيوية دوراً حاسماً في تطوير الأدوية، فهم الأمراض، وتطوير التقنيات الحيوية الحديثة.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الكيمياء العضوية الحيوية">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Biomolecules Section -->
+    <section id="biomolecules" class="biomolecules">
+        <div class="container">
+            <div class="section-title">
+                <h2>الجزيئات الحيوية الأساسية</h2>
+                <p>لبنات الحياة الأساسية وتركيبها الكيميائي</p>
+            </div>
+            <div class="biomolecules-grid">
+                <div class="biomolecule-card">
+                    <div class="biomolecule-header">
+                        <h3>البروتينات</h3>
+                        <p>سلاسل عديد الببتيد</p>
+                    </div>
+                    <div class="biomolecule-body">
+                        <p>البروتينات هي بوليمرات كبيرة تتكون من وحدات الأحماض الأمينية. تلعب دوراً حيوياً في بنية الخلايا، النقل، التحفيز، والمناعة.</p>
+                        <div class="biomolecule-structure">
+                            NH₂-CHR-COOH
+                        </div>
+                        <p>تتكون البروتينات من 20 حمضاً أمينياً أساسياً تختلف في سلسلتها الجانبية R، مما يمنحها خصائص متنوعة.</p>
+                    </div>
+                </div>
+                
+                <div class="biomolecule-card">
+                    <div class="biomolecule-header">
+                        <h3>الكربوهيدرات</h3>
+                        <p>سكريات متعددة</p>
+                    </div>
+                    <div class="biomolecule-body">
+                        <p>الكربوهيدرات هي مركبات عضوية تتكون من الكربون، الهيدروجين، والأكسجين. تعمل كمصدر للطاقة ومواد هيكلية.</p>
+                        <div class="biomolecule-structure">
+                            Cₙ(H₂O)ₘ
+                        </div>
+                        <p>تشمل السكريات الأحادية (مثل الجلوكوز)، الثنائية (مثل السكروز)، والمتعددة (مثل النشا والسليلوز).</p>
+                    </div>
+                </div>
+                
+                <div class="biomolecule-card">
+                    <div class="biomolecule-header">
+                        <h3>الدهون</h3>
+                        <p>جليسريدات ودهون فوسفورية</p>
+                    </div>
+                    <div class="biomolecule-body">
+                        <p>الدهون هي مركبات غير قطبية تذوب في المذيبات العضوية. تعمل كمخزن للطاقة، مكونات غشائية، ونواقل للفيتامينات.</p>
+                        <div class="biomolecule-structure">
+                            CH₂-OCOR₁<br>
+                            CH-OCOR₂<br>
+                            CH₂-OCOR₃
+                        </div>
+                        <p>تشمل الدهون الثلاثية، الفوسفوليبيدات، الستيرويدات، والدهون الشمعية.</p>
+                    </div>
+                </div>
+                
+                <div class="biomolecule-card">
+                    <div class="biomolecule-header">
+                        <h3>الأحماض النووية</h3>
+                        <p>DNA و RNA</p>
+                    </div>
+                    <div class="biomolecule-body">
+                        <p>الأحماض النووية هي بوليمرات تتكون من النيوكليوتيدات. تحمل المعلومات الوراثية وتوجه تخليق البروتينات.</p>
+                        <div class="biomolecule-structure">
+                            قاعدة-سكر-فوسفات
+                        </div>
+                        <p>يحتوي DNA على الأدينين، الجوانين، السيتوزين، الثايمين. بينما يحتوي RNA على اليوراسيل بدلاً من الثايمين.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reactions Section -->
+    <section id="reactions" class="reactions">
+        <div class="container">
+            <div class="section-title">
+                <h2>التفاعلات الكيميائية الحيوية</h2>
+                <p>العمليات الكيميائية التي تحافظ على الحياة</p>
+            </div>
+            <div class="reactions-container">
+                <div class="reaction-card">
+                    <div class="reaction-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3>التنفس الخلوي</h3>
+                    <p>عملية تحويل الجلوكوز إلى طاقة في وجود الأكسجين. تنتج ATP، ثاني أكسيد الكربون، والماء.</p>
+                    <div class="reaction-equation">
+                        C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + ATP
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>التمثيل الضوئي</h3>
+                    <p>عملية تحويل الطاقة الضوئية إلى طاقة كيميائية في النباتات. تنتج الجلوكوز والأكسجين.</p>
+                    <div class="reaction-equation">
+                        6CO₂ + 6H₂O + ضوء → C₆H₁₂O₆ + 6O₂
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>تضاعف DNA</h3>
+                    <p>عملية نسخ المادة الوراثية قبل انقسام الخلية. تنتج جزيئتي DNA متطابقتين من جزيء واحد.</p>
+                    <div class="reaction-equation">
+                        DNA → 2DNA
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>التحلل السكري</h3>
+                    <p>عملية تكسير الجلوكوز في غياب الأكسجين. تنتج حمض اللاكتيك أو الإيثانول وثاني أكسيد الكربون.</p>
+                    <div class="reaction-equation">
+                        C₆H₁₂O₆ → 2C₃H₆O₃ (لاكتيك)<br>
+                        أو<br>
+                        C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>تفاعلات الأكسدة والاختزال</h3>
+                    <p>تفاعلات نقل الإلكترونات الأساسية في العمليات الحيوية. تشمل سلسلة نقل الإلكترون في التنفس.</p>
+                    <div class="reaction-equation">
+                        A + e⁻ → A⁻ (اختزال)<br>
+                        B → B⁺ + e⁻ (أكسدة)
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3>التركيب البروتيني</h3>
+                    <p>عملية بناء البروتينات من الأحماض الأمينية بناءً على المعلومات الوراثية في RNA.</p>
+                    <div class="reaction-equation">
+                        mRNA + tRNA + أحماض أمينية → بروتين
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="apps" class="apps">
+        <div class="container">
+            <div class="section-title">
+                <h2>تطبيقات الكيمياء العضوية الحيوية</h2>
+                <p>كيف تساهم هذه العلوم في تطور البشرية</p>
+            </div>
+            <div class="apps-container">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3>صناعة الأدوية</h3>
+                    <p>تصميم وتطوير الأدوية بناءً على فهم التفاعلات الكيميائية في الجسم وآلية عمل المستقبلات.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>الزراعة الحديثة</h3>
+                    <p>تطوير الأسمدة، المبيدات، والمحاصيل المعدلة وراثياً لزيادة الإنتاجية ومقاومة الأمراض.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h3>التقنيات الحيوية</h3>
+                    <p>تطوير الإنزيمات الصناعية، الوقود الحيوي، والمواد الحيوية القابلة للتحلل.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>التشخيص الطبي</h3>
+                    <p>تطوير اختبارات تشخيصية تعتمد على التفاعلات المناعية والكيميائية الحيوية.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <h3>البيئة</h3>
+                    <p>تطوير طرق معالجة المياه والنفايات العضوية باستخدام الكائنات الدقيقة والإنزيمات.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>صناعة الأغذية</h3>
+                    <p>تحسين جودة الأغذية، تطوير نكهات جديدة، وزيادة القيمة الغذائية للمنتجات الغذائية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calc" class="calc">
+        <div class="container">
+            <div class="section-title">
+                <h2>حاسبة الكيمياء العضوية الحيوية</h2>
+                <p>احسب خصائص الجزيئات الحيوية الأساسية</p>
+            </div>
+            <div class="calculator">
+                <h3>حساب الوزن الجزيئي</h3>
+                <form id="molecule-form">
+                    <div class="form-group">
+                        <label for="molecule-type">نوع الجزيء:</label>
+                        <select id="molecule-type">
+                            <option value="glucose">جلوكوز (C₆H₁₂O₆)</option>
+                            <option value="protein">بروتين (متوسط)</option>
+                            <option value="dna">DNA (زوج قاعدة)</option>
+                            <option value="lipid">دهن ثلاثي (متوسط)</option>
+                            <option value="custom">مخصص</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="custom-formula" style="display: none;">
+                        <label for="formula">الصيغة الكيميائية:</label>
+                        <input type="text" id="formula" placeholder="مثال: C6H12O6">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quantity">الكمية (مول):</label>
+                        <input type="number" id="quantity" step="0.01" placeholder="أدخل الكمية">
+                    </div>
+                    
+                    <button type="submit" class="btn">احسب</button>
+                </form>
+                
+                <div class="result" id="result">
+                    <h4>النتيجة:</h4>
+                    <p id="result-text"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع الكيمياء العضوية الحيوية</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى عالي الجودة حول مبادئ وتطبيقات الكيمياء العضوية الحيوية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#biomolecules">الجزيئات الحيوية</a></li>
+                        <li><a href="#reactions">التفاعلات</a></li>
+                        <li><a href="#apps">التطبيقات</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">دروس تفاعلية</a></li>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">امتحانات تجريبية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@bioorganic-chemistry.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع الكيمياء العضوية الحيوية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Molecule Animation
+        function createMolecule() {
+            const molecule = document.createElement('div');
+            molecule.className = 'molecule';
+            molecule.style.left = Math.random() * 100 + '%';
+            molecule.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            molecule.style.opacity = Math.random() * 0.5 + 0.2;
+            document.getElementById('molecule-animation').appendChild(molecule);
+            
+            setTimeout(() => {
+                molecule.remove();
+            }, 20000);
+        }
+
+        setInterval(createMolecule, 2000);
+
+        // Molecule Calculator
+        document.getElementById('molecule-type').addEventListener('change', function() {
+            const customForm = document.getElementById('custom-formula');
+            if (this.value === 'custom') {
+                customForm.style.display = 'block';
+            } else {
+                customForm.style.display = 'none';
+            }
+        });
+
+        document.getElementById('molecule-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const moleculeType = document.getElementById('molecule-type').value;
+            const quantity = parseFloat(document.getElementById('quantity').value);
+            const customFormula = document.getElementById('formula').value;
+            
+            if (isNaN(quantity) || quantity <= 0) {
+                alert('الرجاء إدخال كمية صحيحة');
+                return;
+            }
+            
+            let molecularWeight = 0;
+            let moleculeName = '';
+            
+            switch(moleculeType) {
+                case 'glucose':
+                    molecularWeight = 180.16;
+                    moleculeName = 'جلوكوز';
+                    break;
+                case 'protein':
+                    molecularWeight = 50000;
+                    moleculeName = 'بروتين';
+                    break;
+                case 'dna':
+                    molecularWeight = 650;
+                    moleculeName = 'زوج قاعدة DNA';
+                    break;
+                case 'lipid':
+                    molecularWeight = 885;
+                    moleculeName = 'دهن ثلاثي';
+                    break;
+                case 'custom':
+                    // Simple calculation for custom formula (basic implementation)
+                    // This is a simplified version - in reality, you'd need a more complex parser
+                    const formula = customFormula.toLowerCase();
+                    let c = formula.match(/c(\d*)/);
+                    let h = formula.match(/h(\d*)/);
+                    let o = formula.match(/o(\d*)/);
+                    let n = formula.match(/n(\d*)/);
+                    
+                    c = c ? parseInt(c[1] || 1) : 0;
+                    h = h ? parseInt(h[1] || 1) : 0;
+                    o = o ? parseInt(o[1] || 1) : 0;
+                    n = n ? parseInt(n[1] || 1) : 0;
+                    
+                    molecularWeight = c * 12.01 + h * 1.008 + o * 16.00 + n * 14.01;
+                    moleculeName = customFormula;
+                    break;
+            }
+            
+            const totalWeight = molecularWeight * quantity;
+            const molecules = quantity * 6.022e23;
+            
+            document.getElementById('result-text').innerHTML = `
+                <strong>الجزيء:</strong> ${moleculeName}<br>
+                <strong>الوزن الجزيئي:</strong> ${molecularWeight.toFixed(2)} غ/مول<br>
+                <strong>الوزن الكلي:</strong> ${totalWeight.toFixed(2)} غرام<br>
+                <strong>عدد الجزيئات:</strong> ${molecules.toExponential(2)} جزيء
+            `;
+            document.getElementById('result').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

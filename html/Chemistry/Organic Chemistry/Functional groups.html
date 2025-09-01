@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المجموعات الوظيفية - عالم الكيمياء العضوية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1e40af;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --light: #f0f9ff;
+            --dark: #0f172a;
+            --success: #10b981;
+            --danger: #ef4444;
+            --info: #3b82f6;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30, 64, 175, 0.85), rgba(59, 130, 246, 0.85)), url('https://images.unsplash.com/photo-1532187853251-70c8d7a9b1f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #059669;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #334155;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Functional Groups Section */
+        .groups-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .group-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .group-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .group-header {
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .group-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .group-header p {
+            opacity: 0.9;
+        }
+
+        .group-body {
+            padding: 25px;
+        }
+
+        .group-structure {
+            background-color: #f1f5f9;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 15px 0;
+            font-size: 1.2rem;
+        }
+
+        .group-properties {
+            margin-top: 15px;
+        }
+
+        .property-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .property-item i {
+            color: var(--secondary);
+            margin-left: 10px;
+            width: 20px;
+        }
+
+        .group-examples {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .group-examples h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .example-tag {
+            display: inline-block;
+            background-color: var(--light);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9rem;
+        }
+
+        /* Importance Section */
+        .importance-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .importance-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .importance-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .importance-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .importance-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .importance-card p {
+            color: #64748b;
+        }
+
+        /* Interactive Section */
+        .interactive {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+            border-radius: 15px;
+            padding: 40px;
+            margin: 50px 0;
+        }
+
+        .interactive h3 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        .molecule-builder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .molecule-display {
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .group-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .group-btn {
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .group-btn:hover, .group-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #cbd5e1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-flask"></i>
+                <span>المجموعات الوظيفية</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#groups">المجموعات</a></li>
+                    <li><a href="#importance">الأهمية</a></li>
+                    <li><a href="#interactive">تفاعلي</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>عالم المجموعات الوظيفية</h1>
+            <p>اكتشف المجموعات الوظيفية التي تشكل أساس الكيمياء العضوية وتحدد خصائص المركبات</p>
+            <a href="#intro" class="btn">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>ما هي المجموعات الوظيفية؟</h2>
+                <p>المجموعات الوظيفية هي وحدات بنائية أساسية في الكيمياء العضوية</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>تعريف المجموعات الوظيفية</h3>
+                    <p>المجموعات الوظيفية هي مجموعات من الذرات ضمن جزيء عضوي تتحكم في التفاعلات الكيميائية والخصائص الفيزيائية للمركب. هذه المجموعات هي المسؤولة عن "وظيفة" المركب الكيميائية وتفاعله مع المركبات الأخرى.</p>
+                    <p>تعتبر المجموعات الوظيفية حجر الزاوية في تصنيف المركبات العضوية، حيث يتم تصنيف المركبات بناءً على المجموعات الوظيفية الموجودة فيها. على سبيل المثال، المركبات التي تحتوي على مجموعة الهيدروكسيل (-OH) تسمى كحولات، بينما المركبات التي تحتوي على مجموعة الكربونيل (C=O) تسمى كيتونات أو ألدهيدات.</p>
+                    <p>فهم المجموعات الوظيفية أساسي لدراسة الكيمياء العضوية، حيث تمكننا من التنبؤ بخصائص المركبات وتفاعلاتها، وهو أمر حيوي في مجالات مثل الصيدلة، الكيمياء الحيوية، وتصميم المواد.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="المجموعات الوظيفية">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Functional Groups Section -->
+    <section id="groups" class="groups">
+        <div class="container">
+            <div class="section-title">
+                <h2>المجموعات الوظيفية الرئيسية</h2>
+                <p>استكشف أهم المجموعات الوظيفية في الكيمياء العضوية</p>
+            </div>
+            <div class="groups-grid">
+                <div class="group-card">
+                    <div class="group-header">
+                        <h3>الهيدروكسيل</h3>
+                        <p>الكحولات</p>
+                    </div>
+                    <div class="group-body">
+                        <div class="group-structure">-OH</div>
+                        <p>مجموعة الهيدروكسيل هي مجموعة وظيفية تتكون من ذرة أكسجين مرتبطة بذرة هيدروجين. توجد في الكحولات وتمنحها خصائص قطبية وقدرة على تكوين روابط هيدروجينية.</p>
+                        <div class="group-properties">
+                            <div class="property-item">
+                                <i class="fas fa-tint"></i>
+                                <span>قابلية للذوبان في الماء</span>
+                            </div>
+                            <div class="property-item">
+                                <i class="fas fa-temperature-high"></i>
+                                <span>نقاط غليان مرتفعة</span>
+                            </div>
+                            <div class="property-item">
+                                <i class="fas fa-vial"></i>
+                                <span>تفاعلات الأكسدة</span>
+                            </div>
+                        </div>
+                        <div class="group-examples">
+                            <h4>أمثلة:</h4>
+                            <span class="example-tag">ميثانول</span>
+                            <span class="example-tag">إيثانول</span>
+                            <span class="example-tag">جليسرول</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group-card">
+                    <div class="group-header">
+                        <h3>الكربونيل</h3>
+                        <p>الكيتونات والألدهيدات</p>
+                    </div>
+                    <div class="group-body">
+                        <div class="group-structure">C=O</div>
+                        <p>مجموعة الكربونيل تتكون من ذرة كربون مرتبطة برابط مزدوج مع ذرة أكسجين. توجد في الألدهيدات والكيتونات وتعتبر من أهم المجموعات الوظيفية في الكيمياء العضوية.</p>
+                        <div class="group-properties">
+                            <div class="property-item">
+                                <i class="fas fa-magnet"></i>
+                                <span>قطبية عالية</span>
+                            </div>
+                            <div class="property-item">
+                                <i class="fas fa-sync-alt"></i>
+                                <span>تفاعلات الإضافة</span>
+                            </div>
+                            <div class="property-item">
+                                <i class="fas fa-flask"></i>
+                                <span>تفاعلات التكثيف</span>
+                            </div>
+                        </div>
+                        <div class="group-examples">
+                            <h4>أمثلة:</h4>
+                            <span class="example-tag">فورمالدهيد</span>
+                            <span class="example-tag">أسيتون</span>
+                            <span class="example-tag">بنزالدهيد</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group-card">
+                    <div class="group-header">
+                        <h3>الكربوكسيل</h3>
+                        <p>الأحماض الكربوكسيلية</p>
+                    </div>
+                    <div class="group-body">
+                        <div class="group-structure">-COOH</div>
+                        <p>مجموعة الكربوكسيل تتكون من مجموعة كربونيل مرتبطة بمجموعة هيدروكسيل. تمنح المركبات خصائص حمضية وتوجد في الأحماض الكربوكسيلية والأحماض الأمينية.</p>
+                        <div class="group-properties">
+                            <div class="property-item">
+                                <i class="fas fa-atom"></i>
+                                <span>حمضية</span>
+                            </div>
+                            <div class="property-item">
+                                <i class="fas fa-link"></i>
+                                <span>تكوين روابط هيدروجينية</span>
+                            </div>
+                            <div class="property-item">
+                                <i class="fas fa-exchange-alt"></i>
+                                <span>تفاعلات التأين</span>
+                            </div>
+                        </div>
+                        <div class="group-examples">
+                            <h4>أمثلة:</h4>
+                            <span class="example-tag">حمض الخليك</span>
+                            <span class="example-tag">حمض الفورميك</span>
+                            <span class="example-tag">حمض الستريك</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group-card">
+                    <div class="group-header">
+                        <h3>الأمين</h3>
+                        <p>المركبات الأمينية</p>
+                    </div>
+                    <div class="group-body">
+                        <div class="group-structure">-NH₂</div>
+                        <p>مجموعة الأمين تتكون من ذرة نيتروجين مرتبطة بذرتين هيدروجين. تمنح المركبات خصائص قاعدية وتوجد في الأحماض الأمينية والبروتينات والعديد من الأدوية.</p>
+                        <div class="group-properties">
+                            <div class="property-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>قاعدية</span>
+                            </div>
+                            <div class="property-item">
+                                <i class="fas fa-wind"></i>
+                                <span>رائحة مميزة</span>
+                            </div>
+                            <div class="property-item">
+                                <i class="fas fa-random"></i>
+                                <span>تفاعلات الاستبدال</span>
+                            </div>
+                        </div>
+                        <div class="group-examples">
+                            <h4>أمثلة:</h4>
+                            <span class="example-tag">ميثيل أمين</span>
+                            <span class="example-tag">أنيلين</span>
+                            <span class="example-tag">جليسين</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group-card">
+                    <div class="group-header">
+                        <h3>الإيثر</h3>
+                        <p>مركبات الإيثر</p>
+                    </div>
+                    <div class="group-body">
+                        <div class="group-structure">R-O-R'</div>
+                        <p>مجموعة الإيثر تتكون من ذرة أكسجين مرتبطة بمجموعتي ألكيل. تعتبر من المذيبات العضوية الهامة وتستخدم في العديد من التطبيقات الصناعية والطبية.</p>
+                        <div class="group-properties">
+                            <div class="property-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>غير نشطة كيميائياً</span>
+                            </div>
+                            <div class="property-item">
+                                <i class="fas fa-tint-slash"></i>
+                                <span>قابلية ذوبان محدودة</span>
+                            </div>
+                            <div class="property-item">
+                                <i class="fas fa-fire-alt"></i>
+                                <span>قابلة للاشتعال</span>
+                            </div>
+                        </div>
+                        <div class="group-examples">
+                            <h4>أمثلة:</h4>
+                            <span class="example-tag">دي إيثيل إيثر</span>
+                            <span class="example-tag">ثنائي إيثيل إيثر</span>
+                            <span class="example-tag">أنيزول</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group-card">
+                    <div class="group-header">
+                        <h3>الإستر</h3>
+                        <p>مركبات الإستر</p>
+                    </div>
+                    <div class="group-body">
+                        <div class="group-structure">-COOR</div>
+                        <p>مجموعة الإستر تتكون من مجموعة كربونيل مرتبطة بمجموعة ألكوكسيل. تتميز برائحة عطرية مميزة وتوجد في الزيوت الطبيعية والعطور والدهون.</p>
+                        <div class="group-properties">
+                            <div class="property-item">
+                                <i class="fas fa-spa"></i>
+                                <span>روائح عطرية</span>
+                            </div>
+                            <div class="property-item">
+                                <i class="fas fa-water"></i>
+                                <span>غير قابلة للذوبان في الماء</span>
+                            </div>
+                            <div class="property-item">
+                                <i class="fas fa-cut"></i>
+                                <span>تفاعلات التحلل المائي</span>
+                            </div>
+                        </div>
+                        <div class="group-examples">
+                            <h4>أمثلة:</h4>
+                            <span class="example-tag">إيثيل أسيتات</span>
+                            <span class="example-tag">ميثيل ساليسيلات</span>
+                            <span class="example-tag">الدهون الثلاثية</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Importance Section -->
+    <section id="importance" class="importance">
+        <div class="container">
+            <div class="section-title">
+                <h2>أهمية المجموعات الوظيفية</h2>
+                <p>كيف تؤثر المجموعات الوظيفية في حياتنا اليومية</p>
+            </div>
+            <div class="importance-content">
+                <div class="importance-card">
+                    <div class="importance-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3>الصيدلة</h3>
+                    <p>المجموعات الوظيفية تحدد نشاط الأدوية وتفاعلاتها في الجسم، مما يجعلها أساسية في تصميم وتطوير الأدوية الجديدة.</p>
+                </div>
+                
+                <div class="importance-card">
+                    <div class="importance-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>الكيمياء الحيوية</h3>
+                    <p>البروتينات والكربوهيدرات والدهون تحتوي على مجموعات وظيفية متنوعة تحدد وظائفها البيولوجية.</p>
+                </div>
+                
+                <div class="importance-card">
+                    <div class="importance-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>الصناعة</h3>
+                    <p>تستخدم المجموعات الوظيفية في صناعة البلاستيك، الألياف، الأصبغة، والمواد الكيميائية الصناعية الأخرى.</p>
+                </div>
+                
+                <div class="importance-card">
+                    <div class="importance-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>البيئة</h3>
+                    <p>فهم المجموعات الوظيفية يساعد في تطوير مواد صديقة للبيئة وطرق لإزالة الملوثات العضوية.</p>
+                </div>
+                
+                <div class="importance-card">
+                    <div class="importance-icon">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <h3>الغذاء</h3>
+                    <p>النكهات والروائح في الأطعمة ناتجة عن مركبات تحتوي على مجموعات وظيفية محددة.</p>
+                </div>
+                
+                <div class="importance-card">
+                    <div class="importance-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>المواد</h3>
+                    <p>خصائص المواد مثل المرونة، القوة، واللون تعتمد على المجموعات الوظيفية الموجودة في تركيبها.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Section -->
+    <section id="interactive" class="interactive">
+        <div class="container">
+            <h3>مُصَوِّر المجموعات الوظيفية</h3>
+            <div class="molecule-builder">
+                <div class="molecule-display" id="molecule-display">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="group-selector">
+                    <button class="group-btn" data-group="alcohol">كحول</button>
+                    <button class="group-btn" data-group="aldehyde">ألدهيد</button>
+                    <button class="group-btn" data-group="ketone">كيتون</button>
+                    <button class="group-btn" data-group="acid">حمض</button>
+                    <button class="group-btn" data-group="amine">أمين</button>
+                    <button class="group-btn" data-group="ester">إستر</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>اتصل بنا</h2>
+                <p>لديك أسئلة أو اقتراحات؟ تواصل معنا</p>
+            </div>
+            <div style="text-align: center;">
+                <p style="font-size: 1.2rem; margin-bottom: 30px; color: #334155;">نرحب بجميع استفساراتكم حول محتوى موقع المجموعات الوظيفية</p>
+                <a href="mailto:info@functionalgroups.edu" class="btn"><i class="fas fa-envelope"></i> أرسل رسالة</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع المجموعات الوظيفية</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى عالي الجودة حول المجموعات الوظيفية في الكيمياء العضوية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#groups">المجموعات</a></li>
+                        <li><a href="#importance">الأهمية</a></li>
+                        <li><a href="#interactive">تفاعلي</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">دروس تفاعلية</a></li>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">امتحانات تجريبية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@functionalgroups.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع المجموعات الوظيفية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Interactive Molecule Builder
+        const groupButtons = document.querySelectorAll('.group-btn');
+        const moleculeDisplay = document.getElementById('molecule-display');
+
+        const moleculeStructures = {
+            alcohol: 'R-OH',
+            aldehyde: 'R-CHO',
+            ketone: 'R-CO-R\'',
+            acid: 'R-COOH',
+            amine: 'R-NH₂',
+            ester: 'R-COO-R\''
+        };
+
+        groupButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                groupButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Get the group type
+                const groupType = this.getAttribute('data-group');
+                
+                // Update the molecule display
+                moleculeDisplay.innerHTML = moleculeStructures[groupType];
+                moleculeDisplay.style.fontSize = '2.5rem';
+                moleculeDisplay.style.fontFamily = 'Courier New, monospace';
+                moleculeDisplay.style.fontWeight = 'bold';
+                moleculeDisplay.style.color = 'var(--primary)';
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.group-card, .importance-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

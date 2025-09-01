@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكحولات والفينولات والإيثرات - عالم المركبات العضوية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1e40af;
+            --secondary: #7c3aed;
+            --accent: #10b981;
+            --light: #f0f9ff;
+            --dark: #1e293b;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30, 64, 175, 0.85), rgba(124, 58, 237, 0.85)), url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #059669;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #334155;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Compound Cards */
+        .compounds-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .compound-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .compound-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .compound-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .compound-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .compound-header .formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .compound-body {
+            padding: 25px;
+        }
+
+        .compound-body h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .compound-body ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .compound-body ul li {
+            margin-bottom: 10px;
+            padding-right: 20px;
+            position: relative;
+            color: #334155;
+        }
+
+        .compound-body ul li::before {
+            content: '•';
+            position: absolute;
+            right: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .reaction-box {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            border-right: 4px solid var(--info);
+        }
+
+        /* Properties Table */
+        .properties-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .properties-table th,
+        .properties-table td {
+            padding: 15px;
+            text-align: right;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .properties-table th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .properties-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .properties-table tr:hover {
+            background-color: var(--light);
+        }
+
+        /* Applications Section */
+        .apps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .app-card {
+            background: white;
+            border-radius: 15px;
+            width: 300px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .app-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .app-card p {
+            color: #64748b;
+        }
+
+        /* Quiz Section */
+        .quiz-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quiz-question {
+            margin-bottom: 30px;
+        }
+
+        .quiz-question h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 15px;
+        }
+
+        .quiz-option {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .quiz-option.selected {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .quiz-option.correct {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .quiz-option.incorrect {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        .quiz-result {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: none;
+        }
+
+        .quiz-result.success {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .quiz-result.error {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+            border: 2px solid var(--danger);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #cbd5e1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-flask"></i>
+                <span>الكيمياء العضوية</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#compounds">المركبات</a></li>
+                    <li><a href="#properties">الخصائص</a></li>
+                    <li><a href="#apps">التطبيقات</a></li>
+                    <li><a href="#quiz">اختبار</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>الكحولات والفينولات والإيثرات</h1>
+            <p>استكشف عالم المركبات العضوية المحتوية على الأكسجين وتفاعلاتها المذهلة</p>
+            <a href="#intro" class="btn">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>مقدمة في المركبات الأكسجينية</h2>
+                <p>المركبات العضوية المحتوية على الأكسجين من أهم فئات المركبات في الكيمياء العضوية</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>ما هي الكحولات والفينولات والإيثرات؟</h3>
+                    <p>هي فئات من المركبات العضوية التي تحتوي على ذرة أكسجين في تركيبها الجزيئي. هذه المركبات تلعب دوراً حيوياً في العديد من العمليات الكيميائية والبيولوجية والصناعية.</p>
+                    <p>الكحولات تحتوي على مجموعة هيدروكسيل (-OH) مرتبطة بذرة كربون مشبعة، بينما الفينولات تحتوي على مجموعة هيدروكسيل مرتبطة بحلقة أروماتية. أما الإيثرات فتحتوي على مجموعة أكسجين ترتبط بين مجموعتي ألكيل.</p>
+                    <p>تتميز هذه المركبات بخصائص فيزيائية وكيميائية فريدة تجعلها أساسية في العديد من التطبيقات الصناعية والطبية واليومية.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="مركبات عضوية">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compounds Section -->
+    <section id="compounds" class="compounds">
+        <div class="container">
+            <div class="section-title">
+                <h2>أنواع المركبات الأكسجينية</h2>
+                <p>تعرف على التركيب والخصائص والتفاعلات لكل نوع</p>
+            </div>
+            <div class="compounds-grid">
+                <div class="compound-card">
+                    <div class="compound-header">
+                        <h3>الكحولات</h3>
+                        <div class="formula">R-OH</div>
+                    </div>
+                    <div class="compound-body">
+                        <h4>الخصائص الرئيسية:</h4>
+                        <ul>
+                            <li>ذوبانية عالية في الماء بسبب تكوين روابط هيدروجينية</li>
+                            <li>نقاط غليان وذوبان أعلى من الهيدروكربونات المقابلة</li>
+                            <li>حموضة ضعيفة (pKa ≈ 15-18)</li>
+                            <li>تتفاعل مع الفلزات النشطة مثل الصوديوم</li>
+                        </ul>
+                        
+                        <h4>التصنيف:</h4>
+                        <ul>
+                            <li>كحولات أولية: R-CH₂-OH</li>
+                            <li>كحولات ثانوية: R₂CH-OH</li>
+                            <li>كحولات ثالثية: R₃C-OH</li>
+                        </ul>
+                        
+                        <h4>التفاعلات المميزة:</h4>
+                        <div class="reaction-box">
+                            R-OH + Na → R-ONa + ½H₂<br>
+                            (تفاعل مع الصوديوم)
+                        </div>
+                        <div class="reaction-box">
+                            R-OH + HX → R-X + H₂O<br>
+                            (استبدال الهيدروكسيل بالهالوجين)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="compound-card">
+                    <div class="compound-header">
+                        <h3>الفينولات</h3>
+                        <div class="formula">C₆H₅-OH</div>
+                    </div>
+                    <div class="compound-body">
+                        <h4>الخصائص الرئيسية:</h4>
+                        <ul>
+                            <li>حموضة أقوى من الكحولات (pKa ≈ 10)</li>
+                            <li>ذوبانية محدودة في الماء</li>
+                            <li>لون يميل إلى الوردي عند تعرضه للهواء</li>
+                            <li>تتفاعل مع قواعد قوية لتكوين فينولات</li>
+                        </ul>
+                        
+                        <h4>الخصائص الفريدة:</h4>
+                        <ul>
+                            <li>تأثير المجموعة الأروماتية على حموضة المجموعة الهيدروكسيلية</li>
+                            <li>تفاعلات الاستبدال الحلقي</li>
+                            <li>تفاعلات الأكسدة</li>
+                        </ul>
+                        
+                        <h4>التفاعلات المميزة:</h4>
+                        <div class="reaction-box">
+                            C₆H₅OH + NaOH → C₆H₅O⁻Na⁺ + H₂O<br>
+                            (تفاعل مع القواعد)
+                        </div>
+                        <div class="reaction-box">
+                            C₆H₅OH + Br₂ → C₆H₄Br₂OH + HBr<br>
+                            (استبدال حلقي)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="compound-card">
+                    <div class="compound-header">
+                        <h3>الإيثرات</h3>
+                        <div class="formula">R-O-R'</div>
+                    </div>
+                    <div class="compound-body">
+                        <h4>الخصائص الرئيسية:</h4>
+                        <ul>
+                            <li>مركبات قطبية لكنها لا تشكل روابط هيدروجينية</li>
+                            <li>نقاط غليان منخفضة نسبياً</li>
+                            <li>ذوبانية جيدة في الماء والمذيبات العضوية</li>
+                            <li>مستقرة كيميائياً في الظروف العادية</li>
+                        </ul>
+                        
+                        <h4>التصنيف:</h4>
+                        <ul>
+                            <li>إيثرات متناظرة: R-O-R</li>
+                            <li>إيثرات غير متناظرة: R-O-R'</li>
+                            <li>إيثرات حلقية</li>
+                        </ul>
+                        
+                        <h4>التفاعلات المميزة:</h4>
+                        <div class="reaction-box">
+                            R-O-R' + HI → R-I + R'OH<br>
+                            (انشطار بالإيثرات)
+                        </div>
+                        <div class="reaction-box">
+                            R-O-R' + O₂ → ROOR'<br>
+                            (أكسدة لتكبير بيروكسيدات)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Properties Section -->
+    <section id="properties" class="properties">
+        <div class="container">
+            <div class="section-title">
+                <h2>مقارنة الخصائص الفيزيائية</h2>
+                <p>جدول مقارنة بين الخصائص الرئيسية للمركبات الأكسجينية</p>
+            </div>
+            <table class="properties-table">
+                <thead>
+                    <tr>
+                        <th>الخاصية</th>
+                        <th>الكحولات</th>
+                        <th>الفينولات</th>
+                        <th>الإيثرات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>الصيغة العامة</td>
+                        <td>R-OH</td>
+                        <td>Ar-OH</td>
+                        <td>R-O-R'</td>
+                    </tr>
+                    <tr>
+                        <td>نقطة الغليان</td>
+                        <td>عالية (78°C للميثانول)</td>
+                        <td>عالية جداً (182°C للفينول)</td>
+                        <td>منخفضة (34.6°C للإيثر الإيثيلي)</td>
+                    </tr>
+                    <tr>
+                        <td>الذوبانية في الماء</td>
+                        <td>جيدة للكحولات قصيرة السلسلة</td>
+                        <td>محدودة (8.3g/100ml للفينول)</td>
+                        <td>محدودة (6.9g/100ml للإيثر الإيثيلي)</td>
+                    </tr>
+                    <tr>
+                        <td>الحموضة (pKa)</td>
+                        <td>15-18</td>
+                        <td>10</td>
+                        <td>غير حمضية</td>
+                    </tr>
+                    <tr>
+                        <td>التفاعل مع الصوديوم</td>
+                        <td>ينتج غاز الهيدروجين</td>
+                        <td>ينتج غاز الهيدروجين</td>
+                        <td>لا يتفاعل</td>
+                    </tr>
+                    <tr>
+                        <td>التفاعل مع القواعد</td>
+                        <td>لا يتفاعل مع القواعد الضعيفة</td>
+                        <td>يتفاعل مع NaOH</td>
+                        <td>لا يتفاعل</td>
+                    </tr>
+                    <tr>
+                        <td>التفاعل مع HX</td>
+                        <td>يتفاعل ببطء</td>
+                        <td>لا يتفاعل</td>
+                        <td>يتفاعل بسرعة</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="apps" class="apps">
+        <div class="container">
+            <div class="section-title">
+                <h2>التطبيقات العملية</h2>
+                <p>كيف تُستخدم هذه المركبات في حياتنا اليومية والصناعة</p>
+            </div>
+            <div class="apps-container">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-prescription-bottle"></i>
+                    </div>
+                    <h3>الصناعات الدوائية</h3>
+                    <p>تستخدم الكحولات كمذيبات في صناعة الأدوية، والفينولات في المطهرات، والإيثرات كمخدرات جراحية.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>الصناعات الكيميائية</h3>
+                    <p>الكحولات في صناعة البلاستيك والمواد اللاصقة، والفينولات في صناعة الراتنجات، والإيثرات كمذيبات صناعية.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>الطلاء والورنيش</h3>
+                    <p>تستخدم الكحولات والإيثرات كمذيبات في الطلاءات والورنيشات والمنظفات الصناعية.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-gas-pump"></i>
+                    </div>
+                    <h3>الوقود البديل</h3>
+                    <p>الإيثانول كوقود حيوي في السيارات، والميثانول كوقود في خلايا الوقود والمحركات.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>الطب الحيوي</h3>
+                    <p>الكحولات في حفظ الأنسجة البيولوجية، والفينولات في مضادات الأكسدة الطبيعية.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>المنتجات الطبيعية</h3>
+                    <p>الكحولات في العطور والزيوت العطرية، والفينولات في النباتات الطبية والتوابل.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="quiz">
+        <div class="container">
+            <div class="section-title">
+                <h2>اختبار تفاعلي</h2>
+                <p>اختبر معلوماتك عن الكحولات والفينولات والإيثرات</p>
+            </div>
+            <div class="quiz-container">
+                <div class="quiz-question">
+                    <h3>1. أي من المركبات التالية له أعلى نقطة غليان؟</h3>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-answer="wrong">أ) الإيثر الإيثيلي (C₂H₅OC₂H₅)</div>
+                        <div class="quiz-option" data-answer="correct">ب) الفينول (C₆H₅OH)</div>
+                        <div class="quiz-option" data-answer="wrong">ج) البروبان (C₃H₈)</div>
+                        <div class="quiz-option" data-answer="wrong">د) كلوروالميثان (CH₃Cl)</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <h3>2. ما هو ناتج تفاعل الإيثانول مع الصوديوم المعدني؟</h3>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-answer="wrong">أ) إيثان وغاز أكسجين</div>
+                        <div class="quiz-option" data-answer="wrong">ب) حمض الخليك</div>
+                        <div class="quiz-option" data-answer="correct">ج) إيثوكسيد الصوديوم وغاز الهيدروجين</div>
+                        <div class="quiz-option" data-answer="wrong">د) إيثيلين وغاز الهيدروجين</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <h3>3. لماذا الفينول أكثر حمضية من الإيثانول؟</h3>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-answer="wrong">أ) لأنه يحتوي على ذرات كربون أكثر</div>
+                        <div class="quiz-option" data-answer="correct">ب) بسبب استقرار أيون الفينولات الناتج</div>
+                        <div class="quiz-option" data-answer="wrong">ج) لأنه أقل ذوبانية في الماء</div>
+                        <div class="quiz-option" data-answer="wrong">د) بسبب وزنه الجزيئي الأعلى</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-result" id="quiz-result"></div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="btn" onclick="checkQuiz()">تحقق من الإجابات</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع الكيمياء العضوية</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى عالي الجودة حول المركبات العضوية وتفاعلاتها.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#compounds">المركبات</a></li>
+                        <li><a href="#properties">الخصائص</a></li>
+                        <li><a href="#apps">التطبيقات</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">دروس تفاعلية</a></li>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">امتحانات تجريبية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@organic-chemistry.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع الكيمياء العضوية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Quiz Functionality
+        function checkQuiz() {
+            const options = document.querySelectorAll('.quiz-option');
+            let correct = 0;
+            let total = 0;
+            
+            options.forEach(option => {
+                if (option.dataset.answer === 'correct') {
+                    total++;
+                    if (option.classList.contains('selected')) {
+                        correct++;
+                        option.classList.add('correct');
+                    } else {
+                        option.classList.add('correct');
+                    }
+                } else if (option.classList.contains('selected')) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            const resultDiv = document.getElementById('quiz-result');
+            resultDiv.style.display = 'block';
+            
+            if (correct === total) {
+                resultDiv.className = 'quiz-result success';
+                resultDiv.innerHTML = `ممتاز! لقد أجبت على جميع الأسئلة بشكل صحيح (${correct}/${total})`;
+            } else {
+                resultDiv.className = 'quiz-result error';
+                resultDiv.innerHTML = `لقد أجبت على ${correct} من أصل ${total} أسئلة بشكل صحيح. حاول مرة أخرى!`;
+            }
+        }
+
+        // Quiz Option Selection
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const question = this.parentElement;
+                question.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                this.classList.add('selected');
+            });
+        });
+    </script>
+</body>
+</html>

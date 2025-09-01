@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكيمياء الفراغية - علم التفاعلات في الفراغ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        :root {
+            --primary: #1e40af;
+            --secondary: #6366f1;
+            --accent: #3b82f6;
+            --light: #f0f9ff;
+            --dark: #0f172a;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --space: #0c0a1d;
+            --vacuum: #1a1f3a;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--space), var(--vacuum));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--secondary);
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(12, 10, 29, 0.9), rgba(26, 31, 58, 0.9)), url('https://images.unsplash.com/photo-1446776877081-d282a0f896e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #4f46e5;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #334155;
+            font-size: 1.1rem;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Principles Section */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .principle-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .principle-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .principle-header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .principle-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .principle-body {
+            padding: 25px;
+        }
+
+        .principle-formula {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 15px 0;
+            font-size: 1.1rem;
+        }
+
+        /* Equipment Section */
+        .equipment-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .equipment-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .equipment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .equipment-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .equipment-title {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .equipment-description {
+            color: #64748b;
+            text-align: center;
+        }
+
+        /* Applications Section */
+        .apps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .app-card {
+            background: white;
+            border-radius: 15px;
+            width: 300px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .app-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .app-card p {
+            color: #64748b;
+        }
+
+        /* Vacuum Calculator */
+        .calculator-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .calculator-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            color: #6b7280;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+
+        .calc-result {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: var(--light);
+            border-radius: 10px;
+            border-right: 4px solid var(--primary);
+            display: none;
+        }
+
+        .calc-result h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .calc-result p {
+            color: #374151;
+            font-size: 1.1rem;
+        }
+
+        /* Experiments Section */
+        .experiments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .experiment-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .experiment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .experiment-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .experiment-content {
+            padding: 25px;
+        }
+
+        .experiment-title {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .experiment-description {
+            color: #64748b;
+            margin-bottom: 15px;
+        }
+
+        .experiment-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .experiment-difficulty {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .difficulty-star {
+            color: var(--warning);
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: var(--light);
+        }
+
+        .faq-question h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .faq-icon {
+            color: var(--secondary);
+            transition: transform 0.3s;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-answer.active {
+            padding: 0 20px 20px;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            color: #64748b;
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--space);
+            color: #cbd5e1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--space);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, var(--light), #dbeafe);
+            border-right: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .info-box h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-box p {
+            color: #1e3a8a;
+        }
+
+        /* Pressure Units Table */
+        .units-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .units-table th,
+        .units-table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+        }
+
+        .units-table th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: bold;
+        }
+
+        .units-table tr:nth-child(even) {
+            background-color: var(--light);
+        }
+
+        .units-table tr:hover {
+            background-color: #dbeafe;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-satellite-dish"></i>
+                <span>الكيمياء الفراغية</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#principles">المبادئ</a></li>
+                    <li><a href="#equipment">المعدات</a></li>
+                    <li><a href="#applications">التطبيقات</a></li>
+                    <li><a href="#calculator">الحاسبة</a></li>
+                    <li><a href="#experiments">تجارب</a></li>
+                    <li><a href="#gallery">معرض</a></li>
+                    <li><a href="#faq">الأسئلة</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>الكيمياء الفراغية</h1>
+            <p>استكشف عالم التفاعلات الكيميائية في ظروف الضغط المنخفض وتطبيقاتها المتقدمة</p>
+            <a href="#intro" class="btn">ابدأ الرحلة</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>مقدمة في الكيمياء الفراغية</h2>
+                <p>ما هي الكيمياء الفراغية وأهميتها في العلم والصناعة</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>ما هي الكيمياء الفراغية؟</h3>
+                    <p>الكيمياء الفراغية هي فرع متخصص من الكيمياء يدرس التفاعلات والعمليات الكيميائية التي تتم في ظروف الضغط المنخفض جدًا (الفراغ). في هذه الظروف، يقل التفاعل بين الجزيئات بشكل كبير، مما يسمح بدراسة سلوك المواد والتفاعلات بطريقة مختلفة تمامًا عن الظروف العادية.</p>
+                    <p>تتميز الكيمياء الفراغية بعدة خصائص فريدة، منها طول المسار الحر للجزيئات، انخفاض معدل التصادمات، وإمكانية التحكم الدقيق في بيئة التفاعل. هذه الخصائص تجعلها أداة قوية في البحث العلمي والتطبيقات الصناعية المتقدمة.</p>
+                    
+                    <div class="info-box">
+                        <h4><i class="fas fa-info-circle"></i> معلومة مهمة</h4>
+                        <p>يُعتبر الفراغ الفائق (Ultra-high vacuum) الذي يصل ضغطه إلى 10^-12 بار أساسًا للعديد من التقنيات الحديثة مثل المجهر الإلكتروني وتصنيع أشباه الموصلات.</p>
+                    </div>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الكيمياء الفراغية">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Principles Section -->
+    <section id="principles" class="principles">
+        <div class="container">
+            <div class="section-title">
+                <h2>المبادئ الأساسية</h2>
+                <p>المفاهيم والقوانين التي تحكم الكيمياء الفراغية</p>
+            </div>
+            <div class="principles-grid">
+                <div class="principle-card">
+                    <div class="principle-header">
+                        <h3>الضغط والفراغ</h3>
+                        <p>Pressure & Vacuum</p>
+                    </div>
+                    <div class="principle-body">
+                        <p>الفراغ هو حالة يكون فيها الضغط أقل بكثير من الضغط الجوي. يُقاس الضغط في الفراغ بوحدات متعددة مثل الباسكال، التور، والميليبار.</p>
+                        <div class="principle-formula">
+                            1 atm = 101325 Pa = 760 Torr
+                        </div>
+                        <p>يُصنف الفراغ إلى مستويات مختلفة حسب الضغط:</p>
+                        <ul style="margin-right: 20px; color: #64748b;">
+                            <li>فراغ منخفض: 10³ إلى 10⁻³ بار</li>
+                            <li>فراغ متوسط: 10⁻³ إلى 10⁻⁷ بار</li>
+                            <li>فراغ عالي: 10⁻⁷ إلى 10⁻¹² بار</li>
+                            <li>فراغ فائق: أقل من 10⁻¹² بار</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="principle-card">
+                    <div class="principle-header">
+                        <h3>المسار الحر المتوسط</h3>
+                        <p>Mean Free Path</p>
+                    </div>
+                    <div class="principle-body">
+                        <p>المسار الحر المتوسط هو متوسط المسافة التي يقطعها الجزيء بين تصادمين متتاليين. يزداد هذا المسار بشكل كبير مع انخفاض الضغط.</p>
+                        <div class="principle-formula">
+                            λ = kT / (√2 π d² P)
+                        </div>
+                        <p>حيث λ هو المسار الحر المتوسط، k ثابت بولتزمان، T درجة الحرارة، d قطر الجزيء، وP الضغط.</p>
+                        <p>في الفراغ العالي، قد يصل المسار الحر المتوسط إلى كيلومترات، مما يسمح بدراسة الجزيئات الفردية دون تأثير التصادمات.</p>
+                    </div>
+                </div>
+                
+                <div class="principle-card">
+                    <div class="principle-header">
+                        <h3>نظرية الحركية الجزيئية</h3>
+                        <p>Kinetic Molecular Theory</p>
+                    </div>
+                    <div class="principle-body">
+                        <p>تفسر نظرية الحركية الجزيئية سلوك الغازات في الفراغ بناءً على حركة الجزيئات. في الفراغ، تتحرك الجزيئات بحرية أكبر وتتصادم بشكل أقل.</p>
+                        <div class="principle-formula">
+                            v = √(3kT/m)
+                        </div>
+                        <p>حيث v هي السرعة المتوسطة للجزيئات، k ثابت بولتزمان، T درجة الحرارة المطلقة، وm كتلة الجزيء.</p>
+                        <p>هذه النظرية أساسية لفهم ظواهر مثل التبخير والترسيب في الفراغ.</p>
+                    </div>
+                </div>
+                
+                <div class="principle-card">
+                    <div class="principle-header">
+                        <h3>قوانين الغازات</h3>
+                        <p>Gas Laws</p>
+                    </div>
+                    <div class="principle-body">
+                        <p>تظل قوانين الغازات الأساسية صالحة في الفراغ، لكن مع تعديلات لتأثيرات الضغط المنخفض جدًا. أهمها قانون بويل وشارل.</p>
+                        <div class="principle-formula">
+                            PV = nRT (الغاز المثالي)
+                        </div>
+                        <p>في الفراغ العالي جدًا، قد تنحرف الغازات عن السلوك المثالي بسبب تأثيرات التفاعل بين الجزيئات.</p>
+                        <p>تستخدم هذه القوانين في تصميم أنظمة الفراغ وحساب تدفق الغازات.</p>
+                    </div>
+                </div>
+                
+                <div class="principle-card">
+                    <div class="principle-header">
+                        <h3>التبخير والترسيب</h3>
+                        <p>Evaporation & Deposition</p>
+                    </div>
+                    <div class="principle-body">
+                        <p>في الفراغ، يزداد معدل التبخير بشكل كبير بسبب انخفاض الضغط الجزئي للبخار فوق السطح. هذا يسمح بعمليات ترسيب دقيقة للغاية.</p>
+                        <div class="principle-formula">
+                            P_vap = P₀ exp(-ΔH_vap/RT)
+                        </div>
+                        <p>حيث P_vap هو ضغط البخار، P₀ ثابت، ΔH_vap حرارة التبخير، R ثابت الغاز، وT درجة الحرارة.</p>
+                        <p>تستخدم هذه الظاهرة في تصنيع الأغشية الرقيقة وتغطية الأسطح.</p>
+                    </div>
+                </div>
+                
+                <div class="principle-card">
+                    <div class="principle-header">
+                        <h3>الانتشار في الفراغ</h3>
+                        <p>Diffusion in Vacuum</p>
+                    </div>
+                    <div class="principle-body">
+                        <p>في الفراغ، يختلف انتشار الجزيئات بشكل كبير عن الظروف العادية. يزداد معامل الانتشار مع انخفاض الضغط بسبب زيادة المسار الحر المتوسط.</p>
+                        <div class="principle-formula">
+                            D = (1/3) v λ
+                        </div>
+                        <p>حيث D هو معامل الانتشار، v السرعة المتوسطة، وλ المسار الحر المتوسط.</p>
+                        <p>هذا المبدأ مهم في تصميم أنظمة الضخ وتحليل أداء أنظمة الفراغ.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pressure Units Table -->
+            <h3 style="text-align: center; color: var(--primary); margin: 50px 0 30px;">وحدات قياس الضغط في الفراغ</h3>
+            <table class="units-table">
+                <thead>
+                    <tr>
+                        <th>الوحدة</th>
+                        <th>الرمز</th>
+                        <th>القيمة بالباسكال</th>
+                        <th>الاستخدام الشائع</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>باسكال</td>
+                        <td>Pa</td>
+                        <td>1</td>
+                        <td>النظام الدولي للوحدات</td>
+                    </tr>
+                    <tr>
+                        <td>بار</td>
+                        <td>bar</td>
+                        <td>100,000</td>
+                        <td>الضغط الجوي ≈ 1 بار</td>
+                    </tr>
+                    <tr>
+                        <td>تور</td>
+                        <td>Torr</td>
+                        <td>133.322</td>
+                        <td>الضغط الجوي = 760 تور</td>
+                    </tr>
+                    <tr>
+                        <td>مليمتر زئبق</td>
+                        <td>mmHg</td>
+                        <td>133.322</td>
+                        <td>يساوي التور</td>
+                    </tr>
+                    <tr>
+                        <td>ميكرون</td>
+                        <td>μm</td>
+                        <td>0.133322</td>
+                        <td>الفراغ المتوسط والعالي</td>
+                    </tr>
+                    <tr>
+                        <td>أتموسفير</td>
+                        <td>atm</td>
+                        <td>101,325</td>
+                        <td>الضغط الجوي القياسي</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Equipment Section -->
+    <section id="equipment" class="equipment">
+        <div class="container">
+            <div class="section-title">
+                <h2>المعدات والأجهزة</h2>
+                <p>الأجهزة المستخدمة في الكيمياء الفراغية وتطبيقاتها</p>
+            </div>
+            <div class="equipment-container">
+                <div class="equipment-card">
+                    <div class="equipment-icon">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <div class="equipment-title">مضخات الفراغ</div>
+                    <div class="equipment-description">
+                        <p>تستخدم لإنشاء الفراغ وإزالة الغازات من النظام. تشمل مضخات الدوران، الانتشار، والأيونية.</p>
+                        <p><strong>أنواع رئيسية:</strong></p>
+                        <ul style="margin-right: 20px; color: #64748b;">
+                            <li>مضخات الدوران (Rotary)</li>
+                            <li>مضخات الانتشار (Diffusion)</li>
+                            <li>مضخات التوربو (Turbo)</li>
+                            <li>مضخات الأيونية (Ion)</li>
+                            <li>مضخات الامتصاص (Cryopump)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="equipment-card">
+                    <div class="equipment-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div class="equipment-title">مقاييس الضغط</div>
+                    <div class="equipment-description">
+                        <p>أجهزة قياس الضغط في الفراغ، تختلف حسب نطاق الضغط المطلوب قياسه.</p>
+                        <p><strong>أنواع رئيسية:</strong></p>
+                        <ul style="margin-right: 20px; color: #64748b;">
+                            <li>مقياس بيردون (Bourdon)</li>
+                            <li>مقياس بيرانى (Pirani)</li>
+                            <li>مقياس كاتود بارد (Cold Cathode)</li>
+                            <li>مقياس كاتود ساخن (Hot Cathode)</li>
+                            <li>مقياس أيوني (Ionization)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="equipment-card">
+                    <div class="equipment-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <div class="equipment-title">غرف الفراغ</div>
+                    <div class="equipment-description">
+                        <p>حاويات مخصصة لإنشاء بيئة فراغية. مصنوعة من مواد مثل الفولاذ المقاوم للصدأ أو الزجاج.</p>
+                        <p><strong>مميزات التصميم:</strong></p>
+                        <ul style="margin-right: 20px; color: #64748b;">
+                            <li>مقاومة الانكماش الخارجي</li>
+                            <li>مناسبة للغسيل الكيميائي</li>
+                            <li>ختم محكم (O-rings)</li>
+                            <li>منافذ متعددة للأجهزة</li>
+                            <li>مواد غير قابلة للتفريغ</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="equipment-card">
+                    <div class="equipment-icon">
+                        <i class="fas fa-temperature-low"></i>
+                    </div>
+                    <div class="equipment-title">أنظمة التبريد</div>
+                    <div class="equipment-description">
+                        <p>تستخدم لخفض درجة حرارة الأسطح في الفراغ، مما يزيد من كفاءة الضخ ويقلل من ضغط البخار.</p>
+                        <p><strong>تطبيقات:</strong></p>
+                        <ul style="margin-right: 20px; color: #64748b;">
+                            <li>مضخات الامتصاص</li>
+                            <li>تجميد العينات</li>
+                            <li>خفض ضغط البخار</li>
+                            <li>تبريد المستشعرات</li>
+                            <li>الحفاظ على درجات حرارة منخفضة</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="equipment-card">
+                    <div class="equipment-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <div class="equipment-title">أجهزة التحليل</div>
+                    <div class="equipment-description">
+                        <p>أجهزة متخصصة لتحليل المواد في الفراغ، مثل أجهزة التحليل الطيفي والكتلي.</p>
+                        <p><strong>أمثلة:</strong></p>
+                        <ul style="margin-right: 20px; color: #64748b;">
+                            <li>مطياف الكتلة (Mass Spectrometer)</li>
+                            <li>مطياف الأشعة السينية (XPS)</li>
+                            <li>مجهر إلكتروني (SEM/TEM)</li>
+                            <li>مطياف الأشعة فوق البنفسجية (UPS)</li>
+                            <li>مجهر قوة ذرية (AFM)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="equipment-card">
+                    <div class="equipment-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="equipment-title">أنظمة التحكم</div>
+                    <div class="equipment-description">
+                        <p>أنظمة إلكترونية للتحكم في معلمات الفراغ مثل الضغط ودرجة الحرارة والتدفق.</p>
+                        <p><strong>مكونات:</strong></p>
+                        <ul style="margin-right: 20px; color: #64748b;">
+                            <li>وحدات التحكم المنطقية (PLC)</li>
+                            <li>صمامات التحكم</li>
+                            <li>حساسات درجة الحرارة</li>
+                            <li>أنظمة جمع البيانات</li>
+                            <li>برامج المراقبة والتحكم</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="applications">
+        <div class="container">
+            <div class="section-title">
+                <h2>التطبيقات العملية</h2>
+                <p>كيف تُستخدم الكيمياء الفراغية في الصناعة والبحث العلمي</p>
+            </div>
+            <div class="apps-container">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>أشباه الموصلات</h3>
+                    <p>تصنيع الرقائق الإلكترونية ودوائر المتكاملة في غرف فراغ عالي جدًا لضمان نقاء المواد.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3>الأغشية الرقيقة</h3>
+                    <p>ترسيب طبقات رقيقة جدًا من المواد على الأسطح لتطبيقات البصريات والإلكترونيات.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-satellite"></i>
+                    </div>
+                    <h3>الفضاء والطيران</h3>
+                    <p>اختبار المعدات والمكونات في ظروف تشبه الفضاء الخارجي لضمان موثوقيتها.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>البحث العلمي</h3>
+                    <p>دراسة التفاعلات الكيميائية على المستوى الجزيئي وتحليل خصائص المواد النقية.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>الطاقة النووية</h3>
+                    <p>تصنيع وقود المفاعلات النووية ومعالجة النفايات المشعة في بيئة فراغية آمنة.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>التصنيع المتقدم</h3>
+                    <p>إنتاج مواد عالية الجودة مثل سبائك التيتانيوم والمواد المركبة المتقدمة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="calculator">
+        <div class="container">
+            <div class="section-title">
+                <h2>الحاسبة الفراغية</h2>
+                <p>أدوات تفاعلية لحساب وتحويل قيم الفراغ</p>
+            </div>
+            <div class="calculator-container">
+                <div class="calculator-tabs">
+                    <button class="tab active" onclick="switchTab('pressure-converter')">محول الضغط</button>
+                    <button class="tab" onclick="switchTab('mean-free-path')">المسار الحر</button>
+                    <button class="tab" onclick="switchTab('pumping-speed')">سرعة الضخ</button>
+                </div>
+                
+                <!-- Pressure Converter -->
+                <div id="pressure-converter" class="tab-content active">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">محول وحدات الضغط</h3>
+                    <form id="pressure-form">
+                        <div class="form-group">
+                            <label for="pressure-value">قيمة الضغط:</label>
+                            <input type="number" id="pressure-value" step="any" placeholder="أدخل القيمة" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pressure-unit">الوحدة:</label>
+                            <select id="pressure-unit">
+                                <option value="pa">باسكال (Pa)</option>
+                                <option value="bar">بار (bar)</option>
+                                <option value="torr">تور (Torr)</option>
+                                <option value="mmhg">مليمتر زئبق (mmHg)</option>
+                                <option value="atm">أتموسفير (atm)</option>
+                                <option value="mbar">ميليبار (mbar)</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn">حول</button>
+                    </form>
+                    <div class="calc-result" id="pressure-result">
+                        <h4>نتيجة التحويل:</h4>
+                        <p id="pressure-text"></p>
+                    </div>
+                </div>
+                
+                <!-- Mean Free Path Calculator -->
+                <div id="mean-free-path" class="tab-content">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">حساب المسار الحر المتوسط</h3>
+                    <form id="mfp-form">
+                        <div class="form-group">
+                            <label for="temperature">درجة الحرارة (كلفن):</label>
+                            <input type="number" id="temperature" step="any" placeholder="أدخل درجة الحرارة" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pressure-mfp">الضغط (باسكال):</label>
+                            <input type="number" id="pressure-mfp" step="any" placeholder="أدخل الضغط" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="diameter">قطر الجزيء (متر):</label>
+                            <input type="number" id="diameter" step="any" placeholder="أدخل قطر الجزيء" value="3.7e-10">
+                        </div>
+                        <button type="submit" class="btn">احسب</button>
+                    </form>
+                    <div class="calc-result" id="mfp-result">
+                        <h4>المسار الحر المتوسط:</h4>
+                        <p id="mfp-text"></p>
+                    </div>
+                </div>
+                
+                <!-- Pumping Speed Calculator -->
+                <div id="pumping-speed" class="tab-content">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">حساب سرعة الضخ</h3>
+                    <form id="pump-form">
+                        <div class="form-group">
+                            <label for="volume">حجم الغرفة (متر مكعب):</label>
+                            <input type="number" id="volume" step="any" placeholder="أدخل حجم الغرفة" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="initial-pressure">الضغط الابتدائي (باسكال):</label>
+                            <input type="number" id="initial-pressure" step="any" placeholder="أدخل الضغط الابتدائي" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="final-pressure">الضغط النهائي (باسكال):</label>
+                            <input type="number" id="final-pressure" step="any" placeholder="أدخل الضغط النهائي" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">الزمن المطلوب (ثانية):</label>
+                            <input type="number" id="time" step="any" placeholder="أدخل الزمن" required>
+                        </div>
+                        <button type="submit" class="btn">احسب</button>
+                    </form>
+                    <div class="calc-result" id="pump-result">
+                        <h4>سرعة الضخ المطلوبة:</h4>
+                        <p id="pump-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiments Section -->
+    <section id="experiments" class="experiments">
+        <div class="container">
+            <div class="section-title">
+                <h2>تجارب عملية</h2>
+                <p>أمثلة على تجارب الكيمياء الفراغية وتطبيقاتها</p>
+            </div>
+            <div class="experiments-grid">
+                <div class="experiment-card">
+                    <div class="experiment-image" style="background-image: url('https://images.unsplash.com/photo-1532184650459-81e310cf4da2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                    </div>
+                    <div class="experiment-content">
+                        <div class="experiment-title">ترسيب الأغشية الرقيقة</div>
+                        <div class="experiment-description">
+                            تجربة ترسيب طبقة رقيقة من الألومنيوم على زجاج في فراغ عالي باستخدام تقنية التبخير الحراري.
+                        </div>
+                        <div class="experiment-details">
+                            <div class="experiment-difficulty">
+                                <span>الصعوبة:</span>
+                                <i class="fas fa-star difficulty-star"></i>
+                                <i class="fas fa-star difficulty-star"></i>
+                                <i class="fas fa-star difficulty-star"></i>
+                            </div>
+                            <span>مدة: 3 ساعات</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experiment-card">
+                    <div class="experiment-image" style="background-image: url('https://images.unsplash.com/photo-1581093196277-9f6c9e9deaf1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                    </div>
+                    <div class="experiment-content">
+                        <div class="experiment-title">تحليل سطح المعادن</div>
+                        <div class="experiment-description">
+                            استخدام مطياف الأشعة السينية (XPS) لتحليل تكوين سطح معدن في فراغ فائق لدراسة الأكسدة والتلوث.
+                        </div>
+                        <div class="experiment-details">
+                            <div class="experiment-difficulty">
+                                <span>الصعوبة:</span>
+                                <i class="fas fa-star difficulty-star"></i>
+                                <i class="fas fa-star difficulty-star"></i>
+                                <i class="fas fa-star difficulty-star"></i>
+                                <i class="fas fa-star difficulty-star"></i>
+                            </div>
+                            <span>مدة: 4 ساعات</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experiment-card">
+                    <div class="experiment-image" style="background-image: url('https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                    </div>
+                    <div class="experiment-content">
+                        <div class="experiment-title">تجمد المياه في الفراغ</div>
+                        <div class="experiment-description">
+                            ملاحظة سلوك الماء عند تعريضه لفراغ عالي، حيث يغلي ثم يتجمد بسرعة بسبب انخفاض الضغط.
+                        </div>
+                        <div class="experiment-details">
+                            <div class="experiment-difficulty">
+                                <span>الصعوبة:</span>
+                                <i class="fas fa-star difficulty-star"></i>
+                                <i class="fas fa-star difficulty-star"></i>
+                            </div>
+                            <span>مدة: 1 ساعة</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experiment-card">
+                    <div class="experiment-image" style="background-image: url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                    </div>
+                    <div class="experiment-content">
+                        <div class="experiment-title">تصنيع أشباه الموصلات</div>
+                        <div class="experiment-description">
+                            عملية ترسيب طبقات من السيليكون على رقاقة في فراغ فائق لتصنيع ترانزستورات ودوائر متكاملة.
+                        </div>
+                        <div class="experiment-details">
+                            <div class="experiment-difficulty">
+                                <span>الصعوبة:</span>
+                                <i class="fas fa-star difficulty-star"></i>
+                                <i class="fas fa-star difficulty-star"></i>
+                                <i class="fas fa-star difficulty-star"></i>
+                                <i class="fas fa-star difficulty-star"></i>
+                                <i class="fas fa-star difficulty-star"></i>
+                            </div>
+                            <span>مدة: 8 ساعات</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experiment-card">
+                    <div class="experiment-image" style="background-image: url('https://images.unsplash.com/photo-1581094271935-3f4c2d16f22f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                    </div>
+                    <div class="experiment-content">
+                        <div class="experiment-title">اختبار تسرب الفراغ</div>
+                        <div class="experiment-description">
+                            استخدام جهاز كشف التسرب بالهيليوم لفحص غرف الفراغ وتحديد مواقع التسرب بدقة عالية.
+                        </div>
+                        <div class="experiment-details">
+                            <div class="experiment-difficulty">
+                                <span>الصعوبة:</span>
+                                <i class="fas fa-star difficulty-star"></i>
+                                <i class="fas fa-star difficulty-star"></i>
+                                <i class="fas fa-star difficulty-star"></i>
+                            </div>
+                            <span>مدة: 2 ساعة</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experiment-card">
+                    <div class="experiment-image" style="background-image: url('https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                    </div>
+                    <div class="experiment-content">
+                        <div class="experiment-title">تجارب التبخير تحت الفراغ</div>
+                        <div class="experiment-description">
+                            دراسة معدل تبخير المواد المختلفة في الفراغ وعلاقته بدرجة الحرارة والضغط.
+                        </div>
+                        <div class="experiment-details">
+                            <div class="experiment-difficulty">
+                                <span>الصعوبة:</span>
+                                <i class="fas fa-star difficulty-star"></i>
+                                <i class="fas fa-star difficulty-star"></i>
+                                <i class="fas fa-star difficulty-star"></i>
+                                <i class="fas fa-star difficulty-star"></i>
+                            </div>
+                            <span>مدة: 5 ساعات</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>معرض الصور</h2>
+                <p>صور توضيحية لمعدات وتطبيقات الكيمياء الفراغية</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="غرفة فراغ">
+                    <div class="gallery-overlay">
+                        <h3>غرفة فراغ عالي</h3>
+                        <p>مصممة للتجارب المتقدمة</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="مضخة توربو">
+                    <div class="gallery-overlay">
+                        <h3>مضخة توربو</h3>
+                        <p>لتحقيق فراغ عالي جدًا</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1581094271935-3f4c2d16f22f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="مجهر إلكتروني">
+                    <div class="gallery-overlay">
+                        <h3>مجهر إلكتروني ماسح</h3>
+                        <p>يعمل في الفراغ العالي</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="ترسيب في الفراغ">
+                    <div class="gallery-overlay">
+                        <h3>نظام ترسيب في الفراغ</h3>
+                        <p>لإنشاء الأغشية الرقيقة</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1581093196277-9f6c9e9deaf1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="مطياف الكتلة">
+                    <div class="gallery-overlay">
+                        <h3>مطياف الكتلة</h3>
+                        <p>لتحليل الغازات في الفراغ</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="رقاقة إلكترونية">
+                    <div class="gallery-overlay">
+                        <h3>رقاقة إلكترونية</h3>
+                        <p>مصنعة في الفراغ الفائق</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>الأسئلة الشائعة</h2>
+                <p>إجابات على الأسئلة المتكررة حول الكيمياء الفراغية</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>ما هو الفرق بين الفراغ العالي والفراغ الفائق؟</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الفراغ العالي (High Vacuum) يتراوح ضغطه بين 10⁻⁷ إلى 10⁻¹² بار، بينما الفراغ الفائق (Ultra-High Vacuum) يكون ضغطه أقل من 10⁻¹² بار. في الفراغ الفائق، يصبح عدد الجزيئات في الغرفة قليلًا جدًا، مما يسمح بدراسة الأسطح النقية والتفاعلات على المستوى الذري دون تأثير التلوث.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>لماذا نستخدم الفولاذ المقاوم للصدأ في غرف الفراغ؟</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الفولاذ المقاوم للصدأ يستخدم لأنه يتميز بخصائص مهمة: مقاومة عالية للتآكل، قابلية للغسيل الكيميائي، معامل تفريغ غاز منخفض، وقوة ميكانيكية عالية تتحمل الضغط الخارجي عند تفريغ الغرفة. كما أنه سهل اللحام والتشكيل.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>كيف يتم قياس الضغط في الفراغ العالي جدًا؟</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>في الفراغ العالي جدًا، تستخدم مقاييس الأيونية (Ionization Gauges) التي تعمل عن طريق تأيين الغاز المتبقي وقياس التيار الناتج. هناك نوعان رئيسيان: مقاييس الكاثود الساخن (Hot Cathode) ومقاييس الكاثود البارد (Cold Cathode). كل نوع له مميزاته واستخداماته المناسبة.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>ما هي أهمية درجة الحرارة في الكيمياء الفراغية؟</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>درجة الحرارة تلعب دورًا حاسمًا في الكيمياء الفراغية لأنها تؤثر على ضغط البخار للمواد، معدل التبخير، وسرعة التفاعلات الكيميائية. في الفراغ، يمكن التحكم في درجة الحرارة بدقة لتحقيق الظروف المثلى للعمليات المختلفة مثل الترسيب والتبخير والتحليل.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>ما هي تطبيقات الكيمياء الفراغية في صناعة الإلكترونيات؟</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>تستخدم الكيمياء الفراغية بشكل واسع في صناعة الإلكترونيات لتصنيع الرقائق الإلكترونية، ترسيب الأغشية الرقيقة، إنشاء العوازل، وتصنيع الترانزستورات والدوائر المتكاملة. الفراغ يضمن نقاء المواد ويمنع التلوث الذي قد يؤثر على أداء المكونات الإلكترونية.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>كيف يتم الحفاظ على الفراغ لفترات طويلة؟</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>للحفاظ على الفراغ لفترات طويلة، يجب استخدام مواد ذات معامل تفريغ غاز منخفض، تصميم غرف محكمة الإغلاق، استخدام أنظمة ختم عالية الجودة (مثل O-rings)، وتجنب وجود مواد قابلة للتفريغ. كما يمكن استخدام مضخات احتياطية وأنظمة مراقبة مستمرة للضغط.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع الكيمياء الفراغية</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى عالي الجودة حول الكيمياء الفراغية وتطبيقاتها المتقدمة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#principles">المبادئ</a></li>
+                        <li><a href="#equipment">المعدات</a></li>
+                        <li><a href="#applications">التطبيقات</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">محاكاة تفاعلات</a></li>
+                        <li><a href="#">امتحانات تجريبية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@vacuum-chemistry.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع الكيمياء الفراغية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="fab" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Tab Switching
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Pressure Converter
+        document.getElementById('pressure-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const value = parseFloat(document.getElementById('pressure-value').value);
+            const unit = document.getElementById('pressure-unit').value;
+            const result = document.getElementById('pressure-result');
+            const resultText = document.getElementById('pressure-text');
+            
+            // Convert to Pascal first
+            let paValue;
+            switch(unit) {
+                case 'pa': paValue = value; break;
+                case 'bar': paValue = value * 100000; break;
+                case 'torr': paValue = value * 133.322; break;
+                case 'mmhg': paValue = value * 133.322; break;
+                case 'atm': paValue = value * 101325; break;
+                case 'mbar': paValue = value * 100; break;
+            }
+            
+            // Convert to all units
+            const conversions = {
+                'Pa': paValue,
+                'bar': paValue / 100000,
+                'Torr': paValue / 133.322,
+                'mmHg': paValue / 133.322,
+                'atm': paValue / 101325,
+                'mbar': paValue / 100
+            };
+            
+            resultText.innerHTML = `
+                <strong>${value} ${unit.toUpperCase()} =</strong><br>
+                ${conversions['Pa'].toExponential(3)} Pa<br>
+                ${conversions['bar'].toExponential(3)} bar<br>
+                ${conversions['Torr'].toExponential(3)} Torr<br>
+                ${conversions['mmHg'].toExponential(3)} mmHg<br>
+                ${conversions['atm'].toExponential(3)} atm<br>
+                ${conversions['mbar'].toExponential(3)} mbar
+            `;
+            
+            result.style.display = 'block';
+        });
+
+        // Mean Free Path Calculator
+        document.getElementById('mfp-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const T = parseFloat(document.getElementById('temperature').value);
+            const P = parseFloat(document.getElementById('pressure-mfp').value);
+            const d = parseFloat(document.getElementById('diameter').value);
+            const result = document.getElementById('mfp-result');
+            const resultText = document.getElementById('mfp-text');
+            
+            // Boltzmann constant
+            const k = 1.380649e-23;
+            
+            // Calculate mean free path
+            const mfp = (k * T) / (Math.sqrt(2) * Math.PI * d * d * P);
+            
+            resultText.innerHTML = `
+                المسار الحر المتوسط (λ) = ${mfp.toExponential(3)} متر<br>
+                = ${(mfp * 1000).toFixed(3)} مم<br>
+                = ${(mfp * 1e6).toFixed(3)} ميكرومتر<br>
+                = ${(mfp * 1e9).toFixed(3)} نانومتر
+            `;
+            
+            result.style.display = 'block';
+        });
+
+        // Pumping Speed Calculator
+        document.getElementById('pump-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const V = parseFloat(document.getElementById('volume').value);
+            const P1 = parseFloat(document.getElementById('initial-pressure').value);
+            const P2 = parseFloat(document.getElementById('final-pressure').value);
+            const t = parseFloat(document.getElementById('time').value);
+            const result = document.getElementById('pump-result');
+            const resultText = document.getElementById('pump-text');
+            
+            // Calculate pumping speed using: S = (V/t) * ln(P1/P2)
+            const S = (V / t) * Math.log(P1 / P2);
+            
+            resultText.innerHTML = `
+                سرعة الضخ المطلوبة (S) = ${S.toFixed(3)} م³/ثانية<br>
+                = ${(S * 60).toFixed(3)} م³/دقيقة<br>
+                = ${(S * 3600).toFixed(3)} م³/ساعة<br>
+                = ${(S * 1000).toFixed(3)} لتر/ثانية
+            `;
+            
+            result.style.display = 'block';
+        });
+
+        // FAQ Toggle
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('.faq-icon');
+            
+            answer.classList.toggle('active');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const fab = document.querySelector('.fab');
+            if (window.pageYOffset > 300) {
+                fab.style.display = 'flex';
+            } else {
+                fab.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

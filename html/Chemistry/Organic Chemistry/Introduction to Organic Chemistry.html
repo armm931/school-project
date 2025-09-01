@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مقدمة في الكيمياء العضوية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c5f2d;
+            --secondary: #97bc62;
+            --accent: #4a7c59;
+            --light: #f8f9fa;
+            --dark: #1a1a1a;
+            --warning: #ff9800;
+            --info: #2196f3;
+            --danger: #f44336;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 95, 45, 0.85), rgba(74, 124, 89, 0.85)), url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(151, 188, 98, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #7fa04e;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(151, 188, 98, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-size: 3rem;
+        }
+
+        .feature-body {
+            padding: 25px;
+        }
+
+        .feature-body h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .feature-body p {
+            color: #666;
+            text-align: center;
+        }
+
+        /* Bonds Section */
+        .bonds-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .bond-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            width: 350px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .bond-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .bond-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .bond-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .bond-example {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        /* Compounds Section */
+        .compounds-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .compound-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .compound-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .compound-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .compound-card h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .compound-card .formula {
+            background-color: #f0f7f0;
+            padding: 10px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: var(--accent);
+            margin: 10px 0;
+        }
+
+        .compound-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Reactions Section */
+        .reactions-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .reaction-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .reaction-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .reaction-icon {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-left: 20px;
+        }
+
+        .reaction-title h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .reaction-title p {
+            color: #666;
+        }
+
+        .reaction-equation {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            margin: 20px 0;
+            direction: ltr;
+        }
+
+        .reaction-description {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* Calculator Section */
+        .calculator {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .calculator h3 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+
+        .calc-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .calc-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            color: #666;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .calc-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--secondary);
+        }
+
+        .calc-content {
+            display: none;
+        }
+
+        .calc-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(151, 188, 98, 0.2);
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #f0f7f0;
+            border-radius: 10px;
+            border-right: 4px solid var(--secondary);
+            display: none;
+        }
+
+        .result h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .result p {
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        /* Quiz Section */
+        .quiz-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quiz-question {
+            margin-bottom: 30px;
+        }
+
+        .quiz-question h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 15px;
+        }
+
+        .quiz-option {
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .quiz-option:hover {
+            background-color: #e8f5e9;
+            border-color: var(--secondary);
+        }
+
+        .quiz-option.selected {
+            background-color: #e8f5e9;
+            border-color: var(--secondary);
+        }
+
+        .quiz-option.correct {
+            background-color: #d4edda;
+            border-color: var(--primary);
+        }
+
+        .quiz-option.incorrect {
+            background-color: #f8d7da;
+            border-color: var(--danger);
+        }
+
+        .quiz-controls {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #ccc;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                <span>الكيمياء العضوية</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#bonds">الروابط</a></li>
+                    <li><a href="#compounds">المركبات</a></li>
+                    <li><a href="#reactions">التفاعلات</a></li>
+                    <li><a href="#calc">الحاسبة</a></li>
+                    <li><a href="#quiz">اختبار</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>مقدمة في الكيمياء العضوية</h1>
+            <p>استكشف عالم المركبات الكربونية وأسرارها في بناء الحياة والتكنولوجيا الحديثة</p>
+            <a href="#intro" class="btn">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>ما هي الكيمياء العضوية؟</h2>
+                <p>علم يدرس تركيب وخصائص وتفاعلات المركبات التي تحتوي على الكربون</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>مقدمة عامة</h3>
+                    <p>الكيمياء العضوية هي فرع من الكيمياء يركز على دراسة المركبات العضوية، وهي المركبات التي تحتوي على عنصر الكربون بشكل أساسي. تتميز هذه المركبات بقدرتها على تكوين سلاسل طويلة وحلقات معقدة، مما يمنحها تنوعاً هائلاً في الخصائص والتطبيقات.</p>
+                    <p>تعتبر الكيمياء العضوية أساساً لفهم الحياة نفسها، حيث أن جميع الكائنات الحية تتكون من مركبات عضوية معقدة مثل البروتينات، الكربوهيدرات، الدهون، والأحماض النووية. كما تلعب دوراً حيوياً في الصناعات الدوائية، البتروكيماويات، المواد البلاستيكية، والعديد من المجالات التكنولوجية الأخرى.</p>
+                    <p>من خلال دراسة الكيمياء العضوية، يمكننا فهم كيفية تفاعل هذه المركبات وتصميم مواد جديدة ذات خصائص محددة، مما يساهم في تطوير حلول مبتكرة للتحديات العالمية.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1536987333706-fc9c1d2751b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الكيمياء العضوية">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>لماذا ندرس الكيمياء العضوية؟</h2>
+                <p>أهمية هذا العلم في حياتنا اليومية والتطور التكنولوجي</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="feature-body">
+                        <h3>الطب والدواء</h3>
+                        <p>تطوير الأدوية والعلاجات الطبية من خلال فهم التفاعلات الكيميائية في الجسم</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <div class="feature-body">
+                        <h3>الصناعة</h3>
+                        <p>تصنيع البلاستيك، الألياف، المواد اللاصقة، والمنتجات الكيميائية الأخرى</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="feature-body">
+                        <h3>الزراعة</h3>
+                        <p>تطوير الأسمدة، المبيدات، وتحسين الإنتاج الزراعي</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="feature-body">
+                        <h3>البيئة</h3>
+                        <p>فهم التلوث الكيميائي وتطوير حلول بيئية مستدامة</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <div class="feature-body">
+                        <h3>البيولوجيا</h3>
+                        <p>فهم العمليات الحيوية على المستوى الجزيئي</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="feature-body">
+                        <h3>البحث العلمي</h3>
+                        <p>اكتشاف مركبات جديدة وتطوير تقنيات مبتكرة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bonds Section -->
+    <section id="bonds" class="bonds">
+        <div class="container">
+            <div class="section-title">
+                <h2>الروابط الكيميائية في المركبات العضوية</h2>
+                <p>أنواع الروابط التي تربط الذرات في المركبات العضوية</p>
+            </div>
+            <div class="bonds-container">
+                <div class="bond-card">
+                    <h3>الرابط التساهمي</h3>
+                    <p>الرابط الأساسي في المركبات العضوية، حيث تتشارك الذرات في أزواج الإلكترونات. يمكن أن يكون:</p>
+                    <div class="bond-example">
+                        مفرد: C-C | مزدوج: C=C | ثلاثي: C≡C
+                    </div>
+                    <p>يحدد عدد الروابط التساهمية بين ذرتين قوة الرابط وطوله، مما يؤثر على خواص المركب.</p>
+                </div>
+                
+                <div class="bond-card">
+                    <h3>الرابط الهيدروجيني</h3>
+                    <p>قوة جذب بين ذرة هيدروجين مرتبطة بذرة كهروسلبية (O, N, F) وذرة كهروسلبية أخرى.</p>
+                    <div class="bond-example">
+                        O-H···O | N-H···N | O-H···N
+                    </div>
+                    <p>يلعب دوراً مهماً في تحديد الخصائص الفيزيائية مثل نقطة الغليان والذوبان.</p>
+                </div>
+                
+                <div class="bond-card">
+                    <h3>روابط فان دير فالس</h3>
+                    <p>قوى تجاذب ضعيفة بين الجزيئات، تشمل:</p>
+                    <div class="bond-example">
+                        قوى لندن | قوى ثنائية القطب
+                    </div>
+                    <p>تؤثر على خواص المركبات غير القطبية وتحدد حالتها المادية وظروف تغيرها.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compounds Section -->
+    <section id="compounds" class="compounds">
+        <div class="container">
+            <div class="section-title">
+                <h2>المركبات العضوية الأساسية</h2>
+                <p>التصنيفات الرئيسية للمركبات العضوية وأمثلتها</p>
+            </div>
+            <div class="compounds-grid">
+                <div class="compound-card">
+                    <div class="compound-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3>الهيدروكربونات</h3>
+                    <div class="formula">CₙH₂ₙ₊₂ (ألكانات)</div>
+                    <p>مركبات تحتوي فقط على الكربون والهيدروجين. تشمل الألكانات، الألكينات، والألكاينات.</p>
+                </div>
+                
+                <div class="compound-card">
+                    <div class="compound-icon">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <h3>الكحولات</h3>
+                    <div class="formula">R-OH</div>
+                    <p>تحتوي على مجموعة هيدروكسيل (-OH). أمثلة: الميثانول، الإيثانول، والجلسرين.</p>
+                </div>
+                
+                <div class="compound-card">
+                    <div class="compound-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h3>الأحماض الكربوكسيلية</h3>
+                    <div class="formula">R-COOH</div>
+                    <p>تحتوي على مجموعة كربوكسيل (-COOH). أمثلة: حمض الخليك، حمض الفورميك.</p>
+                </div>
+                
+                <div class="compound-card">
+                    <div class="compound-icon">
+                        <i class="fas fa-capsules"></i>
+                    </div>
+                    <h3>الأمينات</h3>
+                    <div class="formula">R-NH₂</div>
+                    <p>مشتقات الأمونيا حيث يستبدل واحد أو أكثر من ذرات الهيدروجين بمجموعات عضوية.</p>
+                </div>
+                
+                <div class="compound-card">
+                    <div class="compound-icon">
+                        <i class="fas fa-candy-cane"></i>
+                    </div>
+                    <h3>الكربوهيدرات</h3>
+                    <div class="formula">Cₘ(H₂O)ₙ</div>
+                    <p>سكريات بسيطة ومعقدة. تشمل الجلوكوز، الفركتوز، والنشا.</p>
+                </div>
+                
+                <div class="compound-card">
+                    <div class="compound-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>البروتينات</h3>
+                    <div class="formula">بوليمرات من الأحماض الأمينية</div>
+                    <p>سلاسل طويلة من الأحماض الأمينية. أساسية لبنية ووظيفة الخلايا الحية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reactions Section -->
+    <section id="reactions" class="reactions">
+        <div class="container">
+            <div class="section-title">
+                <h2>التفاعلات العضوية الأساسية</h2>
+                <p>أنواع التفاعلات الشائعة في الكيمياء العضوية</p>
+            </div>
+            <div class="reactions-container">
+                <div class="reaction-card">
+                    <div class="reaction-header">
+                        <div class="reaction-icon">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="reaction-title">
+                            <h3>تفاعل الإضافة</h3>
+                            <p>إضافة ذرات أو مجموعات إلى روابط مزدوجة أو ثلاثية</p>
+                        </div>
+                    </div>
+                    <div class="reaction-equation">
+                        CH₂=CH₂ + Br₂ → CH₂Br-CH₂Br
+                    </div>
+                    <div class="reaction-description">
+                        يحدث هذا التفاعل مع المركبات غير المشبعة (الألكينات والألكاينات). تتم إضافة الذرات أو المجموعات عبر كسر الرابط π مع الحفاظ على الرابط σ. أمثلة: هالجة، هدرجة، هيدرة.
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-header">
+                        <div class="reaction-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div class="reaction-title">
+                            <h3>تفاعل الاستبدال</h3>
+                            <p>استبدال ذرة أو مجموعة بأخرى في المركب العضوي</p>
+                        </div>
+                    </div>
+                    <div class="reaction-equation">
+                        CH₄ + Cl₂ → CH₃Cl + HCl
+                    </div>
+                    <div class="reaction-description">
+                        يحدث في المركبات المشبعة مثل الألكانات. يمكن أن يكون استبدال حرة (باستخدام الضوء أو الحرارة) أو استبدال نواة حب (في المركبات العضوية العطرية).
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-header">
+                        <div class="reaction-icon">
+                            <i class="fas fa-minus"></i>
+                        </div>
+                        <div class="reaction-title">
+                            <h3>تفاعل الحذف</h3>
+                            <p>إزالة ذرات أو مجموعات من المركب العضوي</p>
+                        </div>
+                    </div>
+                    <div class="reaction-equation">
+                        CH₃CH₂Br → CH₂=CH₂ + HBr
+                    </div>
+                    <div class="reaction-description">
+                        عكس تفاعل الإضافة. يؤدي إلى تكوين روابط مزدوجة أو ثلاثية. يحتاج عادة إلى قاعدة قوية أو حرارة عالية. أمثلة: تجفيف الكحولات، نزع هاليد الهيدروجين.
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-header">
+                        <div class="reaction-icon">
+                            <i class="fas fa-random"></i>
+                        </div>
+                        <div class="reaction-title">
+                            <h3>تفاعل إعادة الترتيب</h3>
+                            <p>إعادة تنظيم بنية المركب دون تغيير الصيغة الجزيئية</p>
+                        </div>
+                    </div>
+                    <div class="reaction-equation">
+                        CH₃CH₂CH₂Br → (CH₃)₂CHBr
+                    </div>
+                    <div class="reaction-description">
+                        يغير ترتيب الذرات في الجزيء لتكوين مركب أكثر استقراراً. يحدث غالباً في التفاعلات التي تشكل كربونات غير مستقرة.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calc" class="calc">
+        <div class="container">
+            <div class="section-title">
+                <h2>حاسبة الكيمياء العضوية</h2>
+                <p>أدوات مساعدة لحساب الكتل الجزيئية والصيغ الكيميائية</p>
+            </div>
+            <div class="calculator">
+                <h3>الحاسبة التفاعلية</h3>
+                <div class="calc-tabs">
+                    <div class="calc-tab active" data-tab="molecular">الكتلة الجزيئية</div>
+                    <div class="calc-tab" data-tab="formula">تحليل الصيغة</div>
+                    <div class="calc-tab" data-tab="percent">النسبة المئوية</div>
+                </div>
+                
+                <div class="calc-content active" id="molecular">
+                    <form id="molecular-form">
+                        <div class="form-group">
+                            <label for="formula-input">أدخل الصيغة الكيميائية:</label>
+                            <input type="text" id="formula-input" placeholder="مثال: C6H12O6" dir="ltr">
+                        </div>
+                        <button type="submit" class="btn">احسب الكتلة الجزيئية</button>
+                    </form>
+                    <div class="result" id="molecular-result">
+                        <h4>النتيجة:</h4>
+                        <p id="molecular-text"></p>
+                    </div>
+                </div>
+                
+                <div class="calc-content" id="formula">
+                    <form id="formula-form">
+                        <div class="form-group">
+                            <label for="elements">اختر العناصر:</label>
+                            <select id="elements" multiple size="6">
+                                <option value="C">كربون (C)</option>
+                                <option value="H">هيدروجين (H)</option>
+                                <option value="O">أكسجين (O)</option>
+                                <option value="N">نيتروجين (N)</option>
+                                <option value="S">كبريت (S)</option>
+                                <option value="Cl">كلور (Cl)</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn">إنشاء صيغة</button>
+                    </form>
+                    <div class="result" id="formula-result">
+                        <h4>الصيغة المقترحة:</h4>
+                        <p id="formula-text"></p>
+                    </div>
+                </div>
+                
+                <div class="calc-content" id="percent">
+                    <form id="percent-form">
+                        <div class="form-group">
+                            <label for="percent-formula">أدخل الصيغة الكيميائية:</label>
+                            <input type="text" id="percent-formula" placeholder="مثال: CH4" dir="ltr">
+                        </div>
+                        <button type="submit" class="btn">احسب النسب المئوية</button>
+                    </form>
+                    <div class="result" id="percent-result">
+                        <h4>النسب المئوية للعناصر:</h4>
+                        <p id="percent-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="quiz">
+        <div class="container">
+            <div class="section-title">
+                <h2>اختبار تفاعلي</h2>
+                <p>اختبر معرفتك بالكيمياء العضوية</p>
+            </div>
+            <div class="quiz-container">
+                <div class="quiz-question">
+                    <h3>1. ما هو عدد الروابط التساهمية التي يمكن أن يشكلها ذرة الكربون؟</h3>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-answer="wrong">2</div>
+                        <div class="quiz-option" data-answer="wrong">3</div>
+                        <div class="quiz-option" data-answer="correct">4</div>
+                        <div class="quiz-option" data-answer="wrong">5</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <h3>2. أي من المركبات التالية يعتبر كحولاً؟</h3>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-answer="wrong">CH3COOH</div>
+                        <div class="quiz-option" data-answer="correct">CH3OH</div>
+                        <div class="quiz-option" data-answer="wrong">CH3CHO</div>
+                        <div class="quiz-option" data-answer="wrong">CH3OCH3</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <h3>3. ما هو اسم التفاعل الذي يضيف ذرات إلى رابط مزدوج؟</h3>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-answer="correct">إضافة</div>
+                        <div class="quiz-option" data-answer="wrong">استبدال</div>
+                        <div class="quiz-option" data-answer="wrong">حذف</div>
+                        <div class="quiz-option" data-answer="wrong">أكسدة</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-controls">
+                    <button class="btn" id="check-answers">تحقق من الإجابات</button>
+                    <button class="btn" id="reset-quiz" style="display: none;">إعادة الاختبار</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع الكيمياء العضوية</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى شامل ومبسط عن الكيمياء العضوية للطلاب والمهتمين.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#bonds">الروابط</a></li>
+                        <li><a href="#compounds">المركبات</a></li>
+                        <li><a href="#reactions">التفاعلات</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">دروس تفاعلية</a></li>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">امتحانات تجريبية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@organicchemistry.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع الكيمياء العضوية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Calculator Tabs
+        document.querySelectorAll('.calc-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.calc-content').forEach(c => c.classList.remove('active'));
+                
+                this.classList.add('active');
+                document.getElementById(this.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Molecular Weight Calculator
+        const atomicWeights = {
+            'C': 12.01, 'H': 1.008, 'O': 16.00, 'N': 14.01,
+            'S': 32.06, 'Cl': 35.45, 'Br': 79.90, 'F': 19.00,
+            'P': 30.97, 'I': 126.90
+        };
+
+        document.getElementById('molecular-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formula = document.getElementById('formula-input').value.trim();
+            if (!formula) {
+                alert('الرجاء إدخال صيغة كيميائية');
+                return;
+            }
+            
+            let molecularWeight = 0;
+            const regex = /([A-Z][a-z]?)(\d*)/g;
+            let match;
+            
+            while ((match = regex.exec(formula)) !== null) {
+                const element = match[1];
+                const count = match[2] ? parseInt(match[2]) : 1;
+                
+                if (atomicWeights[element]) {
+                    molecularWeight += atomicWeights[element] * count;
+                }
+            }
+            
+            document.getElementById('molecular-text').innerHTML = 
+                `الكتلة الجزيئية لـ <strong>${formula}</strong> هي <strong>${molecularWeight.toFixed(2)}</strong> وحدة كتل ذرية`;
+            document.getElementById('molecular-result').style.display = 'block';
+        });
+
+        // Formula Generator
+        document.getElementById('formula-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const selectedElements = Array.from(document.getElementById('elements').selectedOptions);
+            
+            if (selectedElements.length === 0) {
+                alert('الرجاء اختيار عنصر واحد على الأقل');
+                return;
+            }
+            
+            let formula = '';
+            selectedElements.forEach(option => {
+                const element = option.value;
+                const count = Math.floor(Math.random() * 5) + 1;
+                formula += element + (count > 1 ? count : '');
+            });
+            
+            document.getElementById('formula-text').innerHTML = 
+                `صيغة كيميائية مقترحة: <strong>${formula}</strong>`;
+            document.getElementById('formula-result').style.display = 'block';
+        });
+
+        // Percentage Calculator
+        document.getElementById('percent-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formula = document.getElementById('percent-formula').value.trim();
+            if (!formula) {
+                alert('الرجاء إدخال صيغة كيميائية');
+                return;
+            }
+            
+            let totalWeight = 0;
+            const elements = {};
+            const regex = /([A-Z][a-z]?)(\d*)/g;
+            let match;
+            
+            while ((match = regex.exec(formula)) !== null) {
+                const element = match[1];
+                const count = match[2] ? parseInt(match[2]) : 1;
+                
+                if (atomicWeights[element]) {
+                    const weight = atomicWeights[element] * count;
+                    elements[element] = (elements[element] || 0) + weight;
+                    totalWeight += weight;
+                }
+            }
+            
+            let resultText = '';
+            for (const [element, weight] of Object.entries(elements)) {
+                const percentage = (weight / totalWeight * 100).toFixed(2);
+                resultText += `${element}: ${percentage}%<br>`;
+            }
+            
+            document.getElementById('percent-text').innerHTML = resultText;
+            document.getElementById('percent-result').style.display = 'block';
+        });
+
+        // Quiz Functionality
+        let quizAnswered = false;
+        
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                if (!quizAnswered) {
+                    this.classList.toggle('selected');
+                }
+            });
+        });
+
+        document.getElementById('check-answers').addEventListener('click', function() {
+            quizAnswered = true;
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                if (option.classList.contains('selected')) {
+                    if (option.dataset.answer === 'correct') {
+                        option.classList.add('correct');
+                    } else {
+                        option.classList.add('incorrect');
+                    }
+                } else if (option.dataset.answer === 'correct') {
+                    option.classList.add('correct');
+                }
+            });
+            
+            this.style.display = 'none';
+            document.getElementById('reset-quiz').style.display = 'inline-block';
+        });
+
+        document.getElementById('reset-quiz').addEventListener('click', function() {
+            quizAnswered = false;
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            this.style.display = 'none';
+            document.getElementById('check-answers').style.display = 'inline-block';
+        });
+    </script>
+</body>
+</html>

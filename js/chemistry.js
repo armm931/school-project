@@ -1,183 +1,356 @@
-        // Sample data for periodic table (first 20 elements)
-        const elements = [
-            {number: 1, symbol: 'H', name: 'هيدروجين', weight: '1.008'},
-            {number: 2, symbol: 'He', name: 'هيليوم', weight: '4.003'},
-            {number: 3, symbol: 'Li', name: 'ليثيوم', weight: '6.941'},
-            {number: 4, symbol: 'Be', name: 'بريليوم', weight: '9.012'},
-            {number: 5, symbol: 'B', name: 'بورون', weight: '10.81'},
-            {number: 6, symbol: 'C', name: 'كربون', weight: '12.01'},
-            {number: 7, symbol: 'N', name: 'نيتروجين', weight: '14.01'},
-            {number: 8, symbol: 'O', name: 'أكسجين', weight: '16.00'},
-            {number: 9, symbol: 'F', name: 'فلور', weight: '19.00'},
-            {number: 10, symbol: 'Ne', name: 'نيون', weight: '20.18'},
-            {number: 11, symbol: 'Na', name: 'صوديوم', weight: '22.99'},
-            {number: 12, symbol: 'Mg', name: 'مغنيسيوم', weight: '24.31'},
-            {number: 13, symbol: 'Al', name: 'ألومنيوم', weight: '26.98'},
-            {number: 14, symbol: 'Si', name: 'سيليكون', weight: '28.09'},
-            {number: 15, symbol: 'P', name: 'فوسفور', weight: '30.97'},
-            {number: 16, symbol: 'S', name: 'كبريت', weight: '32.07'},
-            {number: 17, symbol: 'Cl', name: 'كلور', weight: '35.45'},
-            {number: 18, symbol: 'Ar', name: 'أرجون', weight: '39.95'},
-            {number: 19, symbol: 'K', name: 'بوتاسيوم', weight: '39.10'},
-            {number: 20, symbol: 'Ca', name: 'كالسيوم', weight: '40.08'},
-            {number:21, symbol:'Sc', name:'سكانديوم', weight:'44.95'},
-            {number:22,symbol:''}
-        ];
+// Wait for DOM to load
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize all functionality
+    initNavigation();
+    initTabs();
+    initScrollEffects();
+    initSmoothScroll();
+    initAnimations();
+});
+
+// Navigation functionality
+function initNavigation() {
+    // Add active class to current page link
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('nav ul li a');
+    
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath || 
+            (currentPath.includes(link.getAttribute('href')) && link.getAttribute('href') !== '/')) {
+            link.classList.add('active');
+        }
+    });
+
+    // Mobile menu toggle (if needed)
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('nav ul');
+    
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+    }
+}
+
+// Tab functionality for resources section
+function initTabs() {
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const targetTab = this.getAttribute('data-tab');
+            
+            // Remove active class from all tabs and contents
+            tabs.forEach(t => t.classList.remove('active'));
+            tabContents.forEach(tc => tc.classList.remove('active'));
+            
+            // Add active class to clicked tab and corresponding content
+            this.classList.add('active');
+            const targetContent = document.getElementById(targetTab);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+        });
+    });
+}
+
+// Scroll effects
+function initScrollEffects() {
+    // Scroll to top button
+    const scrollTopBtn = document.createElement('div');
+    scrollTopBtn.className = 'scroll-top';
+    scrollTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    document.body.appendChild(scrollTopBtn);
+
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            scrollTopBtn.classList.add('show');
+        } else {
+            scrollTopBtn.classList.remove('show');
+        }
+    });
+
+    scrollTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Header scroll effect
+    const header = document.querySelector('header');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', function() {
+        const currentScroll = window.pageYOffset;
         
-        // Generate periodic table
-        document.addEventListener('DOMContentLoaded', function() {
-            const periodicTable = document.getElementById('periodicTable');
+        if (currentScroll > lastScroll && currentScroll > 100) {
+            header.style.transform = 'translateY(-100%)';
+        } else {
+            header.style.transform = 'translateY(0)';
+        }
+        
+        lastScroll = currentScroll;
+    });
+}
+
+// Smooth scrolling for anchor links
+function initSmoothScroll() {
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+    
+    anchorLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
             
-            // Create empty cells for proper layout
-            for (let i = 1; i <= 18; i++) {
-                if (i === 1 || i === 18) {
-                    // Add elements in first and last column
-                    const element = elements.find(el => el.number === i);
-                    if (element) {
-                        const elementDiv = createElementDiv(element);
-                        periodicTable.appendChild(elementDiv);
-                    } else {
-                        const emptyDiv = document.createElement('div');
-                        emptyDiv.className = 'element';
-                        periodicTable.appendChild(emptyDiv);
-                    }
-                } else {
-                    // Add empty cells
-                    const emptyDiv = document.createElement('div');
-                    emptyDiv.className = 'element';
-                    periodicTable.appendChild(emptyDiv);
-                }
-            }
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
             
-            // Add second row
-            for (let i = 1; i <= 18; i++) {
-                if (i === 1 || i === 2 || (i >= 13 && i <= 18)) {
-                    const elementNumber = i === 1 ? 3 : i === 2 ? 4 : i - 10;
-                    const element = elements.find(el => el.number === elementNumber);
-                    if (element) {
-                        const elementDiv = createElementDiv(element);
-                        periodicTable.appendChild(elementDiv);
-                    } else {
-                        const emptyDiv = document.createElement('div');
-                        emptyDiv.className = 'element';
-                        periodicTable.appendChild(emptyDiv);
-                    }
-                } else {
-                    const emptyDiv = document.createElement('div');
-                    emptyDiv.className = 'element';
-                    periodicTable.appendChild(emptyDiv);
-                }
-            }
-            
-            // Add third row
-            for (let i = 1; i <= 18; i++) {
-                if (i === 1 || i === 2 || (i >= 13 && i <= 18)) {
-                    const elementNumber = i === 1 ? 11 : i === 2 ? 12 : i + 2;
-                    const element = elements.find(el => el.number === elementNumber);
-                    if (element) {
-                        const elementDiv = createElementDiv(element);
-                        periodicTable.appendChild(elementDiv);
-                    } else {
-                        const emptyDiv = document.createElement('div');
-                        emptyDiv.className = 'element';
-                        periodicTable.appendChild(emptyDiv);
-                    }
-                } else {
-                    const emptyDiv = document.createElement('div');
-                    emptyDiv.className = 'element';
-                    periodicTable.appendChild(emptyDiv);
-                }
-            }
-            
-            // Add fourth row
-            for (let i = 1; i <= 18; i++) {
-                const elementNumber = i + 18;
-                const element = elements.find(el => el.number === elementNumber);
-                if (element) {
-                    const elementDiv = createElementDiv(element);
-                    periodicTable.appendChild(elementDiv);
-                } else {
-                    const emptyDiv = document.createElement('div');
-                    emptyDiv.className = 'element';
-                    periodicTable.appendChild(emptyDiv);
-                }
-            }
-            
-            // Tab functionality for resources section
-            const tabs = document.querySelectorAll('.tab');
-            const tabContents = document.querySelectorAll('.tab-content');
-            
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    // Remove active class from all tabs and contents
-                    tabs.forEach(t => t.classList.remove('active'));
-                    tabContents.forEach(c => c.classList.remove('active'));
-                    
-                    // Add active class to clicked tab
-                    this.classList.add('active');
-                    
-                    // Show corresponding content
-                    const tabId = this.getAttribute('data-tab');
-                    document.getElementById(tabId).classList.add('active');
+            if (targetSection) {
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const targetPosition = targetSection.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
                 });
-            });
-            
-            // Smooth scrolling for navigation links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                        
-                        // Update active nav link
-                        document.querySelectorAll('nav a').forEach(link => {
-                            link.classList.remove('active');
-                        });
-                        this.classList.add('active');
-                    }
-                });
-            });
-            
-            // Add animation to category cards on scroll
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            document.querySelectorAll('.category-card').forEach(card => {
-                card.style.opacity = 0;
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                observer.observe(card);
-            });
+            }
+        });
+    });
+}
+
+// Animation on scroll
+function initAnimations() {
+    const animatedElements = document.querySelectorAll('.category-card, .feature, .resource-item');
+    
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    animatedElements.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(element);
+    });
+}
+
+// Utility functions
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Form validation (if any forms are added)
+function validateForm(form) {
+    const inputs = form.querySelectorAll('input[required], textarea[required]');
+    let isValid = true;
+    
+    inputs.forEach(input => {
+        if (!input.value.trim()) {
+            isValid = false;
+            input.classList.add('error');
+        } else {
+            input.classList.remove('error');
+        }
+    });
+    
+    return isValid;
+}
+
+// Add error styles for form validation
+const style = document.createElement('style');
+style.textContent = `
+    input.error, textarea.error {
+        border-color: var(--danger-color) !important;
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+    }
+`;
+document.head.appendChild(style);
+
+// Category card interactions
+document.addEventListener('DOMContentLoaded', function() {
+    const categoryCards = document.querySelectorAll('.category-card');
+    
+    categoryCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) scale(1.02)';
         });
         
-        // Function to create element div
-        function createElementDiv(element) {
-            const elementDiv = document.createElement('div');
-            elementDiv.className = 'element';
-            elementDiv.innerHTML = `
-                <div class="element-number">${element.number}</div>
-                <div class="element-symbol">${element.symbol}</div>
-                <div class="element-name">${element.name}</div>
-                <div class="element-weight">${element.weight}</div>
-            `;
-            return elementDiv;
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+});
+
+// Resource item interactions
+document.addEventListener('DOMContentLoaded', function() {
+    const resourceItems = document.querySelectorAll('.resource-item');
+    
+    resourceItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // Add ripple effect
+            const ripple = document.createElement('div');
+            ripple.style.position = 'absolute';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+            ripple.style.width = ripple.style.height = '40px';
+            ripple.style.top = '50%';
+            ripple.style.left = '50%';
+            ripple.style.transform = 'translate(-50%, -50%) scale(0)';
+            ripple.style.animation = 'ripple 0.6s ease-out';
+            
+            this.style.position = 'relative';
+            this.style.overflow = 'hidden';
+            this.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 600);
+        });
+    });
+});
+
+// Add ripple animation
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
+    @keyframes ripple {
+        to {
+            transform: translate(-50%, -50%) scale(4);
+            opacity: 0;
         }
+    }
+`;
+document.head.appendChild(rippleStyle);
+
+// Performance optimization: Lazy load images
+document.addEventListener('DOMContentLoaded', function() {
+    const images = document.querySelectorAll('img[data-src]');
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+                observer.unobserve(img);
+            }
+        });
+    });
+    
+    images.forEach(img => imageObserver.observe(img));
+});
+
+// Error handling for broken links
+document.addEventListener('DOMContentLoaded', function() {
+    const links = document.querySelectorAll('a[href]');
+    
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            // Check if it's an external link
+            if (href.startsWith('http') && !href.includes(window.location.hostname)) {
+                e.preventDefault();
+                if (confirm('سوف يتم توجيهك إلى موقع خارجي. هل تريد المتابعة؟')) {
+                    window.open(href, '_blank');
+                }
+            }
+        });
+    });
+});
+
+// Add keyboard navigation
+document.addEventListener('keydown', function(e) {
+    // Tab navigation through categories
+    if (e.key === 'Tab' && e.shiftKey) {
+        // Handle backwards tab navigation
+    } else if (e.key === 'Tab') {
+        // Handle forward tab navigation
+    }
+    
+    // Escape key to close modals (if any)
+    if (e.key === 'Escape') {
+        const modals = document.querySelectorAll('.modal.active');
+        modals.forEach(modal => modal.classList.remove('active'));
+    }
+});
+
+// Print functionality
+function printPage() {
+    window.print();
+}
+
+// Add print styles
+const printStyle = document.createElement('style');
+printStyle.textContent = `
+    @media print {
+        header, footer, .btn, .social-links {
+            display: none !important;
+        }
+        
+        body {
+            background: white !important;
+            color: black !important;
+        }
+        
+        .category-card, .feature, .resource-item {
+            break-inside: avoid;
+            box-shadow: none !important;
+            border: 1px solid #ccc !important;
+        }
+    }
+`;
+document.head.appendChild(printStyle);
+
+// Initialize tooltips (if needed)
+function initTooltips() {
+    const tooltipElements = document.querySelectorAll('[data-tooltip]');
+    
+    tooltipElements.forEach(element => {
+        element.addEventListener('mouseenter', function() {
+            const tooltip = document.createElement('div');
+            tooltip.className = 'tooltip';
+            tooltip.textContent = this.getAttribute('data-tooltip');
+            tooltip.style.position = 'absolute';
+            tooltip.style.background = 'rgba(0, 0, 0, 0.8)';
+            tooltip.style.color = 'white';
+            tooltip.style.padding = '8px 12px';
+            tooltip.style.borderRadius = '4px';
+            tooltip.style.fontSize = '14px';
+            tooltip.style.zIndex = '1000';
+            tooltip.style.pointerEvents = 'none';
+            
+            document.body.appendChild(tooltip);
+            
+            const rect = this.getBoundingClientRect();
+            tooltip.style.top = rect.bottom + 5 + 'px';
+            tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
+        });
+        
+        element.addEventListener('mouseleave', function() {
+            const tooltip = document.querySelector('.tooltip');
+            if (tooltip) {
+                tooltip.remove();
+            }
+        });
+    });
+}
+
+// Call tooltips initialization
+initTooltips();
