@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>البنية الذرية - رحلة إلى عالم الذرات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --accent: #60a5fa;
+            --light: #dbeafe;
+            --dark: #1e293b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(30,58,138,0.1) 0%, rgba(59,130,246,0.1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        /* Atomic Animation */
+        .atom-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 2rem auto;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .nucleus {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, var(--danger) 0%, var(--warning) 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(239,68,68,0.5);
+            z-index: 10;
+        }
+
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid rgba(59,130,246,0.3);
+            border-radius: 50%;
+        }
+
+        .orbit-1 {
+            width: 150px;
+            height: 150px;
+            animation: rotate 10s linear infinite;
+        }
+
+        .orbit-2 {
+            width: 220px;
+            height: 220px;
+            animation: rotate 15s linear infinite reverse;
+        }
+
+        .electron {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--secondary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(59,130,246,0.8);
+        }
+
+        .electron-1 {
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .electron-2 {
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .electron-3 {
+            top: 50%;
+            right: -6px;
+            transform: translateY(-50%);
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        /* Cards */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--secondary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--secondary);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 2rem;
+            width: 45%;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: auto;
+            margin-right: 55%;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-right: auto;
+            margin-left: 55%;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: var(--secondary);
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -60px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -60px;
+        }
+
+        /* Periodic Table Preview */
+        .periodic-preview {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 5px;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .element {
+            background: var(--light);
+            border: 1px solid var(--secondary);
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.8rem;
+        }
+
+        .element:hover {
+            background: var(--secondary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Interactive Demo */
+        .demo-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            background: var(--secondary);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                margin: 1rem 0 !important;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item::before {
+                left: 10px !important;
+                right: auto !important;
+            }
+            
+            .periodic-preview {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                البنية الذرية
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#components">المكونات</a></li>
+                <li><a href="#models">النماذج</a></li>
+                <li><a href="#orbitals">المدارات</a></li>
+                <li><a href="#periodic">الجدول الدوري</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>اكتشف عالم الذرات</h1>
+        <p>رحلة تفاعلية إلى أعماق المادة، استكشف البنية الذرية وتطور النماذج العلمية عبر التاريخ</p>
+        
+        <div class="atom-container">
+            <div class="nucleus"></div>
+            <div class="orbit orbit-1">
+                <div class="electron electron-1"></div>
+                <div class="electron electron-2"></div>
+            </div>
+            <div class="orbit orbit-2">
+                <div class="electron electron-3"></div>
+            </div>
+        </div>
+        
+        <button class="btn" onclick="scrollToSection('components')">
+            <i class="fas fa-play"></i> ابدأ الاستكشاف
+        </button>
+    </section>
+
+    <!-- Components Section -->
+    <section id="components">
+        <h2 class="section-title">مكونات الذرة</h2>
+        
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-plus-circle" style="color: var(--danger);"></i>
+                </div>
+                <h3>البروتونات</h3>
+                <p>جسيمات موجبة الشحنة توجد في نواة الذرة. عدد البروتونات يحدد هوية العنصر الكيميائي.</p>
+                <ul style="margin-top: 1rem; padding-right: 1.5rem;">
+                    <li>الشحنة: +1</li>
+                    <li>الكتلة: 1.0073 وحدة كتلة ذرية</li>
+                    <li>الموقع: النواة</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-circle" style="color: var(--warning);"></i>
+                </div>
+                <h3>النيوترونات</h3>
+                <p>جسيمات متعادلة كهربائياً توجد في النواة مع البروتونات. تؤثر في استقرار النواة.</p>
+                <ul style="margin-top: 1rem; padding-right: 1.5rem;">
+                    <li>الشحنة: 0 (متعادل)</li>
+                    <li>الكتلة: 1.0087 وحدة كتلة ذرية</li>
+                    <li>الموقع: النواة</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-minus-circle" style="color: var(--secondary);"></i>
+                </div>
+                <h3>الإلكترونات</h3>
+                <p>جسيمات سالبة الشحنة تدور حول النواة في مدارات محددة. تحدد الخصائص الكيميائية.</p>
+                <ul style="margin-top: 1rem; padding-right: 1.5rem;">
+                    <li>الشحنة: -1</li>
+                    <li>الكتلة: 0.0005 وحدة كتلة ذرية</li>
+                    <li>الموقع: المدارات حول النواة</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Atomic Models Section -->
+    <section id="models">
+        <h2 class="section-title">تطور النماذج الذرية</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>نموذج دالتون (1803)</h3>
+                <p>الذرة كرة صغيرة صلبة غير قابلة للتجزئة. كل عنصر له ذرات متشابهة.</p>
+            </div>
+            
+            <div class="timeline-item">
+                <h3>نموذج طومسون (1904)</h3>
+                <p>نموذج "البودينغ" - الذرة كرة موجبة بها إلكترونات سالبة متوزعة.</p>
+            </div>
+            
+            <div class="timeline-item">
+                <h3>نموذج رذرفورد (1911)</h3>
+                <p>النواة الموجبة في المركز والإلكترونات تدور حولها. مثل النظام الشمسي.</p>
+            </div>
+            
+            <div class="timeline-item">
+                <h3>نموذج بور (1913)</h3>
+                <p>الإلكترونات في مدارات محددة بمستويات طاقة. قفزات بين المدارات.</p>
+            </div>
+            
+            <div class="timeline-item">
+                <h3>النموذج الكمي الحديث (1926)</h3>
+                <p>الإلكترونات في سحابات إلكترونية (مدارات) ذات احتمالات وجود.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Orbitals Section -->
+    <section id="orbitals">
+        <h2 class="section-title">المدارات الذرية والتكوين الإلكتروني</h2>
+        
+        <div class="demo-container">
+            <h3 style="text-align: center; margin-bottom: 1rem;">محاكاة المدارات الذرية</h3>
+            
+            <div class="controls">
+                <button class="btn" onclick="showOrbital('s')">مدار s</button>
+                <button class="btn" onclick="showOrbital('p')">مدار p</button>
+                <button class="btn" onclick="showOrbital('d')">مدار d</button>
+                <button class="btn" onclick="showOrbital('f')">مدار f</button>
+            </div>
+            
+            <div id="orbital-display" style="text-align: center; padding: 2rem; background: var(--light); border-radius: 10px;">
+                <p style="font-size: 1.2rem;">اختر مداراً لعرض شكله ومعلوماته</p>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <h4>مبادئ التعبئة الإلكترونية:</h4>
+                <ul style="padding-right: 2rem; margin-top: 1rem;">
+                    <li><strong>مبدأ أوفباو:</strong> تعبئة المدارات من الأقل طاقة إلى الأعلى</li>
+                    <li><strong>قاعدة هوند:</strong> الإلكترونات تنتشر في المدارات الفرعية قبل الاقتران</li>
+                    <li><strong>مبدأ استبعاد باولي:</strong> لا يمكن لإلكترونين أن يكون لهما نفس الأرقام الكمية الأربعة</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Periodic Table Section -->
+    <section id="periodic">
+        <h2 class="section-title">الجدول الدوري والبنية الذرية</h2>
+        
+        <div class="demo-container">
+            <h3 style="text-align: center; margin-bottom: 1rem;">معاينة الجدول الدوري</h3>
+            
+            <div class="periodic-preview">
+                <div class="element" onclick="showElementInfo('H')">H<br>1</div>
+                <div class="element" onclick="showElementInfo('He')">He<br>2</div>
+                <div class="element" onclick="showElementInfo('Li')">Li<br>3</div>
+                <div class="element" onclick="showElementInfo('Be')">Be<br>4</div>
+                <div class="element" onclick="showElementInfo('B')">B<br>5</div>
+                <div class="element" onclick="showElementInfo('C')">C<br>6</div>
+                <div class="element" onclick="showElementInfo('N')">N<br>7</div>
+                <div class="element" onclick="showElementInfo('O')">O<br>8</div>
+                <div class="element" onclick="showElementInfo('F')">F<br>9</div>
+                <div class="element" onclick="showElementInfo('Ne')">Ne<br>10</div>
+                <div class="element" onclick="showElementInfo('Na')">Na<br>11</div>
+                <div class="element" onclick="showElementInfo('Mg')">Mg<br>12</div>
+                <div class="element" onclick="showElementInfo('Al')">Al<br>13</div>
+                <div class="element" onclick="showElementInfo('Si')">Si<br>14</div>
+                <div class="element" onclick="showElementInfo('P')">P<br>15</div>
+                <div class="element" onclick="showElementInfo('S')">S<br>16</div>
+                <div class="element" onclick="showElementInfo('Cl')">Cl<br>17</div>
+                <div class="element" onclick="showElementInfo('Ar')">Ar<br>18</div>
+            </div>
+            
+            <div id="element-info" style="text-align: center; padding: 2rem; background: var(--light); border-radius: 10px; margin-top: 2rem;">
+                <p style="font-size: 1.2rem;">انقر على عنصر لعرض معلوماته الذرية</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 موقع البنية الذرية | جميع الحقوق محفوظة</p>
+        <p>تم تطويره لأغراض تعليمية</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Orbital information
+        const orbitalInfo = {
+            s: {
+                name: "مدار s",
+                shape: "كروي",
+                electrons: "حتى إلكترونين",
+                description: "المدار s كروي الشكل ومتماثل في جميع الاتجاهات. يحتوي على مدار فرعي واحد فقط."
+            },
+            p: {
+                name: "مدار p",
+                shape: "كمثري",
+                electrons: "حتى 6 إلكترونات",
+                description: "المدار p له شكل كمثري ويوجد في ثلاثة اتجاهات متعامدة (px, py, pz)."
+            },
+            d: {
+                name: "مدار d",
+                shape: "معقد",
+                electrons: "حتى 10 إلكترونات",
+                description: "المدار d له أشكال معقدة أكثر ويوجد في خمسة مدارات فرعية مختلفة."
+            },
+            f: {
+                name: "مدار f",
+                shape: "معقد جداً",
+                electrons: "حتى 14 إلكترون",
+                description: "المدار f هو الأكثر تعقيداً ويوجد في سبعة مدارات فرعية. يظهر في العناصر الثقيلة."
+            }
+        };
+
+        function showOrbital(type) {
+            const orbital = orbitalInfo[type];
+            const display = document.getElementById('orbital-display');
+            
+            display.innerHTML = `
+                <h4>${orbital.name}</h4>
+                <p><strong>الشكل:</strong> ${orbital.shape}</p>
+                <p><strong>السعة الإلكترونية:</strong> ${orbital.electrons}</p>
+                <p style="margin-top: 1rem;">${orbital.description}</p>
+                <div style="margin-top: 1rem;">
+                    <i class="fas fa-atom" style="font-size: 4rem; color: var(--secondary);"></i>
+                </div>
+            `;
+        }
+
+        // Element information
+        const elementData = {
+            H: { name: "الهيدروجين", protons: 1, electrons: 1, neutrons: 0, config: "1s¹" },
+            He: { name: "الهيليوم", protons: 2, electrons: 2, neutrons: 2, config: "1s²" },
+            Li: { name: "الليثيوم", protons: 3, electrons: 3, neutrons: 4, config: "1s² 2s¹" },
+            Be: { name: "البريليوم", protons: 4, electrons: 4, neutrons: 5, config: "1s² 2s²" },
+            B: { name: "البورون", protons: 5, electrons: 5, neutrons: 6, config: "1s² 2s² 2p¹" },
+            C: { name: "الكربون", protons: 6, electrons: 6, neutrons: 6, config: "1s² 2s² 2p²" },
+            N: { name: "النيتروجين", protons: 7, electrons: 7, neutrons: 7, config: "1s² 2s² 2p³" },
+            O: { name: "الأكسجين", protons: 8, electrons: 8, neutrons: 8, config: "1s² 2s² 2p⁴" },
+            F: { name: "الفلور", protons: 9, electrons: 9, neutrons: 10, config: "1s² 2s² 2p⁵" },
+            Ne: { name: "النيون", protons: 10, electrons: 10, neutrons: 10, config: "1s² 2s² 2p⁶" },
+            Na: { name: "الصوديوم", protons: 11, electrons: 11, neutrons: 12, config: "1s² 2s² 2p⁶ 3s¹" },
+            Mg: { name: "المغنيسيوم", protons: 12, electrons: 12, neutrons: 12, config: "1s² 2s² 2p⁶ 3s²" },
+            Al: { name: "الألومنيوم", protons: 13, electrons: 13, neutrons: 14, config: "1s² 2s² 2p⁶ 3s² 3p¹" },
+            Si: { name: "السيليكون", protons: 14, electrons: 14, neutrons: 14, config: "1s² 2s² 2p⁶ 3s² 3p²" },
+            P: { name: "الفوسفور", protons: 15, electrons: 15, neutrons: 16, config: "1s² 2s² 2p⁶ 3s² 3p³" },
+            S: { name: "الكبريت", protons: 16, electrons: 16, neutrons: 16, config: "1s² 2s² 2p⁶ 3s² 3p⁴" },
+            Cl: { name: "الكلور", protons: 17, electrons: 17, neutrons: 18, config: "1s² 2s² 2p⁶ 3s² 3p⁵" },
+            Ar: { name: "الأرجون", protons: 18, electrons: 18, neutrons: 22, config: "1s² 2s² 2p⁶ 3s² 3p⁶" }
+        };
+
+        function showElementInfo(symbol) {
+            const element = elementData[symbol];
+            const infoDiv = document.getElementById('element-info');
+            
+            infoDiv.innerHTML = `
+                <h4>${element.name} (${symbol})</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 1rem 0;">
+                    <div>
+                        <strong>البروتونات:</strong><br>
+                        ${element.protons}
+                    </div>
+                    <div>
+                        <strong>الإلكترونات:</strong><br>
+                        ${element.electrons}
+                    </div>
+                    <div>
+                        <strong>النيوترونات:</strong><br>
+                        ${element.neutrons}
+                    </div>
+                    <div>
+                        <strong>التكوين الإلكتروني:</strong><br>
+                        ${element.config}
+                    </div>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <i class="fas fa-atom" style="font-size: 3rem; color: var(--secondary);"></i>
+                </div>
+            `;
+        }
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(30, 58, 138, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

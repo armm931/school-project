@@ -1,133 +1,89 @@
-// Wait for DOM to load
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all functionality
-    initNavigation();
-    initTabs();
-    initScrollEffects();
-    initSmoothScroll();
-    initAnimations();
-});
-
-// Navigation functionality
-function initNavigation() {
-    // Add active class to current page link
-    const currentPath = window.location.pathname;
-    const navLinks = document.querySelectorAll('nav ul li a');
+    // Mobile menu toggle
+    const menuToggle = document.createElement('div');
+    menuToggle.className = 'menu-toggle';
+    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+    document.querySelector('.header-content').appendChild(menuToggle);
     
-    navLinks.forEach(link => {
-        if (link.getAttribute('href') === currentPath || 
-            (currentPath.includes(link.getAttribute('href')) && link.getAttribute('href') !== '/')) {
-            link.classList.add('active');
-        }
+    menuToggle.addEventListener('click', function() {
+        const nav = document.querySelector('nav ul');
+        nav.classList.toggle('active');
     });
-
-    // Mobile menu toggle (if needed)
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navMenu = document.querySelector('nav ul');
     
-    if (menuToggle) {
-        menuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-        });
-    }
-}
-
-// Tab functionality for resources section
-function initTabs() {
-    const tabs = document.querySelectorAll('.tab');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    tabs.forEach(tab => {
-        tab.addEventListener('click', function() {
-            const targetTab = this.getAttribute('data-tab');
-            
-            // Remove active class from all tabs and contents
-            tabs.forEach(t => t.classList.remove('active'));
-            tabContents.forEach(tc => tc.classList.remove('active'));
-            
-            // Add active class to clicked tab and corresponding content
-            this.classList.add('active');
-            const targetContent = document.getElementById(targetTab);
-            if (targetContent) {
-                targetContent.classList.add('active');
-            }
-        });
-    });
-}
-
-// Scroll effects
-function initScrollEffects() {
-    // Scroll to top button
-    const scrollTopBtn = document.createElement('div');
-    scrollTopBtn.className = 'scroll-top';
-    scrollTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-    document.body.appendChild(scrollTopBtn);
-
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-            scrollTopBtn.classList.add('show');
-        } else {
-            scrollTopBtn.classList.remove('show');
-        }
-    });
-
-    scrollTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-
-    // Header scroll effect
-    const header = document.querySelector('header');
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', function() {
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll > lastScroll && currentScroll > 100) {
-            header.style.transform = 'translateY(-100%)';
-        } else {
-            header.style.transform = 'translateY(0)';
-        }
-        
-        lastScroll = currentScroll;
-    });
-}
-
-// Smooth scrolling for anchor links
-function initSmoothScroll() {
-    const anchorLinks = document.querySelectorAll('a[href^="#"]');
-    
-    anchorLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                const headerHeight = document.querySelector('header').offsetHeight;
-                const targetPosition = targetSection.offsetTop - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
                 });
             }
         });
     });
-}
-
-// Animation on scroll
-function initAnimations() {
-    const animatedElements = document.querySelectorAll('.category-card, .feature, .resource-item');
     
+    // Active navigation link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav ul li a');
+    
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= (sectionTop - 200)) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').slice(1) === current) {
+                link.classList.add('active');
+            }
+        });
+    });
+    
+    // Resource tabs functionality
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active class from all tabs and contents
+            tabs.forEach(t => t.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            tab.classList.add('active');
+            
+            // Show corresponding content
+            const tabId = tab.getAttribute('data-tab');
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+    
+    // Category cards hover effect
+    const categoryCards = document.querySelectorAll('.category-card');
+    categoryCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+    
+    // Feature cards animation on scroll
+    const features = document.querySelectorAll('.feature');
     const observerOptions = {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: '0px 0px -100px 0px'
     };
-
+    
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -136,221 +92,212 @@ function initAnimations() {
             }
         });
     }, observerOptions);
-
-    animatedElements.forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(20px)';
-        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(element);
-    });
-}
-
-// Utility functions
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Form validation (if any forms are added)
-function validateForm(form) {
-    const inputs = form.querySelectorAll('input[required], textarea[required]');
-    let isValid = true;
     
-    inputs.forEach(input => {
-        if (!input.value.trim()) {
-            isValid = false;
-            input.classList.add('error');
-        } else {
-            input.classList.remove('error');
-        }
+    features.forEach(feature => {
+        feature.style.opacity = '0';
+        feature.style.transform = 'translateY(30px)';
+        feature.style.transition = 'all 0.6s ease';
+        observer.observe(feature);
     });
     
-    return isValid;
-}
-
-// Add error styles for form validation
-const style = document.createElement('style');
-style.textContent = `
-    input.error, textarea.error {
-        border-color: var(--danger-color) !important;
-        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
-    }
-`;
-document.head.appendChild(style);
-
-// Category card interactions
-document.addEventListener('DOMContentLoaded', function() {
-    const categoryCards = document.querySelectorAll('.category-card');
-    
-    categoryCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px) scale(1.02)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
-});
-
-// Resource item interactions
-document.addEventListener('DOMContentLoaded', function() {
+    // Resource items animation
     const resourceItems = document.querySelectorAll('.resource-item');
-    
     resourceItems.forEach(item => {
-        item.addEventListener('click', function() {
-            // Add ripple effect
-            const ripple = document.createElement('div');
-            ripple.style.position = 'absolute';
-            ripple.style.borderRadius = '50%';
-            ripple.style.background = 'rgba(255, 255, 255, 0.6)';
-            ripple.style.width = ripple.style.height = '40px';
-            ripple.style.top = '50%';
-            ripple.style.left = '50%';
-            ripple.style.transform = 'translate(-50%, -50%) scale(0)';
-            ripple.style.animation = 'ripple 0.6s ease-out';
-            
-            this.style.position = 'relative';
-            this.style.overflow = 'hidden';
-            this.appendChild(ripple);
-            
-            setTimeout(() => ripple.remove(), 600);
-        });
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(30px)';
+        item.style.transition = 'all 0.6s ease';
+        observer.observe(item);
     });
-});
-
-// Add ripple animation
-const rippleStyle = document.createElement('style');
-rippleStyle.textContent = `
-    @keyframes ripple {
-        to {
-            transform: translate(-50%, -50%) scale(4);
-            opacity: 0;
+    
+    // Add loading animation
+    window.addEventListener('load', function() {
+        document.body.style.opacity = '0';
+        setTimeout(() => {
+            document.body.style.transition = 'opacity 0.5s ease';
+            document.body.style.opacity = '1';
+        }, 100);
+    });
+    
+    // Search functionality (placeholder)
+    const searchInput = document.createElement('input');
+    searchInput.type = 'text';
+    searchInput.placeholder = 'ابحث في الموقع...';
+    searchInput.style.cssText = `
+        position: fixed;
+        top: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px 20px;
+        border-radius: 25px;
+        border: 1px solid #ddd;
+        width: 300px;
+        z-index: 999;
+        display: none;
+        background: white;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    `;
+    
+    document.body.appendChild(searchInput);
+    
+    // Add search icon to header
+    const searchIcon = document.createElement('i');
+    searchIcon.className = 'fas fa-search';
+    searchIcon.style.cssText = `
+        color: white;
+        font-size: 1.2rem;
+        cursor: pointer;
+        margin-left: 20px;
+    `;
+    
+    document.querySelector('.logo').appendChild(searchIcon);
+    
+    searchIcon.addEventListener('click', function() {
+        searchInput.style.display = searchInput.style.display === 'none' ? 'block' : 'none';
+        if (searchInput.style.display === 'block') {
+            searchInput.focus();
         }
-    }
-`;
-document.head.appendChild(rippleStyle);
-
-// Performance optimization: Lazy load images
-document.addEventListener('DOMContentLoaded', function() {
-    const images = document.querySelectorAll('img[data-src]');
-    
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.removeAttribute('data-src');
-                observer.unobserve(img);
-            }
-        });
     });
     
-    images.forEach(img => imageObserver.observe(img));
-});
-
-// Error handling for broken links
-document.addEventListener('DOMContentLoaded', function() {
-    const links = document.querySelectorAll('a[href]');
+    // Close search when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!searchInput.contains(e.target) && !searchIcon.contains(e.target)) {
+            searchInput.style.display = 'none';
+        }
+    });
     
-    links.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
+    // Add to favorites functionality
+    const addToFavoritesButtons = document.querySelectorAll('.resource-item button');
+    addToFavoritesButtons.forEach(button => {
+        button.innerHTML = '<i class="fas fa-heart"></i> أضف للمفضلة';
+        button.addEventListener('click', function() {
+            this.innerHTML = '<i class="fas fa-heart" style="color: red;"></i> تمت الإضافة';
+            this.style.backgroundColor = '#27ae60';
             
-            // Check if it's an external link
-            if (href.startsWith('http') && !href.includes(window.location.hostname)) {
-                e.preventDefault();
-                if (confirm('سوف يتم توجيهك إلى موقع خارجي. هل تريد المتابعة؟')) {
-                    window.open(href, '_blank');
-                }
-            }
+            // Show notification
+            const notification = document.createElement('div');
+            notification.textContent = 'تمت الإضافة إلى المفضلة بنجاح!';
+            notification.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: #27ae60;
+                color: white;
+                padding: 15px 25px;
+                border-radius: 5px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+                z-index: 1000;
+                animation: slideIn 0.3s ease;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
         });
     });
-});
-
-// Add keyboard navigation
-document.addEventListener('keydown', function(e) {
-    // Tab navigation through categories
-    if (e.key === 'Tab' && e.shiftKey) {
-        // Handle backwards tab navigation
-    } else if (e.key === 'Tab') {
-        // Handle forward tab navigation
-    }
     
-    // Escape key to close modals (if any)
-    if (e.key === 'Escape') {
-        const modals = document.querySelectorAll('.modal.active');
-        modals.forEach(modal => modal.classList.remove('active'));
-    }
-});
-
-// Print functionality
-function printPage() {
-    window.print();
-}
-
-// Add print styles
-const printStyle = document.createElement('style');
-printStyle.textContent = `
-    @media print {
-        header, footer, .btn, .social-links {
-            display: none !important;
+    // Add notification animations
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
         
-        body {
-            background: white !important;
-            color: black !important;
-        }
-        
-        .category-card, .feature, .resource-item {
-            break-inside: avoid;
-            box-shadow: none !important;
-            border: 1px solid #ccc !important;
-        }
-    }
-`;
-document.head.appendChild(printStyle);
-
-// Initialize tooltips (if needed)
-function initTooltips() {
-    const tooltipElements = document.querySelectorAll('[data-tooltip]');
-    
-    tooltipElements.forEach(element => {
-        element.addEventListener('mouseenter', function() {
-            const tooltip = document.createElement('div');
-            tooltip.className = 'tooltip';
-            tooltip.textContent = this.getAttribute('data-tooltip');
-            tooltip.style.position = 'absolute';
-            tooltip.style.background = 'rgba(0, 0, 0, 0.8)';
-            tooltip.style.color = 'white';
-            tooltip.style.padding = '8px 12px';
-            tooltip.style.borderRadius = '4px';
-            tooltip.style.fontSize = '14px';
-            tooltip.style.zIndex = '1000';
-            tooltip.style.pointerEvents = 'none';
-            
-            document.body.appendChild(tooltip);
-            
-            const rect = this.getBoundingClientRect();
-            tooltip.style.top = rect.bottom + 5 + 'px';
-            tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
-        });
-        
-        element.addEventListener('mouseleave', function() {
-            const tooltip = document.querySelector('.tooltip');
-            if (tooltip) {
-                tooltip.remove();
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
             }
-        });
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Parallax effect for hero section
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero');
+        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
     });
-}
-
-// Call tooltips initialization
-initTooltips();
+    
+    // Add dark mode toggle
+    const darkModeToggle = document.createElement('div');
+    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    darkModeToggle.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        width: 50px;
+        height: 50px;
+        background: var(--secondary);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        z-index: 999;
+        transition: all 0.3s ease;
+    `;
+    
+    document.body.appendChild(darkModeToggle);
+    
+    darkModeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        if (document.body.classList.contains('dark-mode')) {
+            this.innerHTML = '<i class="fas fa-sun"></i>';
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            this.innerHTML = '<i class="fas fa-moon"></i>';
+            localStorage.setItem('darkMode', 'disabled');
+        }
+    });
+    
+    // Check for saved dark mode preference
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+    
+    // Add dark mode styles
+    const darkModeStyles = document.createElement('style');
+    darkModeStyles.textContent = `
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .category-card,
+        body.dark-mode .feature,
+        body.dark-mode .resource-item {
+            background-color: #2d2d2d;
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .topic-list li:hover {
+            background-color: #3d3d3d;
+        }
+        
+        body.dark-mode .topic-list li a {
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .section-title h2 {
+            color: #f0f0f0;
+        }
+    `;
+    document.head.appendChild(darkModeStyles);
+}); 

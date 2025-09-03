@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكيمياء الانتقالية - دراسة العناصر الانتقالية</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #1e3c72;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #2a5298;
+            padding-bottom: 10px;
+        }
+
+        .card p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .transition-metals {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .metal-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .metal-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .metal-symbol {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .metal-name {
+            font-size: 0.9em;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .property-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .property-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .complex-chemistry {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .complex-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .complex-type {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .complex-type:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .complex-type h3 {
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+
+        .crystal-field {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .orbital-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .orbital {
+            width: 60px;
+            height: 60px;
+            border: 3px solid #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            position: relative;
+        }
+
+        .orbital.t2g {
+            background: #ff6b6b;
+        }
+
+        .orbital.eg {
+            background: #4ecdc4;
+        }
+
+        .orbital-label {
+            position: absolute;
+            bottom: -25px;
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .applications {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .app-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .app-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .interactive-demo {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .color-wheel {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: conic-gradient(
+                red 0deg,
+                orange 60deg,
+                yellow 120deg,
+                green 180deg,
+                blue 240deg,
+                indigo 300deg,
+                violet 360deg
+            );
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .color-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .transition-metals {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            }
+        }
+
+        .formula {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            margin: 10px 0;
+            border: 1px solid #dee2e6;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>الكيمياء الانتقالية</h1>
+            <p class="subtitle">دراسة العناصر الانتقالية ومركباتها المعقدة، الخصائص المغناطيسية والبصرية، والتطبيقات الصناعية</p>
+        </header>
+
+        <div class="main-content">
+            <div class="card">
+                <h2>ما هي العناصر الانتقالية؟</h2>
+                <p>العناصر الانتقالية هي عناصر المجموعات من 3 إلى 12 في الجدول الدوري، وتتميز بوجود إلكترونات غير مكتملة في المدار d.</p>
+                <p>تتميز هذه العناصر بخصائص فريدة مثل:</p>
+                <ul style="margin-right: 20px; line-height: 1.8;">
+                    <li>تكوين مركبات معقدة ملونة</li>
+                    <li>خصائص حفازية ممتازة</li>
+                    <li>خواص مغناطيسية متغيرة</li>
+                    <li>أعداد تأكسد متعددة</li>
+                </ul>
+                
+                <div class="transition-metals">
+                    <div class="metal-item">
+                        <div class="metal-symbol">Sc</div>
+                        <div class="metal-name">سكانديوم</div>
+                    </div>
+                    <div class="metal-item">
+                        <div class="metal-symbol">Ti</div>
+                        <div class="metal-name">تيتانيوم</div>
+                    </div>
+                    <div class="metal-item">
+                        <div class="metal-symbol">V</div>
+                        <div class="metal-name">فاناديوم</div>
+                    </div>
+                    <div class="metal-item">
+                        <div class="metal-symbol">Cr</div>
+                        <div class="metal-name">كروم</div>
+                    </div>
+                    <div class="metal-item">
+                        <div class="metal-symbol">Mn</div>
+                        <div class="metal-name">منجنيز</div>
+                    </div>
+                    <div class="metal-item">
+                        <div class="metal-symbol">Fe</div>
+                        <div class="metal-name">حديد</div>
+                    </div>
+                    <div class="metal-item">
+                        <div class="metal-symbol">Co</div>
+                        <div class="metal-name">كوبالت</div>
+                    </div>
+                    <div class="metal-item">
+                        <div class="metal-symbol">Ni</div>
+                        <div class="metal-name">نيكل</div>
+                    </div>
+                    <div class="metal-item">
+                        <div class="metal-symbol">Cu</div>
+                        <div class="metal-name">نحاس</div>
+                    </div>
+                    <div class="metal-item">
+                        <div class="metal-symbol">Zn</div>
+                        <div class="metal-name">زنك</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>الخصائص العامة</h2>
+                <div class="properties-grid">
+                    <div class="property-card">
+                        <h3>🎨 اللون</h3>
+                        <p>معظم مركبات العناصر الانتقالية ملونة بسبب انتقالات الإلكترونات بين المدارات d</p>
+                    </div>
+                    <div class="property-card">
+                        <h3>🧲 المغناطيسية</h3>
+                        <p>يمكن أن تكون بارامغناطيسية أو دايامغناطيسية حسب عدد الإلكترونات غير المزدوجة</p>
+                    </div>
+                    <div class="property-card">
+                        <h3>⚗️ التكافؤ</h3>
+                        <p>تظهر أعداد تأكسد متعددة بسبب طاقة التأين المتقاربة للإلكترونات d</p>
+                    </div>
+                    <div class="property-card">
+                        <h3>🔬 التشابك</h3>
+                        <p>تستخدم مدارات d وs وp في تكوين روابط تساهمية وتناسقية</p>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px;"><span class="highlight">مثال:</span> أيون Fe²⁺ له تكوين إلكتروني [Ar] 3d⁶ ويمكن أن يكون بارامغناطيسياً بسبب وجود 4 إلكترونات غير مزدوجة.</p>
+            </div>
+        </div>
+
+        <div class="complex-chemistry">
+            <h2>كيمياء المركبات المعقدة</h2>
+            <p>المركبات المعقدة هي مركبات تحتوي على أيون مركزي (عادةً عنصر انتقالي) محاط بجزيئات أو أيونات تسمى <span class="highlight">الليجاندات</span>.</p>
+            
+            <div class="formula">[M(L)ₙ]ᵐ⁺</div>
+            <p>حيث M = أيون مركزي، L = ليجاند، n = عدد تناسق الإحداثيات</p>
+            
+            <div class="complex-types">
+                <div class="complex-type">
+                    <h3>مركبات أوكتاهدرالية</h3>
+                    <p>عدد التناسق = 6</p>
+                    <p>مثال: [Fe(CN)₆]⁴⁻</p>
+                    <p>الهندسة: ثماني الأوجه</p>
+                </div>
+                <div class="complex-type">
+                    <h3>مركبات رباعية السطوح</h3>
+                    <p>عدد التناسق = 4</p>
+                    <p>مثال: [NiCl₄]²⁻</p>
+                    <p>الهندسة: رباعي السطوح</p>
+                </div>
+                <div class="complex-type">
+                    <h3>مركبات مربعة المستوية</h3>
+                    <p>عدد التناسق = 4</p>
+                    <p>مثال: [Cu(NH₃)₄]²⁺</p>
+                    <p>الهندسة: مربع المستوى</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="crystal-field">
+            <h2>نظرية المجال البلوري</h2>
+            <p>تفسر نظرية المجال البلوري انقسام مدارات d في وجود ليجاندات حول الأيون المركزي.</p>
+            
+            <h3 style="margin: 20px 0 10px 0;">الانقسام في المجال الأوكتاهدرالي:</h3>
+            <div class="orbital-diagram">
+                <div class="orbital t2g">
+                    dxy
+                    <div class="orbital-label">t₂g</div>
+                </div>
+                <div class="orbital t2g">
+                    dyz
+                    <div class="orbital-label">t₂g</div>
+                </div>
+                <div class="orbital t2g">
+                    dxz
+                    <div class="orbital-label">t₂g</div>
+                </div>
+                <div style="font-size: 2em; color: #333;">Δ₀</div>
+                <div class="orbital eg">
+                    dx²-y²
+                    <div class="orbital-label">e_g</div>
+                </div>
+                <div class="orbital eg">
+                    dz²
+                    <div class="orbital-label">e_g</div>
+                </div>
+            </div>
+            
+            <p><span class="highlight">طاقة استقرار المجال البلوري (CFSE):</span> الطاقة الناتجة عن وضع الإلكترونات في المدارات المنخفضة الطاقة.</p>
+            
+            <div class="formula">CFSE = (-4x + 6y)Δ₀ + nP</div>
+            <p>حيث x = عدد الإلكترونات في t₂g، y = عدد الإلكترونات في e_g، n = عدد أزواج الإلكترونات، P = طاقة الاقتران</p>
+        </div>
+
+        <div class="interactive-demo">
+            <h2>الخصائص البصرية والألوان</h2>
+            <p>ألوان مركبات العناصر الانتقالية ناتجة عن امتصاص الضوء المرئي وانتقال الإلكترونات بين مدارات d المنقسمة.</p>
+            
+            <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 30px; margin: 20px 0;">
+                <div>
+                    <h3>عجلة الألوان التكميلية</h3>
+                    <div class="color-wheel">
+                        <div class="color-center">اللون</div>
+                    </div>
+                </div>
+                
+                <div style="flex: 1; min-width: 300px;">
+                    <h3>أمثلة على الألوان:</h3>
+                    <ul style="line-height: 2; margin-right: 20px;">
+                        <li><strong>[Cu(H₂O)₆]²⁺:</strong> أزرق (يمتص برتقالي)</li>
+                        <li><strong>[Co(H₂O)₆]²⁺:</strong> وردي (يمتص أخضر)</li>
+                        <li><strong>[Ni(H₂O)₆]²⁺:</strong> أخضر (يمثل أحمر)</li>
+                        <li><strong>[Fe(SCN)]²⁺:</strong> أحمر دموي (يمتص أخضر)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>التطبيقات العملية</h2>
+            <div class="applications">
+                <div class="app-card">
+                    <h3>التحفيز الكيميائي</h3>
+                    <p>تستخدم العناصر الانتقالية كعوامل حفازة في العديد من الصناعات مثل هابر للنشادر وتصنيع الحمض النتري</p>
+                </div>
+                <div class="app-card">
+                    <h3>السبائك المعدنية</h3>
+                    <p>الفولاذ المقاوم للصدأ (Fe, Cr, Ni) والسبائك الفائقة المستخدمة في صناعة الطائرات والمحركات</p>
+                </div>
+                <div class="app-card">
+                    <h3>الطب الحيوي</h3>
+                    <p>الهيموجلوبين (Fe)، فيتامين B12 (Co)، والإنزيمات المحتوية على الزنك والنحاس</p>
+                </div>
+                <div class="app-card">
+                    <h3>الإلكترونيات</h3>
+                    <p>الموصلات الفائقة، الخلايا الشمسية، والأصباغ المستخدمة في الشاشات الإلكترونية</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // إضافة تفاعلية لعناصر الانتقال
+        document.querySelectorAll('.metal-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const symbol = this.querySelector('.metal-symbol').textContent;
+                const name = this.querySelector('.metal-name').textContent;
+                
+                // معلومات عن كل عنصر
+                const elementInfo = {
+                    'Sc': {electron: '3d¹ 4s²', oxidation: '+3', color: 'أبيض'},
+                    'Ti': {electron: '3d² 4s²', oxidation: '+2, +3, +4', color: 'رمادي'},
+                    'V': {electron: '3d³ 4s²', oxidation: '+2, +3, +4, +5', color: 'فضي'},
+                    'Cr': {electron: '3d⁵ 4s¹', oxidation: '+2, +3, +6', color: 'فضي'},
+                    'Mn': {electron: '3d⁵ 4s²', oxidation: '+2, +3, +4, +6, +7', color: 'فضي رمادي'},
+                    'Fe': {electron: '3d⁶ 4s²', oxidation: '+2, +3', color: 'رمادي'},
+                    'Co': {electron: '3d⁷ 4s²', oxidation: '+2, +3', color: 'رمادي مزرق'},
+                    'Ni': {electron: '3d⁸ 4s²', oxidation: '+2', color: 'فضي'},
+                    'Cu': {electron: '3d¹⁰ 4s¹', oxidation: '+1, +2', color: 'نحاسي'},
+                    'Zn': {electron: '3d¹⁰ 4s²', oxidation: '+2', color: 'فضي مزرق'}
+                };
+                
+                const info = elementInfo[symbol];
+                if (info) {
+                    alert(`معلومات ${name} (${symbol}):\n\nالتكوين الإلكتروني: ${info.electron}\nأعداد التأكسد: ${info.oxidation}\nلون العنصر: ${info.color}`);
+                }
+            });
+        });
+
+        // تأثير حركي للبطاقات
+        document.querySelectorAll('.card, .complex-type, .property-card, .app-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الروابط الكيميائية - أنواعها وخصائصها</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e3c72;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: #2a5298;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: #2a5298;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            right: 0;
+            background: #2a5298;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30, 60, 114, 0.8), rgba(42, 82, 152, 0.8)), 
+                        url('https://images.unsplash.com/photo-1532187853244-9b65e1565713?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 6rem 0;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease 0.2s;
+            animation-fill-mode: both;
+        }
+        
+        /* Main Content */
+        main {
+            background: white;
+            border-radius: 20px 20px 0 0;
+            padding: 3rem 0;
+            min-height: 100vh;
+        }
+        
+        /* Bond Types Section */
+        .bond-types {
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3c72;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: #2a5298;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .bonds-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .bond-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bond-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #1e3c72, #2a5298);
+        }
+        
+        .bond-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .bond-icon {
+            font-size: 3rem;
+            color: #2a5298;
+            margin-bottom: 1rem;
+        }
+        
+        .bond-card h3 {
+            font-size: 1.5rem;
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+        
+        .bond-card p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .bond-example {
+            background: #f0f4f8;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .bond-example strong {
+            color: #2a5298;
+        }
+        
+        /* Interactive Visualization */
+        .visualization {
+            background: #f8f9fa;
+            padding: 3rem;
+            border-radius: 15px;
+            margin-bottom: 4rem;
+        }
+        
+        .viz-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .atom-container {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .atom {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+        
+        .atom-1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .atom-2 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .bond-line {
+            width: 100px;
+            height: 4px;
+            background: #333;
+            position: relative;
+        }
+        
+        .bond-line::before,
+        .bond-line::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #333;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .bond-line::before {
+            left: -5px;
+        }
+        
+        .bond-line::after {
+            right: -5px;
+        }
+        
+        .bond-controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .bond-btn {
+            padding: 0.8rem 1.5rem;
+            background: #2a5298;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .bond-btn:hover {
+            background: #1e3c72;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 82, 152, 0.3);
+        }
+        
+        .bond-btn.active {
+            background: #1e3c72;
+        }
+        
+        /* Comparison Table */
+        .comparison {
+            margin-bottom: 4rem;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background: #2a5298;
+            color: white;
+            font-weight: 500;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        /* Properties Section */
+        .properties {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .property-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .property-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .property-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .property-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 20px rgba(102, 126, 234, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .atom-container {
+                flex-direction: column;
+            }
+            
+            .bond-line {
+                width: 4px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                <span>الروابط الكيميائية</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#types">أنواع الروابط</a></li>
+                <li><a href="#visualization">التصور التفاعلي</a></li>
+                <li><a href="#comparison">المقارنة</a></li>
+                <li><a href="#properties">الخصائص</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>اكتشف عالم الروابط الكيميائية</h1>
+            <p>تعرف على أنواع الروابط الكيميائية المختلفة وكيفية ارتباط الذرات لتكوين الجزيئات والمواد المختلفة</p>
+        </div>
+    </section>
+    
+    <main class="container">
+        <section id="types" class="bond-types">
+            <h2 class="section-title">أنواع الروابط الكيميائية</h2>
+            <div class="bonds-grid">
+                <div class="bond-card">
+                    <div class="bond-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>الرابطة الأيونية</h3>
+                    <p>تنشأ بين فلز ولا فلز حيث ينتقل إلكترون من الفلز إلى اللا فلز مكونين أيونات موجبة وسالبة.</p>
+                    <div class="bond-example">
+                        <strong>مثال:</strong> كلوريد الصوديوم (NaCl) - ينتقل إلكترون من الصوديوم إلى الكلور
+                    </div>
+                </div>
+                
+                <div class="bond-card">
+                    <div class="bond-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3>الرابطة التساهمية</h3>
+                    <p>تنشأ بين ذرتين لا فلزتين حيث تشارك الذرات في أزواج إلكترونية لتحقيق الاستقرار.</p>
+                    <div class="bond-example">
+                        <strong>مثال:</strong> جزيء الماء (H₂O) - يشارك الأكسجين مع كل ذرة هيدروجين في زوج إلكتروني
+                    </div>
+                </div>
+                
+                <div class="bond-card">
+                    <div class="bond-icon">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <h3>الرابطة المعدنية</h3>
+                    <p>توجد في الفلزات حيث تتحرر الإلكترونات من ذراتها وتتحرك بحرية في "بحر إلكتروني".</p>
+                    <div class="bond-example">
+                        <strong>مثال:</strong> النحاس (Cu) - إلكترونات التكافؤ تتحرك بحرية بين ذرات النحاس
+                    </div>
+                </div>
+                
+                <div class="bond-card">
+                    <div class="bond-icon">
+                        <i class="fas fa-magnet"></i>
+                    </div>
+                    <h3>الرابطة الهيدروجينية</h3>
+                    <p>قوة جذب بين ذرة هيدروجين مرتبطة بذرة كهروسالية عالية وذرة أخرى ذات كهروسالية عالية.</p>
+                    <div class="bond-example">
+                        <strong>مثال:</strong> الماء (H₂O) - جذب بين ذرة هيدروجين في جزيء وذرة أكسجين في جزيء آخر
+                    </div>
+                </div>
+                
+                <div class="bond-card">
+                    <div class="bond-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>الرابطة التناسقية</h3>
+                    <p>نوع خاص من الروابط التساهمية حيث يقدم زوج الإلكترون من ذرة واحدة فقط.</p>
+                    <div class="bond-example">
+                        <strong>مثال:</strong> أيون الأمونيوم (NH₄⁺) - يقدم النيتروجين زوج الإلكترون للهيدروجين
+                    </div>
+                </div>
+                
+                <div class="bond-card">
+                    <div class="bond-icon">
+                        <i class="fas fa-wave-square"></i>
+                    </div>
+                    <h3>قوى فان دير فالس</h3>
+                    <p>قوى جذب ضعيفة بين الجزيئات غير القطبية ناتجة عن تذبذبات عابرة في توزيع الإلكترونات.</p>
+                    <div class="bond-example">
+                        <strong>مثال:</strong> النيتروجين السائل (N₂) - قوى ضعيفة بين جزيئات النيتروجين
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="visualization" class="visualization">
+            <h2 class="section-title">التصور التفاعلي للروابط</h2>
+            <div class="viz-container">
+                <div class="atom-container">
+                    <div class="atom atom-1" id="atom1">Na</div>
+                    <div class="bond-line" id="bondLine"></div>
+                    <div class="atom atom-2" id="atom2">Cl</div>
+                </div>
+                
+                <div class="bond-controls">
+                    <button class="bond-btn active" onclick="showBond('ionic')">رابطة أيونية</button>
+                    <button class="bond-btn" onclick="showBond('covalent')">رابطة تساهمية</button>
+                    <button class="bond-btn" onclick="showBond('metallic')">رابطة معدنية</button>
+                    <button class="bond-btn" onclick="showBond('hydrogen')">رابطة هيدروجينية</button>
+                </div>
+                
+                <div id="bondInfo" style="text-align: center; max-width: 600px;">
+                    <h3>الرابطة الأيونية</h3>
+                    <p>في الرابطة الأيونية، يفقد الصوديوم إلكتروناً ليصبح أيوناً موجباً (Na⁺)، بينما يكتسب الكلور إلكتروناً ليصبح أيوناً سالباً (Cl⁻). تجذب القوى الكهروستاتيكية بين الأيونين الموجبة والسالبة.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="comparison" class="comparison">
+            <h2 class="section-title">مقارنة بين أنواع الروابط</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>نوع الرابطة</th>
+                        <th>نوع الذرات</th>
+                        <th>طريقة التكوين</th>
+                        <th>قوة الرابطة</th>
+                        <th>حالة المادة</th>
+                        <th>أمثلة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>أيونية</td>
+                        <td>فلز + لا فلز</td>
+                        <td>نقل إلكترون</td>
+                        <td>قوية جداً</td>
+                        <td>صلبة</td>
+                        <td>NaCl, MgO</td>
+                    </tr>
+                    <tr>
+                        <td>تساهمية</td>
+                        <td>لا فلز + لا فلز</td>
+                        <td>مشاركة إلكترونات</td>
+                        <td>متوسطة إلى قوية</td>
+                        <td>غازية أو سائلة</td>
+                        <td>H₂O, CO₂</td>
+                    </tr>
+                    <tr>
+                        <td>معدنية</td>
+                        <td>فلز + فلز</td>
+                        <td>بحر إلكتروني</td>
+                        <td>متغيرة</td>
+                        <td>صلبة</td>
+                        <td>Cu, Fe</td>
+                    </tr>
+                    <tr>
+                        <td>هيدروجينية</td>
+                        <td>H + N,O,F</td>
+                        <td>جذب كهروستاتيكي</td>
+                        <td>ضعيفة</td>
+                        <td>سائلة</td>
+                        <td>H₂O, NH₃</td>
+                    </tr>
+                    <tr>
+                        <td>فان دير فالس</td>
+                        <td>جزيئات غير قطبية</td>
+                        <td>تذبذبات عابرة</td>
+                        <td>ضعيفة جداً</td>
+                        <td>غازية أو سائلة</td>
+                        <td>N₂, O₂</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section id="properties" class="properties">
+            <h2 class="section-title">خصائص المركبات حسب نوع الرابطة</h2>
+            <div class="property-card">
+                <div class="property-icon">
+                    <i class="fas fa-temperature-high"></i>
+                </div>
+                <h3>درجة الانصهار والغليان</h3>
+                <p>المركبات الأيونية لها درجات انصهار وغليان عالية جداً، بينما المركبات التساهمية الجزيئية لها درجات منخفضة.</p>
+            </div>
+            
+            <div class="property-card">
+                <div class="property-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>التوصيل الكهربائي</h3>
+                <p>المركبات الأيونية توصل الكهرباء في الحالة المنصهرة أو المذابة، بينما الفلزات توصل الكهرباء في جميع الحالات.</p>
+            </div>
+            
+            <div class="property-card">
+                <div class="property-icon">
+                    <i class="fas fa-tint"></i>
+                </div>
+                <h3>الذوبانية</h3>
+                <p>المركبات الأيونية تذوب في المذيبات القطبية مثل الماء، بينما المركبات التساهمية غير القطبية تذوب في المذيبات غير القطبية.</p>
+            </div>
+            
+            <div class="property-card">
+                <div class="property-icon">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <h3>الصلابة والقساوة</h3>
+                <p>المركبات الأيونية صلبة وقاسية، بينما المركبات التساهمية الجزيئية طرية وغالباً ما تكون غازية أو سائلة.</p>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 موقع الروابط الكيميائية. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Interactive bond visualization
+        function showBond(type) {
+            const atom1 = document.getElementById('atom1');
+            const atom2 = document.getElementById('atom2');
+            const bondLine = document.getElementById('bondLine');
+            const bondInfo = document.getElementById('bondInfo');
+            const buttons = document.querySelectorAll('.bond-btn');
+            
+            // Remove active class from all buttons
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Reset styles
+            bondLine.style.background = '#333';
+            bondLine.style.height = '4px';
+            bondLine.style.width = '100px';
+            
+            switch(type) {
+                case 'ionic':
+                    atom1.textContent = 'Na';
+                    atom2.textContent = 'Cl';
+                    atom1.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                    atom2.style.background = 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)';
+                    bondLine.style.background = 'linear-gradient(90deg, #667eea, #f5576c)';
+                    bondInfo.innerHTML = `
+                        <h3>الرابطة الأيونية</h3>
+                        <p>في الرابطة الأيونية، يفقد الصوديوم إلكتروناً ليصبح أيوناً موجباً (Na⁺)، بينما يكتسب الكلور إلكتروناً ليصبح أيوناً سالباً (Cl⁻). تجذب القوى الكهروستاتيكية بين الأيونين الموجبة والسالبة.</p>
+                    `;
+                    break;
+                    
+                case 'covalent':
+                    atom1.textContent = 'H';
+                    atom2.textContent = 'O';
+                    atom1.style.background = 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)';
+                    atom2.style.background = 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)';
+                    bondLine.style.background = 'linear-gradient(90deg, #4facfe, #fa709a)';
+                    bondLine.style.height = '4px';
+                    bondLine.style.width = '100px';
+                    bondInfo.innerHTML = `
+                        <h3>الرابطة التساهمية</h3>
+                        <p>في الرابطة التساهمية، تشارك الذرات في أزواج إلكترونية. في جزيء الماء، يشارك الأكسجين مع كل ذرة هيدروجين في زوج إلكتروني، مما يحقق الاستقرار لجميع الذرات.</p>
+                    `;
+                    break;
+                    
+                case 'metallic':
+                    atom1.textContent = 'Cu';
+                    atom2.textContent = 'Cu';
+                    atom1.style.background = 'linear-gradient(135deg, #f7971e 0%, #ffd200 100%)';
+                    atom2.style.background = 'linear-gradient(135deg, #f7971e 0%, #ffd200 100%)';
+                    bondLine.style.background = 'linear-gradient(90deg, #f7971e, #ffd200)';
+                    bondLine.style.height = '8px';
+                    bondLine.style.width = '120px';
+                    bondInfo.innerHTML = `
+                        <h3>الرابطة المعدنية</h3>
+                        <p>في الرابطة المعدنية، تتحرر إلكترونات التكافؤ من ذرات الفلز وتتحرك بحرية في "بحر إلكتروني" مشترك. هذا يفسر خصائص الفلزات مثل التوصيل الكهربائي والبريق المعدني.</p>
+                    `;
+                    break;
+                    
+                case 'hydrogen':
+                    atom1.textContent = 'H';
+                    atom2.textContent = 'O';
+                    atom1.style.background = 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)';
+                    atom2.style.background = 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)';
+                    bondLine.style.background = 'linear-gradient(90deg, #4facfe, #fa709a)';
+                    bondLine.style.height = '2px';
+                    bondLine.style.width = '80px';
+                    bondLine.style.opacity = '0.6';
+                    bondInfo.innerHTML = `
+                        <h3>الرابطة الهيدروجينية</h3>
+                        <p>الرابطة الهيدروجينية هي قوة جذب بين ذرة هيدروجين مرتبطة بذرة كهروسالية عالية (مثل الأكسجين) وذرة أخرى ذات كهروسالية عالية. هذه الروابط مسؤولة عن العديد من خصائص الماء الفريدة.</p>
+                    `;
+                    break;
+            }
+        }
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.bond-card, .property-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

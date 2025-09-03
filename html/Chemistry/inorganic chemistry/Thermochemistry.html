@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع الكيمياء الحرارية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1a73e8;
+            --secondary: #34a853;
+            --accent: #ea4335;
+            --dark: #202124;
+            --light: #f8f9fa;
+            --gray: #5f6368;
+            --border: #dadce0;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            font-size: 28px;
+            color: var(--primary);
+            margin-left: 10px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            color: var(--dark);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a73e8, #34a853);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-body p {
+            margin-bottom: 15px;
+            color: var(--gray);
+        }
+
+        .card-body ul {
+            list-style-type: none;
+            padding-right: 20px;
+        }
+
+        .card-body ul li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .card-body ul li:before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: -20px;
+            color: var(--secondary);
+        }
+
+        /* Calculator Section */
+        .calculator {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-top: 40px;
+        }
+
+        .calculator h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .calc-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .calc-result {
+            grid-column: span 2;
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 40px 0;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .footer-col p, .footer-col ul li {
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-left: 10px;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 20px;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h2 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+
+            .calc-form {
+                grid-template-columns: 1fr;
+            }
+
+            .calc-result {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                <h1>الكيمياء الحرارية</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#concepts">المفاهيم الأساسية</a></li>
+                    <li><a href="#laws">القوانين</a></li>
+                    <li><a href="#applications">التطبيقات</a></li>
+                    <li><a href="#calculator">الحاسبة</a></li>
+                    <li><a href="#resources">المصادر</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>مرحباً بك في عالم الكيمياء الحرارية</h2>
+            <p>استكشف المبادئ الأساسية للطاقة والحرارة والتفاعلات الكيميائية من خلال منصتنا التعليمية الشاملة</p>
+            <a href="#concepts" class="btn">ابدأ التعلم الآن</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Concepts Section -->
+            <section class="section" id="concepts">
+                <h2 class="section-title">المفاهيم الأساسية</h2>
+                <div class="cards-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-fire"></i> الطاقة الحرارية
+                        </div>
+                        <div class="card-body">
+                            <p>الطاقة الحرارية هي شكل من أشكال الطاقة المرتبطة بحركة الجزيئات داخل المادة.</p>
+                            <ul>
+                                <li>الحرارة النوعية</li>
+                                <li>السعة الحرارية</li>
+                                <li>انتقال الحرارة</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-atom"></i> الترموديناميك
+                        </div>
+                        <div class="card-body">
+                            <p>دراسة تحويلات الطاقة من شكل لآخر والقوانين التي تحكم هذه العمليات.</p>
+                            <ul>
+                                <li>النظام والوسط المحيط</li>
+                                <li>الحالة الديناميكية</li>
+                                <li>الاتزان الحراري</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-flask"></i> التفاعلات الكيميائية
+                        </div>
+                        <div class="card-body">
+                            <p>دراسة التغيرات في الطاقة المصاحبة للتفاعلات الكيميائية.</p>
+                            <ul>
+                                <li>الطاقة الحرة</li>
+                                <li>محتوى الطاقة</li>
+                                <li>العفوية</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Laws Section -->
+            <section class="section" id="laws">
+                <h2 class="section-title">قوانين الثرموديناميك</h2>
+                <div class="cards-container">
+                    <div class="card">
+                        <div class="card-header">
+                            القانون الأول
+                        </div>
+                        <div class="card-body">
+                            <p>ينص على أن الطاقة لا تفنى ولا تستحدث من العدم، بل تتحول من شكل لآخر.</p>
+                            <p>في الأنظمة المغلقة، التغير في الطاقة الداخلية يساوي الحرارة المضافة للنظام مطروحاً منها الشغل الذي يؤديه النظام.</p>
+                            <p><strong>ΔU = Q - W</strong></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            القانون الثاني
+                        </div>
+                        <div class="card-body">
+                            <p>ينص على أن إنتروبية الكون تزداد دائماً في أي عملية عفوية.</p>
+                            <p>الحرارة لا يمكن أن تتدفق بشكل عفوي من جسم بارد إلى جسم ساخن.</p>
+                            <p>يحدد اتجاه العمليات الطبيعية وشروط الاتزان.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            القانون الثالث
+                        </div>
+                        <div class="card-body">
+                            <p>عند درجة الصفر المطلق (0 كلفن)، تكون إنتروبية البلورة المثالية صفراً.</p>
+                            <p>لا يمكن الوصول إلى الصفر المطلق في عدد محدود من الخطوات.</p>
+                            <p>يضع حداً أدنى لقيمة الإنتروبية لأي مادة.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Applications Section -->
+            <section class="section" id="applications">
+                <h2 class="section-title">تطبيقات الكيمياء الحرارية</h2>
+                <div class="cards-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-industry"></i> الصناعة
+                        </div>
+                        <div class="card-body">
+                            <p>تستخدم مبادئ الكيمياء الحرارية في تصميم العمليات الصناعية وتحسين كفاءتها.</p>
+                            <ul>
+                                <li>إنتاج البتروكيماويات</li>
+                                <li>تكرير النفط</li>
+                                <li>تصنيع الأسمدة</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-battery-full"></i> الطاقة
+                        </div>
+                        <div class="card-body">
+                            <p>تطوير أنظمة تخزين الطاقة وتحويلها بكفاءة عالية.</p>
+                            <ul>
+                                <li>الخلايا الكهروكيميائية</li>
+                                <li>البطاريات</li>
+                                <li>الخلايا الشمسية</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-heartbeat"></i> الطب الحيوي
+                        </div>
+                        <div class="card-body">
+                            <p>فهم العمليات الحيوية والتفاعلات الكيميائية في الكائنات الحية.</p>
+                            <ul>
+                                <li>التمثيل الغذائي</li>
+                                <li>النقل الأيوني</li>
+                                <li>تفاعلات الإنزيمات</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Calculator Section -->
+            <section class="section" id="calculator">
+                <h2 class="section-title">حاسبة الكيمياء الحرارية</h2>
+                <div class="calculator">
+                    <h3>احسب تغير الطاقة الحرة (ΔG)</h3>
+                    <form class="calc-form" id="thermoCalc">
+                        <div class="form-group">
+                            <label for="enthalpy">تغير المحتوى الحراري (ΔH) كيلوجول/مول:</label>
+                            <input type="number" id="enthalpy" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="entropy">تغير الإنتروبي (ΔS) جول/مول·كلفن:</label>
+                            <input type="number" id="entropy" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="temperature">درجة الحرارة (كلفن):</label>
+                            <input type="number" id="temperature" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="unit">وحدة النتيجة:</label>
+                            <select id="unit">
+                                <option value="kj">كيلوجول/مول</option>
+                                <option value="j">جول/مول</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn">احسب</button>
+                        <div class="calc-result" id="result">
+                            النتيجة ستظهر هنا
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>موقع الكيمياء الحرارية</h3>
+                    <p>منصة تعليمية متخصصة في الكيمياء الحرارية، تقدم محتوى شامل ومفيد للطلاب والباحثين.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#concepts">المفاهيم الأساسية</a></li>
+                        <li><a href="#laws">القوانين</a></li>
+                        <li><a href="#applications">التطبيقات</a></li>
+                        <li><a href="#calculator">الحاسبة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>المصادر التعليمية</h3>
+                    <ul>
+                        <li><a href="#">دروس فيديو</a></li>
+                        <li><a href="#">تمارين تفاعلية</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">اختبارات ذاتية</a></li>
+                        <li><a href="#">منتدى النقاش</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>تواصل معنا</h3>
+                    <p><i class="fas fa-envelope"></i> info@thermochemistry.edu</p>
+                    <p><i class="fas fa-phone"></i> +966 12 345 6789</p>
+                    <p><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 موقع الكيمياء الحرارية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const nav = document.querySelector('nav ul');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Thermodynamics Calculator
+        document.getElementById('thermoCalc').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get input values
+            const enthalpy = parseFloat(document.getElementById('enthalpy').value);
+            const entropy = parseFloat(document.getElementById('entropy').value);
+            const temperature = parseFloat(document.getElementById('temperature').value);
+            const unit = document.getElementById('unit').value;
+            
+            // Calculate Gibbs Free Energy: ΔG = ΔH - TΔS
+            let deltaG = enthalpy - (temperature * (entropy / 1000)); // Convert entropy from J to kJ
+            
+            // Convert to Joules if selected
+            if (unit === 'j') {
+                deltaG = deltaG * 1000;
+            }
+            
+            // Determine if reaction is spontaneous
+            let spontaneity = '';
+            if (deltaG < 0) {
+                spontaneity = '(تفاعل عفوي)';
+            } else if (deltaG > 0) {
+                spontaneity = '(تفاعل غير عفوي)';
+            } else {
+                sponteneity = '(في حالة اتزان)';
+            }
+            
+            // Display result
+            const resultElement = document.getElementById('result');
+            resultElement.innerHTML = `
+                تغير الطاقة الحرة (ΔG) = ${deltaG.toFixed(2)} ${unit === 'kj' ? 'كيلوجول/مول' : 'جول/مول'} ${spontaneity}
+            `;
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const nav = document.querySelector('nav ul');
+                    if (window.innerWidth <= 768) {
+                        nav.style.display = 'none';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

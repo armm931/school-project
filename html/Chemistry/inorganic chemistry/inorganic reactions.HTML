@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التفاعلات غير العضوية - أنواعها وتطبيقاتها</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e3c72;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: #2a5298;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: #2a5298;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            right: 0;
+            background: #2a5298;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30, 60, 114, 0.8), rgba(42, 82, 152, 0.8)), 
+                        url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 6rem 0;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease 0.2s;
+            animation-fill-mode: both;
+        }
+        
+        /* Main Content */
+        main {
+            background: white;
+            border-radius: 20px 20px 0 0;
+            padding: 3rem 0;
+            min-height: 100vh;
+        }
+        
+        /* Reaction Types Section */
+        .reaction-types {
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3c72;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: #2a5298;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .reactions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .reaction-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .reaction-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #1e3c72, #2a5298);
+        }
+        
+        .reaction-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .reaction-icon {
+            font-size: 3rem;
+            color: #2a5298;
+            margin-bottom: 1rem;
+        }
+        
+        .reaction-card h3 {
+            font-size: 1.5rem;
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+        
+        .reaction-card p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .reaction-equation {
+            background: #f0f4f8;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            direction: ltr;
+        }
+        
+        .reaction-example {
+            background: #e8f4f8;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .reaction-example strong {
+            color: #2a5298;
+        }
+        
+        /* Interactive Calculator */
+        .calculator {
+            background: #f8f9fa;
+            padding: 3rem;
+            border-radius: 15px;
+            margin-bottom: 4rem;
+        }
+        
+        .calc-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .calc-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #1e3c72;
+        }
+        
+        .form-group input, .form-group select {
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #2a5298;
+        }
+        
+        .calc-btn {
+            padding: 1rem 2rem;
+            background: #2a5298;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        .calc-btn:hover {
+            background: #1e3c72;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 82, 152, 0.3);
+        }
+        
+        .calc-result {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            display: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .calc-result.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        .calc-result h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+        
+        /* Reaction Simulator */
+        .simulator {
+            background: #f0f4f8;
+            padding: 3rem;
+            border-radius: 15px;
+            margin-bottom: 4rem;
+        }
+        
+        .sim-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .reaction-display {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            min-width: 600px;
+            text-align: center;
+        }
+        
+        .reaction-display h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+        
+        .reaction-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .molecule {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .molecule:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        
+        .molecule:nth-child(4) {
+            animation-delay: 1s;
+        }
+        
+        .plus-sign, .arrow {
+            font-size: 2rem;
+            color: #2a5298;
+        }
+        
+        .sim-controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .sim-btn {
+            padding: 0.8rem 1.5rem;
+            background: #2a5298;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .sim-btn:hover {
+            background: #1e3c72;
+            transform: translateY(-2px);
+        }
+        
+        .sim-btn.active {
+            background: #1e3c72;
+        }
+        
+        /* Examples Section */
+        .examples {
+            margin-bottom: 4rem;
+        }
+        
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .example-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .example-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .example-card h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+        
+        .example-card .equation {
+            background: #f0f4f8;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            direction: ltr;
+            margin: 1rem 0;
+        }
+        
+        .example-card .application {
+            background: #e8f4f8;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        /* Quiz Section */
+        .quiz {
+            background: #f8f9fa;
+            padding: 3rem;
+            border-radius: 15px;
+            margin-bottom: 4rem;
+        }
+        
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .question-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .question-card h3 {
+            color: #1e3c72;
+            margin-bottom: 1.5rem;
+        }
+        
+        .options {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .option {
+            padding: 1rem;
+            background: #f0f4f8;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .option:hover {
+            background: #e8f4f8;
+            border-color: #2a5298;
+        }
+        
+        .option.selected {
+            background: #2a5298;
+            color: white;
+            border-color: #1e3c72;
+        }
+        
+        .option.correct {
+            background: #4caf50;
+            color: white;
+            border-color: #45a049;
+        }
+        
+        .option.incorrect {
+            background: #f44336;
+            color: white;
+            border-color: #da190b;
+        }
+        
+        .quiz-btn {
+            padding: 1rem 2rem;
+            background: #2a5298;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .quiz-btn:hover {
+            background: #1e3c72;
+        }
+        
+        .quiz-result {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            text-align: center;
+            display: none;
+        }
+        
+        .quiz-result.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        .quiz-result h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .reaction-display {
+                min-width: auto;
+                width: 100%;
+            }
+            
+            .reaction-visual {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .plus-sign, .arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <i class="fas fa-flask"></i>
+                <span>التفاعلات غير العضوية</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#types">أنواع التفاعلات</a></li>
+                <li><a href="#calculator">الحاسبة الكيميائية</a></li>
+                <li><a href="#simulator">محاكي التفاعلات</a></li>
+                <li><a href="#examples">أمثلة تطبيقية</a></li>
+                <li><a href="#quiz">اختبار تفاعلي</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>اكتشف عالم التفاعلات غير العضوية</h1>
+            <p>تعرف على أنواع التفاعلات الكيميائية المختلفة، خصائصها، وتطبيقاتها العملية في حياتنا اليومية</p>
+        </div>
+    </section>
+    
+    <main class="container">
+        <section id="types" class="reaction-types">
+            <h2 class="section-title">أنواع التفاعلات غير العضوية</h2>
+            <div class="reactions-grid">
+                <div class="reaction-card">
+                    <div class="reaction-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>التفاعل التعويضي البسيط</h3>
+                    <p>يحدث عندما يحل عنصر محل عنصر آخر في مركب كيميائي. يكون العنصر الأكثر نشاطاً قادراً على إزاحة العنصر الأقل نشاطاً.</p>
+                    <div class="reaction-equation">
+                        A + BC → AC + B
+                    </div>
+                    <div class="reaction-example">
+                        <strong>مثال:</strong> الزنك مع حمض الهيدروكلوريك<br>
+                        Zn + 2HCl → ZnCl₂ + H₂
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-icon">
+                        <i class="fas fa-random"></i>
+                    </div>
+                    <h3>التفاعل التعويضي المزدوج</h3>
+                    <p>يحدث عندما تتبادل أيونات مركبين أيونيين مكانها لتكوين مركبين جديدين. غالباً ما ينتج عنه راسب أو غاز أو ماء.</p>
+                    <div class="reaction-equation">
+                        AB + CD → AD + CB
+                    </div>
+                    <div class="reaction-example">
+                        <strong>مثال:</strong> نترات الفضة مع كلوريد الصوديوم<br>
+                        AgNO₃ + NaCl → AgCl↓ + NaNO₃
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-icon">
+                        <i class="fas fa-compress-alt"></i>
+                    </div>
+                    <h3>التفاعل التجميعي</h3>
+                    <p>يحدث عندما تتحد مادتان أو أكثر لتكوين مادة واحدة أكثر تعقيداً. غالباً ما يكون مصحوباً بإطلاق طاقة.</p>
+                    <div class="reaction-equation">
+                        A + B → AB
+                    </div>
+                    <div class="reaction-example">
+                        <strong>مثال:</strong> تكوين أكسيد المغنيسيوم<br>
+                        2Mg + O₂ → 2MgO
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-icon">
+                        <i class="fas fa-expand-alt"></i>
+                    </div>
+                    <h3>التفاعل التحللي</h3>
+                    <p>يحدث عندما تتفكك مادة واحدة إلى مادتين أو أكثر أبسط. غالباً ما يتطلب طاقة لبدء التفاعل.</p>
+                    <div class="reaction-equation">
+                        AB → A + B
+                    </div>
+                    <div class="reaction-example">
+                        <strong>مثال:</strong> تحلل كربونات الكالسيوم<br>
+                        CaCO₃ → CaO + CO₂↑
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3>التفاعل الاحتراقي</h3>
+                    <p>تفاعل سريع بين مادة والأكسجين ينتج عنه حرارة وضوء. يمكن أن يكون احتراقاً كاملاً أو غير كامل.</p>
+                    <div class="reaction-equation">
+                        Fuel + O₂ → CO₂ + H₂O + Energy
+                    </div>
+                    <div class="reaction-example">
+                        <strong>مثال:</strong> احتراق الميثان<br>
+                        CH₄ + 2O₂ → CO₂ + 2H₂O
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>التفاعلات الحمضية القاعدية</h3>
+                    <p>تفاعل بين حمض وقاعدة ينتج عنه ملح وماء. يسمى أيضاً بالتفاعل التعادلي.</p>
+                    <div class="reaction-equation">
+                        Acid + Base → Salt + H₂O
+                    </div>
+                    <div class="reaction-example">
+                        <strong>مثال:</strong> حمض الهيدروكلوريك مع هيدروكسيد الصوديوم<br>
+                        HCl + NaOH → NaCl + H₂O
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>التفاعلات العكسية</h3>
+                    <p>تفاعلات يمكن أن تحدث في كلا الاتجاهين وتصل إلى حالة اتزان ديناميكي حيث تتساوى سرعة التفاعل الأمامي والعكسي.</p>
+                    <div class="reaction-equation">
+                        A + B ⇌ C + D
+                    </div>
+                    <div class="reaction-example">
+                        <strong>مثال:</strong> تكوين وتفكك N₂O₄<br>
+                        N₂O₄ ⇌ 2NO₂
+                    </div>
+                </div>
+                
+                <div class="reaction-card">
+                    <div class="reaction-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>التفاعلات الأكسدة والاختزال</h3>
+                    <p>تفاعلات تنطوي على نقل إلكترونات بين المواد المتفاعلة. الأكسدة هي فقدان الإلكترونات والاختزال هو اكتسابها.</p>
+                    <div class="reaction-equation">
+                        Red + Ox → Ox⁻ + Red⁺
+                    </div>
+                    <div class="reaction-example">
+                        <strong>مثال:</strong> تفاعل الزنك مع نحاس كبريتات<br>
+                        Zn + Cu²⁺ → Zn²⁺ + Cu
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="calculator" class="calculator">
+            <h2 class="section-title">الحاسبة الكيميائية التفاعلية</h2>
+            <div class="calc-container">
+                <form class="calc-form" onsubmit="calculateReaction(event)">
+                    <div class="form-group">
+                        <label for="reactant1">المتفاعل الأول</label>
+                        <input type="text" id="reactant1" placeholder="مثال: HCl" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reactant2">المتفاعل الثاني</label>
+                        <input type="text" id="reactant2" placeholder="مثال: NaOH" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reactionType">نوع التفاعل</label>
+                        <select id="reactionType" required>
+                            <option value="">اختر النوع</option>
+                            <option value="double">تعويضي مزدوج</option>
+                            <option value="acid-base">حمضي قاعدي</option>
+                            <option value="redox">أكسدة واختزال</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount1">كمية المتفاعل الأول (مول)</label>
+                        <input type="number" id="amount1" step="0.01" placeholder="مثال: 2" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount2">كمية المتفاعل الثاني (مول)</label>
+                        <input type="number" id="amount2" step="0.01" placeholder="مثال: 2" required>
+                    </div>
+                    <button type="submit" class="calc-btn">
+                        <i class="fas fa-calculator"></i> احسب التفاعل
+                    </button>
+                </form>
+                
+                <div id="calcResult" class="calc-result">
+                    <h3>نتيجة الحساب</h3>
+                    <div id="resultContent"></div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="simulator" class="simulator">
+            <h2 class="section-title">محاكي التفاعلات الكيميائية</h2>
+            <div class="sim-container">
+                <div class="reaction-display">
+                    <h3>تفاعل تعويضي مزدوج</h3>
+                    <div class="reaction-visual">
+                        <div class="molecule">AgNO₃</div>
+                        <div class="plus-sign">+</div>
+                        <div class="molecule">NaCl</div>
+                        <div class="arrow">→</div>
+                        <div class="molecule">AgCl↓</div>
+                        <div class="plus-sign">+</div>
+                        <div class="molecule">NaNO₃</div>
+                    </div>
+                    <p>يتكون راسب أبيض من كلوريد الفضة (AgCl)</p>
+                </div>
+                
+                <div class="sim-controls">
+                    <button class="sim-btn active" onclick="simulateReaction('double')">تعويضي مزدوج</button>
+                    <button class="sim-btn" onclick="simulateReaction('acid')">حمضي قاعدي</button>
+                    <button class="sim-btn" onclick="simulateReaction('redox')">أكسدة واختزال</button>
+                    <button class="sim-btn" onclick="simulateReaction('combustion')">احتراق</button>
+                </div>
+            </div>
+        </section>
+        
+        <section id="examples" class="examples">
+            <h2 class="section-title">أمثلة تطبيقية في الحياة اليومية</h2>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <h3>التنظيف باستخدام الخل</h3>
+                    <div class="equation">
+                        CH₃COOH + CaCO₃ → (CH₃COO)₂Ca + H₂O + CO₂
+                    </div>
+                    <p>يستخدم الخل (حمض الخليك) في إزالة ترسبات الكالسيوم من الأواني والمراحيض.</p>
+                    <div class="application">
+                        <strong>التطبيق:</strong> تنظيف غلايات الماء وإزالة العفن
+                    </div>
+                </div>
+                
+                <div class="example-card">
+                    <h3>إنتاج الطاقة في البطاريات</h3>
+                    <div class="equation">
+                        Pb + PbO₂ + 2H₂SO₄ → 2PbSO₄ + 2H₂O
+                    </div>
+                    <p>تفاعل أكسدة واختزال في بطارية السيارة ينتج الكهرباء اللازمة لتشغيل المحرك.</p>
+                    <div class="application">
+                        <strong>التطبيق:</strong> بطاريات السيارات وأنظمة تخزين الطاقة
+                    </div>
+                </div>
+                
+                <div class="example-card">
+                    <h3>الطبخ والخبز</h3>
+                    <div class="equation">
+                        NaHCO₃ + H⁺ → Na⁺ + H₂O + CO₂
+                    </div>
+                    <p>بيكربونات الصوديوم (الخميرة) تتفاعل مع الأحماض لتنتج ثاني أكسيد الكربون الذي يجعل العجين ينتفخ.</p>
+                    <div class="application">
+                        <strong>التطبيق:</strong> الخبز والمعجنات والحلويات
+                    </div>
+                </div>
+                
+                <div class="example-card">
+                    <h3>معالجة مياه الشرب</h3>
+                    <div class="equation">
+                        Al₂(SO₄)₃ + 6H₂O → 2Al(OH)₃↓ + 3H₂SO₄
+                    </div>
+                    <p>كبريتات الألومنيوم تتفاعل مع الماء لتكوين هيدروكسيد الألومنيوم الذي يترسب ويساعد في تنقية الماء.</p>
+                    <div class="application">
+                        <strong>التطبيق:</strong> محطات تنقية المياه ومعالجة الصرف الصحي
+                    </div>
+                </div>
+                
+                <div class="example-card">
+                    <h3>الإسعافات الأولية</h3>
+                    <div class="equation">
+                        2Al + 2NaOH + 6H₂O → 2NaAl(OH)₄ + 3H₂
+                    </div>
+                    <p>تفاعل الألومنيوم مع هيدروكسيد الصوديوم ينتج الهيدروجين الذي يستخدم في بعض أجهزة الإسعافات الأولية.</p>
+                    <div class="application">
+                        <strong>التطبيق:</strong> أجهزة توليد الهيدروجين للإسعافات
+                    </div>
+                </div>
+                
+                <div class="example-card">
+                    <h3>الزراعة والأسمدة</h3>
+                    <div class="equation">
+                        NH₃ + HNO₃ → NH₄NO₃
+                    </div>
+                    <p>تفاعل الأمونيا مع حمض النيتريك ينتج نترات الأمونيوم، أحد أهم الأسمدة النيتروجينية.</p>
+                    <div class="application">
+                        <strong>التطبيق:</strong> صناعة الأسمدة الزراعية
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="quiz" class="quiz">
+            <h2 class="section-title">اختبار تفاعلي</h2>
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h3>سؤال 1: ما نوع التفاعل في المعادلة التالية؟<br>
+                    2H₂ + O₂ → 2H₂O</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, false)">تعويضي بسيط</div>
+                        <div class="option" onclick="selectOption(this, true)">تجميعي</div>
+                        <div class="option" onclick="selectOption(this, false)">تحللي</div>
+                        <div class="option" onclick="selectOption(this, false)">تعويضي مزدوج</div>
+                    </div>
+                </div>
+                
+                <div class="question-card">
+                    <h3>سؤال 2: أي من التفاعلات التالية يمثل تفاعلاً حمضياً قاعدياً؟</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, false)">Zn + 2HCl → ZnCl₂ + H₂</div>
+                        <div class="option" onclick="selectOption(this, true)">HCl + NaOH → NaCl + H₂O</div>
+                        <div class="option" onclick="selectOption(this, false)">2H₂O → 2H₂ + O₂</div>
+                        <div class="option" onclick="selectOption(this, false)">CH₄ + 2O₂ → CO₂ + 2H₂O</div>
+                    </div>
+                </div>
+                
+                <div class="question-card">
+                    <h3>سؤال 3: في التفاعل التعويضي البسيط، أي العناصر التالية يمكن أن يحل محل النحاس في محاليل أملاحه؟</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this, false)">الفضة (Ag)</div>
+                        <div class="option" onclick="selectOption(this, false)">الذهب (Au)</div>
+                        <div class="option" onclick="selectOption(this, true)">الزنك (Zn)</div>
+                        <div class="option" onclick="selectOption(this, false)">البلاتين (Pt)</div>
+                    </div>
+                </div>
+                
+                <button class="quiz-btn" onclick="checkQuiz()">تحقق من الإجابات</button>
+                
+                <div id="quizResult" class="quiz-result">
+                    <h3>نتيجة الاختبار</h3>
+                    <p id="quizScore"></p>
+                    <p id="quizFeedback"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 موقع التفاعلات غير العضوية. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Chemical Calculator
+        function calculateReaction(event) {
+            event.preventDefault();
+            
+            const reactant1 = document.getElementById('reactant1').value;
+            const reactant2 = document.getElementById('reactant2').value;
+            const reactionType = document.getElementById('reactionType').value;
+            const amount1 = parseFloat(document.getElementById('amount1').value);
+            const amount2 = parseFloat(document.getElementById('amount2').value);
+            
+            const resultDiv = document.getElementById('calcResult');
+            const resultContent = document.getElementById('resultContent');
+            
+            // Simple reaction balancing and calculation
+            let products = '';
+            let limitingReactant = '';
+            let excessReactant = '';
+            let theoreticalYield = 0;
+            
+            switch(reactionType) {
+                case 'double':
+                    products = 'NaCl + H₂O';
+                    limitingReactant = amount1 <= amount2 ? reactant1 : reactant2;
+                    excessReactant = amount1 > amount2 ? reactant1 : reactant2;
+                    theoreticalYield = Math.min(amount1, amount2);
+                    break;
+                case 'acid-base':
+                    products = 'NaCl + H₂O';
+                    limitingReactant = amount1 <= amount2 ? reactant1 : reactant2;
+                    excessReactant = amount1 > amount2 ? reactant1 : reactant2;
+                    theoreticalYield = Math.min(amount1, amount2);
+                    break;
+                case 'redox':
+                    products = 'ZnCl₂ + H₂';
+                    limitingReactant = amount1 <= amount2 ? reactant1 : reactant2;
+                    excessReactant = amount1 > amount2 ? reactant1 : reactant2;
+                    theoreticalYield = Math.min(amount1, amount2);
+                    break;
+            }
+            
+            resultContent.innerHTML = `
+                <p><strong>المتفاعلات:</strong> ${reactant1} + ${reactant2}</p>
+                <p><strong>النواتج:</strong> ${products}</p>
+                <p><strong>المتفاعل المحدد:</strong> ${limitingReactant}</p>
+                <p><strong>المتفاعل الزائد:</strong> ${excessReactant}</p>
+                <p><strong>الناتج النظري:</strong> ${theoreticalYield.toFixed(2)} مول</p>
+                <p><strong>التفاعل المتوازن:</strong></p>
+                <div style="background: #f0f4f8; padding: 1rem; border-radius: 8px; margin-top: 1rem; font-family: monospace; text-align: center; direction: ltr;">
+                    ${reactant1} + ${reactant2} → ${products}
+                </div>
+            `;
+            
+            resultDiv.classList.add('show');
+        }
+        
+        // Reaction Simulator
+        function simulateReaction(type) {
+            const buttons = document.querySelectorAll('.sim-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const reactionDisplay = document.querySelector('.reaction-display');
+            
+            switch(type) {
+                case 'double':
+                    reactionDisplay.innerHTML = `
+                        <h3>تفاعل تعويضي مزدوج</h3>
+                        <div class="reaction-visual">
+                            <div class="molecule">AgNO₃</div>
+                            <div class="plus-sign">+</div>
+                            <div class="molecule">NaCl</div>
+                            <div class="arrow">→</div>
+                            <div class="molecule">AgCl↓</div>
+                            <div class="plus-sign">+</div>
+                            <div class="molecule">NaNO₃</div>
+                        </div>
+                        <p>يتكون راسب أبيض من كلوريد الفضة (AgCl)</p>
+                    `;
+                    break;
+                case 'acid':
+                    reactionDisplay.innerHTML = `
+                        <h3>تفاعل حمضي قاعدي</h3>
+                        <div class="reaction-visual">
+                            <div class="molecule">HCl</div>
+                            <div class="plus-sign">+</div>
+                            <div class="molecule">NaOH</div>
+                            <div class="arrow">→</div>
+                            <div class="molecule">NaCl</div>
+                            <div class="plus-sign">+</div>
+                            <div class="molecule">H₂O</div>
+                        </div>
+                        <p>يتكون ملح كلوريد الصوديوم وماء</p>
+                    `;
+                    break;
+                case 'redox':
+                    reactionDisplay.innerHTML = `
+                        <h3>تفاعل أكسدة واختزال</h3>
+                        <div class="reaction-visual">
+                            <div class="molecule">Zn</div>
+                            <div class="plus-sign">+</div>
+                            <div class="molecule">CuSO₄</div>
+                            <div class="arrow">→</div>
+                            <div class="molecule">ZnSO₄</div>
+                            <div class="plus-sign">+</div>
+                            <div class="molecule">Cu</div>
+                        </div>
+                        <p>يتكون راسب أحمر من النحاس (Cu)</p>
+                    `;
+                    break;
+                case 'combustion':
+                    reactionDisplay.innerHTML = `
+                        <h3>تفاعل احتراق</h3>
+                        <div class="reaction-visual">
+                            <div class="molecule">CH₄</div>
+                            <div class="plus-sign">+</div>
+                            <div class="molecule">2O₂</div>
+                            <div class="arrow">→</div>
+                            <div class="molecule">CO₂</div>
+                            <div class="plus-sign">+</div>
+                            <div class="molecule">2H₂O</div>
+                        </div>
+                        <p>احتراق الميثان ينتج ثاني أكسيد الكربون والماء</p>
+                    `;
+                    break;
+            }
+        }
+        
+        // Quiz Functionality
+        let selectedAnswers = [];
+        
+        function selectOption(element, isCorrect) {
+            const questionCard = element.closest('.question-card');
+            const options = questionCard.querySelectorAll('.option');
+            const questionIndex = Array.from(document.querySelectorAll('.question-card')).indexOf(questionCard);
+            
+            options.forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            
+            selectedAnswers[questionIndex] = isCorrect;
+        }
+        
+        function checkQuiz() {
+            const correctAnswers = selectedAnswers.filter(answer => answer === true).length;
+            const totalQuestions = selectedAnswers.length;
+            const percentage = (correctAnswers / totalQuestions) * 100;
+            
+            const resultDiv = document.getElementById('quizResult');
+            const scoreDiv = document.getElementById('quizScore');
+            const feedbackDiv = document.getElementById('quizFeedback');
+            
+            scoreDiv.textContent = `لقد حصلت على ${correctAnswers} من ${totalQuestions} (${percentage.toFixed(1)}%)`;
+            
+            if (percentage >= 80) {
+                feedbackDiv.textContent = 'ممتاز! لديك فهم جيد جداً للتفاعلات الكيميائية.';
+            } else if (percentage >= 60) {
+                feedbackDiv.textContent = 'جيد جداً! يمكنك تحسين أدائك بمراجعة بعض المفاهيم.';
+            } else {
+                feedbackDiv.textContent = 'تحتاج إلى مراجعة المزيد من المواد لفهم التفاعلات الكيميائية بشكل أفضل.';
+            }
+            
+            resultDiv.classList.add('show');
+        }
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.reaction-card, .example-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

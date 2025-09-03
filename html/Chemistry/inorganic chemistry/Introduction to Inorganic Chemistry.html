@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مقدمة في الكيمياء غير العضوية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #1a252f;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --info: #9b59b6;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(52, 152, 219, 0.85)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            width: 50%;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            color: #334155;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Topics Section */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .topic-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .topic-header {
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .topic-header.bonding {
+            background: linear-gradient(135deg, var(--secondary), #2980b9);
+        }
+
+        .topic-header.structure {
+            background: linear-gradient(135deg, var(--success), #229954);
+        }
+
+        .topic-header.reactions {
+            background: linear-gradient(135deg, var(--warning), #d68910);
+        }
+
+        .topic-header.acids {
+            background: linear-gradient(135deg, var(--info), #7d3c98);
+        }
+
+        .topic-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .topic-body {
+            padding: 25px;
+        }
+
+        .topic-body p {
+            color: #334155;
+            margin-bottom: 15px;
+        }
+
+        .topic-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .topic-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+        }
+
+        .topic-list li:last-child {
+            border-bottom: none;
+        }
+
+        .topic-list li i {
+            color: var(--secondary);
+            margin-left: 10px;
+        }
+
+        /* Elements Section */
+        .elements-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .element-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .element-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+        }
+
+        .element-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .element-symbol {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .element-name {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        .element-number {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .element-property {
+            background-color: #f1f5f9;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+
+        /* Applications Section */
+        .apps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .app-card {
+            background: white;
+            border-radius: 15px;
+            width: 300px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .app-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .app-card p {
+            color: #64748b;
+        }
+
+        /* Periodic Table Section */
+        .periodic-table {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            overflow-x: auto;
+        }
+
+        .table-container {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 5px;
+            min-width: 800px;
+        }
+
+        .element-box {
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .element-box:hover {
+            transform: scale(1.1);
+            z-index: 10;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .element-box.nonmetal {
+            background-color: #a7d7c5;
+            color: #1a535c;
+        }
+
+        .element-box.noble-gas {
+            background-color: #ffd166;
+            color: #06d6a0;
+        }
+
+        .element-box.alkali-metal {
+            background-color: #ef476f;
+            color: white;
+        }
+
+        .element-box.alkaline-earth {
+            background-color: #118ab2;
+            color: white;
+        }
+
+        .element-box.metalloid {
+            background-color: #073b4c;
+            color: white;
+        }
+
+        .element-box.transition-metal {
+            background-color: #7209b7;
+            color: white;
+        }
+
+        .element-box.post-transition {
+            background-color: #560bad;
+            color: white;
+        }
+
+        .element-number {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            font-size: 0.7rem;
+        }
+
+        .element-symbol {
+            font-size: 1.2rem;
+        }
+
+        .element-name-small {
+            font-size: 0.6rem;
+            margin-top: 2px;
+        }
+
+        .element-tooltip {
+            position: absolute;
+            background: var(--dark);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            z-index: 20;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #cbd5e1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-flask"></i>
+                <span>الكيمياء غير العضوية</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#topics">المواضيع</a></li>
+                    <li><a href="#elements">العناصر</a></li>
+                    <li><a href="#apps">التطبيقات</a></li>
+                    <li><a href="#periodic">الجدول الدوري</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>عالم الكيمياء غير العضوية</h1>
+            <p>اكتشف أسرار المركبات غير العضوية ودورها في تشكيل عالمنا</p>
+            <a href="#intro" class="btn">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="section-title">
+                <h2>مقدمة في الكيمياء غير العضوية</h2>
+                <p>الأسس والمبادئ التي تحكم دراسة المركبات غير العضوية</p>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>ما هي الكيمياء غير العضوية؟</h3>
+                    <p>الكيمياء غير العضوية هي فرع من الكيمياء يدرس جميع المركبات الكيميائية باستثناء تلك التي تحتوي على روابط كربون-هيدروجين، والتي تُعرف باسم المركبات العضوية. تشمل الكيمياء غير العضوية دراسة المعادن، الأكاسيد، الأحماض، القواعد، الأملاح، والمواد المعقدة مثل التناسق.</p>
+                    <p>تتميز المركبات غير العضوية بتنوعها الهائل في الخصائص والتركيبات، بدءاً من الغازات البسيطة مثل الأكسجين والنيتروجين، وصولاً إلى المواد الصلبة المعقدة مثل السيراميك والسبائك المعدنية.</p>
+                    <p>تلعب الكيمياء غير العضوية دوراً حيوياً في حياتنا اليومية، من المواد التي نبني بها منازلنا، إلى الأدوية التي نتعالج بها، والتكنولوجيا التي نعتمد عليها في حياتنا الحديثة.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1576087784297-221e2798182d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الكيمياء غير العضوية">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Topics Section -->
+    <section id="topics" class="topics">
+        <div class="container">
+            <div class="section-title">
+                <h2>المواضيع الرئيسية</h2>
+                <p>استكشف المجالات الأساسية في الكيمياء غير العضوية</p>
+            </div>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <div class="topic-header bonding">
+                        <h3>الترابط الكيميائي</h3>
+                        <p>أنواع الروابط والخصائص</p>
+                    </div>
+                    <div class="topic-body">
+                        <p>يدرس الترابط الكيميائي كيفية ارتباط الذرات معاً لتكوين الجزيئات والمواد الصلبة.</p>
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> الرابطة الأيونية</li>
+                            <li><i class="fas fa-check-circle"></i> الرابطة التساهمية</li>
+                            <li><i class="fas fa-check-circle"></i> الرابطة الفلزية</li>
+                            <li><i class="fas fa-check-circle"></i> الرابطة الهيدروجينية</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="topic-card">
+                    <div class="topic-header structure">
+                        <h3>التركيب البلوري</h3>
+                        <p>هندسة المواد الصلبة</p>
+                    </div>
+                    <div class="topic-body">
+                        <p>يبحث في كيفية ترتيب الذرات والأيونات في المواد الصلبة لتكوين بنى بلورية منتظمة.</p>
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> الشبكات البلورية</li>
+                            <li><i class="fas fa-check-circle"></i> أنواع الأنظمة البلورية</li>
+                            <li><i class="fas fa-check-circle"></i> العيوب البلورية</li>
+                            <li><i class="fas fa-check-circle"></i> خصائص المواد الصلبة</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="topic-card">
+                    <div class="topic-header reactions">
+                        <h3>التفاعلات الكيميائية</h3>
+                        <p>ديناميكيات التفاعلات</p>
+                    </div>
+                    <div class="topic-body">
+                        <p>يدرس كيفية تفاعل المركبات غير العضوية مع بعضها البعض والعوامل المؤثرة على هذه التفاعلات.</p>
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> تفاعلات الأكسدة والاختزال</li>
+                            <li><i class="fas fa-check-circle"></i> تفاعلات التعويض</li>
+                            <li><i class="fas fa-check-circle"></i> تفاعلات الترسيب</li>
+                            <li><i class="fas fa-check-circle"></i> سرعة التفاعلات</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="topic-card">
+                    <div class="topic-header acids">
+                        <h3>الأحماض والقواعد</h3>
+                        <p>نظرية برونستد-لوري</p>
+                    </div>
+                    <div class="topic-body">
+                        <p>يدرس خصائص الأحماض والقواعد وتفاعلاتها في المحاليل المائية وغير المائية.</p>
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> مفهوم pH</li>
+                            <li><i class="fas fa-check-circle"></i> التفاعلات الحمضية-القاعدية</li>
+                            <li><i class="fas fa-check-circle"></i> المواد المتعادلة</li>
+                            <li><i class="fas fa-check-circle"></i> المحاليل المنظمة</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Elements Section -->
+    <section id="elements" class="elements">
+        <div class="container">
+            <div class="section-title">
+                <h2>عناصر مهمة</h2>
+                <p>تعرف على خصائص وأهمية العناصر الأساسية</p>
+            </div>
+            <div class="elements-container">
+                <div class="element-card">
+                    <div class="element-symbol">H</div>
+                    <div class="element-name">الهيدروجين</div>
+                    <div class="element-number">العدد الذري: 1</div>
+                    <div class="element-property">أخف عنصر في الكون، وقود المستقبل</div>
+                </div>
+                
+                <div class="element-card">
+                    <div class="element-symbol">O</div>
+                    <div class="element-name">الأكسجين</div>
+                    <div class="element-number">العدد الذري: 8</div>
+                    <div class="element-property">أساسي للحياة، يدعم الاحتراق</div>
+                </div>
+                
+                <div class="element-card">
+                    <div class="element-symbol">N</div>
+                    <div class="element-name">النيتروجين</div>
+                    <div class="element-number">العدد الذري: 7</div>
+                    <div class="element-property">مكون أساسي للبروتينات والأحماض النووية</div>
+                </div>
+                
+                <div class="element-card">
+                    <div class="element-symbol">Fe</div>
+                    <div class="element-name">الحديد</div>
+                    <div class="element-number">العدد الذري: 26</div>
+                    <div class="element-property">أساسي في الصناعة والبناء</div>
+                </div>
+                
+                <div class="element-card">
+                    <div class="element-symbol">Cu</div>
+                    <div class="element-name">النحاس</div>
+                    <div class="element-number">العدد الذري: 29</div>
+                    <div class="element-property">موصل كهربائي ممتاز</div>
+                </div>
+                
+                <div class="element-card">
+                    <div class="element-symbol">Au</div>
+                    <div class="element-name">الذهب</div>
+                    <div class="element-number">العدد الذري: 79</div>
+                    <div class="element-property">ثمين، مقاوم للتآكل</div>
+                </div>
+                
+                <div class="element-card">
+                    <div class="element-symbol">Si</div>
+                    <div class="element-name">السيليكون</div>
+                    <div class="element-number">العدد الذري: 14</div>
+                    <div class="element-property">أساسي في صناعة الإلكترونيات</div>
+                </div>
+                
+                <div class="element-card">
+                    <div class="element-symbol">Al</div>
+                    <div class="element-name">الألومنيوم</div>
+                    <div class="element-number">العدد الذري: 13</div>
+                    <div class="element-property">خفيف الوزن، مقاوم للتآكل</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="apps" class="apps">
+        <div class="container">
+            <div class="section-title">
+                <h2>تطبيقات عملية</h2>
+                <p>كيف تؤثر الكيمياء غير العضوية في حياتنا اليومية</p>
+            </div>
+            <div class="apps-container">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3>الصناعة الدوائية</h3>
+                    <p>تستخدم مركبات غير عضوية في تصنيع الأدوية والمكملات الغذائية مثل أملاح الكالسيوم والحديد.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>الصناعة الكيميائية</h3>
+                    <p>إنتاج الأسمدة، المنظفات، الصبغات، والمواد البلاستيكية يعتمد بشكل كبير على الكيمياء غير العضوية.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>الإلكترونيات</h3>
+                    <p>تصنيع الرقائق الإلكترونية والبطاريات والخلايا الشمسية يستخدم مواد غير عضوية مثل السيليكون والليثيوم.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>مواد البناء</h3>
+                    <p>الأسمنت، الزجاج، السيراميك، والمعادن المستخدمة في البناء كلها منتجات للكيمياء غير العضوية.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>البيئة</h3>
+                    <p>معالجة المياه، إدارة النفايات، وتطوير تكنولوجيا نظيفة تعتمد على مبادئ الكيمياء غير العضوية.</p>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>الفضاء</h3>
+                    <p>وقود الصواريخ، مواد التغليف الفضائية، وأنظمة دعم الحياة تستخدم مركبات غير عضوية متقدمة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Periodic Table Section -->
+    <section id="periodic" class="periodic">
+        <div class="container">
+            <div class="section-title">
+                <h2>الجدول الدوري التفاعلي</h2>
+                <p>استكشف العناصر الكيميائية وخصائصها</p>
+            </div>
+            <div class="periodic-table">
+                <div class="table-container" id="periodic-table">
+                    <!-- Elements will be generated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>موقع الكيمياء غير العضوية</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى عالي الجودة حول مبادئ وتطبيقات الكيمياء غير العضوية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#topics">المواضيع</a></li>
+                        <li><a href="#elements">العناصر</a></li>
+                        <li><a href="#apps">التطبيقات</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>موارد تعليمية</h3>
+                    <ul>
+                        <li><a href="#">دروس تفاعلية</a></li>
+                        <li><a href="#">فيديوهات شرح</a></li>
+                        <li><a href="#">تمارين محلولة</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">امتحانات تجريبية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات التواصل</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@inorganicchemistry.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع الكيمياء غير العضوية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Toggle for Mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Periodic Table Data
+        const elements = [
+            { symbol: 'H', name: 'Hydrogen', number: 1, group: 'nonmetal' },
+            { symbol: 'He', name: 'Helium', number: 2, group: 'noble-gas' },
+            { symbol: 'Li', name: 'Lithium', number: 3, group: 'alkali-metal' },
+            { symbol: 'Be', name: 'Beryllium', number: 4, group: 'alkaline-earth' },
+            { symbol: 'B', name: 'Boron', number: 5, group: 'metalloid' },
+            { symbol: 'C', name: 'Carbon', number: 6, group: 'nonmetal' },
+            { symbol: 'N', name: 'Nitrogen', number: 7, group: 'nonmetal' },
+            { symbol: 'O', name: 'Oxygen', number: 8, group: 'nonmetal' },
+            { symbol: 'F', name: 'Fluorine', number: 9, group: 'nonmetal' },
+            { symbol: 'Ne', name: 'Neon', number: 10, group: 'noble-gas' },
+            { symbol: 'Na', name: 'Sodium', number: 11, group: 'alkali-metal' },
+            { symbol: 'Mg', name: 'Magnesium', number: 12, group: 'alkaline-earth' },
+            { symbol: 'Al', name: 'Aluminum', number: 13, group: 'post-transition' },
+            { symbol: 'Si', name: 'Silicon', number: 14, group: 'metalloid' },
+            { symbol: 'P', name: 'Phosphorus', number: 15, group: 'nonmetal' },
+            { symbol: 'S', name: 'Sulfur', number: 16, group: 'nonmetal' },
+            { symbol: 'Cl', name: 'Chlorine', number: 17, group: 'nonmetal' },
+            { symbol: 'Ar', name: 'Argon', number: 18, group: 'noble-gas' },
+            { symbol: 'K', name: 'Potassium', number: 19, group: 'alkali-metal' },
+            { symbol: 'Ca', name: 'Calcium', number: 20, group: 'alkaline-earth' }
+        ];
+
+        // Generate Periodic Table
+        const tableContainer = document.getElementById('periodic-table');
+        
+        elements.forEach(element => {
+            const elementBox = document.createElement('div');
+            elementBox.className = `element-box ${element.group}`;
+            elementBox.innerHTML = `
+                <div class="element-number">${element.number}</div>
+                <div class="element-symbol">${element.symbol}</div>
+                <div class="element-name-small">${element.name}</div>
+            `;
+            
+            // Add tooltip on hover
+            elementBox.addEventListener('mouseenter', function(e) {
+                const tooltip = document.createElement('div');
+                tooltip.className = 'element-tooltip';
+                tooltip.textContent = `${element.name} (${element.symbol}) - العدد الذري: ${element.number}`;
+                document.body.appendChild(tooltip);
+                
+                const rect = elementBox.getBoundingClientRect();
+                tooltip.style.left = rect.left + 'px';
+                tooltip.style.top = (rect.top - tooltip.offsetHeight - 10) + 'px';
+                tooltip.style.opacity = '1';
+            });
+            
+            elementBox.addEventListener('mouseleave', function() {
+                const tooltip = document.querySelector('.element-tooltip');
+                if (tooltip) {
+                    tooltip.remove();
+                }
+            });
+            
+            tableContainer.appendChild(elementBox);
+        });
+    </script>
+</body>
+</html>

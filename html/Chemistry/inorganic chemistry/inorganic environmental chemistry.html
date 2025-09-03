@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع الكيمياء البيئية غير العضوية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #4CAF50;
+            --accent-color: #FF9800;
+            --light-color: #F5F5F5;
+            --dark-color: #1B5E20;
+            --warning-color: #FFC107;
+            --danger-color: #F44336;
+            --info-color: #03A9F4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--dark-color), var(--primary-color));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            margin-left: 10px;
+            color: var(--accent-color);
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(46, 125, 50, 0.8), rgba(76, 175, 80, 0.8)), url('https://images.unsplash.com/photo-1476610182048-b716b8512aae?ixlib=rb-4.0.3') center/cover no-repeat;
+            color: white;
+            padding: 8rem 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1s ease 0.2s;
+            animation-fill-mode: both;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            animation: fadeInUp 1s ease 0.4s;
+            animation-fill-mode: both;
+        }
+
+        .btn:hover {
+            background-color: #F57C00;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Topic Cards */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .topic-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .topic-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .topic-card-content {
+            padding: 1.5rem;
+        }
+
+        .topic-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .topic-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .topic-card .btn {
+            font-size: 0.9rem;
+            padding: 8px 20px;
+        }
+
+        /* Environmental Issues */
+        .issues {
+            background-color: var(--light-color);
+        }
+
+        .issues-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .issue-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .issue-header {
+            background-color: var(--danger-color);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .issue-header.severe {
+            background-color: var(--danger-color);
+        }
+
+        .issue-header.moderate {
+            background-color: var(--warning-color);
+        }
+
+        .issue-header.low {
+            background-color: var(--info-color);
+        }
+
+        .issue-header h3 {
+            font-size: 1.4rem;
+        }
+
+        .issue-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .issue-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Solutions Section */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .solution-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .solution-icon {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .solution-icon i {
+            font-size: 3rem;
+        }
+
+        .solution-content {
+            padding: 1.5rem;
+        }
+
+        .solution-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        /* Calculator Section */
+        .calculator {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .calculator h3 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .calculator .btn {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .result {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: var(--light-color);
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        /* Applications Section */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .app-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .app-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .app-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 5px 10px;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <h1>الكيمياء البيئية غير العضوية</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#topics">الموضوعات</a></li>
+                    <li><a href="#issues">القضايا البيئية</a></li>
+                    <li><a href="#solutions">الحلول</a></li>
+                    <li><a href="#calculator">الحاسبة</a></li>
+                    <li><a href="#applications">التطبيقات</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>استكشف عالم الكيمياء البيئية غير العضوية</h2>
+            <p>موقع تعليمي شامل يقدم لك كل ما تحتاج معرفته عن الكيمياء البيئية غير العضوية، من المبادئ الأساسية إلى التطبيقات العملية لحماية بيئتنا.</p>
+            <a href="#topics" class="btn">ابدأ التعلم الآن</a>
+        </div>
+    </section>
+
+    <!-- Topics Section -->
+    <section class="section" id="topics">
+        <div class="container">
+            <div class="section-title">
+                <h2>موضوعات الكيمياء البيئية غير العضوية</h2>
+                <p>استكشف المفاهيم الأساسية والمتقدمة في الكيمياء البيئية غير العضوية من خلال هذه المجموعة من الدروس الشاملة</p>
+            </div>
+            
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1536323760109-ca8c07450053?ixlib=rb-4.0.3" alt="تلوث المياه">
+                    <div class="topic-card-content">
+                        <h3>تلوث المياه غير العضوي</h3>
+                        <p>تعرف على مصادر تلوث المياه بالمواد غير العضوية مثل المعادن الثقيلة والأملاح والمواد الكيميائية الصناعية.</p>
+                        <a href="#" class="btn">اقرأ المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1542779283-14e22481c732?ixlib=rb-4.0.3" alt="تلوث الهواء">
+                    <div class="topic-card-content">
+                        <h3>تلوث الهواء غير العضوي</h3>
+                        <p>اكتشف كيفية تأثير الغازات غير العضوية مثل أكاسيد الكبريت والنيتروجين وأول أكسيد الكربون على جودة الهواء.</p>
+                        <a href="#" class="btn">اقرأ المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1590639178280-9d7c2e5a8e0f?ixlib=rb-4.0.3" alt="تلوث التربة">
+                    <div class="topic-card-content">
+                        <h3>تلوث التربة بالمواد غير العضوية</h3>
+                        <p>افهم كيفية تأثير المبيدات والأسمدة والنفايات الصناعية على جودة التربة والنظام البيئي.</p>
+                        <a href="#" class="btn">اقرأ المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1538300798804-2b48b86113f0?ixlib=rb-4.0.3" alt="المعادن الثقيلة">
+                    <div class="topic-card-content">
+                        <h3>المعادن الثقيلة في البيئة</h3>
+                        <p>تعرف على مصادر المعادن الثقيلة مثل الرصاص والزئبق والكادميوم وآثارها الصحية والبيئية.</p>
+                        <a href="#" class="btn">اقرأ المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-4.0.3" alt="الحموضة">
+                    <div class="topic-card-content">
+                        <h3>الحموضة البيئية</h3>
+                        <p>استكشف ظاهرة الحموضة في المطر والتربة والمياه وأسبابها وآثارها على النظم البيئية.</p>
+                        <a href="#" class="btn">اقرأ المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3" alt="المعالجة">
+                    <div class="topic-card-content">
+                        <h3>معالجة الملوثات غير العضوية</h3>
+                        <p>تعرف على التقنيات المختلفة المستخدمة في معالجة وإزالة الملوثات غير العضوية من البيئة.</p>
+                        <a href="#" class="btn">اقرأ المزيد</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Environmental Issues Section -->
+    <section class="section issues" id="issues">
+        <div class="container">
+            <div class="section-title">
+                <h2>القضايا البيئية الرئيسية</h2>
+                <p>تعرف على أهم القضايا البيئية المتعلقة بالمواد الكيميائية غير العضوية وتأثيرها على كوكبنا</p>
+            </div>
+            
+            <div class="issues-grid">
+                <div class="issue-card">
+                    <div class="issue-header severe">
+                        <h3>تلوث المياه بالمعادن الثقيلة</h3>
+                    </div>
+                    <div class="issue-content">
+                        <p>تراكم المعادن الثقيلة مثل الرصاص والزئبق والكادميوم في المسطحات المائية يؤدي إلى تلوث شديد للمياه ويهدد الحياة المائية والصحة الإنسانية.</p>
+                        <div class="issue-stats">
+                            <div class="stat">
+                                <div class="stat-value">70%</div>
+                                <div class="stat-label">من المياه ملوثة</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">2.1</div>
+                                <div class="stat-label">مليار شخص متأثرين</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="issue-card">
+                    <div class="issue-header moderate">
+                        <h3>تلوث الهواء بأكاسيد النيتروجين</h3>
+                    </div>
+                    <div class="issue-content">
+                        <p>انبعاثات أكاسيد النيتروجين من المصانع والمركبات تسبب تلوث الهواء وتساهم في تكوين الضباب الدخاني والمطر الحمضي.</p>
+                        <div class="issue-stats">
+                            <div class="stat">
+                                <div class="stat-value">42%</div>
+                                <div class="stat-label">زيادة في الأمراض</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">3.7</div>
+                                <div class="stat-label">مليون حالة وفاة سنوياً</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="issue-card">
+                    <div class="issue-header low">
+                        <h3>تملح التربة</h3>
+                    </div>
+                    <div class="issue-content">
+                        <p>زيادة ملوحة التربة بسبب الري بمياه مالحة واستخدام الأسمدة الكيميائية يؤدي إلى تدهور خصوبة التربة وانخفاض الإنتاج الزراعي.</p>
+                        <div class="issue-stats">
+                            <div class="stat">
+                                <div class="stat-value">20%</div>
+                                <div class="stat-label">من الأراضي الزراعية متملحة</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">1.5</div>
+                                <div class="stat-label">مليار هكتار متأثرة</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section class="section" id="solutions">
+        <div class="container">
+            <div class="section-title">
+                <h2>حلول الكيمياء البيئية غير العضوية</h2>
+                <p>استكشف الحلول المبتكرة للمشاكل البيئية المتعلقة بالمواد الكيميائية غير العضوية</p>
+            </div>
+            
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-filter"></i>
+                    </div>
+                    <div class="solution-content">
+                        <h4>التقنيات الفيزيائية</h4>
+                        <p>استخدام طرق مثل الترشيح والترسيب والتبادل الأيوني لإزالة الملوثات غير العضوية من المياه والهواء.</p>
+                    </div>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="solution-content">
+                        <h4>التقنيات الكيميائية</h4>
+                        <p>تطبيق عمليات الأكسدة والاختزال والترسيب الكيميائي لتحويل الملوثات إلى مواد أقل ضرراً أو غير قابلة للذوبان.</p>
+                    </div>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <div class="solution-content">
+                        <h4>التقنيات البيولوجية</h4>
+                        <p>استخدام الكائنات الدقيقة والنباتات في امتصاص وتحلل الملوثات غير العضوية من البيئة.</p>
+                    </div>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <div class="solution-content">
+                        <h4>إعادة التدوير</h4>
+                        <p>تطوير تقنيات لإعادة تدوير المواد غير العضوية وتحويلها إلى منتجات مفيدة بدلاً من التخلص منها في البيئة.</p>
+                    </div>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <div class="solution-content">
+                        <h4>الوقاية</h4>
+                        <p>تطبيق سياسات وقائية للحد من انبعاث الملوثات غير العضوية من مصادرها قبل وصولها إلى البيئة.</p>
+                    </div>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="solution-content">
+                        <h4>الزراعة المستدامة</h4>
+                        <p>استخدام أساليب الزراعة المستدامة التي تقلل من استخدام الأسمدة والمبيدات الكيميائية وتحمي التربة والمياه.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="section" id="calculator">
+        <div class="container">
+            <div class="section-title">
+                <h2>حاسبة التلوث البيئي</h2>
+                <p>احسب تركيز الملوثات وتأثيرها على البيئة باستخدام هذه الحاسبة التفاعلية</p>
+            </div>
+            
+            <div class="calculator">
+                <h3>حاسبة تركيز الملوثات</h3>
+                <form id="pollution-form">
+                    <div class="form-group">
+                        <label for="pollutant">نوع الملوث:</label>
+                        <select id="pollutant">
+                            <option value="lead">الرصاص (Pb)</option>
+                            <option value="mercury">الزئبق (Hg)</option>
+                            <option value="cadmium">الكادميوم (Cd)</option>
+                            <option value="arsenic">الزرنيخ (As)</option>
+                            <option value="nitrate">النترات (NO3-)</option>
+                            <option value="sulfate">الكبريتات (SO4^2-)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="concentration">التركيز (ملغم/لتر):</label>
+                        <input type="number" id="concentration" placeholder="أدخل التركيز" step="0.01">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="volume">حجم الماء (لتر):</label>
+                        <input type="number" id="volume" placeholder="أدخل حجم الماء" value="1000">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="standard">المعيار البيئي:</label>
+                        <select id="standard">
+                            <option value="who">منظمة الصحة العالمية</option>
+                            <option value="epa">وكالة حماية البيئة الأمريكية</option>
+                            <option value="eu">الاتحاد الأوروبي</option>
+                            <option value="local">المعايير المحلية</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn">احسب</button>
+                </form>
+                
+                <div id="result" class="result"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section class="section" id="applications">
+        <div class="container">
+            <div class="section-title">
+                <h2>تطبيقات الكيمياء البيئية غير العضوية</h2>
+                <p>اكتشف كيف تُستخدم الكيمياء البيئية غير العضوية في مجالات متعددة لحماية بيئتنا</p>
+            </div>
+            
+            <div class="applications-grid">
+                <div class="app-card">
+                    <i class="fas fa-tint"></i>
+                    <h4>معالجة مياه الشرب</h4>
+                    <p>تطبيق تقنيات الكيمياء غير العضوية لتنقية مياه الشرب وإزالة الملوثات.</p>
+                </div>
+                
+                <div class="app-card">
+                    <i class="fas fa-industry"></i>
+                    <h4>معالجة مياه الصرف الصحي</h4>
+                    <p>استخدام العمليات الكيميائية لمعالجة مياه الصرف الصحي قبل التخلص منها.</p>
+                </div>
+                
+                <div class="app-card">
+                    <i class="fas fa-cloud"></i>
+                    <h4>مراقبة جودة الهواء</h4>
+                    <p>تحليل مكونات الهواء وقياس تركيزات الملوثات غير العضوية.</p>
+                </div>
+                
+                <div class="app-card">
+                    <i class="fas fa-mountain"></i>
+                    <h4>إعادة تأهيل التربة الملوثة</h4>
+                    <p>تطبيق تقنيات الكيمياء البيئية لتنظيف التربة الملوثة بالمواد غير العضوية.</p>
+                </div>
+                
+                <div class="app-card">
+                    <i class="fas fa-trash-alt"></i>
+                    <h4>إدارة النفايات الخطرة</h4>
+                    <p>معالجة والتخلص الآمن من النفايات الكيميائية غير العضوية الخطرة.</p>
+                </div>
+                
+                <div class="app-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h4>التقييم البيئي</h4>
+                    <p>تقييم التأثير البيئي للمشاريع الصناعية والتنموية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>موقع الكيمياء البيئية غير العضوية</h4>
+                    <p>منصة تعليمية شاملة تقدم محتوى عالي الجودة عن الكيمياء البيئية غير العضوية وتطبيقاتها المختلفة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#topics">الموضوعات</a></li>
+                        <li><a href="#issues">القضايا البيئية</a></li>
+                        <li><a href="#solutions">الحلول</a></li>
+                        <li><a href="#calculator">الحاسبة</a></li>
+                        <li><a href="#applications">التطبيقات</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>الموضوعات الشعبية</h4>
+                    <ul>
+                        <li><a href="#">تلوث المياه غير العضوي</a></li>
+                        <li><a href="#">تلوث الهواء غير العضوي</a></li>
+                        <li><a href="#">تلوث التربة بالمواد غير العضوية</a></li>
+                        <li><a href="#">المعادن الثقيلة في البيئة</a></li>
+                        <li><a href="#">الحموضة البيئية</a></li>
+                        <li><a href="#">معالجة الملوثات غير العضوية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>تواصل معنا</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@environmentalchemistry.com</li>
+                        <li><i class="fas fa-phone"></i> +966 50 123 4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع الكيمياء البيئية غير العضوية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Pollution calculator functionality
+            const pollutionForm = document.getElementById('pollution-form');
+            const resultDiv = document.getElementById('result');
+            
+            // Environmental standards data
+            const standards = {
+                who: {
+                    lead: 0.01,
+                    mercury: 0.006,
+                    cadmium: 0.003,
+                    arsenic: 0.01,
+                    nitrate: 50,
+                    sulfate: 500
+                },
+                epa: {
+                    lead: 0.015,
+                    mercury: 0.002,
+                    cadmium: 0.005,
+                    arsenic: 0.01,
+                    nitrate: 10,
+                    sulfate: 250
+                },
+                eu: {
+                    lead: 0.01,
+                    mercury: 0.001,
+                    cadmium: 0.005,
+                    arsenic: 0.01,
+                    nitrate: 50,
+                    sulfate: 250
+                },
+                local: {
+                    lead: 0.05,
+                    mercury: 0.01,
+                    cadmium: 0.01,
+                    arsenic: 0.05,
+                    nitrate: 100,
+                    sulfate: 1000
+                }
+            };
+            
+            pollutionForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get values
+                const pollutant = document.getElementById('pollutant').value;
+                const concentration = parseFloat(document.getElementById('concentration').value);
+                const volume = parseFloat(document.getElementById('volume').value);
+                const standard = document.getElementById('standard').value;
+                
+                // Get standard value
+                const standardValue = standards[standard][pollutant];
+                
+                // Calculate total amount
+                const totalAmount = concentration * volume;
+                
+                // Determine risk level
+                let riskLevel, riskColor;
+                if (concentration <= standardValue * 0.5) {
+                    riskLevel = "منخفض";
+                    riskColor = "#4CAF50";
+                } else if (concentration <= standardValue) {
+                    riskLevel = "متوسط";
+                    riskColor = "#FFC107";
+                } else {
+                    riskLevel = "مرتفع";
+                    riskColor = "#F44336";
+                }
+                
+                // Display result
+                resultDiv.innerHTML = `
+                    <div>التركيز: ${concentration} ملغم/لتر</div>
+                    <div>المعيار: ${standardValue} ملغم/لتر</div>
+                    <div>مستوى الخطورة: <span style="color: ${riskColor}; font-weight: bold;">${riskLevel}</span></div>
+                    <div>الكمية الإجمالية: ${totalAmount.toFixed(2)} ملغم</div>
+                `;
+                resultDiv.style.display = 'block';
+            });
+            
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع الكيمياء الصناعية غير العضوية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0D47A1;
+            --secondary-color: #1976D2;
+            --accent-color: #FF4081;
+            --light-color: #F5F5F5;
+            --dark-color: #263238;
+            --success-color: #4CAF50;
+            --warning-color: #FF9800;
+            --danger-color: #F44336;
+            --industrial-color: #37474F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--industrial-color), var(--primary-color));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            margin-left: 10px;
+            color: var(--accent-color);
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(13, 71, 161, 0.8), rgba(25, 118, 210, 0.8)), url('https://images.unsplash.com/photo-1532187863488-5c4b2478e4c6?ixlib=rb-4.0.3') center/cover no-repeat;
+            color: white;
+            padding: 8rem 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1s ease 0.2s;
+            animation-fill-mode: both;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            animation: fadeInUp 1s ease 0.4s;
+            animation-fill-mode: both;
+        }
+
+        .btn:hover {
+            background-color: #e91e63;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Topic Cards */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .topic-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .topic-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .topic-card-content {
+            padding: 1.5rem;
+        }
+
+        .topic-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .topic-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .topic-card .btn {
+            font-size: 0.9rem;
+            padding: 8px 20px;
+        }
+
+        /* Industrial Processes */
+        .processes {
+            background-color: var(--light-color);
+        }
+
+        .processes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .process-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .process-header {
+            background-color: var(--industrial-color);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .process-header h3 {
+            font-size: 1.4rem;
+        }
+
+        .process-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .process-steps {
+            margin-top: 1rem;
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 1rem;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background-color: var(--secondary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 1rem;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex-grow: 1;
+        }
+
+        /* Applications */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .app-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .app-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .app-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        /* Safety Section */
+        .safety {
+            background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+        }
+
+        .safety-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .safety-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .safety-card .icon {
+            background-color: var(--warning-color);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .safety-card .icon i {
+            font-size: 2.5rem;
+        }
+
+        .safety-card .content {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .safety-card h4 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        /* Calculator Section */
+        .calculator {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .calculator h3 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .calculator .btn {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .result {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: var(--light-color);
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 5px 10px;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-industry"></i>
+                <h1>الكيمياء الصناعية غير العضوية</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#topics">الموضوعات</a></li>
+                    <li><a href="#processes">العمليات الصناعية</a></li>
+                    <li><a href="#applications">التطبيقات</a></li>
+                    <li><a href="#calculator">الحاسبة</a></li>
+                    <li><a href="#safety">السلامة</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>استكشف عالم الكيمياء الصناعية غير العضوية</h2>
+            <p>موقع تعليمي شامل يقدم لك كل ما تحتاج معرفته عن الكيمياء الصناعية غير العضوية، من المبادئ الأساسية إلى التطبيقات الصناعية المتقدمة.</p>
+            <a href="#topics" class="btn">ابدأ التعلم الآن</a>
+        </div>
+    </section>
+
+    <!-- Topics Section -->
+    <section class="section" id="topics">
+        <div class="container">
+            <div class="section-title">
+                <h2>موضوعات الكيمياء الصناعية غير العضوية</h2>
+                <p>استكشف المفاهيم الأساسية والمتقدمة في الكيمياء الصناعية غير العضوية من خلال هذه المجموعة من الدروس الشاملة</p>
+            </div>
+            
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1596386468938-9c9b881a5c3e?ixlib=rb-4.0.3" alt="الأحماض والقواعد">
+                    <div class="topic-card-content">
+                        <h3>الأحماض والقواعد الصناعية</h3>
+                        <p>تعرف على أهم الأحماض والقواعد المستخدمة في الصناعة مثل حمض الكبريتيك وحمض الهيدروكلوريك وهيدروكسيد الصوديوم.</p>
+                        <a href="#" class="btn">اقرأ المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1633412802994-5c058f151b66?ixlib=rb-4.0.3" alt="الأملاح المعدنية">
+                    <div class="topic-card-content">
+                        <h3>الأملاح المعدنية الصناعية</h3>
+                        <p>اكتشف كيفية إنتاج الأملاح المعدنية الهامة مثل كبريتات النحاس وكلوريد الصوديوم ونترات الأمونيوم.</p>
+                        <a href="#" class="btn">اقرأ المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1581093450021-4a7360e9e6c5?ixlib=rb-4.0.3" alt="الأسمدة">
+                    <div class="topic-card-content">
+                        <h3>الأسمدة الكيميائية</h3>
+                        <p>تعرف على عملية إنتاج الأسمدة الكيميائية مثل اليوريا والفوسفات والنترات ودورها في الزراعة الحديثة.</p>
+                        <a href="#" class="btn">اقرأ المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3" alt="المعادن">
+                    <div class="topic-card-content">
+                        <h3>استخلاص وتنقية المعادن</h3>
+                        <p>افهم عمليات استخلاص المعادن من خاماتها وتنقيتها مثل إنتاج الألومنيوم من البوكسيت والحديد من الهيماتيت.</p>
+                        <a href="#" class="btn">اقرأ المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3" alt="الزجاج والسيراميك">
+                    <div class="topic-card-content">
+                        <h3>صناعة الزجاج والسيراميك</h3>
+                        <p>تعرف على التركيبات الكيميائية والعمليات الصناعية المستخدمة في صناعة الزجاج والسيراميك والمنتجات ذات الصلة.</p>
+                        <a href="#" class="btn">اقرأ المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3" alt="الصباغات والطلاء">
+                    <div class="topic-card-content">
+                        <h3>الصباغات والطلاءات الكيميائية</h3>
+                        <p>استكشف كيفية إنتاج الصباغات والطلاءات الكيميائية غير العضوية وتطبيقاتها في الصناعات المختلفة.</p>
+                        <a href="#" class="btn">اقرأ المزيد</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industrial Processes Section -->
+    <section class="section processes" id="processes">
+        <div class="container">
+            <div class="section-title">
+                <h2>العمليات الصناعية</h2>
+                <p>تعرف على أهم العمليات الصناعية في الكيمياء غير العضوية ومراحلها المختلفة</p>
+            </div>
+            
+            <div class="processes-grid">
+                <div class="process-card">
+                    <div class="process-header">
+                        <h3>عملية هابر-بوش</h3>
+                    </div>
+                    <div class="process-content">
+                        <p>عملية صناعية لإنتاج الأمونيا من النيتروجين والهيدروجين تحت ظروف ضغط ودرجة حرارة عاليتين.</p>
+                        <div class="process-steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>تحضير الغازات</h4>
+                                    <p>الحصول على النيتروجين من الهواء والهيدروجين من الغاز الطبيعي أو البترول.</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>الضغط والحرارة</h4>
+                                    <p>ضغط 150-300 atm ودرجة حرارة 400-500°C.</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>التحفيز</h4>
+                                    <p>استخدام محفز من الحديد مع أكسيد البوتاسيوم.</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>التكثيف والتخزين</h4>
+                                    <p>تكثيف الأمونيا الناتجة وتخزينها في خزانات.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="process-card">
+                    <div class="process-header">
+                        <h3>عملية كونتاكت</h3>
+                    </div>
+                    <div class="process-content">
+                        <p>عملية صناعية لإنتاج حمض الكبريتيك من ثاني أكسيد الكبريت.</p>
+                        <div class="process-steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>حرق الكبريت</h4>
+                                    <p>تحويل الكبريت إلى ثاني أكسيد الكبريت عند درجة حرارة عالية.</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>الأكسدة</h4>
+                                    <p>أكسدة ثاني أكسيد الكبريت إلى ثالث أكسيد الكبريت باستخدام محفز الفاناديوم.</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>الامتصاص</h4>
+                                    <p>امتصاص ثالث أكسيد الكبريت في حمض الكبريتيك المركز.</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>التخفيف</h4>
+                                    <p>تخفيف حمض الأوليوم الناتج للحصول على التركيز المطلوب.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="process-card">
+                    <div class="process-header">
+                        <h3>عملية سولفاي</h3>
+                    </div>
+                    <div class="process-content">
+                        <p>عملية صناعية لإنتاج كربونات الصوديوم (صودا الغسيل) من الملح والأمونيا وثاني أكسيد الكربون.</p>
+                        <div class="process-steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>تحضير محلول الأملاح</h4>
+                                    <p>إذابة كلوريد الصوديوم (ملح الطعام) في الماء.</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>التشبع بالأمونيا</h4>
+                                    <p>تمرير غاز الأمونيا في محلول الملح.</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>التشبع بثاني أكسيد الكربون</h4>
+                                    <p>تمرير غاز ثاني أكسيد الكربون في المحلول.</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>الترسيب والتصفية</h4>
+                                    <p>ترسيب بيكربونات الصوديوم وتصفيته ثم تسخينه للحصول على كربونات الصوديوم.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section class="section" id="applications">
+        <div class="container">
+            <div class="section-title">
+                <h2>تطبيقات الكيمياء الصناعية غير العضوية</h2>
+                <p>اكتشف كيف تُستخدم الكيمياء الصناعية غير العضوية في مجالات متعددة في حياتنا اليومية</p>
+            </div>
+            
+            <div class="applications-grid">
+                <div class="app-card">
+                    <i class="fas fa-seedling"></i>
+                    <h4>الزراعة</h4>
+                    <p>إنتاج الأسمدة الكيميائية والمبيدات الحشرية لزيادة الإنتاج الزراعي.</p>
+                </div>
+                
+                <div class="app-card">
+                    <i class="fas fa-industry"></i>
+                    <h4>التصنيع</h4>
+                    <p>استخدام المواد الكيميائية في عمليات التصنيع المختلفة مثل المعالجة السطحية للمعادن.</p>
+                </div>
+                
+                <div class="app-card">
+                    <i class="fas fa-tint"></i>
+                    <h4>معالجة المياه</h4>
+                    <p>تنقية المياه باستخدام المواد الكيميائية مثل الكلور وأملاح الألومنيوم.</p>
+                </div>
+                
+                <div class="app-card">
+                    <i class="fas fa-battery-full"></i>
+                    <h4>الطاقة</h4>
+                    <p>إنتاج البطاريات والخلايا الشمسية والوقود باستخدام المواد الكيميائية غير العضوية.</p>
+                </div>
+                
+                <div class="app-card">
+                    <i class="fas fa-paint-roller"></i>
+                    <h4>الطلاء والدهان</h4>
+                    <p>تصنيع الطلاءات والدهانات المستخدمة في البناء والصناعة.</p>
+                </div>
+                
+                <div class="app-card">
+                    <i class="fas fa-prescription-bottle"></i>
+                    <h4>الصناعات الدوائية</h4>
+                    <p>إنتاج المواد الكيميائية غير العضوية المستخدمة في تصنيع الأدوية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="section" id="calculator">
+        <div class="container">
+            <div class="section-title">
+                <h2>حاسبة التفاعلات الكيميائية</h2>
+                <p>احسب كمية المواد المتفاعلة والناتجة في التفاعلات الكيميائية الصناعية</p>
+            </div>
+            
+            <div class="calculator">
+                <h3>حاسبة التفاعلات</h3>
+                <form id="reaction-form">
+                    <div class="form-group">
+                        <label for="reaction">التفاعل الكيميائي:</label>
+                        <select id="reaction">
+                            <option value="haber">هابر-بوش (إنتاج الأمونيا)</option>
+                            <option value="contact">كونتاكت (إنتاج حمض الكبريتيك)</option>
+                            <option value="solvay">سولفاي (إنتاج كربونات الصوديوم)</option>
+                            <option value="custom">تفاعل مخصص</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="custom-reaction-group" style="display: none;">
+                        <label for="custom-reaction">ادخل التفاعل:</label>
+                        <input type="text" id="custom-reaction" placeholder="مثال: 2H2 + O2 → 2H2O">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reactant">المادة المتفاعلة:</label>
+                        <input type="text" id="reactant" placeholder="مثال: N2">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="amount">الكمية (مول):</label>
+                        <input type="number" id="amount" placeholder="أدخل الكمية" value="1">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product">المادة الناتجة:</label>
+                        <input type="text" id="product" placeholder="مثال: NH3">
+                    </div>
+                    
+                    <button type="submit" class="btn">احسب</button>
+                </form>
+                
+                <div id="result" class="result"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety Section -->
+    <section class="section safety" id="safety">
+        <div class="container">
+            <div class="section-title">
+                <h2>السلامة في الكيمياء الصناعية غير العضوية</h2>
+                <p>تعرف على إجراءات السلامة الأساسية عند التعامل مع المواد الكيميائية الصناعية</p>
+            </div>
+            
+            <div class="safety-cards">
+                <div class="safety-card">
+                    <div class="icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="content">
+                        <h4>المعدات الواقية الشخصية</h4>
+                        <p>ارتدِ المعدات الواقية المناسبة مثل النظارات الواقية، والقفازات، والمعاطف الواقية عند التعامل مع المواد الكيميائية.</p>
+                    </div>
+                </div>
+                
+                <div class="safety-card">
+                    <div class="icon">
+                        <i class="fas fa-ventilation"></i>
+                    </div>
+                    <div class="content">
+                        <h4>التهوية المناسبة</h4>
+                        <p>تأكد من وجود تهوية كافية في مكان العمل لتجنب تراكم الأبخرة والغازات الضارة.</p>
+                    </div>
+                </div>
+                
+                <div class="safety-card">
+                    <div class="icon">
+                        <i class="fas fa-dumpster"></i>
+                    </div>
+                    <div class="content">
+                        <h4>التخلص الآمن من النفايات</h4>
+                        <p>اتبع الإجراءات الصارمة للتخلص من النفايات الكيميائية وفقًا للوائح البيئية.</p>
+                    </div>
+                </div>
+                
+                <div class="safety-card">
+                    <div class="icon">
+                        <i class="fas fa-first-aid"></i>
+                    </div>
+                    <div class="content">
+                        <h4>الإسعافات الأولية</h4>
+                        <p>تعرف على إجراءات الإسعافات الأولية في حالات التعرض للمواد الكيميائية وكن مستعدًا للطوارئ.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>موقع الكيمياء الصناعية غير العضوية</h4>
+                    <p>منصة تعليمية شاملة تقدم محتوى عالي الجودة عن الكيمياء الصناعية غير العضوية وتطبيقاتها المختلفة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#topics">الموضوعات</a></li>
+                        <li><a href="#processes">العمليات الصناعية</a></li>
+                        <li><a href="#applications">التطبيقات</a></li>
+                        <li><a href="#calculator">الحاسبة</a></li>
+                        <li><a href="#safety">السلامة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>الموضوعات الشعبية</h4>
+                    <ul>
+                        <li><a href="#">الأحماض والقواعد الصناعية</a></li>
+                        <li><a href="#">الأملاح المعدنية الصناعية</a></li>
+                        <li><a href="#">الأسمدة الكيميائية</a></li>
+                        <li><a href="#">استخلاص وتنقية المعادن</a></li>
+                        <li><a href="#">صناعة الزجاج والسيراميك</a></li>
+                        <li><a href="#">الصباغات والطلاءات الكيميائية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>تواصل معنا</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@inorganicchemistry.com</li>
+                        <li><i class="fas fa-phone"></i> +966 50 123 4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع الكيمياء الصناعية غير العضوية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Calculator functionality
+            const reactionForm = document.getElementById('reaction-form');
+            const reactionSelect = document.getElementById('reaction');
+            const customReactionGroup = document.getElementById('custom-reaction-group');
+            const resultDiv = document.getElementById('result');
+            
+            reactionSelect.addEventListener('change', function() {
+                if (this.value === 'custom') {
+                    customReactionGroup.style.display = 'block';
+                } else {
+                    customReactionGroup.style.display = 'none';
+                }
+            });
+            
+            reactionForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get values
+                const reaction = reactionSelect.value;
+                const reactant = document.getElementById('reactant').value;
+                const amount = parseFloat(document.getElementById('amount').value);
+                const product = document.getElementById('product').value;
+                
+                // Calculate based on reaction type
+                let resultText = '';
+                
+                if (reaction === 'haber') {
+                    // Haber-Bosch: N2 + 3H2 → 2NH3
+                    if (reactant === 'N2' && product === 'NH3') {
+                        const productAmount = amount * 2;
+                        resultText = `الكمية الناتجة من الأمونيا: ${productAmount} مول`;
+                    } else if (reactant === 'H2' && product === 'NH3') {
+                        const productAmount = (amount * 2) / 3;
+                        resultText = `الكمية الناتجة من الأمونيا: ${productAmount.toFixed(2)} مول`;
+                    } else {
+                        resultText = `الكمية الناتجة من ${product}: ${amount} مول`;
+                    }
+                } else if (reaction === 'contact') {
+                    // Contact: 2SO2 + O2 → 2SO3
+                    if (reactant === 'SO2' && product === 'SO3') {
+                        const productAmount = amount;
+                        resultText = `الكمية الناتجة من ثالث أكسيد الكبريت: ${productAmount} مول`;
+                    } else if (reactant === 'O2' && product === 'SO3') {
+                        const productAmount = amount * 2;
+                        resultText = `الكمية الناتجة من ثالث أكسيد الكبريت: ${productAmount} مول`;
+                    } else {
+                        resultText = `الكمية الناتجة من ${product}: ${amount} مول`;
+                    }
+                } else if (reaction === 'solvay') {
+                    // Solvay: NaCl + NH3 + CO2 + H2O → NaHCO3 + NH4Cl
+                    if (reactant === 'NaCl' && product === 'NaHCO3') {
+                        const productAmount = amount;
+                        resultText = `الكمية الناتجة من بيكربونات الصوديوم: ${productAmount} مول`;
+                    } else {
+                        resultText = `الكمية الناتجة من ${product}: ${amount} مول`;
+                    }
+                } else {
+                    resultText = `الكمية الناتجة من ${product}: ${amount} مول`;
+                }
+                
+                // Display result
+                resultDiv.innerHTML = resultText;
+                resultDiv.style.display = 'block';
+            });
+            
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
