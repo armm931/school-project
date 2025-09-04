@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التوازنات - فهم ديناميكية التفاعلات الكيميائية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #0f4c75;
+            --secondary: #3282b8;
+            --accent: #bbe1fa;
+            --light: #f0f8ff;
+            --dark: #1b262c;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --purple: #9c27b0;
+            --teal: #009688;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--accent);
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 80%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(15, 76, 117, 0.92), rgba(50, 130, 184, 0.88)), 
+                        url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover;
+            color: white;
+            padding: 130px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(187, 225, 250, 0.1) 0%, transparent 70%);
+            animation: pulse 20s infinite linear;
+        }
+
+        @keyframes pulse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 3.8rem;
+            margin-bottom: 25px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 850px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), #a3d5ff);
+            color: var(--primary);
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.4s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 6px 20px rgba(187, 225, 250, 0.4);
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(187, 225, 250, 0.6);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            border-radius: 3px;
+        }
+
+        .section-title p {
+            max-width: 750px;
+            margin: 0 auto;
+            color: #546e7a;
+            font-size: 1.2rem;
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 70px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(50, 130, 184, 0.1), rgba(187, 225, 250, 0.1));
+        }
+
+        .card-icon i {
+            font-size: 4rem;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-body {
+            padding: 35px;
+        }
+
+        .card-body h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .card-body p {
+            color: #546e7a;
+            margin-bottom: 30px;
+            line-height: 1.9;
+        }
+
+        .card-footer {
+            padding: 0 35px 35px;
+        }
+
+        /* Features Section */
+        .features {
+            background: linear-gradient(135deg, #f0f8ff, #e3f2fd);
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(50, 130, 184, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(187, 225, 250, 0.08) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .features-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 50px;
+            gap: 30px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateX(15px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        .feature-icon {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+            box-shadow: 0 10px 25px rgba(50, 130, 184, 0.3);
+        }
+
+        .feature-content h3 {
+            font-size: 1.7rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .feature-content p {
+            color: #546e7a;
+            line-height: 1.9;
+        }
+
+        /* Interactive Calculator Section */
+        .calculator-section {
+            background: white;
+        }
+
+        .calculator-container {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: 25px;
+            padding: 50px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-top: 60px;
+        }
+
+        .calculator-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .calculator-title h3 {
+            font-size: 2.3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .calculator-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .calc-tab-btn {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .calc-tab-btn.active {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            border-color: transparent;
+        }
+
+        .calc-content {
+            display: none;
+        }
+
+        .calc-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .calc-form {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            background: #f8fafc;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(50, 130, 184, 0.1);
+            background: white;
+        }
+
+        .calc-btn {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .calc-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(50, 130, 184, 0.3);
+        }
+
+        .calc-result {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-align: center;
+            display: none;
+            border-right: 5px solid var(--success);
+        }
+
+        /* pH Scale Visualization */
+        .ph-scale {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 50px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .ph-scale h3 {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+        }
+
+        .ph-gradient {
+            height: 80px;
+            background: linear-gradient(90deg, 
+                #f44336 0%, 
+                #ff9800 20%, 
+                #ffeb3b 40%, 
+                #4caf50 60%, 
+                #2196f3 80%, 
+                #9c27b0 100%);
+            border-radius: 10px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .ph-labels {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .ph-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .ph-example {
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            background: #f8fafc;
+            transition: all 0.3s ease;
+        }
+
+        .ph-example:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .ph-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .ph-name {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Resources Section */
+        .resources {
+            background: linear-gradient(135deg, #f0f8ff, #e3f2fd);
+        }
+
+        .resource-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .resource-tab-btn {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .resource-tab-btn.active {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            border-color: transparent;
+        }
+
+        .resource-content {
+            display: none;
+        }
+
+        .resource-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .resource-list {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .resource-item {
+            display: flex;
+            align-items: center;
+            padding: 25px;
+            border-bottom: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .resource-item:last-child {
+            border-bottom: none;
+        }
+
+        .resource-item:hover {
+            background-color: #f8fafc;
+            padding-right: 35px;
+        }
+
+        .resource-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(50, 130, 184, 0.1), rgba(187, 225, 250, 0.1));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 25px;
+            flex-shrink: 0;
+        }
+
+        .resource-icon i {
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .resource-info h4 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .resource-info p {
+            color: #546e7a;
+            font-size: 1rem;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: white;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 25px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+
+        .faq-question {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            padding: 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            color: var(--primary);
+            transition: all 0.3s ease;
+            border-right: 5px solid transparent;
+        }
+
+        .faq-question:hover {
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            border-right-color: var(--secondary);
+        }
+
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            background: white;
+        }
+
+        .faq-answer.active {
+            padding: 30px;
+            max-height: 600px;
+        }
+
+        .faq-icon {
+            transition: transform 0.4s ease;
+            color: var(--accent);
+        }
+
+        .faq-icon.active {
+            transform: rotate(180deg);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 70px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 15px;
+        }
+
+        .footer-column ul li a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 3rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding: 90px 0;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.3rem;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            .feature-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .feature-icon {
+                margin: 0 auto 25px;
+            }
+            
+            .calculator-container {
+                padding: 30px;
+            }
+            
+            .ph-scale {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 1.6rem;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            nav a {
+                padding: 8px 14px;
+                font-size: 0.9rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .resource-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .resource-icon {
+                margin: 0 0 20px 0;
+            }
+            
+            .ph-examples {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-balance-scale"></i>
+                <h1>التوازنات</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#chemical">التوازن الكيميائي</a></li>
+                    <li><a href="#ionic">التوازن الأيوني</a></li>
+                    <li><a href="#calculators">الحاسبات</a></li>
+                    <li><a href="#resources">المصادر</a></li>
+                    <li><a href="#faq">الأسئلة</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h2>فهم ديناميكية التفاعلات الكيميائية</h2>
+            <p>استكشف عالم التوازنات الكيميائية والأيونية، واكتشف كيف تتحكم هذه المفاهيم في سلوك المواد والتفاعلات في الطبيعة والصناعة</p>
+            <a href="#chemical" class="btn">ابدأ التعلم الآن</a>
+        </div>
+    </section>
+
+    <!-- Chemical Equilibrium Section -->
+    <section class="chemical" id="chemical">
+        <div class="container">
+            <div class="section-title">
+                <h2>التوازن الكيميائي</h2>
+                <p>تعرف على مبادئ التوازن الكيميائي وثابت الاتزان والعوامل المؤثرة على موضع التوازن</p>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>مفهوم التوازن الكيميائي</h3>
+                        <p>حالة ديناميكية تصل فيها التفاعلات الكيميائية الأمامية والعكسية إلى نفس المعدل، مما يؤدي إلى ثبات تركيزات المواد المتفاعلة والناتجة مع مرور الوقت.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-superscript"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>ثابت الاتزان (K)</h3>
+                        <p>النسبة الرياضية بين حاصل ضرب تركيزات المواد الناتجة وحاصل ضرب تركيزات المواد المتفاعلة، كل مرفوعة لأساس معاملها التكافؤي في المعادلة الموزونة.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-arrows-alt-h"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>قانون لوشاتلييه</h3>
+                        <p>عند تعرض نظام في حالة توازن لتأثير خارجي (تغير في التركيز، درجة الحرارة، الضغط)، فإن النظام يتحول ليتعادل مع هذا التأثير ويستعيد حالة التوازن.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Factors Affecting Equilibrium Section -->
+    <section class="factors features" id="factors">
+        <div class="container features-container">
+            <div class="section-title">
+                <h2>العوامل المؤثرة على التوازن</h2>
+                <p>كيف تؤثر التغيرات المختلفة على موضع التوازن الكيميائي</p>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-vial"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>تغير التركيز</h3>
+                    <p>زيادة تركيز أحد المواد المتفاعلة تزيح التوازن نحو تكوين المواد الناتجة، بينما زيادة تركيز أحد المواد الناتجة تزيح التوازن نحو المواد المتفاعلة. هذا التأثير مؤقت حتى يصل النظام إلى توازن جديد.</p>
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-thermometer-half"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>تغير درجة الحرارة</h3>
+                    <p>لدرجة الحرارة تأثير فريد على ثابت الاتزان. في التفاعلات الماصة للحرارة، زيادة درجة الحرارة تزيح التوازن نحو المواد الناتجة. في التفاعلات الطاردة للحرارة، زيادة درجة الحرارة تزيح التوازن نحو المواد المتفاعلة.</p>
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-compress-arrows-alt"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>تغير الضغط والحجم</h3>
+                    <p>في التفاعلات التي تشمل غازات، زيادة الضغط (أو تقليل الحجم) تزيح التوازن نحو الجانب الذي يحتوي على عدد أقل من مولات الغاز. هذا التأثير لا يغير قيمة ثابت الاتزان بل يغير فقط موضع التوازن.</p>
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-catalyst"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>العوامل الحفازة</h3>
+                    <p>العوامل الحفازة تزيد من سرعة الوصول إلى حالة التوازن عن طريق تقليل طاقة التنشيط، لكنها لا تغير موضع التوازن ولا قيمة ثابت الاتزان. تؤثر العوامل الحفازة بالتساوي على التفاعل الأمامي والعكسي.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ionic Equilibrium Section -->
+    <section class="ionic" id="ionic">
+        <div class="container">
+            <div class="section-title">
+                <h2>التوازن الأيوني</h2>
+                <p>استكشف مفاهيم التوازن الأيوني بما في ذلك pH، المحاليل المنظمة، وذوبانية المركبات</p>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>pH وpOH</h3>
+                        <p>مقاييس لحموضة أو قاعدية المحاليل المائية. pH هو اللوغاريتم السالب لتركيز أيونات الهيدروجين، بينما pOH هو اللوغاريتم السالب لتركيز أيونات الهيدروكسيد. في 25°C، pH + pOH = 14.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>المحاليل المنظمة (Buffer)</h3>
+                        <p>محاليل قادرة على مقاومة التغيرات الكبيرة في pH عند إضافة كميات صغيرة من الحمض أو القاعدة. تتكون من حمض ضعيف وقاعده المرافق أو قاعدة ضعيفة وحمضها المرافق.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>ذوبانية (Ksp)</h3>
+                        <p>حاصل ذوبانية المركبات قليلة الذوبان، يمثل حاصل ضرب تركيزات الأيونات في المحلول المشبع، كل مرفوعة لأساس معاملها التكافؤي في المعادلة الموزونة للذوبان.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- pH Scale Visualization -->
+    <section class="ph-scale-section">
+        <div class="container">
+            <div class="ph-scale">
+                <h3>مقياس pH</h3>
+                <div class="ph-gradient"></div>
+                <div class="ph-labels">
+                    <span>0</span>
+                    <span>7</span>
+                    <span>14</span>
+                </div>
+                <div class="ph-examples">
+                    <div class="ph-example" style="background-color: #ffebee;">
+                        <div class="ph-value" style="color: #d32f2f;">1-2</div>
+                        <div class="ph-name">حمض الهيدروكلوريك</div>
+                    </div>
+                    <div class="ph-example" style="background-color: #fff3e0;">
+                        <div class="ph-value" style="color: #f57c00;">3-4</div>
+                        <div class="ph-name">عصير الليمون</div>
+                    </div>
+                    <div class="ph-example" style="background-color: #f9fbe7;">
+                        <div class="ph-value" style="color: #689f38;">5-6</div>
+                        <div class="ph-name">مطر طبيعي</div>
+                    </div>
+                    <div class="ph-example" style="background-color: #e8f5e9;">
+                        <div class="ph-value" style="color: #388e3c;">7</div>
+                        <div class="ph-name">ماء نقي</div>
+                    </div>
+                    <div class="ph-example" style="background-color: #e3f2fd;">
+                        <div class="ph-value" style="color: #1976d2;">8-9</div>
+                        <div class="ph-name">ماء البحر</div>
+                    </div>
+                    <div class="ph-example" style="background-color: #f3e5f5;">
+                        <div class="ph-value" style="color: #7b1fa2;">13-14</div>
+                        <div class="ph-name">هيدروكسيد الصوديوم</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Calculators Section -->
+    <section class="calculator-section" id="calculators">
+        <div class="container">
+            <div class="section-title">
+                <h2>الحاسبات التفاعلية</h2>
+                <p>استخدم الأدوات التفاعلية لحساب قيم التوازن المختلفة</p>
+            </div>
+            
+            <div class="calculator-container">
+                <div class="calculator-tabs">
+                    <button class="calc-tab-btn active" onclick="showCalc('equilibrium')">ثابت الاتزان</button>
+                    <button class="calc-tab-btn" onclick="showCalc('ph')">حساب pH</button>
+                    <button class="calc-tab-btn" onclick="showCalc('solubility')">حاصل الذوبانية</button>
+                </div>
+                
+                <div class="calc-content active" id="equilibrium">
+                    <div class="calc-form">
+                        <div class="form-group">
+                            <label for="reactant-a">تركيز المتفاعل A (M):</label>
+                            <input type="number" id="reactant-a" placeholder="أدخل التركيز" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="reactant-b">تركيز المتفاعل B (M):</label>
+                            <input type="number" id="reactant-b" placeholder="أدخل التركيز" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="product-c">تركيز الناتج C (M):</label>
+                            <input type="number" id="product-c" placeholder="أدخل التركيز" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="product-d">تركيز الناتج D (M):</label>
+                            <input type="number" id="product-d" placeholder="أدخل التركيز" step="0.01">
+                        </div>
+                        <button class="calc-btn" onclick="calculateEquilibrium()">احسب ثابت الاتزان</button>
+                        <div class="calc-result" id="equilibrium-result">
+                            <!-- النتيجة ستظهر هنا -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="calc-content" id="ph">
+                    <div class="calc-form">
+                        <div class="form-group">
+                            <label for="h-concentration">تركيز H+ (M):</label>
+                            <input type="number" id="h-concentration" placeholder="أدخل التركيز" step="0.000001">
+                        </div>
+                        <div class="form-group">
+                            <label for="oh-concentration">تركيز OH- (M):</label>
+                            <input type="number" id="oh-concentration" placeholder="أدخل التركيز" step="0.000001">
+                        </div>
+                        <div class="form-group">
+                            <label for="solution-type">نوع المحلول:</label>
+                            <select id="solution-type">
+                                <option value="acid">حمضي</option>
+                                <option value="base">قاعدي</option>
+                                <option value="neutral">متعادل</option>
+                            </select>
+                        </div>
+                        <button class="calc-btn" onclick="calculatePH()">احسب pH وpOH</button>
+                        <div class="calc-result" id="ph-result">
+                            <!-- النتيجة ستظهر هنا -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="calc-content" id="solubility">
+                    <div class="calc-form">
+                        <div class="form-group">
+                            <label for="compound">المركب:</label>
+                            <select id="compound">
+                                <option value="agcl">AgCl</option>
+                                <option value="caco3">CaCO3</option>
+                                <option value="pbso4">PbSO4</option>
+                                <option value="bacl2">BaCl2</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="temperature">درجة الحرارة (°C):</label>
+                            <input type="number" id="temperature" placeholder="أدخل درجة الحرارة" value="25">
+                        </div>
+                        <div class="form-group">
+                            <label for="common-ion">أيون مشترك (اختياري):</label>
+                            <input type="text" id="common-ion" placeholder="مثال: Cl-">
+                        </div>
+                        <div class="form-group">
+                            <label for="common-ion-conc">تركيز الأيون المشترك (M):</label>
+                            <input type="number" id="common-ion-conc" placeholder="أدخل التركيز" step="0.01">
+                        </div>
+                        <button class="calc-btn" onclick="calculateSolubility()">احسب الذوبانية</button>
+                        <div class="calc-result" id="solubility-result">
+                            <!-- النتيجة ستظهر هنا -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="resources" id="resources">
+        <div class="container">
+            <div class="section-title">
+                <h2>المصادر التعليمية</h2>
+                <p>مجموعة من المصادر الموثوقة لتعميق معرفتك بالتوازنات الكيميائية</p>
+            </div>
+            
+            <div class="resource-tabs">
+                <button class="resource-tab-btn active" onclick="showResource('books')">الكتب المرجعية</button>
+                <button class="resource-tab-btn" onclick="showResource('videos')">المحاضرات المرئية</button>
+                <button class="resource-tab-btn" onclick="showResource('simulations')">المحاكاة التفاعلية</button>
+            </div>
+            
+            <div class="resource-content active" id="books">
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <div class="resource-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="resource-info">
+                            <h4>الكيمياء العامة: التوازنات الكيميائية</h4>
+                            <p>دليل شامل لمفاهيم التوازن الكيميائي مع أمثلة محلولة وتمارين تطبيقية</p>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="resource-info">
+                            <h4>التوازن الأيوني وتطبيقاته</h4>
+                            <p>شرح مفصل لمفاهيم التوازن الأيوني والمحاليل المنظمة وذوبانية المركبات</p>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="resource-info">
+                            <h4>حسابات التوازن في الكيمياء التحليلية</h4>
+                            <p>طرق حسابية متقدمة لحل مشكلات التوازن الكيميائي والأيوني</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="resource-content" id="videos">
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <div class="resource-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="resource-info">
+                            <h4>سلسلة محاضرات التوازن الكيميائي</h4>
+                            <p>محاضرات مصورة تغطي جميع جوانب التوازن الكيميائي من الأساسيات إلى التطبيقات المتقدمة</p>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="resource-info">
+                            <h4>تجارب عملية في التوازنات</h4>
+                            <p>عرض عملي لتجارب مختبرية توضح مفاهيم التوازن والعوامل المؤثرة عليه</p>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="resource-info">
+                            <h4>حل مشكلات التوازن خطوة بخطوة</h4>
+                            <p>شرح تفصيلي لحل أنواع مختلفة من مسائل التوازن الكيميائي والأيوني</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="resource-content" id="simulations">
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <div class="resource-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <div class="resource-info">
+                            <h4>محاكاة التوازن الكيميائي التفاعلية</h4>
+                            <p>برنامج تفاعلي يسمح بتغيير الشروط ومراقبة تأثيرها على موضع التوازن</p>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-icon">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <div class="resource-info">
+                            <h4>محاكاة المحاليل المنظمة</h4>
+                            <p>أداة تفاعلية لفهم كيفية عمل المحاليل المنظمة ومقاومتها لتغيرات pH</p>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-icon">
+                            <i class="fas fa-cubes"></i>
+                        </div>
+                        <div class="resource-info">
+                            <h4>محاكاة ذوبانية المركبات</h4>
+                            <p>برنامج يوضح عملية الذوبان وحساب حاصل الذوبانية تحت ظروف مختلفة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>الأسئلة الشائعة</h2>
+                <p>إجابات على الاستفسارات الأكثر تكراراً حول التوازنات الكيميائية</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما الفرق بين التوازن الثابت والتوازن الديناميكي؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>التوازن الثابت يشير إلى نظام لا يحدث فيه أي تغيير مع مرور الوقت، بينما التوازن الديناميكي في الكيمياء هو حالة تستمر فيها التفاعلات الأمامية والعكسية بالوقت نفسه ولكن بسرعات متساوية، مما يؤدي إلى ثبات تركيزات المواد المتفاعلة والناتجة ظاهرياً. في التوازن الديناميكي، التفاعلات لم تتوقف بل تحدث بنفس المعدل في الاتجاهين.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>لماذا لا يتأثر ثابت الاتزان بالعوامل الحفازة؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>العوامل الحفازة تزيد من سرعة التفاعل عن طريق توفير مسار بديل ذي طاقة تنشيط أقل، لكنها تؤثر بالتساوي على التفاعل الأمامي والعكسي. لأنها تسرع كلا الاتجاهين بنفس النسبة، فإنها لا تغير النسبة بين سرعات التفاعلين عند التوازن، وبالتالي لا تغير قيمة ثابت الاتزان. العوامل الحفازة فقط تقلل الوقت اللازم للوصول إلى حالة التوازن.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كيف تعمل المحاليل المنظمة على مقاومة تغيرات pH؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>المحاليل المنظمة تعمل بسبب وجود زوج حمض-قاعدة مرافق. عند إضافة حمض (H+)، يتفاعل مع القاعدة المرافق لتكوين الحمض الضعيف، مما يمنع انخفاض pH بشكل كبير. عند إضافة قاعدة (OH-)، تتفاعل مع الحمض الضعيف لتكوين الماء والقاعدة المرافق، مما يمنع ارتفاع pH بشكل كبير. هذه القدرة على امتصاص أيونات H+ أو OH- هي ما يمنح المحاليل المنظمة قدرتها على مقاومة تغيرات pH.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما العلاقة بين حاصل الذوبانية وذوبانية المركب؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>حاصل الذوبانية (Ksp) هو ثابت التوازن لعملية ذوبان المركب قليل الذوبان، بينما الذوبانية هي كمية المادة التي تذوب في حجم معين من المذيب. العلاقة بينهما تعتمد على معادلة التفكك. للمركبات التي تتفكك إلى أيونين متساوية (مثل AgCl)، الذوبانية = √Ksp. للمركبات التي تتفكك إلى أيونات بنسب مختلفة (مثل CaF2)، الذوبابة = ∛(Ksp/4).</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كيف يؤثر الأيون المشترك على ذوبانية المركبات قليلة الذوبان؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>وجود أيون مشترك (أيون موجود في المركب قليل الذوبان) يقلل من ذوبانية المركب وفقاً لمبدأ لوشاتلييه. عند إضافة أيون مشترك، يزيح التوازن نحو تكوين المادة الصلبة، مما يقلل من كمية المادة التي تذوب. هذا التأثير مهم في الكيمياء التحليلية وفي العمليات الصناعية حيث يمكن استخدامه للترسيب الانتقائي للأيونات.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>عن الموقع</h3>
+                    <p>منصة تعليمية متخصصة في التوازنات الكيميائية والأيونية، تقدم محتوى شامل وتفاعلي لفهم ديناميكية التفاعلات الكيميائية وتطبيقاتها العملية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#chemical">التوازن الكيميائي</a></li>
+                        <li><a href="#ionic">التوازن الأيوني</a></li>
+                        <li><a href="#calculators">الحاسبات التفاعلية</a></li>
+                        <li><a href="#resources">المصادر التعليمية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>المفاهيم الرئيسية</h3>
+                    <ul>
+                        <li><a href="#">ثابت الاتزان (K)</a></li>
+                        <li><a href="#">قانون لوشاتلييه</a></li>
+                        <li><a href="#">pH وpOH</a></li>
+                        <li><a href="#">المحاليل المنظمة</a></li>
+                        <li><a href="#">حاصل الذوبانية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@equilibria.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 التوازنات. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Calculator tabs functionality
+        function showCalc(calcType) {
+            // Hide all calculator contents
+            const calcContents = document.querySelectorAll('.calc-content');
+            calcContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all calculator buttons
+            const calcButtons = document.querySelectorAll('.calc-tab-btn');
+            calcButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected calculator content
+            document.getElementById(calcType).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+        
+        // Resource tabs functionality
+        function showResource(resourceType) {
+            // Hide all resource contents
+            const resourceContents = document.querySelectorAll('.resource-content');
+            resourceContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all resource buttons
+            const resourceButtons = document.querySelectorAll('.resource-tab-btn');
+            resourceButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected resource content
+            document.getElementById(resourceType).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+        
+        // Equilibrium constant calculator
+        function calculateEquilibrium() {
+            const a = parseFloat(document.getElementById('reactant-a').value);
+            const b = parseFloat(document.getElementById('reactant-b').value);
+            const c = parseFloat(document.getElementById('product-c').value);
+            const d = parseFloat(document.getElementById('product-d').value);
+            
+            if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d)) {
+                showCalcResult('equilibrium-result', 'الرجاء إدخال جميع القيم بشكل صحيح', 'error');
+                return;
+            }
+            
+            // Assuming the reaction is aA + bB ⇌ cC + dD
+            // K = [C]^c * [D]^d / [A]^a * [B]^b
+            const K = (Math.pow(c, 2) * Math.pow(d, 1)) / (Math.pow(a, 1) * Math.pow(b, 1));
+            
+            showCalcResult('equilibrium-result', `ثابت الاتزان K = ${K.toExponential(4)}`, 'success');
+        }
+        
+        // pH calculator
+        function calculatePH() {
+            const hConc = parseFloat(document.getElementById('h-concentration').value);
+            const ohConc = parseFloat(document.getElementById('oh-concentration').value);
+            
+            if (isNaN(hConc) && isNaN(ohConc)) {
+                showCalcResult('ph-result', 'الرجاء إدخال تركيز H+ أو OH-', 'error');
+                return;
+            }
+            
+            let pH, pOH;
+            
+            if (!isNaN(hConc) && hConc > 0) {
+                pH = -Math.log10(hConc);
+                pOH = 14 - pH;
+            } else if (!isNaN(ohConc) && ohConc > 0) {
+                pOH = -Math.log10(ohConc);
+                pH = 14 - pOH;
+            }
+            
+            let solutionType = 'محايد';
+            if (pH < 7) solutionType = 'حمضي';
+            else if (pH > 7) solutionType = 'قاعدي';
+            
+            showCalcResult('ph-result', `pH = ${pH.toFixed(2)}, pOH = ${pOH.toFixed(2)}<br>المحلول: ${solutionType}`, 'success');
+        }
+        
+        // Solubility calculator
+        function calculateSolubility() {
+            const compound = document.getElementById('compound').value;
+            const temp = parseFloat(document.getElementById('temperature').value);
+            const commonIon = document.getElementById('common-ion').value;
+            const commonIonConc = parseFloat(document.getElementById('common-ion-conc').value);
+            
+            // Ksp values at 25°C (simplified for demo)
+            const kspValues = {
+                'agcl': 1.8e-10,
+                'caco3': 4.8e-9,
+                'pbso4': 1.6e-8,
+                'bacl2': 1.1e-10
+            };
+            
+            let Ksp = kspValues[compound];
+            let solubility;
+            
+            if (commonIon && !isNaN(commonIonConc) && commonIonConc > 0) {
+                // With common ion effect
+                if (compound === 'agcl') {
+                    solubility = Ksp / commonIonConc;
+                } else if (compound === 'caco3') {
+                    solubility = Ksp / commonIonConc;
+                } else if (compound === 'pbso4') {
+                    solubility = Ksp / commonIonConc;
+                } else if (compound === 'bacl2') {
+                    solubility = Math.sqrt(Ksp / commonIonConc);
+                }
+            } else {
+                // Without common ion
+                if (compound === 'agcl' || compound === 'caco3' || compound === 'pbso4') {
+                    solubility = Math.sqrt(Ksp);
+                } else if (compound === 'bacl2') {
+                    solubility = Math.cbrt(Ksp / 4);
+                }
+            }
+            
+            showCalcResult('solubility-result', `ذوبانية ${compound.toUpperCase()} = ${solubility.toExponential(4)} M`, 'success');
+        }
+        
+        function showCalcResult(elementId, message, type) {
+            const resultDiv = document.getElementById(elementId);
+            resultDiv.innerHTML = message;
+            resultDiv.style.display = 'block';
+            
+            if (type === 'error') {
+                resultDiv.style.borderRightColor = 'var(--danger)';
+                resultDiv.style.background = 'linear-gradient(135deg, #ffebee, #ffcdd2)';
+            } else {
+                resultDiv.style.borderRightColor = 'var(--success)';
+                resultDiv.style.background = 'linear-gradient(135deg, #e8f5e9, #c8e6c9)';
+            }
+            
+            // Hide result after 8 seconds
+            setTimeout(() => {
+                resultDiv.style.display = 'none';
+            }, 8000);
+        }
+        
+        // FAQ Accordion
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const icon = question.querySelector('.faq-icon');
+                    
+                    // Close all other answers
+                    faqQuestions.forEach(otherQuestion => {
+                        if (otherQuestion !== question) {
+                            const otherAnswer = otherQuestion.nextElementSibling;
+                            const otherIcon = otherQuestion.querySelector('.faq-icon');
+                            
+                            otherAnswer.classList.remove('active');
+                            otherIcon.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current answer
+                    answer.classList.toggle('active');
+                    icon.classList.toggle('active');
+                });
+            });
+            
+            // Smooth scrolling for navigation links
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add animation on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Elements to animate
+            const animateElements = document.querySelectorAll('.card, .feature-item');
+            
+            animateElements.forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

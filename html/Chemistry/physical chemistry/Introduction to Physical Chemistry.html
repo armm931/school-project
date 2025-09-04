@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مقدمة في الكيمياء الفيزيائية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --success: #27ae60;
+            --warning: #f39c12;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--accent);
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(52, 73, 94, 0.85)), 
+                        url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        /* Cards */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            background-color: var(--secondary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-header i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .card-header h3 {
+            font-size: 1.5rem;
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .card-body p {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .card-footer {
+            padding: 0 25px 25px;
+        }
+
+        /* Features Section */
+        .features {
+            background-color: #f1f8ff;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            gap: 20px;
+        }
+
+        .feature-icon {
+            background-color: var(--secondary);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .feature-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        /* FAQ Section */
+        .faq {
+            background-color: white;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .faq-question {
+            background-color: var(--light);
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--primary);
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #d5dbdb;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background-color: white;
+        }
+
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-icon.active {
+            transform: rotate(180deg);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding: 70px 0;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            nav a {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.7rem;
+            }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                <h1>الكيمياء الفيزيائية</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#concepts">المفاهيم</a></li>
+                    <li><a href="#applications">التطبيقات</a></li>
+                    <li><a href="#resources">المصادر</a></li>
+                    <li><a href="#faq">الأسئلة</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>مقدمة في الكيمياء الفيزيائية</h2>
+            <p>استكشف عالم الكيمياء الفيزيائية الذي يجمع بين مبادئ الكيمياء والفيزياء لفهم سلوك المواد على المستوى الجزيئي والذري</p>
+            <a href="#concepts" class="btn">ابدأ التعلم الآن</a>
+        </div>
+    </section>
+
+    <!-- Concepts Section -->
+    <section class="concepts" id="concepts">
+        <div class="container">
+            <div class="section-title">
+                <h2>المفاهيم الأساسية</h2>
+                <p>تعرف على المبادئ الأساسية التي تشكل أساس الكيمياء الفيزيائية</p>
+            </div>
+            
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-thermometer-half"></i>
+                        <h3>الديناميكا الحرارية</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>دراسة تحولات الطاقة والعلاقة بين الحرارة والعمل والطاقة والانتروبيا في الأنظمة الكيميائية.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <h3>حركية التفاعلات</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>دراسة سرعة التفاعلات الكيميائية والعوامل المؤثرة عليها مثل درجة الحرارة والتركيز والعوامل الحفازة.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-balance-scale"></i>
+                        <h3>الاتزان الكيميائي</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>دراسة حالة الاتزان في التفاعلات الكيميائية القابلة للعكس وعوامل تأثيرها على موضع الاتزان.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-atom"></i>
+                        <h3>الكيمياء الكمومية</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>تطبيق مبادئ ميكانيكا الكم لفهم سلوك الجزيئات والذرات على المستوى تحت الذري.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-vial"></i>
+                        <h3>الكيمياء الكهربائية</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>دراسة العلاقة بين التفاعلات الكيميائية والكهرباء، بما في ذلك الخلايا الكهروكيميائية والتحليل الكهربائي.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-water"></i>
+                        <h3>الكيمياء السطحية</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>دراسة الظواهر التي تحدث عند الأسطح بين الطورين المختلفة مثل الامتزاز والتوتر السطحي.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section class="applications features" id="applications">
+        <div class="container">
+            <div class="section-title">
+                <h2>التطبيقات العملية</h2>
+                <p>كيف تُستخدم مبادئ الكيمياء الفيزيائية في مجالات حياتية مختلفة</p>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>الصناعة الكيميائية</h3>
+                    <p>تصميم وتحسين العمليات الصناعية مثل إنتاج الأمونيا وتكرير البترول وصناعة البلاستيك.</p>
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-pills"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>الصناعات الدوائية</h3>
+                    <p>تطوير الأدوية وفهم آلية عملها في الجسم ودراسة حركية امتصاصها وتوزيعها.</p>
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-solar-panel"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>الطاقة المتجددة</h3>
+                    <p>تطوير خلايا الوقود والبطاريات وألواح الطاقة الشمسية وتخزين الطاقة.</p>
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>البحث العلمي</h3>
+                    <p>تطوير تقنيات تحليلية متقدمة وفهم العمليات البيولوجية على المستوى الجزيئي.</p>
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>حماية البيئة</h3>
+                    <p>دراسة تلوث الهواء والماء وتطوير طرق معالجة النفايات وتقليل الانبعاثات.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="resources" id="resources">
+        <div class="container">
+            <div class="section-title">
+                <h2>المصادر والمراجع</h2>
+                <p>مجموعة من المصادر الموثوقة لتعميق معرفتك في الكيمياء الفيزيائية</p>
+            </div>
+            
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-book"></i>
+                        <h3>الكتب المرجعية</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>قائمة بأهم الكتب الأكاديمية في الكيمياء الفيزيائية التي تغطي جميع المفاهيم الأساسية والمتقدمة.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تصفح الكتب</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-video"></i>
+                        <h3>المحاضرات المرئية</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>مجموعة من المحاضرات المصورة لأساتذة جامعيين متخصصين في شرح مفاهيم الكيمياء الفيزيائية.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">شاهد المحاضرات</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-flask"></i>
+                        <h3>التجارب العملية</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>دليل شامل للتجارب المعملية في الكيمياء الفيزيائية مع شرح خطوات التنفيذ والتحليل النظري.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">استكشف التجارب</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>الأسئلة الشائعة</h2>
+                <p>إجابات على الأسئلة الأكثر شيوعاً حول الكيمياء الفيزيائية</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما الفرق بين الكيمياء الفيزيائية والكيمياء العضوية؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الكيمياء الفيزيائية تركز على فهم المبادئ الفيزيائية التي تحكم التفاعلات الكيميائية وسلوك المواد، بينما الكيمياء العضوية تدرس مركبات الكربون وتركيبها وخواصها وطرق تحضيرها. الكيمياء الفيزيائية تهتم بالجانب النظري والرياضي، بينما الكيمياء العضوية تهتم بالجانب التطبيقي والتصنيعي.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما أهمية الكيمياء الفيزيائية في حياتنا اليومية؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الكيمياء الفيزيائية تلعب دوراً حيوياً في حياتنا اليومية من خلال تطوير المواد الجديدة، تحسين كفاءة الوقود، تصميم الأدوية، فهم عمليات الهضم والتنفس، تطوير البطاريات، وحتى في فهم الظواهر الطبيعية مثل تجمد الماء وغليانه.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هي المهارات المطلوبة لدراسة الكيمياء الفيزيائية؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>تتطلب دراسة الكيمياء الفيزيائية مهارات رياضية قوية، خاصة في التفاضل والتكامل والمعادلات التفاضلية. كما تتطلب فهماً عميقاً لمبادئ الفيزياء الأساسية، وقدرة على التفكير التجريدي والنمذجة الرياضية للظواهر الكيميائية.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هي مجالات العمل المتاحة لخريجي الكيمياء الفيزيائية؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>يمكن لخريجي الكيمياء الفيزيائية العمل في مجالات متنوعة مثل: البحث العلمي في الجامعات والمؤسسات البحثية، الصناعات الكيميائية والبتروكيماوية، الصناعات الدوائية، تطوير مواد جديدة، الطاقة المتجددة، حماية البيئة، والتدريس الأكاديمي.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كيف يمكنني تحسين فهمي للمفاهيم الرياضية في الكيمياء الفيزيائية؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>لتحسين فهمك للمفاهيم الرياضية في الكيمياء الفيزيائية، ابدأ بتأسيس قاعدة رياضية قوية، خاصة في حساب التفاضل والتكامل والمعادلات التفاضلية. حاول ربط المفاهيم الرياضية بتطبيقاتها العملية في الكيمياء، واستخدم برامج المحاكاة الحاسوبية لتصور المفاهيم المجردة. كما يمكنك الانضمام إلى مجموعات الدراسة والاستفادة من المصادر التعليمية المتاحة عبر الإنترنت.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>عن الموقع</h3>
+                    <p>موقع تعليمي يقدم مقدمة شاملة في الكيمياء الفيزيائية، يهدف إلى تبسيط المفاهيم المعقدة وتقديمها بطريقة سهلة وممتعة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#concepts">المفاهيم الأساسية</a></li>
+                        <li><a href="#applications">التطبيقات العملية</a></li>
+                        <li><a href="#resources">المصادر والمراجع</a></li>
+                        <li><a href="#faq">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>المفاهيم</h3>
+                    <ul>
+                        <li><a href="#">الديناميكا الحرارية</a></li>
+                        <li><a href="#">حركية التفاعلات</a></li>
+                        <li><a href="#">الاتزان الكيميائي</a></li>
+                        <li><a href="#">الكيمياء الكمومية</a></li>
+                        <li><a href="#">الكيمياء الكهربائية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@physicalchemistry.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 مقدمة في الكيمياء الفيزيائية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const icon = question.querySelector('.faq-icon');
+                    
+                    // Close all other answers
+                    faqQuestions.forEach(otherQuestion => {
+                        if (otherQuestion !== question) {
+                            const otherAnswer = otherQuestion.nextElementSibling;
+                            const otherIcon = otherQuestion.querySelector('.faq-icon');
+                            
+                            otherAnswer.classList.remove('active');
+                            otherIcon.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current answer
+                    answer.classList.toggle('active');
+                    icon.classList.toggle('active');
+                });
+            });
+            
+            // Smooth scrolling for navigation links
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add animation on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Elements to animate
+            const animateElements = document.querySelectorAll('.card, .feature-item');
+            
+            animateElements.forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
