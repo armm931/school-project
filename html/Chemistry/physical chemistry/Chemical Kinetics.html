@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الحركية الكيميائية - فهم سرعة التفاعلات الكيميائية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2e7d32;
+            --secondary: #66bb6a;
+            --accent: #ffeb3b;
+            --light: #e8f5e9;
+            --dark: #1b5e20;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --purple: #8e24aa;
+            --teal: #00897b;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #263238;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--accent);
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 80%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(46, 125, 50, 0.92), rgba(102, 187, 106, 0.88)), 
+                        url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover;
+            color: white;
+            padding: 130px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 235, 59, 0.1) 0%, transparent 70%);
+            animation: pulse 20s infinite linear;
+        }
+
+        @keyframes pulse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 3.8rem;
+            margin-bottom: 25px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 850px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), #fff59d);
+            color: var(--primary);
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.4s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 6px 20px rgba(255, 235, 59, 0.4);
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(255, 235, 59, 0.6);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            border-radius: 3px;
+        }
+
+        .section-title p {
+            max-width: 750px;
+            margin: 0 auto;
+            color: #546e7a;
+            font-size: 1.2rem;
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 70px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(102, 187, 106, 0.1), rgba(255, 235, 59, 0.1));
+        }
+
+        .card-icon i {
+            font-size: 4rem;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-body {
+            padding: 35px;
+        }
+
+        .card-body h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .card-body p {
+            color: #546e7a;
+            margin-bottom: 30px;
+            line-height: 1.9;
+        }
+
+        .card-footer {
+            padding: 0 35px 35px;
+        }
+
+        /* Features Section */
+        .features {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(102, 187, 106, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 235, 59, 0.08) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .features-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 50px;
+            gap: 30px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateX(15px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        .feature-icon {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+            box-shadow: 0 10px 25px rgba(102, 187, 106, 0.3);
+        }
+
+        .feature-content h3 {
+            font-size: 1.7rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .feature-content p {
+            color: #546e7a;
+            line-height: 1.9;
+        }
+
+        /* Rate Laws Section */
+        .rate-laws {
+            background: white;
+        }
+
+        .rate-laws-container {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: 25px;
+            padding: 50px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-top: 60px;
+        }
+
+        .rate-laws-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .rate-laws-title h3 {
+            font-size: 2.3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .rate-laws-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .rate-tab-btn {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .rate-tab-btn.active {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            border-color: transparent;
+        }
+
+        .rate-content {
+            display: none;
+        }
+
+        .rate-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .rate-details {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .rate-details h4 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .rate-details p {
+            color: #546e7a;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        .rate-equation {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 25px 0;
+            border-right: 5px solid var(--secondary);
+        }
+
+        /* Reaction Mechanism Visualization */
+        .mechanism-viz {
+            background: white;
+            border-radius: 25px;
+            padding: 50px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mechanism-viz::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(102, 187, 106, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .mechanism-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .mechanism-title h3 {
+            font-size: 2.3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .mechanism-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 50px 0;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .mechanism-step {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .mechanism-step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .step-formula {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .step-desc {
+            color: #546e7a;
+            font-size: 0.95rem;
+        }
+
+        /* Theory Comparison */
+        .theory-comparison {
+            background: linear-gradient(135deg, #f5f5f5, #eeeeee);
+        }
+
+        .theory-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .theory-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+        }
+
+        .theory-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .theory-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .theory-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .theory-icon i {
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .theory-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .theory-subtitle {
+            color: #78909c;
+            font-size: 1rem;
+        }
+
+        .theory-content {
+            color: #546e7a;
+            line-height: 1.9;
+        }
+
+        .theory-points {
+            margin-top: 25px;
+        }
+
+        .theory-point {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            gap: 15px;
+        }
+
+        .theory-point i {
+            color: var(--secondary);
+            margin-top: 5px;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: white;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 25px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+
+        .faq-question {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            color: var(--primary);
+            transition: all 0.3s ease;
+            border-right: 5px solid transparent;
+        }
+
+        .faq-question:hover {
+            background: linear-gradient(135deg, #e9ecef, #dee2e6);
+            border-right-color: var(--secondary);
+        }
+
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            background: white;
+        }
+
+        .faq-answer.active {
+            padding: 30px;
+            max-height: 600px;
+        }
+
+        .faq-icon {
+            transition: transform 0.4s ease;
+            color: var(--accent);
+        }
+
+        .faq-icon.active {
+            transform: rotate(180deg);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 70px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 15px;
+        }
+
+        .footer-column ul li a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 3rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding: 90px 0;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.3rem;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            .feature-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .feature-icon {
+                margin: 0 auto 25px;
+            }
+            
+            .rate-laws-container {
+                padding: 30px;
+            }
+            
+            .mechanism-viz {
+                padding: 30px;
+            }
+            
+            .theory-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 1.6rem;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            nav a {
+                padding: 8px 14px;
+                font-size: 0.9rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mechanism-steps {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-tachometer-alt"></i>
+                <h1>الحركية الكيميائية</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#rate">سرعة التفاعل</a></li>
+                    <li><a href="#factors">العوامل المؤثرة</a></li>
+                    <li><a href="#mechanism">آليات التفاعل</a></li>
+                    <li><a href="#theories">النظريات</a></li>
+                    <li><a href="#faq">الأسئلة</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h2>فهم سرعة التفاعلات الكيميائية</h2>
+            <p>استكشف عالم الحركية الكيميائية الذي يدرس سرعة التفاعلات والعوامل المؤثرة عليها وآليات حدوثها على المستوى الجزيئي</p>
+            <a href="#rate" class="btn">ابدأ التعلم الآن</a>
+        </div>
+    </section>
+
+    <!-- Reaction Rate Section -->
+    <section class="rate" id="rate">
+        <div class="container">
+            <div class="section-title">
+                <h2>سرعة التفاعل</h2>
+                <p>تعرف على مفهوم سرعة التفاعل الكيميائي وطرق قياسها والعوامل التي تحددها</p>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-stopwatch"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>مفهوم سرعة التفاعل</h3>
+                        <p>سرعة التفاعل هي مقياس لتغير تركيز المواد المتفاعلة أو الناتجة مع الزمن. تُعرف بأنها التغير في تركيز المادة لكل وحدة زمنية، وتُقاس عادةً بوحدة مول/لتر·ثانية.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>طرق القياس</h3>
+                        <p>يمكن قياس سرعة التفاعل بعدة طرق: مراقبة تغير الضغط في التفاعلات الغازية، قياس التغير في اللون، استخدام تقنيات الطيفية، أو قياس التوصيل الكهربائي للمحاليل الأيونية.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>المعدل المتوسط والمعدل اللحظي</h3>
+                        <p>المعدل المتوسط هو متوسط السرعة خلال فترة زمنية محددة، بينما المعدل اللحظي هو السرعة عند لحظة زمنية معينة ويُحسب كمشتقة تركيز المادة بالنسبة للزمن.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rate Laws Section -->
+    <section class="rate-laws">
+        <div class="container">
+            <div class="section-title">
+                <h2>قوانين السرعة</h2>
+                <p>العلاقات الرياضية التي تربط بين سرعة التفاعل وتراكيز المواد المتفاعلة</p>
+            </div>
+            
+            <div class="rate-laws-container">
+                <div class="rate-laws-title">
+                    <h3>أنواع قوانين السرعة</h3>
+                </div>
+                
+                <div class="rate-laws-tabs">
+                    <button class="rate-tab-btn active" onclick="showRate('zero')">الرتبة الصفرية</button>
+                    <button class="rate-tab-btn" onclick="showRate('first')">الرتبة الأولى</button>
+                    <button class="rate-tab-btn" onclick="showRate('second')">الرتبة الثانية</button>
+                </div>
+                
+                <div class="rate-content active" id="zero">
+                    <div class="rate-details">
+                        <h4>تفاعلات الرتبة الصفرية</h4>
+                        <p>في تفاعلات الرتبة الصفرية، تكون سرعة التفاعل مستقلة عن تركيز المواد المتفاعلة. هذا يعني أن سرعة التفاعل تبقى ثابتة بغض النظر عن تغير التراكيز.</p>
+                        
+                        <div class="rate-equation">
+                            Rate = k
+                        </div>
+                        
+                        <p>حيث k هو ثابت السرعة. من أمثلة هذه التفاعلات: تفكك غاز النيتروجين الخماسي أكسيد على سطح البلاتين، وبعض التفاعلات التي تحدث على الأسطح الصلبة.</p>
+                        
+                        <p>العلاقة بين التركيز والزمن في التفاعلات من الرتبة الصفرية هي علاقة خطية: [A] = [A]₀ - kt</p>
+                    </div>
+                </div>
+                
+                <div class="rate-content" id="first">
+                    <div class="rate-details">
+                        <h4>تفاعلات الرتبة الأولى</h4>
+                        <p>في تفاعلات الرتبة الأولى، تكون سرعة التفاعل متناسبة طردياً مع تركيز مادة متفاعلة واحدة. هذه التفاعلات شائعة جداً في الطبيعة والصناعة.</p>
+                        
+                        <div class="rate-equation">
+                            Rate = k[A]
+                        </div>
+                        
+                        <p>من أمثلة هذه التفاعلات: التحلل الإشعاعي للعناصر المشعة، تفكك أكسيد النيتروجين الخماسي، والعديد من التفاعلات العضوية.</p>
+                        
+                        <p>العلاقة بين التركيز والزمن في التفاعلات من الرتبة الأولى هي: ln[A] = ln[A]₀ - kt</p>
+                    </div>
+                </div>
+                
+                <div class="rate-content" id="second">
+                    <div class="rate-details">
+                        <h4>تفاعلات الرتبة الثانية</h4>
+                        <p>في تفاعلات الرتبة الثانية، تكون سرعة التفاعل متناسبة مع مربع تركيز مادة متفاعلة واحدة، أو مع حاصل ضرب تركيز مادتين متفاعلتين.</p>
+                        
+                        <div class="rate-equation">
+                            Rate = k[A]² أو Rate = k[A][B]
+                        </div>
+                        
+                        <p>من أمثلة هذه التفاعلات: تفاعل ثاني أكسيد النيتروجين مع أول أكسيد النيتروجين، وتفاعلات الهالوجينات مع الهيدروجين.</p>
+                        
+                        <p>العلاقة بين التركيز والزمن في التفاعلات من الرتبة الثانية هي: 1/[A] = 1/[A]₀ + kt</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Factors Affecting Rate Section -->
+    <section class="factors features" id="factors">
+        <div class="container features-container">
+            <div class="section-title">
+                <h2>العوامل المؤثرة على سرعة التفاعل</h2>
+                <p>كيف تؤثر العوامل المختلفة على سرعة التفاعلات الكيميائية</p>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>تركيز المواد المتفاعلة</h3>
+                    <p>زيادة تركيز المواد المتفاعلة تزيد من سرعة التفاعل لأنها تزيد من احتمالية التصادم بين الجزيئات. العلاقة بين التركيز والسرعة تحددها رتبة التفاعل. في التفاعلات من الرتبة الأولى، تضاعف التركيز يضاعف السرعة، بينما في الرتبة الثانية يضاعف السرعة أربع مرات.</p>
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-thermometer-half"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>درجة الحرارة</h3>
+                    <p>زيادة درجة الحرارة تزيد من سرعة التفاعل بشكل كبير. وفقاً لقاعدة فانت هوف، تضاعف سرعة التفاعل تقريباً لكل زيادة 10 درجات مئوية في درجة الحرارة. يرجع ذلك إلى زيادة الطاقة الحركية للجزيئات وازدياد عدد التصادمات الفعالة.</p>
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-catalyst"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>العوامل الحفازة</h3>
+                    <p>العوامل الحفازة تزيد من سرعة التفاعل دون أن تستهلك في التفاعل. تعمل عن طريق توفير مسار بديل للتفاعل ذي طاقة تنشيط أقل. لا تغير العوامل الحفازة موضع التوازن بل فقط تسرع الوصول إليه. من أملتها: البلاتين في تفاعلات الهيدروجين، والإنزيمات في التفاعلات البيولوجية.</p>
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-compress-arrows-alt"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>مساحة السطح والضغط</h4>
+                    <p>زيادة مساحة السطح للمواد الصلبة تزيد من سرعة التفاعل لأنها تزيد من نقاط التلامس بين المواد المتفاعلة. في التفاعلات الغازية، زيادة الضغط تزيد من سرعة التفاعل عن طريق زيادة تركيز الغازات، خاصة في التفاعلات التي يقل فيها عدد مولات الغازات.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reaction Mechanisms Section -->
+    <section class="mechanism" id="mechanism">
+        <div class="container">
+            <div class="section-title">
+                <h2>آليات التفاعل</h2>
+                <p>الخطوات التفصيلية التي تحدث على المستوى الجزيئي أثناء التفاعل الكيميائي</p>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>مفهوم آلية التفاعل</h3>
+                        <p>آلية التفاعل هي التسلسل الخطوات الجزيئية التي تحدث من بداية التفاعل حتى نهايته. معظم التفاعلات الكيميائية تحدث عبر عدة خطوات وليست خطوة واحدة، وتسمى كل خطوة بتفاعل أولي.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>الجزيئات المتوسطة</h3>
+                        <p>الجزيئات المتوسطة هي مواد تتكون أثناء آلية التفاعل وتستهلك في الخطوات اللاحقة. لا تظهر في المعادلة الإجمالية للتفاعل وتكون تراكيزها صغيرة جداً أثناء التفاعل.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>الخطوة المحددة للسرعة</h3>
+                        <p>الخطوة المحددة للسرعة هي الخطوة الأبطأ في آلية التفاعل وتحدد السرعة الإجمالية للتفاعل. قانون السرعة التجريبي للتفاعل يعتمد على التفاعلات المشاركة في هذه الخطوة.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Reaction Mechanism Visualization -->
+            <div class="mechanism-viz">
+                <div class="mechanism-title">
+                    <h3>مثال على آلية تفاعل</h3>
+                </div>
+                
+                <div class="mechanism-steps">
+                    <div class="mechanism-step">
+                        <div class="step-number">1</div>
+                        <div class="step-formula">2NO ⇌ N₂O₂</div>
+                        <div class="step-desc">خطوة سريعة وعكسية</div>
+                    </div>
+                    
+                    <div class="mechanism-step">
+                        <div class="step-number">2</div>
+                        <div class="step-formula">N₂O₂ + O₂ → 2NO₂</div>
+                        <div class="step-desc">الخطوة المحددة للسرعة</div>
+                    </div>
+                    
+                    <div class="mechanism-step">
+                        <div class="step-number">3</div>
+                        <div class="step-formula">2NO + O₂ → 2NO₂</div>
+                        <div class="step-desc">المعادلة الإجمالية</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Theories Section -->
+    <section class="theories theory-comparison" id="theories">
+        <div class="container">
+            <div class="section-title">
+                <h2>نظريات الحركية الكيميائية</h2>
+                <p>النظريات التي تفسر كيفية حدوث التفاعلات الكيميائية على المستوى الجزيئي</p>
+            </div>
+            
+            <div class="theory-container">
+                <div class="theory-card">
+                    <div class="theory-header">
+                        <div class="theory-icon">
+                            <i class="fas fa-expand-arrows-alt"></i>
+                        </div>
+                        <h3 class="theory-title">نظرية التصادم</h3>
+                        <p class="theory-subtitle">Collision Theory</p>
+                    </div>
+                    
+                    <div class="theory-content">
+                        <p>تفسر نظرية التصادم لماذا تحدث التفاعلات الكيميائية فقط عندما تصطدم الجزيئات ببعضها البعض. لكن ليس كل التصادمات تؤدي إلى تفاعل.</p>
+                        
+                        <div class="theory-points">
+                            <div class="theory-point">
+                                <i class="fas fa-check-circle"></i>
+                                <span>يجب أن تكون الجزيئات لديها طاقة حركية كافية لتجاوز طاقة التنشيط</span>
+                            </div>
+                            <div class="theory-point">
+                                <i class="fas fa-check-circle"></i>
+                                <span>يجب أن يكون التصادم بالاتجاه الصحيح (التصادم الفعال)</span>
+                            </div>
+                            <div class="theory-point">
+                                <i class="fas fa-check-circle"></i>
+                                <span>زيادة درجة الحرارة تزيد من عدد التصادمات الفعالة</span>
+                            </div>
+                            <div class="theory-point">
+                                <i class="fas fa-check-circle"></i>
+                                <span>العوامل الحفازة تقلل طاقة التنشيط المطلوبة</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="theory-card">
+                    <div class="theory-header">
+                        <div class="theory-icon">
+                            <i class="fas fa-mountain"></i>
+                        </div>
+                        <h3 class="theory-title">نظرية الحالة الانتقالية</h3>
+                        <p class="theory-subtitle">Transition State Theory</p>
+                    </div>
+                    
+                    <div class="theory-content">
+                        <p>تطور نظرية الحالة الانتقالية من نظرية التصادم وتصف التفاعل كمرور الجزيئات عبر حالة انتقالية غير مستقرة تسمى المركب النشط.</p>
+                        
+                        <div class="theory-points">
+                            <div class="theory-point">
+                                <i class="fas fa-check-circle"></i>
+                                <span>المركب النشط له طاقة أعلى من المواد المتفاعلة والناتجة</span>
+                            </div>
+                            <div class="theory-point">
+                                <i class="fas fa-check-circle"></i>
+                                <span>يحتوي على روابط جزئية قيد التكوين والكسر</span>
+                            </div>
+                            <div class="theory-point">
+                                <i class="fas fa-check-circle"></i>
+                                <span>يوجد لفترة زمنية قصيرة جداً (10⁻¹³ ثانية)</span>
+                            </div>
+                            <div class="theory-point">
+                                <i class="fas fa-check-circle"></i>
+                                <span>طاقة التنشيط هي الفرق في الطاقة بين المواد المتفاعلة والمركب النشط</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>الأسئلة الشائعة</h2>
+                <p>إجابات على الاستفسارات الأكثر تكراراً حول الحركية الكيميائية</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما الفرق بين رتبة التفاعل والمعامل الحجمي في المعادلة الموزونة؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>رتبة التفاعل هي قيمة تجريبية تحدد من خلال التجارب وتعتمد على آلية التفاعل، بينما المعامل الحجمي في المعادلة الموزونة يعكس التركيبة الجزيئية للمواد المتفاعلة والناتجة. قد لا تتطابق رتبة التفاعل مع المعامل الحجمي، خاصة في التفاعلات التي تحدث عبر عدة خطوات. على سبيل المثال، تفاعل 2NO + O₂ → 2NO₂ له رتبة ثانية بالنسبة لـ NO وصفرية بالنسبة لـ O₂ على الرغم من أن المعامل الحجمي للأكسجين هو 1.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>لماذا تزداد سرعة التفاعل مع زيادة درجة الحرارة؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>تزداد سرعة التفاعل مع زيادة درجة الحرارة لسببين رئيسيين: أولاً، زيادة درجة الحرارة تزيد من الطاقة الحركية للجزيئات، مما يزيد من عدد التصادمات بينها. ثانياً، وأهم، زيادة درجة الحرارة تزيد من نسبة الجزيئات التي تمتلك طاقة أكبر من أو تساوي طاقة التنشيط. وفقاً لمعادلة أرينيوس، حتى زيادة صغيرة في درجة الحرارة تؤدي إلى زيادة كبيرة في عدد الجزيئات ذات الطاقة الكافية للتغلب على حاجز طاقة التنشيط.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كيف تعمل العوامل الحفازة على زيادة سرعة التفاعل؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>تعمل العوامل الحفازة على زيادة سرعة التفاعل عن طريق توفير مسار بديل للتفاعل ذي طاقة تنشيط أقل. لا تستهلك العوامل الحفازة في التفاعل ولا تغير موضع التوازن، بل فقط تسرع الوصول إليه. يمكن أن تعمل العوامل الحفازة بعدة طرق: توفير سطح للتفاعل (الحفازات غير المتجانسة)، تكوين مركبات وسطية مؤقتة (الحفازات المتجانسة)، أو توجيه الجزيئات للتصادم بالاتجاه الصحيح. الأمثلة تشمل البلاتين في تفاعلات الهيدروجين والإنزيمات في التفاعلات البيولوجية.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما أهمية الخطوة المحددة للسرعة في آلية التفاعل؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الخطوة المحددة للسرعة هي الخطوة الأبطأ في آلية التفاعل وتحدد السرعة الإجمالية للتفاعل. أهميتها تكمن في أن قانون السرعة التجريبي للتفاعل يعتمد فقط على المواد المشاركة في هذه الخطوة، بغض النظر عن الخطوات الأخرى. فهم الخطوة المحددة للسرعة يساعد في التنبؤ بسرعة التفاعل تحت ظروف مختلفة وتصميم طرق لتحسين كفاءة التفاعلات الصناعية. على سبيل المثال، في التفاعلات التي تكون فيها الخطوة المحددة للسرعة هي خطوة أولية، فإن زيادة تركيز المواد المتفاعلة في هذه الخطوة سيؤدي إلى زيادة كبيرة في سرعة التفاعل الإجمالية.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كيف تختلف نظرية الحالة الانتقالية عن نظرية التصادم؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نظرية الحالة الانتقالية هي تطور لنظرية التصادم وتوفر وصفاً أكثر دقة لعملية التفاعل. بينما تركز نظرية التصادم على ضرورة التصادم الفعال بين الجزيئات، فإن نظرية الحالة الانتقالية تصف التفاعل كمرور الجزيئات عبر حالة انتقالية غير مستقرة تسمى المركب النشط. تقدم نظرية الحالة الانتقالية مفهوم طاقة التنشيط بشكل أكثر دقة وتأخذ في الاعتبار التغيرات في بنية الجزيئات أثناء التفاعل. كما أنها تفسر لماذا بعض التصادمات لا تؤدي إلى تفاعل حتى لو كانت لديها طاقة كافية، بسبب عدم التوافق الهندسي بين الجزيئات.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>عن الموقع</h3>
+                    <p>منصة تعليمية متخصصة في الحركية الكيميائية، تقدم محتوى شامل وتفاعلي لفهم سرعة التفاعلات الكيميائية والعوامل المؤثرة عليها وآليات حدوثها.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#rate">سرعة التفاعل</a></li>
+                        <li><a href="#factors">العوامل المؤثرة</a></li>
+                        <li><a href="#mechanism">آليات التفاعل</a></li>
+                        <li><a href="#theories">النظريات</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>المفاهيم الرئيسية</h3>
+                    <ul>
+                        <li><a href="#">قوانين السرعة</a></li>
+                        <li><a href="#">طاقة التنشيط</a></li>
+                        <li><a href="#">العوامل الحفازة</a></li>
+                        <li><a href="#">الخطوة المحددة للسرعة</a></li>
+                        <li><a href="#">نظرية التصادم</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@chemicalkinetics.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 الحركية الكيميائية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Rate laws tabs functionality
+        function showRate(rateType) {
+            // Hide all rate contents
+            const rateContents = document.querySelectorAll('.rate-content');
+            rateContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all rate buttons
+            const rateButtons = document.querySelectorAll('.rate-tab-btn');
+            rateButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected rate content
+            document.getElementById(rateType).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+        
+        // FAQ Accordion
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const icon = question.querySelector('.faq-icon');
+                    
+                    // Close all other answers
+                    faqQuestions.forEach(otherQuestion => {
+                        if (otherQuestion !== question) {
+                            const otherAnswer = otherQuestion.nextElementSibling;
+                            const otherIcon = otherQuestion.querySelector('.faq-icon');
+                            
+                            otherAnswer.classList.remove('active');
+                            otherIcon.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current answer
+                    answer.classList.toggle('active');
+                    icon.classList.toggle('active');
+                });
+            });
+            
+            // Smooth scrolling for navigation links
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add animation on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Elements to animate
+            const animateElements = document.querySelectorAll('.card, .feature-item');
+            
+            animateElements.forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

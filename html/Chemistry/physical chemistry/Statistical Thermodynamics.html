@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ديناميكا الحرارية الإحصائية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1a237e;
+            --secondary: #3949ab;
+            --accent: #5c6bc0;
+            --light: #e8eaf6;
+            --dark: #283593;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --info: #2196f3;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--accent);
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 35, 126, 0.9), rgba(57, 73, 171, 0.9)), 
+                        url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn:hover {
+            background-color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Distribution Cards */
+        .distributions {
+            background-color: white;
+        }
+
+        .distribution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .distribution-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .distribution-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            padding: 25px;
+            text-align: center;
+            color: white;
+        }
+
+        .boltzmann .card-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .fermi .card-header {
+            background: linear-gradient(135deg, var(--danger), #e57373);
+        }
+
+        .bose .card-header {
+            background: linear-gradient(135deg, var(--success), #81c784);
+        }
+
+        .card-header i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .card-header h3 {
+            font-size: 1.8rem;
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .formula {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.2rem;
+            overflow-x: auto;
+        }
+
+        .card-body p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .card-footer {
+            padding: 0 25px 25px;
+        }
+
+        /* Applications Section */
+        .applications {
+            background-color: #f8f9fa;
+        }
+
+        .app-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .app-tab {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .app-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--secondary);
+        }
+
+        .app-content {
+            display: none;
+        }
+
+        .app-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .app-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .app-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .app-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .app-card ul {
+            list-style-type: none;
+            padding-right: 0;
+        }
+
+        .app-card li {
+            margin-bottom: 10px;
+            padding-right: 25px;
+            position: relative;
+            color: #555;
+        }
+
+        .app-card li:before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 0;
+            color: var(--success);
+        }
+
+        /* Calculator Section */
+        .calculator {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-top: 40px;
+        }
+
+        .calculator h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .calc-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group input, .form-group select {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+
+        .calc-result {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .calc-result.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* References Section */
+        .references {
+            background-color: #f8f9fa;
+        }
+
+        .ref-list {
+            list-style-type: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .ref-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .ref-item:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .ref-item h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .ref-item p {
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .distribution-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .app-tabs {
+                flex-direction: column;
+                border-bottom: none;
+                border-right: 2px solid #e0e0e0;
+                align-items: flex-start;
+                width: fit-content;
+                margin: 0 auto 30px;
+            }
+            
+            .app-tab {
+                border-bottom: none;
+                border-right: 3px solid transparent;
+                padding: 10px 20px;
+            }
+            
+            .app-tab.active {
+                border-right-color: var(--secondary);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+            
+            nav ul {
+                gap: 10px;
+            }
+            
+            nav a {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.7rem;
+            }
+            
+            .app-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .calc-form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                <h1>ديناميكا الحرارية الإحصائية</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#distributions">التوزيعات</a></li>
+                    <li><a href="#applications">التطبيقات</a></li>
+                    <li><a href="#calculator">الحاسبة</a></li>
+                    <li><a href="#references">المراجع</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>ديناميكا الحرارية الإحصائية</h2>
+            <p>دراسة العلاقة بين الخصائص المجهرية للجسيمات والخصائص الكلية للمواد باستخدام التوزيعات الإحصائية</p>
+            <a href="#distributions" class="btn">استكشف التوزيعات الإحصائية</a>
+        </div>
+    </section>
+
+    <!-- Distributions Section -->
+    <section class="distributions" id="distributions">
+        <div class="container">
+            <div class="section-title">
+                <h2>التوزيعات الإحصائية</h2>
+                <p>الأسس الرياضية التي تصف توزيع الجسيمات في حالات الطاقة المختلفة</p>
+            </div>
+            
+            <div class="distribution-grid">
+                <!-- Boltzmann Distribution -->
+                <div class="distribution-card boltzmann">
+                    <div class="card-header">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>توزيع بولتزمان</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>يصف توزيع الجسيمات المميزة (القابلة للتمييز) في حالات الطاقة المختلفة عند التوازن الحراري.</p>
+                        
+                        <div class="formula">
+                            \[ \frac{n_i}{n} = \frac{g_i e^{-E_i / kT}}{\sum g_j e^{-E_j / kT}} \]
+                        </div>
+                        
+                        <p>حيث:</p>
+                        <ul style="list-style-type: none; padding-right: 0;">
+                            <li><strong>n<sub>i</sub></strong>: عدد الجسيمات في الحالة i</li>
+                            <li><strong>n</strong>: العدد الإجمالي للجسيمات</li>
+                            <li><strong>g<sub>i</sub></strong>: عدد الحالات المتاحة للطاقة E<sub>i</sub></li>
+                            <li><strong>k</strong>: ثابت بولتزمان</li>
+                            <li><strong>T</strong>: درجة الحرارة المطلقة</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تفاصيل أكثر</a>
+                    </div>
+                </div>
+                
+                <!-- Fermi-Dirac Distribution -->
+                <div class="distribution-card fermi">
+                    <div class="card-header">
+                        <i class="fas fa-users"></i>
+                        <h3>توزيع فيرمي-ديراك</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>يصف توزيع الجسيمات التي تتبع مبدأ استبعاد باولي (الإلكترونات والبروتونات والنيوترونات).</p>
+                        
+                        <div class="formula">
+                            \[ f(E) = \frac{1}{e^{(E - E_F) / kT} + 1} \]
+                        </div>
+                        
+                        <p>حيث:</p>
+                        <ul style="list-style-type: none; padding-right: 0;">
+                            <li><strong>f(E)</strong>: احتمال شغل حالة الطاقة E</li>
+                            <li><strong>E<sub>F</sub></strong>: طاقة فيرمي</li>
+                            <li><strong>k</strong>: ثابت بولتزمان</li>
+                            <li><strong>T</strong>: درجة الحرارة المطلقة</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تفاصيل أكثر</a>
+                    </div>
+                </div>
+                
+                <!-- Bose-Einstein Distribution -->
+                <div class="distribution-card bose">
+                    <div class="card-header">
+                        <i class="fas fa-clone"></i>
+                        <h3>توزيع بوز-أينشتاين</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>يصف توزيع الجسيمات التي لا تتبع مبدأ استبعاد باولي (الفوتونات والفونونات والهليوم-4).</p>
+                        
+                        <div class="formula">
+                            \[ f(E) = \frac{1}{e^{(E - \mu) / kT} - 1} \]
+                        </div>
+                        
+                        <p>حيث:</p>
+                        <ul style="list-style-type: none; padding-right: 0;">
+                            <li><strong>f(E)</strong>: متوسط عدد الجسيمات في حالة الطاقة E</li>
+                            <li><strong>μ</strong>: الكمون الكيميائي</li>
+                            <li><strong>k</strong>: ثابت بولتزمان</li>
+                            <li><strong>T</strong>: درجة الحرارة المطلقة</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تفاصيل أكثر</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section class="applications" id="applications">
+        <div class="container">
+            <div class="section-title">
+                <h2>التطبيقات العملية</h2>
+                <p>كيف تُستخدم التوزيعات الإحصائية في حساب خصائص المواد</p>
+            </div>
+            
+            <div class="app-tabs">
+                <div class="app-tab active" data-tab="gases">الغازات</div>
+                <div class="app-tab" data-tab="solids">المواد الصلبة</div>
+            </div>
+            
+            <!-- Gases Applications -->
+            <div class="app-content active" id="gases">
+                <div class="app-grid">
+                    <div class="app-card">
+                        <h3>السعة الحرارية للغازات</h3>
+                        <p>حساب السعة الحرارية عند حجم ثابت (C<sub>v</sub>) وضغط ثابت (C<sub>p</sub>) باستخدام توزيع بولتزمان.</p>
+                        <ul>
+                            <li>الغازات أحادية الذرة: C<sub>v</sub> = (3/2)R</li>
+                            <li>الغازات ثنائية الذرة: C<sub>v</sub> = (5/2)R</li>
+                            <li>الغازات متعددة الذرات: C<sub>v</sub> = 3R</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="app-card">
+                        <h3>الضغط ودرجة الحرارة</h3>
+                        <p>اشتقاق معادلة الحالة المثالية PV = nRT من خلال تحليل الحركة الحرارية للجزيئات.</p>
+                        <ul>
+                            <li>متوسط الطاقة الحركية: (3/2)kT</li>
+                            <li>الضغط الناتج عن التصادمات</li>
+                            <li>علاقة الضغط بحجم الحاوية</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="app-card">
+                        <h3>توزيع السرعات</h3>
+                        <p>توزيع ماكسويل-بولتزمان لسرعات الجزيئات في غاز عند درجة حرارة معينة.</p>
+                        <ul>
+                            <li>السرعة الأكثر احتمالاً: √(2kT/m)</li>
+                            <li>السرعة المتوسطة: √(8kT/πm)</li>
+                            <li>السرعة التربيعية المتوسطة: √(3kT/m)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Solids Applications -->
+            <div class="app-content" id="solids">
+                <div class="app-grid">
+                    <div class="app-card">
+                        <h3>نموذج أينشتاين للمواد الصلبة</h3>
+                        <p>يفترض أن جميع ذرات المادة الصلبة تهتز بنفس التردد، ويستخدم توزيع بولتزمان لحساب الطاقة.</p>
+                        <ul>
+                            <li>السعة الحرارية عند درجات الحرارة العالية: 3R</li>
+                            <li>السعة الحرارية عند درجات الحرارة المنخفضة: تتناقص مع T<sup>3</sup></li>
+                            <li>درجة حرارة أينشتاين</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="app-card">
+                        <h3>نموذج ديباي للمواد الصلبة</h3>
+                        <p>يأخذ في الاعتبار طيف الترددات الحقيقية للاهتزازات في المادة الصلبة باستخدام توزيع بوز-أينشتاين.</p>
+                        <ul>
+                            <li>السعة الحرارية عند درجات الحرارة المنخفضة: ∝ T<sup>3</sup></li>
+                            <li>درجة حرارة ديباي</li>
+                            <li>كثافة الحالات الاهتزازية</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="app-card">
+                        <h3>الإلكترونات في المواد الصلبة</h3>
+                        <p>يستخدم توزيع فيرمي-ديراك لوصف سلوك الإلكترونات في المواد الصلبة والنواقل وشبه النواقل.</p>
+                        <ul>
+                            <li>طاقة فيرمي في المعادن</li>
+                            <li>فجوة الطاقة في أشباه الموصلات</li>
+                            <li>السعة الحرارية الإلكترونية</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section" id="calculator">
+        <div class="container">
+            <div class="section-title">
+                <h2>الحاسبة التفاعلية</h2>
+                <p>احسب خصائص المواد باستخدام التوزيعات الإحصائية</p>
+            </div>
+            
+            <div class="calculator">
+                <h3>حاسبة توزيع بولتزمان</h3>
+                <div class="calc-form">
+                    <div class="form-group">
+                        <label for="temperature">درجة الحرارة (كلفن)</label>
+                        <input type="number" id="temperature" value="300" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="energy">طاقة الحالة (جول)</label>
+                        <input type="number" id="energy" value="4.14e-21" step="any">
+                    </div>
+                    <div class="form-group">
+                        <label for="degeneracy">عدد الحالات المتاحة</label>
+                        <input type="number" id="degeneracy" value="1" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="particles">العدد الإجمالي للجسيمات</label>
+                        <input type="number" id="particles" value="1000" min="1">
+                    </div>
+                </div>
+                <button class="btn" onclick="calculateBoltzmann()">احسب</button>
+                
+                <div class="calc-result" id="calcResult">
+                    <p>عدد الجسيمات في الحالة المحددة: <span id="resultValue"></span></p>
+                    <p>النسبة المئوية: <span id="percentageValue"></span>%</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- References Section -->
+    <section class="references" id="references">
+        <div class="container">
+            <div class="section-title">
+                <h2>المراجع والمصادر</h2>
+                <p>مصادر موثوقة لدراسة ديناميكا الحرارية الإحصائية</p>
+            </div>
+            
+            <ul class="ref-list">
+                <li class="ref-item">
+                    <h4>مقدمة في الديناميكا الحرارية الإحصائية - دانيال فيبلي</h4>
+                    <p>كتاب مرجعي شامل يغطي المفاهيم الأساسية والتطبيقات المتقدمة في الديناميكا الحرارية الإحصائية.</p>
+                </li>
+                <li class="ref-item">
+                    <h4>الديناميكا الحرارية الإحصائية - ماكليلان</h4>
+                    <p>يقدم شرحاً مفصلاً للتوزيعات الإحصائية الثلاثة مع أمثلة تطبيقية في الفيزياء والكيمياء.</p>
+                </li>
+                <li class="ref-item">
+                    <h4>ميكانيكا الإحصاء والديناميكا الحرارية - رايف</h4>
+                    <p>يجمع بين الميكانيكا الإحصائية والديناميكا الحرارية مع تركيز خاص على التطبيقات في المواد المكثفة.</p>
+                </li>
+                <li class="ref-item">
+                    <h4>محاضرات في الديناميكا الحرارية الإحصائية - جامعة MIT</h4>
+                    <p>سلسلة محاضرات متقدمة من معهد ماساتشوستس للتكنولوجيا تغطي المفاهيم النظرية والتطبيقات العملية.</p>
+                </li>
+                <li class="ref-item">
+                    <h4>مقدمة في فيزياء المواد المكثفة - كيتل</h4>
+                    <p>يغطي تطبيقات الديناميكا الحرارية الإحصائية في فهم خصائص المواد الصلبة والسوائل.</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>عن الموقع</h3>
+                    <p>منصة تعليمية متخصصة في ديناميكا الحرارية الإحصائية، تقدم شرحاً مفصلاً للتوزيعات الإحصائية وتطبيقاتها في حساب خصائص المواد.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#distributions">التوزيعات الإحصائية</a></li>
+                        <li><a href="#applications">التطبيقات العملية</a></li>
+                        <li><a href="#calculator">الحاسبة التفاعلية</a></li>
+                        <li><a href="#references">المراجع</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>التوزيعات</h3>
+                    <ul>
+                        <li><a href="#">توزيع بولتزمان</a></li>
+                        <li><a href="#">توزيع فيرمي-ديراك</a></li>
+                        <li><a href="#">توزيع بوز-أينشتاين</a></li>
+                        <li><a href="#">توزيع ماكسويل-بولتزمان</a></li>
+                        <li><a href="#">توزيع بلانك</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@statthermo.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 ديناميكا الحرارية الإحصائية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching for applications
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.app-tab');
+            const contents = document.querySelectorAll('.app-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    tab.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Smooth scrolling for navigation links
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add animation on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Elements to animate
+            const animateElements = document.querySelectorAll('.distribution-card, .app-card, .ref-item');
+            
+            animateElements.forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+        
+        // Boltzmann Calculator
+        function calculateBoltzmann() {
+            // Get input values
+            const T = parseFloat(document.getElementById('temperature').value);
+            const E = parseFloat(document.getElementById('energy').value);
+            const g = parseFloat(document.getElementById('degeneracy').value);
+            const N = parseFloat(document.getElementById('particles').value);
+            
+            // Boltzmann constant (J/K)
+            const k = 1.380649e-23;
+            
+            // Calculate the Boltzmann factor
+            const boltzmannFactor = Math.exp(-E / (k * T));
+            
+            // Calculate the partition function (simplified for demonstration)
+            // In a real scenario, we would sum over all energy states
+            const Z = g * boltzmannFactor + 1; // Simplified calculation
+            
+            // Calculate the number of particles in the given state
+            const n = (N * g * boltzmannFactor) / Z;
+            
+            // Calculate the percentage
+            const percentage = (n / N) * 100;
+            
+            // Display the results
+            document.getElementById('resultValue').textContent = n.toFixed(2);
+            document.getElementById('percentageValue').textContent = percentage.toFixed(4);
+            document.getElementById('calcResult').classList.add('show');
+        }
+    </script>
+</body>
+</html>

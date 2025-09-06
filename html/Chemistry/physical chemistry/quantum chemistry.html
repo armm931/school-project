@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الكيمياء الكمية - عالم الذرات والجزيئات على المستوى المجهري</title>
+    <title>ميكانيكا الكم - مقدمة في الكيمياء الكمومية</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,29 +14,30 @@
         }
 
         :root {
-            --primary: #6366f1;
-            --secondary: #8b5cf6;
-            --accent: #ec4899;
-            --success: #10b981;
-            --danger: #ef4444;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --info: #3b82f6;
-            --purple: #7c3aed;
+            --primary: #1a237e;
+            --secondary: #3949ab;
+            --accent: #5c6bc0;
+            --light: #e8eaf6;
+            --dark: #283593;
+            --text: #212121;
+            --light-text: #757575;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
         }
 
         body {
-            background-color: #f1f5f9;
-            color: var(--dark);
+            background-color: #f5f7fa;
+            color: var(--text);
             line-height: 1.6;
-            overflow-x: hidden;
+            direction: rtl;
         }
 
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
 
         /* Header Styles */
@@ -44,14 +45,13 @@
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             padding: 1rem 0;
-            position: fixed;
-            width: 100%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .header-container {
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -60,94 +60,59 @@
         .logo {
             display: flex;
             align-items: center;
-            font-size: 1.5rem;
-            font-weight: bold;
+            gap: 10px;
         }
 
         .logo i {
-            margin-left: 10px;
+            font-size: 2rem;
             color: var(--accent);
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
         }
 
         nav ul {
             display: flex;
             list-style: none;
+            gap: 25px;
         }
 
-        nav ul li {
-            margin-right: 25px;
-        }
-
-        nav ul li a {
+        nav a {
             color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
-            padding: 5px 0;
-            position: relative;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
         }
 
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
+        nav a:hover {
+            background-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(99, 102, 241, 0.85), rgba(139, 92, 246, 0.85)), url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            background: linear-gradient(rgba(26, 35, 126, 0.85), rgba(57, 73, 171, 0.85)), 
+                        url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover;
             color: white;
+            padding: 100px 0;
             text-align: center;
-            padding: 150px 0 100px;
-            margin-top: 70px;
-            position: relative;
-            overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/><circle cx="20" cy="20" r="1.5" fill="white" opacity="0.1"/><circle cx="80" cy="30" r="1" fill="white" opacity="0.1"/><circle cx="30" cy="70" r="1.5" fill="white" opacity="0.1"/><circle cx="70" cy="80" r="1" fill="white" opacity="0.1"/></svg>') repeat;
-            animation: float 30s infinite linear;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-100px); }
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
+        .hero h2 {
+            font-size: 3rem;
             margin-bottom: 20px;
-            animation: fadeInDown 1s;
-            position: relative;
-            z-index: 1;
+            animation: fadeInUp 1s ease;
         }
 
         .hero p {
             font-size: 1.3rem;
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto 30px;
-            animation: fadeInUp 1s;
-            position: relative;
-            z-index: 1;
+            animation: fadeInUp 1s ease 0.3s both;
         }
 
         .btn {
@@ -157,20 +122,18 @@
             padding: 12px 30px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s;
+            font-weight: 600;
+            transition: all 0.3s ease;
             border: none;
             cursor: pointer;
             font-size: 1rem;
-            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
-            position: relative;
-            z-index: 1;
+            animation: fadeInUp 1s ease 0.6s both;
         }
 
         .btn:hover {
-            background-color: #db2777;
+            background-color: var(--secondary);
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
         /* Section Styles */
@@ -191,565 +154,292 @@
             margin-bottom: 15px;
         }
 
-        .section-title h2::after {
+        .section-title h2:after {
             content: '';
             position: absolute;
             bottom: -10px;
-            right: 25%;
-            width: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
             height: 4px;
-            background-color: var(--secondary);
+            background-color: var(--accent);
             border-radius: 2px;
         }
 
         .section-title p {
-            color: #64748b;
             max-width: 700px;
             margin: 0 auto;
+            color: var(--light-text);
+            font-size: 1.1rem;
         }
 
-        /* Introduction Section */
-        .intro-content {
-            display: flex;
-            gap: 50px;
-            align-items: center;
-            margin-bottom: 50px;
-        }
-
-        .intro-text {
-            flex: 1;
-        }
-
-        .intro-text h3 {
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-
-        .intro-text p {
-            margin-bottom: 20px;
-            color: #334155;
-            line-height: 1.8;
-        }
-
-        .intro-image {
-            flex: 1;
-            text-align: center;
-        }
-
-        .intro-image img {
-            max-width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Quantum Concepts Grid */
-        .quantum-grid {
+        /* Cards */
+        .cards-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            margin-top: 50px;
         }
 
-        .quantum-card {
-            background: white;
-            border-radius: 15px;
+        .card {
+            background-color: white;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .quantum-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
             height: 100%;
-            background: linear-gradient(to bottom, var(--primary), var(--secondary));
-            opacity: 0;
-            transition: opacity 0.3s;
         }
 
-        .quantum-card:hover::before {
-            opacity: 1;
-        }
-
-        .quantum-card:hover {
+        .card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
         }
 
-        .quantum-icon {
-            background: linear-gradient(135deg, var(--primary), var(--info));
+        .card-header {
+            background-color: var(--secondary);
             color: white;
-            padding: 30px;
+            padding: 20px;
             text-align: center;
+        }
+
+        .card-header i {
             font-size: 3rem;
-        }
-
-        .quantum-body {
-            padding: 25px;
-        }
-
-        .quantum-body h3 {
-            font-size: 1.5rem;
-            color: var(--primary);
             margin-bottom: 15px;
         }
 
-        .quantum-body p {
-            color: #334155;
+        .card-header h3 {
+            font-size: 1.5rem;
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .card-body p {
+            color: var(--light-text);
+            margin-bottom: 20px;
+        }
+
+        .card-footer {
+            padding: 0 25px 25px;
+        }
+
+        /* Orbitals Visualization */
+        .orbitals-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .orbital {
+            text-align: center;
+            width: 200px;
+        }
+
+        .orbital-shape {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .orbital-s {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(92, 107, 192, 0.7) 0%, rgba(92, 107, 192, 0.2) 70%);
+            box-shadow: 0 0 20px rgba(92, 107, 192, 0.5);
+        }
+
+        .orbital-p {
+            width: 120px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(90deg, rgba(92, 107, 192, 0.7) 0%, rgba(92, 107, 192, 0.2) 100%);
+            transform: rotate(45deg);
+            box-shadow: 0 0 20px rgba(92, 107, 192, 0.5);
+        }
+
+        .orbital-d {
+            width: 140px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(90deg, rgba(92, 107, 192, 0.7) 0%, rgba(92, 107, 192, 0.2) 50%, rgba(92, 107, 192, 0.7) 100%);
+            transform: rotate(0deg);
+            box-shadow: 0 0 20px rgba(92, 107, 192, 0.5);
+        }
+
+        .orbital h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .orbital p {
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+
+        /* Theory Section */
+        .theory-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-top: 50px;
+        }
+
+        .theory-item {
+            margin-bottom: 40px;
+        }
+
+        .theory-item h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theory-item h3 i {
+            color: var(--accent);
+        }
+
+        .theory-item p {
+            color: var(--light-text);
+            margin-bottom: 15px;
             line-height: 1.8;
         }
 
-        .quantum-formula {
-            background-color: #f8fafc;
+        .formula {
+            background-color: var(--light);
             padding: 15px;
             border-radius: 8px;
             text-align: center;
             font-family: 'Courier New', monospace;
-            margin-top: 15px;
-            color: var(--secondary);
-            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            border-right: 4px solid var(--accent);
         }
 
-        /* Wave Functions Section */
-        .wave-container {
-            background: white;
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            margin-bottom: 40px;
-        }
-
-        .wave-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 30px;
-            padding: 25px;
-            border-radius: 10px;
-            transition: all 0.3s;
-            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-        }
-
-        .wave-item:hover {
-            transform: translateX(10px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .wave-icon {
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-left: 20px;
-            flex-shrink: 0;
-        }
-
-        .wave-content h3 {
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .wave-content p {
-            color: #64748b;
-            line-height: 1.8;
-        }
-
-        /* Atomic Models Timeline */
-        .timeline {
-            position: relative;
-            padding: 40px 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            right: 50%;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(to bottom, var(--primary), var(--secondary));
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 50px;
-            width: 45%;
-        }
-
-        .timeline-item:nth-child(odd) {
-            right: 0;
-            text-align: left;
-            padding-right: 60px;
-        }
-
-        .timeline-item:nth-child(even) {
-            left: 0;
-            text-align: right;
-            padding-left: 60px;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: var(--accent);
-            border-radius: 50%;
-            top: 20px;
-        }
-
-        .timeline-item:nth-child(odd) .timeline-dot {
-            right: -10px;
-        }
-
-        .timeline-item:nth-child(even) .timeline-dot {
-            left: -10px;
-        }
-
-        .timeline-content {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s;
-        }
-
-        .timeline-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
-
-        .timeline-year {
-            color: var(--primary);
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-        }
-
-        .timeline-title {
-            font-size: 1.3rem;
-            color: var(--dark);
-            margin-bottom: 10px;
-        }
-
-        .timeline-desc {
-            color: #64748b;
-            line-height: 1.6;
-        }
-
-        /* Applications Grid */
-        .applications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .app-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .app-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
-
-        .app-icon {
-            height: 120px;
-            background: linear-gradient(135deg, var(--purple), var(--accent));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-        }
-
-        .app-content {
-            padding: 25px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .app-content h3 {
-            font-size: 1.4rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        .app-content p {
-            color: #64748b;
-            line-height: 1.8;
-            flex-grow: 1;
-        }
-
-        /* Calculator Section */
-        .calculator-container {
-            background: white;
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .calculator-tabs {
-            display: flex;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #e2e8f0;
-        }
-
-        .tab-btn {
-            background: none;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1rem;
-            font-weight: 500;
-            color: #64748b;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .tab-btn.active {
-            color: var(--primary);
-        }
-
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            right: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--primary);
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #334155;
-            font-weight: 500;
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-        }
-
-        .result-box {
-            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-            border-radius: 10px;
-            padding: 25px;
-            margin-top: 30px;
-            border-right: 4px solid var(--primary);
-            display: none;
-        }
-
-        .result-box h4 {
-            color: var(--primary);
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-        }
-
-        .result-box p {
-            color: #334155;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-        }
-
-        /* Visualizations Section */
-        .viz-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .viz-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s;
-        }
-
-        .viz-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
-
-        .viz-display {
-            height: 250px;
+        /* Equation Section */
+        .equation-container {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
             color: white;
-            font-size: 4rem;
-            position: relative;
-            overflow: hidden;
+            padding: 60px 0;
+            border-radius: 10px;
+            margin-top: 50px;
+            text-align: center;
         }
 
-        .viz-display canvas {
-            width: 100%;
-            height: 100%;
+        .equation-container h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
         }
 
-        .viz-content {
-            padding: 25px;
+        .equation {
+            font-size: 1.8rem;
+            font-family: 'Courier New', monospace;
+            background-color: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 800px;
+            display: inline-block;
         }
 
-        .viz-content h3 {
-            font-size: 1.4rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        .viz-content p {
-            color: #64748b;
-            margin-bottom: 20px;
+        .equation-explanation {
+            max-width: 800px;
+            margin: 30px auto 0;
+            font-size: 1.1rem;
             line-height: 1.8;
-        }
-
-        .viz-controls {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .viz-btn {
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-
-        .viz-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 3px 10px rgba(139, 92, 246, 0.3);
         }
 
         /* FAQ Section */
         .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
+            margin-top: 50px;
         }
 
         .faq-item {
-            background: white;
-            border-radius: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            background-color: white;
         }
 
         .faq-question {
+            background-color: var(--light);
             padding: 20px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--primary);
-            transition: background-color 0.3s;
+            transition: background-color 0.3s ease;
         }
 
         .faq-question:hover {
-            background-color: #f8fafc;
-        }
-
-        .faq-question i {
-            transition: transform 0.3s;
-        }
-
-        .faq-item.active .faq-question i {
-            transform: rotate(180deg);
+            background-color: #c5cae9;
         }
 
         .faq-answer {
             padding: 0 20px;
             max-height: 0;
             overflow: hidden;
-            transition: all 0.3s;
-            color: #64748b;
-            line-height: 1.8;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background-color: white;
         }
 
-        .faq-item.active .faq-answer {
-            padding: 0 20px 20px;
-            max-height: 300px;
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-icon.active {
+            transform: rotate(180deg);
         }
 
         /* Footer */
         footer {
-            background-color: var(--dark);
-            color: #cbd5e1;
-            padding: 50px 0 20px;
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0 20px;
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .footer-column h3 {
-            color: white;
-            margin-bottom: 20px;
             font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
         }
 
-        .footer-column p {
-            margin-bottom: 15px;
-            line-height: 1.8;
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
         }
 
         .footer-column ul {
@@ -761,9 +451,9 @@
         }
 
         .footer-column ul li a {
-            color: #cbd5e1;
+            color: #bdc3c7;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
 
         .footer-column ul li a:hover {
@@ -777,15 +467,15 @@
         }
 
         .social-links a {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
             width: 40px;
             height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255,255,255,0.1);
             border-radius: 50%;
             color: white;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
 
         .social-links a:hover {
@@ -796,27 +486,16 @@
         .copyright {
             text-align: center;
             padding-top: 20px;
-            border-top: 1px solid #334155;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bdc3c7;
             font-size: 0.9rem;
-            color: #94a3b8;
         }
 
         /* Animations */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -824,537 +503,332 @@
             }
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                position: absolute;
-                top: 70px;
-                right: 0;
-                width: 100%;
-                background-color: var(--primary);
-                padding: 20px;
-                display: none;
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            .menu-toggle {
-                display: block;
-                font-size: 1.5rem;
-                cursor: pointer;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.5rem;
             }
             
             .section-title h2 {
                 font-size: 2rem;
             }
             
-            .intro-content {
+            .orbitals-container {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
                 flex-direction: column;
+                gap: 20px;
             }
             
-            .form-row {
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding: 70px 0;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .orbitals-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .orbital {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            nav a {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.7rem;
+            }
+            
+            .cards-container {
                 grid-template-columns: 1fr;
             }
             
-            .timeline::before {
-                right: 30px;
+            .theory-container {
+                padding: 25px;
             }
             
-            .timeline-item {
-                width: 100%;
-                padding-right: 60px !important;
-                padding-left: 0 !important;
-                text-align: right !important;
+            .equation {
+                font-size: 1.4rem;
+                padding: 15px;
             }
-            
-            .timeline-dot {
-                right: 20px !important;
-            }
-        }
-
-        .menu-toggle {
-            display: none;
-        }
-
-        /* Loading Animation */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <div class="container header-container">
+        <div class="container header-content">
             <div class="logo">
                 <i class="fas fa-atom"></i>
-                <span>الكيمياء الكمية</span>
+                <h1>ميكانيكا الكم</h1>
             </div>
             <nav>
                 <ul>
                     <li><a href="#home">الرئيسية</a></li>
-                    <li><a href="#intro">مقدمة</a></li>
-                    <li><a href="#concepts">المفاهيم</a></li>
-                    <li><a href="#wave">دوال الموجة</a></li>
-                    <li><a href="#models">النماذج</a></li>
-                    <li><a href="#applications">التطبيقات</a></li>
-                    <li><a href="#calculator">الحاسبة</a></li>
+                    <li><a href="#waves">الموجات والجسيمات</a></li>
+                    <li><a href="#equation">معادلة شرودنجر</a></li>
+                    <li><a href="#orbitals">المدارات الذرية</a></li>
+                    <li><a href="#molecular">نظرية المدارات الجزيئية</a></li>
                 </ul>
-                <div class="menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </div>
             </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section class="hero" id="home">
         <div class="container">
-            <h1>عالم الكيمياء الكمية</h1>
-            <p>استكشف عالم الذرات والجزيئات على المستوى المجهري، حيث تحكم قوانين الكم سلوك المادة في أصغر مقاييسها</p>
-            <a href="#intro" class="btn">ابدأ التعلم</a>
+            <h2>مقدمة في ميكانيكا الكم</h2>
+            <p>استكشف عالم ميكانيكا الكم الذي يصف سلوك المادة والطاقة على المستوى الذري والجزيئي، حيث تتجلى قوانين الفيزياء الكلاسيكية في صورة جديدة ومذهلة</p>
+            <a href="#waves" class="btn">ابدأ التعلم الآن</a>
         </div>
     </section>
 
-    <!-- Introduction Section -->
-    <section id="intro" class="intro">
+    <!-- Waves and Particles Section -->
+    <section class="waves" id="waves">
         <div class="container">
             <div class="section-title">
-                <h2>ما هي الكيمياء الكمية؟</h2>
-                <p>فهم أساسيات الكيمياء الكمية وأهميتها في العلم الحديث</p>
+                <h2>الموجات والجسيمات</h2>
+                <p>في عالم ميكانيكا الكم، تظهر الجسيمات سلوكًا موجيًا والموجات سلوكًا جسيميًا في ظاهرة تُعرف بازدواجية الموجة والجسيم</p>
             </div>
-            <div class="intro-content">
-                <div class="intro-text">
-                    <h3>مقدمة في الكيمياء الكمية</h3>
-                    <p>الكيمياء الكمية هي فرع من الكيمياء يطبق مبادئ ميكانيكا الكم لفهم سلوك الذرات والجزيئات على المستوى المجهري. تختلف عن الكيمياء الكلاسيكية في أنها تتعامل مع الظواهر التي تحدث على مستوى الذرات والإلكترونات، حيث لا تنطبق قوانين الفيزياء الكلاسيكية.</p>
-                    <p>تستند الكيمياء الكمية إلى مفاهيم مثل ازدواجية الموجة والجسيم، ومبدأ عدم اليقين لهايزنبرغ، والدوال الموجية التي تصف سلوك الجسيمات دون الذرية. هذه المبادئ سمحت للعلماء بفهم بنية الذرة، الروابط الكيميائية، والتفاعلات الكيميائية بطريقة أكثر دقة.</p>
-                    <p>تلعب الكيمياء الكمية دوراً حاسماً في تطوير العديد من التقنيات الحديثة، مثل الحواسيب الكمية، الليزر، والمواد المتقدمة. كما أنها أساس لفهم ظواهر مثل التوصيل الفائق والتركيب البلوري للمواد.</p>
-                </div>
-                <div class="intro-image">
-                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الكيمياء الكمية">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quantum Concepts Section -->
-    <section id="concepts" class="concepts">
-        <div class="container">
-            <div class="section-title">
-                <h2>المفاهيم الأساسية</h2>
-                <p>تعرف على المبادئ الأساسية التي تحكم عالم الكم</p>
-            </div>
-            <div class="quantum-grid">
-                <div class="quantum-card">
-                    <div class="quantum-icon">
+            
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-header">
                         <i class="fas fa-wave-square"></i>
+                        <h3>مبدأ دي برولي</h3>
                     </div>
-                    <div class="quantum-body">
-                        <h3>ازدواجية الموجة والجسيم</h3>
-                        <p>في عالم الكم، تظهر الجسيمات مثل الإلكترونات والفوتونات خصائص موجية وجسيمية في نفس الوقت. هذا المفهوم الثوري يفسر العديد من الظواهر الكمية مثل تداخل الإلكترونات وانحيازها.</p>
-                        <div class="quantum-formula">
-                            λ = h/p
-                        </div>
+                    <div class="card-body">
+                        <p>اقترح العالم الفرنسي لويس دي برولي أن كل جسيم متحرك له خصائص موجية مرتبطة به. وفقًا لمبدأ دي برولي، يمكن حساب الطول الموجي λ لأي جسيم باستخدام العلاقة:</p>
+                        <div class="formula">λ = h / p</div>
+                        <p>حيث h هو ثابت بلانك، و p هو زخم الجسيم. هذا المبدأ يوضح أن الإلكترونات والجسيمات الذرية الأخرى تظهر سلوكًا موجيًا.</p>
                     </div>
-                </div>
-                
-                <div class="quantum-card">
-                    <div class="quantum-icon">
-                        <i class="fas fa-random"></i>
-                    </div>
-                    <div class="quantum-body">
-                        <h3>مبدأ عدم اليقين</h3>
-                        <p>صاغه فيرنر هايزنبرغ وينص على أنه لا يمكن معرفة موقع وكمية حركة جسيم كمي بدقة في نفس الوقت. كلما زادت دقة قياس أحدهما، قلت دقة قياس الآخر.</p>
-                        <div class="quantum-formula">
-                            Δx × Δp ≥ ℏ/2
-                        </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
                     </div>
                 </div>
                 
-                <div class="quantum-card">
-                    <div class="quantum-icon">
-                        <i class="fas fa-atom"></i>
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-ruler-combined"></i>
+                        <h3>مبدأ هايزنبرغ</h3>
                     </div>
-                    <div class="quantum-body">
-                        <h3>التكميم</h3>
-                        <p>في الأنظمة الكمية، تأتي بعض الخصائص مثل الطاقة والزخم الزاوي بقيم منفصلة (كمية) وليست مستمرة. هذا يفسر لماذا للإلكترونات مستويات طاقة محددة في الذرة.</p>
-                        <div class="quantum-formula">
-                            E = nhν
-                        </div>
+                    <div class="card-body">
+                        <p>صاغ فيرنر هايزنبرغ مبدأ عدم اليقين الذي ينص على أنه لا يمكن تحديد موقع وزخم جسيم كمي بدقة في نفس الوقت. كلما زادت دقة قياس أحدهما، قلت دقة قياس الآخر.</p>
+                        <div class="formula">Δx · Δp ≥ ħ/2</div>
+                        <p>حيث Δx هو عدم اليقين في الموقع، وΔp هو عدم اليقين في الزخم، وħ هو ثابت بلانك المخفض. هذا المبدأ ليس قيدًا تقنيًا بل خاصية أساسية للطبيعة.</p>
                     </div>
-                </div>
-                
-                <div class="quantum-card">
-                    <div class="quantum-icon">
-                        <i class="fas fa-infinity"></i>
-                    </div>
-                    <div class="quantum-body">
-                        <h3>التراكب الكمي</h3>
-                        <p>يمكن أن تكون الجسيمات الكمية في حالة تراكب من عدة حالات في نفس الوقت. عند القياس، "ينهار" التراكب إلى حالة واحدة فقط. هذا أساس مبدأ القط الكمي الشهير.</p>
-                        <div class="quantum-formula">
-                            |ψ⟩ = α|0⟩ + β|1⟩
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="quantum-card">
-                    <div class="quantum-icon">
-                        <i class="fas fa-link"></i>
-                    </div>
-                    <div class="quantum-body">
-                        <h3>التشابك الكمي</h3>
-                        <p>ظاهرة يرتبط فيها جسيمان أو أكثر بطريقة تجعل خصائصهما مرتبطة ببعضها البعض بغض النظر عن المسافة بينهما. تغيير حالة أحدهما يؤثر فوراً على حالة الآخر.</p>
-                        <div class="quantum-formula">
-                            |ψ⟩ = (|00⟩ + |11⟩)/√2
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="quantum-card">
-                    <div class="quantum-icon">
-                        <i class="fas fa-exclusion"></i>
-                    </div>
-                    <div class="quantum-body">
-                        <h3>مبدأ الاستبعاد</h3>
-                        <p>صاغه فولفغانغ باولي وينص على أنه لا يمكن لإلكترونين أو أكثر في نفس النظام أن يكون لهما نفس الأرقام الكمية الأربعة. هذا يفسر بنية الجدول الدوري وتوزيع الإلكترونات في الذرات.</p>
-                        <div class="quantum-formula">
-                            n, l, mₗ, mₛ فريدة
-                        </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Wave Functions Section -->
-    <section id="wave" class="wave">
+    <!-- Schrödinger Equation Section -->
+    <section class="equation-section" id="equation">
         <div class="container">
             <div class="section-title">
-                <h2>دوال الموجة المدارية</h2>
-                <p>فهم كيف تصف الدوال الموجية سلوك الإلكترونات في الذرات</p>
+                <h2>معادلة شرودنجر</h2>
+                <p>تعتبر معادلة شرودنجر حجر الزاوية في ميكانيكا الكم، حيث تصف كيف تتغير الحالة الكمومية للنظام مع الزمن</p>
             </div>
-            <div class="wave-container">
-                <div class="wave-item">
-                    <div class="wave-icon">
-                        <i class="fas fa-circle"></i>
-                    </div>
-                    <div class="wave-content">
-                        <h3>المدارات s</h3>
-                        <p>المدارات s كروية الشكل وتتماثل في جميع الاتجاهات. لها لكم مداري l = 0 وتحتوي على إلكترون واحد كحد أقصى. تمثل الاحتمال الأعلى لوجود الإلكترون عند النواة.</p>
-                    </div>
+            
+            <div class="equation-container">
+                <h3>معادلة شرودنجر المعتمدة على الزمن</h3>
+                <div class="equation">iħ ∂Ψ/∂t = ĤΨ</div>
+                <div class="equation-explanation">
+                    <p>حيث:</p>
+                    <p>• i هو الوحدة التخيلية</p>
+                    <p>• ħ هو ثابت بلانك المخفض</p>
+                    <p>• Ψ ( psi ) هي دالة الموجة التي تصف الحالة الكمومية للنظام</p>
+                    <p>• Ĥ هو مؤثر هاملتوني الذي يمثل الطاقة الكلية للنظام</p>
+                    <p><br>معادلة شرودنجر المستقلة عن الزمن: ĤΨ = EΨ</p>
+                    <p>حيث E يمثل طاقة الحالة المستقرة للنظام. حل هذه المعادلة يعطينا دالة الموجة والطاقات المسموحة للنظام الكمي.</p>
+                </div>
+            </div>
+            
+            <div class="theory-container">
+                <div class="theory-item">
+                    <h3><i class="fas fa-lightbulb"></i> تفسير دالة الموجة</h3>
+                    <p>دالة الموجة Ψ نفسها لا تمتلك معنى فيزيائي مباشر، لكن مربع قيمتها المطلقة |Ψ|² يمثل كثافة الاحتمال. أي أن |Ψ(x)|² dx يعطي احتمال وجود الجسيم في الفترة dx حول النقطة x.</p>
+                    <p>هذا التفسير قدمه ماكس بورن ويُعرف بتفسير الاحتمال، وهو أحد أسس التفسير الكوبنهاغي لميكانيكا الكم.</p>
                 </div>
                 
-                <div class="wave-item">
-                    <div class="wave-icon">
-                        <i class="fas fa-ellipsis-h"></i>
-                    </div>
-                    <div class="wave-content">
-                        <h3>المدارات p</h3>
-                        <p>المدارات p لها شكل كمثري وتتجه على طول المحاور الإحداثية. لها لكم مداري l = 1 وتحتوي على 3 مدارات فرعية (px, py, pz). كل مدار يمكن أن يحتوي على إلكترونين.</p>
-                    </div>
-                </div>
-                
-                <div class="wave-item">
-                    <div class="wave-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="wave-content">
-                        <h3>المدارات d</h3>
-                        <p>المدارات d لها أشكال أكثر تعقيداً تشبه الأوراق الأربعة. لها لكم مداري l = 2 وتحتوي على 5 مدارات فرعية. مهمة في فهم خواص عناصر الانتقال.</p>
-                    </div>
-                </div>
-                
-                <div class="wave-item">
-                    <div class="wave-icon">
-                        <i class="fas fa-snowflake"></i>
-                    </div>
-                    <div class="wave-content">
-                        <h3>المدارات f</h3>
-                        <p>المدارات f لها أشكال معقدة جداً وتحتوي على 7 مدارات فرعية. لها لكم مداري l = 3 وتوجد في العناصر الأرضية النادرة. مهمة في فهم الخواص المغناطيسية.</p>
-                    </div>
+                <div class="theory-item">
+                    <h3><i class="fas fa-cube"></i> حلول معادلة شرودنجر</h3>
+                    <p>لحل معادلة شرودنجر لأنظمة بسيطة مثل جسيم في صندوق أو الذرة الهيدروجينية، نستخدم شروط الحدودية التي تفرض أن تكون دالة الموجة مستمرة وقابلة للتفاضل وأن تؤول إلى الصفر عند اللانهاية.</p>
+                    <p>هذه الشروط تؤدي إلى ظهور كمومية الطاقة، أي أن الطاقة لا يمكن أن تأخذ أي قيمة بل فقط قيمًا منفصلة (مكممة).</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Atomic Models Timeline -->
-    <section id="models" class="models">
+    <!-- Atomic Orbitals Section -->
+    <section class="orbitals" id="orbitals">
         <div class="container">
             <div class="section-title">
-                <h2>تطور نماذج الذرة</h2>
-                <p>رحلة تطور فهمنا لبنية الذرة عبر التاريخ</p>
+                <h2>المدارات الذرية</h2>
+                <p>المدارات الذرية هي مناطق في الفضاء حول النواة يوجد فيها احتمال كبير لوجود الإلكترون. تصفها أعداد الكم الرئيسية والثانوية والمغناطيسية</p>
             </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-year">1803</div>
-                        <div class="timeline-title">نموذج دالتون</div>
-                        <div class="timeline-desc">اقترح جون دالتون أن الذرة هي أصغر وحدة للمادة غير قابلة للتجزئة. اعتبر الذرات كرات صلبة غير قابلة للتقسيم.</div>
+            
+            <div class="orbitals-container">
+                <div class="orbital">
+                    <div class="orbital-shape">
+                        <div class="orbital-s"></div>
                     </div>
+                    <h3>مدار s</h3>
+                    <p>شكل كروي متماثل في جميع الاتجاهات. له عدد كم ثانوي l = 0. يحتوي على مدار واحد فقط لكل مستوى طاقة رئيسي.</p>
                 </div>
                 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-year">1897</div>
-                        <div class="timeline-title">اكتشاف الإلكترون</div>
-                        <div class="timeline-desc">اكتشف جوزيف طومسون الإلكترون واقترح نموذج "البودينغ" حيث تسبح الإلكترونات في "عجينة" موجبة الشحنة.</div>
+                <div class="orbital">
+                    <div class="orbital-shape">
+                        <div class="orbital-p"></div>
                     </div>
+                    <h3>مدار p</h3>
+                    <p>شكل كمثري (شكل ساعة رملية). له عدد كم ثانوي l = 1. يوجد ثلاثة مدارات p (px, py, pz) لكل مستوى طاقة رئيسي n ≥ 2.</p>
                 </div>
                 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-year">1911</div>
-                        <div class="timeline-title">نموذج رذرفورد</div>
-                        <div class="timeline-desc">اقترح إرنست رذرفورد أن الذرة تتكون من نواة كثيفة موجبة الشحنة وإلكترونات تدور حولها مثل الكواكب حول الشمس.</div>
+                <div class="orbital">
+                    <div class="orbital-shape">
+                        <div class="orbital-d"></div>
                     </div>
+                    <h3>مدار d</h3>
+                    <p>أشكال أكثر تعقيدًا. له عدد كم ثانوي l = 2. يوجد خمسة مدارات d لكل مستوى طاقة رئيسي n ≥ 3.</p>
+                </div>
+            </div>
+            
+            <div class="theory-container">
+                <div class="theory-item">
+                    <h3><i class="fas fa-atom"></i> أعداد الكم</h3>
+                    <p>تُوصف المدارات الذرية بأربعة أعداد كم:</p>
+                    <p>• <strong>العدد الكم الرئيسي (n):</strong> يحدد مستوى الطاقة وحجم المدار (n = 1, 2, 3, ...)</p>
+                    <p>• <strong>العدد الكم الثانوي (l):</strong> يحدد شكل المدار (l = 0, 1, 2, ..., n-1)</p>
+                    <p>• <strong>العدد الكم المغناطيسي (ml):</strong> يحدد اتجاه المدار في الفضاء (ml = -l, ..., +l)</p>
+                    <p>• <strong>العدد الكم المغزلي (ms):</strong> يحدد اتجاه دوران الإلكترون (ms = ±½)</p>
                 </div>
                 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-year">1913</div>
-                        <div class="timeline-title">نموذج بور</div>
-                        <div class="timeline-desc">أضاف نيلز بور مفهوم المستويات الكمية للطاقة. افترض أن الإلكترونات تدور في مدارات محددة دون أن تشع طاقة.</div>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-year">1926</div>
-                        <div class="timeline-title">نموذج شرودنجر</div>
-                        <div class="timeline-desc">طور إرفين شرودنجر النموذج الميكانيكي الكمي الحديث الذي يستخدم الدوال الموجية لوصف احتمالية وجود الإلكترون.</div>
-                    </div>
+                <div class="theory-item">
+                    <h3><i class="fas fa-layer-group"></i> مبدأ الاستبعاد لبولي</h3>
+                    <p>ينص مبدأ الاستبعاد لبولي على أنه لا يمكن لإلكترونين في نفس الذرة أن يمتلكا نفس مجموعة الأعداد الكم الأربعة. هذا المبدأ يفسر ترتيب الإلكترونات في المدارات وبنية الجدول الدوري.</p>
+                    <p>كل مدار يمكن أن يستوعب إلكترونين اثنين فقط بشرط أن يكون لهما مغزلان متعاكسان.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Applications Section -->
-    <section id="applications" class="applications">
+    <!-- Molecular Orbital Theory Section -->
+    <section class="molecular" id="molecular">
         <div class="container">
             <div class="section-title">
-                <h2>تطبيقات الكيمياء الكمية</h2>
-                <p>كيف تؤثر الكيمياء الكمية في حياتنا وتكنولوجيا المستقبل</p>
+                <h2>نظرية المدارات الجزيئية</h2>
+                <p>تفسر نظرية المدارات الجزيئية تكوين الروابط الكيميائية من خلال دمج المدارات الذرية لتكوين مدارات جزيئية تمتد على الذرة بأكملها</p>
             </div>
-            <div class="applications-grid">
-                <div class="app-card">
-                    <div class="app-icon">
-                        <i class="fas fa-microchip"></i>
+            
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-project-diagram"></i>
+                        <h3>أساسيات النظرية</h3>
                     </div>
-                    <div class="app-content">
-                        <h3>الحوسبة الكمية</h3>
-                        <p>تستخدم مبادئ التراكب والتشابك الكمي لبناء حواسيب فائقة السرعة قادرة على حل مشاكل معقدة لا تستطيع الحواسيب التقليدية حلها.</p>
+                    <div class="card-body">
+                        <p>تقترح نظرية المدارات الجزيئية أن عند تقارب ذرتين، تتداخل مداراتهما الذرية لتكوين مدارات جزيئية جديدة. هذه المدارات الجديدة:</p>
+                        <p>• <strong>المدارات الرابطة:</strong> طاقتها أقل من المدارات الذرية الأصلية</p>
+                        <p>• <strong>المدارات المضادة للرابطة:</strong> طاقتها أعلى من المدارات الذرية الأصلية</p>
+                        <p>• تمتد على كامل الجزيء وليست محصورة بين ذرتين فقط</p>
                     </div>
-                </div>
-                
-                <div class="app-card">
-                    <div class="app-icon">
-                        <i class="fas fa-laser"></i>
-                    </div>
-                    <div class="app-content">
-                        <h3>الليزر والبصريات</h3>
-                        <p>يعتمد عمل الليزر على مبدأ الانبعاث المحفز، وهو ظاهرة كمية حيث يصدر ذرات فوتونات متطابقة عند تحفيزها بشكل صحيح.</p>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
                     </div>
                 </div>
                 
-                <div class="app-card">
-                    <div class="app-icon">
-                        <i class="fas fa-dna"></i>
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-sitemap"></i>
+                        <h3>أنواع التداخل</h3>
                     </div>
-                    <div class="app-content">
-                        <h3>الكيمياء الحيوية</h3>
-                        <p>تفسر الكيمياء الكمية آليات التفاعلات الأنزيمية، نقل الطاقة في الخلايا، والتفاعلات الضوئية مثل عملية التمثيل الضوئي.</p>
+                    <div class="card-body">
+                        <p>يعتمد نوع المدار الجزيئي الناتج على طريقة تداخل المدارات الذرية:</p>
+                        <p>• <strong>التداخل الرأسي (σ):</strong> يحدث عندما تتداخل المدارات على طول المحور الرابط بين النواتين</p>
+                        <p>• <strong>التداخل الجانبي (π):</strong> يحدث عندما تتداخل المدارات بشكل موازٍ للمحور الرابط</p>
+                        <p>• التداخل الرأسي ينتج روابط أقوى من التداخل الجانبي</p>
                     </div>
-                </div>
-                
-                <div class="app-card">
-                    <div class="app-icon">
-                        <i class="fas fa-magnet"></i>
-                    </div>
-                    <div class="app-content">
-                        <h3>المواد المتقدمة</h3>
-                        <p>تساعد في تصميم مواد جديدة بخواص فريدة مثل الموصلات الفائقة، المواد المغناطيسية، والنانومواد المستخدمة في الإلكترونيات.</p>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
                     </div>
                 </div>
                 
-                <div class="app-card">
-                    <div class="app-icon">
-                        <i class="fas fa-pills"></i>
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>مخططات الطاقة</h3>
                     </div>
-                    <div class="app-content">
-                        <h3>تصميم الأدوية</h3>
-                        <p>تستخدم في تصميم الأدوية على المستوى الجزيئي، وفهم كيفية تفاعلها مع المستقبلات في الجسم، وتوقع فعاليتها وآثارها الجانبية.</p>
+                    <div class="card-body">
+                        <p>تُمثل مخططات الطاقة في نظرية المدارات الجزيئية ترتيب المدارات الجزيئية حسب طاقتها. هذه المخططات:</p>
+                        <p>• تسمح بتحديد ترتيب الإلكترونات في الجزيء</p>
+                        <p>• تحسب رتبة الرابطة (عدد الروابط) في الجزيء</p>
+                        <p>• تتنبأ بالخصائص المغناطيسية للجزيء (بارامغناطيسية أو ديامغناطيسية)</p>
                     </div>
-                </div>
-                
-                <div class="app-card">
-                    <div class="app-icon">
-                        <i class="fas fa-satellite"></i>
-                    </div>
-                    <div class="app-content">
-                        <h3>الطاقة النظيفة</h3>
-                        <p>تساعد في تطوير خلايا شمسية أكثر كفاءة، بطاريات تخزين الطاقة، وعمليات تحويل الطاقة المستدامة مثل انشطار الاندماج النووي.</p>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Calculator Section -->
-    <section id="calculator" class="calculator">
-        <div class="container">
-            <div class="section-title">
-                <h2>الحاسبة الكمية</h2>
-                <p>احسب القيم الكمية الأساسية باستخدام المعادلات الرياضية</p>
-            </div>
-            <div class="calculator-container">
-                <div class="calculator-tabs">
-                    <button class="tab-btn active" onclick="switchTab('energy')">طاقة المستوى</button>
-                    <button class="tab-btn" onclick="switchTab('wavelength')">طول موجة دي بروي</button>
-                    <button class="tab-btn" onclick="switchTab('uncertainty')">عدم اليقين</button>
+            
+            <div class="theory-container">
+                <div class="theory-item">
+                    <h3><i class="fas fa-compress-arrows-alt"></i> تكوين الروابط في ثنائي الهيدروجين</h3>
+                    <p>في جزيء H₂، يتداخل مدارا 1s الذريان لتكوين مدارين جزيئيين:</p>
+                    <p>• <strong>مدار σ₁s رابط:</strong> ناتج عن التداخل البناء، طاقته أقل من مدار 1s الذري</p>
+                    <p>• <strong>مدار σ*₁s مضاد للرابطة:</strong> ناتج عن التداخل الهدام، طاقته أعلى من مدار 1s الذري</p>
+                    <p>يحتوي مدار الرابطة على إلكترونين (واحد من كل ذرة)، بينما يظل مدار مضاد الرابطة فارغًا، مما يؤدي إلى تكوين رابطة واحدة قوية.</p>
                 </div>
                 
-                <!-- Energy Level Calculator Tab -->
-                <div id="energy-tab" class="tab-content active">
-                    <form id="energy-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="atomic-number">العدد الذري (Z):</label>
-                                <input type="number" id="atomic-number" min="1" value="1" placeholder="أدخل العدد الذري">
-                            </div>
-                            <div class="form-group">
-                                <label for="principal-n">الكم الرئيسي (n):</label>
-                                <input type="number" id="principal-n" min="1" value="1" placeholder="أدخل n">
-                            </div>
-                        </div>
-                        <button type="submit" class="btn">احسب الطاقة</button>
-                    </form>
-                    <div class="result-box" id="energy-result">
-                        <h4>النتيجة:</h4>
-                        <p id="energy-result-text"></p>
-                    </div>
-                </div>
-                
-                <!-- de Broglie Wavelength Calculator Tab -->
-                <div id="wavelength-tab" class="tab-content">
-                    <form id="wavelength-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="mass">الكتلة (m) بالكيلوجرام:</label>
-                                <input type="number" id="mass" step="1e-31" placeholder="9.109e-31">
-                            </div>
-                            <div class="form-group">
-                                <label for="velocity">السرعة (v) بالمتر/ثانية:</label>
-                                <input type="number" id="velocity" step="1e6" placeholder="2.19e6">
-                            </div>
-                        </div>
-                        <button type="submit" class="btn">احسب طول الموجة</button>
-                    </form>
-                    <div class="result-box" id="wavelength-result">
-                        <h4>النتيجة:</h4>
-                        <p id="wavelength-result-text"></p>
-                    </div>
-                </div>
-                
-                <!-- Uncertainty Principle Calculator Tab -->
-                <div id="uncertainty-tab" class="tab-content">
-                    <form id="uncertainty-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="delta-x">عدم اليقين في الموقع (Δx) بالمتر:</label>
-                                <input type="number" id="delta-x" step="1e-10" placeholder="1e-10">
-                            </div>
-                            <div class="form-group">
-                                <label for="delta-p">عدم اليقين في الزخم (Δp) بكجم·م/ث:</label>
-                                <input type="number" id="delta-p" step="1e-25" placeholder="1e-25">
-                            </div>
-                        </div>
-                        <button type="submit" class="btn">تحقق من مبدأ عدم اليقين</button>
-                    </form>
-                    <div class="result-box" id="uncertainty-result">
-                        <h4>النتيجة:</h4>
-                        <p id="uncertainty-result-text"></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Visualizations Section -->
-    <section id="visualizations" class="visualizations">
-        <div class="container">
-            <div class="section-title">
-                <h2>مرئيات تفاعلية</h2>
-                <p>استكشف المفاهيم الكمية بصرياً من خلال الرسوم المتحركة</p>
-            </div>
-            <div class="viz-grid">
-                <div class="viz-card">
-                    <div class="viz-display">
-                        <canvas id="orbital-canvas"></canvas>
-                    </div>
-                    <div class="viz-content">
-                        <h3>المدارات الذرية</h3>
-                        <p>تصور ثلاثي الأبعاد لأشكال المدارات الذرية المختلفة. قم بتغيير أرقام الكم الكمية لرؤية كيف يتغير شكل المدار.</p>
-                        <div class="viz-controls">
-                            <button class="viz-btn" onclick="drawOrbital('s')">مدار s</button>
-                            <button class="viz-btn" onclick="drawOrbital('p')">مدار p</button>
-                            <button class="viz-btn" onclick="drawOrbital('d')">مدار d</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="viz-card">
-                    <div class="viz-display">
-                        <canvas id="wave-canvas"></canvas>
-                    </div>
-                    <div class="viz-content">
-                        <h3>دوال الموجة</h3>
-                        <p>عرض ديناميكي لدوال الموجة الكمية. لاحظ كيف تتغير دالة الموجة مع تغير الزمن والموقع.</p>
-                        <div class="viz-controls">
-                            <button class="viz-btn" onclick="animateWave()">تشغيل</button>
-                            <button class="viz-btn" onclick="pauseWave()">إيقاف</button>
-                            <button class="viz-btn" onclick="resetWave()">إعادة</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="viz-card">
-                    <div class="viz-display">
-                        <canvas id="tunnel-canvas"></canvas>
-                    </div>
-                    <div class="viz-content">
-                        <h3>النفق الكمي</h3>
-                        <p>محاكاة لظاهرة النفق الكمي حيث يمكن للجسيمات المرور عبر حواجز طاقة أعلى من طاقتها.</p>
-                        <div class="viz-controls">
-                            <button class="viz-btn" onclick="startTunnel()">ابدأ المحاكاة</button>
-                            <button class="viz-btn" onclick="changeBarrier()">تغيير الحاجز</button>
-                        </div>
-                    </div>
+                <div class="theory-item">
+                    <h3><i class="fas fa-balance-scale"></i> مقارنة مع نظرية رابطة التكافؤ</h3>
+                    <p>تفوق نظرية المدارات الجزيئية نظرية رابطة التكافؤ في عدة جوانب:</p>
+                    <p>• تشرح بشكل أفضل خصائص الجزيئات التي تحتوي على إلكترونات غير مزدوجة</p>
+                    <p>• تفسر الخصائص المغناطيسية للجزيئات بدقة</p>
+                    <p>• توصف الروابط في الجزيئات المعقدة مثل البنزين بشكل أفضل</p>
+                    <p>• تفسر ظاهرة الرنين في الجزيئات</p>
                 </div>
             </div>
         </div>
@@ -1364,67 +838,48 @@
     <section class="faq">
         <div class="container">
             <div class="section-title">
-                <h2>الأسئلة الشائعة</h2>
-                <p>إجابات على الأسئلة الأكثر شيوعاً حول الكيمياء الكمية</p>
+                <h2>أسئلة شائعة</h2>
+                <p>إجابات على الأسئلة الأكثر شيوعًا حول ميكانيكا الكم</p>
             </div>
+            
             <div class="faq-container">
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>ما الفرق بين الفيزياء الكمية والكيمياء الكمية؟</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <span>ما الفرق بين ميكانيكا الكم والفيزياء الكلاسيكية؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>الفيزياء الكمية تدرس المبادئ الأساسية لسلوك الجسيمات على المستوى المجهري، بينما الكيمياء الكمية تطبق هذه المبادئ على الأنظمة الكيميائية مثل الذرات والجزيئات والروابط الكيميائية. الكيمياء الكمية تركز على تطبيق النظرية لفهم التفاعلات الكيميائية وبنية المادة.</p>
+                        <p>الفيزياء الكلاسيكية تصف سلوك الأجسام الكبيرة (على مستوى الإنسان وما فوق) بقوانين حتمية دقيقة، بينما ميكانيكا الكم تصف سلوك الجسيمات الدقيقة (مثل الإلكترونات والذرات) بقوانين احتمالية. في ميكانيكا الكم، تظهر ظواهر غريبة مثل ازدواجية الموجة والجسيم، والكمومية، والتشابك الكمي، والتي لا وجود لها في الفيزياء الكلاسيكية.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>لماذا لا نلاحظ الظواهر الكمية في حياتنا اليومية؟</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <span>لماذا نستخدم ميكانيكا الكم في الكيمياء؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>الظواهر الكمية تصبح ملحوظة فقط على المقاييس الصغيرة جداً (مستوى الذرات والإلكترونات). على المقاييس الكبيرة، تتراجع التأثيرات الكمية بسبب مبدأ التماسك الكمي، حيث تفقد الجسيمات خصائصها الكمية عند التفاعل مع البيئة المحيطة.</p>
+                        <p>ميكانيكا الكم ضرورية لفهم سلوك الإلكترونات في الذرات والجزيئات، وهو ما يحدد الخصائص الكيميائية للمواد. بدون ميكانيكا الكم، لا يمكن تفسير بنية الذرة، وتكوين الروابط الكيميائية، والطيف الذري، والخواص المغناطيسية، والعديد من الظواهر الكيميائية الأخرى. ميكانيكا الكم توفر الإطار النظري لفهم التفاعلات الكيميائية على المستوى الجزيئي.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>ما هو مبدأ القط الكمي؟</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <span>ما هي أهم تطبيقات ميكانيكا الكم في حياتنا اليومية؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>مبدأ القط الكمي هو تجربة فكرية اقترحها إرفين شرودنجر لتوضيح مفهوم التراكب الكمي. في التجربة، يكون القط في حالة تراكب بين الحياة والموت حتى يتم فتح الصندوق ومراقبته. يوضح المبدأ كيف أن القياس يؤثر على النظام الكمي.</p>
+                        <p>تطبيقات ميكانيكا الكم في حياتنا اليومية تشمل: الليزر المستخدم في أجهزة القرص المضغوط والطباعة، والأشعة السينية في التصوير الطبي، والرقائق الإلكترونية في أجهزة الكمبيوتر والهواتف الذكية، والتصوير بالرنين المغناطيسي (MRI)، ومواد فائقة التوصيل، وتقنيات النانو، والعديد من الأدوية التي صُممت باستخدام محاكاة كمومية.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>كيف تفسر الكيمياء الكمية الروابط الكيميائية؟</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <span>ما هو التشابك الكمي؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>تفسر الكيمياء الكمية الروابط الكيميائية من خلال تداخل الدوال الموجية للإلكترونات. الرابطة التساهمية تحدث عندما تتداخل الدوال الموجية بشكل بناء، بينما الرابطة الأيونية تحدث بسبب نقل الإلكترونات بين الذرات.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>ما هي تطبيقات التشابك الكمي؟</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>التشابك الكمي له تطبيقات في التشفير الكمي الآمن، الحوسبة الكمية، والاتصالات الفائقة السرعة. يستخدم في أنظمة الكم الكمومية وفي تطوير تقنيات المستقبل مثل الإنترنت الكمي.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>هل يمكن تطبيق مبادئ الكم على الأنظمة البيولوجية؟</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>نعم، هناك مجال يسمى البيولوجيا الكمية يدرس التأثيرات الكمية في الأنظمة البيولوجية. تشمل الأمثلة عملية التمثيل الضوئي، التشاب الكمي في الطيور المهاجرة، وآلية عمل الأنزيمات على المستوى الجزيئي.</p>
+                        <p>التشابك الكمي هو ظاهرة غريبة في ميكانيكا الكم حيث يرتبط جسيمان أو أكثر بطريقة تجعل خصائصهما الكمومية تعتمد على بعضها البعض، حتى لو كانا متباعدين بمسافات كبيرة. عندما يتم قياس خاصية أحد الجسيمات المتشابكة، تتحدد فورًا خاصية الجسيم الآخر، بغض النظر عن المسافة بينهما. هذه الظاهرة أساس الحوسبة الكمومية والتشفير الكمومي.</p>
                     </div>
                 </div>
             </div>
@@ -1436,8 +891,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>موقع الكيمياء الكمية</h3>
-                    <p>منصة تعليمية متخصصة في تقديم محتوى عالي الجودة حول مبادئ وتطبيقات الكيمياء الكمية في العلم والتكنولوجيا.</p>
+                    <h3>عن الموقع</h3>
+                    <p>موقع تعليمي يقدم مقدمة شاملة في ميكانيكا الكم والكيمياء الكمومية، يهدف إلى تبسيط المفاهيم المعقدة وتقديمها بطريقة سهلة وممتعة.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1450,26 +905,26 @@
                     <h3>روابط سريعة</h3>
                     <ul>
                         <li><a href="#home">الرئيسية</a></li>
-                        <li><a href="#intro">مقدمة</a></li>
-                        <li><a href="#concepts">المفاهيم</a></li>
-                        <li><a href="#wave">دوال الموجة</a></li>
-                        <li><a href="#models">النماذج</a></li>
+                        <li><a href="#waves">الموجات والجسيمات</a></li>
+                        <li><a href="#equation">معادلة شرودنجر</a></li>
+                        <li><a href="#orbitals">المدارات الذرية</a></li>
+                        <li><a href="#molecular">نظرية المدارات الجزيئية</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>موارد تعليمية</h3>
+                    <h3>المفاهيم الأساسية</h3>
                     <ul>
-                        <li><a href="#">دروس تفاعلية</a></li>
-                        <li><a href="#">فيديوهات شرح</a></li>
-                        <li><a href="#">تمارين محلولة</a></li>
-                        <li><a href="#">مراجع علمية</a></li>
-                        <li><a href="#">امتحانات تجريبية</a></li>
+                        <li><a href="#">مبدأ دي برولي</a></li>
+                        <li><a href="#">مبدأ هايزنبرغ</a></li>
+                        <li><a href="#">دالة الموجة</a></li>
+                        <li><a href="#">أعداد الكم</a></li>
+                        <li><a href="#">التشابك الكمي</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>معلومات التواصل</h3>
+                    <h3>تواصل معنا</h3>
                     <ul>
                         <li><i class="fas fa-envelope"></i> info@quantumchemistry.edu</li>
                         <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
@@ -1479,325 +934,81 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 موقع الكيمياء الكمية. جميع الحقوق محفوظة.</p>
+                <p>&copy; 2023 ميكانيكا الكم - مقدمة في الكيمياء الكمومية. جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Menu Toggle for Mobile
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
-
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Tab Switching
-        function switchTab(tabName) {
-            // Hide all tabs
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Remove active class from all buttons
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Show selected tab
-            document.getElementById(tabName + '-tab').classList.add('active');
-            
-            // Add active class to clicked button
-            event.target.classList.add('active');
-        }
-
-        // Energy Level Calculator
-        document.getElementById('energy-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const Z = parseFloat(document.getElementById('atomic-number').value);
-            const n = parseFloat(document.getElementById('principal-n').value);
-            
-            // E = -13.6 * Z² / n² eV
-            const energy = -13.6 * Math.pow(Z, 2) / Math.pow(n, 2);
-            
-            const resultText = `طاقة المستوى = ${energy.toFixed(4)} إلكترون فولت<br>
-                              المعادلة المستخدمة: E = -13.6 × Z² / n²<br>
-                              العدد الذري (Z) = ${Z}<br>
-                              الكم الرئيسي (n) = ${n}<br>
-                              <br>
-                              ${energy < 0 ? 'الإلكترون في حالة مرتبطة' : 'الإلكترون حر'}`;
-            
-            document.getElementById('energy-result-text').innerHTML = resultText;
-            document.getElementById('energy-result').style.display = 'block';
-        });
-
-        // de Broglie Wavelength Calculator
-        document.getElementById('wavelength-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const m = parseFloat(document.getElementById('mass').value);
-            const v = parseFloat(document.getElementById('velocity').value);
-            
-            if (isNaN(m) || isNaN(v)) {
-                alert('الرجاء إدخال قيم صحيحة');
-                return;
-            }
-            
-            const h = 6.626e-34; // Planck's constant
-            const wavelength = h / (m * v);
-            
-            const resultText = `طول موجة دي بروي = ${wavelength.toExponential(3)} متر<br>
-                              المعادلة المستخدمة: λ = h / (m × v)<br>
-                              ثابت بلانك (h) = ${h.toExponential(3)} جول·ث<br>
-                              الكتلة (m) = ${m.toExponential(3)} كجم<br>
-                              السرعة (v) = ${v.toExponential(3)} م/ث`;
-            
-            document.getElementById('wavelength-result-text').innerHTML = resultText;
-            document.getElementById('wavelength-result').style.display = 'block';
-        });
-
-        // Uncertainty Principle Calculator
-        document.getElementById('uncertainty-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const deltaX = parseFloat(document.getElementById('delta-x').value);
-            const deltaP = parseFloat(document.getElementById('delta-p').value);
-            
-            if (isNaN(deltaX) || isNaN(deltaP)) {
-                alert('الرجاء إدخال قيم صحيحة');
-                return;
-            }
-            
-            const hbar = 1.055e-34; // Reduced Planck's constant
-            const product = deltaX * deltaP;
-            const minimum = hbar / 2;
-            
-            const resultText = `حاصل عدم اليقين = ${product.toExponential(3)}<br>
-                              الحد الأدنى المسموح = ${minimum.toExponential(3)}<br>
-                              <br>
-                              ${product >= minimum ? 
-                                '✓ يطابق مبدأ عدم اليقين لهايزنبرغ' : 
-                                '✗ ينتهك مبدأ عدم اليقين لهايزنبرغ'}`;
-            
-            document.getElementById('uncertainty-result-text').innerHTML = resultText;
-            document.getElementById('uncertainty-result').style.display = 'block';
-        });
-
         // FAQ Accordion
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', function() {
-                const faqItem = this.parentElement;
-                const isActive = faqItem.classList.contains('active');
-                
-                // Close all FAQ items
-                document.querySelectorAll('.faq-item').forEach(item => {
-                    item.classList.remove('active');
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const icon = question.querySelector('.faq-icon');
+                    
+                    // Close all other answers
+                    faqQuestions.forEach(otherQuestion => {
+                        if (otherQuestion !== question) {
+                            const otherAnswer = otherQuestion.nextElementSibling;
+                            const otherIcon = otherQuestion.querySelector('.faq-icon');
+                            
+                            otherAnswer.classList.remove('active');
+                            otherIcon.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current answer
+                    answer.classList.toggle('active');
+                    icon.classList.toggle('active');
                 });
-                
-                // Open clicked item if it wasn't active
-                if (!isActive) {
-                    faqItem.classList.add('active');
-                }
             });
-        });
-
-        // Visualizations
-        let animationId;
-
-        function drawOrbital(type) {
-            const canvas = document.getElementById('orbital-canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
             
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#6366f1';
-            ctx.strokeStyle = '#8b5cf6';
-            ctx.lineWidth = 2;
+            // Smooth scrolling for navigation links
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
             
-            const centerX = canvas.width / 2;
-            const centerY = canvas.height / 2;
-            
-            if (type === 's') {
-                // Draw s orbital (sphere)
-                ctx.beginPath();
-                ctx.arc(centerX, centerY, 80, 0, 2 * Math.PI);
-                ctx.globalAlpha = 0.3;
-                ctx.fill();
-                ctx.globalAlpha = 1;
-                ctx.stroke();
-            } else if (type === 'p') {
-                // Draw p orbital (dumbbell)
-                ctx.save();
-                ctx.translate(centerX, centerY);
-                
-                // Upper lobe
-                ctx.beginPath();
-                ctx.ellipse(0, -40, 30, 60, 0, 0, 2 * Math.PI);
-                ctx.globalAlpha = 0.3;
-                ctx.fill();
-                ctx.globalAlpha = 1;
-                ctx.stroke();
-                
-                // Lower lobe
-                ctx.beginPath();
-                ctx.ellipse(0, 40, 30, 60, 0, 0, 2 * Math.PI);
-                ctx.globalAlpha = 0.3;
-                ctx.fill();
-                ctx.globalAlpha = 1;
-                ctx.stroke();
-                
-                ctx.restore();
-            } else if (type === 'd') {
-                // Draw d orbital (complex shape)
-                ctx.save();
-                ctx.translate(centerX, centerY);
-                
-                // Draw four lobes
-                for (let i = 0; i < 4; i++) {
-                    ctx.save();
-                    ctx.rotate((i * Math.PI) / 2);
-                    ctx.beginPath();
-                    ctx.ellipse(40, 0, 25, 40, 0, 0, 2 * Math.PI);
-                    ctx.globalAlpha = 0.3;
-                    ctx.fill();
-                    ctx.globalAlpha = 1;
-                    ctx.stroke();
-                    ctx.restore();
-                }
-                
-                ctx.restore();
-            }
-        }
-
-        let waveTime = 0;
-        function animateWave() {
-            const canvas = document.getElementById('wave-canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-            
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            ctx.strokeStyle = '#ec4899';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            
-            for (let x = 0; x < canvas.width; x++) {
-                const y = canvas.height / 2 + 50 * Math.sin((x / 50) + waveTime);
-                if (x === 0) {
-                    ctx.moveTo(x, y);
-                } else {
-                    ctx.lineTo(x, y);
-                }
-            }
-            
-            ctx.stroke();
-            
-            waveTime += 0.1;
-            animationId = requestAnimationFrame(animateWave);
-        }
-
-        function pauseWave() {
-            cancelAnimationFrame(animationId);
-        }
-
-        function resetWave() {
-            cancelAnimationFrame(animationId);
-            waveTime = 0;
-            const canvas = document.getElementById('wave-canvas');
-            const ctx = canvas.getContext('2d');
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
-
-        function startTunnel() {
-            const canvas = document.getElementById('tunnel-canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-            
-            let particleX = 50;
-            const barrierX = canvas.width / 2;
-            const barrierWidth = 50;
-            const barrierHeight = canvas.height;
-            
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                // Draw barrier
-                ctx.fillStyle = '#64748b';
-                ctx.fillRect(barrierX, 0, barrierWidth, barrierHeight);
-                
-                // Draw particle
-                ctx.fillStyle = '#ec4899';
-                ctx.beginPath();
-                ctx.arc(particleX, canvas.height / 2, 10, 0, 2 * Math.PI);
-                ctx.fill();
-                
-                // Move particle
-                particleX += 2;
-                
-                // Quantum tunneling effect
-                if (particleX > barrierX && particleX < barrierX + barrierWidth) {
-                    // Particle is tunneling
-                    ctx.globalAlpha = 0.3;
-                    ctx.beginPath();
-                    ctx.arc(particleX, canvas.height / 2, 10, 0, 2 * Math.PI);
-                    ctx.fill();
-                    ctx.globalAlpha = 1;
-                }
-                
-                if (particleX < canvas.width) {
-                    requestAnimationFrame(animate);
-                }
-            }
-            
-            animate();
-        }
-
-        function changeBarrier() {
-            alert('سيتم تغيير ارتفاع الحاجز. هذه الميزة قيد التطوير.');
-        }
-
-        // Initialize visualizations on page load
-        window.addEventListener('load', function() {
-            drawOrbital('s');
-        });
-
-        // Add scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
             });
-        }, observerOptions);
-
-        // Observe all sections
-        document.querySelectorAll('section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(section);
+            
+            // Add animation on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Elements to animate
+            const animateElements = document.querySelectorAll('.card, .orbital, .theory-item');
+            
+            animateElements.forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
         });
     </script>
 </body>

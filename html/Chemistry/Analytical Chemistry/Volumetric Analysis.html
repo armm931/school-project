@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التحليل الحجمي - دليل شامل لأنواع المعايرات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --info: #16a085;
+            --light: #ecf0f1;
+            --dark: #34495e;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: var(--dark);
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            color: var(--accent);
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(52, 152, 219, 0.9)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title .divider {
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 0 auto;
+        }
+
+        /* Introduction Cards */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .intro-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .intro-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .intro-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .intro-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        /* Titration Types */
+        .titration-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .titration-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .titration-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .titration-header {
+            padding: 1.5rem;
+            text-align: center;
+            color: white;
+        }
+
+        .acid-base { background: linear-gradient(135deg, var(--accent), #e67e22); }
+        .redox { background: linear-gradient(135deg, var(--success), #2ecc71); }
+        .precipitation { background: linear-gradient(135deg, var(--info), #1abc9c); }
+        .complexometric { background: linear-gradient(135deg, var(--warning), #f1c40f); }
+
+        .titration-header i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .titration-header h3 {
+            font-size: 1.5rem;
+        }
+
+        .titration-body {
+            padding: 1.5rem;
+        }
+
+        .titration-body h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .titration-body ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .titration-body li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-right: 1.5rem;
+        }
+
+        .titration-body li:before {
+            content: "•";
+            position: absolute;
+            right: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* Interactive Demo */
+        .demo-container {
+            background: linear-gradient(135deg, #f5f7fa, #e4e8f0);
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .demo-controls {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        select, input[type="number"] {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--secondary);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            min-width: 150px;
+        }
+
+        .demo-result {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: right;
+        }
+
+        .demo-result h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        /* Example Section */
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .example-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border-right: 4px solid var(--secondary);
+        }
+
+        .example-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .example-card p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .demo-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tab {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border: 2px solid var(--secondary);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tab:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .tab.active {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-flask"></i>
+                <span>التحليل الحجمي</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#introduction">مقدمة</a></li>
+                    <li><a href="#types">أنواع المعايرات</a></li>
+                    <li><a href="#examples">أمثلة</a></li>
+                    <li><a href="#calculator">حاسبة المعايرة</a></li>
+                    <li><a href="#contact">تواصل</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>التحليل الحجمي الشامل</h1>
+            <p>دليلك المتكامل لفهم جميع أنواع المعايرات الكيميائية وتطبيقاتها العملية</p>
+            <a href="#types" class="btn">استكشف الأنواع</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Introduction Section -->
+        <section id="introduction" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>ما هو التحليل الحجمي؟</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="intro-grid">
+                    <div class="intro-card">
+                        <i class="fas fa-vial"></i>
+                        <h3>التعريف</h3>
+                        <p>التحليل الحجمي هو طريقة كمية لتحديد تركيز مادة معروفة التركيز (المعايرة) عن طريق إضافتها تدريجياً إلى حجم معلوم من المحلول المراد تحليله حتى نقطة التكافؤ.</p>
+                    </div>
+                    
+                    <div class="intro-card">
+                        <i class="fas fa-balance-scale"></i>
+                        <h3>المبدأ الأساسي</h3>
+                        <p>يعتمد على قياس حجم المحلول القياسي المطلوب للتفاعل الكامل مع المادة المراد تحليلها، حيث يتم حساب التركيز باستخدام العلاقة: M₁V₁ = M₂V₂</p>
+                    </div>
+                    
+                    <div class="intro-card">
+                        <i class="fas fa-microscope"></i>
+                        <h3>الأهمية</h3>
+                        <p>يستخدم على نطاق واسع في المختبرات الكيميائية، الصناعات الدوائية، مراقبة الجودة، التحليلات البيئية، والبحث العلمي.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Titration Types Section -->
+        <section id="types" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>أنواع المعايرات الرئيسية</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="titration-types">
+                    <!-- Acid-Base Titration -->
+                    <div class="titration-card">
+                        <div class="titration-header acid-base">
+                            <i class="fas fa-tint"></i>
+                            <h3>المعايرة الحمضية - القاعدية</h3>
+                        </div>
+                        <div class="titration-body">
+                            <h4>المبدأ:</h4>
+                            <p>تفاعل بين حمض وقاعدة لإنتاج ملح وماء. يعتمد على تفاعل تعادل الحمض والقاعدة.</p>
+                            
+                            <h4>الدلائل المستخدمة:</h4>
+                            <ul>
+                                <li>الفينولفثالين (8.3 - 10.0)</li>
+                                <li>الميثيل البرتقالي (3.1 - 4.4)</li>
+                                <li>بروموثيمول بلو (6.0 - 7.6)</li>
+                            </ul>
+                            
+                            <h4>التطبيقات:</h4>
+                            <ul>
+                                <li>تحديد حموضة الأطعمة والمشروبات</li>
+                                <li>تحليل المياه</li>
+                                <li>الصناعات الدوائية</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Redox Titration -->
+                    <div class="titration-card">
+                        <div class="titration-header redox">
+                            <i class="fas fa-exchange-alt"></i>
+                            <h3>معايرة الأكسدة والاختزال</h3>
+                        </div>
+                        <div class="titration-body">
+                            <h4>المبدأ:</h4>
+                            <p>تفاعل بين عامل مؤكسد وعامل مختزل حيث يحدث انتقال للإلكترونات بين المتفاعلات.</p>
+                            
+                            <h4>العوامل الشائعة:</h4>
+                            <ul>
+                                <li>برمنجانات البوتاسيوم (KMnO₄)</li>
+                                <li>ثيوكبريتات الصوديوم (Na₂S₂O₃)</li>
+                                <li>يود (I₂)</li>
+                                <li>ثنائي كرومات البوتاسيوم (K₂Cr₂O₇)</li>
+                            </ul>
+                            
+                            <h4>التطبيقات:</h4>
+                            <ul>
+                                <li>تحديد محتوى الحديد في الخامات</li>
+                                <li>تحليل فيتامين C</li>
+                                <li>تحديد الأكسجين المذاب في الماء</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Precipitation Titration -->
+                    <div class="titration-card">
+                        <div class="titration-header precipitation">
+                            <i class="fas fa-cloud"></i>
+                            <h3>معايرات الترسيب</h3>
+                        </div>
+                        <div class="titration-body">
+                            <h4>المبدأ:</h4>
+                            <p>تفاعل يؤدي إلى تكوين راسب غير قابل للذوبان. يتم تحديد نقطة التكافؤ عندما يكتمل الترسيب.</p>
+                            
+                            <h4>الدلائل المستخدمة:</h4>
+                            <ul>
+                                <li>كرومات البوتاسيوم (طريقة مور)</li>
+                                <li>فلوريسين (طريقة فاينس)</li>
+                                <li>دلائل الامتزاز</li>
+                            </ul>
+                            
+                            <h4>التطبيقات:</h4>
+                            <ul>
+                                <li>تحديد الكلوريدات في الماء</li>
+                                <li>تحليل الفضة في المعادن</li>
+                                <li>تحديد الهاليدات في العينات البيولوجية</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Complexometric Titration -->
+                    <div class="titration-card">
+                        <div class="titration-header complexometric">
+                            <i class="fas fa-project-diagram"></i>
+                            <h3>معايرات التعقيد</h3>
+                        </div>
+                        <div class="titration-body">
+                            <h4>المبدأ:</h4>
+                            <p>تكوين معقدات تناسقية بين أيون الفلز والمادة المعقدة. تستخدم مركبات EDTA بشكل شائع.</p>
+                            
+                            <h4>الدلائل المستخدمة:</h4>
+                            <ul>
+                                <li>إريوكروم أسود T</li>
+                                <li>موركسيليد</li>
+                                <li>كالسين</li>
+                                <li>زيلينول البرتقالي</li>
+                            </ul>
+                            
+                            <h4>التطبيقات:</h4>
+                            <ul>
+                                <li>تحديد عسرة الماء</li>
+                                <li>تحليل المعادن الثقيلة</li>
+                                <li>التحليلات الدوائية والغذائية</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Examples Section -->
+        <section id="examples" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>أمثلة عملية</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="tabs">
+                    <div class="tab active" onclick="showTab('acid-examples')">حمضية-قاعدية</div>
+                    <div class="tab" onclick="showTab('redox-examples')">أكسدة-اختزال</div>
+                    <div class="tab" onclick="showTab('precip-examples')">ترسيب</div>
+                    <div class="tab" onclick="showTab('complex-examples')">تعقيد</div>
+                </div>
+                
+                <!-- Acid-Base Examples -->
+                <div id="acid-examples" class="tab-content active">
+                    <div class="example-grid">
+                        <div class="example-card">
+                            <h4>مثال 1: معايرة حمض الهيدروكلوريك</h4>
+                            <p>إذا تم معايرة 25 مل من حمض الهيدروكلوريك المجهول التركيز مع 0.1 M من هيدروكسيد الصوديوم، واستهلك 18.5 مل من القاعدة للوصول إلى نقطة التكافؤ. احسب تركيز الحمض.</p>
+                        </div>
+                        <div class="example-card">
+                            <h4>مثال 2: تحديد حموضة الخل</h4>
+                            <p>يتم تحديد تركيز حمض الخليك في الخل التجاري عن طريق المعايرة مع هيدروكسيد الصوديوم القياسي باستخدام الفينولفثالين كدليل.</p>
+                        </div>
+                        <div class="example-card">
+                            <h4>مثال 3: تحليل مضادات الحموضة</h4>
+                            <p>تستخدم المعايرة الحمضية-القاعدية لتحديد فعالية أقراص مضادات الحموضة عن طريق معايرتها مع حمض الهيدروكلوريك.</p>
+                        </div>
+                        <div class="example-card">
+                            <h4>مثال 4: تحديد القلوية في المياه</h4>
+                            <p>تحديد تركيز الكربونات والبيكربونات في عينات الماء باستخدام المعايرة بالحمض مع دلائل مختلفة.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Redox Examples -->
+                <div id="redox-examples" class="tab-content">
+                    <div class="example-grid">
+                        <div class="example-card">
+                            <h4>مثال 1: تحديد محتوى الحديد</h4>
+                            <p>تحديد تركيز أيونات الحديد الثنائية في العينة باستخدام برمنجانات البوتاسيوم كعامل مؤكسد في وسط حمضي.</p>
+                        </div>
+                        <div class="example-card">
+                            <h4>مثال 2: تحليل فيتامين C</h4>
+                            <p>يتم تحديد تركيز حمض الأسكوربيك (فيتامين C) في عصير البرتقال عن طريق المعايرة مع أيود (I₂).</p>
+                        </div>
+                        <div class="example-card">
+                            <h4>مثال 3: تحديد البيروكسيد</h4>
+                            <p>تحديد تركيز بيروكسيد الهيدروجين في محلول التجارب عن طريق المعايرة مع برمنجانات البوتاسيوم.</p>
+                        </div>
+                        <div class="example-card">
+                            <h4>مثال 4: تحديد الكبريتيت</h4>
+                            <p>تحديد كبريتيت الصوديوم في المواد الغذائية الحافظة باستخدام اليود كعامل مؤكسد.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Precipitation Examples -->
+                <div id="precip-examples" class="tab-content">
+                    <div class="example-grid">
+                        <div class="example-card">
+                            <h4>مثال 1: تحديد الكلوريدات</h4>
+                            <p>تحديد تركيز أيونات الكلوريد في مياه الشرب باستخدام نترات الفضة كمعيار وكرومات البوتاسيوم كدليل (طريقة مور).</p>
+                        </div>
+                        <div class="example-card">
+                            <h4>مثال 2: تحليل الفضة</h4>
+                            <p>تحديد نقاوة الفضة في المجوهرات عن طريق المعايرة مع ثيوسيانات البوتاسيوم.</p>
+                        </div>
+                        <div class="example-card">
+                            <h4>مثال 3: تحديد السيانيد</h4>
+                            <p>تحديد تركيز أيونات السيانيد في النفايات الصناعية باستخدام نترات الفضة.</p>
+                        </div>
+                        <div class="example-card">
+                            <h4>مثال 4: تحليل الهاليدات</h4>
+                            <p>تحديد تركيز الكلوريد والبروميد واليوديد في العينات المختلطة باستخدام طرق المعايرة الترسيبية.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Complexometric Examples -->
+                <div id="complex-examples" class="tab-content">
+                    <div class="example-grid">
+                        <div class="example-card">
+                            <h4>مثال 1: تحديد عسرة الماء</h4>
+                            <p>تحديد تركيز أيونات الكالسيوم والمغنيسيوم في عينات الماء باستخدام EDTA كمعيار وإريوكروم أسود T كدليل.</p>
+                        </div>
+                        <div class="example-card">
+                            <h4>مثال 2: تحليل النحاس</h4>
+                            <p>تحديد تركيز أيونات النحاس الثنائية في المحاليل باستخدام EDTA في وسط قاعدي.</p>
+                        </div>
+                        <div class="example-card">
+                            <h4>مثال 3: تحديد الزنك</h4>
+                            <p>تحديد تركيز الزنك في المكملات الغذائية عن طريق المعايرة مع EDTA بعد إخفاء أيونات أخرى.</p>
+                        </div>
+                        <div class="example-card">
+                            <h4>مثال 4: تحليل الكالسيوم</h4>
+                            <p>تحديد محتوى الكالسيوم في منتجات الألبان والأدوية باستخدام EDTA ودليل كالسين.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calculator Section -->
+        <section id="calculator" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>حاسبة المعايرة التفاعلية</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="demo-container">
+                    <p>استخدم هذه الحاسبة لحساب تركيز المادة المجهولة في المعايرة</p>
+                    
+                    <div class="demo-controls">
+                        <div class="control-group">
+                            <label>نوع المعايرة</label>
+                            <select id="titration-type">
+                                <option value="acid-base">حمضية-قاعدية</option>
+                                <option value="redox">أكسدة-اختزال</option>
+                                <option value="precipitation">ترسيب</option>
+                                <option value="complexometric">تعقيد</option>
+                            </select>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>تركيز المعيار (M)</label>
+                            <input type="number" id="standard-conc" value="0.1" step="0.01" min="0">
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>حجم المعيار (مل)</label>
+                            <input type="number" id="standard-volume" value="25" step="0.1" min="0">
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>حجم العينة (مل)</label>
+                            <input type="number" id="sample-volume" value="20" step="0.1" min="0">
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>عامل التكافؤ</label>
+                            <input type="number" id="equivalence-factor" value="1" step="0.1" min="0.1">
+                        </div>
+                    </div>
+                    
+                    <button class="btn" onclick="calculateConcentration()">احسب التركيز</button>
+                    
+                    <div class="demo-result" id="result" style="display: none;">
+                        <h3>النتائج</h3>
+                        <div class="result-item">
+                            <span>تركيز المعيار:</span>
+                            <span id="std-conc-result">0.1 M</span>
+                        </div>
+                        <div class="result-item">
+                            <span>حجم المعيار المستهلك:</span>
+                            <span id="std-vol-result">25.0 مل</span>
+                        </div>
+                        <div class="result-item">
+                            <span>حجم العينة:</span>
+                            <span id="sample-vol-result">20.0 مل</span>
+                        </div>
+                        <div class="result-item">
+                            <span>تركيز العينة:</span>
+                            <span id="sample-conc-result">0.125 M</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن الموقع</h3>
+                    <p>منصة تعليمية متخصصة في التحليل الحجمي تقدم محتوى علمي دقيق وشامل لجميع أنواع المعايرات الكيميائية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#introduction">مقدمة</a></li>
+                        <li><a href="#types">أنواع المعايرات</a></li>
+                        <li><a href="#examples">أمثلة عملية</a></li>
+                        <li><a href="#calculator">حاسبة المعايرة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@volumetric-analysis.com</li>
+                        <li><i class="fas fa-phone"></i> +966 50 123 4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع التحليل الحجمي. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Calculator functionality
+        function calculateConcentration() {
+            const standardConc = parseFloat(document.getElementById('standard-conc').value);
+            const standardVolume = parseFloat(document.getElementById('standard-volume').value);
+            const sampleVolume = parseFloat(document.getElementById('sample-volume').value);
+            const equivalenceFactor = parseFloat(document.getElementById('equivalence-factor').value);
+            
+            // Calculate sample concentration using M1V1 = M2V2
+            const sampleConc = (standardConc * standardVolume * equivalenceFactor) / sampleVolume;
+            
+            // Display results
+            document.getElementById('std-conc-result').textContent = `${standardConc} M`;
+            document.getElementById('std-vol-result').textContent = `${standardVolume} مل`;
+            document.getElementById('sample-vol-result').textContent = `${sampleVolume} مل`;
+            document.getElementById('sample-conc-result').textContent = `${sampleConc.toFixed(4)} M`;
+            
+            // Show result section
+            document.getElementById('result').style.display = 'block';
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.intro-card, .titration-card, .example-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

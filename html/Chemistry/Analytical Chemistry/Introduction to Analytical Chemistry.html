@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مقدمة في الكيمياء التحليلية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap');
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .progress-bar {
+            transition: width 1s ease-in-out;
+        }
+        
+        .molecule {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-right: 40px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: #667eea;
+            border-radius: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            right: 9px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 20px);
+            background: #e5e7eb;
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <i class="fas fa-flask text-3xl"></i>
+                    <h1 class="text-2xl font-bold">الكيمياء التحليلية</h1>
+                </div>
+                <button id="menuToggle" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+                <ul id="navMenu" class="hidden md:flex space-x-6 space-x-reverse">
+                    <li><a href="#home" class="hover:text-purple-200 transition">الرئيسية</a></li>
+                    <li><a href="#definition" class="hover:text-purple-200 transition">التعريف</a></li>
+                    <li><a href="#importance" class="hover:text-purple-200 transition">الأهمية</a></li>
+                    <li><a href="#analysis-types" class="hover:text-purple-200 transition">أنواع التحليل</a></li>
+                    <li><a href="#interactive" class="hover:text-purple-200 transition">تفاعلي</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg text-white py-20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                        مقدمة في الكيمياء التحليلية
+                    </h2>
+                    <p class="text-xl mb-8 text-purple-100">
+                        اكتشف عالم التحليل الكيميائي وأساسياته التي تشكل حجر الزاوية في العلوم الكيميائية الحديثة
+                    </p>
+                    <div class="flex space-x-4 space-x-reverse">
+                        <button onclick="scrollToSection('definition')" class="bg-white text-purple-700 px-6 py-3 rounded-lg font-semibold hover:bg-purple-100 transition">
+                            ابدأ التعلم
+                        </button>
+                        <button onclick="scrollToSection('interactive')" class="border-2 border-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-700 transition">
+                            تجربة تفاعلية
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="molecule">
+                        <i class="fas fa-atom text-9xl opacity-80"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Definition Section -->
+    <section id="definition" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
+                <i class="fas fa-book-open text-purple-600 ml-2"></i>
+                تعريف الكيمياء التحليلية
+            </h2>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="fade-in">
+                    <div class="bg-gradient-to-r from-purple-50 to-pink-50 p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-semibold mb-4 text-purple-800">ما هي الكيمياء التحليلية؟</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            الكيمياء التحليلية هي فرع من فروع الكيمياء يهتم بدراسة طرق وأساليب تحديد التركيب الكيميائي للمواد، سواء كانت هذه المواد نقيّة أم مخاليط.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed">
+                            تهدف إلى تحديد هوية المكونات الكيميائية (التحليل الكيفي) وكمياتها النسبية أو المطلقة (التحليل الكمي) في العينات المختلفة.
+                        </p>
+                    </div>
+                </div>
+                <div class="fade-in">
+                    <div class="bg-gray-100 p-8 rounded-xl">
+                        <h4 class="text-xl font-semibold mb-4 text-gray-800">أهداف الكيمياء التحليلية</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 ml-2"></i>
+                                <span>تحديد هوية المكونات الكيميائية</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 ml-2"></i>
+                                <span>قياس تركيز المواد بدقة</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 ml-2"></i>
+                                <span>تطوير طرق تحليل جديدة</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 ml-2"></i>
+                                <span>ضمان جودة المنتجات</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Importance Section -->
+    <section id="importance" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
+                <i class="fas fa-star text-yellow-500 ml-2"></i>
+                أهمية الكيمياء التحليلية
+            </h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="card-hover bg-white p-6 rounded-xl shadow-md">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-industry text-4xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">الصناعة</h3>
+                    <p class="text-gray-600 text-center">
+                        مراقبة جودة المنتجات، تحديد الشوائب، وضمان الامتثال للمواصفات القياسية في الصناعات المختلفة.
+                    </p>
+                </div>
+                <div class="card-hover bg-white p-6 rounded-xl shadow-md">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-heartbeat text-4xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">الطب</h3>
+                    <p class="text-gray-600 text-center">
+                        تشخيص الأمراض، تحليل العينات البيولوجية، ومراقبة تركيز الأدوية في الدم.
+                    </p>
+                </div>
+                <div class="card-hover bg-white p-6 rounded-xl shadow-md">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-leaf text-4xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">البيئة</h3>
+                    <p class="text-gray-600 text-center">
+                        مراقبة تلوث الماء والهواء والتربة، وتحديد الملوثات الكيميائية في البيئة.
+                    </p>
+                </div>
+                <div class="card-hover bg-white p-6 rounded-xl shadow-md">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-shield-alt text-4xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">الأمن الغذائي</h3>
+                    <p class="text-gray-600 text-center">
+                        تحديد المكونات الغذائية، الكشف عن الملوثات، وضمان سلامة الأغذية.
+                    </p>
+                </div>
+                <div class="card-hover bg-white p-6 rounded-xl shadow-md">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-microscope text-4xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">البحث العلمي</h3>
+                    <p class="text-gray-600 text-center">
+                        تطوير مواد جديدة، دراسة التفاعلات الكيميائية، وفهم العمليات البيولوجية.
+                    </p>
+                </div>
+                <div class="card-hover bg-white p-6 rounded-xl shadow-md">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-balance-scale text-4xl text-orange-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">العدالة الجنائية</h3>
+                    <p class="text-gray-600 text-center">
+                        تحليل الأدلة الجنائية، تحديد المواد المخدرة، والكشف عن التزوير.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analysis Types Section -->
+    <section id="analysis-types" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
+                <i class="fas fa-flask text-purple-600 ml-2"></i>
+                أنواع التحليل الكيميائي
+            </h2>
+            
+            <!-- Tabs -->
+            <div class="flex justify-center mb-8">
+                <div class="bg-gray-100 rounded-lg p-1 inline-flex">
+                    <button onclick="switchTab('qualitative')" id="qualitativeTab" class="tab-btn px-6 py-3 rounded-lg font-semibold transition bg-purple-600 text-white">
+                        التحليل الكيفي
+                    </button>
+                    <button onclick="switchTab('quantitative')" id="quantitativeTab" class="tab-btn px-6 py-3 rounded-lg font-semibold transition text-gray-700 hover:bg-gray-200">
+                        التحليل الكمي
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Contents -->
+            <div id="qualitativeContent" class="tab-content active">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-xl">
+                        <h3 class="text-2xl font-semibold mb-4 text-indigo-800">
+                            <i class="fas fa-search ml-2"></i>
+                            التحليل الكيفي (Qualitative)
+                        </h3>
+                        <p class="text-gray-700 mb-4 leading-relaxed">
+                            هو عملية تحديد هوية المكونات الكيميائية الموجودة في العينة دون الاهتمام بكمياتها.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-start">
+                                <i class="fas fa-angle-left text-indigo-600 mt-1 ml-2"></i>
+                                <p class="text-gray-700">يستخدم للإجابة على سؤال "ماذا يوجد في العينة؟"</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-angle-left text-indigo-600 mt-1 ml-2"></i>
+                                <p class="text-gray-700">يعتمد على الخصائص الفيزيائية والكيميائية للمواد</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-angle-left text-indigo-600 mt-1 ml-2"></i>
+                                <p class="text-gray-700">يشمل اختبارات الترسيب، تغير اللون، تكوين الغازات</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h4 class="text-xl font-semibold mb-4 text-gray-800">أمثلة تطبيقية</h4>
+                        <div class="space-y-4">
+                            <div class="border-r-4 border-indigo-500 pr-4">
+                                <h5 class="font-semibold text-indigo-700">الكشف عن الأيونات</h5>
+                                <p class="text-gray-600 text-sm">تحديد وجود أيونات مثل Na⁺, K⁺, Cl⁻, SO₄²⁻ في المحاليل</p>
+                            </div>
+                            <div class="border-r-4 border-indigo-500 pr-4">
+                                <h5 class="font-semibold text-indigo-700">تحديد المركبات العضوية</h5>
+                                <p class="text-gray-600 text-sm">الكشف عن مجموعات وظيفية مثل OH, COOH, NH₂</p>
+                            </div>
+                            <div class="border-r-4 border-indigo-500 pr-4">
+                                <h5 class="font-semibold text-indigo-700">اختبارات الطعام</h5>
+                                <p class="text-gray-600 text-sm">الكشف عن البروتينات، الكربوهيدرات، والدهون</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="quantitativeContent" class="tab-content">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-xl">
+                        <h3 class="text-2xl font-semibold mb-4 text-emerald-800">
+                            <i class="fas fa-calculator ml-2"></i>
+                            التحليل الكمي (Quantitative)
+                        </h3>
+                        <p class="text-gray-700 mb-4 leading-relaxed">
+                            هو عملية قياس كمية أو تركيز المكونات الكيميائية الموجودة في العينة بدقة.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-start">
+                                <i class="fas fa-angle-left text-emerald-600 mt-1 ml-2"></i>
+                                <p class="text-gray-700">يستخدم للإجابة على سؤال "كم توجد من المادة؟"</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-angle-left text-emerald-600 mt-1 ml-2"></i>
+                                <p class="text-gray-700">يتطلب دقة عالية في القياسات</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-angle-left text-emerald-600 mt-1 ml-2"></i>
+                                <p class="text-gray-700">يشمل طرق المعايرة، التحليل الطيفي، الوزني</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h4 class="text-xl font-semibold mb-4 text-gray-800">أمثلة تطبيقية</h4>
+                        <div class="space-y-4">
+                            <div class="border-r-4 border-emerald-500 pr-4">
+                                <h5 class="font-semibold text-emerald-700">تحديد حموضة المحاليل</h5>
+                                <p class="text-gray-600 text-sm">قياس pH وتركيز الأحماض والقواعد</p>
+                            </div>
+                            <div class="border-r-4 border-emerald-500 pr-4">
+                                <h5 class="font-semibold text-emerald-700">تحليل الأدوية</h5>
+                                <p class="text-gray-600 text-sm">قياس تركيز المادة الفعالة في الأدوية</p>
+                            </div>
+                            <div class="border-r-4 border-emerald-500 pr-4">
+                                <h5 class="font-semibold text-emerald-700">مراقبة جودة الماء</h5>
+                                <p class="text-gray-600 text-sm">قياس تركيز المعادن الثقيلة والملوثات</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="mt-12 bg-gray-50 p-8 rounded-xl">
+                <h3 class="text-2xl font-semibold mb-6 text-center text-gray-800">مقارنة بين التحليل الكيفي والكمي</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full bg-white rounded-lg overflow-hidden shadow-md">
+                        <thead class="bg-purple-600 text-white">
+                            <tr>
+                                <th class="px-6 py-4 text-right">وجه المقارنة</th>
+                                <th class="px-6 py-4 text-right">التحليل الكيفي</th>
+                                <th class="px-6 py-4 text-right">التحليل الكمي</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="px-6 py-4 font-semibold">الهدف</td>
+                                <td class="px-6 py-4">تحديد هوية المكونات</td>
+                                <td class="px-6 py-4">قياس كمية المكونات</td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="px-6 py-4 font-semibold">النتيجة</td>
+                                <td class="px-6 py-4">نوعية (وجود/عدم وجود)</td>
+                                <td class="px-6 py-4">كمية (رقمية)</td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="px-6 py-4 font-semibold">الدقة المطلوبة</td>
+                                <td class="px-6 py-4">متوسطة</td>
+                                <td class="px-6 py-4">عالية جداً</td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="px-6 py-4 font-semibold">الأدوات المستخدمة</td>
+                                <td class="px-6 py-4">بسيطة نسبياً</td>
+                                <td class="px-6 py-4">متقدمة ودقيقة</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 font-semibold">التكلفة</td>
+                                <td class="px-6 py-4">منخفضة</td>
+                                <td class="px-6 py-4">مرتفعة</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Section -->
+    <section id="interactive" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
+                <i class="fas fa-gamepad text-purple-600 ml-2"></i>
+                تجربة تفاعلية
+            </h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold mb-6 text-center">اختبار معرفتك</h3>
+                    
+                    <div id="quizContainer">
+                        <div class="mb-6">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-semibold text-gray-600">التقدم</span>
+                                <span id="progressText" class="text-sm font-semibold text-purple-600">0/5</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div id="progressBar" class="progress-bar bg-purple-600 h-3 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <div id="questionContainer" class="mb-8">
+                            <!-- Questions will be inserted here -->
+                        </div>
+                        
+                        <div id="resultContainer" class="hidden text-center">
+                            <div class="mb-6">
+                                <i class="fas fa-trophy text-6xl text-yellow-500 mb-4"></i>
+                                <h4 class="text-2xl font-bold mb-2">أحسنت!</h4>
+                                <p class="text-gray-600">لقد أكملت الاختبار بنجاح</p>
+                            </div>
+                            <button onclick="resetQuiz()" class="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
+                                إعادة الاختبار
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
+                <i class="fas fa-history text-purple-600 ml-2"></i>
+                تطور الكيمياء التحليلية
+            </h2>
+            <div class="max-w-3xl mx-auto">
+                <div class="timeline-item mb-8">
+                    <h3 class="text-xl font-semibold text-purple-700 mb-2">القرن 18</h3>
+                    <p class="text-gray-600">بدايات التحليل الكيميائي الكلاسيكي مع تطوير طرق المعايرة</p>
+                </div>
+                <div class="timeline-item mb-8">
+                    <h3 class="text-xl font-semibold text-purple-700 mb-2">القرن 19</h3>
+                    <p class="text-gray-600">تطوير التحليل الوزني والتحليل الطيفي البدائي</p>
+                </div>
+                <div class="timeline-item mb-8">
+                    <h3 class="text-xl font-semibold text-purple-700 mb-2">منتصف القرن 20</h3>
+                    <p class="text-gray-600">ظهور تقنيات الكروماتوغرافيا والتحليل الطيفي المتقدم</p>
+                </div>
+                <div class="timeline-item">
+                    <h3 class="text-xl font-semibold text-purple-700 mb-2">القرن 21</h3>
+                    <p class="text-gray-600">الثورة الرقمية وتطوير أجهزة التحليل الدقيقة والسريعة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p>&copy; 2024 مقدمة في الكيمياء التحليلية. جميع الحقوق محفوظة.</p>
+                </div>
+                <div class="flex space-x-4 space-x-reverse">
+                    <a href="#" class="hover:text-purple-200 transition">
+                        <i class="fab fa-facebook text-2xl"></i>
+                    </a>
+                    <a href="#" class="hover:text-purple-200 transition">
+                        <i class="fab fa-twitter text-2xl"></i>
+                    </a>
+                    <a href="#" class="hover:text-purple-200 transition">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>
+                    <a href="#" class="hover:text-purple-200 transition">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Tab switching
+        function switchTab(tabName) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-purple-600', 'text-white');
+                btn.classList.add('text-gray-700', 'hover:bg-gray-200');
+            });
+            
+            // Show selected content
+            document.getElementById(tabName + 'Content').classList.add('active');
+            
+            // Add active class to selected tab
+            const activeTab = document.getElementById(tabName + 'Tab');
+            activeTab.classList.add('bg-purple-600', 'text-white');
+            activeTab.classList.remove('text-gray-700', 'hover:bg-gray-200');
+        }
+
+        // Quiz functionality
+        const questions = [
+            {
+                question: "ما هو الهدف الرئيسي للتحليل الكيفي؟",
+                options: ["قياس كمية المادة", "تحديد هوية المكونات", "تحسين جودة المنتج", "تقليل التكلفة"],
+                correct: 1
+            },
+            {
+                question: "أي من الطرق التالية تستخدم في التحليل الكمي؟",
+                options: ["اختبار اللهب", "المعايرة", "اختبار الترسيب", "تغير اللون"],
+                correct: 1
+            },
+            {
+                question: "ما هو الفرق الأساسي بين التحليل الكيفي والكمي؟",
+                options: ["السرعة فقط", "الدقة فقط", "نوع النتيجة", "التكلفة فقط"],
+                correct: 2
+            },
+            {
+                question: "أي المجالات التالية لا تستخدم الكيمياء التحليلية؟",
+                options: ["الطب", "الصناعة", "الرياضة", "البيئة"],
+                correct: 2
+            },
+            {
+                question: "ما هو الأداة الأساسية في التحليل الكمي؟",
+                options: ["المجهر", "الميزان الحساس", "الحرارة", "الضوء"],
+                correct: 1
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const question = questions[currentQuestion];
+            const container = document.getElementById('questionContainer');
+            
+            container.innerHTML = `
+                <h4 class="text-xl font-semibold mb-4">${question.question}</h4>
+                <div class="space-y-3">
+                    ${question.options.map((option, index) => `
+                        <button onclick="checkAnswer(${index})" class="w-full text-right p-4 bg-gray-100 rounded-lg hover:bg-purple-100 transition text-gray-700">
+                            ${option}
+                        </button>
+                    `).join('')}
+                </div>
+            `;
+            
+            updateProgress();
+        }
+
+        function checkAnswer(selectedIndex) {
+            const question = questions[currentQuestion];
+            const buttons = document.querySelectorAll('#questionContainer button');
+            
+            buttons.forEach((btn, index) => {
+                btn.disabled = true;
+                if (index === question.correct) {
+                    btn.classList.add('bg-green-500', 'text-white');
+                } else if (index === selectedIndex && selectedIndex !== question.correct) {
+                    btn.classList.add('bg-red-500', 'text-white');
+                }
+            });
+            
+            if (selectedIndex === question.correct) {
+                score++;
+            }
+            
+            setTimeout(() => {
+                currentQuestion++;
+                if (currentQuestion < questions.length) {
+                    loadQuestion();
+                } else {
+                    showResult();
+                }
+            }, 1500);
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `${currentQuestion + 1}/${questions.length}`;
+        }
+
+        function showResult() {
+            document.getElementById('questionContainer').classList.add('hidden');
+            document.getElementById('resultContainer').classList.remove('hidden');
+            
+            const resultText = document.querySelector('#resultContainer p');
+            resultText.textContent = `لقد حصلت على ${score} من ${questions.length} إجابات صحيحة`;
+        }
+
+        function resetQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('questionContainer').classList.remove('hidden');
+            document.getElementById('resultContainer').classList.add('hidden');
+            loadQuestion();
+        }
+
+        // Initialize quiz
+        loadQuestion();
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

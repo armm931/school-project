@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مختبرات التحليل المتقدم - ICP-MS و XRF</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #003366;
+            --secondary: #0066cc;
+            --accent: #00ccff;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --icp-color: #9b59b6;
+            --xrf-color: #e67e22;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            color: var(--accent);
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 102, 204, 0.85)), url('https://images.unsplash.com/photo-1532184659819-617f1f0e5b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: #0099cc;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: #0052a3;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title .divider {
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 0 auto;
+        }
+
+        /* Technology Cards */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .tech-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tech-card.icp {
+            border-top: 5px solid var(--icp-color);
+        }
+
+        .tech-card.xrf {
+            border-top: 5px solid var(--xrf-color);
+        }
+
+        .tech-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .tech-header {
+            padding: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--light), #e9ecef);
+        }
+
+        .tech-header i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-card.icp .tech-header i {
+            color: var(--icp-color);
+        }
+
+        .tech-card.xrf .tech-header i {
+            color: var(--xrf-color);
+        }
+
+        .tech-header h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .tech-body {
+            padding: 2rem;
+        }
+
+        .tech-body h4 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .tech-body ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-body li {
+            padding: 0.5rem 0;
+            padding-right: 1.5rem;
+            position: relative;
+        }
+
+        .tech-body li:before {
+            content: "\f00c";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 0;
+            color: var(--success);
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid #dee2e6;
+        }
+
+        .comparison-table th {
+            background: var(--primary);
+            color: white;
+            font-weight: bold;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .comparison-table .icp-col {
+            background: rgba(155, 89, 182, 0.1);
+        }
+
+        .comparison-table .xrf-col {
+            background: rgba(230, 126, 34, 0.1);
+        }
+
+        /* Applications Section */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .app-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .app-card i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .app-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Interactive Demo */
+        .demo-container {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .demo-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab-btn {
+            background: white;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .tab-btn.active {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .step {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-microscope"></i>
+                <span>مختبرات التحليل المتقدم</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#technologies">التقنيات</a></li>
+                    <li><a href="#comparison">المقارنة</a></li>
+                    <li><a href="#applications">التطبيقات</a></li>
+                    <li><a href="#demo">العملية</a></li>
+                    <li><a href="#contact">تواصل</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>التحليل باستخدام الأجهزة الحديثة</h1>
+            <p>اكتشف قوة تقنيات ICP-MS و XRF في تحليل العناصر والمركبات بدقة فائقة</p>
+            <a href="#technologies" class="btn">استكشف التقنيات</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Technologies Section -->
+            <section id="technologies" class="section">
+                <div class="section-title">
+                    <h2>تقنيات التحليل المتقدمة</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="tech-grid">
+                    <!-- ICP-MS Card -->
+                    <div class="tech-card icp">
+                        <div class="tech-header">
+                            <i class="fas fa-atom"></i>
+                            <h3>ICP-MS</h3>
+                            <p>مطياف البلازما المقترن بالكتلة</p>
+                        </div>
+                        <div class="tech-body">
+                            <h4>المبدأ الأساسي</h4>
+                            <p>يستخدم بلازما الأرجون عالية الحرارة (حوالي 10,000 كلفن) لتحويل العينة إلى أيونات، ثم يتم فصلها وتحديدها حسب نسبة الكتلة إلى الشحنة.</p>
+                            
+                            <h4>المميزات الرئيسية</h4>
+                            <ul>
+                                <li>حساسية فائقة (جزء من التريليون)</li>
+                                <li>قدرة على تحليل عناصر متعددة في وقت واحد</li>
+                                <li>مدى ديناميكي واسع</li>
+                                <li>دقة عالية في النتائج</li>
+                                <li>إمكانية التحليل النظائري</li>
+                            </ul>
+                            
+                            <h4>الاستخدامات</h4>
+                            <p>تحليل العناصر النادرة، مراقبة جودة المياه، البحوث الطبية، تحليل العينات البيئية والجيولوجية.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- XRF Card -->
+                    <div class="tech-card xrf">
+                        <div class="tech-header">
+                            <i class="fas fa-radiation"></i>
+                            <h3>XRF</h3>
+                            <p>الفلورة بالأشعة السينية</p>
+                        </div>
+                        <div class="tech-body">
+                            <h4>المبدأ الأساسي</h4>
+                            <p>يستخدم أشعة سينية لتحفيز العينة، مما يؤدي إلى انبعاث أشعة سينية مميزة لكل عنصر، يمكن تحليلها لتحديد التركيب الكيميائي.</p>
+                            
+                            <h4>المميزات الرئيسية</h4>
+                            <ul>
+                                <li>تحليل غير مدمر للعينات</li>
+                                <li>سرعة عالية في التحليل</li>
+                                <li>سهولة الاستخدام</li>
+                                <li>إمكانية التحليل في الموقع</li>
+                                <li>تكلفة تشغيل منخفضة</li>
+                            </ul>
+                            
+                            <h4>الاستخدامات</h4>
+                            <p>تحليل المعادن والسبائك، مراقبة جودة المنتجات، الكشف عن التلوث، التحليل الأثري والفني.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Comparison Section -->
+            <section id="comparison" class="section">
+                <div class="section-title">
+                    <h2>مقارنة بين التقنيتين</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="comparison-section">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>الميزة</th>
+                                <th class="icp-col">ICP-MS</th>
+                                <th class="xrf-col">XRF</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>حد الكشف</td>
+                                <td class="icp-col">ppt - ppb</td>
+                                <td class="xrf-col">ppm - %</td>
+                            </tr>
+                            <tr>
+                                <td>سرعة التحليل</td>
+                                <td class="icp-col">متوسطة (2-5 دقائق)</td>
+                                <td class="xrf-col">سريعة (ثوانٍ)</td>
+                            </tr>
+                            <tr>
+                                <td>تدمير العينة</td>
+                                <td class="icp-col">نعم</td>
+                                <td class="xrf-col">لا</td>
+                            </tr>
+                            <tr>
+                                <td>دقة التحليل</td>
+                                <td class="icp-col">عالية جداً</td>
+                                <td class="xrf-col">جيدة</td>
+                            </tr>
+                            <tr>
+                                <td>التكلفة</td>
+                                <td class="icp-col">عالية</td>
+                                <td class="xrf-col">متوسطة</td>
+                            </tr>
+                            <tr>
+                                <td>الصيانة</td>
+                                <td class="icp-col">معقدة</td>
+                                <td class="xrf-col">بسيطة</td>
+                            </tr>
+                            <tr>
+                                <td>الاستخدام في الموقع</td>
+                                <td class="icp-col">غير ممكن</td>
+                                <td class="xrf-col">ممكن</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Applications Section -->
+            <section id="applications" class="section">
+                <div class="section-title">
+                    <h2>التطبيقات العملية</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="applications-grid">
+                    <div class="app-card">
+                        <i class="fas fa-flask"></i>
+                        <h4>البحث العلمي</h4>
+                        <p>تحليل العينات البيولوجية والطبية والبيئية بدقة عالية</p>
+                    </div>
+                    
+                    <div class="app-card">
+                        <i class="fas fa-industry"></i>
+                        <h4>الصناعة</h4>
+                        <p>مراقبة جودة المنتجات وتحليل المواد الخام</p>
+                    </div>
+                    
+                    <div class="app-card">
+                        <i class="fas fa-tint"></i>
+                        <h4>تحليل المياه</h4>
+                        <p>كشف الملوثات والعناصر الثقيلة في مصادر المياه</p>
+                    </div>
+                    
+                    <div class="app-card">
+                        <i class="fas fa-gem"></i>
+                        <h4>التعدين والجيولوجيا</h4>
+                        <p>تحليل تركيز المعادن النادرة والثمينة</p>
+                    </div>
+                    
+                    <div class="app-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>الأمن والسلامة</h4>
+                        <p>كشف المواد الخطرة والملوثات في المنتجات</p>
+                    </div>
+                    
+                    <div class="app-card">
+                        <i class="fas fa-landmark"></i>
+                        <h4>الآثار والفن</h4>
+                        <p>تحليل تركيبة التحف الفنية دون إتلافها</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Demo Section -->
+            <section id="demo" class="section">
+                <div class="section-title">
+                    <h2>عملية التحليل التفاعلية</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="demo-container">
+                    <div class="demo-tabs">
+                        <button class="tab-btn active" onclick="showTab('icp')">ICP-MS</button>
+                        <button class="tab-btn" onclick="showTab('xrf')">XRF</button>
+                    </div>
+                    
+                    <!-- ICP-MS Tab -->
+                    <div id="icp-tab" class="tab-content active">
+                        <h3>خطوات تحليل ICP-MS</h3>
+                        <div class="process-steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <h4>تحضير العينة</h4>
+                                <p>هضم العينة باستخدام أحماض قوية</p>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <h4>الرش والتبخير</h4>
+                                <p>تحويل العينة إلى رذاذ ناعم</p>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <h4>التأين</h4>
+                                <p>تحويل الذرات إلى أيونات</p>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <h4>الفصل والكشف</h4>
+                                <p>فصل الأيونات حسب الكتلة</p>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">5</div>
+                                <h4>تحليل النتائج</h4>
+                                <p>حساب التراكيز بدقة</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- XRF Tab -->
+                    <div id="xrf-tab" class="tab-content">
+                        <h3>خطوات تحليل XRF</h3>
+                        <div class="process-steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <h4>تحضير العينة</h4>
+                                <p>تنظيف وتجهيز السطح</p>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <h4>التعريض للأشعة</h4>
+                                <p>توجيه أشعة سينية للعينة</p>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <h4>الإثارة</h4>
+                                <p>إثارة ذرات العينة</p>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <h4>الكشف</h4>
+                                <p>قياس الأشعة المنبعثة</p>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">5</div>
+                                <h4>التحليل الطيفي</h4>
+                                <p>تحديد العناصر الموجودة</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن المختبر</h3>
+                    <p>مختبر متخصص في التحليل الكيميائي المتقدم باستخدام أحدث التقنيات العالمية لضمان دقة النتائج وجودة الخدمات.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>خدماتنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">تحليل ICP-MS</a></li>
+                        <li><a href="#">تحليل XRF</a></li>
+                        <li><a href="#">استشارات فنية</a></li>
+                        <li><a href="#">تدريب وتأهيل</a></li>
+                        <li><a href="#">صيانة الأجهزة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@advancedlab.com</li>
+                        <li><i class="fas fa-phone"></i> +966 50 123 4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                        <li><i class="fas fa-clock"></i> السبت - الخميس: 8 ص - 5 م</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 مختبرات التحليل المتقدم. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.tech-card, .app-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

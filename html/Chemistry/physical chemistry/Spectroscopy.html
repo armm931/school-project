@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>علم الطيف - Spectroscopy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1a237e;
+            --secondary: #3949ab;
+            --accent: #00bcd4;
+            --light: #e8eaf6;
+            --dark: #283593;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --purple: #9c27b0;
+            --indigo: #3f51b5;
+            --blue: #2196f3;
+            --cyan: #00bcd4;
+            --teal: #009688;
+            --green: #4caf50;
+            --lime: #cddc39;
+            --yellow: #ffeb3b;
+            --orange: #ff9800;
+            --red: #f44336;
+            --pink: #e91e63;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--accent);
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 35, 126, 0.85), rgba(57, 73, 171, 0.85)), 
+                        url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0,188,212,0.3) 0%, transparent 70%);
+            animation: pulse 4s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
+            color: white;
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            animation: fadeInUp 1s ease 0.6s both;
+            box-shadow: 0 4px 15px rgba(0,188,212,0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,188,212,0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Electromagnetic Spectrum Section */
+        .spectrum-section {
+            background-color: white;
+            position: relative;
+        }
+
+        .spectrum-container {
+            position: relative;
+            height: 200px;
+            margin: 60px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .spectrum-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                var(--purple) 0%, 
+                var(--indigo) 10%, 
+                var(--blue) 20%, 
+                var(--cyan) 30%, 
+                var(--teal) 40%, 
+                var(--green) 50%, 
+                var(--lime) 60%, 
+                var(--yellow) 70%, 
+                var(--orange) 80%, 
+                var(--red) 90%, 
+                var(--pink) 100%);
+        }
+
+        .spectrum-labels {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .spectrum-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .spectrum-label span {
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .spectrum-info {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .spectrum-info h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .spectrum-info p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        /* Spectra Types Section */
+        .spectra-types {
+            background-color: #f5f7fa;
+        }
+
+        .spectra-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .spectra-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .spectra-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .uv-vis-header {
+            background: linear-gradient(135deg, var(--purple), var(--indigo));
+        }
+
+        .ir-header {
+            background: linear-gradient(135deg, var(--red), var(--orange));
+        }
+
+        .nmr-header {
+            background: linear-gradient(135deg, var(--teal), var(--green));
+        }
+
+        .card-header i {
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .card-header h3 {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .card-header p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .card-body h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .card-body ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .card-body ul li {
+            padding: 8px 0;
+            padding-right: 25px;
+            position: relative;
+            color: #555;
+        }
+
+        .card-body ul li:before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 0;
+            color: var(--success);
+        }
+
+        .card-footer {
+            padding: 0 30px 30px;
+        }
+
+        /* Applications Section */
+        .applications {
+            background-color: white;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .app-item {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .app-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .app-item h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .app-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Interactive Demo Section */
+        .demo-section {
+            background-color: #f5f7fa;
+            padding: 80px 0;
+        }
+
+        .demo-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-top: 50px;
+        }
+
+        .demo-tabs {
+            display: flex;
+            border-bottom: 2px solid #e0e0e0;
+            margin-bottom: 30px;
+            overflow-x: auto;
+        }
+
+        .demo-tab {
+            padding: 15px 25px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .demo-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--accent);
+        }
+
+        .demo-tab:hover {
+            color: var(--primary);
+        }
+
+        .demo-content {
+            display: none;
+        }
+
+        .demo-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .spectrum-graph {
+            height: 300px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+
+        .graph-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+        }
+
+        .graph-bars {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            width: 100%;
+            height: 80%;
+            z-index: 1;
+        }
+
+        .graph-bar {
+            width: 20px;
+            background: linear-gradient(to top, var(--accent), var(--secondary));
+            border-radius: 5px 5px 0 0;
+            transition: all 0.5s ease;
+        }
+
+        .graph-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .graph-info h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .graph-info p {
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.3rem;
+            }
+            
+            .spectra-cards {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding: 70px 0;
+            }
+            
+            .hero h2 {
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .spectrum-container {
+                height: 150px;
+            }
+            
+            .spectrum-label {
+                font-size: 0.8rem;
+            }
+            
+            .spectrum-label span {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+            
+            nav ul {
+                gap: 10px;
+            }
+            
+            nav a {
+                padding: 6px 10px;
+                font-size: 0.9rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.9rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .spectra-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .app-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .demo-tabs {
+                flex-direction: column;
+            }
+            
+            .demo-tab {
+                text-align: center;
+                border-bottom: 1px solid #e0e0e0;
+                border-right: 3px solid transparent;
+            }
+            
+            .demo-tab.active {
+                border-right-color: var(--accent);
+                border-bottom-color: transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-wave-square"></i>
+                <h1>علم الطيف</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#spectrum">الطيف الكهرومغناطيسي</a></li>
+                    <li><a href="#spectra">الأطياف الذرية والجزيئية</a></li>
+                    <li><a href="#applications">التطبيقات</a></li>
+                    <li><a href="#demo">تجارب تفاعلية</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h2>علم الطيف</h2>
+            <p>استكشف عالم الأطياف الكهرومغناطيسية وتطبيقاتها في تحليل البنى الذرية والجزيئية</p>
+            <a href="#spectrum" class="btn">ابدأ الاستكشاف</a>
+        </div>
+    </section>
+
+    <!-- Electromagnetic Spectrum Section -->
+    <section class="spectrum-section" id="spectrum">
+        <div class="container">
+            <div class="section-title">
+                <h2>الطيف الكهرومغناطيسي</h2>
+                <p>الطيف الكهرومغناطيسي هو نطاق كامل من جميع الأطوال الموجية والإشعاعات الكهرومغناطيسية</p>
+            </div>
+            
+            <div class="spectrum-container">
+                <div class="spectrum-bar"></div>
+                <div class="spectrum-labels">
+                    <div class="spectrum-label">
+                        <i class="fas fa-broadcast-tower"></i>
+                        <span>موجات راديوية</span>
+                    </div>
+                    <div class="spectrum-label">
+                        <i class="fas fa-microchip"></i>
+                        <span>ميكروويف</span>
+                    </div>
+                    <div class="spectrum-label">
+                        <i class="fas fa-tv"></i>
+                        <span>الأشعة تحت الحمراء</span>
+                    </div>
+                    <div class="spectrum-label">
+                        <i class="fas fa-eye"></i>
+                        <span>الضوء المرئي</span>
+                    </div>
+                    <div class="spectrum-label">
+                        <i class="fas fa-sun"></i>
+                        <span>الأشعة فوق البنفسجية</span>
+                    </div>
+                    <div class="spectrum-label">
+                        <i class="fas fa-x-ray"></i>
+                        <span>الأشعة السينية</span>
+                    </div>
+                    <div class="spectrum-label">
+                        <i class="fas fa-radiation"></i>
+                        <span>أشعة جاما</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="spectrum-info">
+                <h3>ما هو الطيف الكهرومغناطيسي؟</h3>
+                <p>الطيف الكهرومغناطيسي هو توزيع جميع الإشعاعات الكهرومغناطيسية حسب التردد أو الطول الموجي. يتراوح من الموجات الراديوية ذات الطول الموجي الطويل إلى أشعة جاما ذات الطول الموجي القصير. كل منطقة في الطيف لها خصائص فريدة وتطبيقات مختلفة في العلم والتكنولوجيا.</p>
+                <p>يتميز كل جزء من الطيف الكهرومغناطيسي بطاقة مختلفة، حيث تزداد الطاقة مع زيادة التردد ونقصان الطول الموجي. فهم الطيف الكهرومغناطيسي أساسي لدراسة التفاعلات بين المادة والإشعاع، وهو أساس تقنيات التحليل الطيفي المستخدمة في الكيمياء والفيزياء وعلوم الأرض.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Atomic and Molecular Spectra Section -->
+    <section class="spectra-types" id="spectra">
+        <div class="container">
+            <div class="section-title">
+                <h2>الأطياف الذرية والجزيئية</h2>
+                <p>أنواع مختلفة من الأطياف المستخدمة في تحليل التركيب الذري والجزيئي</p>
+            </div>
+            
+            <div class="spectra-cards">
+                <div class="spectra-card">
+                    <div class="card-header uv-vis-header">
+                        <i class="fas fa-sun"></i>
+                        <h3>UV-Vis</h3>
+                        <p>طيف الأشعة فوق البنفسجية والمرئية</p>
+                    </div>
+                    <div class="card-body">
+                        <h4>المبادئ الأساسية</h4>
+                        <ul>
+                            <li>يقوم على امتصاص الإشعاع في نطاق 190-800 نانومتر</li>
+                            <li>يرتبط بتحولات الإلكترونات في المستويات الذرية والجزيئية</li>
+                            <li>يستخدم لتحديد التركيزات الكمية للمواد</li>
+                            <li>يتبع قانون بير-لامبرت للامتصاصية</li>
+                        </ul>
+                        <h4>التطبيقات</h4>
+                        <ul>
+                            <li>تحليل المركبات العضوية وغير العضوية</li>
+                            <li>دراسة حركية التفاعلات الكيميائية</li>
+                            <li>تحديد نقاط التكافؤ في المعقدات</li>
+                            <li>التحليل الكمي في الأدوية والمواد الغذائية</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="spectra-card">
+                    <div class="card-header ir-header">
+                        <i class="fas fa-fire"></i>
+                        <h3>IR</h3>
+                        <p>طيف الأشعة تحت الحمراء</p>
+                    </div>
+                    <div class="card-body">
+                        <h4>المبادئ الأساسية</h4>
+                        <ul>
+                            <li>يقوم على امتصاص الإشعاع في نطاق 4000-400 سم⁻¹</li>
+                            <li>يرتبط بالاهتزازات والالتواءات الجزيئية</li>
+                            <li>كل مركب له بصمة طيفية فريدة</li>
+                            <li>يستخدم لتحديد المجموعات الوظيفية</li>
+                        </ul>
+                        <h4>التطبيقات</h4>
+                        <ul>
+                            <li>تحديد الهيكل الجزيئي للمركبات</li>
+                            <li>التحليل النوعي للمواد العضوية</li>
+                            <li>دراسة التفاعلات الكيميائية وآلياتها</li>
+                            <li>مراقبة جودة المنتجات الصناعية</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+                
+                <div class="spectra-card">
+                    <div class="card-header nmr-header">
+                        <i class="fas fa-magnet"></i>
+                        <h3>NMR</h3>
+                        <p>طيف الرنين النووي المغناطيسي</p>
+                    </div>
+                    <div class="card-body">
+                        <h4>المبادئ الأساسية</h4>
+                        <ul>
+                            <li>يقوم على تفاعل النوى المغناطيسية مع المجال المغناطيسي</li>
+                            <li>يستخدم النوى ذات الرقم المغناطيسي غير الصفري</li>
+                            <li>يوفر معلومات عن البيئة الكيميائية للنوى</li>
+                            <li>يعطي تفاصيل دقيقة عن البنية الجزيئية</li>
+                        </ul>
+                        <h4>التطبيقات</h4>
+                        <ul>
+                            <li>تحديد الهيكل الثلاثي للجزيئات</li>
+                            <li>دراسة الديناميكا الجزيئية</li>
+                            <li>التصوير الطبي (MRI)</li>
+                            <li>تحليل التفاعلات الحيوية والإنزيمية</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section class="applications" id="applications">
+        <div class="container">
+            <div class="section-title">
+                <h2>تطبيقات الطيف في تحديد البنية الجزيئية</h2>
+                <p>كيف تساعد تقنيات الطيف المختلفة في فهم وتحديد التراكيب الجزيئية</p>
+            </div>
+            
+            <div class="app-grid">
+                <div class="app-item">
+                    <div class="app-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>الكيمياء العضوية</h3>
+                    <p>تحديد الهيكل الجزيئي للمركبات العضوية المعقدة، وتحديد المجموعات الوظيفية، ودراسة آليات التفاعلات الكيميائية.</p>
+                </div>
+                
+                <div class="app-item">
+                    <div class="app-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3>الصناعات الدوائية</h3>
+                    <p>تحليل تركيب الأدوية، وضمان نقاء المكونات، ودراسة تفاعلات الأدوية مع المستقبلات البيولوجية في الجسم.</p>
+                </div>
+                
+                <div class="app-item">
+                    <div class="app-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>علم الأحياء الجزيئي</h3>
+                    <p>دراسة بنية البروتينات والأحماض النووية، وتحديد التفاعلات البيولوجية، وفهم آليات الأمراض على المستوى الجزيئي.</p>
+                </div>
+                
+                <div class="app-item">
+                    <div class="app-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>الصناعة الكيميائية</h3>
+                    <p>مراقبة جودة المنتجات، وتحديد الشوائب، وتحسين عمليات الإنتاج، وضمان مطابقة المواصفات القياسية.</p>
+                </div>
+                
+                <div class="app-item">
+                    <div class="app-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>البيئة والزراعة</h3>
+                    <p>تحليل الملوثات البيئية، ودراسة تركيب التربة والمياه، وتحديد المبيدات والمواد الكيميائية في المنتجات الزراعية.</p>
+                </div>
+                
+                <div class="app-item">
+                    <div class="app-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>المواد المتقدمة</h3>
+                    <p>تحليل بنية المواد الجديدة مثل النانومواد والبوليمرات، ودراسة خصائصها الفيزيائية والكيميائية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section class="demo-section" id="demo">
+        <div class="container">
+            <div class="section-title">
+                <h2>تجارب تفاعلية</h2>
+                <p>استكشف تقنيات الطيف المختلفة من خلال محاكاة تفاعلية</p>
+            </div>
+            
+            <div class="demo-container">
+                <div class="demo-tabs">
+                    <div class="demo-tab active" data-tab="uv-vis">UV-Vis</div>
+                    <div class="demo-tab" data-tab="ir">IR</div>
+                    <div class="demo-tab" data-tab="nmr">NMR</div>
+                </div>
+                
+                <div class="demo-content active" id="uv-vis">
+                    <div class="spectrum-graph">
+                        <div class="graph-line"></div>
+                        <div class="graph-bars">
+                            <div class="graph-bar" style="height: 20%"></div>
+                            <div class="graph-bar" style="height: 40%"></div>
+                            <div class="graph-bar" style="height: 60%"></div>
+                            <div class="graph-bar" style="height: 80%"></div>
+                            <div class="graph-bar" style="height: 95%"></div>
+                            <div class="graph-bar" style="height: 70%"></div>
+                            <div class="graph-bar" style="height: 50%"></div>
+                            <div class="graph-bar" style="height: 30%"></div>
+                            <div class="graph-bar" style="height: 20%"></div>
+                            <div class="graph-bar" style="height: 15%"></div>
+                        </div>
+                    </div>
+                    <div class="graph-info">
+                        <h4>محاكاة طيف UV-Vis</h4>
+                        <p>هذا الطيف يمثل امتصاص مركب عضوي في نطاق الأشعة فوق البنفسجية والمرئية. يظهر ذروة الامتصاص عند 280 نانومتر، مما يشير إلى وجود نظام مترافق من الروابط المزدوجة في المركب. يمكن استخدام هذا الطيف لتحديد تركيز المركب باستخدام قانون بير-لامبرت.</p>
+                    </div>
+                </div>
+                
+                <div class="demo-content" id="ir">
+                    <div class="spectrum-graph">
+                        <div class="graph-line"></div>
+                        <div class="graph-bars">
+                            <div class="graph-bar" style="height: 90%"></div>
+                            <div class="graph-bar" style="height: 30%"></div>
+                            <div class="graph-bar" style="height: 20%"></div>
+                            <div class="graph-bar" style="height: 85%"></div>
+                            <div class="graph-bar" style="height: 40%"></div>
+                            <div class="graph-bar" style="height: 25%"></div>
+                            <div class="graph-bar" style="height: 75%"></div>
+                            <div class="graph-bar" style="height: 35%"></div>
+                            <div class="graph-bar" style="height: 20%"></div>
+                            <div class="graph-bar" style="height: 15%"></div>
+                        </div>
+                    </div>
+                    <div class="graph-info">
+                        <h4>محاكاة طيف IR</h4>
+                        <p>يظهر هذا الطيف ذروات امتصاص مميزة عند 3300 سم⁻¹ (مجموعة OH)، 2950 سم⁻¹ (مجموعة CH)، و1700 سم⁻¹ (مجموعة C=O). هذه الذروات تشير إلى وجود حمض كربوكسيلي في المركب. يمكن استخدام طيف الأشعة تحت الحمراء للتحديد النوعي للمجموعات الوظيفية في المركبات العضوية.</p>
+                    </div>
+                </div>
+                
+                <div class="demo-content" id="nmr">
+                    <div class="spectrum-graph">
+                        <div class="graph-line"></div>
+                        <div class="graph-bars">
+                            <div class="graph-bar" style="height: 20%"></div>
+                            <div class="graph-bar" style="height: 85%"></div>
+                            <div class="graph-bar" style="height: 30%"></div>
+                            <div class="graph-bar" style="height: 20%"></div>
+                            <div class="graph-bar" style="height: 75%"></div>
+                            <div class="graph-bar" style="height: 40%"></div>
+                            <div class="graph-bar" style="height: 20%"></div>
+                            <div class="graph-bar" style="height: 65%"></div>
+                            <div class="graph-bar" style="height: 25%"></div>
+                            <div class="graph-bar" style="height: 20%"></div>
+                        </div>
+                    </div>
+                    <div class="graph-info">
+                        <h4>محاكاة طيف NMR</h4>
+                        <p>يظهر طيف الرنين النووي المغناطيسي إشارات عند 1.2 ppm (مجموعة CH3)، 2.5 ppm (مجموعة CH2)، و11.5 ppm (مجموعة COOH). يوضح الانقسام في الإشارات التفاعل بين البروتونات المجاورة. يمكن استخدام طيف NMR لتحديد الهيكل الكامل للمركب وتوزيع الذرات في الفراغ.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>عن الموقع</h3>
+                    <p>منصة تعليمية متخصصة في علم الطيف وتطبيقاته في تحليل التراكيب الذرية والجزيئية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#spectrum">الطيف الكهرومغناطيسي</a></li>
+                        <li><a href="#spectra">الأطياف الذرية والجزيئية</a></li>
+                        <li><a href="#applications">التطبيقات</a></li>
+                        <li><a href="#demo">تجارب تفاعلية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>أنواع الأطياف</h3>
+                    <ul>
+                        <li><a href="#">UV-Vis</a></li>
+                        <li><a href="#">الأشعة تحت الحمراء</a></li>
+                        <li><a href="#">الرنين النووي المغناطيسي</a></li>
+                        <li><a href="#">الكتلة</a></li>
+                        <li><a href="#">الرنين الإلكتروني</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@spectroscopy.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 علم الطيف - Spectroscopy. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Demo Tabs Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const demoTabs = document.querySelectorAll('.demo-tab');
+            const demoContents = document.querySelectorAll('.demo-content');
+            
+            demoTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and contents
+                    demoTabs.forEach(t => t.classList.remove('active'));
+                    demoContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    tab.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                    
+                    // Animate bars in the graph
+                    const bars = document.querySelectorAll(`#${tabId} .graph-bar`);
+                    bars.forEach((bar, index) => {
+                        // Reset height
+                        bar.style.height = '0%';
+                        
+                        // Animate to new height after a delay
+                        setTimeout(() => {
+                            const originalHeight = bar.getAttribute('style').match(/height: (\d+%)/)[1];
+                            bar.style.height = originalHeight;
+                        }, index * 100);
+                    });
+                });
+            });
+            
+            // Smooth scrolling for navigation links
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add animation on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Elements to animate
+            const animateElements = document.querySelectorAll('.spectra-card, .app-item');
+            
+            animateElements.forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

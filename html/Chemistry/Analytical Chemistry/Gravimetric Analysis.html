@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التحليل الوزني - طرق الترسيب والتجفيف والوزن</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --info: #16a085;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: var(--dark);
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            color: var(--secondary);
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(52, 73, 94, 0.85)), url('https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title .divider {
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 0 auto;
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            background: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .card-header i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        /* Process Steps */
+        .process-container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .process-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .step-number {
+            background: var(--secondary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-left: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .process-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 50px;
+            right: 25px;
+            width: 2px;
+            height: calc(100% - 30px);
+            background: #ddd;
+        }
+
+        /* Equipment Section */
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .equipment-item {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .equipment-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .equipment-item i {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .equipment-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Interactive Calculator */
+        .calculator-container {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .calculator-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .form-group input, .form-group select {
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+
+        .calculator-result {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .result-value {
+            font-size: 2rem;
+            color: var(--secondary);
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        /* Safety Tips */
+        .safety-tips {
+            background: #fff3cd;
+            border-right: 4px solid var(--warning);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 2rem;
+        }
+
+        .safety-tips h4 {
+            color: var(--warning);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .safety-tips ul {
+            list-style: none;
+            padding-right: 1.5rem;
+        }
+
+        .safety-tips li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .safety-tips li::before {
+            content: '⚠️';
+            position: absolute;
+            right: -1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .process-step {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .step-number {
+                margin-left: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .process-step::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-flask"></i>
+                <span>التحليل الوزني</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#precipitation">طرق الترسيب</a></li>
+                    <li><a href="#drying">التجفيف والوزن</a></li>
+                    <li><a href="#equipment">المعدات</a></li>
+                    <li><a href="#calculator">حاسبة</a></li>
+                    <li><a href="#contact">تواصل</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>التحليل الوزني</h1>
+            <p>طرق الترسيب والتجفيف والوزن - دليلك الشامل للتحليل الكمي الدقيق</p>
+            <a href="#precipitation" class="btn">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Introduction Section -->
+            <section class="section">
+                <div class="section-title">
+                    <h2>مقدمة في التحليل الوزني</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-balance-scale"></i>
+                            <h3>ما هو التحليل الوزني؟</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>التحليل الوزني هو أحد أهم طرق التحليل الكمي في الكيمياء، يعتمد على قياس كتلة المادة المراد تحليلها أو مركبها الناتج من تفاعل كيميائي معين.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-microscope"></i>
+                            <h3>أهمية التحليل الوزني</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>يستخدم في تحديد تركيز المواد في العينات المختلفة، وتحليل التربة والمياه، والتحكم في جودة المنتجات الصناعية والأدوية.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>دقة النتائج</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>يتميز بدقة عالية في النتائج، حيث يمكن تحقيق دقة تصل إلى 0.0001 جرام، مما يجعله الخيار الأمثل للتحليلات الدقيقة.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Precipitation Methods Section -->
+            <section id="precipitation" class="section">
+                <div class="section-title">
+                    <h2>طرق الترسيب</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="process-container">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>تحضير المحلول</h4>
+                            <p>يتم إذابة العينة في المذيب المناسب وتسخينها إذا لزم الأمر لزيادة قابلية الذوبان. يجب التأكد من أن جميع المواد قد ذابت تماماً.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>إضافة عامل الترسيب</h4>
+                            <p>يتم إضافة عامل الترسيب ببطء وتحت stirring مستمر لضمان تشكل بلورات ناعمة وسهلة الترشيح. يجب تجنب الإضافة الزائدة.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>النضج والهضم</h4>
+                            <p>تترك الراسبة لتستقر لفترة كافية (الهضم) لزيادة حجم البلورات وتحسين نقاوتها. يمكن تسخين المحلول لتسريع العملية.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>الترشيح والغسيل</h4>
+                            <p>يتم فصل الراسبة عن المحلول باستخدام ورق ترشيح مناسب، ثم غسلها بالماء المقطر أو مذيب مناسب لإزالة الشوائب.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="safety-tips">
+                    <h4><i class="fas fa-exclamation-triangle"></i> نصائح أمان هامة</h4>
+                    <ul>
+                        <li>ارتداء معدات الحماية الشخصية (قفازات، نظارات، معطف مختبر)</li>
+                        <li>العمل في خزانة الدخان عند التعامل مع المواد المتطايرة</li>
+                        <li>التأكد من تهوية المختبر جيداً</li>
+                        <li>معرفة خصائص المواد الكيميائية المستخدمة</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Drying and Weighing Section -->
+            <section id="drying" class="section">
+                <div class="section-title">
+                    <h2>التجفيف والوزن</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-temperature-high"></i>
+                            <h3>طرق التجفيف</h3>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>التجفيف في الفرن:</strong> عند درجات حرارة محددة (110-120°C) لإزالة الماء الممتص.</p>
+                            <p><strong>التجفيف في المجفف:</strong> باستخدام مواد مجففة مثل هلام السيليكا أو كلوريد الكالسيوم.</p>
+                            <p><strong>التجفيف بالتسخين:</strong> لبعض المركبات التي تتطلب درجات حرارة عالية.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-weight"></i>
+                            <h3>طرق الوزن</h3>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>الميزان التحليلي:</strong> دقة عالية تصل إلى 0.0001 جرام، يستخدم للوزن الدقيق.</p>
+                            <p><strong>الميزان التقني:</strong> دقة أقل (0.01 جرام)، يستخدم للوزن الأقل دقة.</p>
+                            <p><strong>الوزن بالفرق:</strong> وزن الوعاء فارغاً ثم مع المادة وحساب الفرق.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-calculator"></i>
+                            <h3>الحسابات</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>حساب نسبة المادة في العينة:</p>
+                            <p>النسبة المئوية = (كتلة الراسبة × عامل التحويل) / كتلة العينة × 100</p>
+                            <p>حيث عامل التحويل = الكتلة الجزيئية للمادة المراد تحليلها / الكتلة الجزيئية للراسبة</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Equipment Section -->
+            <section id="equipment" class="section">
+                <div class="section-title">
+                    <h2>المعدات المستخدمة</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="equipment-grid">
+                    <div class="equipment-item">
+                        <i class="fas fa-flask"></i>
+                        <h4>الدورق المخروطي</h4>
+                        <p>يستخدم لتحضير المحاليل وإجراء عمليات الترسيب</p>
+                    </div>
+                    
+                    <div class="equipment-item">
+                        <i class="fas fa-filter"></i>
+                        <h4>ورق الترشيح</h4>
+                        <p>لترشيح الراسب وفصله عن المحلول</p>
+                    </div>
+                    
+                    <div class="equipment-item">
+                        <i class="fas fa-burner"></i>
+                        <h4>الموقد البنزني</h4>
+                        <p>للتسخين وتسريع عمليات الترسيب</p>
+                    </div>
+                    
+                    <div class="equipment-item">
+                        <i class="fas fa-balance-scale-right"></i>
+                        <h4>الميزان التحليلي</h4>
+                        <p>للوزن الدقيق للمواد والراسب</p>
+                    </div>
+                    
+                    <div class="equipment-item">
+                        <i class="fas fa-thermometer-half"></i>
+                        <h4>الفرن الكهربائي</h4>
+                        <p>لتجفيف الراسب عند درجات حرارة محددة</p>
+                    </div>
+                    
+                    <div class="equipment-item">
+                        <i class="fas fa-vial"></i>
+                        <h4>الساعة الزجاجية</h4>
+                        <p>لتغطية الأواني ومنع التلوث</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Calculator -->
+            <section id="calculator" class="section">
+                <div class="section-title">
+                    <h2>حاسبة التحليل الوزني</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="calculator-container">
+                    <p>استخدم هذه الحاسبة لحساب تركيز المادة في عينتك</p>
+                    
+                    <div class="calculator-form">
+                        <div class="form-group">
+                            <label for="sample-mass">كتلة العينة (جم)</label>
+                            <input type="number" id="sample-mass" step="0.001" placeholder="أدخل كتلة العينة">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="precipitate-mass">كتلة الراسب (جم)</label>
+                            <input type="number" id="precipitate-mass" step="0.0001" placeholder="أدخل كتلة الراسب">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="analyte-mw">الكتلة الجزيئية للمادة</label>
+                            <input type="number" id="analyte-mw" step="0.01" placeholder="مثال: 58.44 لـ NaCl">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="precipitate-mw">الكتلة الجزيئية للراسب</label>
+                            <input type="number" id="precipitate-mw" step="0.01" placeholder="مثال: 143.32 لـ AgCl">
+                        </div>
+                    </div>
+                    
+                    <button class="btn" onclick="calculate()">احسب النسبة المئوية</button>
+                    
+                    <div class="calculator-result" id="result" style="display: none;">
+                        <h3>النتيجة:</h3>
+                        <div class="result-value" id="percentage">0.00%</div>
+                        <p>نسبة المادة في العينة</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن الموقع</h3>
+                    <p>منصة تعليمية متخصصة في التحليل الوزني وطرقه المختلفة، تقدم محتوى علمي دقيق وموثوق.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#precipitation">طرق الترسيب</a></li>
+                        <li><a href="#drying">التجفيف والوزن</a></li>
+                        <li><a href="#equipment">المعدات</a></li>
+                        <li><a href="#calculator">حاسبة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@gravimetric.com</li>
+                        <li><i class="fas fa-phone"></i> +966 50 123 4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع التحليل الوزني. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Calculator Function
+        function calculate() {
+            const sampleMass = parseFloat(document.getElementById('sample-mass').value);
+            const precipitateMass = parseFloat(document.getElementById('precipitate-mass').value);
+            const analyteMW = parseFloat(document.getElementById('analyte-mw').value);
+            const precipitateMW = parseFloat(document.getElementById('precipitate-mw').value);
+            
+            if (isNaN(sampleMass) || isNaN(precipitateMass) || isNaN(analyteMW) || isNaN(precipitateMW)) {
+                alert('الرجاء إدخال جميع القيم بشكل صحيح');
+                return;
+            }
+            
+            if (sampleMass <= 0 || precipitateMass <= 0 || analyteMW <= 0 || precipitateMW <= 0) {
+                alert('القيم يجب أن تكون أكبر من صفر');
+                return;
+            }
+            
+            // Calculate conversion factor
+            const conversionFactor = analyteMW / precipitateMW;
+            
+            // Calculate percentage
+            const percentage = (precipitateMass * conversionFactor / sampleMass) * 100;
+            
+            // Display result
+            document.getElementById('percentage').textContent = percentage.toFixed(2) + '%';
+            document.getElementById('result').style.display = 'block';
+            
+            // Smooth scroll to result
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .equipment-item, .process-step').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

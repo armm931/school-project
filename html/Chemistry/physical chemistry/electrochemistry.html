@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الكهروكيمياء - عالم التفاعلات الكهربائية</title>
+    <title>الكيمياء الكهربائية - Electrochemistry</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,20 +14,22 @@
         }
 
         :root {
-            --primary: #2563eb;
-            --secondary: #10b981;
-            --accent: #f59e0b;
-            --danger: #ef4444;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --info: #3b82f6;
-            --purple: #8b5cf6;
+            --primary: #1565c0;
+            --secondary: #42a5f5;
+            --accent: #ffeb3b;
+            --light: #e3f2fd;
+            --dark: #0d47a1;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --purple: #7b1fa2;
+            --teal: #00897b;
         }
 
         body {
-            background-color: #f1f5f9;
-            color: var(--dark);
-            line-height: 1.6;
+            background-color: #f5f7fa;
+            color: #263238;
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
@@ -35,22 +37,21 @@
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
 
         /* Header Styles */
         header {
-            background: linear-gradient(135deg, var(--primary), var(--purple));
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             padding: 1rem 0;
-            position: fixed;
-            width: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .header-container {
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -59,59 +60,63 @@
         .logo {
             display: flex;
             align-items: center;
-            font-size: 1.5rem;
-            font-weight: bold;
+            gap: 15px;
         }
 
         .logo i {
-            margin-left: 10px;
+            font-size: 2.5rem;
             color: var(--accent);
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
         }
 
         nav ul {
             display: flex;
             list-style: none;
+            gap: 30px;
         }
 
-        nav ul li {
-            margin-right: 25px;
-        }
-
-        nav ul li a {
+        nav a {
             color: white;
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            padding: 5px 0;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
             position: relative;
         }
 
-        nav ul li a:hover {
-            color: var(--accent);
+        nav a:hover {
+            background-color: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
         }
 
-        nav ul li a::after {
+        nav a::after {
             content: '';
             position: absolute;
             bottom: 0;
-            right: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 0;
-            height: 2px;
+            height: 3px;
             background-color: var(--accent);
-            transition: width 0.3s;
+            transition: width 0.3s ease;
         }
 
-        nav ul li a:hover::after {
-            width: 100%;
+        nav a:hover::after {
+            width: 80%;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(37, 99, 235, 0.85), rgba(139, 92, 246, 0.85)), url('https://images.unsplash.com/photo-1622630998477-20aa696ecb05?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            background: linear-gradient(rgba(21, 101, 192, 0.92), rgba(66, 165, 245, 0.88)), 
+                        url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover;
             color: white;
+            padding: 130px 0;
             text-align: center;
-            padding: 150px 0 100px;
-            margin-top: 70px;
             position: relative;
             overflow: hidden;
         }
@@ -119,567 +124,579 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20 20 L30 30 L20 40 L10 30 Z" fill="white" opacity="0.1"/><path d="M70 60 L80 70 L70 80 L60 70 Z" fill="white" opacity="0.1"/><circle cx="50" cy="50" r="3" fill="white" opacity="0.1"/></svg>') repeat;
-            animation: float 30s infinite linear;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 235, 59, 0.1) 0%, transparent 70%);
+            animation: pulse 20s infinite linear;
         }
 
-        @keyframes float {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-100px); }
+        @keyframes pulse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            animation: fadeInDown 1s;
+        .hero-content {
             position: relative;
             z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 3.8rem;
+            margin-bottom: 25px;
+            animation: fadeInUp 1s ease;
         }
 
         .hero p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            animation: fadeInUp 1s;
-            position: relative;
-            z-index: 1;
+            font-size: 1.5rem;
+            max-width: 850px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 1s ease 0.3s both;
         }
 
         .btn {
             display: inline-block;
-            background-color: var(--accent);
-            color: white;
-            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--accent), #fff59d);
+            color: var(--primary);
+            padding: 16px 40px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s;
+            font-weight: 700;
+            transition: all 0.4s ease;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
-            position: relative;
-            z-index: 1;
+            font-size: 1.2rem;
+            box-shadow: 0 6px 20px rgba(255, 235, 59, 0.4);
+            animation: fadeInUp 1s ease 0.6s both;
         }
 
         .btn:hover {
-            background-color: #d97706;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(255, 235, 59, 0.6);
         }
 
         /* Section Styles */
         section {
-            padding: 80px 0;
+            padding: 100px 0;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 70px;
         }
 
         .section-title h2 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--primary);
             position: relative;
             display: inline-block;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
         }
 
         .section-title h2::after {
             content: '';
             position: absolute;
-            bottom: -10px;
-            right: 25%;
-            width: 50%;
-            height: 4px;
-            background-color: var(--secondary);
-            border-radius: 2px;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            border-radius: 3px;
         }
 
         .section-title p {
-            color: #64748b;
-            max-width: 700px;
+            max-width: 750px;
             margin: 0 auto;
+            color: #546e7a;
+            font-size: 1.2rem;
         }
 
-        /* Introduction Section */
-        .intro-content {
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 70px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            height: 140px;
             display: flex;
-            gap: 50px;
             align-items: center;
-            margin-bottom: 50px;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(66, 165, 245, 0.1), rgba(255, 235, 59, 0.1));
         }
 
-        .intro-text {
-            flex: 1;
+        .card-icon i {
+            font-size: 4rem;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .intro-text h3 {
+        .card-body {
+            padding: 35px;
+        }
+
+        .card-body h3 {
             font-size: 1.8rem;
             color: var(--primary);
             margin-bottom: 20px;
         }
 
-        .intro-text p {
-            margin-bottom: 20px;
-            color: #334155;
-            line-height: 1.8;
+        .card-body p {
+            color: #546e7a;
+            margin-bottom: 30px;
+            line-height: 1.9;
         }
 
-        .intro-image {
-            flex: 1;
-            text-align: center;
+        .card-footer {
+            padding: 0 35px 35px;
         }
 
-        .intro-image img {
-            max-width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Concepts Section */
-        .concepts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .concept-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s;
+        /* Features Section */
+        .features {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
             position: relative;
         }
 
-        .concept-card::before {
+        .features::before {
             content: '';
             position: absolute;
             top: 0;
-            right: 0;
-            width: 5px;
+            left: 0;
+            width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, var(--primary), var(--secondary));
-            opacity: 0;
-            transition: opacity 0.3s;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(66, 165, 245, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 235, 59, 0.08) 0%, transparent 50%);
+            z-index: 0;
         }
 
-        .concept-card:hover::before {
-            opacity: 1;
+        .features-container {
+            position: relative;
+            z-index: 1;
         }
 
-        .concept-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
-
-        .concept-icon {
-            background: linear-gradient(135deg, var(--primary), var(--info));
-            color: white;
-            padding: 30px;
-            text-align: center;
-            font-size: 3rem;
-        }
-
-        .concept-body {
-            padding: 25px;
-        }
-
-        .concept-body h3 {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        .concept-body p {
-            color: #334155;
-            line-height: 1.8;
-        }
-
-        /* Cell Types Section */
-        .cells-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 40px;
-        }
-
-        .cell-card {
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 50px;
+            gap: 30px;
             background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
         }
 
-        .cell-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        .feature-item:hover {
+            transform: translateX(15px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
         }
 
-        .cell-header {
+        .feature-icon {
             background: linear-gradient(135deg, var(--secondary), var(--accent));
             color: white;
-            padding: 25px;
-            text-align: center;
-        }
-
-        .cell-header h3 {
-            font-size: 1.6rem;
-            margin-bottom: 10px;
-        }
-
-        .cell-body {
-            padding: 30px;
-        }
-
-        .cell-diagram {
-            background: #f8fafc;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            text-align: center;
-            font-family: 'Courier New', monospace;
-            border: 2px dashed #cbd5e1;
-        }
-
-        .cell-features {
-            list-style: none;
-            margin-top: 20px;
-        }
-
-        .cell-features li {
-            padding: 10px 0;
-            border-bottom: 1px solid #e2e8f0;
-            color: #64748b;
-            display: flex;
-            align-items: center;
-        }
-
-        .cell-features li:last-child {
-            border-bottom: none;
-        }
-
-        .cell-features li i {
-            color: var(--secondary);
-            margin-left: 10px;
-        }
-
-        /* Applications Section */
-        .applications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .app-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .app-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
-
-        .app-icon {
-            height: 120px;
-            background: linear-gradient(135deg, var(--purple), var(--accent));
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 3rem;
+            font-size: 2rem;
+            flex-shrink: 0;
+            box-shadow: 0 10px 25px rgba(66, 165, 245, 0.3);
         }
 
-        .app-content {
-            padding: 25px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+        .feature-content h3 {
+            font-size: 1.7rem;
+            margin-bottom: 15px;
+            color: var(--primary);
         }
 
-        .app-content h3 {
-            font-size: 1.4rem;
+        .feature-content p {
+            color: #546e7a;
+            line-height: 1.9;
+        }
+
+        /* Interactive Cell Visualization */
+        .cell-visualization {
+            background: white;
+            border-radius: 25px;
+            padding: 50px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cell-visualization::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(66, 165, 245, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cell-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .cell-title h3 {
+            font-size: 2.3rem;
             color: var(--primary);
             margin-bottom: 15px;
         }
 
-        .app-content p {
-            color: #64748b;
-            line-height: 1.8;
-            flex-grow: 1;
-        }
-
-        .app-link {
-            margin-top: 20px;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            transition: color 0.3s;
-        }
-
-        .app-link:hover {
-            color: var(--secondary);
-        }
-
-        .app-link i {
-            margin-left: 5px;
-        }
-
-        /* Calculator Section */
-        .calculator-container {
-            background: white;
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .calculator-tabs {
+        .galvanic-cell {
             display: flex;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #e2e8f0;
-        }
-
-        .tab-btn {
-            background: none;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1rem;
-            font-weight: 500;
-            color: #64748b;
-            cursor: pointer;
-            transition: all 0.3s;
+            justify-content: space-between;
+            align-items: center;
+            margin: 50px 0;
             position: relative;
         }
 
-        .tab-btn.active {
-            color: var(--primary);
-        }
-
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            right: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--primary);
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #334155;
-            font-weight: 500;
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
-        }
-
-        .result-box {
-            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-            border-radius: 10px;
-            padding: 25px;
-            margin-top: 30px;
-            border-right: 4px solid var(--primary);
-            display: none;
-        }
-
-        .result-box h4 {
-            color: var(--primary);
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-        }
-
-        .result-box p {
-            color: #334155;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-        }
-
-        /* Experiments Section */
-        .experiments-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .experiment-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s;
-        }
-
-        .experiment-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
-
-        .experiment-image {
+        .electrode {
+            width: 120px;
             height: 200px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .anode {
+            background: linear-gradient(135deg, #f44336, #e57373);
+        }
+
+        .cathode {
+            background: linear-gradient(135deg, #4caf50, #81c784);
+        }
+
+        .salt-bridge {
+            width: 200px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff9800, #ffb74d);
+            border-radius: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 4rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
         }
 
-        .experiment-content {
-            padding: 25px;
+        .electrons-flow {
+            position: absolute;
+            top: 50%;
+            left: 120px;
+            right: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            z-index: 1;
         }
 
-        .experiment-content h3 {
-            font-size: 1.4rem;
+        .electron {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            top: -8px;
+            animation: flowElectrons 3s infinite linear;
+        }
+
+        @keyframes flowElectrons {
+            0% { left: 0; }
+            100% { left: calc(100% - 20px); }
+        }
+
+        .cell-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .cell-label {
+            text-align: center;
+            font-weight: 600;
             color: var(--primary);
+        }
+
+        /* Applications Section */
+        .applications {
+            background: linear-gradient(135deg, #f5f5f5, #eeeeee);
+        }
+
+        .app-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .app-tab-btn {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .app-tab-btn.active {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            border-color: transparent;
+        }
+
+        .app-content {
+            display: none;
+        }
+
+        .app-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .app-details {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .app-details h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .app-details p {
+            color: #546e7a;
+            line-height: 1.9;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .app-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .app-example {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .app-example:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .app-example i {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 15px;
         }
 
-        .experiment-content p {
-            color: #64748b;
-            margin-bottom: 20px;
-            line-height: 1.8;
+        .app-example h4 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
         }
 
-        .experiment-btn {
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            color: white;
-            padding: 10px 20px;
+        /* Reduction Potential Table */
+        .reduction-potential {
+            background: white;
             border-radius: 25px;
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-block;
-            transition: all 0.3s;
+            padding: 50px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-top: 60px;
+            overflow-x: auto;
         }
 
-        .experiment-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+        .reduction-potential h3 {
+            font-size: 2.3rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .potential-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        .potential-table th {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .potential-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .potential-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .potential-table tr:hover {
+            background-color: #e3f2fd;
         }
 
         /* FAQ Section */
+        .faq {
+            background: white;
+        }
+
         .faq-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .faq-item {
-            background: white;
-            border-radius: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
         }
 
         .faq-question {
-            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 30px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: 500;
+            font-weight: 700;
             color: var(--primary);
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
+            border-right: 5px solid transparent;
         }
 
         .faq-question:hover {
-            background-color: #f8fafc;
-        }
-
-        .faq-question i {
-            transition: transform 0.3s;
-        }
-
-        .faq-item.active .faq-question i {
-            transform: rotate(180deg);
+            background: linear-gradient(135deg, #e9ecef, #dee2e6);
+            border-right-color: var(--secondary);
         }
 
         .faq-answer {
-            padding: 0 20px;
+            padding: 0 30px;
             max-height: 0;
             overflow: hidden;
-            transition: all 0.3s;
-            color: #64748b;
-            line-height: 1.8;
+            transition: all 0.4s ease;
+            background: white;
         }
 
-        .faq-item.active .faq-answer {
-            padding: 0 20px 20px;
-            max-height: 300px;
+        .faq-answer.active {
+            padding: 30px;
+            max-height: 600px;
+        }
+
+        .faq-icon {
+            transition: transform 0.4s ease;
+            color: var(--accent);
+        }
+
+        .faq-icon.active {
+            transform: rotate(180deg);
         }
 
         /* Footer */
         footer {
-            background-color: var(--dark);
-            color: #cbd5e1;
-            padding: 50px 0 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 80px 0 30px;
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
         }
 
         .footer-column h3 {
-            color: white;
-            margin-bottom: 20px;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
         }
 
-        .footer-column p {
-            margin-bottom: 15px;
-            line-height: 1.8;
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 70px;
+            height: 3px;
+            background-color: var(--accent);
         }
 
         .footer-column ul {
@@ -687,66 +704,57 @@
         }
 
         .footer-column ul li {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .footer-column ul li a {
-            color: #cbd5e1;
+            color: rgba(255,255,255,0.8);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
+            display: inline-block;
         }
 
         .footer-column ul li a:hover {
             color: var(--accent);
+            transform: translateX(5px);
         }
 
         .social-links {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 20px;
+            margin-top: 30px;
         }
 
         .social-links a {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255,255,255,0.1);
             border-radius: 50%;
             color: white;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
 
         .social-links a:hover {
             background-color: var(--accent);
-            transform: translateY(-3px);
+            transform: translateY(-5px);
         }
 
         .copyright {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #334155;
-            font-size: 0.9rem;
-            color: #94a3b8;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem;
         }
 
         /* Animations */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(50px);
             }
             to {
                 opacity: 1;
@@ -754,515 +762,461 @@
             }
         }
 
-        /* Responsive */
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 3rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
         @media (max-width: 768px) {
-            nav ul {
+            .header-content {
                 flex-direction: column;
-                position: absolute;
-                top: 70px;
-                right: 0;
-                width: 100%;
-                background-color: var(--primary);
-                padding: 20px;
-                display: none;
+                gap: 25px;
             }
             
-            nav ul.active {
-                display: flex;
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
             }
             
-            .menu-toggle {
-                display: block;
-                font-size: 1.5rem;
-                cursor: pointer;
+            .hero {
+                padding: 90px 0;
             }
             
-            .hero h1 {
-                font-size: 2.2rem;
+            .hero h2 {
+                font-size: 2.5rem;
             }
             
             .hero p {
-                font-size: 1.1rem;
+                font-size: 1.3rem;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            .feature-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .feature-icon {
+                margin: 0 auto 25px;
+            }
+            
+            .galvanic-cell {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .electrons-flow {
+                display: none;
+            }
+            
+            .cell-visualization {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 1.6rem;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            nav a {
+                padding: 8px 14px;
+                font-size: 0.9rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
             }
             
             .section-title h2 {
                 font-size: 2rem;
             }
             
-            .intro-content {
-                flex-direction: column;
-            }
-            
-            .form-row {
+            .cards-grid {
                 grid-template-columns: 1fr;
             }
-        }
-
-        .menu-toggle {
-            display: none;
-        }
-
-        /* Loading Animation */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+            
+            .app-examples {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <div class="container header-container">
+        <div class="container header-content">
             <div class="logo">
                 <i class="fas fa-bolt"></i>
-                <span>الكهروكيمياء</span>
+                <h1>الكيمياء الكهربائية</h1>
             </div>
             <nav>
                 <ul>
                     <li><a href="#home">الرئيسية</a></li>
-                    <li><a href="#intro">مقدمة</a></li>
-                    <li><a href="#concepts">المفاهيم</a></li>
-                    <li><a href="#cells">الخلايا</a></li>
+                    <li><a href="#galvanic">الخلايا الجلفانية</a></li>
+                    <li><a href="#electrolysis">التحليل الكهربائي</a></li>
+                    <li><a href="#equations">المعادلات</a></li>
                     <li><a href="#applications">التطبيقات</a></li>
-                    <li><a href="#calculator">الحاسبة</a></li>
-                    <li><a href="#experiments">تجارب</a></li>
+                    <li><a href="#faq">الأسئلة</a></li>
                 </ul>
-                <div class="menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </div>
             </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <h1>عالم الكهروكيمياء</h1>
-            <p>اكتشف كيف تتحول الطاقة الكيميائية إلى طاقة كهربائية والعكس، وتطبيقاتها في حياتنا اليومية</p>
-            <a href="#intro" class="btn">ابدأ التعلم</a>
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h2>فهم تفاعلات الطاقة الكهربائية</h2>
+            <p>استكشف عالم الكيمياء الكهربائية الذي يحول الطاقة الكيميائية إلى طاقة كهربائية والعكس، واكتشف تطبيقاتها في حياتنا اليومية</p>
+            <a href="#galvanic" class="btn">ابدأ التعلم الآن</a>
         </div>
     </section>
 
-    <!-- Introduction Section -->
-    <section id="intro" class="intro">
+    <!-- Galvanic Cells Section -->
+    <section class="galvanic" id="galvanic">
         <div class="container">
             <div class="section-title">
-                <h2>ما هي الكهروكيمياء؟</h2>
-                <p>فهم أساسيات الكهروكيمياء وأهميتها في العلم والتكنولوجيا</p>
+                <h2>الخلايا الجلفانية</h2>
+                <p>تعرف على كيفية تحويل الطاقة الكيميائية إلى طاقة كهربائية من خلال التفاعلات الأكسدة والاختزال</p>
             </div>
-            <div class="intro-content">
-                <div class="intro-text">
-                    <h3>مقدمة في الكهروكيمياء</h3>
-                    <p>الكهروكيمياء هو فرع من الكيمياء يدرس العلاقة بين التفاعلات الكيميائية والكهرباء. يركز هذا المجال على كيفية تحويل الطاقة الكيميائية إلى طاقة كهربائية والعكس، وكيفية استخدام التيار الكهربائي لإحداث تفاعلات كيميائية.</p>
-                    <p>تعتبر الكهروكيمياء أساساً لكثير من التطبيقات الحيوية في حياتنا اليومية، مثل البطاريات التي تشغل أجهزتنا الإلكترونية، عملية التحليل الكهربائي المستخدمة في استخراج المعادن، وحماية المعادن من التآكل.</p>
-                    <p>يعتمد هذا المجال على مفاهيم مثل الأكسدة والاختزال، الجهد الكهروكيميائي، والتيار الكهربائي، وحركة الإلكترونات بين المواد. فهم هذه المبادئ ضروري لتطوير تقنيات جديدة وأكثر كفاءة في تخزين الطاقة وتحويلها.</p>
-                </div>
-                <div class="intro-image">
-                    <img src="https://images.unsplash.com/photo-1593941707882-a523ba9cbc52?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="الكهروكيمياء">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Concepts Section -->
-    <section id="concepts" class="concepts">
-        <div class="container">
-            <div class="section-title">
-                <h2>المفاهيم الأساسية</h2>
-                <p>تعرف على المبادئ الأساسية التي تحكم الكهروكيمياء</p>
-            </div>
-            <div class="concepts-grid">
-                <div class="concept-card">
-                    <div class="concept-icon">
-                        <i class="fas fa-exchange-alt"></i>
-                    </div>
-                    <div class="concept-body">
-                        <h3>الأكسدة والاختزال</h3>
-                        <p>الأكسدة هي فقدان الإلكترونات، بينما الاختزال هو اكتساب الإلكترونات. تحدث هاتان العمليتان معاً في التفاعلات الكهروكيميائية. المادة التي تؤكسد تسمى عامل اختزال، والمادة التي تختزل تسمى عامل أكسدة.</p>
-                    </div>
-                </div>
-                
-                <div class="concept-card">
-                    <div class="concept-icon">
-                        <i class="fas fa-plug"></i>
-                    </div>
-                    <div class="concept-body">
-                        <h3>الخلية الكهروكيميائية</h3>
-                        <p>جهاز يحول الطاقة الكيميائية إلى طاقة كهربائية أو العكس. تتكون من قطبين (مهبط ومصعد) غاطسين في محلول إلكتروليتي. يحدث الأكسدة في المصعد والاختزال في المهبط.</p>
-                    </div>
-                </div>
-                
-                <div class="concept-card">
-                    <div class="concept-icon">
-                        <i class="fas fa-tachometer-alt"></i>
-                    </div>
-                    <div class="concept-body">
-                        <h3>الجهد الكهروكيميائي</h3>
-                        <p>يقاس بالفولت ويمثل ميل المادة للأكسدة أو الاختزال. الجهد القياسي للقطب (E°) يقاس بالنسبة لقطب الهيدروجين القياسي. الفرق في الجهد بين قطبين يحدد جهد الخلية.</p>
-                    </div>
-                </div>
-                
-                <div class="concept-card">
-                    <div class="concept-icon">
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">
                         <i class="fas fa-battery-full"></i>
                     </div>
-                    <div class="concept-body">
-                        <h3>قوانين فاراداي</h3>
-                        <p>تتعلق بكمية المادة التي تترسب أو تذوب في أقطاب الخلية أثناء التحليل الكهربائي. القانون الأول: كتلة المادة تتناسب طردياً مع كمية الكهرباء. القانون الثاني: كتلة المادة تتناسب طردياً مع كتلتها المكافئة.</p>
+                    <div class="card-body">
+                        <h3>مبدأ العمل</h3>
+                        <p>الخلايا الجلفانية تعمل على مبدأ التفاعل التلقائي بين الأكسدة والاختزال. تتكون من قطبين (مهبط ومصعد) غاطسين في محاليلهما الأيونية، متصلين بجسر ملحي لإكمال الدائرة الكهربائية.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
                     </div>
                 </div>
                 
-                <div class="concept-card">
-                    <div class="concept-icon">
-                        <i class="fas fa-vial"></i>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-exchange-alt"></i>
                     </div>
-                    <div class="concept-body">
-                        <h3>الإلكتروليت</h3>
-                        <p>مادة تذوب في الماء لتعطي أيونات قادرة على توصيل التيار الكهربائي. يمكن أن تكون أحماضاً أو قواعداً أو أملاحاً. قوة الإلكتروليت تعتمد على درجة تأينه في المحلول.</p>
+                    <div class="card-body">
+                        <h3>الأقطاب الكهربائية</h3>
+                        <p>المصعد (Anode) هو قطب الأكسدة حيث يفقد الإلكترونات، والمهبط (Cathode) هو قطب الاختزال حيث تكتسب الإلكترونات. يتحرك الإلكترونات من المصعد إلى المهبط عبر الدائرة الخارجية.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
                     </div>
                 </div>
                 
-                <div class="concept-card">
-                    <div class="concept-icon">
-                        <i class="fas fa-project-diagram"></i>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-tint"></i>
                     </div>
-                    <div class="concept-body">
-                        <h3>معادلة نيرنست</h3>
-                        <p>تستخدم لحساب جهد الخلية تحت ظروف غير قياسية. تأخذ في الاعتبار تركيزات المواد ودرجة الحرارة. المعادلة: E = E° - (RT/nF) ln Q، حيث Q هو حاصل التفاعل.</p>
+                    <div class="card-body">
+                        <h3>الجسر الملحي</h3>
+                        <p>الجسر الملحي يحتوي على محلول ملحي قوي (مثل KCl أو KNO3) ويسمح بحركة الأيونات بين نصفي الخلية للحفاظ على التعادل الكهربائي ومنع تراكم الشحنات.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Interactive Cell Visualization -->
+            <div class="cell-visualization">
+                <div class="cell-title">
+                    <h3>تمثيل الخلية الجلفانية</h3>
+                </div>
+                
+                <div class="galvanic-cell">
+                    <div class="electrode anode">
+                        <span>Zn</span>
+                        <small>مصعد</small>
+                    </div>
+                    
+                    <div class="salt-bridge">
+                        <span>جسر ملحي</span>
+                    </div>
+                    
+                    <div class="electrode cathode">
+                        <span>Cu</span>
+                        <small>مهبط</small>
+                    </div>
+                    
+                    <div class="electrons-flow">
+                        <div class="electron"></div>
+                    </div>
+                </div>
+                
+                <div class="cell-labels">
+                    <div class="cell-label">
+                        <p><strong>أكسدة:</strong> Zn → Zn²⁺ + 2e⁻</p>
+                    </div>
+                    <div class="cell-label">
+                        <p><strong>اختزال:</strong> Cu²⁺ + 2e⁻ → Cu</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Cell Types Section -->
-    <section id="cells" class="cells">
+    <!-- Electrolysis Section -->
+    <section class="electrolysis features" id="electrolysis">
+        <div class="container features-container">
+            <div class="section-title">
+                <h2>التحليل الكهربائي</h2>
+                <p>كيفية استخدام الطاقة الكهربائية لإحداث تفاعلات كيميائية غير تلقائية</p>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-plug"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>مبدأ التحليل الكهربائي</h3>
+                    <p>التحليل الكهربائي هو عملية عكسية للخلية الجلفانية، حيث يتم استخدام طاقة كهربائية خارجية لإجبار التفاعلات الكيميائية غير التلقائية على الحدوث. يتكون من مصدر جهد خارجي وقطبين غاطسين في محلول إلكتروليتي.</p>
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-vial"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>قوانين فاراداي</h3>
+                    <p>قوانين فاراداي تحدد العلاقة بين كمية الكهرباء المارة وكمية المادة المتفاعلة. القانون الأول: كمية المادة المتفاعلة تتناسب طردياً مع كمية الكهرباء. القانون الثاني: كتل المواد المختلفة المتفاعلة بنفس كمية الكهرباء تتناسب مع مكافئاتها الكيميائية.</p>
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-water"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>تحليل الماء</h3>
+                    <p>تحليل الماء هو تطبيق شائع للتحليل الكهربائي، حيث يتم تفكيك الماء إلى غازي الهيدروجين والأكسجين عند مرور تيار كهربائي. يستخدم في إنتاج الهيدروجين النظيف والأكسجين الطبي والصناعي.</p>
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>التطبيقات الصناعية</h3>
+                    <p>يستخدم التحليل الكهربائي في العديد من الصناعات مثل إنتاج الألومنيوم من خام البوكسيت، استخلاص المعادن النادرة، إنتاج الكلور والهيدروكسيد الصوديوم، وتنقية المعادن مثل النحاس.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Electrochemical Equations Section -->
+    <section class="equations" id="equations">
         <div class="container">
             <div class="section-title">
-                <h2>أنواع الخلايا الكهروكيميائية</h2>
-                <p>التصنيفات الرئيسية للخلايا الكهروكيميائية وآلية عملها</p>
+                <h2>المعادلات الكهروكيميائية</h2>
+                <p>فهم المعادلات التي تحكم التفاعلات الكهروكيميائية وجهد الاختزال القياسي</p>
             </div>
-            <div class="cells-container">
-                <div class="cell-card">
-                    <div class="cell-header">
-                        <h3>الخلايا الجلفانية (الفولتية)</h3>
-                        <p>تولد الكهرباء من التفاعلات الكيميائية</p>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-superscript"></i>
                     </div>
-                    <div class="cell-body">
-                        <p>الخلايا الجلفانية تحول الطاقة الكيميائية إلى طاقة كهربائية بشكل تلقائي. تعتمد على تفاعل أكسدة-اختزال تلقائي بين مادتين مختلفتين.</p>
-                        
-                        <div class="cell-diagram">
-                            Zn | Zn²⁺ || Cu²⁺ | Cu<br>
-                            المصعد: Zn → Zn²⁺ + 2e⁻ (أكسدة)<br>
-                            المهبط: Cu²⁺ + 2e⁻ → Cu (اختزال)
-                        </div>
-                        
-                        <ul class="cell-features">
-                            <li><i class="fas fa-check"></i> تعمل بشكل تلقائي دون حاجة لطاقة خارجية</li>
-                            <li><i class="fas fa-check"></i> الجهد الإيجابي يشير إلى تفاعل تلقائي</li>
-                            <li><i class="fas fa-check"></i> تستخدم في البطاريات والخلايا الشمسية</li>
-                            <li><i class="fas fa-check"></i> يمكن أن تكون أولية أو ثانوية (قابلة لإعادة الشحن)</li>
-                        </ul>
+                    <div class="card-body">
+                        <h3>كتابة المعادلات</h3>
+                        <p>المعادلات الكهروكيميائية توصف التفاعلات التي تنطوي على نقل الإلكترونات. يجب أن تكون موزونة من حيث الذرات والشحنة، وتفصل بين تفاعل الأكسدة وتفاعل الاختزال في نصف التفاعلات.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
                     </div>
                 </div>
                 
-                <div class="cell-card">
-                    <div class="cell-header">
-                        <h3>خلايا التحليل الكهربائي</h3>
-                        <p>تستخدم الكهرباء لإحداث تفاعلات كيميائية</p>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-bolt"></i>
                     </div>
-                    <div class="cell-body">
-                        <p>خلايا التحليل الكهربائية تستخدم طاقة كهربائية خارجية لإجبار التفاعلات غير التلقائية على الحدوث. تستخدم في عمليات التصنيع والتنقية.</p>
-                        
-                        <div class="cell-diagram">
-                            المصعد (+): 2Cl⁻ → Cl₂ + 2e⁻ (أكسدة)<br>
-                            المهبط (-): 2H₂O + 2e⁻ → H₂ + 2OH⁻ (اختزال)<br>
-                            التفاعل الكلي: 2NaCl + 2H₂O → 2NaOH + H₂ + Cl₂
-                        </div>
-                        
-                        <ul class="cell-features">
-                            <li><i class="fas fa-check"></i> تتطلب مصدر طاقة خارجي للعمل</li>
-                            <li><i class="fas fa-check"></i> الجهد السالب يشير إلى تفاعل غير تلقائي</li>
-                            <li><i class="fas fa-check"></i> تستخدم في استخلاص المعادن وتنقيتها</li>
-                            <li><i class="fas fa-check"></i> تطبيقات: طلاء المعادن، إنتاج الألومنيوم، تعقيم المياه</li>
-                        </ul>
+                    <div class="card-body">
+                        <h3>جهد الاختزال القياسي</h3>
+                        <p>جهد الاختزال القياسي (E°) هو ميل نصف التفاعل للاكتساب الإلكترونات مقارنة بقطب الهيدروجين القياسي. القيم الموجبة تشير إلى ميل كبير للاختزال، بينما القيم السالبة تشير إلى ميل للأكسدة.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
                     </div>
                 </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>حساب جهد الخلية</h3>
+                        <p>جهد الخلية القياسي (E°cell) يحسب كفرق بين جهد الاختزال للمهبط وجهد الاختزال للمصعد: E°cell = E°cathode - E°anode. القيمة الموجبة تشير إلى تفاعل تلقائي.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn">تعلم المزيد</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Reduction Potential Table -->
+            <div class="reduction-potential">
+                <h3>جدول جهود الاختزال القياسية</h3>
+                <table class="potential-table">
+                    <thead>
+                        <tr>
+                            <th>نصف التفاعل</th>
+                            <th>E° (فولت)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>F₂ + 2e⁻ → 2F⁻</td>
+                            <td>+2.87</td>
+                        </tr>
+                        <tr>
+                            <td>O₂ + 4H⁺ + 4e⁻ → 2H₂O</td>
+                            <td>+1.23</td>
+                        </tr>
+                        <tr>
+                            <td>Br₂ + 2e⁻ → 2Br⁻</td>
+                            <td>+1.07</td>
+                        </tr>
+                        <tr>
+                            <td>Ag⁺ + e⁻ → Ag</td>
+                            <td>+0.80</td>
+                        </tr>
+                        <tr>
+                            <td>Cu²⁺ + 2e⁻ → Cu</td>
+                            <td>+0.34</td>
+                        </tr>
+                        <tr>
+                            <td>2H⁺ + 2e⁻ → H₂</td>
+                            <td>0.00</td>
+                        </tr>
+                        <tr>
+                            <td>Zn²⁺ + 2e⁻ → Zn</td>
+                            <td>-0.76</td>
+                        </tr>
+                        <tr>
+                            <td>Al³⁺ + 3e⁻ → Al</td>
+                            <td>-1.66</td>
+                        </tr>
+                        <tr>
+                            <td>Mg²⁺ + 2e⁻ → Mg</td>
+                            <td>-2.37</td>
+                        </tr>
+                        <tr>
+                            <td>Na⁺ + e⁻ → Na</td>
+                            <td>-2.71</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
 
     <!-- Applications Section -->
-    <section id="applications" class="applications">
+    <section class="applications" id="applications">
         <div class="container">
             <div class="section-title">
-                <h2>تطبيقات الكهروكيمياء</h2>
-                <p>كيف تؤثر الكهروكيمياء في حياتنا اليومية والصناعة</p>
+                <h2>تطبيقات الكيمياء الكهربائية</h2>
+                <p>كيف تُستخدم مبادئ الكيمياء الكهربائية في مجالات حياتية مختلفة</p>
             </div>
-            <div class="applications-grid">
-                <div class="app-card">
-                    <div class="app-icon">
-                        <i class="fas fa-battery-three-quarters"></i>
-                    </div>
-                    <div class="app-content">
-                        <h3>البطاريات</h3>
-                        <p>تخزين الطاقة الكهربائية بشكل كيميائي. تشمل بطاريات الليثيوم أيون، الرصاص الحمضية، والقلوية. تستخدم في السيارات الكهربائية، الأجهزة الإلكترونية، وأنظمة الطاقة الاحتياطية.</p>
-                        <a href="#" class="app-link">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                </div>
-                
-                <div class="app-card">
-                    <div class="app-icon">
-                        <i class="fas fa-industry"></i>
-                    </div>
-                    <div class="app-content">
-                        <h3>التحليل الكهربائي</h3>
-                        <p>استخدام التيار الكهربائي لفصل المركبات الكيميائية. يستخدم في إنتاج الألومنيوم من البوكسيت، الكلور من ملح الطعام، والتنقية الكهربائية للنحاس والمعادن الأخرى.</p>
-                        <a href="#" class="app-link">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                </div>
-                
-                <div class="app-card">
-                    <div class="app-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <div class="app-content">
-                        <h3>الحماية الكاثودية</h3>
-                        <p>منع تآكل المعادن عن طريق جعلها مهبطاً في خلية كهروكيميائية. تستخدم لحماية الأنابيب، السفن، والهياكل المعدنية تحت الماء أو في التربة.</p>
-                        <a href="#" class="app-link">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                </div>
-                
-                <div class="app-card">
-                    <div class="app-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <div class="app-content">
-                        <h3>الطلاء الكهربائي</h3>
-                        <p>ترسيب طبقة رقيقة من معدن على سطح آخر باستخدام التحليل الكهربائي. يستخدم لتجميل الأسطح، حمايتها من التآكل، وتحسين خصائصها الكهربائية.</p>
-                        <a href="#" class="app-link">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                </div>
-                
-                <div class="app-card">
-                    <div class="app-icon">
-                        <i class="fas fa-tint"></i>
-                    </div>
-                    <div class="app-content">
-                        <h3>تحلية المياه</h3>
-                        <p>إزالة الأملاح من مياه البحر باستخدام التبادل الأيوني أو التناضح العكسي. تعتمد على مبادئ الكهروكيميائية لفصل الأيونات عن الماء.</p>
-                        <a href="#" class="app-link">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                </div>
-                
-                <div class="app-card">
-                    <div class="app-icon">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <div class="app-content">
-                        <h3>التطبيقات الطبية</h3>
-                        <p>أقطاب الطب الحيوي، أجهزة قياس الجلوكوز، وبطاريات الأجهزة الطبية القابلة للزرع. تستخدم الكهروكيمياء في تشخيص الأمراض وعلاجها.</p>
-                        <a href="#" class="app-link">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+            
+            <div class="app-tabs">
+                <button class="app-tab-btn active" onclick="showApp('batteries')">البطاريات</button>
+                <button class="app-tab-btn" onclick="showApp('corrosion')">التآكل</button>
+                <button class="app-tab-btn" onclick="showApp('electroplating')">الطلاء الكهربائي</button>
+            </div>
+            
+            <div class="app-content active" id="batteries">
+                <div class="app-details">
+                    <h3>البطاريات</h3>
+                    <p>البطاريات هي أجهزة تخزين الطاقة الكهربائية من خلال التفاعلات الكهروكيميائية. تعتمد على مبدأ الخلايا الجلفانية وتختلف أنواعها حسب المواد المستخدمة والتطبيق.</p>
+                    
+                    <div class="app-examples">
+                        <div class="app-example">
+                            <i class="fas fa-battery-three-quarters"></i>
+                            <h4>بطارية الرصاص الحمضية</h4>
+                            <p>تستخدم في السيارات وتتكون من أقطاب الرصاص وثاني أكسيد الرصاص في حمض الكبريتيك.</p>
+                        </div>
+                        <div class="app-example">
+                            <i class="fas fa-battery-half"></i>
+                            <h4>البطاريات القلوية</h4>
+                            <p>بطاريات جافة تستخدم أكسيد الزنك وثاني أكسيد المنجنيز في محلول قلوي.</p>
+                        </div>
+                        <div class="app-example">
+                            <i class="fas fa-battery-full"></i>
+                            <h4>بطاريات الليثيوم أيون</h4>
+                            <p>بطاريات قابلة لإعادة الشحن تستخدم في الأجهزة الإلكترونية والسيارات الكهربائية.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Calculator Section -->
-    <section id="calculator" class="calculator">
-        <div class="container">
-            <div class="section-title">
-                <h2>الحاسبة الكهروكيميائية</h2>
-                <p>احسب الجهد القياسي وغيره من القيم الكهروكيميائية</p>
-            </div>
-            <div class="calculator-container">
-                <div class="calculator-tabs">
-                    <button class="tab-btn active" onclick="switchTab('cell-potential')">جهد الخلية</button>
-                    <button class="tab-btn" onclick="switchTab('nerst')">معادلة نيرنست</button>
-                    <button class="tab-btn" onclick="switchTab('faraday')">قوانين فاراداي</button>
-                </div>
-                
-                <!-- Cell Potential Calculator Tab -->
-                <div id="cell-potential-tab" class="tab-content active">
-                    <form id="cell-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="cathode">المهبط (نصف التفاعل المختزل):</label>
-                                <select id="cathode">
-                                    <option value="0.34">Cu²⁺ + 2e⁻ → Cu (+0.34 V)</option>
-                                    <option value="0.80">Ag⁺ + e⁻ → Ag (+0.80 V)</option>
-                                    <option value="1.36">Cl₂ + 2e⁻ → 2Cl⁻ (+1.36 V)</option>
-                                    <option value="-0.44">Fe²⁺ + 2e⁻ → Fe (-0.44 V)</option>
-                                    <option value="-0.76">Zn²⁺ + 2e⁻ → Zn (-0.76 V)</option>
-                                    <option value="-2.37">Mg²⁺ + 2e⁻ → Mg (-2.37 V)</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="anode">المصعد (نصف التفاعل المؤكسد):</label>
-                                <select id="anode">
-                                    <option value="-0.34">Cu → Cu²⁺ + 2e⁻ (-0.34 V)</option>
-                                    <option value="-0.80">Ag → Ag⁺ + e⁻ (-0.80 V)</option>
-                                    <option value="-1.36">2Cl⁻ → Cl₂ + 2e⁻ (-1.36 V)</option>
-                                    <option value="0.44">Fe → Fe²⁺ + 2e⁻ (+0.44 V)</option>
-                                    <option value="0.76">Zn → Zn²⁺ + 2e⁻ (+0.76 V)</option>
-                                    <option value="2.37">Mg → Mg²⁺ + 2e⁻ (+2.37 V)</option>
-                                </select>
-                            </div>
+            
+            <div class="app-content" id="corrosion">
+                <div class="app-details">
+                    <h3>التآكل</h3>
+                    <p>التآكل هو عملية كهروكيميائية تدمر المعادن، خاصة الحديد والصلب. يحدث عندما يتفاعل المعدن مع الأكسجين والماء في البيئة، مكوناً أكاسيد وهيدروكسيدات.</p>
+                    
+                    <div class="app-examples">
+                        <div class="app-example">
+                            <i class="fas fa-rust"></i>
+                            <h4>تآكل الحديد</h4>
+                            <p>يحدث عندما يتأكسد الحديد إلى Fe²⁺ ثم إلى Fe³⁺ مكوناً الصدأ (Fe₂O₃·nH₂O).</p>
                         </div>
-                        <button type="submit" class="btn">احسب جهد الخلية</button>
-                    </form>
-                    <div class="result-box" id="cell-result">
-                        <h4>النتيجة:</h4>
-                        <p id="cell-result-text"></p>
-                    </div>
-                </div>
-                
-                <!-- Nernst Equation Calculator Tab -->
-                <div id="nerst-tab" class="tab-content">
-                    <form id="nerst-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="e0">الجهد القياسي (E°) بالفولت:</label>
-                                <input type="number" id="e0" step="0.01" placeholder="أدخل E°">
-                            </div>
-                            <div class="form-group">
-                                <label for="n">عدد الإلكترونات (n):</label>
-                                <input type="number" id="n" step="1" placeholder="أدخل n">
-                            </div>
+                        <div class="app-example">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>طرق الوقاية</h4>
+                            <p>الطلاء، الطلاء الكهربائي بالزنك، استخدام الممانعات الكهروكيميائية، والسبائك المقاومة للتآكل.</p>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="temp">درجة الحرارة (T) بالكلفن:</label>
-                                <input type="number" id="temp" step="0.1" placeholder="298" value="298">
-                            </div>
-                            <div class="form-group">
-                                <label for="q">حاصل التفاعل (Q):</label>
-                                <input type="number" id="q" step="0.0001" placeholder="أدخل Q">
-                            </div>
+                        <div class="app-example">
+                            <i class="fas fa-ship"></i>
+                            <h4>التآكل البحري</h4>
+                            <p>يحدث بشكل أسرع في البيئات البحرية بسبب وجود الأملاح التي تزيد من التوصيل الكهربائي للماء.</p>
                         </div>
-                        <button type="submit" class="btn">احسب الجهد</button>
-                    </form>
-                    <div class="result-box" id="nerst-result">
-                        <h4>النتيجة:</h4>
-                        <p id="nerst-result-text"></p>
-                    </div>
-                </div>
-                
-                <!-- Faraday's Laws Calculator Tab -->
-                <div id="faraday-tab" class="tab-content">
-                    <form id="faraday-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="current">التيار (I) بالأمبير:</label>
-                                <input type="number" id="current" step="0.01" placeholder="أدخل التيار">
-                            </div>
-                            <div class="form-group">
-                                <label for="time">الزمن (t) بالثواني:</label>
-                                <input type="number" id="time" step="1" placeholder="أدخل الزمن">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="molar-mass">الكتلة المولية (M) بالجرام/مول:</label>
-                                <input type="number" id="molar-mass" step="0.01" placeholder="أدخل الكتلة المولية">
-                            </div>
-                            <div class="form-group">
-                                <label for="valence">التكافؤ (z):</label>
-                                <input type="number" id="valence" step="1" placeholder="أدخل التكافؤ">
-                            </div>
-                        </div>
-                        <button type="submit" class="btn">احسب الكتلة</button>
-                    </form>
-                    <div class="result-box" id="faraday-result">
-                        <h4>النتيجة:</h4>
-                        <p id="faraday-result-text"></p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Experiments Section -->
-    <section id="experiments" class="experiments">
-        <div class="container">
-            <div class="section-title">
-                <h2>تجارب افتراضية</h2>
-                <p>استكشف تجارب تفاعلية لتعميق فهمك للكهروكيمياء</p>
-            </div>
-            <div class="experiments-grid">
-                <div class="experiment-card">
-                    <div class="experiment-image">
-                        <i class="fas fa-battery-half"></i>
-                    </div>
-                    <div class="experiment-content">
-                        <h3>خلية دانيال</h3>
-                        <p>تجربة تفاعلية توضح عمل خلية دانيال (Zn-Cu). قم بتغيير تركيزات المحاليل ولاحظ تأثيرها على جهد الخلية باستخدام معادلة نيرنست.</p>
-                        <a href="#" class="experiment-btn" onclick="startExperiment('daniell')">ابدأ التجربة</a>
-                    </div>
-                </div>
-                
-                <div class="experiment-card">
-                    <div class="experiment-image">
-                        <i class="fas fa-flask"></i>
-                    </div>
-                    <div class="experiment-content">
-                        <h3>تحليل الماء</h3>
-                        <p>تجربة تفاعلية توضح تحليل الماء إلى هيدروجين وأكسجين. قم بتغيير التيار الكهربائي ولاحظ تأثيره على حجم الغازات المتكونة.</p>
-                        <a href="#" class="experiment-btn" onclick="startExperiment('water')">ابدأ التجربة</a>
-                    </div>
-                </div>
-                
-                <div class="experiment-card">
-                    <div class="experiment-image">
-                        <i class="fas fa-paint-roller"></i>
-                    </div>
-                    <div class="experiment-content">
-                        <h3>الطلاء الكهربائي</h3>
-                        <p>تجربة تفاعلية توضح عملية طلاء النحاس على قطعة حديد. قم بتغيير التيار والزمن ولاحظ تأثيرهما على سمك طبقة الطلاء.</p>
-                        <a href="#" class="experiment-btn" onclick="startExperiment('plating')">ابدأ التجربة</a>
-                    </div>
-                </div>
-                
-                <div class="experiment-card">
-                    <div class="experiment-image">
-                        <i class="fas fa-shield-virus"></i>
-                    </div>
-                    <div class="experiment-content">
-                        <h3>الحماية الكاثودية</h3>
-                        <p>تجربة تفاعلية توضح كيفية حماية الأنابيب الحديدية من التآكل باستخدام التيار المطبق أو الأنود التضحي.</p>
-                        <a href="#" class="experiment-btn" onclick="startExperiment('cathodic')">ابدأ التجربة</a>
-                    </div>
-                </div>
-                
-                <div class="experiment-card">
-                    <div class="experiment-image">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <div class="experiment-content">
-                        <h3>سلسلة النشاط الكهروكيميائية</h3>
-                        <p>تجربة تفاعلية توضح سلسلة النشاط للمعادن. قم بترتيب المعادن حسب ميلها للأكسدة ولاحظ التفاعلات بينها.</p>
-                        <a href="#" class="experiment-btn" onclick="startExperiment('activity')">ابدأ التجربة</a>
-                    </div>
-                </div>
-                
-                <div class="experiment-card">
-                    <div class="experiment-image">
-                        <i class="fas fa-solar-panel"></i>
-                    </div>
-                    <div class="experiment-content">
-                        <h3>الخلايا الشمسية</h3>
-                        <p>تجربة تفاعلية توضح مبدأ عمل الخلايا الشمسية الكهروضوئية. قم بتغيير شدة الضوء ودرجة الحرارة ولاحظ تأثيرهما على كفاءة الخلية.</p>
-                        <a href="#" class="experiment-btn" onclick="startExperiment('solar')">ابدأ التجربة</a>
+            
+            <div class="app-content" id="electroplating">
+                <div class="app-details">
+                    <h3>الطلاء الكهربائي</h3>
+                    <p>الطلاء الكهربائي هو عملية ترسيب طبقة رقيقة من معدن على سطح آخر باستخدام التحليل الكهربائي. يستخدم لحماية المعادن من التآكل وتحسين مظهرها وخصائصها.</p>
+                    
+                    <div class="app-examples">
+                        <div class="app-example">
+                            <i class="fas fa-gem"></i>
+                            <h4>طلاء الذهب والفضة</h4>
+                            <p>يستخدم في المجوهرات والأجهزة الإلكترونية لتوفير مظهر جذاب ومقاومة للتآكل.</p>
+                        </div>
+                        <div class="app-example">
+                            <i class="fas fa-layer-group"></i>
+                            <h4>طلاء الكروم والنيكل</h4>
+                            <p>يستخدم في أجزاء السيارات والأدوات المنزلية لتوفير صلابة ومقاومة للتآكل.</p>
+                        </div>
+                        <div class="app-example">
+                            <i class="fas fa-microchip"></i>
+                            <h4>التطبيقات الإلكترونية</h4>
+                            <p>يستخدم في تصنيع الدوائر الإلكترونية والموصلات الدقيقة في صناعة أشباه الموصلات.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1270,70 +1224,61 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="faq">
+    <section class="faq" id="faq">
         <div class="container">
             <div class="section-title">
                 <h2>الأسئلة الشائعة</h2>
-                <p>إجابات على الأسئلة الأكثر شيوعاً حول الكهروكيمياء</p>
+                <p>إجابات على الاستفسارات الأكثر تكراراً حول الكيمياء الكهربائية</p>
             </div>
+            
             <div class="faq-container">
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>ما الفرق بين الخلية الجلفانية وخلية التحليل الكهربائي؟</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <span>ما الفرق بين الخلية الجلفانية والخلية التحليلية؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>الخلية الجلفانية تحول الطاقة الكيميائية إلى طاقة كهربائية بشكل تلقائي (جهد موجب)، بينما خلية التحليل الكهربائي تستخدم طاقة كهربائية خارجية لإحداث تفاعل كيميائي غير تلقائي (جهد سالب). في الخلية الجلفانية، يكون المصعد سالباً والمهبط موجباً، بينما في خلية التحليل الكهربائي يكون المصعد موجباً والمهبط سالباً.</p>
+                        <p>الخلية الجلفانية تحول الطاقة الكيميائية إلى طاقة كهربائية بشكل تلقائي، بينما الخلية التحليلية تستخدم طاقة كهربائية خارجية لإحداث تفاعلات كيميائية غير تلقائية. في الخلية الجلفانية، يكون المصعد سالباً والمهبط موجباً، بينما في الخلية التحليلية يكون المصعد موجباً والمهبط سالباً بسبب اتصالهما بمصدر جهد خارجي.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>كيف تحدد اتجاه تدفق الإلكترونات في الخلية؟</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <span>لماذا يحتاج الجسر الملحي في الخلايا الجلفانية؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>تتدفق الإلكترونات دائماً من المادة الأكثر نشاطاً (الأقل في سلسلة النشاط الكهروكيميائية) إلى المادة الأقل نشاطاً. يمكن تحديد اتجاه التدفق بحساب جهد الخلية: إذا كان الجهد موجباً، تتدفق الإلكترونات من المصعد إلى المهبط خارجياً ومن المهبط إلى المصعد داخلياً عبر الإلكتروليت.</p>
+                        <p>الجسر الملحي ضروري للحفاظ على التعادل الكهربائي في الخلية. عند حدوث التفاعل، تتراكم الشحنات الموجبة في نصف الخلية حيث يحدث الأكسدة (بسبب فقدان الإلكترونات) والشحنات السالبة في نصف الخلية حيث يحدث الاختزال (بسبب اكتساب الإلكترونات). الجسر الملحي يسمح بحركة الأيونات بين نصفي الخلية لمعادلة هذه الشحنات ومنع توقف التفاعل.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>ما هو دور الإلكتروليت في الخلية الكهروكيميائية؟</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <span>كيف يؤثر تركيز المحاليل على جهد الخلية؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>الإلكتروليت يسمح بتدفق الأيونات بين الأقطاب لإكمال الدائرة الكهربائية. يحافظ على neutrality الكهربائية في الخلية عن طريق تعويض تغير التركيزات الناتج عن تدفق الإلكترونات. بدون الإلكتروليت، سيتوقف التيار بسرعة بسبب تراكم الشحنات.</p>
+                        <p>يؤثر تركيز المحاليل على جهد الخلية وفقاً لمعادلة نيرنست: E = E° - (RT/nF) lnQ، حيث Q هو حاصل التفاعل. زيادة تركيز المواد المتفاعلة أو نقصان تركيز المواد الناتجة يزيد من جهد الخلية. هذا التأثير مهم في البطاريات حيث يتغير جهد الخلية مع استخدامها نتيجة تغير التراكيز.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>لماذا بعض البطاريات قابلة لإعادة الشحن والبعض الآخر ليس كذلك؟</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <span>ما العوامل المؤثرة على كفاءة التحليل الكهربائي؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>البطاريات القابلة لإعادة الشحن (الثانوية) تحتوي على تفاعلات كيميائية قابلة للعكس. عند الشحن، يتم عكس التفاعل الكهروكيميائي باستخدام طاقة خارجية. أما البطاريات الأولية (غير القابلة للشحن) فتحتوي على تفاعلات غير قابلة للعكس أو يصعب عكسها عملياً.</p>
+                        <p>تعتمد كفاءة التحليل الكهربائي على عدة عوامل: كثافة التيار (التيار لكل وحدة مساحة)، تركيز الإلكتروليت، درجة الحرارة، طبيعة الأقطاب، والمواد المذابة. كثافة التيار العالية قد تؤدي إلى تفاعلات جانبية غير مرغوبة، بينما التركيز المناسب للإلكتروليت يضمن توصيلية جيدة. كما أن اختيار المادة المناسبة للأقطاب يمنع التفاعلات الجانبية.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>كيف تؤثر درجة الحرارة على أداء الخلايا الكهروكيميائية؟</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <span>كيف يمكن الوقاية من تآكل المعادن؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>تؤثر درجة الحرارة على عدة جوانب: زيادة الحرارة تزيد من حركة الأيونات وتقلل من المقاومة الداخلية، مما يزيد من التيار. لكنها قد تزيد من التفاعلات الجانبية وتقلل من عمر البطارية. تظهر معادلة نيرنست التأثير المباشر للحرارة على جهد الخلية.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>ما هي تطبيقات الكهروكيمياء في الطاقة المتجددة؟</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>تستخدم الكهروكيمياء بشكل واسع في الطاقة المتجددة: الخلايا الشمسية الكهروضوئية تحول ضوء الشمس إلى كهرباء، خلايا الوقود الهيدروجينية تولد الكهرباء من الهيدروجين والأكسجين، والبطاريات المتقدمة (مثل ليثيوم أيون) تخزن الطاقة من المصادر المتجددة للاستخدام لاحقاً.</p>
+                        <p>يمكن الوقاية من تآكل المعادن بعدة طرق: 1) الطلاء بالدهان أو البلاستيك لعزل المعدن عن البيئة. 2) الطلاء الكهربائي بمعدن أكثر نشاطاً مثل الزنك (الطلاء بالجلفنة). 3) استخدام الممانعات الكهروكيميائية بتوصيل المعدن بمعدن أكثر نشاطاً مثل المغنيسيوم. 4) استخدام السبائك المقاومة للتآكل مثل الفولاذ المقاوم للصدأ. 5) تعديل البيئة المحيطة بإضافة مثبطات التآكل.</p>
                     </div>
                 </div>
             </div>
@@ -1345,8 +1290,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>موقع الكهروكيمياء</h3>
-                    <p>منصة تعليمية متخصصة في تقديم محتوى عالي الجودة حول مبادئ وتطبيقات الكهروكيمياء في العلم والحياة.</p>
+                    <h3>عن الموقع</h3>
+                    <p>منصة تعليمية متخصصة في الكيمياء الكهربائية، تقدم محتوى شامل وتفاعلي لفهم تفاعلات الطاقة الكهربائية وتطبيقاتها العملية في حياتنا اليومية.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1359,26 +1304,26 @@
                     <h3>روابط سريعة</h3>
                     <ul>
                         <li><a href="#home">الرئيسية</a></li>
-                        <li><a href="#intro">مقدمة</a></li>
-                        <li><a href="#concepts">المفاهيم</a></li>
-                        <li><a href="#cells">الخلايا</a></li>
+                        <li><a href="#galvanic">الخلايا الجلفانية</a></li>
+                        <li><a href="#electrolysis">التحليل الكهربائي</a></li>
+                        <li><a href="#equations">المعادلات الكهروكيميائية</a></li>
                         <li><a href="#applications">التطبيقات</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>موارد تعليمية</h3>
+                    <h3>المفاهيم الرئيسية</h3>
                     <ul>
-                        <li><a href="#">دروس تفاعلية</a></li>
-                        <li><a href="#">فيديوهات شرح</a></li>
-                        <li><a href="#">تمارين محلولة</a></li>
-                        <li><a href="#">مراجع علمية</a></li>
-                        <li><a href="#">امتحانات تجريبية</a></li>
+                        <li><a href="#">الأكسدة والاختزال</a></li>
+                        <li><a href="#">جهد الاختزال القياسي</a></li>
+                        <li><a href="#">قوانين فاراداي</a></li>
+                        <li><a href="#">أنواع البطاريات</a></li>
+                        <li><a href="#">الوقاية من التآكل</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>معلومات التواصل</h3>
+                    <h3>تواصل معنا</h3>
                     <ul>
                         <li><i class="fas fa-envelope"></i> info@electrochemistry.edu</li>
                         <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
@@ -1388,175 +1333,102 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 موقع الكهروكيمياء. جميع الحقوق محفوظة.</p>
+                <p>&copy; 2023 الكيمياء الكهربائية. جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Menu Toggle for Mobile
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
-
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Tab Switching
-        function switchTab(tabName) {
-            // Hide all tabs
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
+        // Application tabs functionality
+        function showApp(appType) {
+            // Hide all application contents
+            const appContents = document.querySelectorAll('.app-content');
+            appContents.forEach(content => {
+                content.classList.remove('active');
             });
             
-            // Remove active class from all buttons
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
+            // Remove active class from all application buttons
+            const appButtons = document.querySelectorAll('.app-tab-btn');
+            appButtons.forEach(button => {
+                button.classList.remove('active');
             });
             
-            // Show selected tab
-            document.getElementById(tabName + '-tab').classList.add('active');
+            // Show selected application content
+            document.getElementById(appType).classList.add('active');
             
             // Add active class to clicked button
             event.target.classList.add('active');
         }
-
-        // Cell Potential Calculator
-        document.getElementById('cell-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const cathodeE = parseFloat(document.getElementById('cathode').value);
-            const anodeE = parseFloat(document.getElementById('anode').value);
-            
-            const cellPotential = cathodeE - anodeE;
-            
-            const resultText = `جهد الخلية (E°cell) = ${cellPotential.toFixed(2)} فولت<br>
-                              المعادلة المستخدمة: E°cell = E°cathode - E°anode<br>
-                              جهد المهبط = ${cathodeE} فولت<br>
-                              جهد المصعد = ${anodeE} فولت<br>
-                              <br>
-                              ${cellPotential > 0 ? 'التفاعل تلقائي' : 'التفاعل غير تلقائي'}`;
-            
-            document.getElementById('cell-result-text').innerHTML = resultText;
-            document.getElementById('cell-result').style.display = 'block';
-        });
-
-        // Nernst Equation Calculator
-        document.getElementById('nerst-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const E0 = parseFloat(document.getElementById('e0').value);
-            const n = parseFloat(document.getElementById('n').value);
-            const T = parseFloat(document.getElementById('temp').value) || 298;
-            const Q = parseFloat(document.getElementById('q').value);
-            
-            if (isNaN(E0) || isNaN(n) || isNaN(Q)) {
-                alert('الرجاء إدخال قيم صحيحة');
-                return;
-            }
-            
-            const R = 8.314; // J/(mol·K)
-            const F = 96485; // C/mol
-            
-            const E = E0 - (R * T / (n * F)) * Math.log(Q);
-            
-            const resultText = `الجهد (E) = ${E.toFixed(4)} فولت<br>
-                              المعادلة المستخدمة: E = E° - (RT/nF) ln Q<br>
-                              الجهد القياسي (E°) = ${E0} فولت<br>
-                              عدد الإلكترونات (n) = ${n}<br>
-                              درجة الحرارة (T) = ${T} كلفن<br>
-                              حاصل التفاعل (Q) = ${Q}`;
-            
-            document.getElementById('nerst-result-text').innerHTML = resultText;
-            document.getElementById('nerst-result').style.display = 'block';
-        });
-
-        // Faraday's Laws Calculator
-        document.getElementById('faraday-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const I = parseFloat(document.getElementById('current').value);
-            const t = parseFloat(document.getElementById('time').value);
-            const M = parseFloat(document.getElementById('molar-mass').value);
-            const z = parseFloat(document.getElementById('valence').value);
-            
-            if (isNaN(I) || isNaN(t) || isNaN(M) || isNaN(z)) {
-                alert('الرجاء إدخال قيم صحيحة');
-                return;
-            }
-            
-            const F = 96485; // C/mol
-            
-            const mass = (I * t * M) / (z * F);
-            
-            const resultText = `الكتلة المترسبة = ${mass.toFixed(6)} جرام<br>
-                              المعادلة المستخدمة: m = (I × t × M) / (z × F)<br>
-                              التيار (I) = ${I} أمبير<br>
-                              الزمن (t) = ${t} ثانية<br>
-                              الكتلة المولية (M) = ${M} جرام/مول<br>
-                              التكافؤ (z) = ${z}<br>
-                              ثابت فاراداي (F) = ${F} كولوم/مول`;
-            
-            document.getElementById('faraday-result-text').innerHTML = resultText;
-            document.getElementById('faraday-result').style.display = 'block';
-        });
-
+        
         // FAQ Accordion
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', function() {
-                const faqItem = this.parentElement;
-                const isActive = faqItem.classList.contains('active');
-                
-                // Close all FAQ items
-                document.querySelectorAll('.faq-item').forEach(item => {
-                    item.classList.remove('active');
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const icon = question.querySelector('.faq-icon');
+                    
+                    // Close all other answers
+                    faqQuestions.forEach(otherQuestion => {
+                        if (otherQuestion !== question) {
+                            const otherAnswer = otherQuestion.nextElementSibling;
+                            const otherIcon = otherQuestion.querySelector('.faq-icon');
+                            
+                            otherAnswer.classList.remove('active');
+                            otherIcon.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current answer
+                    answer.classList.toggle('active');
+                    icon.classList.toggle('active');
                 });
-                
-                // Open clicked item if it wasn't active
-                if (!isActive) {
-                    faqItem.classList.add('active');
-                }
             });
-        });
-
-        // Experiment Simulation
-        function startExperiment(type) {
-            alert(`سيتم فتح تجربة ${type} في نافذة جديدة. هذه ميزة قيد التطوير حالياً.`);
-            // In a real implementation, this would open a modal or new page with the experiment
-        }
-
-        // Add scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
+            
+            // Smooth scrolling for navigation links
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
             });
-        }, observerOptions);
-
-        // Observe all sections
-        document.querySelectorAll('section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(section);
+            
+            // Add animation on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Elements to animate
+            const animateElements = document.querySelectorAll('.card, .feature-item');
+            
+            animateElements.forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
         });
     </script>
 </body>

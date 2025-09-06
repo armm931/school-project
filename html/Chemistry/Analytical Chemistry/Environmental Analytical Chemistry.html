@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكيمياء التحليلية البيئية - تحليل الملوثات والمعادن الثقيلة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2e7d32;
+            --secondary: #4caf50;
+            --accent: #00acc1;
+            --light: #f1f8e9;
+            --dark: #1b5e20;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --info: #2196f3;
+        }
+
+        body {
+            background-color: var(--light);
+            color: #333;
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            color: var(--accent);
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(46, 125, 50, 0.8), rgba(76, 175, 80, 0.8)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: #0097a7;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title .divider {
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 0 auto;
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            background: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .card-header i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        /* Pollutants Section */
+        .pollutants-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .pollutant-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--accent);
+        }
+
+        .pollutant-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pollutant-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .pollutant-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pollutant-list li:last-child {
+            border-bottom: none;
+        }
+
+        .danger-level {
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .high { background: var(--danger); color: white; }
+        .medium { background: var(--warning); color: white; }
+        .low { background: var(--info); color: white; }
+
+        /* Heavy Metals Section */
+        .metals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .metal-item {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .metal-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .metal-symbol {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .metal-name {
+            color: var(--secondary);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .metal-effect {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Analysis Methods */
+        .methods-container {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-radius: 12px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .method-item {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .method-icon {
+            background: var(--accent);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .method-content h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Interactive Demo */
+        .demo-container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .demo-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        select, input {
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .result-display {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-value {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .method-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-flask"></i>
+                <span>الكيمياء التحليلية البيئية</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#about">مقدمة</a></li>
+                    <li><a href="#pollutants">الملوثات</a></li>
+                    <li><a href="#metals">المعادن الثقيلة</a></li>
+                    <li><a href="#methods">طرق التحليل</a></li>
+                    <li><a href="#demo">تحليل تفاعلي</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>الكيمياء التحليلية البيئية</h1>
+            <p>تحليل الملوثات في الهواء والماء والتربة والكشف عن المعادن الثقيلة لحماية بيئتنا</p>
+            <a href="#pollutants" class="btn">اكتشف المزيد</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Introduction Section -->
+            <section id="about" class="section">
+                <div class="section-title">
+                    <h2>ما هي الكيمياء التحليلية البيئية؟</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-microscope"></i>
+                            <h3>التعريف والأهمية</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>الكيمياء التحليلية البيئية هي فرع متخصص من الكيمياء يركز على تحليل المكونات الكيميائية في البيئة وتحديد مصادر التلوث وقياس تركيزات الملوثات المختلفة.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>حماية البيئة</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>تلعب دوراً حيوياً في حماية البيئة والصحة العامة من خلال مراقبة جودة الهواء والماء والتربة، وتحديد المخاطر البيئية واقتراح الحلول المناسبة.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>التطبيقات العملية</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>تستخدم في مراقبة المصانع، تقييم الأثر البيئي، البحث العلمي، تطوير معايير الجودة، واتخاذ القرارات البيئية على المستويين المحلي والدولي.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pollutants Section -->
+            <section id="pollutants" class="section">
+                <div class="section-title">
+                    <h2>تحليل الملوثات البيئية</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="pollutants-container">
+                    <div class="pollutant-card">
+                        <h3><i class="fas fa-wind"></i> ملوثات الهواء</h3>
+                        <p>تُحلل ملوثات الهواء لضمان جودة الهواء وحماية الصحة العامة.</p>
+                        <ul class="pollutant-list">
+                            <li>
+                                <span>أكاسيد النيتروجين (NOx)</span>
+                                <span class="danger-level high">عالية</span>
+                            </li>
+                            <li>
+                                <span>أكاسيد الكبريت (SO2)</span>
+                                <span class="danger-level high">عالية</span>
+                            </li>
+                            <li>
+                                <span>الجسيمات العالقة (PM2.5, PM10)</span>
+                                <span class="danger-level high">عالية</span>
+                            </li>
+                            <li>
+                                <span>أول أكسيد الكربون (CO)</span>
+                                <span class="danger-level medium">متوسطة</span>
+                            </li>
+                            <li>
+                                <span>المركبات العضوية المتطايرة (VOCs)</span>
+                                <span class="danger-level medium">متوسطة</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pollutant-card">
+                        <h3><i class="fas fa-tint"></i> ملوثات الماء</h3>
+                        <p>يتم تحليل مياه الأنهار والبحار والمياه الجوفية لضمان صلاحيتها للاستخدام.</p>
+                        <ul class="pollutant-list">
+                            <li>
+                                <span>المعادن الثقيلة</span>
+                                <span class="danger-level high">عالية</span>
+                            </li>
+                            <li>
+                                <span>المبيدات الحشرية</span>
+                                <span class="danger-level high">عالية</span>
+                            </li>
+                            <li>
+                                <span>النترات والفوسفات</span>
+                                <span class="danger-level medium">متوسطة</span>
+                            </li>
+                            <li>
+                                <span>المواد العضوية الذائبة</span>
+                                <span class="danger-level medium">متوسطة</span>
+                            </li>
+                            <li>
+                                <span>البكتيريا والكائنات الدقيقة</span>
+                                <span class="danger-level high">عالية</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pollutant-card">
+                        <h3><i class="fas fa-mountain"></i> ملوثات التربة</h3>
+                        <p>تحليل التربة يكشف عن التلوث ويحدد صلاحيتها للزراعة والبناء.</p>
+                        <ul class="pollutant-list">
+                            <li>
+                                <span>المعادن الثقيلة</span>
+                                <span class="danger-level high">عالية</span>
+                            </li>
+                            <li>
+                                <span>المواد الهيدروكربونية</span>
+                                <span class="danger-level high">عالية</span>
+                            </li>
+                            <li>
+                                <span>المبيدات والأسمدة</span>
+                                <span class="danger-level medium">متوسطة</span>
+                            </li>
+                            <li>
+                                <span>النفايات الصناعية</span>
+                                <span class="danger-level high">عالية</span>
+                            </li>
+                            <li>
+                                <span>المواد المشعة</span>
+                                <span class="danger-level high">عالية</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Heavy Metals Section -->
+            <section id="metals" class="section">
+                <div class="section-title">
+                    <h2>الكشف عن المعادن الثقيلة</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="metals-grid">
+                    <div class="metal-item">
+                        <div class="metal-symbol">Pb</div>
+                        <div class="metal-name">الرصاص</div>
+                        <div class="metal-effect">يسبب تلف الجهاز العصبي</div>
+                    </div>
+                    
+                    <div class="metal-item">
+                        <div class="metal-symbol">Hg</div>
+                        <div class="metal-name">الزئبق</div>
+                        <div class="metal-effect">يؤثر على الجهاز العصبي والكلى</div>
+                    </div>
+                    
+                    <div class="metal-item">
+                        <div class="metal-symbol">Cd</div>
+                        <div class="metal-name">الكادميوم</div>
+                        <div class="metal-effect">يسبب تلف الكلى والرئة</div>
+                    </div>
+                    
+                    <div class="metal-item">
+                        <div class="metal-symbol">As</div>
+                        <div class="metal-name">الزرنيخ</div>
+                        <div class="metal-effect">مسرطن ويؤثر على الجلد</div>
+                    </div>
+                    
+                    <div class="metal-item">
+                        <div class="metal-symbol">Cr</div>
+                        <div class="metal-name">الكروم</div>
+                        <div class="metal-effect">يسبب سرطان الرئة</div>
+                    </div>
+                    
+                    <div class="metal-item">
+                        <div class="metal-symbol">Ni</div>
+                        <div class="metal-name">النيكل</div>
+                        <div class="metal-effect">يسبب حساسية الجلد</div>
+                    </div>
+                    
+                    <div class="metal-item">
+                        <div class="metal-symbol">Cu</div>
+                        <div class="metal-name">النحاس</div>
+                        <div class="metal-effect">سام بتركيزات عالية</div>
+                    </div>
+                    
+                    <div class="metal-item">
+                        <div class="metal-symbol">Zn</div>
+                        <div class="metal-name">الزنك</div>
+                        <div class="metal-effect">يؤثر على النباتات</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analysis Methods Section -->
+            <section id="methods" class="section">
+                <div class="section-title">
+                    <h2>طرق التحليل البيئي</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="methods-container">
+                    <div class="method-item">
+                        <div class="method-icon">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <div class="method-content">
+                            <h4>الطيفية الذرية (AAS)</h4>
+                            <p>تستخدم لتحديد تركيزات المعادن الثقيلة في العينات بدقة عالية. تعتمد على امتصاص الضوء عند أطوال موجية محددة.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="method-item">
+                        <div class="method-icon">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <div class="method-content">
+                            <h4>الطيفية الكتلةية (ICP-MS)</h4>
+                            <p>تقنية متقدمة للكشف عن العناصر النادرة والمعادن الثقيلة بتركيزات منخفضة جداً. تتميز بدقة وحساسية عالية.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="method-item">
+                        <div class="method-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div class="method-content">
+                            <h4>الكروماتوغرافيا</h4>
+                            <p>تستخدم لفصل وتحليل المركبات العضوية مثل المبيدات والمواد الهيدروكربونية. تشمل HPLC و GC.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="method-item">
+                        <div class="method-icon">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <div class="method-content">
+                            <h4>المجهر الإلكتروني</h4>
+                            <p>يستخدم لدراسة تركيب الجسيمات وتحليل مكونات العينات على المستوى المجهري. يساعد في تحديد مصادر التلوث.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="method-item">
+                        <div class="method-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <div class="method-content">
+                            <h4>التحليل الكهروكيميائي</h4>
+                            <p>يستخدم لتحديد تركيزات أيونات المعادن في المحاليل. يعتمد على قياس التيار أو الجهد الكهربائي.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Demo Section -->
+            <section id="demo" class="section">
+                <div class="section-title">
+                    <h2>محاكي تحليل العينات البيئية</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="demo-container">
+                    <p>استخدم هذه الأداة التفاعلية لمحاكاة تحليل العينات البيئية واكتشاف تركيزات الملوثات.</p>
+                    
+                    <div class="demo-controls">
+                        <div class="control-group">
+                            <label for="sample-type">نوع العينة</label>
+                            <select id="sample-type">
+                                <option value="water">ماء</option>
+                                <option value="air">هواء</option>
+                                <option value="soil">تربة</option>
+                            </select>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="location">موقع العينة</label>
+                            <select id="location">
+                                <option value="industrial">منطقة صناعية</option>
+                                <option value="residential">منطقة سكنية</option>
+                                <option value="agricultural">منطقة زراعية</option>
+                                <option value="natural">منطقة طبيعية</option>
+                            </select>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="pollutant">نوع الملوث</label>
+                            <select id="pollutant">
+                                <option value="lead">الرصاص (Pb)</option>
+                                <option value="mercury">الزئبق (Hg)</option>
+                                <option value="cadmium">الكادميوم (Cd)</option>
+                                <option value="arsenic">الزرنيخ (As)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="btn" onclick="analyzeSample()">تحليل العينة</button>
+                    
+                    <div class="result-display" id="results" style="display: none;">
+                        <h3>نتائج التحليل:</h3>
+                        <div class="result-item">
+                            <span>تركيز الملوث:</span>
+                            <span class="result-value" id="concentration">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span>مستوى الخطورة:</span>
+                            <span class="result-value" id="danger-level">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span>الحد المسموح به:</span>
+                            <span class="result-value" id="allowed-limit">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span>التوصية:</span>
+                            <span class="result-value" id="recommendation">-</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن الموقع</h3>
+                    <p>منصة تعليمية متخصصة في الكيمياء التحليلية البيئية تقدم محتوى علمي دقيق ومحدث لحماية بيئتنا.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#about">مقدمة</a></li>
+                        <li><a href="#pollutants">الملوثات</a></li>
+                        <li><a href="#metals">المعادن الثقيلة</a></li>
+                        <li><a href="#methods">طرق التحليل</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>موارد تعليمية</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">دليل التحليل المخبري</a></li>
+                        <li><a href="#">معايير الجودة البيئية</a></li>
+                        <li><a href="#">البروتوكولات التحليلية</a></li>
+                        <li><a href="#">المراجع العلمية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@envchem.com</li>
+                        <li><i class="fas fa-phone"></i> +966 50 123 4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 الكيمياء التحليلية البيئية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Interactive Demo Script
+        function analyzeSample() {
+            const sampleType = document.getElementById('sample-type').value;
+            const location = document.getElementById('location').value;
+            const pollutant = document.getElementById('pollutant').value;
+            
+            // Simulate analysis results
+            const results = {
+                water: {
+                    industrial: {
+                        lead: { conc: '0.85 mg/L', limit: '0.01 mg/L', danger: 'عالية', rec: 'إيقاف الاستخدام الفوري' },
+                        mercury: { conc: '0.12 mg/L', limit: '0.001 mg/L', danger: 'عالية', rec: 'معالجة متخصصة مطلوبة' },
+                        cadmium: { conc: '0.45 mg/L', limit: '0.003 mg/L', danger: 'عالية', rec: 'تجنب الاستخدام للشرب' },
+                        arsenic: { conc: '0.25 mg/L', limit: '0.01 mg/L', danger: 'عالية', rec: 'ترشيح متقدم ضروري' }
+                    },
+                    residential: {
+                        lead: { conc: '0.05 mg/L', limit: '0.01 mg/L', danger: 'متوسطة', rec: 'مراقبة دورية' },
+                        mercury: { conc: '0.008 mg/L', limit: '0.001 mg/L', danger: 'متوسطة', rec: 'ترشيح بسيط' },
+                        cadmium: { conc: '0.02 mg/L', limit: '0.003 mg/L', danger: 'متوسطة', rec: 'معالجة منزلية' },
+                        arsenic: { conc: '0.015 mg/L', limit: '0.01 mg/L', danger: 'متوسطة', rec: 'ترشيح متخصص' }
+                    },
+                    agricultural: {
+                        lead: { conc: '0.15 mg/L', limit: '0.01 mg/L', danger: 'عالية', rec: 'غير صالح للري' },
+                        mercury: { conc: '0.005 mg/L', limit: '0.001 mg/L', danger: 'متوسطة', rec: 'استخدام محدود' },
+                        cadmium: { conc: '0.08 mg/L', limit: '0.003 mg/L', danger: 'عالية', rec: 'تجنب الري المباشر' },
+                        arsenic: { conc: '0.02 mg/L', limit: '0.01 mg/L', danger: 'متوسطة', rec: 'مراقبة التربة' }
+                    },
+                    natural: {
+                        lead: { conc: '0.005 mg/L', limit: '0.01 mg/L', danger: 'منخفضة', rec: 'آمن للاستخدام' },
+                        mercury: { conc: '0.0005 mg/L', limit: '0.001 mg/L', danger: 'منخفضة', rec: 'جودة ممتازة' },
+                        cadmium: { conc: '0.001 mg/L', limit: '0.003 mg/L', danger: 'منخفضة', rec: 'آمن تماماً' },
+                        arsenic: { conc: '0.005 mg/L', limit: '0.01 mg/L', danger: 'منخفضة', rec: 'مياه نقية' }
+                    }
+                },
+                air: {
+                    industrial: {
+                        lead: { conc: '2.5 µg/m³', limit: '0.15 µg/m³', danger: 'عالية', rec: 'إخلاء المنطقة' },
+                        mercury: { conc: '1.2 µg/m³', limit: '0.05 µg/m³', danger: 'عالية', rec: 'ارتداء أقنعة واقية' },
+                        cadmium: { conc: '0.8 µg/m³', limit: '0.005 µg/m³', danger: 'عالية', rec: 'تهوية فورية' },
+                        arsenic: { conc: '0.5 µg/m³', limit: '0.006 µg/m³', danger: 'عالية', rec: 'تجنب التعرض' }
+                    },
+                    residential: {
+                        lead: { conc: '0.3 µg/m³', limit: '0.15 µg/m³', danger: 'متوسطة', rec: 'تهوية جيدة' },
+                        mercury: { conc: '0.08 µg/m³', limit: '0.05 µg/m³', danger: 'متوسطة', rec: 'مراقبة الجودة' },
+                        cadmium: { conc: '0.01 µg/m³', limit: '0.005 µg/m³', danger: 'متوسطة', rec: 'تهوية مستمرة' },
+                        arsenic: { conc: '0.008 µg/m³', limit: '0.006 µg/m³', danger: 'متوسطة', rec: 'فلاتر هواء' }
+                    },
+                    agricultural: {
+                        lead: { conc: '0.2 µg/m³', limit: '0.15 µg/m³', danger: 'متوسطة', rec: 'حماية العمال' },
+                        mercury: { conc: '0.04 µg/m³', limit: '0.05 µg/m³', danger: 'منخفضة', rec: 'مراقبة دورية' },
+                        cadmium: { conc: '0.008 µg/m³', limit: '0.005 µg/m³', danger: 'متوسطة', rec: 'وقاية شخصية' },
+                        arsenic: { conc: '0.007 µg/m³', limit: '0.006 µg/m³', danger: 'متوسطة', rec: 'مراقبة المحاصيل' }
+                    },
+                    natural: {
+                        lead: { conc: '0.05 µg/m³', limit: '0.15 µg/m³', danger: 'منخفضة', rec: 'هواء نقي' },
+                        mercury: { conc: '0.01 µg/m³', limit: '0.05 µg/m³', danger: 'منخفضة', rec: 'جودة ممتازة' },
+                        cadmium: { conc: '0.002 µg/m³', limit: '0.005 µg/m³', danger: 'منخفضة', rec: 'آمن للتنفس' },
+                        arsenic: { conc: '0.003 µg/m³', limit: '0.006 µg/m³', danger: 'منخفضة', rec: 'بيئة صحية' }
+                    }
+                },
+                soil: {
+                    industrial: {
+                        lead: { conc: '850 mg/kg', limit: '100 mg/kg', danger: 'عالية', rec: 'إزالة التربة' },
+                        mercury: { conc: '25 mg/kg', limit: '1 mg/kg', danger: 'عالية', rec: 'علاج متخصص' },
+                        cadmium: { conc: '15 mg/kg', limit: '1 mg/kg', danger: 'عالية', rec: 'تجنب الزراعة' },
+                        arsenic: { conc: '45 mg/kg', limit: '20 mg/kg', danger: 'عالية', rec: 'عزل المنطقة' }
+                    },
+                    residential: {
+                        lead: { conc: '150 mg/kg', limit: '100 mg/kg', danger: 'متوسطة', rec: 'حد الوصول' },
+                        mercury: { conc: '2 mg/kg', limit: '1 mg/kg', danger: 'متوسطة', rec: 'مراقبة الأطفال' },
+                        cadmium: { conc: '1.5 mg/kg', limit: '1 mg/kg', danger: 'متوسطة', rec: 'تجنب الزراعة' },
+                        arsenic: { conc: '18 mg/kg', limit: '20 mg/kg', danger: 'منخفضة', rec: 'مراقبة دورية' }
+                    },
+                    agricultural: {
+                        lead: { conc: '200 mg/kg', limit: '100 mg/kg', danger: 'عالية', rec: 'تغيير المحاصيل' },
+                        mercury: { conc: '1.8 mg/kg', limit: '1 mg/kg', danger: 'متوسطة', rec: 'فحص المنتجات' },
+                        cadmium: { conc: '2 mg/kg', limit: '1 mg/kg', danger: 'عالية', rec: 'تجنب الزراعة' },
+                        arsenic: { conc: '22 mg/kg', limit: '20 mg/kg', danger: 'متوسطة', rec: 'مراقبة التربة' }
+                    },
+                    natural: {
+                        lead: { conc: '20 mg/kg', limit: '100 mg/kg', danger: 'منخفضة', rec: 'تربة نظيفة' },
+                        mercury: { conc: '0.2 mg/kg', limit: '1 mg/kg', danger: 'منخفضة', rec: 'آمن للزراعة' },
+                        cadmium: { conc: '0.3 mg/kg', limit: '1 mg/kg', danger: 'منخفضة', rec: 'جودة ممتازة' },
+                        arsenic: { conc: '5 mg/kg', limit: '20 mg/kg', danger: 'منخفضة', rec: 'تربة صحية' }
+                    }
+                }
+            };
+            
+            const result = results[sampleType][location][pollutant];
+            
+            // Display results
+            document.getElementById('concentration').textContent = result.conc;
+            document.getElementById('allowed-limit').textContent = result.limit;
+            document.getElementById('danger-level').textContent = result.danger;
+            document.getElementById('recommendation').textContent = result.rec;
+            
+            // Show results section
+            document.getElementById('results').style.display = 'block';
+            
+            // Scroll to results
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .pollutant-card, .metal-item, .method-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

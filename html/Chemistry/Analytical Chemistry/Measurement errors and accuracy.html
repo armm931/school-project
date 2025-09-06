@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أخطاء القياس والدقة - دليل شامل</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .target-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+        }
+        
+        .target {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, #f3f4f6 0%, #e5e7eb 30%, #d1d5db 60%, #9ca3af 100%);
+            border: 3px solid #374151;
+        }
+        
+        .shot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ef4444;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            text-align: center;
+        }
+        
+        .error-visualization {
+            width: 100%;
+            height: 300px;
+            position: relative;
+            background: #f9fafb;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        
+        .error-bar {
+            position: absolute;
+            bottom: 0;
+            background: #3b82f6;
+            transition: all 0.5s ease;
+            border-radius: 0.25rem 0.25rem 0 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <i class="fas fa-ruler-combined text-3xl"></i>
+                    <h1 class="text-2xl font-bold">أخطاء القياس والدقة</h1>
+                </div>
+                <div class="hidden md:flex space-x-reverse space-x-6">
+                    <a href="#types" class="hover:text-purple-200 transition">أنواع الأخطاء</a>
+                    <a href="#accuracy" class="hover:text-purple-200 transition">الدقة والتكرارية</a>
+                    <a href="#statistics" class="hover:text-purple-200 transition">الطرق الإحصائية</a>
+                    <a href="#applications" class="hover:text-purple-200 transition">تطبيقات عملية</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="container mx-auto px-6 py-16">
+        <div class="text-center fade-in">
+            <h2 class="text-4xl font-bold text-gray-800 mb-6">فهم أساسيات القياس الدقيق</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                استكشف عالم أخطاء القياس، تعرف على الفرق بين الدقة والتكرارية، واكتشف الطرق الإحصائية لتحسين جودة البيانات
+            </p>
+            <div class="mt-8 flex justify-center space-x-reverse space-x-4">
+                <button onclick="scrollToSection('types')" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition">
+                    ابدأ التعلم
+                </button>
+                <button onclick="showDemo()" class="border-2 border-purple-600 text-purple-600 px-6 py-3 rounded-lg hover:bg-purple-50 transition">
+                    عرض توضيحي
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Types of Errors Section -->
+    <section id="types" class="bg-white py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">أنواع الأخطاء في القياس</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Random Errors -->
+                <div class="card-hover bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-500 text-white p-3 rounded-full">
+                            <i class="fas fa-random text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mr-4">الأخطاء العشوائية</h3>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        أخطاء غير متوقعة تحدث بشكل عشوائي وتختلف من قياس لآخر. يمكن تقليل تأثيرها عن طريق تكرار القياسات.
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-check text-blue-500 ml-2"></i>تغيرات في ظروف البيئة</li>
+                        <li><i class="fas fa-check text-blue-500 ml-2"></i>اهتزازات الجهاز</li>
+                        <li><i class="fas fa-check text-blue-500 ml-2"></i>تغيرات في درجة الحرارة</li>
+                        <li><i class="fas fa-check text-blue-500 ml-2"></i>تأثيرات الإنسان</li>
+                    </ul>
+                    <button onclick="showRandomErrorDemo()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+                        عرض مثال توضيحي
+                    </button>
+                </div>
+
+                <!-- Systematic Errors -->
+                <div class="card-hover bg-gradient-to-br from-red-50 to-red-100 p-8 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-red-500 text-white p-3 rounded-full">
+                            <i class="fas fa-exclamation-triangle text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mr-4">الأخطاء المنهجية</h3>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        أخطاء متكررة تحدث بنفس الطريقة في كل قياس. تتسبب في انحراف النتائج عن القيمة الحقيقية.
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-check text-red-500 ml-2"></i>معايرة خاطئة للأجهزة</li>
+                        <li><i class="fas fa-check text-red-500 ml-2"></i>عيوب في تصميم التجربة</li>
+                        <li><i class="fas fa-check text-red-500 ml-2"></i>تحيز في المشاهد</li>
+                        <li><i class="fas fa-check text-red-500 ml-2"></i>عوامل خارجية ثابتة</li>
+                    </ul>
+                    <button onclick="showSystematicErrorDemo()" class="mt-4 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+                        عرض مثال توضيحي
+                    </button>
+                </div>
+            </div>
+
+            <!-- Error Visualization -->
+            <div class="mt-12 bg-gray-50 p-6 rounded-xl">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">تمثيل مرئي للأخطاء</h3>
+                <div class="error-visualization" id="errorViz">
+                    <canvas id="errorChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accuracy vs Precision Section -->
+    <section id="accuracy" class="py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">الدقة (Accuracy) مقابل التكرارية (Precision)</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Definitions -->
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">المفاهيم الأساسية</h3>
+                    
+                    <div class="mb-6">
+                        <h4 class="text-xl font-semibold text-green-600 mb-2">
+                            <i class="fas fa-bullseye ml-2"></i>الدقة (Accuracy)
+                        </h4>
+                        <p class="text-gray-700">
+                            مدى قرب القياسات من القيمة الحقيقية أو المقبولة. تعكس مدى صحة النتائج.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-xl font-semibold text-blue-600 mb-2">
+                            <i class="fas fa-layer-group ml-2"></i>التكرارية (Precision)
+                        </h4>
+                        <p class="text-gray-700">
+                            مدى قرب القياسات من بعضها البعض. تعكس مدى تكرار النتائج وثباتها.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Interactive Target -->
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">الهدف التفاعلي</h3>
+                    <div class="target-container">
+                        <div class="target"></div>
+                        <div id="shots"></div>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <select id="scenario" class="border rounded-lg px-4 py-2">
+                            <option value="accurate-precise">دقيق ومتكرر</option>
+                            <option value="accurate-not-precise">دقيق وغير متكرر</option>
+                            <option value="not-accurate-precise">غير دقيق ومتكرر</option>
+                            <option value="not-accurate-not-precise">غير دقيق وغير متكرر</option>
+                        </select>
+                        <button onclick="generateShots()" class="bg-purple-600 text-white px-4 py-2 rounded-lg mr-2 hover:bg-purple-700 transition">
+                            توليد إطلاقات
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="mt-12 bg-white rounded-xl shadow-lg overflow-hidden">
+                <table class="w-full">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="px-6 py-4 text-right">الحالة</th>
+                            <th class="px-6 py-4 text-right">الدقة</th>
+                            <th class="px-6 py-4 text-right">التكرارية</th>
+                            <th class="px-6 py-4 text-right">الوصف</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-t">
+                            <td class="px-6 py-4 font-semibold text-green-600">مثالية</td>
+                            <td class="px-6 py-4">عالية</td>
+                            <td class="px-6 py-4">عالية</td>
+                            <td class="px-6 py-4">القياسات قريبة من القيمة الحقيقية ومتقاربة</td>
+                        </tr>
+                        <tr class="border-t bg-gray-50">
+                            <td class="px-6 py-4 font-semibold text-yellow-600">جيدة</td>
+                            <td class="px-6 py-4">عالية</td>
+                            <td class="px-6 py-4">منخفضة</td>
+                            <td class="px-6 py-4">المتوسط قريب من القيمة الحقيقية لكن القياسات متباعدة</td>
+                        </tr>
+                        <tr class="border-t">
+                            <td class="px-6 py-4 font-semibold text-orange-600">متوسطة</td>
+                            <td class="px-6 py-4">منخفضة</td>
+                            <td class="px-6 py-4">عالية</td>
+                            <td class="px-6 py-4">القياسات متقاربة لكن بعيدة عن القيمة الحقيقية</td>
+                        </tr>
+                        <tr class="border-t bg-gray-50">
+                            <td class="px-6 py-4 font-semibold text-red-600">سيئة</td>
+                            <td class="px-6 py-4">منخفضة</td>
+                            <td class="px-6 py-4">منخفضة</td>
+                            <td class="px-6 py-4">القياسات متباعدة وبعيدة عن القيمة الحقيقية</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistical Methods Section -->
+    <section id="statistics" class="bg-gray-100 py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">الطرق الإحصائية لمعالجة البيانات</h2>
+            
+            <!-- Tabs -->
+            <div class="flex justify-center mb-8">
+                <div class="bg-white rounded-lg shadow-md p-1">
+                    <button onclick="showTab('descriptive')" class="tab-btn px-6 py-2 rounded-lg bg-purple-600 text-white transition">
+                        إحصاءات وصفية
+                    </button>
+                    <button onclick="showTab('regression')" class="tab-btn px-6 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition">
+                        الانحدار
+                    </button>
+                    <button onclick="showTab('uncertainty')" class="tab-btn px-6 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition">
+                        حساب عدم اليقين
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Contents -->
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <!-- Descriptive Statistics Tab -->
+                <div id="descriptive" class="tab-content active">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">الإحصاءات الوصفية</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-700 mb-4">أدوات التحليل</h4>
+                            <div class="space-y-3">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h5 class="font-semibold text-purple-600">المتوسط الحسابي (Mean)</h5>
+                                    <p class="text-gray-600">مجموع القيم مقسوم على عددها</p>
+                                    <div class="mt-2 bg-white p-2 rounded">
+                                        <code>x̄ = Σx / n</code>
+                                    </div>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h5 class="font-semibold text-purple-600">الانحراف المعياري (Std Dev)</h5>
+                                    <p class="text-gray-600">يقيس انتشار البيانات حول المتوسط</p>
+                                    <div class="mt-2 bg-white p-2 rounded">
+                                        <code>σ = √(Σ(x - x̄)² / n)</code>
+                                    </div>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h5 class="font-semibold text-purple-600">الخطأ المعياري (SE)</h5>
+                                    <p class="text-gray-600">يقيس دقة تقدير المتوسط</p>
+                                    <div class="mt-2 bg-white p-2 rounded">
+                                        <code>SE = σ / √n</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-700 mb-4">حاسبة الإحصاءات</h4>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <label class="block text-gray-700 mb-2">أدخل البيانات (مفصولة بفواصل):</label>
+                                <textarea id="dataInput" class="w-full p-3 border rounded-lg" rows="4" placeholder="مثال: 10.2, 10.5, 10.3, 10.4, 10.1"></textarea>
+                                <button onclick="calculateStats()" class="mt-3 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">
+                                    احسب الإحصاءات
+                                </button>
+                                <div id="statsResult" class="mt-4 p-4 bg-white rounded-lg hidden">
+                                    <!-- Results will appear here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Regression Tab -->
+                <div id="regression" class="tab-content">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">تحليل الانحدار</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-700 mb-4">مفهوم الانحدار</h4>
+                            <p class="text-gray-600 mb-4">
+                                الانحدار الخطي هو طريقة إحصائية لوصف العلاقة بين متغيرين. يساعد في التنبؤ بالقيم وتصحيح الأخطاء المنهجية.
+                            </p>
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h5 class="font-semibold text-blue-600 mb-2">معادلة الانحدار الخطي:</h5>
+                                <div class="bg-white p-3 rounded text-center">
+                                    <code>y = mx + b</code>
+                                </div>
+                                <ul class="mt-3 space-y-1 text-sm text-gray-600">
+                                    <li>y: القيمة المتوقعة</li>
+                                    <li>m: ميل الخط</li>
+                                    <li>x: القيمة المستقلة</li>
+                                    <li>b: نقطة التقاطع</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-700 mb-4">رسم بياني تفاعلي</h4>
+                            <canvas id="regressionChart" width="400" height="300"></canvas>
+                            <button onclick="generateRegressionData()" class="mt-3 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                                توليد بيانات جديدة
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Uncertainty Tab -->
+                <div id="uncertainty" class="tab-content">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">حساب عدم اليقين</h3>
+                    
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="stat-card">
+                            <i class="fas fa-percentage text-4xl mb-3"></i>
+                            <h4 class="text-xl font-semibold mb-2">عدم اليقين النسبي</h4>
+                            <p class="text-sm">يقيس نسبة الخطأ إلى القيمة المقاسة</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-calculator text-4xl mb-3"></i>
+                            <h4 class="text-xl font-semibold mb-2">انتشار عدم اليقين</h4>
+                            <p class="text-sm">حساب عدم اليقين في العمليات الحسابية</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-chart-line text-4xl mb-3"></i>
+                            <h4 class="text-xl font-semibold mb-2">فترات الثقة</h4>
+                            <p class="text-sm">نطاق الثقة الإحصائي للنتائج</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 bg-gray-50 p-6 rounded-lg">
+                        <h4 class="text-xl font-semibold text-gray-700 mb-4">حاسبة عدم اليقين</h4>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-gray-700 mb-2">القيمة المقاسة:</label>
+                                <input type="number" id="measuredValue" class="w-full p-2 border rounded-lg" placeholder="أدخل القيمة">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">عدم اليقين المطلق:</label>
+                                <input type="number" id="absoluteUncertainty" class="w-full p-2 border rounded-lg" placeholder="أدخل عدم اليقين">
+                            </div>
+                        </div>
+                        <button onclick="calculateUncertainty()" class="mt-4 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">
+                            احسب عدم اليقين
+                        </button>
+                        <div id="uncertaintyResult" class="mt-4 p-4 bg-white rounded-lg hidden">
+                            <!-- Results will appear here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">تطبيقات عملية</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-flask text-5xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3 text-center">المختبرات العلمية</h3>
+                    <p class="text-gray-600">
+                        تطبيق مفاهيم الدقة والأخطاء في التجارب الكيميائية والفيزيائية لضمان نتائج موثوقة.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-industry text-5xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3 text-center">الصناعة والتصنيع</h3>
+                    <p class="text-gray-600">
+                        مراقبة الجودة والإنتاج باستخدام أنظمة القياس الدقيقة لتقليل الهدر وزيادة الكفاءة.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-microscope text-5xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3 text-center">البحث العلمي</h3>
+                    <p class="text-gray-600">
+                        استخدام الطرق الإحصائية لتحليل البيانات وتقدير عدم اليقين في الدراسات والأبحاث.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2024 موقع أخطاء القياس والدقة. جميع الحقوق محفوظة.</p>
+            <div class="mt-4 flex justify-center space-x-reverse space-x-4">
+                <a href="#" class="hover:text-purple-200 transition"><i class="fab fa-facebook text-2xl"></i></a>
+                <a href="#" class="hover:text-purple-200 transition"><i class="fab fa-twitter text-2xl"></i></a>
+                <a href="#" class="hover:text-purple-200 transition"><i class="fab fa-linkedin text-2xl"></i></a>
+                <a href="#" class="hover:text-purple-200 transition"><i class="fab fa-github text-2xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize charts and interactions
+        let errorChart;
+        let regressionChart;
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            // Add mobile menu functionality here
+            alert('قائمة الجوال قيد التطوير');
+        });
+
+        // Smooth scroll function
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Tab functionality
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-purple-600', 'text-white');
+                btn.classList.add('text-gray-600');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.remove('text-gray-600');
+            event.target.classList.add('bg-purple-600', 'text-white');
+            
+            // Initialize specific tab content
+            if (tabName === 'regression' && !regressionChart) {
+                initRegressionChart();
+            }
+        }
+
+        // Initialize error chart
+        function initErrorChart() {
+            const ctx = document.getElementById('errorChart').getContext('2d');
+            errorChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['القياس 1', 'القياس 2', 'القياس 3', 'القياس 4', 'القياس 5'],
+                    datasets: [{
+                        label: 'القيمة المقاسة',
+                        data: [10.2, 10.5, 10.3, 10.4, 10.1],
+                        backgroundColor: 'rgba(59, 130, 246, 0.5)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'القيمة الحقيقية',
+                        data: [10.0, 10.0, 10.0, 10.0, 10.0],
+                        type: 'line',
+                        borderColor: 'rgba(239, 68, 68, 1)',
+                        borderWidth: 2,
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 9.5,
+                            max: 11
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize regression chart
+        function initRegressionChart() {
+            const ctx = document.getElementById('regressionChart').getContext('2d');
+            regressionChart = new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'البيانات',
+                        data: generateScatterData(),
+                        backgroundColor: 'rgba(59, 130, 246, 0.5)',
+                        pointRadius: 6
+                    }, {
+                        label: 'خط الانحدار',
+                        data: [],
+                        type: 'line',
+                        borderColor: 'rgba(239, 68, 68, 1)',
+                        borderWidth: 2,
+                        fill: false,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+            
+            // Add regression line
+            updateRegressionLine();
+        }
+
+        // Generate scatter data
+        function generateScatterData() {
+            const data = [];
+            for (let i = 0; i < 10; i++) {
+                data.push({
+                    x: i + Math.random() * 0.5,
+                    y: 2 * i + 5 + (Math.random() - 0.5) * 2
+                });
+            }
+            return data;
+        }
+
+        // Update regression line
+        function updateRegressionLine() {
+            const data = regressionChart.data.datasets[0].data;
+            const n = data.length;
+            
+            // Calculate regression coefficients
+            let sumX = 0, sumY = 0, sumXY = 0, sumXX = 0;
+            data.forEach(point => {
+                sumX += point.x;
+                sumY += point.y;
+                sumXY += point.x * point.y;
+                sumXX += point.x * point.x;
+            });
+            
+            const m = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
+            const b = (sumY - m * sumX) / n;
+            
+            // Generate regression line points
+            const regressionData = [];
+            const minX = Math.min(...data.map(p => p.x));
+            const maxX = Math.max(...data.map(p => p.x));
+            
+            regressionData.push({ x: minX, y: m * minX + b });
+            regressionData.push({ x: maxX, y: m * maxX + b });
+            
+            regressionChart.data.datasets[1].data = regressionData;
+            regressionChart.update();
+        }
+
+        // Generate new regression data
+        function generateRegressionData() {
+            regressionChart.data.datasets[0].data = generateScatterData();
+            updateRegressionLine();
+        }
+
+        // Calculate statistics
+        function calculateStats() {
+            const input = document.getElementById('dataInput').value;
+            const data = input.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x));
+            
+            if (data.length === 0) {
+                alert('الرجاء إدخال بيانات صحيحة');
+                return;
+            }
+            
+            // Calculate statistics
+            const mean = data.reduce((a, b) => a + b, 0) / data.length;
+            const variance = data.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / data.length;
+            const stdDev = Math.sqrt(variance);
+            const stdError = stdDev / Math.sqrt(data.length);
+            
+            // Display results
+            const resultDiv = document.getElementById('statsResult');
+            resultDiv.innerHTML = `
+                <h4 class="font-bold text-lg mb-3">النتائج:</h4>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <span class="text-gray-600">عدد القيم:</span>
+                        <span class="font-semibold">${data.length}</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-600">المتوسط:</span>
+                        <span class="font-semibold">${mean.toFixed(4)}</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-600">الانحراف المعياري:</span>
+                        <span class="font-semibold">${stdDev.toFixed(4)}</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-600">الخطأ المعياري:</span>
+                        <span class="font-semibold">${stdError.toFixed(4)}</span>
+                    </div>
+                </div>
+            `;
+            resultDiv.classList.remove('hidden');
+        }
+
+        // Calculate uncertainty
+        function calculateUncertainty() {
+            const value = parseFloat(document.getElementById('measuredValue').value);
+            const uncertainty = parseFloat(document.getElementById('absoluteUncertainty').value);
+            
+            if (isNaN(value) || isNaN(uncertainty)) {
+                alert('الرجاء إدخال قيم صحيحة');
+                return;
+            }
+            
+            const relativeUncertainty = (uncertainty / Math.abs(value)) * 100;
+            const percentageUncertainty = relativeUncertainty.toFixed(2);
+            
+            const resultDiv = document.getElementById('uncertaintyResult');
+            resultDiv.innerHTML = `
+                <h4 class="font-bold text-lg mb-3">نتائج عدم اليقين:</h4>
+                <div class="space-y-2">
+                    <div>
+                        <span class="text-gray-600">القيمة مع عدم اليقين:</span>
+                        <span class="font-semibold">${value} ± ${uncertainty}</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-600">عدم اليقين النسبي:</span>
+                        <span class="font-semibold">${percentageUncertainty}%</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-600">نطاق القيم:</span>
+                        <span class="font-semibold">${(value - uncertainty).toFixed(2)} إلى ${(value + uncertainty).toFixed(2)}</span>
+                    </div>
+                </div>
+            `;
+            resultDiv.classList.remove('hidden');
+        }
+
+        // Generate shots for accuracy/precision demo
+        function generateShots() {
+            const scenario = document.getElementById('scenario').value;
+            const shotsContainer = document.getElementById('shots');
+            shotsContainer.innerHTML = '';
+            
+            const centerX = 150;
+            const centerY = 150;
+            const numShots = 10;
+            
+            for (let i = 0; i < numShots; i++) {
+                const shot = document.createElement('div');
+                shot.className = 'shot';
+                
+                let x, y;
+                switch (scenario) {
+                    case 'accurate-precise':
+                        x = centerX + (Math.random() - 0.5) * 30;
+                        y = centerY + (Math.random() - 0.5) * 30;
+                        break;
+                    case 'accurate-not-precise':
+                        x = centerX + (Math.random() - 0.5) * 100;
+                        y = centerY + (Math.random() - 0.5) * 100;
+                        break;
+                    case 'not-accurate-precise':
+                        x = centerX + 60 + (Math.random() - 0.5) * 30;
+                        y = centerY + 60 + (Math.random() - 0.5) * 30;
+                        break;
+                    case 'not-accurate-not-precise':
+                        x = centerX + 60 + (Math.random() - 0.5) * 100;
+                        y = centerY + 60 + (Math.random() - 0.5) * 100;
+                        break;
+                }
+                
+                shot.style.left = x + 'px';
+                shot.style.top = y + 'px';
+                shotsContainer.appendChild(shot);
+            }
+        }
+
+        // Show error demos
+        function showRandomErrorDemo() {
+            if (errorChart) {
+                const newData = [10.0, 10.3, 9.8, 10.2, 9.9].map(x => x + (Math.random() - 0.5) * 0.4);
+                errorChart.data.datasets[0].data = newData;
+                errorChart.update();
+            }
+        }
+
+        function showSystematicErrorDemo() {
+            if (errorChart) {
+                const systematicOffset = 0.5;
+                const newData = [10.0, 10.1, 10.0, 10.2, 9.9].map(x => x + systematicOffset + (Math.random() - 0.5) * 0.1);
+                errorChart.data.datasets[0].data = newData;
+                errorChart.update();
+            }
+        }
+
+        // Show demo
+        function showDemo() {
+            alert('مرحباً! هذا العرض التوضيحي سيساعدك على فهم مفاهيم أخطاء القياس والدقة بشكل أفضل.');
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initErrorChart();
+            generateShots();
+        });
+    </script>
+</body>
+</html>
