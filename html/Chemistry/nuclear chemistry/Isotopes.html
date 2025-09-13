@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عالم النظائر - Isotopes World</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a8a;
+            --secondary-blue: #3b82f6;
+            --accent-blue: #60a5fa;
+            --light-blue: #dbeafe;
+            --dark-blue: #1e40af;
+            --green: #10b981;
+            --red: #ef4444;
+            --yellow: #f59e0b;
+            --white: #ffffff;
+            --gray: #f3f4f6;
+            --dark-gray: #374151;
+            --text-color: #1f2937;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--accent-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.9), rgba(59, 130, 246, 0.8)),
+                        url('https://picsum.photos/seed/atoms/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: 50px 50px;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50px); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--white);
+            color: var(--primary-blue);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button.secondary:hover {
+            background: white;
+            color: var(--primary-blue);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-blue);
+        }
+
+        /* Introduction Section */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .intro-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .intro-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Isotope Types */
+        .isotope-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .isotope-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .isotope-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--secondary-blue);
+        }
+
+        .isotope-card.stable::before {
+            background: var(--green);
+        }
+
+        .isotope-card.unstable::before {
+            background: var(--red);
+        }
+
+        .isotope-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .isotope-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .isotope-card.stable .isotope-icon {
+            color: var(--green);
+        }
+
+        .isotope-card.unstable .isotope-icon {
+            color: var(--red);
+        }
+
+        .isotope-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Applications Section */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .application-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .application-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .app-header {
+            background: var(--light-blue);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .app-header i {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .app-header h3 {
+            color: var(--primary-blue);
+        }
+
+        .app-content {
+            padding: 1.5rem;
+        }
+
+        .app-content ul {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        .app-content ul li {
+            padding: 0.5rem 0;
+            padding-right: 1.5rem;
+            position: relative;
+        }
+
+        .app-content ul li::before {
+            content: '•';
+            position: absolute;
+            right: 0;
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        /* Isotope Gallery */
+        .isotope-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .element-symbol {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .element-name {
+            color: var(--dark-gray);
+            font-weight: 500;
+        }
+
+        .element-info {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin-top: 0.5rem;
+        }
+
+        /* Separation Methods */
+        .methods-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .method-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .method-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .method-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--light-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .method-icon i {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+        }
+
+        .method-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Interactive Demo */
+        .demo-container {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .atom-visual {
+            width: 200px;
+            height: 200px;
+            margin: 2rem auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nucleus {
+            width: 60px;
+            height: 60px;
+            background: var(--red);
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .electron-orbit {
+            position: absolute;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            animation: rotate 10s linear infinite;
+        }
+
+        .electron-orbit:nth-child(1) {
+            width: 100px;
+            height: 100px;
+        }
+
+        .electron-orbit:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            animation-duration: 15s;
+        }
+
+        .electron {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .control-btn:hover {
+            background: var(--dark-blue);
+            transform: translateY(-2px);
+        }
+
+        .control-btn.active {
+            background: var(--green);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-blue);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-blue);
+            color: var(--primary-blue);
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                width: 200px;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--primary-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--dark-blue);
+            transform: translateY(-5px);
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--dark-gray);
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-right: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                عالم النظائر
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#intro">مقدمة</a></li>
+                <li><a href="#types">أنواع النظائر</a></li>
+                <li><a href="#applications">التطبيقات</a></li>
+                <li><a href="#gallery">معرض النظائر</a></li>
+                <li><a href="#separation">طرق الفصل</a></li>
+                <li><a href="#demo">تجربة تفاعلية</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>عالم النظائر</h1>
+            <p>اكتشف عالم النظائر المستقرة وغير المستقرة، واستكشف تطبيقاتها المذهلة في الكيمياء والطب والصناعة</p>
+            <div class="cta-buttons">
+                <a href="#intro" class="cta-button">ابدأ التعلم</a>
+                <a href="#gallery" class="cta-button secondary">استكشف النظائر</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="section">
+        <div class="container">
+            <h2 class="section-title">ما هي النظائر؟</h2>
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <h3>تعريف النظائر</h3>
+                    <p>النظائر (Isotopes) هي ذرات من نفس العنصر الكيميائي ولكنها تختلف في عدد النيوترونات في النواة. هذا يعني أنها تحمل نفس العدد الذري (عدد البروتونات) ولكنها تختلف في الكتلة الذرية.</p>
+                    <p>تم اكتشاف النظائر لأول مرة من قبل فريدريك سودي عام 1913، وأدى هذا الاكتشاف إلى ثورة في فهم بنية الذرة والطبيعة.</p>
+                    <p>تتميز النظائر بخصائص كيميائية متشابهة، ولكنها قد تختلف في خصائصها الفيزيائية والنووية بشكل كبير.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://picsum.photos/seed/isotope-definition/600/400.jpg" alt="تعريف النظائر">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Isotope Types Section -->
+    <section id="types" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">أنواع النظائر</h2>
+            <div class="isotope-types">
+                <div class="isotope-card stable">
+                    <div class="isotope-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>النظائر المستقرة</h3>
+                    <p>النظائر المستقرة هي نظائر لا تتحلل إشعاعياً بمرور الوقت. تحتوي نواتها على توازن مثالي بين البروتونات والنيوترونات.</p>
+                    <ul style="margin-top: 1rem; list-style: none; padding-right: 0;">
+                        <li style="padding: 0.5rem 0; padding-right: 1.5rem; position: relative;">
+                            <span style="position: absolute; right: 0; color: var(--green);">•</span>
+                            لا تتحلل إشعاعياً
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-right: 1.5rem; position: relative;">
+                            <span style="position: absolute; right: 0; color: var(--green);">•</span>
+                            نسبة النيوترونات للبروتونات متوازنة
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-right: 1.5rem; position: relative;">
+                            <span style="position: absolute; right: 0; color: var(--green);">•</span>
+                            أمثلة: C-12, O-16, H-1
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-right: 1.5rem; position: relative;">
+                            <span style="position: absolute; right: 0; color: var(--green);">•</span>
+                            تستخدم في التأريخ والدراسات البيئية
+                        </li>
+                    </ul>
+                </div>
+                <div class="isotope-card unstable">
+                    <div class="isotope-icon">
+                        <i class="fas fa-radiation"></i>
+                    </div>
+                    <h3>النظائر غير المستقرة (المشعة)</h3>
+                    <p>النظائر غير المستقرة هي نظائر تتحلل إشعاعياً بمرور الوقت لتتحول إلى نظائر أكثر استقراراً. يطلق عليها أيضاً النظائر المشعة.</p>
+                    <ul style="margin-top: 1rem; list-style: none; padding-right: 0;">
+                        <li style="padding: 0.5rem 0; padding-right: 1.5rem; position: relative;">
+                            <span style="position: absolute; right: 0; color: var(--red);">•</span>
+                            تتحلل إشعاعياً
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-right: 1.5rem; position: relative;">
+                            <span style="position: absolute; right: 0; color: var(--red);">•</span>
+                            لها عمر نصف محدد
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-right: 1.5rem; position: relative;">
+                            <span style="position: absolute; right: 0; color: var(--red);">•</span>
+                            أمثلة: U-238, C-14, I-131
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-right: 1.5rem; position: relative;">
+                            <span style="position: absolute; right: 0; color: var(--red);">•</span>
+                            تستخدم في الطب والصناعة
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="section">
+        <div class="container">
+            <h2 class="section-title">تطبيقات النظائر</h2>
+            <div class="applications-grid">
+                <div class="application-card">
+                    <div class="app-header">
+                        <i class="fas fa-heartbeat"></i>
+                        <h3>التطبيقات الطبية</h3>
+                    </div>
+                    <div class="app-content">
+                        <ul>
+                            <li>التشخيص باستخدام التصوير المقطعي</li>
+                            <li>علاج السرطان بالإشعاع</li>
+                            <li>اليود-131 لعلاج أمراض الغدة الدرقية</li>
+                            <li>التكنيشيوم-99m للتصوير الطبي</li>
+                            <li>الكوبالت-60 في العلاج الإشعاعي</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="application-card">
+                    <div class="app-header">
+                        <i class="fas fa-flask"></i>
+                        <h3>التطبيقات الكيميائية</h3>
+                    </div>
+                    <div class="app-content">
+                        <ul>
+                            <li>دراسة آليات التفاعلات الكيميائية</li>
+                            <li>تحديد المسارات الأيضية</li>
+                            <li>الكربون-14 في التأريخ</li>
+                            <li>الديوتيريوم في الدراسات الحركية</li>
+                            <li>الأكسجين-18 في دراسات المياه</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="application-card">
+                    <div class="app-header">
+                        <i class="fas fa-industry"></i>
+                        <h3>التطبيقات الصناعية</h3>
+                    </div>
+                    <div class="app-content">
+                        <ul>
+                            <li>فحص اللحامات والمواد</li>
+                            <li>قياس سماكة المواد</li>
+                            <li>إنتاج الطاقة في المفاعلات النووية</li>
+                            <li>تعقيم الأغذية والمعدات الطبية</li>
+                            <li>كواشف الدخان باستخدام أمريسيوم-241</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="application-card">
+                    <div class="app-header">
+                        <i class="fas fa-seedling"></i>
+                        <h3>التطبيقات البيئية</h3>
+                    </div>
+                    <div class="app-content">
+                        <ul>
+                            <li>تتبع الملوثات في البيئة</li>
+                            <li>دراسة دورات المياه والكربون</li>
+                            <li>مراقبة جودة الهواء والماء</li>
+                            <li>دراسة تغير المناخ</li>
+                            <li>تقييم التلوث الإشعاعي</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Isotope Gallery -->
+    <section id="gallery" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">معرض النظائر الشائعة</h2>
+            <div class="isotope-gallery">
+                <div class="gallery-item" onclick="showIsotopeInfo('Hydrogen')">
+                    <div class="element-symbol">H</div>
+                    <div class="element-name">الهيدروجين</div>
+                    <div class="element-info">H-1, H-2, H-3</div>
+                </div>
+                <div class="gallery-item" onclick="showIsotopeInfo('Carbon')">
+                    <div class="element-symbol">C</div>
+                    <div class="element-name">الكربون</div>
+                    <div class="element-info">C-12, C-13, C-14</div>
+                </div>
+                <div class="gallery-item" onclick="showIsotopeInfo('Oxygen')">
+                    <div class="element-symbol">O</div>
+                    <div class="element-name">الأكسجين</div>
+                    <div class="element-info">O-16, O-17, O-18</div>
+                </div>
+                <div class="gallery-item" onclick="showIsotopeInfo('Iodine')">
+                    <div class="element-symbol">I</div>
+                    <div class="element-name">اليود</div>
+                    <div class="element-info">I-127, I-131</div>
+                </div>
+                <div class="gallery-item" onclick="showIsotopeInfo('Cobalt')">
+                    <div class="element-symbol">Co</div>
+                    <div class="element-name">الكوبالت</div>
+                    <div class="element-info">Co-59, Co-60</div>
+                </div>
+                <div class="gallery-item" onclick="showIsotopeInfo('Uranium')">
+                    <div class="element-symbol">U</div>
+                    <div class="element-name">اليورانيوم</div>
+                    <div class="element-info">U-235, U-238</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Separation Methods Section -->
+    <section id="separation" class="section">
+        <div class="container">
+            <h2 class="section-title">طرق فصل وتحضير النظائر</h2>
+            <div class="methods-container">
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-filter"></i>
+                    </div>
+                    <h3>الترشيح الكهربائي</h3>
+                    <p>طريقة تستخدم الفروق في حركة الأيونات في مجال كهربائي لفصل النظائر. تعتمد على اختلاف كتلة النظائر وتأثيرها على سرعة الحركة.</p>
+                    <ul style="margin-top: 1rem; list-style: none; padding-right: 0;">
+                        <li style="padding: 0.3rem 0; padding-right: 1rem; position: relative;">
+                            <span style="position: absolute; right: 0; color: var(--accent-blue);">•</span>
+                            مناسبة للعناصر الخفيفة
+                        </li>
+                        <li style="padding: 0.3rem 0; padding-right: 1rem; position: relative;">
+                            <span style="position: absolute; right: 0; color: var(--accent-blue);">•</span>
+                            تكلفة عالية
+                        </li>
+                    </ul>
+                </div>
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <h3>الانتشار الغازي</h3>
+                    <p>طريقة تستغل الفروق في سرعة انتشار الغازات ذات الكتل المختلفة من خلال ثقوب دقيقة. تستخدم بشكل رئيسي لتخصيب اليورانيوم.</p>
+                    <ul style="margin-top: 1rem; list-style: none; padding-right: 0;">
+                        <li style="padding: 0.3rem 0; padding-right: 1rem; position: relative;">
+                            <span style="position: absolute; right: 0; color: var(--accent-blue);">•</span>
+                            تستخدم في تخصيب اليورانيوم
+                        </li>
+                        <li style="padding: 0.3rem 0; padding-right: 1rem; position: relative;">
+                            <span style="position: absolute; right: 0; color: var(--accent-blue);">•</span>
+                            عملية بطيئة ومكلفة
+                        </li>
+                    </ul>
+                </div>
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-magnet"></i>
+                    </div>
+                    <h3>الطرد المركزي الغازي</h3>
+                    <p>طريقة حديثة تستخدم قوة الطرد المركزي لفصل النظائر بناءً على اختلاف كتلتها. أكثر كفاءة من الانتشار الغازي.</p>
+                    <ul style="margin-top: 1rem; list-style: none; padding-right: 0;">
+                        <li style="padding: 0.3rem 0; padding-right: 1rem; position: relative;">
+                            <span style="position: absolute; right: 0; color: var(--accent-blue);">•</span>
+                            كفاءة عالية
+                        </li>
+                        <li style="padding: 0.3rem 0; padding-right: 1rem; position: relative;">
+                            <span style="position: absolute; right: 0; color: var(--accent-blue);">•</span>
+                            تستخدم على نطاق واسع
+                        </li>
+                    </ul>
+                </div>
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>التحليل الكهرومغناطيسي</h3>
+                    <p>طريقة تستخدم مجالات كهربائية ومغناطيسية لفصل النظائر بناءً على نسبة الكتلة إلى الشحنة. دقيقة جداً ولكنها بطيئة.</p>
+                    <ul style="margin-top: 1rem; list-style: none; padding-right: 0;">
+                        <li style="padding: 0.3rem 0; padding-right: 1rem; position: relative;">
+                            <span style="position: absolute; right: 0; color: var(--accent-blue);">•</span>
+                            دقة عالية جداً
+                        </li>
+                        <li style="padding: 0.3rem 0; padding-right: 1rem; position: relative;">
+                            <span style="position: absolute; right: 0; color: var(--accent-blue);">•</span>
+                            مناسبة للكميات الصغيرة
+                        </li>
+                    </ul>
+                </div>
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h3>التبادل الكيميائي</h3>
+                    <p>طريقة تستغل الفروق الصغيرة في التوازن الكيميائي بين النظائر. تستخدم بشكل رئيسي للعناصر الخفيفة مثل الليثيوم والبورون.</p>
+                    <ul style="margin-top: 1rem; list-style: none; padding-right: 0;">
+                        <li style="padding: 0.3rem 0; padding-right: 1rem; position: relative;">
+                            <span style="position: absolute; right: 0; color: var(--accent-blue);">•</span>
+                            منخفضة التكلفة
+                        </li>
+                        <li style="padding: 0.3rem 0; padding-right: 1rem; position: relative;">
+                            <span style="position: absolute; right: 0; color: var(--accent-blue);">•</span>
+                            مناسبة للإنتاج الكبير
+                        </li>
+                    </ul>
+                </div>
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3>الليزر</h3>
+                    <p>طريقة حديثة تستخدم أشعة الليزر لتفعيل وفصل النظائر. تعتبر من أكثر الطرق دقة وكفاءة ولكنها الأكثر تكلفة.</p>
+                    <ul style="margin-top: 1rem; list-style: none; padding-right: 0;">
+                        <li style="padding: 0.3rem 0; padding-right: 1rem; position: relative;">
+                            <span style="position: absolute; right: 0; color: var(--accent-blue);">•</span>
+                            تقنية متطورة جداً
+                        </li>
+                        <li style="padding: 0.3rem 0; padding-right: 1rem; position: relative;">
+                            <span style="position: absolute; right: 0; color: var(--accent-blue);">•</span>
+                            تكلفة عالية جداً
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section id="demo" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">تجربة تفاعلية: بناء الذرة</h2>
+            <div class="demo-container">
+                <h3>اختر نظيراً لعرض تركيبه الذري</h3>
+                <div class="atom-visual" id="atomVisual">
+                    <div class="nucleus" id="nucleus">p+n</div>
+                    <div class="electron-orbit">
+                        <div class="electron"></div>
+                    </div>
+                    <div class="electron-orbit">
+                        <div class="electron"></div>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button class="control-btn" onclick="showAtom('H-1')">H-1</button>
+                    <button class="control-btn" onclick="showAtom('H-2')">H-2 (D)</button>
+                    <button class="control-btn" onclick="showAtom('H-3')">H-3 (T)</button>
+                    <button class="control-btn" onclick="showAtom('C-12')">C-12</button>
+                    <button class="control-btn" onclick="showAtom('C-14')">C-14</button>
+                    <button class="control-btn" onclick="showAtom('U-235')">U-235</button>
+                </div>
+                <div id="atomInfo" style="margin-top: 2rem; font-size: 1.1rem; color: var(--dark-gray);">
+                    اختر نظيراً من الأزرار أعلاه لعرض معلوماته
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن الموقع</h3>
+                    <p>منصة تعليمية متخصصة في النظائر وتطبيقاتها في الكيمياء والطب والصناعة. نقدم معلومات دقيقة ومحدثة للطلاب والباحثين.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#intro">مقدمة في النظائر</a></li>
+                        <li><a href="#types">أنواع النظائر</a></li>
+                        <li><a href="#applications">التطبيقات الطبية</a></li>
+                        <li><a href="#separation">طرق الفصل</a></li>
+                        <li><a href="#gallery">معرض النظائر</a></li>
+                        <li><a href="#demo">تجربة تفاعلية</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>المصادر والمراجع</h3>
+                    <ul>
+                        <li><a href="#">دليل النظائر المشعة</a></li>
+                        <li><a href="#">المجلة الدولية للكيمياء النووية</a></li>
+                        <li><a href="#">الوكالة الدولية للطاقة الذرية</a></li>
+                        <li><a href="#">الجمعية الكيميائية الأمريكية</a></li>
+                        <li><a href="#">مكتبة الطب النووي</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@isotopes-world.com</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> المملكة العربية السعودية</li>
+                    </ul>
+                    <p style="margin-top: 1rem;">للاستفسارات والمساعدة العلمية</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 عالم النظائر. جميع الحقوق محفوظة. | تصميم وتطوير: فريق العمل</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Isotope gallery info
+        const isotopeInfo = {
+            'Hydrogen': {
+                name: 'الهيدروجين',
+                isotopes: [
+                    { name: 'H-1 (بروتيوم)', protons: 1, neutrons: 0, stability: 'مستقر', abundance: '99.98%' },
+                    { name: 'H-2 (ديوتيريوم)', protons: 1, neutrons: 1, stability: 'مستقر', abundance: '0.02%' },
+                    { name: 'H-3 (تريتيوم)', protons: 1, neutrons: 2, stability: 'مشع', halfLife: '12.32 سنة' }
+                ],
+                uses: 'يستخدم الديوتيريوم في المفاعلات النووية والتريتيوم في الأسلحة النووية والإشارات الضوئية'
+            },
+            'Carbon': {
+                name: 'الكربون',
+                isotopes: [
+                    { name: 'C-12', protons: 6, neutrons: 6, stability: 'مستقر', abundance: '98.9%' },
+                    { name: 'C-13', protons: 6, neutrons: 7, stability: 'مستقر', abundance: '1.1%' },
+                    { name: 'C-14', protons: 6, neutrons: 8, stability: 'مشع', halfLife: '5730 سنة' }
+                ],
+                uses: 'C-14 يستخدم في التأريخ الكربوني للعينات الأثرية والجيولوجية'
+            },
+            'Oxygen': {
+                name: 'الأكسجين',
+                isotopes: [
+                    { name: 'O-16', protons: 8, neutrons: 8, stability: 'مستقر', abundance: '99.76%' },
+                    { name: 'O-17', protons: 8, neutrons: 9, stability: 'مستقر', abundance: '0.04%' },
+                    { name: 'O-18', protons: 8, neutrons: 10, stability: 'مستقر', abundance: '0.20%' }
+                ],
+                uses: 'يستخدم O-18 في دراسات المناخ القديم ودورات المياه'
+            },
+            'Iodine': {
+                name: 'اليود',
+                isotopes: [
+                    { name: 'I-127', protons: 53, neutrons: 74, stability: 'مستقر', abundance: '100%' },
+                    { name: 'I-131', protons: 53, neutrons: 78, stability: 'مشع', halfLife: '8.02 أيام' }
+                ],
+                uses: 'I-131 يستخدم في تشخيص وعلاج أمراض الغدة الدرقية'
+            },
+            'Cobalt': {
+                name: 'الكوبالت',
+                isotopes: [
+                    { name: 'Co-59', protons: 27, neutrons: 32, stability: 'مستقر', abundance: '100%' },
+                    { name: 'Co-60', protons: 27, neutrons: 33, stability: 'مشع', halfLife: '5.27 سنة' }
+                ],
+                uses: 'Co-60 يستخدم في العلاج الإشعاعي للسرطان وتعقيم المعدات الطبية'
+            },
+            'Uranium': {
+                name: 'اليورانيوم',
+                isotopes: [
+                    { name: 'U-235', protons: 92, neutrons: 143, stability: 'مشع', halfLife: '704 مليون سنة' },
+                    { name: 'U-238', protons: 92, neutrons: 146, stability: 'مشع', halfLife: '4.468 مليار سنة' }
+                ],
+                uses: 'U-235 يستخدم كوقود للمفاعلات النووية والأسلحة النووية'
+            }
+        };
+
+        function showIsotopeInfo(element) {
+            const info = isotopeInfo[element];
+            if (info) {
+                let message = `${info.name}\n\n`;
+                message += 'النظائر:\n';
+                info.isotopes.forEach(isotope => {
+                    message += `- ${isotope.name}: ${isotope.protons}p + ${isotope.neutrons}n\n`;
+                    message += `  الاستقرار: ${isotope.stability}\n`;
+                    if (isotope.abundance) {
+                        message += `  الوفرة: ${isotope.abundance}\n`;
+                    }
+                    if (isotope.halfLife) {
+                        message += `  عمر النصف: ${isotope.halfLife}\n`;
+                    }
+                    message += '\n';
+                });
+                message += `الاستخدامات: ${info.uses}`;
+                
+                // Create a modal-like display
+                const modal = document.createElement('div');
+                modal.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.8);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 10000;
+                    padding: 2rem;
+                `;
+                
+                const content = document.createElement('div');
+                content.style.cssText = `
+                    background: white;
+                    padding: 2rem;
+                    border-radius: 15px;
+                    max-width: 600px;
+                    max-height: 80vh;
+                    overflow-y: auto;
+                    position: relative;
+                `;
+                
+                content.innerHTML = `
+                    <button onclick="this.parentElement.parentElement.remove()" style="
+                        position: absolute;
+                        top: 1rem;
+                        left: 1rem;
+                        background: none;
+                        border: none;
+                        font-size: 1.5rem;
+                        cursor: pointer;
+                        color: var(--dark-gray);
+                    ">×</button>
+                    <h2 style="color: var(--primary-blue); margin-bottom: 1.5rem;">${info.name}</h2>
+                    <div style="white-space: pre-line; line-height: 1.8;">${message}</div>
+                `;
+                
+                modal.appendChild(content);
+                document.body.appendChild(modal);
+            }
+        }
+
+        // Interactive atom demo
+        const atomData = {
+            'H-1': { protons: 1, neutrons: 0, electrons: 1, info: 'الهيدروجين-1 (البروتيوم) - النظير الأكثر وفرة في الطبيعة' },
+            'H-2': { protons: 1, neutrons: 1, electrons: 1, info: 'الهيدروجين-2 (الديوتيريوم) - يستخدم في المفاعلات النووية' },
+            'H-3': { protons: 1, neutrons: 2, electrons: 1, info: 'الهيدروجين-3 (التريتيوم) - نظير مشع يستخدم في الإشارات الضوئية' },
+            'C-12': { protons: 6, neutrons: 6, electrons: 6, info: 'الكربون-12 - النظير القياسي لتحديد الكتلة الذرية' },
+            'C-14': { protons: 6, neutrons: 8, electrons: 6, info: 'الكربون-14 - يستخدم في التأريخ الكربوني' },
+            'U-235': { protons: 92, neutrons: 143, electrons: 92, info: 'اليورانيوم-235 - وقود المفاعلات النووية' }
+        };
+
+        function showAtom(isotope) {
+            const data = atomData[isotope];
+            if (data) {
+                // Update nucleus
+                const nucleus = document.getElementById('nucleus');
+                nucleus.textContent = `${data.protons}p+${data.neutrons}n`;
+                
+                // Update info
+                const info = document.getElementById('atomInfo');
+                info.innerHTML = `
+                    <strong>${isotope}</strong><br>
+                    البروتونات: ${data.protons}<br>
+                    النيوترونات: ${data.neutrons}<br>
+                    الإلكترونات: ${data.electrons}<br><br>
+                    ${data.info}
+                `;
+                
+                // Update button states
+                document.querySelectorAll('.control-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                event.target.classList.add('active');
+                
+                // Animate atom
+                const atomVisual = document.getElementById('atomVisual');
+                atomVisual.style.animation = 'none';
+                setTimeout(() => {
+                    atomVisual.style.animation = 'fadeInUp 0.5s ease';
+                }, 10);
+            }
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.width = '100%';
+                navLinks.style.padding = '1rem';
+                navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

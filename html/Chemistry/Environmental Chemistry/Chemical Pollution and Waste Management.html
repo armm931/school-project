@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التلوث الكيميائي وإدارة النفايات - حماية بيئتنا</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        }
+        
+        .toxic-gradient {
+            background: linear-gradient(135deg, #f59e0b 0%, #dc2626 100%);
+        }
+        
+        .clean-gradient {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        
+        .water-gradient {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+        }
+        
+        .air-gradient {
+            background: linear-gradient(135deg, #6b7280 0%, #374151 100%);
+        }
+        
+        .soil-gradient {
+            background: linear-gradient(135deg, #92400e 0%, #78350f 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .toxic-bubble {
+            animation: toxic-float 4s ease-in-out infinite;
+        }
+        
+        @keyframes toxic-float {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        .water-wave {
+            animation: water-wave 3s ease-in-out infinite;
+        }
+        
+        @keyframes water-wave {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(15px); }
+        }
+        
+        .smoke-rise {
+            animation: smoke-rise 5s ease-out infinite;
+        }
+        
+        @keyframes smoke-rise {
+            0% { transform: translateY(0) scale(0.5); opacity: 0.8; }
+            100% { transform: translateY(-60px) scale(2); opacity: 0; }
+        }
+        
+        .warning-pulse {
+            animation: warning-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes warning-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            50% { box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
+        }
+        
+        .recycle-spin {
+            animation: recycle-spin 4s linear infinite;
+        }
+        
+        @keyframes recycle-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .progress-fill {
+            transition: width 2s ease-out;
+        }
+        
+        .chemical-molecule {
+            animation: molecule-rotate 6s linear infinite;
+        }
+        
+        @keyframes molecule-rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .danger-zone {
+            background: repeating-linear-gradient(
+                45deg,
+                #fef3c7,
+                #fef3c7 10px,
+                #fde68a 10px,
+                #fde68a 20px
+            );
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-reverse space-x-4">
+                    <i class="fas fa-radiation text-3xl"></i>
+                    <h1 class="text-3xl font-bold">التلوث الكيميائي وإدارة النفايات</h1>
+                </div>
+                <nav class="hidden md:flex space-x-reverse space-x-6">
+                    <a href="#introduction" class="hover:text-red-200 transition">مقدمة</a>
+                    <a href="#types" class="hover:text-red-200 transition">أنواع التلوث</a>
+                    <a href="#sources" class="hover:text-red-200 transition">المصادر</a>
+                    <a href="#effects" class="hover:text-red-200 transition">الآثار</a>
+                    <a href="#management" class="hover:text-red-200 transition">إدارة النفايات</a>
+                    <a href="#treatment" class="hover:text-red-200 transition">المعالجة</a>
+                    <a href="#laws" class="hover:text-red-200 transition">القوانين</a>
+                </nav>
+                <button id="mobileMenuBtn" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 bg-gradient-to-br from-red-50 to-orange-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">فهم التلوث الكيميائي وسبل العلاج</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    استكشف مخاطر التلوث الكيميائي واكتشف الحلول المستدامة لإدارة النفايات الكيميائية
+                </p>
+            </div>
+            
+            <!-- Warning Stats -->
+            <div class="grid md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                    <div class="w-16 h-16 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-3 warning-pulse">
+                        <i class="fas fa-skull-crossbones text-2xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-red-600 mb-1">9 ملايين</h3>
+                    <p class="text-gray-600">وفاة سنوياً بسبب التلوث</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                    <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                        <i class="fas fa-tint text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-blue-600 mb-1">80%</h3>
+                    <p class="text-gray-600">مياه الصرف غير المعالجة</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                    <div class="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-3">
+                        <i class="fas fa-smog text-2xl text-gray-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-600 mb-1">91%</h3>
+                    <p class="text-gray-600">من سكان العالم يتعرضون لتلوث الهواء</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                    <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-3 recycle-spin">
+                        <i class="fas fa-recycle text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-green-600 mb-1">20%</h3>
+                    <p class="text-gray-600">زيادة في إعادة التدوير المطلوبة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="introduction" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                            <i class="fas fa-exclamation-triangle text-red-600 ml-3"></i>
+                            ما هو التلوث الكيميائي؟
+                        </h2>
+                        <p class="text-gray-600 mb-4">
+                            التلوث الكيميائي هو إدخال مواد كيميائية ضارة إلى البيئة بكميات تتجاوز قدرة النظم البيئية على تحملها أو معالجتها.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-times-circle text-red-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">المواد السامة</h4>
+                                    <p class="text-gray-600 text-sm">المعادن الثقيلة، المبيدات، المذيبات العضوية</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-times-circle text-red-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">التأثير المتراكم</h4>
+                                    <p class="text-gray-600 text-sm">تتراكم المواد الكيميائية في السلسلة الغذائية</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-times-circle text-red-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">الانتشار العالمي</h4>
+                                    <p class="text-gray-600 text-sm">لا تعترف بالحدود الجغرافية</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="bg-gradient-to-br from-red-100 to-orange-100 rounded-2xl p-8 danger-zone">
+                            <div class="text-center">
+                                <i class="fas fa-flask text-8xl text-red-600 toxic-bubble"></i>
+                            </div>
+                            <div class="mt-6 space-y-3">
+                                <div class="bg-white/90 backdrop-blur rounded-lg p-3">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-semibold">المواد الكيميائية الخطرة</span>
+                                        <span class="text-red-600 font-bold">350,000+</span>
+                                    </div>
+                                </div>
+                                <div class="bg-white/90 backdrop-blur rounded-lg p-3">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-semibold">النفايات الخطرة سنوياً</span>
+                                        <span class="text-orange-600 font-bold">400 مليون طن</span>
+                                    </div>
+                                </div>
+                                <div class="bg-white/90 backdrop-blur rounded-lg p-3">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-semibold">التكلفة الصحية</span>
+                                        <span class="text-yellow-600 font-bold">4.6 تريليون دولار</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Types of Pollution Section -->
+    <section id="types" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">أنواع التلوث الكيميائي</h2>
+                    <p class="text-lg text-gray-600">
+                        يصنف التلوث الكيميائي حسب الوسط الذي يحدث فيه
+                    </p>
+                </div>
+
+                <!-- Pollution Types Grid -->
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Water Pollution -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="water-gradient p-6 text-white text-center">
+                            <i class="fas fa-water text-5xl mb-3 water-wave"></i>
+                            <h3 class="text-2xl font-bold">تلوث المياه</h3>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-bold text-blue-800 mb-3">المواد الملوثة الرئيسية:</h4>
+                            <ul class="space-y-2 text-gray-700 mb-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-blue-500 mt-1 ml-2"></i>
+                                    <span>المعادن الثقيلة (الرصاص، الزئبق، الكادميوم)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-blue-500 mt-1 ml-2"></i>
+                                    <span>المبيدات الحشرية (DDT، الديلدرين)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-blue-500 mt-1 ml-2"></i>
+                                    <span>المذيبات العضوية (البنزين، التولوين)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-blue-500 mt-1 ml-2"></i>
+                                    <span>المواد المشعة</span>
+                                </li>
+                            </ul>
+                            <div class="bg-blue-50 rounded-lg p-3">
+                                <p class="text-sm text-blue-800">
+                                    <i class="fas fa-info-circle ml-2"></i>
+                                    2 مليار شخص يفتقرون إلى مياه الشرب النظيفة
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Air Pollution -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="air-gradient p-6 text-white text-center">
+                            <i class="fas fa-smog text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">تلوث الهواء</h3>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-bold text-gray-800 mb-3">الملوثات الرئيسية:</h4>
+                            <ul class="space-y-2 text-gray-700 mb-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-gray-600 mt-1 ml-2"></i>
+                                    <span>أكاسيد الكبريت (SO₂, SO₃)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-gray-600 mt-1 ml-2"></i>
+                                    <span>أكاسيد النيتروجين (NO, NO₂)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-gray-600 mt-1 ml-2"></i>
+                                    <span>المركبات العضوية المتطايرة (VOCs)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-gray-600 mt-1 ml-2"></i>
+                                    <span>الجسيمات الدقيقة (PM2.5, PM10)</span>
+                                </li>
+                            </ul>
+                            <div class="bg-gray-100 rounded-lg p-3">
+                                <p class="text-sm text-gray-800">
+                                    <i class="fas fa-info-circle ml-2"></i>
+                                    الهواء الملوث يسبب 7 ملايين وفاة سنوياً
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Soil Pollution -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="soil-gradient p-6 text-white text-center">
+                            <i class="fas fa-mountain text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">تلوث التربة</h3>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-bold text-amber-800 mb-3">مصادر التلوث:</h4>
+                            <ul class="space-y-2 text-gray-700 mb-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-amber-600 mt-1 ml-2"></i>
+                                    <span>الأسمدة الكيميائية الزائدة</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-amber-600 mt-1 ml-2"></i>
+                                    <span>النفايات الصناعية الخطرة</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-amber-600 mt-1 ml-2"></i>
+                                    <span>تسرب النفط والمشتقات البترولية</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-amber-600 mt-1 ml-2"></i>
+                                    <span>النفايات الإلكترونية</span>
+                                </li>
+                            </ul>
+                            <div class="bg-amber-50 rounded-lg p-3">
+                                <p class="text-sm text-amber-800">
+                                    <i class="fas fa-info-circle ml-2"></i>
+                                    33% من التربة العالمية ملوثة
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources Section -->
+    <section id="sources" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">مصادر التلوث الكيميائي</h2>
+                    <p class="text-lg text-gray-600">
+                        التعرف على المصادر الرئيسية للتلوث الكيميائي في بيئتنا
+                    </p>
+                </div>
+
+                <!-- Sources Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-red-50 rounded-xl p-6 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center ml-3">
+                                <i class="fas fa-industry text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-red-800">الصناعة</h3>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• المصانع الكيميائية</li>
+                            <li>• محطات توليد الطاقة</li>
+                            <li>• صناعة الورق والنسيج</li>
+                            <li>• الصناعات البتروكيماوية</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-blue-50 rounded-xl p-6 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center ml-3">
+                                <i class="fas fa-car text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-blue-800">النقل</h3>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• عوادم السيارات</li>
+                            <li>• انبعاثات الطائرات</li>
+                            <li>• سفن الشحن البحري</li>
+                            <li>• القطارات والشاحنات</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-green-50 rounded-xl p-6 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center ml-3">
+                                <i class="fas fa-seedling text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-green-800">الزراعة</h3>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• المبيدات الحشرية</li>
+                            <li>• الأسمدة الكيميائية</li>
+                            <li>• المبيدات الفطرية</li>
+                            <li>• نفايات المزارع</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-purple-50 rounded-xl p-6 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center ml-3">
+                                <i class="fas fa-home text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-purple-800">المنازل</h3>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• المنظفات الكيميائية</li>
+                            <li>• الطلاء والورنيش</li>
+                            <li>• المبيدات المنزلية</li>
+                            <li>• النفايات الإلكترونية</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-yellow-50 rounded-xl p-6 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center ml-3">
+                                <i class="fas fa-hospital text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-yellow-800">الرعاية الصحية</h3>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• النفايات الطبية</li>
+                            <li>• الأدوية المنتهية</li>
+                            <li>• المواد المشعة</li>
+                            <li>• المطهرات الكيميائية</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-xl p-6 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gray-500 rounded-full flex items-center justify-center ml-3">
+                                <i class="fas fa-dumpster text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800">النفايات</h3>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• مدافن النفايات</li>
+                            <li>• حرق النفايات</li>
+                            <li>• التسربات السائلة</li>
+                            <li>• الغازات المنبعثة</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Effects Section -->
+    <section id="effects" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">آثار التلوث الكيميائي</h2>
+                    <p class="text-lg text-gray-600">
+                        التأثيرات الصحية والبيئية للتلوث الكيميائي
+                    </p>
+                </div>
+
+                <!-- Health Effects -->
+                <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                    <h3 class="text-2xl font-bold text-red-800 mb-6 text-center">
+                        <i class="fas fa-heartbeat ml-3"></i>
+                        الآثار الصحية
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-4">التأثيرات المباشرة:</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <i class="fas fa-lungs text-red-500 mt-1 ml-3"></i>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-700">أمراض الجهاز التنفسي</h5>
+                                        <p class="text-sm text-gray-600">الربو، التهاب الشعب الهوائية، سرطان الرئة</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-brain text-red-500 mt-1 ml-3"></i>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-700">تلف الجهاز العصبي</h5>
+                                        <p class="text-sm text-gray-600">الزئبق والرصاص يسببان تلفاً عصبياً دائماً</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-tint text-red-500 mt-1 ml-3"></i>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-700">أمراض الكلى والكبد</h5>
+                                        <p class="text-sm text-gray-600">الفشل الكلوي، تليف الكبد، السرطان</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-4">التأثيرات طويلة الأمد:</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <i class="fas fa-dna text-red-500 mt-1 ml-3"></i>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-700">التغيرات الوراثية</h5>
+                                        <p class="text-sm text-gray-600">طفرات جينية، تشوهات خلقية</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-baby text-red-500 mt-1 ml-3"></i>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-700">تأثيرات على الأجنة</h5>
+                                        <p class="text-sm text-gray-600">تأخر النمو، تشوهات خلقية</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-shield-virus text-red-500 mt-1 ml-3"></i>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-700">ضعف المناعة</h5>
+                                        <p class="text-sm text-gray-600">زيادة susceptibility للأمراض</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Environmental Effects -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-green-800 mb-6 text-center">
+                        <i class="fas fa-globe-americas ml-3"></i>
+                        الآثار البيئية
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="w-20 h-20 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-fish text-3xl text-blue-600"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">الأنظمة المائية</h4>
+                            <ul class="text-sm text-gray-600 text-right">
+                                <li>• موت الكائنات المائية</li>
+                                <li>• تدمير الشعاب المرجانية</li>
+                                <li>• المياه الميتة (Dead Zones)</li>
+                                <li>• تراكم في السلسلة الغذائية</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-20 h-20 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-tree text-3xl text-green-600"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">النظم الأرضية</h4>
+                            <ul class="text-sm text-gray-600 text-right">
+                                <li>• تدهور التربة الخصبة</li>
+                                <li>• موت النباتات والأشجار</li>
+                                <li>• فقدان التنوع البيولوجي</li>
+                                <li>-> التصحر</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-20 h-20 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-cloud text-3xl text-gray-600"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">الغلاف الجوي</h4>
+                            <ul class="text-sm text-gray-600 text-right">
+                                <li>• الأمطار الحمضية</li>
+                                <li>• ثقب الأوزون</li>
+                                <li>• الاحتباس الحراري</li>
+                                <li>• التغير المناخي</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waste Management Section -->
+    <section id="management" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">إدارة النفايات الكيميائية</h2>
+                    <p class="text-lg text-gray-600">
+                        استراتيجيات متقدمة للتعامل مع النفايات الكيميائية الخطرة
+                    </p>
+                </div>
+
+                <!-- Waste Management Hierarchy -->
+                <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-8 mb-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">هرم إدارة النفايات الكيميائية</h3>
+                    
+                    <div class="max-w-3xl mx-auto">
+                        <div class="space-y-4">
+                            <div class="bg-green-500 text-white rounded-lg p-4 text-center">
+                                <h4 class="font-bold text-lg">الوقاية والحد</h4>
+                                <p class="text-sm">تقليل إنتاج النفايات من المصدر وتصميم عمليات أنظف</p>
+                            </div>
+                            <div class="bg-blue-500 text-white rounded-lg p-4 text-center">
+                                <h4 class="font-bold text-lg">إعادة الاستخدام</h4>
+                                <p class="text-sm">استخدام المواد الكيميائية مرة أخرى دون معالجة</p>
+                            </div>
+                            <div class="bg-cyan-500 text-white rounded-lg p-4 text-center">
+                                <h4 class="font-bold text-lg">إعادة التدوير</h4>
+                                <p class="text-sm">استعادة المواد القيمة من النفايات الكيميائية</p>
+                            </div>
+                            <div class="bg-yellow-500 text-white rounded-lg p-4 text-center">
+                                <h4 class="font-bold text-lg">الاسترداد</h4>
+                                <p class="text-sm">استخراج الطاقة أو المواد من النفايات</p>
+                            </div>
+                            <div class="bg-red-500 text-white rounded-lg p-4 text-center">
+                                <h4 class="font-bold text-lg">التخلص الآمن</h4>
+                                <p class="text-sm">الدفن أو الحرق الآمن للنفايات المتبقية</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Management Strategies -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-blue-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-4">
+                            <i class="fas fa-clipboard-list ml-2"></i>
+                            استراتيجيات الإدارة
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-blue-700 mb-2">التصنيف والتوثيق</h4>
+                                <p class="text-sm text-gray-600">تصنيف النفايات حسب الخطورة والخصائص الكيميائية</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-blue-700 mb-2">التخزين الآمن</h4>
+                                <p class="text-sm text-gray-600">حاويات متخصصة، مناطق تخزين معزولة</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-blue-700 mb-2">النقل الآمن</h4>
+                                <p class="text-sm text-gray-600">مركبات متخصصة، مسارات آمنة، تدريب السائقين</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-blue-700 mb-2">التتبع والمراقبة</h4>
+                                <p class="text-sm text-gray-600">نظام تتبع من المصدر إلى التخلص النهائي</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-4">
+                            <i class="fas fa-shield-alt ml-2"></i>
+                            إجراءات السلامة
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-green-700 mb-2">المعدات الواقية</h4>
+                                <p class="text-sm text-gray-600">بدلات واقية، أقنعة، قفازات متخصصة</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-green-700 mb-2">التدريب والتوعية</h4>
+                                <p class="text-sm text-gray-600">برامج تدريبية منتظمة للعاملين</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-green-700 mb-2">خطط الطوارئ</h4>
+                                <p class="text-sm text-gray-600">استجابة سريعة للتسربات والحوادث</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-green-700 mb-2">الفحص الطبي</h4>
+                                <p class="text-sm text-gray-600">فحوصات دورية للعاملين المعرضين</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Treatment Technologies Section -->
+    <section id="treatment" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">تقنيات معالجة النفايات الكيميائية</h2>
+                    <p class="text-lg text-gray-600">
+                        حلول متقدمة لمعالجة والتخلص الآمن من النفايات الكيميائية
+                    </p>
+                </div>
+
+                <!-- Treatment Technologies Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 mx-auto bg-red-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-fire text-2xl text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800">المعالجة الحرارية</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• الحرق المحكم (850-1200°C)</li>
+                            <li>• التحلل الحراري</li>
+                            <li>• الغازification</li>
+                            <li>• البلازما الحرارية</li>
+                        </ul>
+                        <div class="mt-4 bg-red-50 rounded p-2">
+                            <p class="text-xs text-red-700">كفاءة: 99.9% للعضوية</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 mx-auto bg-blue-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-flask text-2xl text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800">المعالجة الكيميائية</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• التعادل الحمضي-القلوي</li>
+                            <li>• التثبيت والتصلب</li>
+                            <li>• الأكسدة المتقدمة</li>
+                            <li>• الترسيب الكيميائي</li>
+                        </ul>
+                        <div class="mt-4 bg-blue-50 rounded p-2">
+                            <p class="text-xs text-blue-700">مناسب للسوائل</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 mx-auto bg-green-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-leaf text-2xl text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800">المعالجة البيولوجية</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• المعالجة بالبكتيريا</li>
+                            <li>• التخمر اللاهوائي</li>
+                            <li>• الترشيح البيولوجي</li>
+                            <li>• النباتات الماصة</li>
+                        </ul>
+                        <div class="mt-4 bg-green-50 rounded p-2">
+                            <p class="text-xs text-green-700">صديق للبيئة</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 mx-auto bg-purple-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-filter text-2xl text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800">المعالجة الفيزيائية</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• الترشيح والغربلة</li>
+                            <li>• الطرد المركزي</li>
+                            <li>• التبخير والتكثيف</li>
+                            <li>• الفصل بالأغشية</li>
+                        </ul>
+                        <div class="mt-4 bg-purple-50 rounded p-2">
+                            <p class="text-xs text-purple-700">بدون مواد كيميائية</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 mx-auto bg-yellow-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-recycle text-2xl text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800">إعادة التدوير</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• استعادة المذيبات</li>
+                            <li>• إعادة المعادن</li>
+                            <li>• تحويل إلى وقود</li>
+                            <li>-> إعادة التصنيع</li>
+                        </ul>
+                        <div class="mt-4 bg-yellow-50 rounded p-2">
+                            <p class="text-xs text-yellow-700">توفير الموارد</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 mx-auto bg-gray-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-dumpster text-2xl text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800">التخلص النهائي</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• المدافن الآمنة</li>
+                            <li>• التخزين تحت الأرض</li>
+                            <li>• الحقن في الآبار العميقة</li>
+                            <li>• التخلص في البحر</li>
+                        </ul>
+                        <div class="mt-4 bg-gray-50 rounded p-2">
+                            <p class="text-xs text-gray-700">الحل الأخير</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study -->
+                <div class="mt-12 bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+                        <i class="fas fa-clipboard-check text-green-600 ml-3"></i>
+                        دراسة حالة: معالجة النفايات الإلكترونية
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-4 gap-4 mb-6">
+                        <div class="bg-gray-50 rounded-lg p-4 text-center">
+                            <i class="fas fa-mobile-alt text-3xl text-gray-600 mb-2"></i>
+                            <h4 class="font-semibold">الجمع</h4>
+                            <p class="text-sm text-gray-600">نقاط جمع متخصصة</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 text-center">
+                            <i class="fas fa-tools text-3xl text-blue-600 mb-2"></i>
+                            <h4 class="font-semibold">التفكيك</h4>
+                            <p class="text-sm text-gray-600">فصل المكونات يدوياً</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 text-center">
+                            <i class="fas fa-cogs text-3xl text-green-600 mb-2"></i>
+                            <h4 class="font-semibold">المعالجة</h4>
+                            <p class="text-sm text-gray-600">استخراج المعادن النادرة</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 text-center">
+                            <i class="fas fa-recycle text-3xl text-purple-600 mb-2"></i>
+                            <h4 class="font-semibold">إعادة التصنيع</h4>
+                            <p class="text-sm text-gray-600">تصنيع منتجات جديدة</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-green-50 rounded-lg p-4">
+                        <p class="text-sm text-green-800">
+                            <i class="fas fa-chart-line ml-2"></i>
+                            يمكن استعادة حتى 95% من المعادن من النفايات الإلكترونية
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Laws and Regulations Section -->
+    <section id="laws" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">القوانين واللوائح البيئية</h2>
+                    <p class="text-lg text-gray-600">
+                        الإطار القانوني للحد من التلوث الكيميائي
+                    </p>
+                </div>
+
+                <!-- International Agreements -->
+                <div class="bg-blue-50 rounded-xl p-8 mb-8">
+                    <h3 class="text-xl font-bold text-blue-800 mb-6 text-center">الاتفاقيات الدولية</h3>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-lg p-4 shadow">
+                            <h4 class="font-bold text-blue-700 mb-2">اتفاقية بازل</h4>
+                            <p class="text-sm text-gray-600">التحكم في حركة النفايات الخطرة عبر الحدود</p>
+                            <p class="text-xs text-gray-500 mt-2">1989</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow">
+                            <h4 class="font-bold text-blue-700 mb-2">اتفاقية ستوكهولم</h4>
+                            <p class="text-sm text-gray-600">الملوثات العضوية الثابتة (POPs)</p>
+                            <p class="text-xs text-gray-500 mt-2">2001</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow">
+                            <h4 class="font-bold text-blue-700 mb-2">اتفاقية روتردام</h4>
+                            <p class="text-sm text-gray-600">إجراء الموافقة المسبقة عن علم (PIC)</p>
+                            <p class="text-xs text-gray-500 mt-2">1998</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow">
+                            <h4 class="font-bold text-blue-700 mb-2">اتفاقية مونتريال</h4>
+                            <p class="text-sm text-gray-600">حماية طبقة الأوزون</p>
+                            <p class="text-xs text-gray-500 mt-2">1987</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow">
+                            <h4 class="font-bold text-blue-700 mb-2">اتفاقية باريس</h4>
+                            <p class="text-sm text-gray-600">التغير المناخي</p>
+                            <p class="text-xs text-gray-500 mt-2">2015</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow">
+                            <h4 class="font-bold text-blue-700 mb-2">اتفاقية ميناماتا</h4>
+                            <p class="text-sm text-gray-600">الزئبق</p>
+                            <p class="text-xs text-gray-500 mt-2">2013</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- National Regulations -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-green-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-4">
+                            <i class="fas fa-gavel ml-2"></i>
+                            التشريعات الوطنية
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-green-700">قانون حماية البيئة</h4>
+                                <p class="text-sm text-gray-600 mt-1">يحدد معايير الانبعاثات والمعالجة</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-green-700">نظام إدارة النفايات</h4>
+                                <p class="text-sm text-gray-600 mt-1">ينظم جمع ونقل ومعالجة النفايات</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-green-700">لوائح السلامة الكيميائية</h4>
+                                <p class="text-sm text-gray-600 mt-1">تحدد متطلبات التخزين والنقل الآمن</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-yellow-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-yellow-800 mb-4">
+                            <i class="fas fa-balance-scale ml-2"></i>
+                            المسؤوليات والعقوبات
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-yellow-700">مسؤولية المنتج</h4>
+                                <p class="text-sm text-gray-600 mt-1">المسؤولية عن دورة حياة المنتج كاملة</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-yellow-700">مبدأ الملوث يدفع</h4>
+                                <p class="text-sm text-gray-600 mt-1">تحمل تكاليف التلوث والمعالجة</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-yellow-700">العقوبات</h4>
+                                <p class="text-sm text-gray-600 mt-1">غرامات مالية، سجن، إغلاق المنشأة</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="py-16 bg-gradient-to-br from-green-50 to-blue-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">نصائح للحد من التلوث الكيميائي</h2>
+                    <p class="text-lg text-gray-600">
+                        ما يمكنك فعله شخصياً للمساهمة في حماية البيئة
+                    </p>
+                </div>
+
+                <!-- Tips Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 mx-auto bg-green-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-shopping-cart text-2xl text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800">الاستهلاك الواعي</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• شراء المنتجات الصديقة للبيئة</li>
+                            <li>• تجنب المواد الكيميائية غير الضرورية</li>
+                            <li>• اختيار العبوات القابلة لإعادة التدوير</li>
+                            <li>• شراء الكميات المناسبة فقط</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 mx-auto bg-blue-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-recycle text-2xl text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800">إعادة التدوير</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• فصل النفايات في المصدر</li>
+                            <li>• إعادة تدوير البطاريات والإلكترونيات</li>
+                            <li>• استخدام مراكز إعادة التدوير</li>
+                            <li>• شراء المنتجات المعاد تدويرها</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 mx-auto bg-purple-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-tint text-2xl text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800">حفظ المياه</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• إصلاح التسربات فوراً</li>
+                            <li>• استخدام الأجهزة الموفرة للمياه</li>
+                            <li>• تجنب إلقاء الكيماويات في المصارف</li>
+                            <li>-> جمع مياه الأمطار</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 mx-auto bg-yellow-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-lightbulb text-2xl text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800">توفير الطاقة</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• استخدام المصابيح LED</li>
+                            <li>• فصل الأجهزة عند عدم الاستخدام</li>
+                            <li>• استخدام الطاقة الشمسية</li>
+                            <li>• اختيار الأجهزة كفوئة الطاقة</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 mx-auto bg-red-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-car text-2xl text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800">نقل نظيف</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• استخدام المواصلات العامة</li>
+                            <li>-> المشي أو ركوب الدراجة</li>
+                            <li>• صيانة السيارة بانتظام</li>
+                            <li>• التفكير في السيارات الكهربائية</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 mx-auto bg-cyan-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-users text-2xl text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800">المشاركة المجتمعية</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• الانضمام إلى مبادرات البيئة</li>
+                            <li>• التوعية في المجتمع</li>
+                            <li>• الإبلاغ عن المخالفات البيئية</li>
+                            <li>• دعم السياسات الخضراء</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="mt-12 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl p-8 text-white text-center">
+                    <h3 class="text-2xl font-bold mb-4">معاً نحمي كوكبنا</h3>
+                    <p class="text-lg mb-6">
+                        كل خطوة صغيرة تقوم بها تساهم في بناء مستقبل أكثر نظافة واستدامة
+                    </p>
+                    <div class="flex justify-center space-x-reverse space-x-4">
+                        <button class="bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                            <i class="fas fa-share-alt ml-2"></i>
+                            شارك المعلومات
+                        </button>
+                        <button class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                            <i class="fas fa-hand-holding-heart ml-2"></i>
+                            تبرع للبيئة
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="mb-2">© 2024 التلوث الكيميائي وإدارة النفايات - موقع تعليمي تفاعلي</p>
+                <p class="text-gray-400">مكرس لنشر الوعي بأهمية حماية بيئتنا من التلوث الكيميائي</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('hidden');
+            nav.classList.toggle('absolute');
+            nav.classList.toggle('top-full');
+            nav.classList.toggle('left-0');
+            nav.classList.toggle('right-0');
+            nav.classList.toggle('bg-red-800');
+            nav.classList.toggle('p-4');
+            nav.classList.toggle('flex-col');
+            nav.classList.toggle('space-y-2');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        // Interactive cards
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+
+        // Create smoke animation periodically
+        function createSmoke() {
+            const smoke = document.createElement('div');
+            smoke.className = 'absolute w-3 h-3 bg-gray-400 rounded-full smoke-rise';
+            smoke.style.left = Math.random() * 100 + '%';
+            smoke.style.bottom = '0';
+            smoke.style.pointerEvents = 'none';
+            
+            const sourcesSection = document.querySelector('#sources');
+            if (sourcesSection) {
+                sourcesSection.appendChild(smoke);
+                
+                setTimeout(() => {
+                    smoke.remove();
+                }, 5000);
+            }
+        }
+
+        setInterval(createSmoke, 3000);
+
+        // Water wave animation
+        const waterWaves = document.querySelectorAll('.water-wave');
+        
+        const waveObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'water-wave 3s ease-in-out infinite';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        waterWaves.forEach(wave => {
+            waveObserver.observe(wave);
+        });
+
+        // Warning pulse animation
+        const warningIcons = document.querySelectorAll('.warning-pulse');
+        
+        const warningObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'warning-pulse 2s ease-in-out infinite';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        warningIcons.forEach(icon => {
+            warningObserver.observe(icon);
+        });
+
+        // Recycle spin animation
+        const recycleIcons = document.querySelectorAll('.recycle-spin');
+        
+        const recycleObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'recycle-spin 4s linear infinite';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        recycleIcons.forEach(icon => {
+            recycleObserver.observe(icon);
+        });
+
+        // Add hover effect to all interactive elements
+        document.querySelectorAll('button, .card-hover').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.style.cursor = 'pointer';
+            });
+        });
+
+        // Progress bar animation for treatment efficiencies
+        const treatmentCards = document.querySelectorAll('.bg-white.rounded-xl.shadow-lg.p-6');
+        
+        treatmentCards.forEach(card => {
+            const efficiencyText = card.querySelector('.text-xs');
+            if (efficiencyText && efficiencyText.textContent.includes('كفاءة')) {
+                const efficiencyBar = document.createElement('div');
+                efficiencyBar.className = 'w-full bg-gray-200 rounded-full h-2 mt-2';
+                efficiencyBar.innerHTML = '<div class="bg-green-500 h-2 rounded-full progress-fill" style="width: 0%"></div>';
+                
+                const efficiencyValue = efficiencyText.textContent.match(/\d+/);
+                if (efficiencyValue) {
+                    efficiencyBar.querySelector('.progress-fill').setAttribute('data-width', efficiencyValue[0] + '%');
+                    efficiencyText.parentElement.appendChild(efficiencyBar);
+                }
+            }
+        });
+
+        // Animate progress bars on scroll
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBars = entry.target.querySelectorAll('.progress-fill');
+                    progressBars.forEach(bar => {
+                        const width = bar.getAttribute('data-width');
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 200);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.bg-white.rounded-xl.shadow-lg.p-6').forEach(card => {
+            progressObserver.observe(card);
+        });
+    </script>
+</body>
+</html>

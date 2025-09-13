@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كيمياء الغلاف الجوي - رحلة في طبقات الأرض</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .sky-gradient {
+            background: linear-gradient(to bottom, #87CEEB 0%, #98D8E8 50%, #B0E0E6 100%);
+        }
+        
+        .atmosphere-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+        }
+        
+        .ozone-gradient {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        }
+        
+        .pollution-gradient {
+            background: linear-gradient(135deg, #dc2626 0%, #f59e0b 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .cloud-float {
+            animation: cloud-float 20s ease-in-out infinite;
+        }
+        
+        @keyframes cloud-float {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(30px); }
+        }
+        
+        .layer-rise {
+            animation: layer-rise 15s ease-in-out infinite;
+        }
+        
+        @keyframes layer-rise {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .molecule-spin {
+            animation: molecule-spin 10s linear infinite;
+        }
+        
+        @keyframes molecule-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .pulse-ozone {
+            animation: pulse-ozone 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-ozone {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+        
+        .uv-ray {
+            animation: uv-ray 3s ease-in-out infinite;
+        }
+        
+        @keyframes uv-ray {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        .co2-rise {
+            animation: co2-rise 8s ease-in-out infinite;
+        }
+        
+        @keyframes co2-rise {
+            0% { transform: translateY(100px); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+        
+        .atmosphere-layer {
+            transition: all 0.3s ease;
+        }
+        
+        .atmosphere-layer:hover {
+            transform: translateX(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .cycle-animation {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: cycle-flow 4s ease-in-out forwards;
+        }
+        
+        @keyframes cycle-flow {
+            to { stroke-dashoffset: 0; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="atmosphere-gradient text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-reverse space-x-4">
+                    <i class="fas fa-cloud text-3xl"></i>
+                    <h1 class="text-3xl font-bold">كيمياء الغلاف الجوي</h1>
+                </div>
+                <nav class="hidden md:flex space-x-reverse space-x-6">
+                    <a href="#composition" class="hover:text-blue-200 transition">التركيب</a>
+                    <a href="#layers" class="hover:text-blue-200 transition">الطبقات</a>
+                    <a href="#cycles" class="hover:text-blue-200 transition">الدورات</a>
+                    <a href="#pollution" class="hover:text-blue-200 transition">التلوث</a>
+                    <a href="#ozone" class="hover:text-blue-200 transition">الأوزون</a>
+                    <a href="#warming" class="hover:text-blue-200 transition">الاحتباس</a>
+                </nav>
+                <button id="mobileMenuBtn" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 sky-gradient">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">استكشف كيمياء الغلاف الجوي للأرض</h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+                    رحلة مثيرة في طبقات الغلاف الجوي لفهم التفاعلات الكيميائية التي تحكم مناخنا وحياتنا
+                </p>
+            </div>
+            
+            <!-- Animated Atmosphere -->
+            <div class="relative max-w-4xl mx-auto h-64">
+                <!-- Clouds -->
+                <div class="absolute top-10 left-10 cloud-float">
+                    <i class="fas fa-cloud text-6xl text-white opacity-80"></i>
+                </div>
+                <div class="absolute top-20 right-20 cloud-float" style="animation-delay: 5s;">
+                    <i class="fas fa-cloud text-4xl text-white opacity-60"></i>
+                </div>
+                <div class="absolute top-5 left-1/2 cloud-float" style="animation-delay: 10s;">
+                    <i class="fas fa-cloud text-5xl text-white opacity-70"></i>
+                </div>
+                
+                <!-- Molecules -->
+                <div class="absolute top-32 left-1/4 molecule-spin">
+                    <span class="text-2xl font-bold text-blue-800">O₂</span>
+                </div>
+                <div class="absolute top-40 right-1/4 molecule-spin" style="animation-delay: 3s;">
+                    <span class="text-2xl font-bold text-green-800">N₂</span>
+                </div>
+                <div class="absolute top-28 left-1/2 molecule-spin" style="animation-delay: 6s;">
+                    <span class="text-2xl font-bold text-gray-800">CO₂</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Composition Section -->
+    <section id="composition" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">تركيب الغلاف الجوي</h2>
+                    <p class="text-lg text-gray-600">
+                        الغازات الرئيسية التي تشكل الهواء الذي نتنفسه
+                    </p>
+                </div>
+
+                <!-- Composition Chart -->
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="bg-blue-50 rounded-xl p-8">
+                            <h3 class="text-xl font-bold text-blue-800 mb-6 text-center">الغازات الرئيسية</h3>
+                            
+                            <div class="space-y-4">
+                                <div class="bg-white rounded-lg p-4 shadow-sm">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="font-semibold text-gray-800">النيتروجين (N₂)</span>
+                                        <span class="text-blue-600 font-bold">78.08%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-3">
+                                        <div class="bg-blue-500 h-3 rounded-full" style="width: 78.08%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-4 shadow-sm">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="font-semibold text-gray-800">الأكسجين (O₂)</span>
+                                        <span class="text-green-600 font-bold">20.95%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-3">
+                                        <div class="bg-green-500 h-3 rounded-full" style="width: 20.95%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-4 shadow-sm">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="font-semibold text-gray-800">الأرجون (Ar)</span>
+                                        <span class="text-purple-600 font-bold">0.93%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-3">
+                                        <div class="bg-purple-500 h-3 rounded-full" style="width: 0.93%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-4 shadow-sm">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="font-semibold text-gray-800">ثاني أكسيد الكربون (CO₂)</span>
+                                        <span class="text-red-600 font-bold">0.04%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-3">
+                                        <div class="bg-red-500 h-3 rounded-full" style="width: 0.04%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-6">الغازات النزرة المهمة</h3>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-lg p-4 text-center">
+                                <i class="fas fa-sun text-3xl text-yellow-500 mb-2"></i>
+                                <h4 class="font-semibold text-gray-800">النيون (Ne)</h4>
+                                <p class="text-sm text-gray-600">0.0018%</p>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-4 text-center">
+                                <i class="fas fa-wind text-3xl text-blue-500 mb-2"></i>
+                                <h4 class="font-semibold text-gray-800">الهيليوم (He)</h4>
+                                <p class="text-sm text-gray-600">0.0005%</p>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-4 text-center">
+                                <i class="fas fa-leaf text-3xl text-green-500 mb-2"></i>
+                                <h4 class="font-semibold text-gray-800">الميثان (CH₄)</h4>
+                                <p class="text-sm text-gray-600">0.0002%</p>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-4 text-center">
+                                <i class="fas fa-shield-alt text-3xl text-purple-500 mb-2"></i>
+                                <h4 class="font-semibold text-gray-800">الأوزون (O₃)</h4>
+                                <p class="text-sm text-gray-600">متغير</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 bg-gray-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">حقائق مثيرة</h4>
+                            <ul class="space-y-1 text-sm text-gray-600">
+                                <li>• يحتوي الهواء على بخار الماء بنسب متغيرة (0-4%)</li>
+                                <li>• تختلف نسبة الغازات مع الارتفاع</li>
+                                <li>• ثاني أكسيد الكربون في ازدياد مستمر</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Layers Section -->
+    <section id="layers" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">طبقات الغلاف الجوي</h2>
+                    <p class="text-lg text-gray-600">
+                        الغلاف الجوي يتكون من خمس طبقات رئيسية مميزة
+                    </p>
+                </div>
+
+                <!-- Atmosphere Layers Visualization -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <div class="relative max-w-2xl mx-auto">
+                        <!-- Troposphere -->
+                        <div class="atmosphere-layer bg-gradient-to-r from-blue-400 to-blue-300 rounded-lg p-4 mb-2 layer-rise" style="animation-delay: 0s;">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-bold text-white">التروبوسفير</h4>
+                                    <p class="text-sm text-white/80">0-12 كم</p>
+                                </div>
+                                <div class="text-left">
+                                    <p class="text-sm text-white/80">حيث يحدث الطقس</p>
+                                    <p class="text-xs text-white/60">درجة الحرارة تنخفض مع الارتفاع</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Stratosphere -->
+                        <div class="atmosphere-layer bg-gradient-to-r from-indigo-400 to-indigo-300 rounded-lg p-4 mb-2 layer-rise" style="animation-delay: 2s;">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-bold text-white">الستراتوسفير</h4>
+                                    <p class="text-sm text-white/80">12-50 كم</p>
+                                </div>
+                                <div class="text-left">
+                                    <p class="text-sm text-white/80">تحتوي على طبقة الأوزون</p>
+                                    <p class="text-xs text-white/60">درجة الحرارة ترتفع مع الارتفاع</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Mesosphere -->
+                        <div class="atmosphere-layer bg-gradient-to-r from-purple-400 to-purple-300 rounded-lg p-4 mb-2 layer-rise" style="animation-delay: 4s;">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-bold text-white">الميزوسفير</h4>
+                                    <p class="text-sm text-white/80">50-85 كم</p>
+                                </div>
+                                <div class="text-left">
+                                    <p class="text-sm text-white/80">تحترق الشهب هنا</p>
+                                    <p class="text-xs text-white/60">أبرد طبقة (-90°C)</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Thermosphere -->
+                        <div class="atmosphere-layer bg-gradient-to-r from-pink-400 to-pink-300 rounded-lg p-4 mb-2 layer-rise" style="animation-delay: 6s;">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-bold text-white">الثيرموسفير</h4>
+                                    <p class="text-sm text-white/80">85-600 كم</p>
+                                </div>
+                                <div class="text-left">
+                                    <p class="text-sm text-white/80">توجد محطة الفضاء الدولية</p>
+                                    <p class="text-xs text-white/60">درجة الحرارة مرتفعة جداً</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Exosphere -->
+                        <div class="atmosphere-layer bg-gradient-to-r from-gray-400 to-gray-300 rounded-lg p-4 layer-rise" style="animation-delay: 8s;">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-bold text-white">الإكسوسفير</h4>
+                                    <p class="text-sm text-white/80">600-10000 كم</p>
+                                </div>
+                                <div class="text-left">
+                                    <p class="text-sm text-white/80">الحد مع الفضاء الخارجي</p>
+                                    <p class="text-xs text-white/60">تتسرب الجزيئات للفضاء</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cycles Section -->
+    <section id="cycles" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">الدورات الكيميائية في الغلاف الجوي</h2>
+                    <p class="text-lg text-gray-600">
+                        الدورات الطبيعية التي تحافظ على توازن الغازات في الغلاف الجوي
+                    </p>
+                </div>
+
+                <!-- Carbon Cycle -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">دورة الكربون</h3>
+                    
+                    <div class="bg-green-50 rounded-xl p-8">
+                        <div class="relative">
+                            <svg viewBox="0 0 800 400" class="w-full h-auto">
+                                <!-- Earth -->
+                                <circle cx="400" cy="300" r="80" fill="#22c55e"/>
+                                <text x="400" y="305" text-anchor="middle" fill="white" font-weight="bold">الأرض</text>
+                                
+                                <!-- Atmosphere -->
+                                <rect x="200" y="50" width="400" height="100" rx="20" fill="#3b82f6" opacity="0.3"/>
+                                <text x="400" y="105" text-anchor="middle" fill="#1e40af" font-weight="bold">الغلاف الجوي</text>
+                                
+                                <!-- Sun -->
+                                <circle cx="100" cy="100" r="40" fill="#fbbf24"/>
+                                <text x="100" y="105" text-anchor="middle" fill="white" font-weight="bold">الشمس</text>
+                                
+                                <!-- Arrows -->
+                                <path d="M 140 100 Q 270 75 320 100" fill="none" stroke="#f59e0b" stroke-width="3" marker-end="url(#arrowhead)" class="cycle-animation"/>
+                                <path d="M 480 100 Q 600 75 700 150" fill="none" stroke="#10b981" stroke-width="3" marker-end="url(#arrowhead)" class="cycle-animation"/>
+                                <path d="M 700 200 Q 650 250 480 300" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrowhead)" class="cycle-animation"/>
+                                <path d="M 320 300 Q 200 250 100 200" fill="none" stroke="#ef4444" stroke-width="3" marker-end="url(#arrowhead)" class="cycle-animation"/>
+                                
+                                <!-- Labels -->
+                                <text x="250" y="70" text-anchor="middle" font-size="12">التمثيل الضوئي</text>
+                                <text x="550" y="130" text-anchor="middle" font-size="12">التنفس</text>
+                                <text x="550" y="270" text-anchor="middle" font-size="12">الاحتراق</text>
+                                <text x="200" y="240" text-anchor="middle" font-size="12">الامتصاص</text>
+                                
+                                <!-- Arrow marker -->
+                                <defs>
+                                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                        <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+                                    </marker>
+                                </defs>
+                            </svg>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-4 gap-4 mt-8">
+                            <div class="bg-white rounded-lg p-4 text-center">
+                                <i class="fas fa-leaf text-3xl text-green-600 mb-2"></i>
+                                <h4 class="font-semibold">النباتات</h4>
+                                <p class="text-sm text-gray-600">تمتص CO₂ وتطلق O₂</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4 text-center">
+                                <i class="fas fa-lungs text-3xl text-blue-600 mb-2"></i>
+                                <h4 class="font-semibold">الحيوانات</h4>
+                                <p class="text-sm text-gray-600">تتنفس O₂ وتطلق CO₂</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4 text-center">
+                                <i class="fas fa-fire text-3xl text-red-600 mb-2"></i>
+                                <h4 class="font-semibold">الصناعة</h4>
+                                <p class="text-sm text-gray-600">تحرق الوقود وتطلق CO₂</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4 text-center">
+                                <i class="fas fa-water text-3xl text-cyan-600 mb-2"></i>
+                                <h4 class="font-semibold">المحيطات</h4>
+                                <p class="text-sm text-gray-600">تمتص CO₂ وتخزنه</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nitrogen Cycle -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">دورة النيتروجين</h3>
+                    
+                    <div class="bg-blue-50 rounded-xl p-8">
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="bg-white rounded-lg p-6 text-center">
+                                <div class="w-20 h-20 mx-auto bg-blue-500 rounded-full flex items-center justify-center mb-4">
+                                    <i class="fas fa-bolt text-3xl text-white"></i>
+                                </div>
+                                <h4 class="font-bold text-blue-800 mb-2">التثبيت</h4>
+                                <p class="text-sm text-gray-600">تحويل N₂ الغازي إلى مركبات قابلة للاستخدام بواسطة البكتيريا والبرق</p>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-6 text-center">
+                                <div class="w-20 h-20 mx-auto bg-green-500 rounded-full flex items-center justify-center mb-4">
+                                    <i class="fas fa-seedling text-3xl text-white"></i>
+                                </div>
+                                <h4 class="font-bold text-green-800 mb-2">الامتصاص</h4>
+                                <p class="text-sm text-gray-600">تمتص النباتات النيتروجين من التربة لبناء البروتينات</p>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-6 text-center">
+                                <div class="w-20 h-20 mx-auto bg-purple-500 rounded-full flex items-center justify-center mb-4">
+                                    <i class="fas fa-recycle text-3xl text-white"></i>
+                                </div>
+                                <h4 class="font-bold text-purple-800 mb-2">إعادة التدوير</h4>
+                                <p class="text-sm text-gray-600">تعيد البكتيريا تحويل المركبات العضوية إلى N₂ الغازي</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pollution Section -->
+    <section id="pollution" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">تلوث الهواء</h2>
+                    <p class="text-lg text-gray-600">
+                        مصادر التلوث وتأثيره على البيئة والصحة
+                    </p>
+                </div>
+
+                <!-- Pollution Sources -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 mx-auto bg-gray-600 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-industry text-2xl text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">الصناعة</h3>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li>• مصانع الأسمنت</li>
+                            <li>• محطات الطاقة</li>
+                            <li>• المصافي</li>
+                            <li>• المصانع الكيميائية</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 mx-auto bg-blue-600 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-car text-2xl text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">النقل</h3>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li>• السيارات</li>
+                            <li>• الشاحنات</li>
+                            <li>• الطائرات</li>
+                            <li>• السفن</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 mx-auto bg-green-600 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-tractor text-2xl text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">الزراعة</h3>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li>• المبيدات الحشرية</li>
+                            <li>• الأسمدة</li>
+                            <li>• حرق المحاصيل</li>
+                            <li>• الماشية</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 mx-auto bg-orange-600 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-home text-2xl text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">المنازل</h3>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li>• التدفئة</li>
+                            <li>• الطهي</li>
+                            <li>• الطلاء</li>
+                            <li>-> منتجات التنظيف</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Pollutants and Effects -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">الملوثات الرئيسية وتأثيراتها</h3>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="px-4 py-3 text-right">الملوث</th>
+                                    <th class="px-4 py-3 text-center">المصدر الرئيسي</th>
+                                    <th class="px-4 py-3 text-center">التأثير الصحي</th>
+                                    <th class="px-4 py-3 text-center">التأثير البيئي</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b">
+                                    <td class="px-4 py-3 font-semibold">PM2.5/PM10</td>
+                                    <td class="px-4 py-3 text-center">الاحتراق، الصناعة</td>
+                                    <td class="px-4 py-3 text-center">أمراض تنفسية، سرطان</td>
+                                    <td class="px-4 py-3 text-center">تقليل الرؤية، تلوث التربة</td>
+                                </tr>
+                                <tr class="border-b bg-gray-50">
+                                    <td class="px-4 py-3 font-semibold">SO₂</td>
+                                    <td class="px-4 py-3 text-center">محطات الطاقة، الصناعة</td>
+                                    <td class="px-4 py-3 text-center">الربو، مشاكل تنفس</td>
+                                    <td class="px-4 py-3 text-center">المطر الحمضي</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="px-4 py-3 font-semibold">NOx</td>
+                                    <td class="px-4 py-3 text-center">السيارات، الصناعة</td>
+                                    <td class="px-4 py-3 text-center">تهيج الرئة، أمراض قلب</td>
+                                    <td class="px-4 py-3 text-center">المطر الحمضي، الضباب الدخاني</td>
+                                </tr>
+                                <tr class="border-b bg-gray-50">
+                                    <td class="px-4 py-3 font-semibold">CO</td>
+                                    <td class="px-4 py-3 text-center">المركبات، الاحتراق</td>
+                                    <td class="px-4 py-3 text-center">تسمم، نقص الأكسجين</td>
+                                    <td class="px-4 py-3 text-center">يساهم في الاحتباس الحراري</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-4 py-3 font-semibold">O₃</td>
+                                    <td class="px-4 py-3 text-center">تفاعل ضوئي</td>
+                                    <td class="px-4 py-3 text-center">تهيج العين والرئة</td>
+                                    <td class="px-4 py-3 text-center">تلف المحاصيل</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ozone Layer Section -->
+    <section id="ozone" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">طبقة الأوزون</h2>
+                    <p class="text-lg text-gray-600">
+                        الدرع الواقي للأرض من الأشعة فوق البنفسجية
+                    </p>
+                </div>
+
+                <!-- Ozone Layer Visualization -->
+                <div class="bg-gradient-to-b from-blue-900 via-blue-700 to-green-500 rounded-xl p-8 mb-8 relative overflow-hidden">
+                    <div class="relative z-10">
+                        <div class="text-center mb-6">
+                            <h3 class="text-2xl font-bold text-white mb-2">طبقة الأوزون في الستراتوسفير</h3>
+                            <p class="text-blue-100">ارتفاع 15-35 كم فوق سطح الأرض</p>
+                        </div>
+                        
+                        <!-- UV Rays and Ozone Interaction -->
+                        <div class="flex justify-center items-center space-x-reverse space-x-8">
+                            <!-- Sun -->
+                            <div class="text-center">
+                                <i class="fas fa-sun text-6xl text-yellow-400 uv-ray"></i>
+                                <p class="text-white mt-2">الشمس</p>
+                            </div>
+                            
+                            <!-- UV Rays -->
+                            <div class="relative">
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="w-32 h-1 bg-purple-400 opacity-50"></div>
+                                </div>
+                                <div class="flex space-x-reverse space-x-4">
+                                    <span class="text-purple-400 font-bold">UV-A</span>
+                                    <span class="text-purple-400 font-bold">UV-B</span>
+                                    <span class="text-purple-400 font-bold">UV-C</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Ozone Layer -->
+                            <div class="text-center">
+                                <div class="w-24 h-24 bg-green-400 rounded-full flex items-center justify-center pulse-ozone">
+                                    <span class="text-white font-bold">O₃</span>
+                                </div>
+                                <p class="text-white mt-2">الأوزون</p>
+                            </div>
+                            
+                            <!-- Filtered UV -->
+                            <div class="text-center">
+                                <div class="flex space-x-reverse space-x-2">
+                                    <span class="text-blue-300 font-bold">UV-A</span>
+                                    <span class="text-blue-300 font-bold opacity-50">UV-B</span>
+                                    <span class="text-gray-400 font-bold line-through">UV-C</span>
+                                </div>
+                                <p class="text-white mt-2">بعد الترشيح</p>
+                            </div>
+                            
+                            <!-- Earth -->
+                            <div class="text-center">
+                                <i class="fas fa-globe text-6xl text-green-500"></i>
+                                <p class="text-white mt-2">الأرض</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ozone Depletion -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-red-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-red-800 mb-4">
+                            <i class="fas fa-exclamation-triangle ml-2"></i>
+                            استنزاف الأوزون
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-red-700 mb-2">المواد المستهلكة للأوزون (ODS)</h4>
+                                <ul class="space-y-1 text-sm text-gray-700">
+                                    <li>• الكلوروفلوروكربونات (CFCs)</li>
+                                    <li>• الهالونات</li>
+                                    <li>• رباعي كلوريد الكربون</li>
+                                    <li>• ميثيل البروميد</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-red-700 mb-2">آلية التدمير</h4>
+                                <p class="text-sm text-gray-700">
+                                    تتحرر ذرات الكلور من CFCs وتدمر جزيئات الأوزون في تفاعل تسلسلي
+                                </p>
+                                <div class="bg-white rounded p-2 mt-2 text-center">
+                                    <span class="text-xs font-mono">Cl + O₃ → ClO + O₂</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-4">
+                            <i class="fas fa-shield-alt ml-2"></i>
+                            حماية طبقة الأوزون
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-green-700 mb-2">بروتوكول مونتريال (1987)</h4>
+                                <p class="text-sm text-gray-700">
+                                    اتفاقية دولية لحظر استخدام المواد المستهلكة للأوزون
+                                </p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-green-700 mb-2">النتائج الإيجابية</h4>
+                                <ul class="space-y-1 text-sm text-gray-700">
+                                    <li>• تقليل استخدام CFCs بنسبة 99%</li>
+                                    <li>• بدء تعافي طبقة الأوزون</li>
+                                    <li>• الثقب في الأوزون يصغر تدريجياً</li>
+                                    <li>• التعافي الكامل المتوقع بحلول 2050</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Warming Section -->
+    <section id="warming" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">الاحتباس الحراري</h2>
+                    <p class="text-lg text-gray-600">
+                        ارتفاع درجة حرارة الأرض بسبب زيادة غازات الاحتباس الحراري
+                    </p>
+                </div>
+
+                <!-- Greenhouse Effect Visualization -->
+                <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">تأثير الاحتباس الحراري</h3>
+                    
+                    <div class="relative">
+                        <svg viewBox="0 0 800 400" class="w-full h-auto">
+                            <!-- Sun -->
+                            <circle cx="100" cy="100" r="40" fill="#fbbf24"/>
+                            <text x="100" y="105" text-anchor="middle" fill="white" font-weight="bold">الشمس</text>
+                            
+                            <!-- Earth -->
+                            <circle cx="400" cy="300" r="60" fill="#22c55e"/>
+                            <text x="400" y="305" text-anchor="middle" fill="white" font-weight="bold">الأرض</text>
+                            
+                            <!-- Atmosphere -->
+                            <ellipse cx="400" cy="300" rx="180" ry="120" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="10,5" opacity="0.5"/>
+                            <text x="580" y="300" text-anchor="middle" fill="#3b82f6" font-weight="bold">الغلاف الجوي</text>
+                            
+                            <!-- Incoming Radiation -->
+                            <path d="M 140 100 L 340 240" stroke="#fbbf24" stroke-width="3" marker-end="url(#arrowhead-yellow)" fill="none"/>
+                            <text x="240" y="160" text-anchor="middle" font-size="12" fill="#f59e0b">إشعاع وارد</text>
+                            
+                            <!-- Reflected Radiation -->
+                            <path d="M 340 260 L 140 120" stroke="#60a5fa" stroke-width="2" marker-end="url(#arrowhead-blue)" fill="none" stroke-dasharray="5,5"/>
+                            <text x="240" y="200" text-anchor="middle" font-size="12" fill="#3b82f6">إشعاع منعكس</text>
+                            
+                            <!-- Trapped Radiation -->
+                            <path d="M 460 260 Q 550 200 540 120" stroke="#ef4444" stroke-width="3" marker-end="url(#arrowhead-red)" fill="none"/>
+                            <text x="520" y="180" text-anchor="middle" font-size="12" fill="#ef4444">إشعاع محتجز</text>
+                            
+                            <!-- CO2 Molecules -->
+                            <g transform="translate(480, 200)" class="co2-rise">
+                                <circle r="8" fill="#ef4444"/>
+                                <text x="0" y="3" text-anchor="middle" fill="white" font-size="10" font-weight="bold">C</text>
+                                <circle cx="-15" cy="-10" r="6" fill="#ef4444"/>
+                                <text x="-15" y="-7" text-anchor="middle" fill="white" font-size="8">O</text>
+                                <circle cx="15" cy="-10" r="6" fill="#ef4444"/>
+                                <text x="15" y="-7" text-anchor="middle" fill="white" font-size="8">O</text>
+                            </g>
+                            
+                            <g transform="translate(520, 180)" class="co2-rise" style="animation-delay: 2s;">
+                                <circle r="8" fill="#ef4444"/>
+                                <text x="0" y="3" text-anchor="middle" fill="white" font-size="10" font-weight="bold">C</text>
+                                <circle cx="-15" cy="-10" r="6" fill="#ef4444"/>
+                                <text x="-15" y="-7" text-anchor="middle" fill="white" font-size="8">O</text>
+                                <circle cx="15" cy="-10" r="6" fill="#ef4444"/>
+                                <text x="15" y="-7" text-anchor="middle" fill="white" font-size="8">O</text>
+                            </g>
+                            
+                            <!-- Arrow markers -->
+                            <defs>
+                                <marker id="arrowhead-yellow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
+                                </marker>
+                                <marker id="arrowhead-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6"/>
+                                </marker>
+                                <marker id="arrowhead-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#ef4444"/>
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Greenhouse Gases -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+                        <div class="w-20 h-20 mx-auto bg-red-500 rounded-full flex items-center justify-center mb-4">
+                            <span class="text-white font-bold text-xl">CO₂</span>
+                        </div>
+                        <h4 class="font-bold text-gray-800 mb-2">ثاني أكسيد الكربون</h4>
+                        <p class="text-sm text-gray-600 mb-2">76% من إجمالي الانبعاثات</p>
+                        <div class="bg-red-50 rounded p-2">
+                            <span class="text-red-600 font-bold">+415 ppm</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+                        <div class="w-20 h-20 mx-auto bg-orange-500 rounded-full flex items-center justify-center mb-4">
+                            <span class="text-white font-bold text-xl">CH₄</span>
+                        </div>
+                        <h4 class="font-bold text-gray-800 mb-2">الميثان</h4>
+                        <p class="text-sm text-gray-600 mb-2">16% من إجمالي الانبعاثات</p>
+                        <div class="bg-orange-50 rounded p-2">
+                            <span class="text-orange-600 font-bold">25x CO₂</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+                        <div class="w-20 h-20 mx-auto bg-purple-500 rounded-full flex items-center justify-center mb-4">
+                            <span class="text-white font-bold text-xl">N₂O</span>
+                        </div>
+                        <h4 class="font-bold text-gray-800 mb-2">أكسيد النيتروز</h4>
+                        <p class="text-sm text-gray-600 mb-2">6% من إجمالي الانبعاثات</p>
+                        <div class="bg-purple-50 rounded p-2">
+                            <span class="text-purple-600 font-bold">298x CO₂</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+                        <div class="w-20 h-20 mx-auto bg-blue-500 rounded-full flex items-center justify-center mb-4">
+                            <span class="text-white font-bold text-xl">F-gases</span>
+                        </div>
+                        <h4 class="font-bold text-gray-800 mb-2">الغازات الهالوجينية</h4>
+                        <p class="text-sm text-gray-600 mb-2">2% من إجمالي الانبعاثات</p>
+                        <div class="bg-blue-50 rounded p-2">
+                            <span class="text-blue-600 font-bold">1000x CO₂</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Consequences and Solutions -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-red-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-red-800 mb-4">
+                            <i class="fas fa-thermometer-full ml-2"></i>
+                            عواقب الاحتباس الحراري
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="flex items-start">
+                                <i class="fas fa-temperature-high text-red-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-red-700">ارتفاع درجات الحرارة</h4>
+                                    <p class="text-sm text-gray-600">زيادة 1.1°C منذ العصر الصناعي</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-water text-blue-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-red-700">ارتفاع منسوب البحار</h4>
+                                    <p class="text-sm text-gray-600">20 سم منذ 1900، يتسارع</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-snowflake text-cyan-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-red-700">ذوبان الجليد</h4>
+                                    <p class="text-sm text-gray-600">انخفاض مساحة الجليد البحري</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-cloud-showers-heavy text-gray-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-red-700">تغيرات في الطقس</h4>
+                                    <p class="text-sm text-gray-600">زيادة حدة الظواهر المناخية</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-4">
+                            <i class="fas fa-leaf ml-2"></i>
+                            حلول لمكافحة الاحتباس الحراري
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="flex items-start">
+                                <i class="fas fa-solar-panel text-yellow-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-green-700">الطاقة المتجددة</h4>
+                                    <p class="text-sm text-gray-600">الشمسية، الرياح، المائية</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-tree text-green-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-green-700">الغابات وإعادة التشجير</h4>
+                                    <p class="text-sm text-gray-600">زيادة امتصاص CO₂</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-car text-blue-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-green-700">النقل النظيف</h4>
+                                    <p class="text-sm text-gray-600">سيارات كهربائية، نقل عام</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-recycle text-purple-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-green-700">الاقتصاد الدائري</h4>
+                                    <p class="text-sm text-gray-600">تقليل النفايات وإعادة الاستخدام</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Section -->
+    <section class="py-16 bg-gradient-to-br from-blue-900 to-indigo-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-4">مستقبل الغلاف الجوي</h2>
+                <p class="text-lg text-blue-200 mb-12">التحديات والفرص في حماية غلافنا الجوي</p>
+                
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+                        <i class="fas fa-satellite text-5xl text-blue-400 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3">المراقبة المتقدمة</h3>
+                        <p class="text-blue-200">أقمار صناعية وأجهزة استشعار لرصد جودة الهواء والتغيرات المناخية في الوقت الفعلي</p>
+                    </div>
+                    
+                    <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+                        <i class="fas fa-flask text-5xl text-green-400 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3">الابتكار التكنولوجي</h3>
+                        <p class="text-blue-200">تقنيات جديدة لاحتجاز الكربون وتحويله إلى مواد مفيدة</p>
+                    </div>
+                    
+                    <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+                        <i class="fas fa-globe-americas text-5xl text-purple-400 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3">التعاون الدولي</h3>
+                        <p class="text-blue-200">اتفاقيات عالمية لحماية الغلاف الجوي ومكافحة تغير المناخ</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-green-500 to-blue-500 rounded-xl p-8">
+                    <h3 class="text-2xl font-bold mb-4">دورك في حماية الغلاف الجوي</h3>
+                    <div class="grid md:grid-cols-4 gap-4 text-sm">
+                        <div>
+                            <i class="fas fa-lightbulb text-3xl mb-2"></i>
+                            <p>توفير الطاقة</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-bicycle text-3xl mb-2"></i>
+                            <p>استخدام النقل النظيف</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-recycle text-3xl mb-2"></i>
+                            <p>إعادة التدوير</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-users text-3xl mb-2"></i>
+                            <p>نشر الوعي</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="mb-2">© 2024 كيمياء الغلاف الجوي - موقع تعليمي تفاعلي</p>
+                <p class="text-gray-400">مكرس لنشر الوعي بأهمية حماية غلافنا الجوي الثمين</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('hidden');
+            nav.classList.toggle('absolute');
+            nav.classList.toggle('top-full');
+            nav.classList.toggle('left-0');
+            nav.classList.toggle('right-0');
+            nav.classList.toggle('bg-blue-800');
+            nav.classList.toggle('p-4');
+            nav.classList.toggle('flex-col');
+            nav.classList.toggle('space-y-2');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        // Interactive atmosphere layers
+        document.querySelectorAll('.atmosphere-layer').forEach(layer => {
+            layer.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(-15px) scale(1.02)';
+            });
+            
+            layer.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateX(0) scale(1)';
+            });
+        });
+
+        // Cycle animation restart on scroll
+        const cycleAnimations = document.querySelectorAll('.cycle-animation');
+        
+        const cycleObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'none';
+                    setTimeout(() => {
+                        entry.target.style.animation = 'cycle-flow 4s ease-in-out forwards';
+                    }, 100);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        cycleAnimations.forEach(cycle => {
+            cycleObserver.observe(cycle);
+        });
+
+        // Add click interaction to pollution cards
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+
+        // Dynamic CO2 molecules
+        function createCO2() {
+            const co2Container = document.createElement('div');
+            co2Container.className = 'absolute text-xs font-mono text-red-600 co2-rise';
+            co2Container.innerHTML = 'CO₂';
+            co2Container.style.left = Math.random() * 100 + '%';
+            co2Container.style.bottom = '0';
+            
+            const warmingSection = document.querySelector('#warming');
+            if (warmingSection) {
+                warmingSection.appendChild(co2Container);
+                
+                setTimeout(() => {
+                    co2Container.remove();
+                }, 8000);
+            }
+        }
+
+        // Create CO2 molecules periodically
+        setInterval(createCO2, 3000);
+
+        // UV ray animation
+        const uvRays = document.querySelectorAll('.uv-ray');
+        
+        const uvObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'uv-ray 3s ease-in-out infinite';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        uvRays.forEach(ray => {
+            uvObserver.observe(ray);
+        });
+
+        // Ozone pulse animation
+        const ozoneElements = document.querySelectorAll('.pulse-ozone');
+        
+        const ozoneObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'pulse-ozone 2s ease-in-out infinite';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        ozoneElements.forEach(ozone => {
+            ozoneObserver.observe(ozone);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكيمياء الحيوية السريرية - بوابة التحاليل الطبية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .lab-card {
+            background: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%);
+            border: 1px solid #e5e7eb;
+        }
+        
+        .disease-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #ffffff 100%);
+            border: 1px solid #fbbf24;
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .slide-in {
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .test-range {
+            background: linear-gradient(to right, #ef4444 0%, #f59e0b 50%, #10b981 100%);
+            height: 8px;
+            border-radius: 4px;
+        }
+        
+        .calculator-input {
+            transition: all 0.3s ease;
+        }
+        
+        .calculator-input:focus {
+            transform: scale(1.02);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .tab-active {
+            border-bottom: 3px solid #3b82f6;
+            color: #3b82f6;
+        }
+        
+        .blood-cell {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-reverse space-x-4">
+                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+                        <i class="fas fa-flask text-blue-600 text-2xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold">الكيمياء الحيوية السريرية</h1>
+                        <p class="text-sm text-blue-100">بوابة التحاليل الطبية المتكاملة</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex space-x-reverse space-x-6">
+                    <a href="#home" class="hover:text-blue-200 transition">الرئيسية</a>
+                    <a href="#tests" class="hover:text-blue-200 transition">التحاليل الطبية</a>
+                    <a href="#diseases" class="hover:text-blue-200 transition">أمراض الكيمياء الحيوية</a>
+                    <a href="#calculators" class="hover:text-blue-200 transition">الحاسبات الطبية</a>
+                    <a href="#references" class="hover:text-blue-200 transition">المراجع</a>
+                </nav>
+                <button id="mobileMenuBtn" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="py-16 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-6">
+                        اكتشف عالم <span class="text-blue-600">الكيمياء الحيوية السريرية</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-8">
+                        منصة تعليمية شاملة تقدم معلومات دقيقة ومحدثة عن التحاليل الطبية، 
+                        الأمراض الاستقلابية، والتشخيص المخبري. مصدرك الموثوق لفهم عالم المختبرات الطبية.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="scrollToSection('tests')" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+                            <i class="fas fa-vial ml-2"></i>استكشف التحاليل
+                        </button>
+                        <button onclick="scrollToSection('diseases')" class="bg-white text-blue-600 px-6 py-3 rounded-lg border-2 border-blue-600 hover:bg-blue-50 transition">
+                            <i class="fas fa-disease ml-2"></i>تعرف على الأمراض
+                        </button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="blood-cell absolute top-0 right-0 w-20 h-20 bg-red-500 rounded-full opacity-20"></div>
+                    <div class="blood-cell absolute bottom-10 left-10 w-16 h-16 bg-blue-500 rounded-full opacity-20" style="animation-delay: 1s;"></div>
+                    <div class="blood-cell absolute top-20 left-20 w-12 h-12 bg-green-500 rounded-full opacity-20" style="animation-delay: 2s;"></div>
+                    <img src="https://picsum.photos/seed/biochemistry/600/400" alt="الكيمياء الحيوية" class="rounded-xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Medical Tests Section -->
+    <section id="tests" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">التحاليل الطبية الشائعة</h2>
+                <p class="text-lg text-gray-600">تعرف على أهم التحاليل الطبية ودلالاتها السريرية</p>
+            </div>
+
+            <!-- Test Categories Tabs -->
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <button onclick="showTestCategory('all')" class="tab-btn px-6 py-2 rounded-lg font-medium transition tab-active" data-category="all">
+                    الكل
+                </button>
+                <button onclick="showTestCategory('glucose')" class="tab-btn px-6 py-2 rounded-lg font-medium transition" data-category="glucose">
+                    سكر الدم
+                </button>
+                <button onclick="showTestCategory('liver')" class="tab-btn px-6 py-2 rounded-lg font-medium transition" data-category="liver">
+                    إنزيمات الكبد
+                </button>
+                <button onclick="showTestCategory('kidney')" class="tab-btn px-6 py-2 rounded-lg font-medium transition" data-category="kidney">
+                    وظائف الكلى
+                </button>
+                <button onclick="showTestCategory('lipids')" class="tab-btn px-6 py-2 rounded-lg font-medium transition" data-category="lipids">
+                    الدهون
+                </button>
+            </div>
+
+            <!-- Tests Grid -->
+            <div id="testsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Glucose Tests -->
+                <div class="test-card lab-card rounded-xl p-6 card-hover" data-category="glucose">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-candy-cane text-3xl text-red-500"></i>
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">سكر الدم</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">سكر الدم الصائم</h3>
+                    <p class="text-gray-600 mb-4">قياس مستوى الجلوكوز في الدم بعد صيام 8 ساعات</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span>المدى الطبيعي:</span>
+                            <span class="font-semibold">70-100 mg/dL</span>
+                        </div>
+                        <div class="test-range rounded-full"></div>
+                    </div>
+                    <button onclick="showTestDetails('glucose')" class="mt-4 text-blue-600 hover:text-blue-800 font-medium">
+                        المزيد من التفاصيل <i class="fas fa-arrow-left mr-1"></i>
+                    </button>
+                </div>
+
+                <div class="test-card lab-card rounded-xl p-6 card-hover" data-category="glucose">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-chart-line text-3xl text-orange-500"></i>
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">سكر الدم</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">الهيموجلوبين السكري</h3>
+                    <p class="text-gray-600 mb-4">قياس متوسط سكر الدم خلال 3 أشهر الماضية</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span>المدى الطبيعي:</span>
+                            <span class="font-semibold">4-5.6%</span>
+                        </div>
+                        <div class="test-range rounded-full"></div>
+                    </div>
+                    <button onclick="showTestDetails('hba1c')" class="mt-4 text-blue-600 hover:text-blue-800 font-medium">
+                        المزيد من التفاصيل <i class="fas fa-arrow-left mr-1"></i>
+                    </button>
+                </div>
+
+                <!-- Liver Tests -->
+                <div class="test-card lab-card rounded-xl p-6 card-hover" data-category="liver">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-liver text-3xl text-green-600"></i>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">إنزيمات الكبد</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">إنزيم ALT (SGPT)</h3>
+                    <p class="text-gray-600 mb-4">دليل على صحة خلايا الكبد</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span>المدى الطبيعي:</span>
+                            <span class="font-semibold">7-55 U/L</span>
+                        </div>
+                        <div class="test-range rounded-full"></div>
+                    </div>
+                    <button onclick="showTestDetails('alt')" class="mt-4 text-blue-600 hover:text-blue-800 font-medium">
+                        المزيد من التفاصيل <i class="fas fa-arrow-left mr-1"></i>
+                    </button>
+                </div>
+
+                <div class="test-card lab-card rounded-xl p-6 card-hover" data-category="liver">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-liver text-3xl text-green-600"></i>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">إنزيمات الكبد</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">إنزيم AST (SGOT)</h3>
+                    <p class="text-gray-600 mb-4">موجود في الكبد والقلب والعضلات</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span>المدى الطبيعي:</span>
+                            <span class="font-semibold">8-48 U/L</span>
+                        </div>
+                        <div class="test-range rounded-full"></div>
+                    </div>
+                    <button onclick="showTestDetails('ast')" class="mt-4 text-blue-600 hover:text-blue-800 font-medium">
+                        المزيد من التفاصيل <i class="fas fa-arrow-left mr-1"></i>
+                    </button>
+                </div>
+
+                <!-- Kidney Tests -->
+                <div class="test-card lab-card rounded-xl p-6 card-hover" data-category="kidney">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-kidneys text-3xl text-purple-600"></i>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">وظائف الكلى</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">الكرياتينين</h3>
+                    <p class="text-gray-600 mb-4">مؤشر رئيسي لوظائف الكلى</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span>المدى الطبيعي:</span>
+                            <span class="font-semibold">0.6-1.2 mg/dL</span>
+                        </div>
+                        <div class="test-range rounded-full"></div>
+                    </div>
+                    <button onclick="showTestDetails('creatinine')" class="mt-4 text-blue-600 hover:text-blue-800 font-medium">
+                        المزيد من التفاصيل <i class="fas fa-arrow-left mr-1"></i>
+                    </button>
+                </div>
+
+                <div class="test-card lab-card rounded-xl p-6 card-hover" data-category="kidney">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-tint text-3xl text-blue-600"></i>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">وظائف الكلى</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">اليوريا (BUN)</h3>
+                    <p class="text-gray-600 mb-4">ناتج أيض البروتينات</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span>المدى الطبيعي:</span>
+                            <span class="font-semibold">7-20 mg/dL</span>
+                        </div>
+                        <div class="test-range rounded-full"></div>
+                    </div>
+                    <button onclick="showTestDetails('urea')" class="mt-4 text-blue-600 hover:text-blue-800 font-medium">
+                        المزيد من التفاصيل <i class="fas fa-arrow-left mr-1"></i>
+                    </button>
+                </div>
+
+                <!-- Lipid Tests -->
+                <div class="test-card lab-card rounded-xl p-6 card-hover" data-category="lipids">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-oil-can text-3xl text-yellow-600"></i>
+                        <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">الدهون</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">الكوليسترول الكلي</h3>
+                    <p class="text-gray-600 mb-4">قياس مستوى الكوليسترول في الدم</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span>المدى الطبيعي:</span>
+                            <span class="font-semibold">&lt;200 mg/dL</span>
+                        </div>
+                        <div class="test-range rounded-full"></div>
+                    </div>
+                    <button onclick="showTestDetails('cholesterol')" class="mt-4 text-blue-600 hover:text-blue-800 font-medium">
+                        المزيد من التفاصيل <i class="fas fa-arrow-left mr-1"></i>
+                    </button>
+                </div>
+
+                <div class="test-card lab-card rounded-xl p-6 card-hover" data-category="lipids">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-heartbeat text-3xl text-red-600"></i>
+                        <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">الدهون</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">الدهون الثلاثية</h3>
+                    <p class="text-gray-600 mb-4">نوع من الدهون في الدم</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span>المدى الطبيعي:</span>
+                            <span class="font-semibold">&lt;150 mg/dL</span>
+                        </div>
+                        <div class="test-range rounded-full"></div>
+                    </div>
+                    <button onclick="showTestDetails('triglycerides')" class="mt-4 text-blue-600 hover:text-blue-800 font-medium">
+                        المزيد من التفاصيل <i class="fas fa-arrow-left mr-1"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diseases Section -->
+    <section id="diseases" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">الكيمياء الحيوية للأمراض</h2>
+                <p class="text-lg text-gray-600">فهم العلاقة بين الاضطرابات الكيميائية الحيوية والأمراض</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Diabetes Card -->
+                <div class="disease-card rounded-xl p-6 card-hover">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-diabetes text-4xl text-red-500"></i>
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">استقلابي</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">السكري</h3>
+                    <p class="text-gray-600 mb-4">اضطراب في أيض الكربوهيدرات يؤدي إلى ارتفاع سكر الدم</p>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-flask text-blue-500 ml-2"></i>
+                            <span>التحاليل الرئيسية: سكر الدم، HbA1c</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-vial text-green-500 ml-2"></i>
+                            <span>الإنزيمات المتأثرة: الأنسولين، الجلوكاجون</span>
+                        </div>
+                    </div>
+                    <button onclick="showDiseaseDetails('diabetes')" class="text-blue-600 hover:text-blue-800 font-medium">
+                        اقرأ المزيد <i class="fas fa-arrow-left mr-1"></i>
+                    </button>
+                </div>
+
+                <!-- Cancer Card -->
+                <div class="disease-card rounded-xl p-6 card-hover">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-dna text-4xl text-purple-500"></i>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">سرطاني</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">السرطان</h3>
+                    <p class="text-gray-600 mb-4">نمو غير طبيعي للخلايا مع تغيرات في التعبير الجيني</p>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-flask text-blue-500 ml-2"></i>
+                            <span>التحاليل الرئيسية: علامات الورم، CBC</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-vial text-green-500 ml-2"></i>
+                            <span>الإنزيمات: LDH، ALP</span>
+                        </div>
+                    </div>
+                    <button onclick="showDiseaseDetails('cancer')" class="text-blue-600 hover:text-blue-800 font-medium">
+                        اقرأ المزيد <i class="fas fa-arrow-left mr-1"></i>
+                    </button>
+                </div>
+
+                <!-- Liver Disease Card -->
+                <div class="disease-card rounded-xl p-6 card-hover">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-liver text-4xl text-green-600"></i>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">كبدي</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">أمراض الكبد</h3>
+                    <p class="text-gray-600 mb-4">تلف أو التهاب خلايا الكبد يؤثر على وظائفه</p>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-flask text-blue-500 ml-2"></i>
+                            <span>التحاليل: ALT، AST، البيليروبين</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-vial text-green-500 ml-2"></i>
+                            <span>البروتينات: الألبومين، الجلوبيولين</span>
+                        </div>
+                    </div>
+                    <button onclick="showDiseaseDetails('liver')" class="text-blue-600 hover:text-blue-800 font-medium">
+                        اقرأ المزيد <i class="fas fa-arrow-left mr-1"></i>
+                    </button>
+                </div>
+
+                <!-- Kidney Disease Card -->
+                <div class="disease-card rounded-xl p-6 card-hover">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-kidneys text-4xl text-blue-600"></i>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">كلوي</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">أمراض الكلى</h3>
+                    <p class="text-gray-600 mb-4">فقدان وظائف الكلى في ترشيح الدم</p>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-flask text-blue-500 ml-2"></i>
+                            <span>التحاليل: الكرياتينين، اليوريا</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-vial text-green-500 ml-2"></i>
+                            <span>الكهارل: الصوديوم، البوتاسيوم</span>
+                        </div>
+                    </div>
+                    <button onclick="showDiseaseDetails('kidney')" class="text-blue-600 hover:text-blue-800 font-medium">
+                        اقرأ المزيد <i class="fas fa-arrow-left mr-1"></i>
+                    </button>
+                </div>
+
+                <!-- Thyroid Disease Card -->
+                <div class="disease-card rounded-xl p-6 card-hover">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-brain text-4xl text-indigo-600"></i>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">هرموني</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">أمراض الغدة الدرقية</h3>
+                    <p class="text-gray-600 mb-4">اضطرابات في إنتاج هرمونات الغدة الدرقية</p>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-flask text-blue-500 ml-2"></i>
+                            <span>التحاليل: TSH، T3، T4</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-vial text-green-500 ml-2"></i>
+                            <span>الأجسام المضادة: Anti-TPO</span>
+                        </div>
+                    </div>
+                    <button onclick="showDiseaseDetails('thyroid')" class="text-blue-600 hover:text-blue-800 font-medium">
+                        اقرأ المزيد <i class="fas fa-arrow-left mr-1"></i>
+                    </button>
+                </div>
+
+                <!-- Metabolic Syndrome Card -->
+                <div class="disease-card rounded-xl p-6 card-hover">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-weight text-4xl text-orange-600"></i>
+                        <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">استقلابي</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">المتلازمة الاستقلابية</h3>
+                    <p class="text-gray-600 mb-4">مجموعة من الحالات تزيد خطر أمراض القلب</p>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-flask text-blue-500 ml-2"></i>
+                            <span>التحاليل: الدهون، سكر الدم</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-vial text-green-500 ml-2"></i>
+                            <span>الضغط، محيط الخصر</span>
+                        </div>
+                    </div>
+                    <button onclick="showDiseaseDetails('metabolic')" class="text-blue-600 hover:text-blue-800 font-medium">
+                        اقرأ المزيد <i class="fas fa-arrow-left mr-1"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Medical Calculators Section -->
+    <section id="calculators" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">الحاسبات الطبية</h2>
+                <p class="text-lg text-gray-600">أدوات مساعدة لحساب المؤشرات الطبية المهمة</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- BMI Calculator -->
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-weight text-blue-600 ml-2"></i>
+                        مؤشر كتلة الجسم (BMI)
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">الوزن (كجم)</label>
+                            <input type="number" id="weight" class="calculator-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="70">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">الطول (سم)</label>
+                            <input type="number" id="height" class="calculator-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="170">
+                        </div>
+                        <button onclick="calculateBMI()" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
+                            احسب
+                        </button>
+                        <div id="bmiResult" class="hidden mt-4 p-4 bg-white rounded-lg border">
+                            <p class="text-lg font-semibold text-center" id="bmiValue"></p>
+                            <p class="text-sm text-center mt-1" id="bmiCategory"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GFR Calculator -->
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-kidneys text-purple-600 ml-2"></i>
+                        معدل الترشيح الكبيبي (GFR)
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">الكرياتينين (mg/dL)</label>
+                            <input type="number" id="creatinine" step="0.1" class="calculator-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="1.0">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">العمر</label>
+                            <input type="number" id="age" class="calculator-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="30">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">الجنس</label>
+                            <select id="gender" class="calculator-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                <option value="male">ذكر</option>
+                                <option value="female">أنثى</option>
+                            </select>
+                        </div>
+                        <button onclick="calculateGFR()" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition">
+                            احسب
+                        </button>
+                        <div id="gfrResult" class="hidden mt-4 p-4 bg-white rounded-lg border">
+                            <p class="text-lg font-semibold text-center" id="gfrValue"></p>
+                            <p class="text-sm text-center mt-1" id="gfrStage"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cholesterol Ratio Calculator -->
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-heartbeat text-orange-600 ml-2"></i>
+                        نسبة الكوليسترول
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">الكوليسترول الكلي (mg/dL)</label>
+                            <input type="number" id="totalChol" class="calculator-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="200">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">الكوليسترول الجيد HDL (mg/dL)</label>
+                            <input type="number" id="hdl" class="calculator-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="50">
+                        </div>
+                        <button onclick="calculateCholesterolRatio()" class="w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 transition">
+                            احسب
+                        </button>
+                        <div id="cholResult" class="hidden mt-4 p-4 bg-white rounded-lg border">
+                            <p class="text-lg font-semibold text-center" id="cholRatio"></p>
+                            <p class="text-sm text-center mt-1" id="cholRisk"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- References Section -->
+    <section id="references" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">المراجع والمصادر</h2>
+                <p class="text-lg text-gray-600">مصادر موثوقة للمعلومات الطبية والعلمية</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-book text-blue-600 ml-2"></i>
+                        الكتب المرجعية
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-left text-gray-400 mt-1 ml-2"></i>
+                            <span class="text-gray-700">Tietz Fundamentals of Clinical Chemistry</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-left text-gray-400 mt-1 ml-2"></i>
+                            <span class="text-gray-700">Henry's Clinical Diagnosis and Management</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-left text-gray-400 mt-1 ml-2"></i>
+                            <span class="text-gray-700">Kaplan & Sadock's Comprehensive Textbook</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-left text-gray-400 mt-1 ml-2"></i>
+                            <span class="text-gray-700">Robbins Basic Pathology</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-globe text-green-600 ml-2"></i>
+                        المواقع الإلكترونية
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-external-link-alt text-gray-400 mt-1 ml-2"></i>
+                            <a href="#" class="text-blue-600 hover:text-blue-800">National Institutes of Health (NIH)</a>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-external-link-alt text-gray-400 mt-1 ml-2"></i>
+                            <a href="#" class="text-blue-600 hover:text-blue-800">Mayo Clinic Laboratories</a>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-external-link-alt text-gray-400 mt-1 ml-2"></i>
+                            <a href="#" class="text-blue-600 hover:text-blue-800">World Health Organization (WHO)</a>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-external-link-alt text-gray-400 mt-1 ml-2"></i>
+                            <a href="#" class="text-blue-600 hover:text-blue-800">American Association for Clinical Chemistry</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center">
+                <p class="text-gray-600">
+                    <i class="fas fa-info-circle ml-2"></i>
+                    ملاحظة: جميع المعلومات المقدمة لأغراض تعليمية فقط. يرجى استشارة الطبيب للتشخيص والعلاج.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">عن الموقع</h3>
+                    <p class="text-gray-400">
+                        منصة تعليمية متخصصة في الكيمياء الحيوية السريرية، تقدم معلومات دقيقة ومحدثة للطلاب والأطباء والمختصين.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">روابط سريعة</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#tests" class="hover:text-white transition">التحاليل الطبية</a></li>
+                        <li><a href="#diseases" class="hover:text-white transition">أمراض الكيمياء الحيوية</a></li>
+                        <li><a href="#calculators" class="hover:text-white transition">الحاسبات الطبية</a></li>
+                        <li><a href="#references" class="hover:text-white transition">المراجع</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">تواصل معنا</h3>
+                    <div class="flex space-x-reverse space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-linkedin text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-youtube text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
+                <p>&copy; 2024 الكيمياء الحيوية السريرية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Test Details Modal -->
+    <div id="testModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 id="modalTitle" class="text-2xl font-bold text-gray-800"></h3>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+                <div id="modalContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('hidden');
+            nav.classList.toggle('absolute');
+            nav.classList.toggle('top-full');
+            nav.classList.toggle('left-0');
+            nav.classList.toggle('right-0');
+            nav.classList.toggle('bg-blue-800');
+            nav.classList.toggle('p-4');
+            nav.classList.toggle('flex-col');
+            nav.classList.toggle('space-y-2');
+        });
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Test category filter
+        function showTestCategory(category) {
+            const cards = document.querySelectorAll('.test-card');
+            const tabs = document.querySelectorAll('.tab-btn');
+            
+            tabs.forEach(tab => {
+                if (tab.dataset.category === category) {
+                    tab.classList.add('tab-active');
+                } else {
+                    tab.classList.remove('tab-active');
+                }
+            });
+            
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                    card.classList.add('fade-in');
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Test details data
+        const testDetails = {
+            glucose: {
+                title: 'سكر الدم الصائم',
+                content: `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">الوصف:</h4>
+                            <p class="text-gray-700">قياس تركيز الجلوكوز في الدم بعد صيام لمدة 8 ساعات على الأقل. يعتبر من أهم التحاليل لتشخيص مرض السكري ومتابعة العلاج.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">المدى الطبيعي:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• البالغين: 70-100 mg/dL</li>
+                                <li>• ما قبل السكري: 100-125 mg/dL</li>
+                                <li>• السكري: ≥126 mg/dL</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">الأسباب التي تؤدي إلى الارتفاع:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• مرض السكري النوع الأول والثاني</li>
+                                <li>• أمراض الغدة الكظرية</li>
+                                <li>• بعض الأدوية (الكورتيزون)</li>
+                                <li>• التوتر الشديد</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">الأسباب التي تؤدي إلى الانخفاض:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• نقص سكر الدم</li>
+                                <li>• أورام البنكرياس</li>
+                                <li>• أمراض الكبد</li>
+                                <li>• بعض الأدوية (الأنسولين)</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            hba1c: {
+                title: 'الهيموجلوبين السكري (HbA1c)',
+                content: `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">الوصف:</h4>
+                            <p class="text-gray-700">يقيس متوسط مستوى السكر في الدم خلال الأشهر الثلاثة الماضية. يرتبط الجلوكوز بالهيموجلوبين في خلايا الدم الحمراء.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">المدى الطبيعي:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• الطبيعي: &lt;5.7%</li>
+                                <li>• ما قبل السكري: 5.7-6.4%</li>
+                                <li>• السكري: ≥6.5%</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">الأهمية السريرية:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• متابعة فعالية علاج السكري</li>
+                                <li>• تقييم السيطرة على السكر على المدى الطويل</li>
+                                <li>• التنبؤ بمضاعفات السكري</li>
+                                <li>• لا يتأثر بالوجبات أو النشاط البدني</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            alt: {
+                title: 'إنزيم ALT (SGPT)',
+                content: `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">الوصف:</h4>
+                            <p class="text-gray-700">إنزيم ألانين أمينو ترانسفيراز، يوجد بشكل أساسي في خلايا الكبد. يعتبر من المؤشرات الحساسة لتلف خلايا الكبد.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">المدى الطبيعي:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• الذكور: 7-55 U/L</li>
+                                <li>• الإناث: 7-45 U/L</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">الأسباب التي تؤدي إلى الارتفاع:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• التهاب الكبد الفيروسي</li>
+                                <li>• تسمم الكبد بالكحول</li>
+                                <li>• تشمع الكبد</li>
+                                <li>• حصوات المرارة</li>
+                                <li>• بعض الأدوية</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            ast: {
+                title: 'إنزيم AST (SGOT)',
+                content: `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">الوصف:</h4>
+                            <p class="text-gray-700">إنزيم أسبارتات أمينو ترانسفيراز، يوجد في الكبد والقلب والعضلات الهيكلية والكلى والدماغ.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">المدى الطبيعي:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• الذكور: 8-48 U/L</li>
+                                <li>• الإناث: 6-40 U/L</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">نسبة AST/ALT:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• &lt;1: يشير إلى أمراض الكبد غير الكحولية</li>
+                                <li>• &gt;2: يشير إلى تلف الكبد الكحولي</li>
+                                <li>• &gt;1 مع ارتفاع AST: يشير إلى احتشاء عضلة القلب</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            creatinine: {
+                title: 'الكرياتينين',
+                content: `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">الوصف:</h4>
+                            <p class="text-gray-700">منتج نهائي لعملية الأيض في العضلات، يتم ترشيحه بواسطة الكلى. يعتبر من أفضل المؤشرات لوظائف الكلى.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">المدى الطبيعي:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• الذكور: 0.6-1.2 mg/dL</li>
+                                <li>• الإناث: 0.5-1.1 mg/dL</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">مراحل الفشل الكلوي:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• المرحلة 1: &gt;90 mL/min/1.73m²</li>
+                                <li>• المرحلة 2: 60-89 mL/min/1.73m²</li>
+                                <li>• المرحلة 3: 30-59 mL/min/1.73m²</li>
+                                <li>• المرحلة 4: 15-29 mL/min/1.73m²</li>
+                                <li>• المرحلة 5: &lt;15 mL/min/1.73m²</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            urea: {
+                title: 'اليوريا (BUN)',
+                content: `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">الوصف:</h4>
+                            <p class="text-gray-700">ناتج نهائي لعملية أيض البروتينات، يتم إنتاجها في الكبد وإخراجها عن طريق الكلى.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">المدى الطبيعي:</h4>
+                            <p class="text-gray-700">7-20 mg/dL</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">نسبة BUN/الكرياتينين:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• الطبيعية: 10-20:1</li>
+                                <li>• &gt;20:1 تشير إلى الجفاف أو النزيف</li>
+                                <li>• &lt;10:1 تشير إلى أمراض الكبد</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            cholesterol: {
+                title: 'الكوليسترول الكلي',
+                content: `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">الوصف:</h4>
+                            <p class="text-gray-700">مادة دهنية أساسية لصحة الجسم، ولكن ارتفاعه يزيد من خطر أمراض القلب والأوعية الدموية.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">المدى الطبيعي:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• مثالي: &lt;200 mg/dL</li>
+                                <li>• حدودي: 200-239 mg/dL</li>
+                                <li>• مرتفع: ≥240 mg/dL</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">التوصيات:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• نظام غذائي قليل الدهون المشبعة</li>
+                                <li>• ممارسة الرياضة بانتظام</li>
+                                <li>• الإقلاع عن التدخين</li>
+                                <li>• الحفاظ على وزن صحي</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            triglycerides: {
+                title: 'الدهون الثلاثية',
+                content: `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">الوصف:</h4>
+                            <p class="text-gray-700">نوع من الدهون في الدم، يخزنها الجسم لاستخدامها كطاقة. ارتفاعها يرتبط بأمراض القلب والبنكرياس.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">المدى الطبيعي:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• طبيعي: &lt;150 mg/dL</li>
+                                <li>• حدودي: 150-199 mg/dL</li>
+                                <li>• مرتفع: 200-499 mg/dL</li>
+                                <li>• مرتفع جداً: ≥500 mg/dL</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">الأسباب:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• السمنة</li>
+                                <li>• تناول الكحول</li>
+                                <li>• السكري غير المسيطر عليه</li>
+                                <li>• أمراض الكلى</li>
+                                <li>• بعض الأدوية</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        // Disease details data
+        const diseaseDetails = {
+            diabetes: {
+                title: 'مرض السكري',
+                content: `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">التعريف:</h4>
+                            <p class="text-gray-700">مرض استقلابي مزمن يتميز بارتفاع مستوى السكر في الدم بسبب نقص إنتاج الأنسولين أو عدم فعاليته.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">الأنواع:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• النوع الأول: مناعة ذاتية تدمر خلايا بيتا في البنكرياس</li>
+                                <li>• النوع الثاني: مقاومة الأنسولين مع نقص نسبي في الإنتاج</li>
+                                <li>• سكري الحمل: يحدث أثناء الحمل</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">التغيرات الكيميائية الحيوية:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• ارتفاع سكر الدم</li>
+                                <li>• زيادة الهيموجلوبين السكري</li>
+                                <li>• تغيرات في الدهون</li>
+                                <li>• حمض كيتوني في الحالات الشديدة</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">المضاعفات:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• اعتلال الشبكية</li>
+                                <li>• اعتلال الكلى</li>
+                                <li>• اعتلال الأعصاب</li>
+                                <li>• أمراض القلب والأوعية الدموية</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            cancer: {
+                title: 'السرطان',
+                content: `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">التعريف:</h4>
+                            <p class="text-gray-700">نمو غير منضبط للخلايا مع القدرة على الغزو والانتشار. يصاحبه تغيرات في التعبير الجيني والبروتيني.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">التغيرات الكيميائية الحيوية:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• زيادة إنزيم LDH</li>
+                                <li>• ارتفاع علامات الورم (CEA، AFP، PSA)</li>
+                                <li>• تغيرات في البروتينات</li>
+                                <li>• فقر الدم</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">علامات الورم الشائعة:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• CEA: سرطان القولون</li>
+                                <li>• PSA: سرطان البروستات</li>
+                                <li>• CA-125: سرطان المبيض</li>
+                                <li>• AFP: سرطان الكبد</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            liver: {
+                title: 'أمراض الكبد',
+                content: `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">التعريف:</h4>
+                            <p class="text-gray-700">مجموعة من الأمراض التي تؤثر على وظائف الكبد، بما في ذلك الالتهابات والتليف والسرطان.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">الأنواع الشائعة:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• التهاب الكبد الفيروسي</li>
+                                <li>• تشمع الكبد</li>
+                                <li>• دهون الكبد</li>
+                                <li>• سرطان الكبد</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">التغيرات المختبرية:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• ارتفاع إنزيمات الكبد (ALT، AST)</li>
+                                <li>• زيادة البيليروبين</li>
+                                <li>• انخفاض الألبومين</li>
+                                <li>• تغيرات في زمن التخثر</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            kidney: {
+                title: 'أمراض الكلى',
+                content: `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">التعريف:</h4>
+                            <p class="text-gray-700">فقدان تدريجي لوظائف الكلى في ترشيح الدم وتنظيم توازن السوائل والكهارل.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">الأسباب:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• السكري</li>
+                                <li>• ارتفاع ضغط الدم</li>
+                                <li>• التهاب الكلى</li>
+                                <li>• انسداد المسالك البولية</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">التغيرات المختبرية:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• ارتفاع الكرياتينين واليوريا</li>
+                                <li>• تغيرات في الكهارل</li>
+                                <li>• فقر الدم</li>
+                                <li>• حمض استقلابي</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            thyroid: {
+                title: 'أمراض الغدة الدرقية',
+                content: `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">التعريف:</h4>
+                            <p class="text-gray-700">اضطرابات في إنتاج هرمونات الغدة الدرقية التي تنظم عملية الأيض في الجسم.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">الأنواع:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• فرط نشاط الغدة الدرقية</li>
+                                <li>• قصور الغدة الدرقية</li>
+                                <li>• التهاب الغدة الدرقية</li>
+                                <li>• أورام الغدة الدرقية</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">التغيرات المختبرية:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• فرط النشاط: TSH منخفض، T3 و T4 مرتفعان</li>
+                                <li>• القصور: TSH مرتفع، T3 و T4 منخفضان</li>
+                                <li>• الأجسام المضادة في أمراض المناعة الذاتية</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            metabolic: {
+                title: 'المتلازمة الاستقلابية',
+                content: `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">التعريف:</h4>
+                            <p class="text-gray-700">مجموعة من الحالات التي تحدث معاً وتزيد من خطر أمراض القلب والسكتة الدماغية والسكري.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">المعايير التشخيصية:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• محيط الخصر الموسع</li>
+                                <li>• ارتفاع ضغط الدم</li>
+                                <li>• ارتفاع سكر الدم الصائم</li>
+                                <li>• ارتفاع الدهون الثلاثية</li>
+                                <li>• انخفاض الكوليسترول الجيد</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">التغيرات الكيميائية الحيوية:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• مقاومة الأنسولين</li>
+                                <li>• تغيرات في الدهون</li>
+                                <li>• التهاب مزمن منخفض الدرجة</li>
+                                <li>• زيادة عوامل التخثر</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        // Show test details modal
+        function showTestDetails(testId) {
+            const modal = document.getElementById('testModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalContent = document.getElementById('modalContent');
+            
+            const test = testDetails[testId];
+            if (test) {
+                modalTitle.textContent = test.title;
+                modalContent.innerHTML = test.content;
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Show disease details modal
+        function showDiseaseDetails(diseaseId) {
+            const modal = document.getElementById('testModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalContent = document.getElementById('modalContent');
+            
+            const disease = diseaseDetails[diseaseId];
+            if (disease) {
+                modalTitle.textContent = disease.title;
+                modalContent.innerHTML = disease.content;
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Close modal
+        function closeModal() {
+            const modal = document.getElementById('testModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on outside click
+        document.getElementById('testModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // BMI Calculator
+        function calculateBMI() {
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value) / 100;
+            
+            if (weight && height) {
+                const bmi = weight / (height * height);
+                const bmiResult = document.getElementById('bmiResult');
+                const bmiValue = document.getElementById('bmiValue');
+                const bmiCategory = document.getElementById('bmiCategory');
+                
+                bmiValue.textContent = `BMI: ${bmi.toFixed(1)}`;
+                
+                if (bmi < 18.5) {
+                    bmiCategory.textContent = 'نقص الوزن';
+                    bmiCategory.className = 'text-sm text-center mt-1 text-blue-600';
+                } else if (bmi < 25) {
+                    bmiCategory.textContent = 'وزن طبيعي';
+                    bmiCategory.className = 'text-sm text-center mt-1 text-green-600';
+                } else if (bmi < 30) {
+                    bmiCategory.textContent = 'زيادة الوزن';
+                    bmiCategory.className = 'text-sm text-center mt-1 text-yellow-600';
+                } else {
+                    bmiCategory.textContent = 'سمنة';
+                    bmiCategory.className = 'text-sm text-center mt-1 text-red-600';
+                }
+                
+                bmiResult.classList.remove('hidden');
+            }
+        }
+
+        // GFR Calculator
+        function calculateGFR() {
+            const creatinine = parseFloat(document.getElementById('creatinine').value);
+            const age = parseInt(document.getElementById('age').value);
+            const gender = document.getElementById('gender').value;
+            
+            if (creatinine && age) {
+                let gfr;
+                if (gender === 'male') {
+                    gfr = 175 * Math.pow(creatinine, -1.154) * Math.pow(age, -0.203);
+                } else {
+                    gfr = 175 * Math.pow(creatinine, -1.154) * Math.pow(age, -0.203) * 0.742;
+                }
+                
+                const gfrResult = document.getElementById('gfrResult');
+                const gfrValue = document.getElementById('gfrValue');
+                const gfrStage = document.getElementById('gfrStage');
+                
+                gfrValue.textContent = `GFR: ${gfr.toFixed(0)} mL/min/1.73m²`;
+                
+                if (gfr >= 90) {
+                    gfrStage.textContent = 'المرحلة 1: وظيفة كلوية طبيعية أو مرتفعة';
+                    gfrStage.className = 'text-sm text-center mt-1 text-green-600';
+                } else if (gfr >= 60) {
+                    gfrStage.textContent = 'المرحلة 2: اعتلال كلوي خفيف';
+                    gfrStage.className = 'text-sm text-center mt-1 text-blue-600';
+                } else if (gfr >= 30) {
+                    gfrStage.textContent = 'المرحلة 3: اعتلال كلوي متوسط';
+                    gfrStage.className = 'text-sm text-center mt-1 text-yellow-600';
+                } else if (gfr >= 15) {
+                    gfrStage.textContent = 'المرحلة 4: اعتلال كلوي شديد';
+                    gfrStage.className = 'text-sm text-center mt-1 text-orange-600';
+                } else {
+                    gfrStage.textContent = 'المرحلة 5: فشل كلوي';
+                    gfrStage.className = 'text-sm text-center mt-1 text-red-600';
+                }
+                
+                gfrResult.classList.remove('hidden');
+            }
+        }
+
+        // Cholesterol Ratio Calculator
+        function calculateCholesterolRatio() {
+            const totalChol = parseFloat(document.getElementById('totalChol').value);
+            const hdl = parseFloat(document.getElementById('hdl').value);
+            
+            if (totalChol && hdl) {
+                const ratio = totalChol / hdl;
+                const cholResult = document.getElementById('cholResult');
+                const cholRatio = document.getElementById('cholRatio');
+                const cholRisk = document.getElementById('cholRisk');
+                
+                cholRatio.textContent = `النسبة: ${ratio.toFixed(2)}`;
+                
+                if (ratio < 3.5) {
+                    cholRisk.textContent = 'خطر منخفض';
+                    cholRisk.className = 'text-sm text-center mt-1 text-green-600';
+                } else if (ratio < 5) {
+                    cholRisk.textContent = 'خطر متوسط';
+                    cholRisk.className = 'text-sm text-center mt-1 text-yellow-600';
+                } else {
+                    cholRisk.textContent = 'خطر عالي';
+                    cholRisk.className = 'text-sm text-center mt-1 text-red-600';
+                }
+                
+                cholResult.classList.remove('hidden');
+            }
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

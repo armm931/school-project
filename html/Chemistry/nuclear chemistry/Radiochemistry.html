@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكيمياء الإشعاعية - البوابة العلمية المتخصصة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a8a;
+            --light-blue: #3b82f6;
+            --accent-blue: #60a5fa;
+            --dark-blue: #1e40af;
+            --green: #10b981;
+            --light-green: #34d399;
+            --white: #ffffff;
+            --light-gray: #f3f4f6;
+            --dark-gray: #1f2937;
+            --text-color: #374151;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: var(--warning);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.9), rgba(59, 130, 246, 0.8)),
+                        url('https://picsum.photos/seed/radiation/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-primary {
+            background: var(--warning);
+            color: var(--dark-blue);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-secondary:hover {
+            background: white;
+            color: var(--dark-blue);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-blue);
+        }
+
+        /* Introduction Section */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .intro-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .intro-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Concepts Cards */
+        .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .concept-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--light-blue));
+        }
+
+        .concept-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .concept-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .concept-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Applications Section */
+        .applications-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .application-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .application-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .app-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .app-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .application-card:hover .app-image img {
+            transform: scale(1.1);
+        }
+
+        .app-content {
+            padding: 1.5rem;
+        }
+
+        .app-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .app-content ul {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        .app-content ul li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-right: 1.5rem;
+        }
+
+        .app-content ul li::before {
+            content: '▸';
+            position: absolute;
+            right: 0;
+            color: var(--light-blue);
+        }
+
+        /* Safety Section */
+        .safety-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .safety-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .safety-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .safety-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            background: var(--light-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--warning);
+        }
+
+        .safety-item.danger .safety-icon {
+            background: #fee2e2;
+            color: var(--danger);
+        }
+
+        .safety-item.success .safety-icon {
+            background: #d1fae5;
+            color: var(--green);
+        }
+
+        /* Research Section */
+        .research-timeline {
+            position: relative;
+            padding: 3rem 0;
+        }
+
+        .research-timeline::before {
+            content: '';
+            position: absolute;
+            right: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-blue);
+            transform: translateX(50%);
+        }
+
+        .research-item {
+            position: relative;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+        }
+
+        .research-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .research-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            position: relative;
+        }
+
+        .research-item:nth-child(odd) .research-content {
+            margin-right: auto;
+        }
+
+        .research-item:nth-child(even) .research-content {
+            margin-left: auto;
+        }
+
+        .research-year {
+            position: absolute;
+            right: 50%;
+            top: 50%;
+            transform: translate(50%, -50%);
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 3rem auto 0;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark-gray);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--light-blue);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--dark-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--light-blue);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--light-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--light-blue);
+            color: var(--dark-blue);
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .research-timeline::before {
+                right: 30px;
+            }
+
+            .research-content {
+                width: calc(100% - 60px);
+                margin-right: 60px !important;
+            }
+
+            .research-year {
+                right: 30px;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--primary-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--dark-blue);
+            transform: translateY(-5px);
+        }
+
+        /* Radiation Warning Symbol */
+        .radiation-symbol {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: var(--warning);
+            border-radius: 50%;
+            position: relative;
+            margin-left: 0.5rem;
+        }
+
+        .radiation-symbol::before,
+        .radiation-symbol::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+
+        .radiation-symbol::before {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-width: 0 8px 14px 8px;
+            border-color: transparent transparent black transparent;
+        }
+
+        .radiation-symbol::after {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(120deg);
+            border-width: 0 8px 14px 8px;
+            border-color: transparent transparent black transparent;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                الكيمياء الإشعاعية
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#introduction">مقدمة</a></li>
+                <li><a href="#concepts">المفاهيم الأساسية</a></li>
+                <li><a href="#applications">التطبيقات</a></li>
+                <li><a href="#safety">السلامة</a></li>
+                <li><a href="#research">الأبحاث</a></li>
+                <li><a href="#gallery">المعرض</a></li>
+                <li><a href="#contact">تواصل</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>بوابة الكيمياء الإشعاعية</h1>
+            <p>منصة علمية متخصصة تقدم معلومات دقيقة وشاملة عن الكيمياء الإشعاعية، تطبيقاتها، وأحدث الأبحاث في هذا المجال الحيوي</p>
+            <div class="cta-buttons">
+                <a href="#introduction" class="cta-button cta-primary">ابدأ التعلم</a>
+                <a href="#applications" class="cta-button cta-secondary">التطبيقات العملية</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="introduction" class="section">
+        <div class="container">
+            <h2 class="section-title">مقدمة في الكيمياء الإشعاعية</h2>
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <h3>ما هي الكيمياء الإشعاعية؟</h3>
+                    <p>الكيمياء الإشعاعية هي فرع من فروع الكيمياء الذي يدرس التفاعلات الكيميائية التي تنطوي على المواد المشعة والنظائر المشعة. يعد هذا المجال من أهم المجالات العلمية بسبب تطبيقاته الواسعة في:</p>
+                    <p>• الطب النووي والتشخيص والعلاج</p>
+                    <p>• الصناعة والتحكم في الجودة</p>
+                    <p>• البحث العلمي والتنمية</p>
+                    <p>• حماية البيئة ومراقبة التلوث</p>
+                    <p>• الأمن الغذائي والزراعة</p>
+                    <p>تساهم الكيمياء الإشعاعية بشكل كبير في تطوير العلوم والتكنولوجيا وتحسين جودة الحياة الإنسانية.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://picsum.photos/seed/radiochemistry/600/400.jpg" alt="الكيمياء الإشعاعية">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Basic Concepts Section -->
+    <section id="concepts" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">المفاهيم الأساسية</h2>
+            <div class="concepts-grid">
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-radiation"></i>
+                    </div>
+                    <h3>النشاط الإشعاعي</h3>
+                    <p>العملية التي تتحلل فيها النوى غير المستقرة وتطلق طاقة على شكل إشعاعات ألفا أو بيتا أو جاما</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>عمر النصف</h3>
+                    <p>الزمن اللازم لنصف عدد ذرات النظير المشع كي تتحلل، وهو خاصية أساسية لكل نظير مشع</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>النظائر المشعة</h3>
+                    <p>ذرات من نفس العنصر الكيميائي ولكنها تختلف في عدد النيوترونات في النواة</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>الانشطار النووي</h3>
+                    <p>انقسام النواة الثقيلة إلى نواتين أخف مع إطلاق كمية كبيرة من الطاقة</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-compress-arrows-alt"></i>
+                    </div>
+                    <h3>الاندماج النووي</h3>
+                    <p>اتحاد نواتين خفيفتين لتكوين نواة أثقل مع إطلاق طاقة هائلة</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>الوقاية الإشعاعية</h3>
+                    <p>مجموعة الإجراءات والتدابير لحماية الإنسان والبيئة من أخطار الإشعاعات</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="section">
+        <div class="container">
+            <h2 class="section-title">التطبيقات العملية</h2>
+            <div class="applications-container">
+                <div class="application-card">
+                    <div class="app-image">
+                        <img src="https://picsum.photos/seed/medical/400/200.jpg" alt="التطبيقات الطبية">
+                    </div>
+                    <div class="app-content">
+                        <h3><i class="fas fa-heartbeat"></i> التطبيقات الطبية</h3>
+                        <ul>
+                            <li>التشخيص باستخدام النظائر المشعة</li>
+                            <li>العلاج الإشعاعي للسرطان</li>
+                            <li>التصوير الطبي النووي</li>
+                            <li>تعقيم المعدات الطبية</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="application-card">
+                    <div class="app-image">
+                        <img src="https://picsum.photos/seed/industry/400/200.jpg" alt="التطبيقات الصناعية">
+                    </div>
+                    <div class="app-content">
+                        <h3><i class="fas fa-industry"></i> التطبيقات الصناعية</h3>
+                        <ul>
+                            <li>فحص اللحامات وال welds</li>
+                            <li>قياس السماكة والكثافة</li>
+                            <li>تحديد التسربات في الأنابيب</li>
+                            <li>تعقيم المنتجات الغذائية</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="application-card">
+                    <div class="app-image">
+                        <img src="https://picsum.photos/seed/research/400/200.jpg" alt="التطبيقات البحثية">
+                    </div>
+                    <div class="app-content">
+                        <h3><i class="fas fa-microscope"></i> التطبيقات البحثية</h3>
+                        <ul>
+                            <li>التحليل التتبعي للعناصر</li>
+                            <li>دراسة آليات التفاعلات الكيميائية</li>
+                            <li>تحديد عمر العينات الأثرية</li>
+                            <li>مراقبة العمليات البيولوجية</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="application-card">
+                    <div class="app-image">
+                        <img src="https://picsum.photos/seed/agriculture/400/200.jpg" alt="التطبيقات الزراعية">
+                    </div>
+                    <div class="app-content">
+                        <h3><i class="fas fa-seedling"></i> التطبيقات الزراعية</h3>
+                        <ul>
+                            <li>تحسين سلالات المحاصيل</li>
+                            <li>دراسة امتصاص الأسمدة</li>
+                            <li>مكافحة الآفات الحشرية</li>
+                            <li>حفظ الأغذية</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="application-card">
+                    <div class="app-image">
+                        <img src="https://picsum.photos/seed/environment/400/200.jpg" alt="التطبيقات البيئية">
+                    </div>
+                    <div class="app-content">
+                        <h3><i class="fas fa-leaf"></i> التطبيقات البيئية</h3>
+                        <ul>
+                            <li>مراقبة تلوث الهواء والماء</li>
+                            <li>دراسة دورات المواد في الطبيعة</li>
+                            <li>معالجة النفايات المشعة</li>
+                            <li>تقييم الأثر البيئي</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="application-card">
+                    <div class="app-image">
+                        <img src="https://picsum.photos/seed/energy/400/200.jpg" alt="تطبيقات الطاقة">
+                    </div>
+                    <div class="app-content">
+                        <h3><i class="fas fa-bolt"></i> تطبيقات الطاقة</h3>
+                        <ul>
+                            <li>توليد الكهرباء النووية</li>
+                            <li>دراسة الوقود النووي</li>
+                            <li>تطوير مفاعلات الجيل الجديد</li>
+                            <li>إدارة النفايات النووية</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety Section -->
+    <section id="safety" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">السلامة الإشعاعية</h2>
+            <div class="safety-grid">
+                <div class="safety-item danger">
+                    <div class="safety-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3>مخاطر الإشعاع</h3>
+                    <p>الإشعاع المؤين يمكن أن يسبب تلفاً للخلايا والأنسجة الحية. تزداد الخطورة مع زيادة جرعة الإشعاع ومدة التعرض</p>
+                </div>
+                <div class="safety-item success">
+                    <div class="safety-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>مبادئ الحماية</h3>
+                    <p>الوقت: تقليل مدة التعرض<br>المسافة: زيادة المسافة من المصدر<br>الحجب: استخدام مواد واقية</p>
+                </div>
+                <div class="safety-item">
+                    <div class="safety-icon">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <h3>معدات الوقاية</h3>
+                    <p>أجهزة قياس الإشعاع، بدل واقية، نظارات واقية، قفازات متخصصة، وأجهزة تنفس</p>
+                </div>
+                <div class="safety-item">
+                    <div class="safety-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h3>البروتوكولات</h3>
+                    <p>إجراءات الطوارئ، التدريب المستمر، الفحوصات الطبية الدورية، والامتثال للمعايير الدولية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="section">
+        <div class="container">
+            <h2 class="section-title">أحدث الأبحاث والتطورات</h2>
+            <div class="research-timeline">
+                <div class="research-item">
+                    <div class="research-year">2023</div>
+                    <div class="research-content">
+                        <h3>تطوير نظائر مشعة جديدة للتصوير الطبي</h3>
+                        <p>باحثون في جامعة ستانفورد يطورون نظيراً مشعاً جديداً يوفر صوراً أوضح للورم السرطاني بجرعات إشعاع أقل</p>
+                    </div>
+                </div>
+                <div class="research-item">
+                    <div class="research-year">2022</div>
+                    <div class="research-content">
+                        <h3>تقنية حديثة لمعالجة النفايات المشعة</h3>
+                        <p>ابتكار طريقة كيميائية مبتكرة لتقليل حجم النفايات المشعة بنسبة 90% وتحويلها إلى مواد غير خطرة</p>
+                    </div>
+                </div>
+                <div class="research-item">
+                    <div class="research-year">2021</div>
+                    <div class="research-content">
+                        <h3>استخدام النظائر المشعة في الزراعة الدقيقة</h3>
+                        <p>تطوير تقنيات حديثة لمراقبة امتصاص النباتات للمغذيات باستخدام نظائر مشعة مستقرة</p>
+                    </div>
+                </div>
+                <div class="research-item">
+                    <div class="research-year">2020</div>
+                    <div class="research-content">
+                        <h3>مفاعلات نووية صغيرة آمنة</h3>
+                        <p>تصميم مفاعلات نووية صغيرة جديدة تستخدم وقوداً أكثر أماناً وتنتج طاقة نظيفة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">معرض الصور والفيديوهات</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/lab1/400/250.jpg" alt="مختبر الكيمياء الإشعاعية">
+                    <div class="gallery-overlay">
+                        <h4>مختبر الكيمياء الإشعاعية المتقدم</h4>
+                        <p>مجهز بأحدث أجهزة القياس الإشعاعي</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/equipment1/400/250.jpg" alt="أجهزة القياس">
+                    <div class="gallery-overlay">
+                        <h4>أجهزة القياس الإشعاعي</h4>
+                        <p>أجهزة دقيقة لقياس مستويات الإشعاع</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/medical1/400/250.jpg" alt="التصوير الطبي">
+                    <div class="gallery-overlay">
+                        <h4>جهاز التصوير الطبي النووي</h4>
+                        <p>تقنية PET-CT للتشخيص الدقيق</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/safety1/400/250.jpg" alt="معدات السلامة">
+                    <div class="gallery-overlay">
+                        <h4>معدات الوقاية الشخصية</h4>
+                        <p>بدل واقية متخصصة للعمل مع الإشعاع</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/reactor1/400/250.jpg" alt="المفاعل النووي">
+                    <div class="gallery-overlay">
+                        <h4>المفاعل البحثي النووي</h4>
+                        <p>مفاعل تعليمي وبحثي آمن</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/research1/400/250.jpg" alt="البحث العلمي">
+                    <div class="gallery-overlay">
+                        <h4>فريق البحث العلمي</h4>
+                        <p>علماء متخصصون في الكيمياء الإشعاعية</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">تواصل معنا</h2>
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">الاسم الكامل</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="category">الفئة</label>
+                    <select id="category" name="category" required>
+                        <option value="">اختر الفئة</option>
+                        <option value="student">طالب</option>
+                        <option value="researcher">باحث</option>
+                        <option value="professional">متخصص</option>
+                        <option value="general">عام</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="subject">الموضوع</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">الرسالة</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">إرسال الرسالة</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>من نحن</h3>
+                    <p>منصة علمية متخصصة في الكيمياء الإشعاعية تقدم معلومات دقيقة ومحدثة للطلاب والباحثين والمتخصصين في هذا المجال.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#introduction">مقدمة في الكيمياء الإشعاعية</a></li>
+                        <li><a href="#concepts">المفاهيم الأساسية</a></li>
+                        <li><a href="#applications">التطبيقات العملية</a></li>
+                        <li><a href="#safety">السلامة الإشعاعية</a></li>
+                        <li><a href="#research">أحدث الأبحاث</a></li>
+                        <li><a href="#gallery">المعرض</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>الموارد التعليمية</h3>
+                    <ul>
+                        <li><a href="#">الدورات التدريبية</a></li>
+                        <li><a href="#">الكتب المرجعية</a></li>
+                        <li><a href="#">الأوراق البحثية</a></li>
+                        <li><a href="#">الفيديوهات التعليمية</a></li>
+                        <li><a href="#">الاختبارات التفاعلية</a></li>
+                        <li><a href="#">الشهادات المعتمدة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> العنوان: مبنى الكيمياء، الحي الجامعي</li>
+                        <li><i class="fas fa-phone"></i> الهاتف: +966 12 345 6789</li>
+                        <li><i class="fas fa-envelope"></i> البريد: info@radiochem.edu.sa</li>
+                        <li><i class="fas fa-clock"></i> ساعات العمل: 8:00 ص - 5:00 م</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 بوابة الكيمياء الإشعاعية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Timeline animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.research-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Gallery hover effects
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // In a real implementation, this would open a lightbox
+                alert('سيتم فتح معرض الصور الكامل قريباً');
+            });
+        });
+
+        // Form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Show success message
+            alert('شكراً لتواصلك معنا! سنقوم بالرد على رسالتك في أقرب وقت ممكن.');
+            
+            // Reset form
+            event.target.reset();
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.right = '0';
+            navLinks.style.background = 'white';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.width = '100%';
+            navLinks.style.padding = '1rem';
+            navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+        });
+
+        // Add loading animation to images
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('load', function() {
+                this.style.opacity = '0';
+                setTimeout(() => {
+                    this.style.transition = 'opacity 0.5s ease';
+                    this.style.opacity = '1';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>

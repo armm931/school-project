@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المواد الخام الصناعية - أساس الصناعة الحديثة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #2563eb 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .resource-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .resource-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .slide-in {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .slide-in.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .progress-bar {
+            transition: width 1.5s ease-out;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-reverse space-x-4">
+                    <i class="fas fa-industry text-3xl"></i>
+                    <h1 class="text-2xl font-bold">المواد الخام الصناعية</h1>
+                </div>
+                <nav class="hidden md:flex space-x-reverse space-x-6">
+                    <a href="#oil-gas" class="hover:text-blue-200 transition">النفط والغاز</a>
+                    <a href="#coal" class="hover:text-blue-200 transition">الفحم</a>
+                    <a href="#minerals" class="hover:text-blue-200 transition">المعادن</a>
+                    <a href="#biological" class="hover:text-blue-200 transition">المصادر الحيوية</a>
+                </nav>
+                <button id="mobileMenuBtn" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">أساس الصناعة الحديثة</h2>
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+                    استكشف عالم المواد الخام الصناعية التي تشكل عمود الاقتصاد العالمي وتدعم التطور التكنولوجي
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="bg-white/20 backdrop-blur-sm rounded-lg px-6 py-3">
+                        <i class="fas fa-oil-can text-3xl mb-2"></i>
+                        <p class="font-semibold">الطاقة الأحفورية</p>
+                    </div>
+                    <div class="bg-white/20 backdrop-blur-sm rounded-lg px-6 py-3">
+                        <i class="fas fa-mountain text-3xl mb-2"></i>
+                        <p class="font-semibold">المعادن والخامات</p>
+                    </div>
+                    <div class="bg-white/20 backdrop-blur-sm rounded-lg px-6 py-3">
+                        <i class="fas fa-leaf text-3xl mb-2"></i>
+                        <p class="font-semibold">المصادر الحيوية</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-blue-600 mb-2 counter" data-target="95">0</div>
+                    <p class="text-gray-600">مليون برميل نفط يومياً</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-gray-700 mb-2 counter" data-target="8">0</div>
+                    <p class="text-gray-600">مليارات طن فحم سنوياً</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-yellow-600 mb-2 counter" data-target="20">0</div>
+                    <p class="text-gray-600">مليون طن معادن نادرة</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-green-600 mb-2 counter" data-target="180">0</div>
+                    <p class="text-gray-600">مليون طن زيوت نباتية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Oil and Gas Section -->
+    <section id="oil-gas" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">النفط والغاز الطبيعي</h2>
+                    <p class="text-lg text-gray-600">أهم مصادر الطاقة في العالم الحديث</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="slide-in">
+                        <div class="bg-white rounded-xl shadow-lg p-8">
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center ml-4 resource-icon">
+                                    <i class="fas fa-oil-can text-3xl text-blue-600"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-800">النفط الخام</h3>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-semibold text-gray-700 mb-2">التركيب الكيميائي</h4>
+                                    <p class="text-gray-600">خليط معقد من الهيدروكربونات يشمل:</p>
+                                    <ul class="list-disc list-inside mt-2 text-gray-600">
+                                        <li>البرافينات (الألكانات)</li>
+                                        <li>النفثينات (سيكلوألكانات)</li>
+                                        <li>الأروماتية</li>
+                                        <li>مركبات الكبريت والنيتروجين</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-gray-700 mb-2">الاستخدامات الرئيسية</h4>
+                                    <div class="flex flex-wrap gap-2 mt-2">
+                                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">الوقود</span>
+                                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">البلاستيك</span>
+                                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">المواد الكيميائية</span>
+                                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">الأسفلت</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slide-in">
+                        <div class="bg-white rounded-xl shadow-lg p-8">
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center ml-4 resource-icon">
+                                    <i class="fas fa-fire text-3xl text-green-600"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-800">الغاز الطبيعي</h3>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-semibold text-gray-700 mb-2">المكونات الرئيسية</h4>
+                                    <div class="space-y-2">
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-600">الميثان (CH₄)</span>
+                                            <span class="font-semibold">70-90%</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-600">الإيثان (C₂H₆)</span>
+                                            <span class="font-semibold">5-15%</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-600">البروبان (C₃H₈)</span>
+                                            <span class="font-semibold">1-10%</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-600">البيوتان (C₄H₁₀)</span>
+                                            <span class="font-semibold">1-5%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-gray-700 mb-2">مزايا الغاز الطبيعي</h4>
+                                    <ul class="list-disc list-inside text-gray-600">
+                                        <li>أنظف وقود أحفوري</li>
+                                        <li>كفاءة عالية في التوليد</li>
+                                        <li>سهولة النقل والخزن</li>
+                                        <li>تعدد الاستخدامات الصناعية</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Production Process -->
+                <div class="mt-12 bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">مراحل الإنتاج والتكرير</h3>
+                    <div class="grid md:grid-cols-4 gap-4">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 floating">
+                                <i class="fas fa-search text-3xl text-blue-600"></i>
+                            </div>
+                            <h4 class="font-semibold mb-2">الاستكشاف</h4>
+                            <p class="text-sm text-gray-600">المسح الجيولوجي وال seismic</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 floating" style="animation-delay: 0.5s">
+                                <i class="fas fa-drill text-3xl text-green-600"></i>
+                            </div>
+                            <h4 class="font-semibold mb-2">الحفر</h4>
+                            <p class="text-sm text-gray-600">آبار استكشافية وإنتاجية</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3 floating" style="animation-delay: 1s">
+                                <i class="fas fa-industry text-3xl text-yellow-600"></i>
+                            </div>
+                            <h4 class="font-semibold mb-2">التكرير</h4>
+                            <p class="text-sm text-gray-600">الفصل والتكرير البتروكيماوي</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3 floating" style="animation-delay: 1.5s">
+                                <i class="fas fa-truck text-3xl text-purple-600"></i>
+                            </div>
+                            <h4 class="font-semibold mb-2">التوزيع</h4>
+                            <p class="text-sm text-gray-600">النقل والتسويق العالمي</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coal Section -->
+    <section id="coal" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">الفحم</h2>
+                    <p class="text-lg text-gray-600">أقدم وأوفرة مصادر الطاقة الأحفورية</p>
+                </div>
+
+                <!-- Coal Types Tabs -->
+                <div class="bg-gray-100 rounded-xl p-6 mb-8">
+                    <div class="flex flex-wrap justify-center gap-4 mb-6">
+                        <button class="tab-btn bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold" data-tab="anthracite">
+                            أنثراسيت
+                        </button>
+                        <button class="tab-btn bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold" data-tab="bituminous">
+                            بيتوميني
+                        </button>
+                        <button class="tab-btn bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold" data-tab="subbituminous">
+                        شبه بيتوميني
+                        </button>
+                        <button class="tab-btn bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold" data-tab="lignite">
+                            ليغنايت
+                        </button>
+                    </div>
+
+                    <div id="anthracite" class="tab-content active">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-xl font-bold mb-4">الفحم الأنثراسيت</h4>
+                                <p class="text-gray-600 mb-4">أعلى درجات الفحم نضجاً وأكثرها نقاءً</p>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">محتوى الكربون</span>
+                                        <span class="font-semibold">86-97%</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">قيمة حرارية</span>
+                                        <span class="font-semibold">30-35 MJ/kg</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">الرطوبة</span>
+                                        <span class="font-semibold">أقل من 15%</span>
+                                    </div>
+                                </div>
+                                <div class="mt-6">
+                                    <h5 class="font-semibold mb-2">الاستخدامات:</h5>
+                                    <ul class="list-disc list-inside text-gray-600">
+                                        <li>التدفئة المنزلية</li>
+                                        <li>صناعة الفولاذ</li>
+                                        <li>توليد الكهرباء عالية الكفاءة</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-gray-800 rounded-lg p-6 text-white">
+                                <div class="text-center">
+                                    <i class="fas fa-fire-alt text-6xl text-orange-500 mb-4"></i>
+                                    <p class="text-lg">أكثر أنواع الفحم كفاءة في إنتاج الطاقة</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="bituminous" class="tab-content">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-xl font-bold mb-4">الفحم البيتوميني</h4>
+                                <p class="text-gray-600 mb-4">أكثر أنواع الفحم شيوعاً واستخداماً</p>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">محتوى الكربون</span>
+                                        <span class="font-semibold">76-86%</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">قيمة حرارية</span>
+                                        <span class="font-semibold">24-30 MJ/kg</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">الرطوبة</span>
+                                        <span class="font-semibold">2-15%</span>
+                                    </div>
+                                </div>
+                                <div class="mt-6">
+                                    <h5 class="font-semibold mb-2">الاستخدامات:</h5>
+                                    <ul class="list-disc list-inside text-gray-600">
+                                        <li>توليد الكهرباء</li>
+                                        <li>صناعة الأسمنت</li>
+                                        <li>إنتاج الفولاذ (ككوك)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-gray-700 rounded-lg p-6 text-white">
+                                <div class="text-center">
+                                    <i class="fas fa-industry text-6xl text-gray-400 mb-4"></i>
+                                    <p class="text-lg">العمود الفقري للصناعة الثقيلة</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="subbituminous" class="tab-content">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-xl font-bold mb-4">الفحم شبه البيتوميني</h4>
+                                <p class="text-gray-600 mb-4">درجة متوسطة بين البيتوميني والليغنايت</p>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">محتوى الكربون</span>
+                                        <span class="font-semibold">70-76%</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">قيمة حرارية</span>
+                                        <span class="font-semibold">18-24 MJ/kg</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">الرطوبة</span>
+                                        <span class="font-semibold">15-30%</span>
+                                    </div>
+                                </div>
+                                <div class="mt-6">
+                                    <h5 class="font-semibold mb-2">الاستخدامات:</h5>
+                                    <ul class="list-disc list-inside text-gray-600">
+                                        <li>توليد الكهرباء</li>
+                                        <li>التدفئة الصناعية</li>
+                                        <li>تحويله إلى غاز</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-gray-600 rounded-lg p-6 text-white">
+                                <div class="text-center">
+                                    <i class="fas fa-bolt text-6xl text-yellow-400 mb-4"></i>
+                                    <p class="text-lg">خيار اقتصادي لتوليد الطاقة</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="lignite" class="tab-content">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-xl font-bold mb-4">الفحم الليغنايت</h4>
+                                <p class="text-gray-600 mb-4">أقل درجات الفحم نضجاً وأكثرها رطوبة</p>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">محتوى الكربون</span>
+                                        <span class="font-semibold">60-70%</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">قيمة حرارية</span>
+                                        <span class="font-semibold">10-18 MJ/kg</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">الرطوبة</span>
+                                        <span class="font-semibold">30-45%</span>
+                                    </div>
+                                </div>
+                                <div class="mt-6">
+                                    <h5 class="font-semibold mb-2">الاستخدامات:</h5>
+                                    <ul class="list-disc list-inside text-gray-600">
+                                        <li>توليد الكهرباء محلياً</li>
+                                        <li>إنتاج الفحم البني</li>
+                                        <li>التدفئة في المناطق الباردة</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-gray-500 rounded-lg p-6 text-white">
+                                <div class="text-center">
+                                    <i class="fas fa-water text-6xl text-blue-400 mb-4"></i>
+                                    <p class="text-lg">فحم بني غني بالماء</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mining Methods -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold mb-4">
+                            <i class="fas fa-hard-hat ml-2"></i>التعدين السطحي
+                        </h3>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                <span>إزالة الطبقات العلوية من التربة والصخور</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                <span>مناسب للرواسب القريبة من السطح</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                <span>تكلفة إنتاج أقل</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                <span>إنتاجية أعلى</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold mb-4">
+                            <i class="fas fa-mountain ml-2"></i>التعدين تحت السطحي
+                        </h3>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                <span>حفر أنفاق وممرات تحت الأرض</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                <span>للرواسب العميقة</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                <span>تأثير بيئي أقل على السطح</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                <span>يتطلب مهارات تقنية عالية</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Minerals Section -->
+    <section id="minerals" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">المعادن والخامات</h2>
+                    <p class="text-lg text-gray-600">عناصر أساسية للصناعة والتكنولوجيا</p>
+                </div>
+
+                <!-- Minerals Categories -->
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3 resource-icon">
+                                <i class="fas fa-coins text-3xl text-yellow-600"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">المعادن الثمينة</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• الذهب (Au)</li>
+                            <li>• الفضة (Ag)</li>
+                            <li>• البلاتين (Pt)</li>
+                            <li>• البلاديوم (Pd)</li>
+                        </ul>
+                        <div class="mt-4 text-center">
+                            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">
+                                الإلكترونيات والمجوهرات
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3 resource-icon">
+                                <i class="fas fa-cube text-3xl text-gray-600"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">المعادن الصناعية</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• الحديد (Fe)</li>
+                            <li>• الألومنيوم (Al)</li>
+                            <li>• النحاس (Cu)</li>
+                            <li>• الزنك (Zn)</li>
+                        </ul>
+                        <div class="mt-4 text-center">
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">
+                                البناء والتصنيع
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3 resource-icon">
+                                <i class="fas fa-atom text-3xl text-purple-600"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">المعادن النادرة</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• الليثيوم (Li)</li>
+                            <li>• النيوديميوم (Nd)</li>
+                            <li>• التانتالوم (Ta)</li>
+                            <li>• الجاليوم (Ga)</li>
+                        </ul>
+                        <div class="mt-4 text-center">
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
+                                التكنولوجيا المتقدمة
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Processing Flow -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">مراحل معالجة المعادن</h3>
+                    <div class="relative">
+                        <div class="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-gray-300 -translate-y-1/2"></div>
+                        <div class="grid md:grid-cols-5 gap-4 relative">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-3 text-white font-bold pulse-animation">
+                                    1
+                                </div>
+                                <h4 class="font-semibold mb-1">التنقيب</h4>
+                                <p class="text-sm text-gray-600">اكتشاف الرواسب</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3 text-white font-bold pulse-animation" style="animation-delay: 0.2s">
+                                    2
+                                </div>
+                                <h4 class="font-semibold mb-1">الاستخراج</h4>
+                                <p class="text-sm text-gray-600">التعدين والتحميل</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-3 text-white font-bold pulse-animation" style="animation-delay: 0.4s">
+                                    3
+                                </div>
+                                <h4 class="font-semibold mb-1">التركيز</h4>
+                                <p class="text-sm text-gray-600">الفصل والغربلة</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-3 text-white font-bold pulse-animation" style="animation-delay: 0.6s">
+                                    4
+                                </div>
+                                <h4 class="font-semibold mb-1">الصهر</h4>
+                                <p class="text-sm text-gray-600">الاستخلاص الحراري</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-3 text-white font-bold pulse-animation" style="animation-delay: 0.8s">
+                                    5
+                                </div>
+                                <h4 class="font-semibold mb-1">التكرير</h4>
+                                <p class="text-sm text-gray-600">التنقية النهائية</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Minerals Table -->
+                <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">أهم المعادن واستخداماتها</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="border-b">
+                                    <th class="text-right py-3 px-4">المعدن</th>
+                                    <th class="text-center py-3 px-4">الرمز</th>
+                                    <th class="text-center py-3 px-4">الخصائص الرئيسية</th>
+                                    <th class="text-left py-3 px-4">الاستخدامات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="text-right py-3 px-4 font-semibold">الحديد</td>
+                                    <td class="text-center py-3 px-4">Fe</td>
+                                    <td class="text-center py-3 px-4 text-sm">قوي، مغناطيسي، وفير</td>
+                                    <td class="text-left py-3 px-4 text-sm">الفولاذ، البناء، الآلات</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="text-right py-3 px-4 font-semibold">الألومنيوم</td>
+                                    <td class="text-center py-3 px-4">Al</td>
+                                    <td class="text-center py-3 px-4 text-sm">خفيف، مقاوم للصدأ</td>
+                                    <td class="text-left py-3 px-4 text-sm">الطائرات، التغليف، الكابلات</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="text-right py-3 px-4 font-semibold">النحاس</td>
+                                    <td class="text-center py-3 px-4">Cu</td>
+                                    <td class="text-center py-3 px-4 text-sm">موصل جيد، مرن</td>
+                                    <td class="text-left py-3 px-4 text-sm">الكهرباء، السباكة، الإلكترونيات</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="text-right py-3 px-4 font-semibold">الليثيوم</td>
+                                    <td class="text-center py-3 px-4">Li</td>
+                                    <td class="text-center py-3 px-4 text-sm">خفيف جداً، تفاعلي</td>
+                                    <td class="text-left py-3 px-4 text-sm">البطاريات، الزجاج، الأدوية</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="text-right py-3 px-4 font-semibold">الذهب</td>
+                                    <td class="text-center py-3 px-4">Au</td>
+                                    <td class="text-center py-3 px-4 text-sm">ثمين، موصل ممتاز</td>
+                                    <td class="text-left py-3 px-4 text-sm">المجوهرات، الإلكترونيات، الاستثمار</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Biological Sources Section -->
+    <section id="biological" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">المصادر الحيوية</h2>
+                    <p class="text-lg text-gray-600">مواد خام متجددة من المصادر الطبيعية</p>
+                </div>
+
+                <!-- Biological Sources Grid -->
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Vegetable Oils -->
+                    <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-6">
+                            <div class="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 resource-icon">
+                                <i class="fas fa-seedling text-4xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800">الزيوت النباتية</h3>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-2">المصادر الرئيسية</h4>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div class="bg-white rounded-lg p-2 text-center text-sm">
+                                        <i class="fas fa-leaf text-green-600 mb-1"></i>
+                                        <p>زيت الزيتون</p>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-2 text-center text-sm">
+                                        <i class="fas fa-sun text-yellow-500 mb-1"></i>
+                                        <p>زيت عباد الشمس</p>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-2 text-center text-sm">
+                                        <i class="fas fa-tree text-green-700 mb-1"></i>
+                                        <p>زيت النخيل</p>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-2 text-center text-sm">
+                                        <i class="fas fa-corn text-yellow-600 mb-1"></i>
+                                        <p>زيت فول الصويا</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-2">الاستخدامات الصناعية</h4>
+                                <ul class="space-y-1 text-sm text-gray-600">
+                                    <li>• الوقود الحيوي (البيوديزل)</li>
+                                    <li>• الصابون ومستحضرات التجميل</li>
+                                    <li>• الطلاء والورنيش</li>
+                                    <li>• مواد التشحيم</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Starch -->
+                    <div class="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-6">
+                            <div class="w-24 h-24 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4 resource-icon">
+                                <i class="fas fa-bread-slice text-4xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800">النشا</h3>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-2">المصادر الرئيسية</h4>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div class="bg-white rounded-lg p-2 text-center text-sm">
+                                        <i class="fas fa-carrot text-orange-500 mb-1"></i>
+                                        <p>البطاطس</p>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-2 text-center text-sm">
+                                        <i class="fas fa-wheat-awn text-yellow-700 mb-1"></i>
+                                        <p>الذرة</p>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-2 text-center text-sm">
+                                        <i class="fas fa-seedling text-green-600 mb-1"></i>
+                                        <p>الأرز</p>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-2 text-center text-sm">
+                                        <i class="fas fa-leaf text-green-500 mb-1"></i>
+                                        <p>القمح</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-2">الاستخدامات الصناعية</h4>
+                                <ul class="space-y-1 text-sm text-gray-600">
+                                    <li>• صناعة الورق والكرتون</li>
+                                    <li>• المواد اللاصقة</li>
+                                    <li>• المنسوجات</li>
+                                    <li>• البلاستيك الحيوي</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sugar -->
+                    <div class="bg-gradient-to-br from-pink-50 to-rose-50 rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-6">
+                            <div class="w-24 h-24 bg-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 resource-icon">
+                                <i class="fas fa-candy-cane text-4xl text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800">السكر</h3>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-2">المصادر الرئيسية</h4>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div class="bg-white rounded-lg p-2 text-center text-sm">
+                                        <i class="fas fa-candy text-brown-600 mb-1"></i>
+                                        <p>قصب السكر</p>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-2 text-center text-sm">
+                                        <i class="fas fa-circle text-brown-500 mb-1"></i>
+                                        <p>بنجر السكر</p>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-2 text-center text-sm">
+                                        <i class="fas fa-apple-whole text-red-500 mb-1"></i>
+                                        <p>الفواكه</p>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-2 text-center text-sm">
+                                        <i class="fas fa-wheat-awn text-yellow-600 mb-1"></i>
+                                        <p>العسل</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-2">الاستخدامات الصناعية</h4>
+                                <ul class="space-y-1 text-sm text-gray-600">
+                                    <li>• الإيثانول الحيوي</li>
+                                    <li>• المواد الحافظة</li>
+                                    <li>• المستحضرات الصيدلانية</li>
+                                    <li>• صناعة الأغذية</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sustainability Section -->
+                <div class="mt-12 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+                        <i class="fas fa-recycle ml-2"></i>الاستدامة في المصادر الحيوية
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-semibold text-lg text-gray-700 mb-3">المزايا البيئية</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <div>
+                                        <p class="font-semibold">متجددة</p>
+                                        <p class="text-sm text-gray-600">يمكن إنتاجها بشكل مستمر</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <div>
+                                        <p class="font-semibold">حيادية الكربون</p>
+                                        <p class="text-sm text-gray-600">تمتص CO2 أثناء النمو</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <div>
+                                        <p class="font-semibold">قابلة للتحلل</p>
+                                        <p class="text-sm text-gray-600">تتحلل بشكل طبيعي</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg text-gray-700 mb-3">التحديات</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <i class="fas fa-exclamation-circle text-orange-500 ml-2 mt-1"></i>
+                                    <div>
+                                        <p class="font-semibold">منافسة الأراضي الزراعية</p>
+                                        <p class="text-sm text-gray-600">التأثير على الأمن الغذائي</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-exclamation-circle text-orange-500 ml-2 mt-1"></i>
+                                    <div>
+                                        <p class="font-semibold">استهلاك المياه</p>
+                                        <p class="text-sm text-gray-600">تحتاج كميات كبيرة من المياه</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-exclamation-circle text-orange-500 ml-2 mt-1"></i>
+                                    <div>
+                                        <p class="font-semibold">تكاليف الإنتاج</p>
+                                        <p class="text-sm text-gray-600">أعلى من المصادر التقليدية</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Impact Section -->
+    <section class="py-16 bg-gray-800 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-8">التأثير العالمي للمواد الخام</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                        <i class="fas fa-globe-americas text-5xl mb-4 text-blue-400"></i>
+                        <h3 class="text-xl font-bold mb-2">الاقتصاد العالمي</h3>
+                        <p>تشكل المواد الخام أساس التجارة الدولية وتؤثر على أسواق المال العالمية</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                        <i class="fas fa-industry text-5xl mb-4 text-green-400"></i>
+                        <h3 class="text-xl font-bold mb-2">التنمية الصناعية</h3>
+                        <p>تدعم التطور التكنولوجي والنمو الصناعي في جميع أنحاء العالم</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                        <i class="fas fa-leaf text-5xl mb-4 text-yellow-400"></i>
+                        <h3 class="text-xl font-bold mb-2">الاستدامة البيئية</h3>
+                        <p>التحول نحو مصادر طاقة نظيفة ومواد خام متجددة لمستقبل أفضل</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="mb-2">© 2024 المواد الخام الصناعية - موقع تعليمي</p>
+                <p class="text-gray-400">مصمم لتعزيز الوعي بأهمية المواد الخام في تطور الحضارة الإنسانية</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('hidden');
+            nav.classList.toggle('absolute');
+            nav.classList.toggle('top-full');
+            nav.classList.toggle('left-0');
+            nav.classList.toggle('right-0');
+            nav.classList.toggle('bg-blue-800');
+            nav.classList.toggle('p-4');
+            nav.classList.toggle('flex-col');
+            nav.classList.toggle('space-y-2');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Counter animation
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+
+        const countUp = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const increment = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(countUp, 10);
+                } else {
+                    counter.innerText = target;
+                }
+            });
+        };
+
+        // Intersection Observer for counter animation
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    countUp();
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        counters.forEach(counter => {
+            counterObserver.observe(counter.parentElement);
+        });
+
+        // Tabs functionality for coal types
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+                
+                // Remove active class from all buttons and contents
+                tabBtns.forEach(b => {
+                    b.classList.remove('bg-gray-700', 'text-white');
+                    b.classList.add('bg-gray-300', 'text-gray-700');
+                });
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Add active class to clicked button and corresponding content
+                btn.classList.remove('bg-gray-300', 'text-gray-700');
+                btn.classList.add('bg-gray-700', 'text-white');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Intersection Observer for slide-in animations
+        const slideElements = document.querySelectorAll('.slide-in');
+        
+        const slideObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        slideElements.forEach(el => {
+            slideObserver.observe(el);
+        });
+
+        // Add hover effects to resource icons
+        document.querySelectorAll('.resource-icon').forEach(icon => {
+            icon.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1) rotate(5deg)';
+            });
+            
+            icon.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+
+        // Progress bar animation (if any progress bars are added)
+        const progressBars = document.querySelectorAll('.progress-bar');
+        
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const width = entry.target.getAttribute('data-width');
+                    entry.target.style.width = width + '%';
+                }
+            });
+        });
+
+        progressBars.forEach(bar => {
+            progressObserver.observe(bar);
+        });
+    </script>
+</body>
+</html>

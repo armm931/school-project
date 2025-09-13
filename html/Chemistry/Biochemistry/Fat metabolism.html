@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأيض الدهني - تحلل وتركيب الأحماض الدهنية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --light-bg: #ecf0f1;
+            --dark-bg: #34495e;
+            --text-color: #2c3e50;
+            --white: #ffffff;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--gradient-1);
+            color: var(--white);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            background: var(--gradient-2);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        .section-header i {
+            font-size: 2rem;
+            color: var(--secondary-color);
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        /* Process Cards */
+        .process-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .process-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .process-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .process-card:hover::before {
+            opacity: 0.9;
+        }
+
+        .process-card-content {
+            position: relative;
+            z-index: 1;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .process-card:hover .process-card-content {
+            color: var(--white);
+        }
+
+        .process-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Animation Container */
+        .animation-container {
+            background: var(--light-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .molecule {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: bold;
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .molecule:hover {
+            transform: scale(1.2);
+            z-index: 10;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .comparison-table th {
+            background: var(--gradient-1);
+            color: var(--white);
+            font-weight: bold;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Interactive Quiz */
+        .quiz-container {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        .options {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .option {
+            background: var(--white);
+            padding: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .option:hover {
+            border-color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+        .option.correct {
+            background: var(--success-color);
+            color: var(--white);
+        }
+
+        .option.incorrect {
+            background: var(--accent-color);
+            color: var(--white);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--gradient-1);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .process-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-circle {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--light-bg);
+            border-top-color: var(--secondary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--dark-bg);
+            color: var(--white);
+            text-align: center;
+            border-radius: 6px;
+            padding: 0.5rem;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: var(--light-bg);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--gradient-3);
+            width: 0%;
+            transition: width 1s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-circle"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                <span>الأيض الدهني</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#beta-oxidation">تحلل الدهون</a></li>
+                <li><a href="#fatty-synthesis">تركيب الدهون</a></li>
+                <li><a href="#comparison">المقارنة</a></li>
+                <li><a href="#quiz">اختبار</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>الأيض الدهني</h1>
+            <p>استكشف عالم تحلل وتركيب الأحماض الدهنية - العمليات الحيوية الأساسية في جسم الإنسان</p>
+            <button class="btn" onclick="scrollToSection('beta-oxidation')">
+                <i class="fas fa-play"></i> ابدأ التعلم
+            </button>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Beta Oxidation Section -->
+        <section class="section" id="beta-oxidation">
+            <div class="section-header">
+                <i class="fas fa-fire"></i>
+                <h2>تحلل الأحماض الدهنية (β-oxidation)</h2>
+            </div>
+            
+            <p>تحلل الأحماض الدهنية هي العملية التي يتم فيها تكسير الأحماض الدهنية الطويلة السلسلة لإنتاج طاقة على شكل ATP. تحدث هذه العملية في الميتوكوندريا وتتضمن سلسلة من التفاعلات الكيميائية.</p>
+
+            <div class="process-cards">
+                <div class="process-card" onclick="showStep(1)">
+                    <div class="process-card-content">
+                        <h3><i class="fas fa-step-forward"></i> الخطوة 1</h3>
+                        <p>أكسدة الأحماض الدهنية إلى أسيل-CoA</p>
+                    </div>
+                </div>
+                <div class="process-card" onclick="showStep(2)">
+                    <div class="process-card-content">
+                        <h3><i class="fas fa-step-forward"></i> الخطوة 2</h3>
+                        <p>دورة الأكسدة (β-oxidation)</p>
+                    </div>
+                </div>
+                <div class="process-card" onclick="showStep(3)">
+                    <div class="process-card-content">
+                        <h3><i class="fas fa-step-forward"></i> الخطوة 3</h3>
+                        <p>إنتاج ATP عبر سلسلة نقل الإلكترون</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="animation-container" id="beta-animation">
+                <div class="molecule" style="left: 10%; top: 50%;" id="mol1">C16</div>
+                <div class="molecule" style="left: 30%; top: 30%;" id="mol2">C14</div>
+                <div class="molecule" style="left: 50%; top: 50%;" id="mol3">C12</div>
+                <div class="molecule" style="left: 70%; top: 30%;" id="mol4">C10</div>
+                <div class="molecule" style="left: 90%; top: 50%;" id="mol5">C8</div>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress" id="beta-progress"></div>
+            </div>
+        </section>
+
+        <!-- Fatty Acid Synthesis Section -->
+        <section class="section" id="fatty-synthesis">
+            <div class="section-header">
+                <i class="fas fa-plus-circle"></i>
+                <h2>تركيب الأحماض الدهنية</h2>
+            </div>
+            
+            <p>تركيب الأحماض الدهنية هي العملية العكسية لتحللها، حيث يتم بناء الأحماض الدهنية من وحدات أسيتيل-CoA. تحدث هذه العملية في سيتوبلازم الخلية وتتطلب طاقة على شكل ATP وNADPH.</p>
+
+            <div class="process-cards">
+                <div class="process-card" onclick="showSynthesisStep(1)">
+                    <div class="process-card-content">
+                        <h3><i class="fas fa-plus"></i> التفعيل</h3>
+                        <p>تحويل أسيتيل-CoA إلى مالونيل-CoA</p>
+                    </div>
+                </div>
+                <div class="process-card" onclick="showSynthesisStep(2)">
+                    <div class="process-card-content">
+                        <h3><i class="fas fa-link"></i> التكثيف</h3>
+                        <p>ربط وحدات الأسيتيل</p>
+                    </div>
+                </div>
+                <div class="process-card" onclick="showSynthesisStep(3)">
+                    <div class="process-card-content">
+                        <h3><i class="fas fa-check"></i> الإكمال</h3>
+                        <p>تشكيل السلسلة الدهنية الكاملة</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="animation-container" id="synthesis-animation">
+                <div class="molecule" style="left: 90%; top: 50%;" id="syn-mol1">C2</div>
+                <div class="molecule" style="left: 70%; top: 30%;" id="syn-mol2">C4</div>
+                <div class="molecule" style="left: 50%; top: 50%;" id="syn-mol3">C8</div>
+                <div class="molecule" style="left: 30%; top: 30%;" id="syn-mol4">C12</div>
+                <div class="molecule" style="left: 10%; top: 50%;" id="syn-mol5">C16</div>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress" id="synthesis-progress"></div>
+            </div>
+        </section>
+
+        <!-- Comparison Section -->
+        <section class="section" id="comparison">
+            <div class="section-header">
+                <i class="fas fa-balance-scale"></i>
+                <h2>مقارنة بين تحلل وتركيب الأحماض الدهنية</h2>
+            </div>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>الميزة</th>
+                        <th>تحلل الأحماض الدهنية</th>
+                        <th>تركيب الأحماض الدهنية</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>الموقع الخلوي</strong></td>
+                        <td>الميتوكوندريا</td>
+                        <td>السيتوبلازم</td>
+                    </tr>
+                    <tr>
+                        <td><strong>الهدف الرئيسي</strong></td>
+                        <td>إنتاج الطاقة</td>
+                        <td>تخزين الطاقة</td>
+                    </tr>
+                    <tr>
+                        <td><strong>الإنزيمات</strong></td>
+                        <td>مجمع تحلل الأحماض الدهنية</td>
+                        <td>إنزيم أسيلاز-ACP سينثاز</td>
+                    </tr>
+                    <tr>
+                        <td><strong>النواقل المساعدة</strong></td>
+                        <td>NAD+, FAD</td>
+                        <td>NADPH, ATP</td>
+                    </tr>
+                    <tr>
+                        <td><strong>المنظم الرئيسي</strong></td>
+                        <td>الجلوكاجون، الأدرينالين</td>
+                        <td>الأنسولين</td>
+                    </tr>
+                    <tr>
+                        <td><strong>المنتجات</strong></td>
+                        <td>أسيتيل-CoA, NADH, FADH2</td>
+                        <td>أحماض دهنية طويلة السلسلة</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Quiz Section -->
+        <section class="section" id="quiz">
+            <div class="section-header">
+                <i class="fas fa-question-circle"></i>
+                <h2>اختبار تفاعلي</h2>
+            </div>
+
+            <div class="quiz-container">
+                <div class="question" id="question">
+                    أين يحدث تحلل الأحماض الدهنية في الخلية؟
+                </div>
+                <div class="options" id="options">
+                    <div class="option" onclick="selectOption(this, false)">النواة</div>
+                    <div class="option" onclick="selectOption(this, true)">الميتوكوندريا</div>
+                    <div class="option" onclick="selectOption(this, false)">الشبكة الإندوبلازمية</div>
+                    <div class="option" onclick="selectOption(this, false)">جهاز جولجي</div>
+                </div>
+                <button class="btn" onclick="nextQuestion()">السؤال التالي</button>
+                <div id="score">النتيجة: 0/0</div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 موقع الأيض الدهني. جميع الحقوق محفوظة.</p>
+        <p>تم تصميم هذا الموقع لأغراض تعليمية</p>
+    </footer>
+
+    <script>
+        // Hide loader when page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Beta Oxidation Animation
+        let betaStep = 0;
+        function showStep(step) {
+            betaStep = step;
+            const molecules = document.querySelectorAll('#beta-animation .molecule');
+            molecules.forEach((mol, index) => {
+                if (index < step) {
+                    mol.style.opacity = '1';
+                    mol.style.transform = 'scale(1.2)';
+                } else {
+                    mol.style.opacity = '0.3';
+                    mol.style.transform = 'scale(1)';
+                }
+            });
+            
+            const progress = (step / 5) * 100;
+            document.getElementById('beta-progress').style.width = progress + '%';
+        }
+
+        // Synthesis Animation
+        let synthesisStep = 0;
+        function showSynthesisStep(step) {
+            synthesisStep = step;
+            const molecules = document.querySelectorAll('#synthesis-animation .molecule');
+            molecules.forEach((mol, index) => {
+                if (index < step) {
+                    mol.style.opacity = '1';
+                    mol.style.transform = 'scale(1.2)';
+                } else {
+                    mol.style.opacity = '0.3';
+                    mol.style.transform = 'scale(1)';
+                }
+            });
+            
+            const progress = (step / 5) * 100;
+            document.getElementById('synthesis-progress').style.width = progress + '%';
+        }
+
+        // Quiz functionality
+        const quizQuestions = [
+            {
+                question: "أين يحدث تحلل الأحماض الدهنية في الخلية؟",
+                options: ["النواة", "الميتوكوندريا", "الشبكة الإندوبلازمية", "جهاز جولجي"],
+                correct: 1
+            },
+            {
+                question: "ما هو الناقل المساعد الرئيسي في تركيب الأحماض الدهنية؟",
+                options: ["NAD+", "FAD", "NADPH", "ATP فقط"],
+                correct: 2
+            },
+            {
+                question: "ما هو عدد ذرات الكربون التي تزال في كل دورة من β-oxidation؟",
+                options: ["1", "2", "3", "4"],
+                correct: 1
+            },
+            {
+                question: "أين يحدث تركيب الأحماض الدهنية؟",
+                options: ["الميتوكوندريا", "السيتوبلازم", "النواة", "غشاء الخلية"],
+                correct: 1
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let selectedOption = null;
+
+        function selectOption(element, isCorrect) {
+            const options = document.querySelectorAll('.option');
+            options.forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            selectedOption = isCorrect;
+        }
+
+        function nextQuestion() {
+            if (selectedOption === null) {
+                alert('الرجاء اختيار إجابة');
+                return;
+            }
+
+            if (selectedOption) {
+                score++;
+            }
+
+            const options = document.querySelectorAll('.option');
+            options.forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+            });
+
+            currentQuestion++;
+            selectedOption = null;
+
+            if (currentQuestion < quizQuestions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function loadQuestion() {
+            const question = quizQuestions[currentQuestion];
+            document.getElementById('question').textContent = question.question;
+            
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                optionDiv.textContent = option;
+                optionDiv.onclick = () => selectOption(optionDiv, index === question.correct);
+                optionsContainer.appendChild(optionDiv);
+            });
+
+            document.getElementById('score').textContent = `النتيجة: ${score}/${currentQuestion}`;
+        }
+
+        function showResults() {
+            const quizContainer = document.querySelector('.quiz-container');
+            quizContainer.innerHTML = `
+                <h2>انتهى الاختبار!</h2>
+                <p>نتيجتك النهائية: ${score}/${quizQuestions.length}</p>
+                <p>${score >= quizQuestions.length * 0.7 ? 'ممتاز! لقد أتقنت الموضوع' : 'جيد! يمكنك المراجعة مرة أخرى'}</p>
+                <button class="btn" onclick="restartQuiz()">إعادة الاختبار</button>
+            `;
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            selectedOption = null;
+            const quizContainer = document.querySelector('.quiz-container');
+            quizContainer.innerHTML = `
+                <div class="question" id="question"></div>
+                <div class="options" id="options"></div>
+                <button class="btn" onclick="nextQuestion()">السؤال التالي</button>
+                <div id="score">النتيجة: 0/0</div>
+            `;
+            loadQuestion();
+        }
+
+        // Initialize quiz
+        loadQuestion();
+
+        // Add hover effects to molecules
+        document.querySelectorAll('.molecule').forEach(molecule => {
+            molecule.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 0 20px rgba(52, 152, 219, 0.8)';
+            });
+            
+            molecule.addEventListener('mouseleave', function() {
+                this.style.boxShadow = 'none';
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+    </script>
+</body>
+</html>

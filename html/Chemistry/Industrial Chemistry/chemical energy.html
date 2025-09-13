@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الطاقة الكيميائية - عالم الطاقة المخزنة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #f59e0b 0%, #dc2626 100%);
+        }
+        
+        .energy-gradient-1 {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+        
+        .energy-gradient-2 {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        
+        .energy-gradient-3 {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .molecule-animation {
+            animation: rotate 10s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .energy-flow {
+            animation: flow 3s ease-in-out infinite;
+        }
+        
+        @keyframes flow {
+            0%, 100% { transform: translateX(0); opacity: 0.7; }
+            50% { transform: translateX(20px); opacity: 1; }
+        }
+        
+        .battery-charge {
+            animation: charge 2s ease-in-out infinite;
+        }
+        
+        @keyframes charge {
+            0%, 100% { transform: scaleY(0.3); }
+            50% { transform: scaleY(1); }
+        }
+        
+        .pulse-energy {
+            animation: pulse-energy 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-energy {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7); }
+            50% { box-shadow: 0 0 0 20px rgba(251, 191, 36, 0); }
+        }
+        
+        .reaction-bubble {
+            animation: bubble 4s ease-in-out infinite;
+        }
+        
+        @keyframes bubble {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+        
+        .flame-animation {
+            animation: flicker 1.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes flicker {
+            0% { transform: scaleY(1); opacity: 1; }
+            100% { transform: scaleY(1.1); opacity: 0.8; }
+        }
+        
+        .solar-rotation {
+            animation: solar-rotate 20s linear infinite;
+        }
+        
+        @keyframes solar-rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-reverse space-x-4">
+                    <i class="fas fa-atom text-3xl"></i>
+                    <h1 class="text-3xl font-bold">الطاقة الكيميائية</h1>
+                </div>
+                <nav class="hidden md:flex space-x-reverse space-x-6">
+                    <a href="#introduction" class="hover:text-yellow-200 transition">مقدمة</a>
+                    <a href="#sources" class="hover:text-yellow-200 transition">المصادر</a>
+                    <a href="#conversion" class="hover:text-yellow-200 transition">التحويل</a>
+                    <a href="#applications" class="hover:text-yellow-200 transition">التطبيقات</a>
+                    <a href="#renewable" class="hover:text-yellow-200 transition">المتجددة</a>
+                    <a href="#future" class="hover:text-yellow-200 transition">المستقبل</a>
+                </nav>
+                <button id="mobileMenuBtn" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 bg-gradient-to-br from-orange-50 to-red-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">عالم الطاقة الكيميائية</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    استكشف كيف تخزن الطاقة في الروابط الكيميائية وتتحول إلى أشكال مفيدة
+                </p>
+            </div>
+            
+            <!-- Energy Cards -->
+            <div class="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-bolt text-2xl text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">الطاقة المخزنة</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm text-center">
+                        في الروابط الكيميائية بين الذرات
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-fire text-2xl text-green-600"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">الاحتراق</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm text-center">
+                        تحويل الطاقة إلى حرارة
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 mx-auto bg-purple-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-battery-full text-2xl text-purple-600"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">البطاريات</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm text-center">
+                        تخزين وتحويل الطاقة الكهربائية
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 mx-auto bg-yellow-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-leaf text-2xl text-yellow-600"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">الطاقة الحيوية</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm text-center">
+                        من المصادر العضوية المتجددة
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="introduction" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                            <i class="fas fa-atom text-orange-500 ml-3"></i>
+                            ما هي الطاقة الكيميائية؟
+                        </h2>
+                        <p class="text-gray-600 mb-4">
+                            الطاقة الكيميائية هي شكل من أشكال الطاقة المخزنة في الروابط الكيميائية بين الذرات والجزيئات. عندما تحدث التفاعلات الكيميائية، يتم كسر هذه الروابط وتكوين روابط جديدة، مما يؤدي إلى تحرير أو امتصاص الطاقة.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-orange-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">الطاقة الكامنة</h4>
+                                    <p class="text-gray-600 text-sm">مخزنة في الروابط الكيميائية للمواد</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-orange-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">التحويل</h4>
+                                    <p class="text-gray-600 text-sm">يمكن تحويلها إلى حرارية أو كهربائية أو ميكانيكية</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-orange-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">الأهمية</h4>
+                                    <p class="text-gray-600 text-sm">أساس معظم مصادر الطاقة المستخدمة في العالم</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="bg-gradient-to-br from-orange-100 to-red-100 rounded-2xl p-8">
+                            <div class="text-center">
+                                <i class="fas fa-atom text-8xl text-orange-600 molecule-animation"></i>
+                            </div>
+                            <div class="mt-6 space-y-3">
+                                <div class="bg-white/80 backdrop-blur rounded-lg p-3">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-semibold">طاقة الربط</span>
+                                        <span class="text-orange-600 font-bold">347 kJ/mol</span>
+                                    </div>
+                                </div>
+                                <div class="bg-white/80 backdrop-blur rounded-lg p-3">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-semibold">طاقة التفكك</span>
+                                        <span class="text-red-600 font-bold">+413 kJ/mol</span>
+                                    </div>
+                                </div>
+                                <div class="bg-white/80 backdrop-blur rounded-lg p-3">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-semibold">الطاقة الصافية</span>
+                                        <span class="text-green-600 font-bold">-66 kJ/mol</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources Section -->
+    <section id="sources" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">مصادر الطاقة الكيميائية</h2>
+                    <p class="text-lg text-gray-600">
+                        المصادر الرئيسية للطاقة الكيميائية في الطبيعة والصناعة
+                    </p>
+                </div>
+
+                <!-- Energy Sources Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Fossil Fuels -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-gray-800 p-6 text-white text-center">
+                            <i class="fas fa-oil-can text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">الوقود الأحفوري</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-gray-600 mt-1 ml-2"></i>
+                                    <span>البترول والغاز الطبيعي</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-gray-600 mt-1 ml-2"></i>
+                                    <span>الفحم</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-gray-600 mt-1 ml-2"></i>
+                                    <span>الزيت الصخري</span>
+                                </li>
+                            </ul>
+                            <div class="mt-4 bg-gray-100 rounded-lg p-3">
+                                <p class="text-sm text-gray-800">
+                                    <i class="fas fa-chart-line ml-2"></i>
+                                    80% من استهلاك الطاقة العالمي
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Batteries -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-blue-600 p-6 text-white text-center">
+                            <i class="fas fa-battery-three-quarters text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">البطاريات</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-blue-600 mt-1 ml-2"></i>
+                                    <span>بطاريات الليثيوم أيون</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-blue-600 mt-1 ml-2"></i>
+                                    <span>بطاريات الرصاص الحمضية</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-blue-600 mt-1 ml-2"></i>
+                                    <span>بطاريات أيونات الصوديوم</span>
+                                </li>
+                            </ul>
+                            <div class="mt-4 bg-blue-50 rounded-lg p-3">
+                                <p class="text-sm text-blue-800">
+                                    <i class="fas fa-bolt ml-2"></i>
+                                    كفاءة تخزين تصل إلى 95%
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fuel Cells -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-green-600 p-6 text-white text-center">
+                            <i class="fas fa-industry text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">خلايا الوقود</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-green-600 mt-1 ml-2"></i>
+                                    <span>خلايا الهيدروجين</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-green-600 mt-1 ml-2"></i>
+                                    <span>خلايا الميثانول</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-green-600 mt-1 ml-2"></i>
+                                    <span>خلايا الأكسيد الصلب</span>
+                                </li>
+                            </ul>
+                            <div class="mt-4 bg-green-50 rounded-lg p-3">
+                                <p class="text-sm text-green-800">
+                                    <i class="fas fa-leaf ml-2"></i>
+                                    انبعاثات صفرية من الماء
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Biofuels -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-yellow-600 p-6 text-white text-center">
+                            <i class="fas fa-seedling text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">الوقود الحيوي</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-yellow-600 mt-1 ml-2"></i>
+                                    <span>الإيثانول الحيوي</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-yellow-600 mt-1 ml-2"></i>
+                                    <span>الديزل الحيوي</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-yellow-600 mt-1 ml-2"></i>
+                                    <span>الغاز الحيوي</span>
+                                </li>
+                            </ul>
+                            <div class="mt-4 bg-yellow-50 rounded-lg p-3">
+                                <p class="text-sm text-yellow-800">
+                                    <i class="fas fa-recycle ml-2"></i>
+                                    مصدر متجدد وقابل للتجديد
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Explosives -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-red-600 p-6 text-white text-center">
+                            <i class="fas fa-bomb text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">المتفجرات</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-red-600 mt-1 ml-2"></i>
+                                    <span>TNT</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-red-600 mt-1 ml-2"></i>
+                                    <span>نيتروجليسرين</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-red-600 mt-1 ml-2"></i>
+                                    <span>ديناميت</span>
+                                </li>
+                            </ul>
+                            <div class="mt-4 bg-red-50 rounded-lg p-3">
+                                <p class="text-sm text-red-800">
+                                    <i class="fas fa-exclamation-triangle ml-2"></i>
+                                    تحرير طاقة هائلة بسرعة
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Food Energy -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-purple-600 p-6 text-white text-center">
+                            <i class="fas fa-apple-alt text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">طاقة الغذاء</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-purple-600 mt-1 ml-2"></i>
+                                    <span>الكربوهيدرات</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-purple-600 mt-1 ml-2"></i>
+                                    <span>البروتينات</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-purple-600 mt-1 ml-2"></i>
+                                    <span>الدهون</span>
+                                </li>
+                            </ul>
+                            <div class="mt-4 bg-purple-50 rounded-lg p-3">
+                                <p class="text-sm text-purple-800">
+                                    <i class="fas fa-heartbeat ml-2"></i>
+                                    4-9 كيلو كالوري/جرام
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Energy Conversion Section -->
+    <section id="conversion" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">تحويل الطاقة الكيميائية</h2>
+                    <p class="text-lg text-gray-600">
+                        كيف يتم تحويل الطاقة الكيميائية إلى أشكال أخرى مفيدة
+                    </p>
+                </div>
+
+                <!-- Conversion Process Animation -->
+                <div class="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-8 mb-8">
+                    <h3 class="text-xl font-bold text-orange-800 mb-6 text-center">عمليات تحويل الطاقة</h3>
+                    
+                    <div class="relative">
+                        <svg viewBox="0 0 1200 400" class="w-full h-auto">
+                            <!-- Chemical Energy -->
+                            <g transform="translate(150, 200)">
+                                <circle r="60" fill="#f59e0b" class="pulse-energy"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">طاقة كيميائية</text>
+                                <text y="-90" text-anchor="middle" font-size="14">مخزنة في الروابط</text>
+                            </g>
+                            
+                            <!-- To Thermal -->
+                            <g transform="translate(400, 100)">
+                                <rect x="-60" y="-40" width="120" height="80" rx="10" fill="#dc2626" class="flame-animation"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">طاقة حرارية</text>
+                                <text y="-60" text-anchor="middle" font-size="14">الاحتراق</text>
+                            </g>
+                            
+                            <!-- To Electrical -->
+                            <g transform="translate(400, 300)">
+                                <rect x="-60" y="-40" width="120" height="80" rx="10" fill="#3b82f6"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">طاقة كهربائية</text>
+                                <text y="60" text-anchor="middle" font-size="14">البطاريات/خلايا الوقود</text>
+                            </g>
+                            
+                            <!-- To Mechanical -->
+                            <g transform="translate(800, 100)">
+                                <circle r="50" fill="#10b981"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">طاقة ميكانيكية</text>
+                                <text y="-70" text-anchor="middle" font-size="14">المحركات</text>
+                            </g>
+                            
+                            <!-- To Light -->
+                            <g transform="translate(800, 300)">
+                                <circle r="50" fill="#fbbf24"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">طاقة ضوئية</text>
+                                <text y="70" text-anchor="middle" font-size="14">الإضاءة</text>
+                            </g>
+                            
+                            <!-- Arrows -->
+                            <path d="M 210 200 Q 300 150 340 100" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-orange)" class="energy-flow"/>
+                            <path d="M 210 200 Q 300 250 340 300" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-orange)" class="energy-flow"/>
+                            <path d="M 460 100 Q 600 100 750 100" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-orange)" class="energy-flow"/>
+                            <path d="M 460 300 Q 600 300 750 300" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-orange)" class="energy-flow"/>
+                            
+                            <!-- Arrow marker -->
+                            <defs>
+                                <marker id="arrowhead-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Conversion Methods -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-orange-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-orange-800 mb-4">
+                            <i class="fas fa-fire ml-2"></i>التحويل إلى طاقة حرارية
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-orange-700 mb-2">الاحتراق</h4>
+                                <p class="text-gray-600 text-sm">تفاعل مادة مع الأكسجين لتحرير الطاقة الحرارية</p>
+                                <div class="mt-2 bg-orange-100 rounded p-2 text-center">
+                                    <span class="text-sm font-mono">CH₄ + 2O₂ → CO₂ + 2H₂O + حرارة</span>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-orange-700 mb-2">التفاعلات الأكسدة-اختزال</h4>
+                                <p class="text-gray-600 text-sm">تفاعلات تحرر طاقة عند انتقال الإلكترونات</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-4">
+                            <i class="fas fa-bolt ml-2"></i>التحويل إلى طاقة كهربائية
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-blue-700 mb-2">البطاريات</h4>
+                                <p class="text-gray-600 text-sm">تحويل الطاقة الكيميائية مباشرة إلى كهرباء</p>
+                                <div class="mt-2 bg-blue-100 rounded p-2 text-center">
+                                    <span class="text-sm font-mono">Zn + Cu²⁺ → Zn²⁺ + Cu + طاقة</span>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-blue-700 mb-2">خلايا الوقود</h4>
+                                <p class="text-gray-600 text-sm">توليد الكهرباء من التفاعلات الكهروكيميائية</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Efficiency Comparison -->
+                <div class="mt-8 bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-chart-bar ml-2"></i>كفاءة التحويل
+                    </h3>
+                    <div class="grid md:grid-cols-4 gap-4">
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <h4 class="font-semibold text-gray-700 mb-2">محركات الاحتراق</h4>
+                            <div class="relative pt-1">
+                                <div class="flex mb-2 items-center justify-between">
+                                    <div></div>
+                                    <div class="text-right">
+                                        <span class="text-xs font-semibold inline-block text-red-600">
+                                            20-30%
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-red-200">
+                                    <div style="width:25%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <h4 class="font-semibold text-gray-700 mb-2">محركات الديزل</h4>
+                            <div class="relative pt-1">
+                                <div class="flex mb-2 items-center justify-between">
+                                    <div></div>
+                                    <div class="text-right">
+                                        <span class="text-xs font-semibold inline-block text-orange-600">
+                                            30-40%
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-orange-200">
+                                    <div style="width:35%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-orange-500"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <h4 class="font-semibold text-gray-700 mb-2">البطاريات</h4>
+                            <div class="relative pt-1">
+                                <div class="flex mb-2 items-center justify-between">
+                                    <div></div>
+                                    <div class="text-right">
+                                        <span class="text-xs font-semibold inline-block text-blue-600">
+                                            85-95%
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200">
+                                    <div style="width:90%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <h4 class="font-semibold text-gray-700 mb-2">خلايا الوقود</h4>
+                            <div class="relative pt-1">
+                                <div class="flex mb-2 items-center justify-between">
+                                    <div></div>
+                                    <div class="text-right">
+                                        <span class="text-xs font-semibold inline-block text-green-600">
+                                            40-60%
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-green-200">
+                                    <div style="width:50%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">تطبيقات الطاقة الكيميائية</h2>
+                    <p class="text-lg text-gray-600">
+                        الاستخدامات العملية للطاقة الكيميائية في حياتنا اليومية
+                    </p>
+                </div>
+
+                <!-- Application Cards -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-car text-3xl text-red-600"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">النقل</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li>• محركات السيارات (بنزين، ديزل)</li>
+                            <li>• السيارات الكهربائية (بطاريات)</li>
+                            <li>• الطائرات (وقود الطيران)</li>
+                            <li>• السفن (وقود ثقيل)</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-yellow-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-home text-3xl text-yellow-600"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">المنزل</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li>• التدفئة (غاز طبيعي، زيت)</li>
+                            <li>• الطهي (غاز، كهرباء)</li>
+                            <li>• الإضاءة (كهرباء)</li>
+                            <li>• التبريد (كهرباء)</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-industry text-3xl text-blue-600"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">الصناعة</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li>• توليد الكهرباء</li>
+                            <li>• إنتاج الأسمدة</li>
+                            <li>• صناعة البلاستيك</li>
+                            <li>• تعدين المعادن</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-seedling text-3xl text-green-600"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">الزراعة</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li>• جرارات (ديزل)</li>
+                            <li>• مضخات الري (كهرباء)</li>
+                            <li>• الأسمدة الكيميائية</li>
+                            <li>• المبيدات الحشرية</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-purple-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-mobile-alt text-3xl text-purple-600"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">التكنولوجيا</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li>• الهواتف الذكية (بطاريات)</li>
+                            <li>• الحواسيب (كهرباء)</li>
+                            <li>• الأجهزة الإلكترونية</li>
+                            <li>• شبكات الاتصالات</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-pink-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-heartbeat text-3xl text-pink-600"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">الطب</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li>• أجهزة طبية (كهرباء)</li>
+                            <li>• الأدوية والمستحضرات</li>
+                            <li>• التشخيص المختبري</li>
+                            <li>• العلاج الكيميائي</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Case Study -->
+                <div class="mt-12 bg-gradient-to-r from-blue-50 to-green-50 rounded-xl p-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">
+                        <i class="fas fa-lightbulb text-yellow-500 ml-2"></i>
+                        دراسة حالة: السيارات الكهربائية
+                    </h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-lg p-6 text-center">
+                            <i class="fas fa-battery-full text-4xl text-green-600 mb-3"></i>
+                            <h4 class="font-semibold mb-2">تخزين الطاقة</h4>
+                            <p class="text-sm text-gray-600">بطاريات ليثيوم أيون عالية الكفاءة</p>
+                            <div class="mt-3">
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
+                                    60-100 kWh
+                                </span>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg p-6 text-center">
+                            <i class="fas fa-charging-station text-4xl text-blue-600 mb-3"></i>
+                            <h4 class="font-semibold mb-2">الشحن</h4>
+                            <p class="text-sm text-gray-600">شحن سريع في محطات خاصة</p>
+                            <div class="mt-3">
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                                    80% في 30 دقيقة
+                                </span>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg p-6 text-center">
+                            <i class="fas fa-leaf text-4xl text-green-600 mb-3"></i>
+                            <h4 class="font-semibold mb-2">البيئة</h4>
+                            <p class="text-sm text-gray-600">صفر انبعاثات أثناء التشغيل</p>
+                            <div class="mt-3">
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
+                                    -60% CO2
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Renewable Energy Section -->
+    <section id="renewable" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">الطاقة الكيميائية المتجددة</h2>
+                    <p class="text-lg text-gray-600">
+                        مصادر طاقة كيميائية نظيفة ومستدامة
+                    </p>
+                </div>
+
+                <!-- Renewable Sources -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Bioenergy -->
+                    <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-8">
+                        <h3 class="text-2xl font-bold text-green-800 mb-6">
+                            <i class="fas fa-leaf ml-3"></i>الطاقة الحيوية
+                        </h3>
+                        <div class="space-y-6">
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-green-700 mb-2">الإيثانول الحيوي</h4>
+                                <p class="text-gray-600 text-sm mb-2">يُنتج من تخمير السكريات في المحاصيل</p>
+                                <div class="bg-green-100 rounded p-2 text-center">
+                                    <span class="text-sm font-mono">C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂</span>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-green-700 mb-2">الديزل الحيوي</h4>
+                                <p class="text-gray-600 text-sm mb-2">يُنتج من الزيوت النباتية والدهون</p>
+                                <div class="bg-green-100 rounded p-2 text-center">
+                                    <span class="text-sm">تقليل انبعاثات CO2 بنسبة 78%</span>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-green-700 mb-2">الغاز الحيوي</h4>
+                                <p class="text-gray-600 text-sm mb-2">يُنتج من تحلل المواد العضوية</p>
+                                <div class="bg-green-100 rounded p-2 text-center">
+                                    <span class="text-sm">الميثان: 50-75%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hydrogen Energy -->
+                    <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-8">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-6">
+                            <i class="fas fa-atom ml-3"></i>طاقة الهيدروجين
+                        </h3>
+                        <div class="space-y-6">
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-blue-700 mb-2">الإنتاج</h4>
+                                <p class="text-gray-600 text-sm mb-2">تحليل الماء كهربائياً</p>
+                                <div class="bg-blue-100 rounded p-2 text-center">
+                                    <span class="text-sm font-mono">2H₂O → 2H₂ + O₂</span>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-blue-700 mb-2">التخزين</h4>
+                                <p class="text-gray-600 text-sm mb-2">ضغط عالٍ أو هيدريدات معدنية</p>
+                                <div class="bg-blue-100 rounded p-2 text-center">
+                                    <span class="text-sm">كثافة طاقة: 142 MJ/kg</span>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-blue-700 mb-2">الاستخدام</h4>
+                                <p class="text-gray-600 text-sm mb-2">خلايا وقود الهيدروجين</p>
+                                <div class="bg-blue-100 rounded p-2 text-center">
+                                    <span class="text-sm">انبعاثات: ماء فقط</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advantages -->
+                <div class="mt-12 bg-gray-50 rounded-xl p-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">مميزات الطاقة الكيميائية المتجددة</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto bg-green-500 rounded-full flex items-center justify-center mb-3 reaction-bubble">
+                                <i class="fas fa-recycle text-2xl text-white"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-800">تجددية</h4>
+                            <p class="text-sm text-gray-600 mt-1">مصادر لا تنضب</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto bg-blue-500 rounded-full flex items-center justify-center mb-3 reaction-bubble">
+                                <i class="fas fa-leaf text-2xl text-white"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-800">نظيفة</h4>
+                            <p class="text-sm text-gray-600 mt-1">انبعاثات منخفضة</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto bg-purple-500 rounded-full flex items-center justify-center mb-3 reaction-bubble">
+                                <i class="fas fa-globe text-2xl text-white"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-800">مستدامة</h4>
+                            <p class="text-sm text-gray-600 mt-1">للأجيال القادمة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Section -->
+    <section id="future" class="py-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-4">مستقبل الطاقة الكيميائية</h2>
+                <p class="text-lg text-gray-300 mb-12">الابتكارات والتوجهات المستقبلية</p>
+                
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+                        <i class="fas fa-microchip text-5xl text-blue-400 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3">البطاريات المتقدمة</h3>
+                        <ul class="text-gray-300 text-sm space-y-2 text-right">
+                            <li>• بطاريات الحالة الصلبة</li>
+                            <li>• بطاريات الليثيوم الكبريت</li>
+                            <li>• بطاريات الهواء</li>
+                            <li>• كثافة طاقة أعلى</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+                        <i class="fas fa-solar-panel text-5xl text-yellow-400 mb-4 solar-rotation"></i>
+                        <h3 class="text-xl font-bold mb-3">الوقود الاصطناعي</h3>
+                        <ul class="text-gray-300 text-sm space-y-2 text-right">
+                            <li>• وقود الهيدروجين الأخضر</li>
+                            <li>• الميثان الاصطناعي</li>
+                            <li>• الأمونيا الخضراء</li>
+                            <li>• تخزين الطاقة على المدى الطويل</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+                        <i class="fas fa-dna text-5xl text-green-400 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3">الطاقة الحيوية الجديدة</h3>
+                        <ul class="text-gray-300 text-sm space-y-2 text-right">
+                            <li>• الطحالب كوقود</li>
+                            <li>• نفايات المحاصيل</li>
+                            <li>• التخمير المتقدم</li>
+                            <li>• كفاءة إنتاج أعلى</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-orange-500 to-red-500 rounded-xl p-8">
+                    <h3 class="text-2xl font-bold mb-4">تحديات وفرص</h3>
+                    <div class="grid md:grid-cols-2 gap-6 text-right">
+                        <div>
+                            <h4 class="font-semibold mb-2">التحديات</h4>
+                            <ul class="text-sm space-y-1">
+                                <li>• التكلفة العالية</li>
+                                <li>• كفاءة التخزين</li>
+                                <li>• البنية التحتية</li>
+                                <li>• الاعتمادية</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-2">الفرص</h4>
+                            <ul class="text-sm space-y-1">
+                                <li>• الابتكار التكنولوجي</li>
+                                <li>• الاستثمارات الخضراء</li>
+                                <li>• التعاون الدولي</li>
+                                <li>• خلق فرص عمل</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="mb-2">© 2024 الطاقة الكيميائية - موقع تعليمي تفاعلي</p>
+                <p class="text-gray-400">مكرس لنشر الوعي بأهمية الطاقة الكيميائية وتطبيقاتها</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('hidden');
+            nav.classList.toggle('absolute');
+            nav.classList.toggle('top-full');
+            nav.classList.toggle('left-0');
+            nav.classList.toggle('right-0');
+            nav.classList.toggle('bg-orange-800');
+            nav.classList.toggle('p-4');
+            nav.classList.toggle('flex-col');
+            nav.classList.toggle('space-y-2');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        // Interactive energy flow animation
+        const energyFlows = document.querySelectorAll('.energy-flow');
+        
+        const flowObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'none';
+                    setTimeout(() => {
+                        entry.target.style.animation = 'flow 3s ease-in-out infinite';
+                    }, 100);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        energyFlows.forEach(flow => {
+            flowObserver.observe(flow);
+        });
+
+        // Battery charge animation
+        const batteryCharges = document.querySelectorAll('.battery-charge');
+        
+        const batteryObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'charge 2s ease-in-out infinite';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        batteryCharges.forEach(battery => {
+            batteryObserver.observe(battery);
+        });
+
+        // Flame animation
+        const flames = document.querySelectorAll('.flame-animation');
+        
+        const flameObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'flicker 1.5s ease-in-out infinite alternate';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        flames.forEach(flame => {
+            flameObserver.observe(flame);
+        });
+
+        // Solar panel rotation
+        const solarPanels = document.querySelectorAll('.solar-rotation');
+        
+        const solarObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'solar-rotate 20s linear infinite';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        solarPanels.forEach(panel => {
+            solarObserver.observe(panel);
+        });
+
+        // Interactive card effects
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Molecule rotation on click
+        document.querySelectorAll('.molecule-animation').forEach(molecule => {
+            molecule.addEventListener('click', function() {
+                this.style.animationDuration = '2s';
+                setTimeout(() => {
+                    this.style.animationDuration = '10s';
+                }, 4000);
+            });
+        });
+
+        // Pulse energy effect
+        document.querySelectorAll('.pulse-energy').forEach(pulse => {
+            pulse.addEventListener('click', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = 'pulse-energy 2s ease-in-out infinite';
+                }, 100);
+            });
+        });
+
+        // Reaction bubble animation
+        const reactionBubbles = document.querySelectorAll('.reaction-bubble');
+        
+        const bubbleObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'bubble 4s ease-in-out infinite';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        reactionBubbles.forEach(bubble => {
+            bubbleObserver.observe(bubble);
+        });
+    </script>
+</body>
+</html>

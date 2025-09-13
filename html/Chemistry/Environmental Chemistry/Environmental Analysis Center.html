@@ -1,0 +1,2010 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مركز التحليل البيئي - دقة علمية لحماية البيئة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #006ba6;
+            --light-blue: #0496ff;
+            --accent-green: #06ffa5;
+            --dark-green: #00a878;
+            --warning-orange: #ff6b35;
+            --danger-red: #e63946;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+            --dark-gray: #343a40;
+            --text-color: #2c3e50;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-gray);
+            overflow-x: hidden;
+        }
+
+        /* Header and Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-green));
+            color: var(--white);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 4rem 2rem;
+            background: linear-gradient(rgba(0, 107, 166, 0.9), rgba(0, 168, 120, 0.9)),
+                        url('https://picsum.photos/seed/laboratory/1920/600') center/cover;
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>') repeat;
+            animation: moveDots 20s linear infinite;
+        }
+
+        @keyframes moveDots {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100px, 100px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: var(--accent-green);
+            color: var(--dark-gray);
+            text-decoration: none;
+            border-radius: 50px;
+            transition: var(--transition);
+            animation: fadeInUp 1s ease 0.4s both;
+            box-shadow: 0 4px 15px rgba(6, 255, 165, 0.3);
+            font-weight: bold;
+        }
+
+        .cta-button.secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .cta-button:hover {
+            background-color: var(--white);
+            color: var(--primary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(6, 255, 165, 0.4);
+        }
+
+        .cta-button.secondary:hover {
+            background-color: var(--white);
+            color: var(--primary-blue);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to left, var(--primary-blue), var(--dark-green));
+            border-radius: 2px;
+        }
+
+        /* Analysis Techniques Grid */
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .analysis-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .analysis-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to left, var(--primary-blue), var(--dark-green));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .analysis-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .analysis-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .analysis-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        .analysis-card:hover .analysis-icon {
+            color: var(--dark-green);
+            transform: scale(1.1);
+        }
+
+        .analysis-card h3 {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .analysis-card p {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Equipment Section */
+        .equipment-section {
+            background-color: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: var(--shadow);
+            margin: 3rem 0;
+        }
+
+        .equipment-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-button {
+            padding: 0.8rem 1.5rem;
+            background-color: var(--medium-gray);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .tab-button.active {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .tab-button:hover {
+            background-color: var(--light-blue);
+            color: var(--white);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .equipment-item {
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .equipment-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .equipment-icon {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .equipment-name {
+            font-weight: bold;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .equipment-spec {
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        /* Standards Section */
+        .standards-container {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-green));
+            color: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .standards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .standard-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .standard-card:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .standard-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-green);
+        }
+
+        .standard-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .standard-list {
+            list-style: none;
+        }
+
+        .standard-list li {
+            margin-bottom: 0.5rem;
+            padding-right: 1.5rem;
+            position: relative;
+        }
+
+        .standard-list li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        /* Report Analysis Section */
+        .report-section {
+            background-color: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: var(--shadow);
+            margin: 3rem 0;
+        }
+
+        .report-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--medium-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(0, 107, 166, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-green));
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 107, 166, 0.3);
+        }
+
+        /* Results Display */
+        .results-container {
+            margin-top: 2rem;
+            padding: 2rem;
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            display: none;
+        }
+
+        .results-container.show {
+            display: block;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-parameter {
+            font-weight: bold;
+            color: var(--dark-gray);
+        }
+
+        .result-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .result-value.good {
+            color: var(--dark-green);
+        }
+
+        .result-value.warning {
+            color: var(--warning-orange);
+        }
+
+        .result-value.danger {
+            color: var(--danger-red);
+        }
+
+        /* Case Studies */
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .case-study-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .case-study-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .case-study-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .case-study-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .case-study-content {
+            padding: 2rem;
+        }
+
+        .case-study-title {
+            font-size: 1.4rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .case-study-description {
+            color: var(--text-color);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .case-study-stats {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 1rem;
+            border-top: 1px solid var(--medium-gray);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--dark-green);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        /* Interactive Simulation */
+        .simulation-container {
+            background-color: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: var(--shadow);
+            margin: 3rem 0;
+        }
+
+        .simulation-canvas {
+            width: 100%;
+            height: 400px;
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .simulation-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .control-button {
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: bold;
+        }
+
+        .control-button:hover {
+            background-color: var(--dark-green);
+            transform: translateY(-2px);
+        }
+
+        .control-button.active {
+            background-color: var(--dark-green);
+        }
+
+        /* Data Visualization */
+        .chart-container {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin: 2rem 0;
+            height: 300px;
+            position: relative;
+        }
+
+        .chart-bars {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 200px;
+            margin-top: 2rem;
+        }
+
+        .chart-bar {
+            width: 60px;
+            background: linear-gradient(to top, var(--primary-blue), var(--light-blue));
+            border-radius: 5px 5px 0 0;
+            position: relative;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .chart-bar:hover {
+            transform: scaleY(1.05);
+            filter: brightness(1.1);
+        }
+
+        .chart-bar::after {
+            content: attr(data-value);
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        .chart-labels {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1rem;
+        }
+
+        .chart-label {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            text-align: center;
+        }
+
+        /* Quality Indicators */
+        .quality-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .quality-indicator {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .quality-indicator:hover {
+            transform: translateY(-3px);
+        }
+
+        .indicator-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--white);
+            position: relative;
+        }
+
+        .indicator-circle::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            border: 3px solid currentColor;
+            opacity: 0.3;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .indicator-label {
+            font-weight: bold;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .indicator-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-gray);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--accent-green);
+            padding-right: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-bars {
+                height: 150px;
+            }
+
+            .chart-bar {
+                width: 40px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            animation: rotate 2s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+            z-index: 999;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background-color: var(--dark-green);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            transition: transform 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Molecule Animation */
+        .molecule {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            animation: floatMolecule 10s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes floatMolecule {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(100px, -50px) rotate(90deg); }
+            50% { transform: translate(-50px, -100px) rotate(180deg); }
+            75% { transform: translate(-100px, 50px) rotate(270deg); }
+        }
+
+        /* Progress Circle */
+        .progress-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: conic-gradient(var(--primary-blue) 0deg, var(--light-blue) var(--progress), var(--medium-gray) var(--progress));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .progress-circle::before {
+            content: '';
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            background-color: var(--white);
+            border-radius: 50%;
+        }
+
+        .progress-value {
+            position: relative;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-icon">
+                <i class="fas fa-flask"></i>
+            </div>
+            <p style="margin-top: 1rem; color: var(--primary-blue);">جاري تحميل الموقع...</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <div class="logo">
+                <i class="fas fa-microscope"></i>
+                <span>مركز التحليل البيئي</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#techniques">التقنيات</a></li>
+                <li><a href="#equipment">المعدات</a></li>
+                <li><a href="#standards">المعايير</a></li>
+                <li><a href="#reports">التقارير</a></li>
+                <li><a href="#cases">دراسات</a></li>
+                <li><a href="#simulation">محاكاة</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobileMenu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>التحليل البيئي المتقدم</h1>
+            <p>دقة علمية لحماية البيئة وضمان الاستدامة</p>
+            <div class="cta-buttons">
+                <a href="#techniques" class="cta-button">اكتشف التقنيات</a>
+                <a href="#reports" class="cta-button secondary">طلب تحليل</a>
+            </div>
+        </div>
+        <div class="molecule" style="top: 20%; left: 10%;"></div>
+        <div class="molecule" style="top: 60%; left: 80%; animation-delay: 2s;"></div>
+        <div class="molecule" style="top: 40%; left: 50%; animation-delay: 4s;"></div>
+    </section>
+
+    <!-- Analysis Techniques Section -->
+    <section id="techniques" class="reveal">
+        <h2 class="section-title">تقنيات التحليل البيئي</h2>
+        <div class="analysis-grid">
+            <div class="analysis-card" onclick="showTechniqueDetails('chromatography')">
+                <div class="analysis-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>الكروماتوغرافيا</h3>
+                <p>فصل وتحليل المكونات الكيميائية في العينات البيئية بدقة عالية باستخدام تقنيات GC و HPLC المتقدمة.</p>
+            </div>
+            <div class="analysis-card" onclick="showTechniqueDetails('spectroscopy')">
+                <div class="analysis-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <h3>التحليل الطيفي</h3>
+                <p>تحديد التركيب الكيميائي والكمي للعينات باستخدام تقنيات الأشعة تحت الحمراء والأشعة السينية والنواة المغناطيسية.</p>
+            </div>
+            <div class="analysis-card" onclick="showTechniqueDetails('mass')">
+                <div class="analysis-icon">
+                    <i class="fas fa-weight"></i>
+                </div>
+                <h3>التحليل الكتلي</h3>
+                <p>تحديد الهوية والتركيب الجزيئي للمواد الكيميائية بدقة فائقة باستخدام مطياف الكتلة.</p>
+            </div>
+            <div class="analysis-card" onclick="showTechniqueDetails('electrochemical')">
+                <div class="analysis-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>التحليل الكهروكيميائي</h3>
+                <p>قياس التركيزات الكيميائية من خلال الخصائص الكهربائية للمحاليل والأقطاب الكهربائية.</p>
+            </div>
+            <div class="analysis-card" onclick="showTechniqueDetails('microbiological')">
+                <div class="analysis-icon">
+                    <i class="fas fa-bacteria"></i>
+                </div>
+                <h3>التحليل الميكروبيولوجي</h3>
+                <p>كشف وتحديد الكائنات الحية الدقيقة في العينات البيئية وتقييم تأثيرها على النظام البيئي.</p>
+            </div>
+            <div class="analysis-card" onclick="showTechniqueDetails('toxicity')">
+                <div class="analysis-icon">
+                    <i class="fas fa-skull-crossbones"></i>
+                </div>
+                <h3>تحليل السمية</h3>
+                <p>تقييم التأثيرات السامة للمواد الكيميائية على الكائنات الحية والبيئة باستخدام اختبارات حيوية.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipment Section -->
+    <section id="equipment" class="reveal">
+        <h2 class="section-title">المعدات والأجهزة التحليلية</h2>
+        <div class="equipment-section">
+            <div class="equipment-tabs">
+                <button class="tab-button active" onclick="showTab('spectrometers')">أجهزة طيفية</button>
+                <button class="tab-button" onclick="showTab('chromatographs')">كروماتوغراف</button>
+                <button class="tab-button" onclick="showTab('microscopes')">مجاهر</button>
+                <button class="tab-button" onclick="showTab('sensors')">حساسات</button>
+            </div>
+            
+            <div id="spectrometers" class="tab-content active">
+                <div class="equipment-grid">
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-satellite-dish"></i>
+                        </div>
+                        <div class="equipment-name">مطياف الكتلة</div>
+                        <div class="equipment-spec">دقة: 0.001 ppm</div>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-wave-square"></i>
+                        </div>
+                        <div class="equipment-name">مطياف الأشعة تحت الحمراء</div>
+                        <div class="equipment-spec">نطاق: 400-4000 cm⁻¹</div>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div class="equipment-name">مطياف الامتصاص الذري</div>
+                        <div class="equipment-spec">حساسية: ppb</div>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-radiation"></i>
+                        </div>
+                        <div class="equipment-name">مطياف الأشعة السينية</div>
+                        <div class="equipment-spec">دقة: نانومتر</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="chromatographs" class="tab-content">
+                <div class="equipment-grid">
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-gas-pump"></i>
+                        </div>
+                        <div class="equipment-name">GC-MS</div>
+                        <div class="equipment-spec">درجة حرارة: 350°C</div>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <div class="equipment-name">HPLC</div>
+                        <div class="equipment-spec">ضغط: 600 بار</div>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <div class="equipment-name">كروماتوغراف أيوني</div>
+                        <div class="equipment-spec">حساسية: ppb</div>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-temperature-high"></i>
+                        </div>
+                        <div class="equipment-name">GC-FID</div>
+                        <div class="equipment-spec">نطاق: ppm</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="microscopes" class="tab-content">
+                <div class="equipment-grid">
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <div class="equipment-name">مجهر إلكتروني ماسح</div>
+                        <div class="equipment-spec">تكبير: 1,000,000x</div>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="equipment-name">مجهر ضوئي</div>
+                        <div class="equipment-spec">تكبير: 1500x</div>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <div class="equipment-name">مجهر قوة ذرية</div>
+                        <div class="equipment-spec">دقة: أنجستروم</div>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="equipment-name">مجهر فلوري</div>
+                        <div class="equipment-spec">طول موجي: UV-Vis</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="sensors" class="tab-content">
+                <div class="equipment-grid">
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-thermometer-half"></i>
+                        </div>
+                        <div class="equipment-name">حساسات درجة الحرارة</div>
+                        <div class="equipment-spec">دقة: ±0.1°C</div>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div class="equipment-name">حساسات pH</div>
+                        <div class="equipment-spec">نطاق: 0-14</div>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <div class="equipment-name">حساسات الغازات</div>
+                        <div class="equipment-spec">دقة: ppm</div>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <div class="equipment-name">حساسات الرطوبة</div>
+                        <div class="equipment-spec">نطاق: 0-100%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Standards Section -->
+    <section id="standards" class="reveal">
+        <h2 class="section-title">المعايير والبروتوكولات البيئية</h2>
+        <div class="standards-container">
+            <div class="standards-grid">
+                <div class="standard-card">
+                    <div class="standard-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="standard-title">معايير ISO</h3>
+                    <ul class="standard-list">
+                        <li>ISO 14001 - أنظمة الإدارة البيئية</li>
+                        <li>ISO 14040 - تقييم دورة الحياة</li>
+                        <li>ISO 14024 - البيانات البيئية</li>
+                        <li>ISO 14064 - انبعاثات غازات الاحتباس الحراري</li>
+                    </ul>
+                </div>
+                <div class="standard-card">
+                    <div class="standard-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 class="standard-title">بروتوكولات التحليل</h3>
+                    <ul class="standard-list">
+                        <li>US EPA - وكالة حماية البيئة الأمريكية</li>
+                        <li>ASTM - جمعية المواد والاختبارات</li>
+                        <li>APHA - الجمعية الأمريكية للصحة العامة</li>
+                        <li>WHO - منظمة الصحة العالمية</li>
+                    </ul>
+                </div>
+                <div class="standard-card">
+                    <div class="standard-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="standard-title">الاعتماد والجودة</h3>
+                    <ul class="standard-list">
+                        <li>ISO/IEC 17025 - كفاءة المختبرات</li>
+                        <li>GLP - ممارسات المختبر الجيدة</li>
+                        <li>GMP - ممارسات التصنيع الجيدة</li>
+                        <li>QA/QC - ضمان ومراقبة الجودة</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Report Analysis Section -->
+    <section id="reports" class="reveal">
+        <h2 class="section-title">تحليل العينات وتقارير النتائج</h2>
+        <div class="report-section">
+            <form class="report-form" onsubmit="generateReport(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="sampleType">نوع العينة</label>
+                        <select id="sampleType" required>
+                            <option value="">اختر النوع</option>
+                            <option value="water">مياه</option>
+                            <option value="air">هواء</option>
+                            <option value="soil">تربة</option>
+                            <option value="waste">نفايات</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sampleSource">مصدر العينة</label>
+                        <input type="text" id="sampleSource" placeholder="مثال: نهر، مصنع، منطقة سكنية" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="collectionDate">تاريخ الجمع</label>
+                        <input type="date" id="collectionDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="analysisType">نوع التحليل</label>
+                        <select id="analysisType" required>
+                            <option value="">اختر التحليل</option>
+                            <option value="chemical">كيميائي</option>
+                            <option value="biological">بيولوجي</option>
+                            <option value="physical">فيزيائي</option>
+                            <option value="comprehensive">شامل</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="parameters">المعلمات المطلوبة</label>
+                    <textarea id="parameters" rows="3" placeholder="اذكر المعلمات المطلوب تحليلها (مثل: pH، COD، BOD، المعادن الثقيلة، إلخ)" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="notes">ملاحظات إضافية</label>
+                    <textarea id="notes" rows="2" placeholder="أي معلومات إضافية عن العينة أو متطلبات التحليل"></textarea>
+                </div>
+                <button type="submit" class="submit-button">إنشاء تقرير التحليل</button>
+            </form>
+            
+            <div id="resultsContainer" class="results-container">
+                <h3 style="color: var(--primary-blue); margin-bottom: 1.5rem;">نتائج التحليل</h3>
+                <div id="resultsContent"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Visualization Section -->
+    <section class="reveal">
+        <h2 class="section-title">تصور البيانات البيئية</h2>
+        <div class="chart-container">
+            <h3 style="text-align: center; color: var(--primary-blue); margin-bottom: 1rem;">مستويات التلوث في العينات الأخيرة</h3>
+            <div class="chart-bars">
+                <div class="chart-bar" style="height: 60%;" data-value="60%" title="الرصاص"></div>
+                <div class="chart-bar" style="height: 85%;" data-value="85%" title="الزئبق"></div>
+                <div class="chart-bar" style="height: 45%;" data-value="45%" title="الكادميوم"></div>
+                <div class="chart-bar" style="height: 70%;" data-value="70%" title="الزرنيخ"></div>
+                <div class="chart-bar" style="height: 30%;" data-value="30%" title="النحاس"></div>
+            </div>
+            <div class="chart-labels">
+                <div class="chart-label">الرصاص</div>
+                <div class="chart-label">الزئبق</div>
+                <div class="chart-label">الكادميوم</div>
+                <div class="chart-label">الزرنيخ</div>
+                <div class="chart-label">النحاس</div>
+            </div>
+        </div>
+        
+        <div class="quality-grid">
+            <div class="quality-indicator">
+                <div class="indicator-circle" style="background-color: var(--dark-green);">
+                    95%
+                </div>
+                <div class="indicator-label">دقة التحليل</div>
+                <div class="indicator-value">ممتازة</div>
+            </div>
+            <div class="quality-indicator">
+                <div class="indicator-circle" style="background-color: var(--warning-orange);">
+                    78%
+                </div>
+                <div class="indicator-label">جودة العينة</div>
+                <div class="indicator-value">جيدة</div>
+            </div>
+            <div class="quality-indicator">
+                <div class="indicator-circle" style="background-color: var(--dark-green);">
+                    92%
+                </div>
+                <div class="indicator-label">الموثوقية</div>
+                <div class="indicator-value">عالية</div>
+            </div>
+            <div class="quality-indicator">
+                <div class="indicator-circle" style="background-color: var(--danger-red);">
+                    45%
+                </div>
+                <div class="indicator-label">مستوى التلوث</div>
+                <div class="indicator-value">مرتفع</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section id="cases" class="reveal">
+        <h2 class="section-title">دراسات حالة عملية</h2>
+        <div class="case-studies-grid">
+            <div class="case-study-card">
+                <div class="case-study-image" style="background-image: url('https://picsum.photos/seed/water-analysis/400/200');">
+                    <div class="case-study-badge">مياه</div>
+                </div>
+                <div class="case-study-content">
+                    <h3 class="case-study-title">تحليل تلوث المياه الجوفية</h3>
+                    <p class="case-study-description">دراسة شاملة لتلوث المياه الجوفية في منطقة صناعية باستخدام تقنيات GC-MS وتحليل المعادن الثقيلة.</p>
+                    <div class="case-study-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">150</div>
+                            <div class="stat-label">عينة</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">25</div>
+                            <div class="stat-label">م pollutant</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">98%</div>
+                            <div class="stat-label">دقة</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="case-study-card">
+                <div class="case-study-image" style="background-image: url('https://picsum.photos/seed/air-analysis/400/200');">
+                    <div class="case-study-badge">هواء</div>
+                </div>
+                <div class="case-study-content">
+                    <h3 class="case-study-title">مراقبة جودة الهواء الحضرية</h3>
+                    <p class="case-study-description">مشروع مستمر لمراقبة جودة الهواء في المناطق الحضرية باستخدام شبكة من الحساسات الذكية.</p>
+                    <div class="case-study-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">50</div>
+                            <div class="stat-label">محطة</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">24/7</div>
+                            <div class="stat-label">مراقبة</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">99%</div>
+                            <div class="stat-label">توفر</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="case-study-card">
+                <div class="case-study-image" style="background-image: url('https://picsum.photos/seed/soil-analysis/400/200');">
+                    <div class="case-study-badge">تربة</div>
+                </div>
+                <div class="case-study-content">
+                    <h3 class="case-study-title">تقييم تلوث التربة الزراعية</h3>
+                    <p class="case-study-description">تحليل شامل للتربة الزراعية القريبة من المناطق الصناعية لتقييم مستويات المبيدات والمعادن الثقيلة.</p>
+                    <div class="case-study-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">200</div>
+                            <div class="stat-label">هكتار</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">15</div>
+                            <div class="stat-label">عنصر</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">6</div>
+                            <div class="stat-label">شهور</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Simulation Section -->
+    <section id="simulation" class="reveal">
+        <h2 class="section-title">محاكاة تفاعلية للتحليل البيئي</h2>
+        <div class="simulation-container">
+            <p style="text-align: center; margin-bottom: 2rem;">اختر نوع التحليل لمشاهدة المحاكاة التفاعلية</p>
+            <div class="simulation-controls">
+                <button class="control-button active" onclick="runSimulation('water')">تحليل المياه</button>
+                <button class="control-button" onclick="runSimulation('air')">تحليل الهواء</button>
+                <button class="control-button" onclick="runSimulation('soil')">تحليل التربة</button>
+                <button class="control-button" onclick="runSimulation('waste')">تحليل النفايات</button>
+            </div>
+            <div class="simulation-canvas" id="simulationCanvas">
+                <div style="display: flex; align-items: center; justify-content: center; height: 100%; flex-direction: column;">
+                    <i class="fas fa-flask" style="font-size: 4rem; color: var(--primary-blue); margin-bottom: 1rem;"></i>
+                    <p style="color: var(--text-color);">انقر فوق أزرار التحكم لبدء المحاكاة</p>
+                </div>
+            </div>
+            <div id="simulationResults" style="margin-top: 2rem; padding: 1rem; background-color: var(--light-gray); border-radius: 10px; display: none;">
+                <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">نتائج المحاكاة</h4>
+                <p id="simulationText"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>خدماتنا</h4>
+                <ul>
+                    <li><a href="#">تحليل المياه</a></li>
+                    <li><a href="#">تحليل الهواء</a></li>
+                    <li><a href="#">تحليل التربة</a></li>
+                    <li><a href="#">استشارات بيئية</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>المعامل</h4>
+                <ul>
+                    <li><a href="#">المعامل المعتمدة</a></li>
+                    <li><a href="#">المعدات المتاحة</a></li>
+                    <li><a href="#">البروتوكولات</a></li>
+                    <li><a href="#">جودة الخدمة</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>الموارد</h4>
+                <ul>
+                    <li><a href="#">الدلائل الإرشادية</a></li>
+                    <li><a href="#">التقارير السنوية</a></li>
+                    <li><a href="#">الأبحاث العلمية</a></li>
+                    <li><a href="#">التدريب والتطوير</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>تواصل معنا</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-envelope"></i> lab@envanalysis.com</a></li>
+                    <li><a href="#"><i class="fas fa-phone"></i> +966 12 345 6789</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 مركز التحليل البيئي. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="fab" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <span id="notificationText"></span>
+    </div>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1500);
+        });
+
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenu').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                const navLinks = document.querySelector('.nav-links');
+                if (window.innerWidth <= 768) {
+                    navLinks.style.display = 'none';
+                }
+            });
+        });
+
+        // Scroll Reveal Animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
+
+        // Tab Functionality
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Remove active class from all buttons
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => button.classList.remove('active'));
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Technique Details
+        function showTechniqueDetails(technique) {
+            const details = {
+                chromatography: 'الكروماتوغرافيا هي تقنية لفصل مكونات الخليط بناءً على اختلاف خواصها الفيزيائية والكيميائية. تستخدم على نطاق واسع في تحليل المركبات العضوية في العينات البيئية.',
+                spectroscopy: 'التحليل الطيفي يستخدم تفاعل المادة مع الإشعاع الكهرومغناطيسي لتحديد التركيب الكيميائي والكمي. يشمل تقنيات متعددة مثل الأشعة تحت الحمراء والأشعة فوق البنفسجية والرنين النووي المغناطيسي.',
+                mass: 'التحليل الكتلي يقيس نسبة الكتلة إلى الشحنة للأيونات لتحديد التركيب الجذري والجزيئي للمواد. يوفر دقة عالية في تحديد الهوية الكيميائية.',
+                electrochemical: 'التحليل الكهروكيميائي يقيس الخصائص الكهربائية للمواد لتحديد تركيزها. يشمل تقنيات مثل الفولتمترية والأمبيرومترية والقياس الكموني.',
+                microbiological: 'التحليل الميكروبيولوجي يركز على كشف وتحديد الكائنات الحية الدقيقة في العينات البيئية. يشمل زراعة البكتيريا والفطريات وتحديد تأثيرها البيئي.',
+                toxicity: 'تحليل السمية يقيم التأثيرات الضارة للمواد الكيميائية على الكائنات الحية. يستخدم اختبارات حية على نباتات وحيوانات وكائنات دقيقة.'
+            };
+            
+            showNotification(details[technique]);
+        }
+
+        // Report Generation
+        function generateReport(event) {
+            event.preventDefault();
+            
+            const sampleType = document.getElementById('sampleType').value;
+            const sampleSource = document.getElementById('sampleSource').value;
+            const collectionDate = document.getElementById('collectionDate').value;
+            const analysisType = document.getElementById('analysisType').value;
+            const parameters = document.getElementById('parameters').value;
+            
+            // Simulate analysis results
+            const results = generateMockResults(sampleType, parameters);
+            
+            // Display results
+            const resultsContainer = document.getElementById('resultsContainer');
+            const resultsContent = document.getElementById('resultsContent');
+            
+            resultsContent.innerHTML = `
+                <div style="background-color: var(--light-gray); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                    <h4 style="color: var(--primary-blue); margin-bottom: 0.5rem;">معلومات العينة</h4>
+                    <p><strong>النوع:</strong> ${getSampleTypeLabel(sampleType)}</p>
+                    <p><strong>المصدر:</strong> ${sampleSource}</p>
+                    <p><strong>تاريخ الجمع:</strong> ${collectionDate}</p>
+                    <p><strong>نوع التحليل:</strong> ${getAnalysisTypeLabel(analysisType)}</p>
+                </div>
+                ${results}
+            `;
+            
+            resultsContainer.classList.add('show');
+            
+            showNotification('تم إنشاء تقرير التحليل بنجاح!');
+        }
+
+        function generateMockResults(sampleType, parameters) {
+            const mockData = {
+                water: [
+                    { parameter: 'pH', value: '7.2', status: 'good', unit: '' },
+                    { parameter: 'COD', value: '45', status: 'warning', unit: 'mg/L' },
+                    { parameter: 'BOD', value: '25', status: 'good', unit: 'mg/L' },
+                    { parameter: 'الرصاص', value: '0.05', status: 'danger', unit: 'mg/L' },
+                    { parameter: 'الزئبق', value: '0.001', status: 'good', unit: 'mg/L' }
+                ],
+                air: [
+                    { parameter: 'PM2.5', value: '35', status: 'warning', unit: 'μg/m³' },
+                    { parameter: 'SO₂', value: '15', status: 'good', unit: 'ppb' },
+                    { parameter: 'NO₂', value: '28', status: 'warning', unit: 'ppb' },
+                    { parameter: 'CO', value: '5', status: 'good', unit: 'ppm' },
+                    { parameter: 'O₃', value: '45', status: 'danger', unit: 'ppb' }
+                ],
+                soil: [
+                    { parameter: 'الرصاص', value: '120', status: 'danger', unit: 'mg/kg' },
+                    { parameter: 'الكادميوم', value: '2.5', status: 'warning', unit: 'mg/kg' },
+                    { parameter: 'الزئبق', value: '0.8', status: 'good', unit: 'mg/kg' },
+                    { parameter: 'الزرنيخ', value: '15', status: 'warning', unit: 'mg/kg' },
+                    { parameter: 'النحاس', value: '85', status: 'good', unit: 'mg/kg' }
+                ],
+                waste: [
+                    { parameter: 'الرطوبة', value: '35', status: 'good', unit: '%' },
+                    { parameter: 'المواد العضوية', value: '65', status: 'good', unit: '%' },
+                    { parameter: 'المعادن الثقيلة', value: '850', status: 'danger', unit: 'mg/kg' },
+                    { parameter: 'المواد الخطرة', value: '12', status: 'warning', unit: '%' },
+                    { parameter: 'القيمة الحرارية', value: '4500', status: 'good', unit: 'kJ/kg' }
+                ]
+            };
+            
+            const results = mockData[sampleType] || mockData.water;
+            
+            let html = '<h4 style="color: var(--primary-blue); margin-bottom: 1rem;">نتائج التحليل</h4>';
+            results.forEach(result => {
+                html += `
+                    <div class="result-item">
+                        <span class="result-parameter">${result.parameter}</span>
+                        <span class="result-value ${result.status}">${result.value} ${result.unit}</span>
+                    </div>
+                `;
+            });
+            
+            return html;
+        }
+
+        function getSampleTypeLabel(type) {
+            const labels = {
+                water: 'مياه',
+                air: 'هواء',
+                soil: 'تربة',
+                waste: 'نفايات'
+            };
+            return labels[type] || type;
+        }
+
+        function getAnalysisTypeLabel(type) {
+            const labels = {
+                chemical: 'كيميائي',
+                biological: 'بيولوجي',
+                physical: 'فيزيائي',
+                comprehensive: 'شامل'
+            };
+            return labels[type] || type;
+        }
+
+        // Simulation
+        function runSimulation(type) {
+            // Update active button
+            const buttons = document.querySelectorAll('.control-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Clear canvas
+            const canvas = document.getElementById('simulationCanvas');
+            canvas.innerHTML = '';
+            
+            // Show simulation
+            const simulations = {
+                water: `
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-tint" style="font-size: 3rem; color: var(--primary-blue); margin-bottom: 1rem; animation: pulse 2s infinite;"></i>
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">محاكاة تحليل المياه</h3>
+                        <div style="display: flex; justify-content: center; gap: 2rem; margin: 2rem 0; flex-wrap: wrap;">
+                            <div style="text-align: center;">
+                                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #3498db, #2980b9); border-radius: 50%; margin: 0 auto 0.5rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                                    <i class="fas fa-vial"></i>
+                                </div>
+                                <p>جمع العينة</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #e74c3c, #c0392b); border-radius: 50%; margin: 0 auto 0.5rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                                    <i class="fas fa-flask"></i>
+                                </div>
+                                <p>المعالجة المسبقة</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #f39c12, #e67e22); border-radius: 50%; margin: 0 auto 0.5rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                                    <i class="fas fa-microscope"></i>
+                                </div>
+                                <p>التحليل</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #27ae60, #229954); border-radius: 50%; margin: 0 auto 0.5rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <p>النتائج</p>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                air: `
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-wind" style="font-size: 3rem; color: var(--primary-blue); margin-bottom: 1rem; animation: pulse 2s infinite;"></i>
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">محاكاة تحليل الهواء</h3>
+                        <div style="background-color: rgba(0, 107, 166, 0.1); padding: 2rem; border-radius: 10px; margin: 2rem 0;">
+                            <canvas id="airChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                `,
+                soil: `
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-mountain" style="font-size: 3rem; color: var(--primary-blue); margin-bottom: 1rem; animation: pulse 2s infinite;"></i>
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">محاكاة تحليل التربة</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 1rem; margin: 2rem 0;">
+                            <div style="background-color: #8B4513; height: 50px; border-radius: 5px; position: relative; overflow: hidden;">
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background-color: #D2691E; height: 30%;"></div>
+                            </div>
+                            <div style="background-color: #A0522D; height: 50px; border-radius: 5px; position: relative; overflow: hidden;">
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background-color: #DEB887; height: 60%;"></div>
+                            </div>
+                            <div style="background-color: #CD853F; height: 50px; border-radius: 5px; position: relative; overflow: hidden;">
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background-color: #F4A460; height: 45%;"></div>
+                            </div>
+                            <div style="background-color: #D2691E; height: 50px; border-radius: 5px; position: relative; overflow: hidden;">
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background-color: #FFE4B5; height: 70%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                waste: `
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-recycle" style="font-size: 3rem; color: var(--primary-blue); margin-bottom: 1rem; animation: pulse 2s infinite;"></i>
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">محاكاة تحليل النفايات</h3>
+                        <div style="display: flex; justify-content: center; gap: 2rem; margin: 2rem 0; flex-wrap: wrap;">
+                            <div style="text-align: center;">
+                                <div class="progress-circle" style="--progress: 216deg;">
+                                    <span class="progress-value">60%</span>
+                                </div>
+                                <p style="margin-top: 0.5rem;">عضوي</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <div class="progress-circle" style="--progress: 144deg;">
+                                    <span class="progress-value">40%</span>
+                                </div>
+                                <p style="margin-top: 0.5rem;">غير عضوي</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <div class="progress-circle" style="--progress: 72deg;">
+                                    <span class="progress-value">20%</span>
+                                </div>
+                                <p style="margin-top: 0.5rem;">خطير</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            };
+            
+            canvas.innerHTML = simulations[type];
+            
+            // Draw air chart if air simulation
+            if (type === 'air') {
+                setTimeout(() => drawAirChart(), 100);
+            }
+            
+            // Show simulation results
+            const results = {
+                water: 'اكتمل تحليل عينة المياه. النتائج تشير إلى وجود مستويات منخفضة من الملوثات العضوية وتركيزات متوسطة من المعادن الثقيلة. يوصى بالمعالجة قبل الاستخدام.',
+                air: 'تحليل عينة الهواء أظهر مستويات مرتفعة من الجسيمات الدقيقة (PM2.5) وتركيزات طبيعية من الغازات الأخرى. يوصى باتخاذ إجراءات للحد من انبعاثات الجسيمات.',
+                soil: 'تحليل عينة التربة كشف عن وجود تركيزات عالية من الرصاص والكادميوم. يوصى بإجراء المعالجة البيولوجية لتحسين جودة التربة.',
+                waste: 'تحليل عينة النفايات أظهر أنها تحتوي على 60% مواد عضوية قابلة للتحلل و20% مواد خطرة تتطلب معالجة خاصة.'
+            };
+            
+            const resultsDiv = document.getElementById('simulationResults');
+            const resultsText = document.getElementById('simulationText');
+            resultsText.textContent = results[type];
+            resultsDiv.style.display = 'block';
+        }
+
+        function drawAirChart() {
+            const canvas = document.getElementById('airChart');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            const data = [35, 15, 28, 5, 45];
+            const labels = ['PM2.5', 'SO₂', 'NO₂', 'CO', 'O₃'];
+            const colors = ['#e74c3c', '#f39c12', '#f39c12', '#27ae60', '#e74c3c'];
+            
+            const barWidth = 60;
+            const barSpacing = 20;
+            const maxHeight = 150;
+            const maxValue = 50;
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            data.forEach((value, index) => {
+                const x = index * (barWidth + barSpacing) + 40;
+                const height = (value / maxValue) * maxHeight;
+                const y = canvas.height - height - 30;
+                
+                // Draw bar
+                ctx.fillStyle = colors[index];
+                ctx.fillRect(x, y, barWidth, height);
+                
+                // Draw value
+                ctx.fillStyle = '#2c3e50';
+                ctx.font = '12px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(value, x + barWidth/2, y - 5);
+                
+                // Draw label
+                ctx.fillText(labels[index], x + barWidth/2, canvas.height - 10);
+            });
+        }
+
+        // Notification System
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+            
+            notificationText.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Scroll to Top
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/Hide FAB based on scroll
+        window.addEventListener('scroll', function() {
+            const fab = document.querySelector('.fab');
+            if (window.pageYOffset > 300) {
+                fab.style.display = 'flex';
+            } else {
+                fab.style.display = 'none';
+            }
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.pageYOffset > 50) {
+                header.style.background = 'rgba(0, 107, 166, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, var(--primary-blue), var(--dark-green))';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Animate chart bars on scroll
+        function animateChartBars() {
+            const bars = document.querySelectorAll('.chart-bar');
+            bars.forEach(bar => {
+                const barTop = bar.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (barTop < windowHeight - 100) {
+                    const height = bar.style.height;
+                    bar.style.height = '0';
+                    setTimeout(() => {
+                        bar.style.transition = 'height 1s ease';
+                        bar.style.height = height;
+                    }, 100);
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateChartBars);
+        animateChartBars(); // Initial check
+
+        // Create floating molecules
+        function createMolecule() {
+            const molecule = document.createElement('div');
+            molecule.className = 'molecule';
+            molecule.style.left = Math.random() * 100 + '%';
+            molecule.style.top = Math.random() * 100 + '%';
+            molecule.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            molecule.style.opacity = Math.random() * 0.5 + 0.3;
+            document.querySelector('.hero').appendChild(molecule);
+            
+            setTimeout(() => {
+                molecule.remove();
+            }, 20000);
+        }
+
+        // Create molecules periodically
+        setInterval(createMolecule, 3000);
+    </script>
+</body>
+</html>

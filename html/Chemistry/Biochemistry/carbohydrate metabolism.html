@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأيض الكربوهيدراتي - رحلة الطاقة في الخلية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .molecule {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .path-animation {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw 3s ease-in-out forwards;
+        }
+        
+        @keyframes draw {
+            to { stroke-dashoffset: 0; }
+        }
+        
+        .glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 0 10px #4ade80; }
+            to { box-shadow: 0 0 20px #4ade80, 0 0 30px #4ade80; }
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .enzyme-active {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .electron-flow {
+            animation: electronMove 2s linear infinite;
+        }
+        
+        @keyframes electronMove {
+            0% { offset-distance: 0%; }
+            100% { offset-distance: 100%; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-reverse space-x-4">
+                    <i class="fas fa-dna text-3xl"></i>
+                    <h1 class="text-3xl font-bold">الأيض الكربوهيدراتي</h1>
+                </div>
+                <nav class="hidden md:flex space-x-reverse space-x-6">
+                    <a href="#glycolysis" class="hover:text-purple-200 transition">تحلل الغلوكوز</a>
+                    <a href="#krebs" class="hover:text-purple-200 transition">دورة كريبس</a>
+                    <a href="#electron" class="hover:text-purple-200 transition">سلسلة نقل الإلكترون</a>
+                </nav>
+                <button id="mobileMenuBtn" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 bg-gradient-to-br from-purple-50 to-blue-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">رحلة تحويل الغذاء إلى طاقة</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    اكتشف كيف تقوم الخلايا بتحويل الكربوهيدرات إلى طاقة قابلة للاستخدام من خلال ثلاث عمليات حيوية متتالية
+                </p>
+            </div>
+            
+            <!-- Overview Cards -->
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-20 h-20 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-cube text-3xl text-green-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">تحلل الغلوكوز</h3>
+                    </div>
+                    <p class="text-gray-600 text-center">
+                        المرحلة الأولى في السيتوبلازم حيث يتكسر جزيء الغلوكوز إلى جزيئين من البيروفات
+                    </p>
+                    <div class="mt-4 text-center">
+                        <span class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
+                            2 ATP صافية
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-20 h-20 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-sync-alt text-3xl text-blue-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">دورة كريبس</h3>
+                    </div>
+                    <p class="text-gray-600 text-center">
+                        في الميتوكوندريا، حيث يتم أكسدة البيروفات وإنتاج نواقل الطاقة
+                    </p>
+                    <div class="mt-4 text-center">
+                        <span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                            2 ATP + 6 NADH
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-20 h-20 mx-auto bg-purple-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-bolt text-3xl text-purple-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">سلسلة نقل الإلكترون</h3>
+                    </div>
+                    <p class="text-gray-600 text-center">
+                        المرحلة النهائية حيث يتم إنتاج معظم الطاقة على شكل ATP
+                    </p>
+                    <div class="mt-4 text-center">
+                        <span class="inline-block bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
+                            32-34 ATP
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Glycolysis Section -->
+    <section id="glycolysis" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">تحلل الغلوكوز (Glycolysis)</h2>
+                    <p class="text-lg text-gray-600">
+                        عملية تحلل جزيء غلوكوز واحد إلى جزيئين من حمض البيروفيك في السيتوبلازم
+                    </p>
+                </div>
+
+                <!-- Glycolysis Animation -->
+                <div class="bg-gray-50 rounded-xl p-8 mb-8">
+                    <div class="flex flex-wrap justify-center items-center gap-8">
+                        <!-- Glucose -->
+                        <div class="text-center molecule">
+                            <div class="w-32 h-32 bg-blue-200 rounded-full flex items-center justify-center mx-auto mb-2 glow">
+                                <span class="text-2xl font-bold text-blue-800">C₆H₁₂O₆</span>
+                            </div>
+                            <p class="font-semibold">غلوكوز</p>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="hidden md:block">
+                            <i class="fas fa-arrow-left text-4xl text-gray-400"></i>
+                        </div>
+
+                        <!-- Process Steps -->
+                        <div class="text-center">
+                            <div class="bg-white rounded-lg p-4 shadow-md">
+                                <h4 class="font-bold text-lg mb-2">10 خطوات إنزيمية</h4>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-center justify-between">
+                                        <span>المرحلة الاستثمارية:</span>
+                                        <span class="text-red-600">-2 ATP</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span>المرحلة الإنتاجية:</span>
+                                        <span class="text-green-600">+4 ATP</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span>الصافي:</span>
+                                        <span class="text-blue-600 font-bold">+2 ATP</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="hidden md:block">
+                            <i class="fas fa-arrow-left text-4xl text-gray-400"></i>
+                        </div>
+
+                        <!-- Pyruvate -->
+                        <div class="text-center molecule">
+                            <div class="w-32 h-32 bg-green-200 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <span class="text-2xl font-bold text-green-800">2 C₃H₄O₃</span>
+                            </div>
+                            <p class="font-semibold">بيروفات</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed Steps -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-blue-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-4">
+                            <i class="fas fa-flask ml-2"></i>المرحلة الاستثمارية (خطوات 1-5)
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center ml-3 flex-shrink-0">1</span>
+                                <span>فوسفرة الغلوكوز باستخدام ATP</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center ml-3 flex-shrink-0">2</span>
+                                <span>إعادة ترتيب جزيء الغلوكوز-6-فوسفات</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center ml-3 flex-shrink-0">3</span>
+                                <span>فوسفرة ثانية باستخدام ATP</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center ml-3 flex-shrink-0">4</span>
+                                <span>انقسام جزيء 6 كربون إلى جزيئين 3 كربون</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center ml-3 flex-shrink-0">5</span>
+                                <span>إعادة ترتيب جزيئات 3 كربون</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-green-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-4">
+                            <i class="fas fa-coins ml-2"></i>المرحلة الإنتاجية (خطوات 6-10)
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center ml-3 flex-shrink-0">6</span>
+                                <span>أكسدة وإنتاج NADH</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center ml-3 flex-shrink-0">7</span>
+                                <span>إنتاج ATP من ADP</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center ml-3 flex-shrink-0">8</span>
+                                <span>إعادة ترتيب جزيء 3-فوسفوجليسيرات</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center ml-3 flex-shrink-0">9</span>
+                                <span>إنتاج ATP ثاني</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center ml-3 flex-shrink-0">10</span>
+                                <span>تحويل إلى بيروفات</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Key Points -->
+                <div class="mt-8 bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-r-xl">
+                    <h4 class="font-bold text-lg text-yellow-800 mb-2">
+                        <i class="fas fa-lightbulb ml-2"></i>نقاط رئيسية
+                    </h4>
+                    <ul class="space-y-2 text-yellow-700">
+                        <li>• تحدث العملية في السيتوبلازم خارج الميتوكوندريا</li>
+                        <li>• لا تتطلب وجود الأكسجين (عملية لاهوائية)</li>
+                        <li>• تنتج 2 جزيء ATP صافية لكل جزيء غلوكوز</li>
+                        <li>• تنتج 2 جزيء NADH و 2 جزيء بيروفات</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Krebs Cycle Section -->
+    <section id="krebs" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">دورة كريبس (Krebs Cycle)</h2>
+                    <p class="text-lg text-gray-600">
+                        حلقة التفاعلات الكيميائية في الميتوكوندريا التي تؤدي إلى أكسدة البيروفات بالكامل
+                    </p>
+                </div>
+
+                <!-- Krebs Cycle Diagram -->
+                <div class="bg-white rounded-xl p-8 mb-8 shadow-lg">
+                    <div class="relative">
+                        <svg viewBox="0 0 800 600" class="w-full h-auto max-w-3xl mx-auto">
+                            <!-- Cycle Path -->
+                            <circle cx="400" cy="300" r="200" fill="none" stroke="#e5e7eb" stroke-width="2"/>
+                            
+                            <!-- Acetyl-CoA Entry -->
+                            <g transform="translate(400, 100)">
+                                <circle r="40" fill="#3b82f6" class="enzyme-active"/>
+                                <text y="5" text-anchor="middle" fill="white" font-size="14" font-weight="bold">Acetyl-CoA</text>
+                            </g>
+                            
+                            <!-- Citrate -->
+                            <g transform="translate(600, 300)">
+                                <circle r="35" fill="#10b981"/>
+                                <text y="5" text-anchor="middle" fill="white" font-size="12">سترات</text>
+                            </g>
+                            
+                            <!-- Isocitrate -->
+                            <g transform="translate(550, 450)">
+                                <circle r="35" fill="#f59e0b"/>
+                                <text y="5" text-anchor="middle" fill="white" font-size="12">أيزوسترات</text>
+                            </g>
+                            
+                            <!-- Alpha-KG -->
+                            <g transform="translate(250, 450)">
+                                <circle r="35" fill="#ef4444"/>
+                                <text y="5" text-anchor="middle" fill="white" font-size="12">α-KG</text>
+                            </g>
+                            
+                            <!-- Succinyl-CoA -->
+                            <g transform="translate(200, 300)">
+                                <circle r="35" fill="#8b5cf6"/>
+                                <text y="5" text-anchor="middle" fill="white" font-size="12">سوسينيل-CoA</text>
+                            </g>
+                            
+                            <!-- Succinate -->
+                            <g transform="translate(250, 150)">
+                                <circle r="35" fill="#ec4899"/>
+                                <text y="5" text-anchor="middle" fill="white" font-size="12">سوسينات</text>
+                            </g>
+                            
+                            <!-- Fumarate -->
+                            <g transform="translate(400, 50)">
+                                <circle r="35" fill="#14b8a6"/>
+                                <text y="5" text-anchor="middle" fill="white" font-size="12">فومارات</text>
+                            </g>
+                            
+                            <!-- Malate -->
+                            <g transform="translate(550, 150)">
+                                <circle r="35" fill="#f97316"/>
+                                <text y="5" text-anchor="middle" fill="white" font-size="12">مالات</text>
+                            </g>
+                            
+                            <!-- Oxaloacetate -->
+                            <g transform="translate(400, 300)">
+                                <circle r="40" fill="#6366f1" class="glow"/>
+                                <text y="5" text-anchor="middle" fill="white" font-size="12">أوكسالوأسيتات</text>
+                            </g>
+                            
+                            <!-- Arrows -->
+                            <path d="M 440 100 Q 520 200 565 265" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)" class="path-animation"/>
+                            <path d="M 600 335 Q 575 390 515 415" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+                            <path d="M 515 450 Q 400 475 285 450" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+                            <path d="M 215 450 Q 175 375 200 335" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+                            <path d="M 200 265 Q 225 200 250 185" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+                            <path d="M 285 150 Q 340 100 360 50" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+                            <path d="M 440 50 Q 500 100 515 115" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+                            <path d="M 550 185 Q 475 240 440 260" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+                            
+                            <!-- Arrow marker -->
+                            <defs>
+                                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Products Summary -->
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white rounded-lg p-6 shadow-md text-center">
+                        <i class="fas fa-bolt text-4xl text-yellow-500 mb-3"></i>
+                        <h4 class="font-bold text-lg mb-2">ATP</h4>
+                        <p class="text-3xl font-bold text-gray-800">1</p>
+                        <p class="text-sm text-gray-600 mt-2">لكل دورة</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-6 shadow-md text-center">
+                        <i class="fas fa-atom text-4xl text-blue-500 mb-3"></i>
+                        <h4 class="font-bold text-lg mb-2">NADH</h4>
+                        <p class="text-3xl font-bold text-gray-800">3</p>
+                        <p class="text-sm text-gray-600 mt-2">لكل دورة</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-6 shadow-md text-center">
+                        <i class="fas fa-fire text-4xl text-orange-500 mb-3"></i>
+                        <h4 class="font-bold text-lg mb-2">FADH₂</h4>
+                        <p class="text-3xl font-bold text-gray-800">1</p>
+                        <p class="text-sm text-gray-600 mt-2">لكل دورة</p>
+                    </div>
+                </div>
+
+                <!-- Process Details -->
+                <div class="bg-blue-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-blue-800 mb-4">
+                        <i class="fas fa-info-circle ml-2"></i>تفاصيل العملية
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-blue-700 mb-2">المدخلات:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• أسيتيل- CoA (2 كربون)</li>
+                                <li>• أوكسالوأسيتات (4 كربون)</li>
+                                <li>• ADP + Pi</li>
+                                <li>• NAD⁺</li>
+                                <li>• FAD</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-blue-700 mb-2">المخرجات:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li>• 2 CO₂ (غاز ثاني أكسيد الكربون)</li>
+                                <li>• 3 NADH</li>
+                                <li>• 1 FADH₂</li>
+                                <li>• 1 ATP (أو GTP)</li>
+                                <li>• أوكسالوأسيتات (لإعادة الدورة)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Electron Transport Chain Section -->
+    <section id="electron" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">سلسلة نقل الإلكترون والفسفرة التأكسدية</h2>
+                    <p class="text-lg text-gray-600">
+                        المرحلة النهائية التي تنتج معظم طاقة ATP من خلال تدفق الإلكترونات
+                    </p>
+                </div>
+
+                <!-- Electron Transport Chain Animation -->
+                <div class="bg-gradient-to-b from-purple-50 to-blue-50 rounded-xl p-8 mb-8">
+                    <div class="relative">
+                        <!-- Mitochondrial Membrane -->
+                        <div class="bg-gray-300 h-4 rounded-full mx-auto mb-8 max-w-4xl"></div>
+                        
+                        <!-- Complexes -->
+                        <div class="flex justify-between items-center max-w-4xl mx-auto mb-8">
+                            <div class="text-center">
+                                <div class="w-24 h-24 bg-red-500 rounded-lg flex items-center justify-center mx-auto mb-2 enzyme-active">
+                                    <span class="text-white font-bold">I</span>
+                                </div>
+                                <p class="text-sm">NADH Dehydrogenase</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="w-24 h-24 bg-orange-500 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                    <span class="text-white font-bold">II</span>
+                                </div>
+                                <p class="text-sm">Succinate Dehydrogenase</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="w-24 h-24 bg-yellow-500 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                    <span class="text-white font-bold">III</span>
+                                </div>
+                                <p class="text-sm">Cytochrome bc₁</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="w-24 h-24 bg-green-500 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                    <span class="text-white font-bold">IV</span>
+                                </div>
+                                <p class="text-sm">Cytochrome c Oxidase</p>
+                            </div>
+                        </div>
+
+                        <!-- Electron Flow Animation -->
+                        <div class="relative h-20 max-w-4xl mx-auto">
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="w-full h-1 bg-gray-300 rounded-full"></div>
+                            </div>
+                            <div class="electron-flow absolute top-1/2 -translate-y-1/2">
+                                <div class="w-4 h-4 bg-blue-500 rounded-full"></div>
+                            </div>
+                        </div>
+
+                        <!-- ATP Synthase -->
+                        <div class="text-center mt-8">
+                            <div class="inline-block relative">
+                                <div class="w-32 h-32 bg-purple-600 rounded-full flex items-center justify-center mx-auto glow">
+                                    <i class="fas fa-cog text-4xl text-white animate-spin"></i>
+                                </div>
+                                <p class="mt-2 font-semibold">ATP Synthase</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Process Steps -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-purple-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-purple-800 mb-4">
+                            <i class="fas fa-bolt ml-2"></i>سلسلة نقل الإلكترون
+                        </h3>
+                        <ol class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center ml-3 flex-shrink-0 text-sm">1</span>
+                                <span>يدخل NADH إلى المجمع I ويتأكسد، مما ينقل الإلكترونات</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center ml-3 flex-shrink-0 text-sm">2</span>
+                                <span>تنتقل الإلكترونات عبر المجمعات II و III و IV</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center ml-3 flex-shrink-0 text-sm">3</span>
+                                <span>يتم ضخ البروتونات (H⁺) من المصفوفة إلى الفراغ بين الغشائين</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center ml-3 flex-shrink-0 text-sm">4</span>
+                                <span>في النهاية، تدمج الإلكترونات مع الأكسجين لتكوين الماء</span>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="bg-green-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-4">
+                            <i class="fas fa-battery-full ml-2"></i>الفسفرة التأكسدية
+                        </h3>
+                        <ol class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center ml-3 flex-shrink-0 text-sm">1</span>
+                                <span>يتراكم تدرج البروتونات عبر الغشاء الداخلي</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center ml-3 flex-shrink-0 text-sm">2</span>
+                                <span>يتدفق البروتونات مرة أخرى إلى المصفوفة عبر ATP سينثاز</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center ml-3 flex-shrink-0 text-sm">3</span>
+                                <span>تستخدم طاقة التدفق لتدوير جزء ATP سينثاز</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center ml-3 flex-shrink-0 text-sm">4</span>
+                                <span>يتم إنتاج ATP من ADP و Pi</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Energy Yield Table -->
+                <div class="mt-8 bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">
+                        <i class="fas fa-calculator ml-2"></i>حساب إجمالي الطاقة
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full max-w-2xl mx-auto">
+                            <thead>
+                                <tr class="bg-gray-200">
+                                    <th class="px-4 py-2 text-right">المصدر</th>
+                                    <th class="px-4 py-2 text-center">الكمية</th>
+                                    <th class="px-4 py-2 text-center">ATP لكل وحدة</th>
+                                    <th class="px-4 py-2 text-center">الإجمالي</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b">
+                                    <td class="px-4 py-2 text-right">Glycolysis</td>
+                                    <td class="px-4 py-2 text-center">2 ATP</td>
+                                    <td class="px-4 py-2 text-center">1</td>
+                                    <td class="px-4 py-2 text-center font-bold">2 ATP</td>
+                                </tr>
+                                <tr class="border-b bg-gray-50">
+                                    <td class="px-4 py-2 text-right">NADH من Glycolysis</td>
+                                    <td class="px-4 py-2 text-center">2</td>
+                                    <td class="px-4 py-2 text-center">2-3</td>
+                                    <td class="px-4 py-2 text-center font-bold">4-6 ATP</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="px-4 py-2 text-right">Krebs Cycle (ATP)</td>
+                                    <td class="px-4 py-2 text-center">2 ATP</td>
+                                    <td class="px-4 py-2 text-center">1</td>
+                                    <td class="px-4 py-2 text-center font-bold">2 ATP</td>
+                                </tr>
+                                <tr class="border-b bg-gray-50">
+                                    <td class="px-4 py-2 text-right">NADH من Krebs</td>
+                                    <td class="px-4 py-2 text-center">6</td>
+                                    <td class="px-4 py-2 text-center">3</td>
+                                    <td class="px-4 py-2 text-center font-bold">18 ATP</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="px-4 py-2 text-right">FADH₂ من Krebs</td>
+                                    <td class="px-4 py-2 text-center">2</td>
+                                    <td class="px-4 py-2 text-center">2</td>
+                                    <td class="px-4 py-2 text-center font-bold">4 ATP</td>
+                                </tr>
+                                <tr class="bg-green-100 font-bold text-lg">
+                                    <td class="px-4 py-2 text-right" colspan="3">الإجمالي</td>
+                                    <td class="px-4 py-2 text-center">30-32 ATP</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summary Section -->
+    <section class="py-16 gradient-bg text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-6">ملخص رحلة الطاقة</h2>
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8">
+                    <div class="grid md:grid-cols-3 gap-6 mb-8">
+                        <div>
+                            <i class="fas fa-cube text-5xl mb-3 text-green-300"></i>
+                            <h3 class="text-xl font-bold mb-2">الخطوة الأولى</h3>
+                            <p>تحلل الغلوكوز في السيتوبلازم لإنتاج 2 ATP</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-sync-alt text-5xl mb-3 text-blue-300"></i>
+                            <h3 class="text-xl font-bold mb-2">الخطوة الثانية</h3>
+                            <p>دورة كريبس في الميتوكوندريا لإنتاج نواقل الطاقة</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-bolt text-5xl mb-3 text-yellow-300"></i>
+                            <h3 class="text-xl font-bold mb-2">الخطوة الثالثة</h3>
+                            <p>سلسلة نقل الإلكترون لإنتاج 28-30 ATP</p>
+                        </div>
+                    </div>
+                    <div class="text-2xl font-bold">
+                        <p>الإجمالي: <span class="text-4xl text-yellow-300">30-32 ATP</span> لكل جزيء غلوكوز</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="mb-2">© 2024 الأيض الكربوهيدراتي - موقع تعليمي تفاعلي</p>
+                <p class="text-gray-400">تم تصميمه لتوضيح عمليات إنتاج الطاقة في الخلية</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('hidden');
+            nav.classList.toggle('absolute');
+            nav.classList.toggle('top-full');
+            nav.classList.toggle('left-0');
+            nav.classList.toggle('right-0');
+            nav.classList.toggle('bg-purple-700');
+            nav.classList.toggle('p-4');
+            nav.classList.toggle('flex-col');
+            nav.classList.toggle('space-y-2');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        // Interactive molecule hover effects
+        document.querySelectorAll('.molecule').forEach(molecule => {
+            molecule.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            molecule.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Complex interaction in electron transport chain
+        document.querySelectorAll('.enzyme-active').forEach(complex => {
+            complex.addEventListener('click', function() {
+                this.style.animation = 'pulse 0.5s ease-in-out';
+                setTimeout(() => {
+                    this.style.animation = 'pulse 1.5s ease-in-out infinite';
+                }, 500);
+            });
+        });
+
+        // Add tooltips for complex information
+        const tooltipData = {
+            'I': 'ينقل الإلكترونات من NADH إلى CoQ',
+            'II': 'ينقل الإلكترونات من FADH2 إلى CoQ',
+            'III': 'ينقل الإلكترونات من CoQ إلى Cytochrome c',
+            'IV': 'ينقل الإلكترونات من Cytochrome c إلى O2'
+        };
+
+        document.querySelectorAll('.enzyme-active span').forEach(span => {
+            const complexNum = span.textContent;
+            if (tooltipData[complexNum]) {
+                span.parentElement.title = tooltipData[complexNum];
+            }
+        });
+    </script>
+</body>
+</html>

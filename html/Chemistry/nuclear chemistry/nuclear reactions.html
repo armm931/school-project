@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التفاعلات النووية - الانشطار والاندماج النووي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a8a;
+            --light-blue: #3b82f6;
+            --accent-blue: #60a5fa;
+            --dark-blue: #1e40af;
+            --energy-orange: #f97316;
+            --light-orange: #fb923c;
+            --white: #ffffff;
+            --light-gray: #f8fafc;
+            --dark-gray: #1e293b;
+            --text-color: #334155;
+            --bg-gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: var(--energy-orange);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: var(--bg-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://picsum.photos/seed/nuclear/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: var(--energy-orange);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--energy-orange);
+        }
+
+        /* Nuclear Reactions Comparison */
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .reaction-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reaction-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+        }
+
+        .fission-card::before {
+            background: var(--energy-orange);
+        }
+
+        .fusion-card::before {
+            background: var(--light-blue);
+        }
+
+        .reaction-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .reaction-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .fission-icon {
+            color: var(--energy-orange);
+        }
+
+        .fusion-icon {
+            color: var(--light-blue);
+        }
+
+        .reaction-card h3 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .reaction-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .reaction-features {
+            list-style: none;
+        }
+
+        .reaction-features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .reaction-features i {
+            color: var(--primary-blue);
+        }
+
+        /* Equations Section */
+        .equations-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 3rem;
+        }
+
+        .equation-box {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+            border-right: 5px solid var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+
+        .equation-box:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .equation {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--dark-blue);
+            text-align: center;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .equation-explanation {
+            color: var(--text-color);
+            margin-top: 1rem;
+        }
+
+        /* Applications Section */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .application-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .application-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .application-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .application-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 3rem;
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th {
+            background: var(--primary-blue);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .comparison-table td {
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .comparison-table tr:hover {
+            background: #f1f5f9;
+        }
+
+        /* Interactive Demo */
+        .demo-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .demo-visual {
+            height: 300px;
+            background: var(--light-gray);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .atom {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            transition: all 0.5s ease;
+        }
+
+        .atom-1 {
+            background: var(--energy-orange);
+            right: 20%;
+        }
+
+        .atom-2 {
+            background: var(--light-blue);
+            left: 20%;
+        }
+
+        .demo-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .demo-btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .demo-btn.fission {
+            background: var(--energy-orange);
+            color: white;
+        }
+
+        .demo-btn.fusion {
+            background: var(--light-blue);
+            color: white;
+        }
+
+        .demo-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--energy-orange);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--energy-orange);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .comparison-container {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table {
+                overflow-x: auto;
+            }
+
+            .comparison-table table {
+                min-width: 600px;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--primary-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--dark-blue);
+            transform: translateY(-5px);
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                التفاعلات النووية
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#reactions">التفاعلات</a></li>
+                <li><a href="#equations">المعادلات</a></li>
+                <li><a href="#applications">التطبيقات</a></li>
+                <li><a href="#comparison">المقارنة</a></li>
+                <li><a href="#demo">تجربة تفاعلية</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>التفاعلات النووية</h1>
+            <p>استكشف عالم الانشطار والاندماج النووي - القوى التي تشكل الكون وتشغل مستقبل الطاقة</p>
+            <div class="hero-buttons">
+                <a href="#reactions" class="btn btn-primary">ابدأ التعلم</a>
+                <a href="#demo" class="btn btn-secondary">جرب التجربة التفاعلية</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nuclear Reactions Section -->
+    <section id="reactions" class="section">
+        <div class="container">
+            <h2 class="section-title">التفاعلات النووية الأساسية</h2>
+            <div class="comparison-container">
+                <div class="reaction-card fission-card">
+                    <div class="reaction-icon fission-icon">
+                        <i class="fas fa-bomb"></i>
+                    </div>
+                    <h3>الانشطار النووي</h3>
+                    <p>هو عملية انقسام نواة ذرة ثقيلة إلى نواتين أخف، مع إطلاق كمية هائلة من الطاقة.</p>
+                    <ul class="reaction-features">
+                        <li><i class="fas fa-check-circle"></i> يستخدم في المفاعلات النووية</li>
+                        <li><i class="fas fa-check-circle"></i> ينتج نفايات نووية</li>
+                        <li><i class="fas fa-check-circle"></i> يستخدم اليورانيوم والبلوتونيوم</li>
+                        <li><i class="fas fa-check-circle"></i> طاقة متاحة تجارياً</li>
+                    </ul>
+                </div>
+                <div class="reaction-card fusion-card">
+                    <div class="reaction-icon fusion-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3>الاندماج النووي</h3>
+                    <p>هو عملية اتحاد نواتين خفيفتين لتكوين نواة أثقل، مع إطلاق طاقة أكبر من الانشطار.</p>
+                    <ul class="reaction-features">
+                        <li><i class="fas fa-check-circle"></i> يحدث في الشمس والنجوم</li>
+                        <li><i class="fas fa-check-circle"></i> لا ينتج نفايات نووية</li>
+                        <li><i class="fas fa-check-circle"></i> يستخدم الهيدروجين والهيليوم</li>
+                        <li><i class="fas fa-check-circle"></i> لا يزال في مرحلة البحث</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equations Section -->
+    <section id="equations" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">معادلات التفاعلات النووية</h2>
+            <div class="equations-container">
+                <h3 style="color: var(--primary-blue); margin-bottom: 2rem;">أمثلة على معادلات التفاعلات النووية:</h3>
+                
+                <div class="equation-box">
+                    <h4 style="color: var(--energy-orange); margin-bottom: 1rem;">انشطار اليورانيوم-235:</h4>
+                    <div class="equation">
+                        ²³⁵U + n → ⁹²Kr + ¹⁴¹Ba + 3n + energy
+                    </div>
+                    <div class="equation-explanation">
+                        <p>في هذه المعادلة، يمتص اليورانيوم-235 نيوتروناً وينشطر إلى كريبتون-92 وباريوم-141، مع إطلاق 3 نيوترونات جديدة وكمية كبيرة من الطاقة.</p>
+                    </div>
+                </div>
+
+                <div class="equation-box">
+                    <h4 style="color: var(--light-blue); margin-bottom: 1rem;">اندماج الديوتيريوم والتريتيوم:</h4>
+                    <div class="equation">
+                        ²H + ³H → ⁴He + n + 17.6 MeV
+                    </div>
+                    <div class="equation-explanation">
+                        <p>تتحد ذرة ديتيريوم (هيدروجين-2) مع ذرة تريتيوم (هيدروجين-3) لتكوين هيليوم-4 ونيوترون واحد، مع إطلاق 17.6 MeV من الطاقة.</p>
+                    </div>
+                </div>
+
+                <div class="equation-box">
+                    <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">سلسلة الانشطار المتسلسل:</h4>
+                    <div class="equation">
+                        n + ²³⁵U → ²³⁶U* → fission fragments + 2.4n + 200 MeV
+                    </div>
+                    <div class="equation-explanation">
+                        <p>توضح هذه المعادلة كيف يمكن لنيوترون واحد أن يبدأ سلسلة من الانشطارات، حيث ينتج كل انشطار نيوترونات جديدة يمكنها انشطار ذرات أخرى.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="section">
+        <div class="container">
+            <h2 class="section-title">تطبيقات التفاعلات النووية</h2>
+            <div class="applications-grid">
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>توليد الكهرباء</h3>
+                    <p>استخدام الطاقة الناتجة عن الانشطار النووي في محطات الطاقة النووية لتوليد الكهرباء نظيفة وموثوقة.</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <h3>الطب النووي</h3>
+                    <p>استخدام النظائر المشعة في التشخيص والعلاج، مثل علاج السرطان وتصوير الأعضاء الداخلية.</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>تكنولوجيا الفضاء</h3>
+                    <p>استخدام الطاقة النووية في تزويد المركبات الفضائية بالطاقة للرحلات طويلة المدى.</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>التطبيقات الصناعية</h3>
+                    <p>استخدام الإشعاع النووي في التعقيم، والكشف عن العيوب في المعادن، وتحسين المواد.</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>الزراعة</h3>
+                    <p>استخدام التقنيات النووية في تحسين المحاصيل وزيادة الإنتاجية الزراعية.</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>تحلية المياه</h3>
+                    <p>استخدام الطاقة النووية في تشغيل محطات تحلية المياه لتوفير المياه العذبة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section id="comparison" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">مقارنة بين الانشطار والاندماج النووي</h2>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>الميزة</th>
+                            <th>الانشطار النووي</th>
+                            <th>الاندماج النووي</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>الوقود المستخدم</strong></td>
+                            <td>اليورانيوم، البلوتونيوم</td>
+                            <td>الهيدروجين، الهيليوم</td>
+                        </tr>
+                        <tr>
+                            <td><strong>الطاقة المنتجة</strong></td>
+                            <td>حوالي 200 MeV لكل انشطار</td>
+                            <td>حوالي 17.6 MeV لكل اندماج</td>
+                        </tr>
+                        <tr>
+                            <td><strong>النفايات النووية</strong></td>
+                            <td>تنتج نفايات خطيرة</td>
+                            <td>لا تنتج نفايات خطيرة</td>
+                        </tr>
+                        <tr>
+                            <td><strong>درجة الحرارة المطلوبة</strong></td>
+                            <td>درجات حرارة معتدلة</td>
+                            <td>ملايين الدرجات المئوية</td>
+                        </tr>
+                        <tr>
+                            <td><strong>التوافر التجاري</strong></td>
+                            <td>متاح تجارياً</td>
+                            <td>ما زال تحت البحث</td>
+                        </tr>
+                        <tr>
+                            <td><strong>السلامة</strong></td>
+                            <td>مخاطر انفجار وتسرب</td>
+                            <td>أكثر أماناً نسبياً</td>
+                        </tr>
+                        <tr>
+                            <td><strong>التكلفة</strong></td>
+                            <td>مرتفعة التكلفة</td>
+                            <td>تكاليف بحث وتطوير عالية</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section id="demo" class="section">
+        <div class="container">
+            <h2 class="section-title">تجربة تفاعلية</h2>
+            <div class="demo-container">
+                <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">شاهد التفاعلات النووية في الحركة</h3>
+                <p>اختر نوع التفاعل لمشاهدة محاكاة بسيطة</p>
+                
+                <div class="demo-visual" id="demoVisual">
+                    <div class="atom atom-1" id="atom1">U</div>
+                    <div class="atom atom-2" id="atom2">H</div>
+                </div>
+                
+                <div class="demo-controls">
+                    <button class="demo-btn fission" onclick="simulateFission()">
+                        <i class="fas fa-bomb"></i> انشطار نووي
+                    </button>
+                    <button class="demo-btn fusion" onclick="simulateFusion()">
+                        <i class="fas fa-sun"></i> اندماج نووي
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>معلومات الموقع</h3>
+                    <p>منصة تعليمية متخصصة في التفاعلات النووية، تقدم شرحاً مفصلاً للانشطار والاندماج النووي ومعادلاتهما.</p>
+                    <div style="margin-top: 1rem;">
+                        <i class="fas fa-atom" style="color: var(--energy-orange); font-size: 2rem;"></i>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#reactions">التفاعلات النووية</a></li>
+                        <li><a href="#equations">المعادلات النووية</a></li>
+                        <li><a href="#applications">التطبيقات</a></li>
+                        <li><a href="#comparison">المقارنة</a></li>
+                        <li><a href="#demo">التجربة التفاعلية</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>مصادر إضافية</h3>
+                    <ul>
+                        <li><a href="#">الفيزياء النووية</a></li>
+                        <li><a href="#">الطاقة النووية</a></li>
+                        <li><a href="#">السلامة النووية</a></li>
+                        <li><a href="#">البيئة والطاقة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@nuclear-reactions.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 التفاعلات النووية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Interactive demo functions
+        function simulateFission() {
+            const atom1 = document.getElementById('atom1');
+            const demoVisual = document.getElementById('demoVisual');
+            
+            // Reset
+            demoVisual.innerHTML = '<div class="atom atom-1" id="atom1" style="right: 45%;">U</div>';
+            
+            setTimeout(() => {
+                demoVisual.innerHTML = `
+                    <div class="atom" style="right: 30%; background: #fb923c; animation: pulse 0.5s;">Kr</div>
+                    <div class="atom" style="right: 50%; background: #f97316; animation: pulse 0.5s;">Ba</div>
+                    <div class="atom" style="right: 70%; background: #60a5fa; animation: pulse 0.5s;">n</div>
+                    <div class="atom" style="right: 85%; background: #60a5fa; animation: pulse 0.5s;">n</div>
+                    <div class="atom" style="right: 15%; background: #60a5fa; animation: pulse 0.5s;">n</div>
+                `;
+            }, 500);
+        }
+
+        function simulateFusion() {
+            const demoVisual = document.getElementById('demoVisual');
+            
+            // Reset
+            demoVisual.innerHTML = `
+                <div class="atom atom-1" id="atom1" style="right: 35%; background: #3b82f6;">²H</div>
+                <div class="atom atom-2" id="atom2" style="right: 55%; background: #60a5fa;">³H</div>
+            `;
+            
+            setTimeout(() => {
+                demoVisual.innerHTML = `
+                    <div class="atom" style="right: 45%; background: #fbbf24; animation: pulse 1s;">⁴He</div>
+                    <div class="atom" style="right: 65%; background: #60a5fa; animation: pulse 1s;">n</div>
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; color: #f97316; animation: pulse 1s;">
+                        <i class="fas fa-star"></i>
+                    </div>
+                `;
+            }, 1000);
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.right = '0';
+            navLinks.style.background = 'white';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.width = '100%';
+            navLinks.style.padding = '1rem';
+            navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+        });
+
+        // Add hover effects to cards
+        document.querySelectorAll('.reaction-card, .application-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.reaction-card, .application-card, .equation-box').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

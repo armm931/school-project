@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكيمياء الحيوية الجزيئية - Molecular Biochemistry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+        
+        .dna-gradient {
+            background: linear-gradient(90deg, #00c9ff 0%, #92fe9d 100%);
+        }
+        
+        .mutation-gradient {
+            background: linear-gradient(90deg, #fc466b 0%, #3f5efb 100%);
+        }
+        
+        .biotech-gradient {
+            background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .dna-strand {
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .gene-expression {
+            animation: slide 3s ease-in-out infinite;
+        }
+        
+        @keyframes slide {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(20px); }
+        }
+        
+        .mutation-pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .enzyme-work {
+            animation: enzymeMove 4s ease-in-out infinite;
+        }
+        
+        @keyframes enzymeMove {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            25% { transform: translateX(30px) rotate(10deg); }
+            50% { transform: translateX(60px) rotate(0deg); }
+            75% { transform: translateX(30px) rotate(-10deg); }
+        }
+        
+        .path-animation {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw 3s ease-in-out forwards;
+        }
+        
+        @keyframes draw {
+            to { stroke-dashoffset: 0; }
+        }
+        
+        .protein-fold {
+            animation: fold 3s ease-in-out infinite;
+        }
+        
+        @keyframes fold {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+        }
+        
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(0, 201, 255, 0.5);
+        }
+        
+        .tech-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .base-pair {
+            transition: all 0.3s ease;
+        }
+        
+        .base-pair:hover {
+            transform: scale(1.2);
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-xl">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-reverse space-x-4">
+                    <i class="fas fa-dna text-4xl"></i>
+                    <div>
+                        <h1 class="text-3xl font-bold">الكيمياء الحيوية الجزيئية</h1>
+                        <p class="text-sm opacity-90">Molecular Biochemistry</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex space-x-reverse space-x-8">
+                    <a href="#gene-expression" class="hover:text-blue-200 transition">التعبير الجيني</a>
+                    <a href="#mutations" class="hover:text-blue-200 transition">الطفرات وإصلاح DNA</a>
+                    <a href="#biotechnology" class="hover:text-blue-200 transition">التكنولوجيا الحيوية</a>
+                </nav>
+                <button id="mobileMenuBtn" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-800 mb-6">استكشاف عالم الجزيئات الحيوية</h2>
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto">
+                    رحلة في عالم الـ DNA، RNA، والبروتينات - من الجينات إلى التكنولوجيا الحيوية المتقدمة
+                </p>
+            </div>
+
+            <!-- DNA Animation -->
+            <div class="flex justify-center mb-16">
+                <div class="relative">
+                    <svg width="200" height="300" viewBox="0 0 200 300" class="dna-strand">
+                        <!-- DNA Double Helix -->
+                        <path d="M50 0 Q100 50 50 100 T50 200 T50 300" stroke="#00c9ff" stroke-width="3" fill="none"/>
+                        <path d="M150 0 Q100 50 150 100 T150 200 T150 300" stroke="#92fe9d" stroke-width="3" fill="none"/>
+                        
+                        <!-- Base Pairs -->
+                        <line x1="50" y1="25" x2="150" y2="25" stroke="#ff6b6b" stroke-width="2" class="base-pair"/>
+                        <line x1="50" y1="75" x2="150" y2="75" stroke="#4ecdc4" stroke-width="2" class="base-pair"/>
+                        <line x1="50" y1="125" x2="150" y2="125" stroke="#ffe66d" stroke-width="2" class="base-pair"/>
+                        <line x1="50" y1="175" x2="150" y2="175" stroke="#a8e6cf" stroke-width="2" class="base-pair"/>
+                        <line x1="50" y1="225" x2="150" y2="225" stroke="#ff8b94" stroke-width="2" class="base-pair"/>
+                        <line x1="50" y1="275" x2="150" y2="275" stroke="#b4a7d6" stroke-width="2" class="base-pair"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Main Topics Cards -->
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-xl p-8 card-hover">
+                    <div class="text-center mb-6">
+                        <div class="w-24 h-24 mx-auto dna-gradient rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-dna text-4xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">آليات التعبير الجيني</h3>
+                    </div>
+                    <p class="text-gray-600 text-center mb-4">
+                        من الـ DNA إلى البروتين - فهم كيفية تحويل المعلومات الجينية إلى وظائف حيوية
+                    </p>
+                    <div class="flex justify-center space-x-reverse space-x-2">
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">النسخ</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">الترجمة</span>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-xl p-8 card-hover">
+                    <div class="text-center mb-6">
+                        <div class="w-24 h-24 mx-auto mutation-gradient rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-exclamation-triangle text-4xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">الطفرات وإصلاح DNA</h3>
+                    </div>
+                    <p class="text-gray-600 text-center mb-4">
+                        أنواع الطفرات، آثارها، وآليات إصلاح الـ DNA للحفاظ على سلامة الجينوم
+                    </p>
+                    <div class="flex justify-center space-x-reverse space-x-2">
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">الطفرات</span>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">الإصلاح</span>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-xl p-8 card-hover">
+                    <div class="text-center mb-6">
+                        <div class="w-24 h-24 mx-auto biotech-gradient rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-microscope text-4xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">التكنولوجيا الحيوية</h3>
+                    </div>
+                    <p class="text-gray-600 text-center mb-4">
+                        تطبيقات الكيمياء الحيوية في الطب والصناعة والزراعة والبيئة
+                    </p>
+                    <div class="flex justify-center space-x-reverse space-x-2">
+                        <span class="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">PCR</span>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">الهندسة الوراثية</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gene Expression Section -->
+    <section id="gene-expression" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12 scroll-reveal">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">آليات التعبير الجيني</h2>
+                    <p class="text-xl text-gray-600">
+                        العملية التي يتم من خلالها تحويل المعلومات الجينية في الـ DNA إلى بروتينات وظيفية
+                    </p>
+                </div>
+
+                <!-- Central Dogma Animation -->
+                <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 mb-12 scroll-reveal">
+                    <h3 class="text-2xl font-bold text-center mb-8">العقيدة المركزية في البيولوجيا الجزيئية</h3>
+                    
+                    <div class="flex flex-wrap justify-center items-center gap-8">
+                        <!-- DNA -->
+                        <div class="text-center">
+                            <div class="w-32 h-32 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-3 glow-effect">
+                                <i class="fas fa-dna text-5xl text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">DNA</h4>
+                            <p class="text-sm text-gray-600">الحمض النووي</p>
+                        </div>
+
+                        <!-- Arrow 1 -->
+                        <div class="hidden md:block">
+                            <i class="fas fa-arrow-left text-4xl text-gray-400 gene-expression"></i>
+                            <p class="text-center text-sm mt-2">النسخ</p>
+                        </div>
+
+                        <!-- RNA -->
+                        <div class="text-center">
+                            <div class="w-32 h-32 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-dna text-5xl text-white" style="transform: rotate(90deg);"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">RNA</h4>
+                            <p class="text-sm text-gray-600">الحمض النووي الريبي</p>
+                        </div>
+
+                        <!-- Arrow 2 -->
+                        <div class="hidden md:block">
+                            <i class="fas fa-arrow-left text-4xl text-gray-400 gene-expression"></i>
+                            <p class="text-center text-sm mt-2">الترجمة</p>
+                        </div>
+
+                        <!-- Protein -->
+                        <div class="text-center">
+                            <div class="w-32 h-32 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-3 protein-fold">
+                                <i class="fas fa-cube text-5xl text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">Protein</h4>
+                            <p class="text-sm text-gray-600">البروتين</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transcription Details -->
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-blue-50 rounded-xl p-6 scroll-reveal">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4">
+                            <i class="fas fa-file-alt ml-2"></i>عملية النسخ (Transcription)
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-lg p-4 shadow-sm">
+                                <h4 class="font-semibold text-blue-700 mb-2">الخطوات الرئيسية:</h4>
+                                <ol class="space-y-2 text-gray-700">
+                                    <li class="flex items-start">
+                                        <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center ml-2 flex-shrink-0 text-sm">1</span>
+                                        <span>البدء: ارتباط RNA بوليميراز بمحفز الجين</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center ml-2 flex-shrink-0 text-sm">2</span>
+                                        <span>الاستطالة: تخليق RNA باستخدام قالب DNA</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center ml-2 flex-shrink-0 text-sm">3</span>
+                                        <span>الإنهاء: فصل RNA البادئ وتعديله</span>
+                                    </li>
+                                </ol>
+                            </div>
+                            <div class="bg-white rounded-lg p-4 shadow-sm">
+                                <h4 class="font-semibold text-blue-700 mb-2">أنواع RNA:</h4>
+                                <ul class="space-y-1 text-gray-700">
+                                    <li>• mRNA: الرسول - يحمل الشفرة الوراثية</li>
+                                    <li>• tRNA: الناقل - ينقل الأحماض الأمينية</li>
+                                    <li>• rRNA: الريبوسومي - مكون الريبوسوم</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 rounded-xl p-6 scroll-reveal">
+                        <h3 class="text-2xl font-bold text-purple-800 mb-4">
+                            <i class="fas fa-language ml-2"></i>عملية الترجمة (Translation)
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-lg p-4 shadow-sm">
+                                <h4 class="font-semibold text-purple-700 mb-2">مكونات الترجمة:</h4>
+                                <ul class="space-y-1 text-gray-700">
+                                    <li>• mRNA: يحمل الكودونات الوراثية</li>
+                                    <li>• tRNA: يحمل مكافئات anticodon</li>
+                                    <li>• الريبوسوم: موقع تخليق البروتين</li>
+                                    <li>• الأحماض الأمينية: وحدات بناء البروتين</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white rounded-lg p-4 shadow-sm">
+                                <h4 class="font-semibold text-purple-700 mb-2">مراحل الترجمة:</h4>
+                                <ol class="space-y-2 text-gray-700">
+                                    <li class="flex items-start">
+                                        <span class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center ml-2 flex-shrink-0 text-sm">1</span>
+                                        <span>البدء: تجمع الريبوسوم على mRNA</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center ml-2 flex-shrink-0 text-sm">2</span>
+                                        <span>الاستطالة: إضافة الأحماض الأمينية</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center ml-2 flex-shrink-0 text-sm">3</span>
+                                        <span>الإنهاء: إطلاق البروتين النهائي</span>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gene Regulation -->
+                <div class="bg-gradient-to-r from-indigo-50 to-pink-50 rounded-xl p-8 scroll-reveal">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+                        <i class="fas fa-sliders-h ml-2"></i>تنظيم التعبير الجيني
+                    </h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <i class="fas fa-toggle-on text-4xl text-indigo-500 mb-3"></i>
+                            <h4 class="font-bold mb-2">التنظيم الت transcriptomic</h4>
+                            <p class="text-sm text-gray-600">عوامل النسخ والمحفزات</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <i class="fas fa-cogs text-4xl text-pink-500 mb-3"></i>
+                            <h4 class="font-bold mb-2">التنظيم ما بعد النسخ</h4>
+                            <p class="text-sm text-gray-600">القص البديل والتعديلات</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <i class="fas fa-shield-alt text-4xl text-purple-500 mb-3"></i>
+                            <h4 class="font-bold mb-2">التنظيم الترجمي</h4>
+                            <p class="text-sm text-gray-600">عوامل الترجمة والmiRNA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mutations and DNA Repair Section -->
+    <section id="mutations" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12 scroll-reveal">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">الطفرات وإصلاح DNA</h2>
+                    <p class="text-xl text-gray-600">
+                        كيف تحدث التغيرات في الـ DNA وكيف تحافظ الخلية على سلامة الجينوم
+                    </p>
+                </div>
+
+                <!-- Types of Mutations -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 mb-12 scroll-reveal">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">أنواع الطفرات</h3>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Point Mutation -->
+                        <div class="border-2 border-red-200 rounded-xl p-6 hover:border-red-400 transition">
+                            <div class="text-center mb-4">
+                                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3 mutation-pulse">
+                                    <i class="fas fa-dot-circle text-2xl text-red-600"></i>
+                                </div>
+                                <h4 class="font-bold text-lg">طفرة نقطية</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm">تغير في قاعدة نيتروجينية واحدة</p>
+                            <div class="mt-3 text-xs text-gray-500">
+                                <p>مثال: A → G</p>
+                            </div>
+                        </div>
+
+                        <!-- Insertion -->
+                        <div class="border-2 border-blue-200 rounded-xl p-6 hover:border-blue-400 transition">
+                            <div class="text-center mb-4">
+                                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-plus text-2xl text-blue-600"></i>
+                                </div>
+                                <h4 class="font-bold text-lg">طفرة إدخال</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm">إضافة قاعدة نيتروجينية إضافية</p>
+                            <div class="mt-3 text-xs text-gray-500">
+                                <p>تسبب إزاحة الإطار القرائي</p>
+                            </div>
+                        </div>
+
+                        <!-- Deletion -->
+                        <div class="border-2 border-green-200 rounded-xl p-6 hover:border-green-400 transition">
+                            <div class="text-center mb-4">
+                                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-minus text-2xl text-green-600"></i>
+                                </div>
+                                <h4 class="font-bold text-lg">طفرة حذف</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm">حذف قاعدة نيتروجينية أو أكثر</p>
+                            <div class="mt-3 text-xs text-gray-500">
+                                <p>قد تسبب إزاحة الإطار</p>
+                            </div>
+                        </div>
+
+                        <!-- Duplication -->
+                        <div class="border-2 border-purple-200 rounded-xl p-6 hover:border-purple-400 transition">
+                            <div class="text-center mb-4">
+                                <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-copy text-2xl text-purple-600"></i>
+                                </div>
+                                <h4 class="font-bold text-lg">طفرة تكرار</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm">تكرار مقطع من الـ DNA</p>
+                            <div class="mt-3 text-xs text-gray-500">
+                                <p>قد تزيد من عدد الجينات</p>
+                            </div>
+                        </div>
+
+                        <!-- Inversion -->
+                        <div class="border-2 border-yellow-200 rounded-xl p-6 hover:border-yellow-400 transition">
+                            <div class="text-center mb-4">
+                                <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-exchange-alt text-2xl text-yellow-600"></i>
+                                </div>
+                                <h4 class="font-bold text-lg">طفرة انعكاس</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm">عكس ترتيب مقطع DNA</p>
+                            <div class="mt-3 text-xs text-gray-500">
+                                <p>قد تؤثر على تنظيم الجين</p>
+                            </div>
+                        </div>
+
+                        <!-- Translocation -->
+                        <div class="border-2 border-indigo-200 rounded-xl p-6 hover:border-indigo-400 transition">
+                            <div class="text-center mb-4">
+                                <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-arrows-alt text-2xl text-indigo-600"></i>
+                                </div>
+                                <h4 class="font-bold text-lg">طفرة انتقال</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm">انتقال مقطع DNA إلى موقع آخر</p>
+                            <div class="mt-3 text-xs text-gray-500">
+                                <p>قد تخلق جينات اندماجية</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DNA Repair Mechanisms -->
+                <div class="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-8 scroll-reveal">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">آليات إصلاح DNA</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-xl font-bold text-green-700 mb-4">
+                                <i class="fas fa-tools ml-2"></i>أنظمة الإصلاح الرئيسية
+                            </h4>
+                            <div class="space-y-4">
+                                <div class="bg-white rounded-lg p-4 shadow-sm">
+                                    <h5 class="font-semibold text-green-600 mb-2">1. الإصلاح المباشر</h5>
+                                    <p class="text-sm text-gray-700">إصلاح التلف مباشرة دون إزالة القواعد</p>
+                                    <p class="text-xs text-gray-500 mt-1">مثال: إصلاح مثيلة الجوانين</p>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-4 shadow-sm">
+                                    <h5 class="font-semibold text-green-600 mb-2">2. الإصلاح بالقص الأساسي (BER)</h5>
+                                    <p class="text-sm text-gray-700">إصلاح تلف القواعد الفردية</p>
+                                    <p class="text-xs text-gray-500 mt-1">يستخدم إنزيمات glycosylase</p>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-4 shadow-sm">
+                                    <h5 class="font-semibold text-green-600 mb-2">3. الإصلاح بالقص النوكليوتيدي (NER)</h5>
+                                    <p class="text-sm text-gray-700">إصلاح التلف الكبير مثل الثنيات</p>
+                                    <p class="text-xs text-gray-500 mt-1">مهم في إصلاح تلف الأشعة فوق البنفسجية</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-xl font-bold text-blue-700 mb-4">
+                                <i class="fas fa-shield-virus ml-2"></i>أنظمة الإصلاح المتقدمة
+                            </h4>
+                            <div class="space-y-4">
+                                <div class="bg-white rounded-lg p-4 shadow-sm">
+                                    <h5 class="font-semibold text-blue-600 mb-2">4. الإصلاح بالمطابقة (MMR)</h5>
+                                    <p class="text-sm text-gray-700">تصحيح الأخطاء أثناء النسخ المتماثل</p>
+                                    <p class="text-xs text-gray-500 mt-1">يقلل معدل الطفرات 100-1000 مرة</p>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-4 shadow-sm">
+                                    <h5 class="font-semibold text-blue-600 mb-2">5. الإصلاح بالانضمام المتماثل (HR)</h5>
+                                    <p class="text-sm text-gray-700">إصلاح الكسور المزدوجة باستخدام قالب</p>
+                                    <p class="text-xs text-gray-500 mt-1">دقيق ويتطلب أخت شقيقة</p>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-4 shadow-sm">
+                                    <h5 class="font-semibold text-blue-600 mb-2">6. الإصلاح بالانضمام غير المتماثل (NHEJ)</h5>
+                                    <p class="text-sm text-gray-700">ربط مباشر لأطراف الكسر المزدوج</p>
+                                    <p class="text-xs text-gray-500 mt-1">سريع ولكن قد يسبب طفرات</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mutation Effects -->
+                <div class="mt-12 bg-red-50 border-l-4 border-red-400 p-6 rounded-r-xl scroll-reveal">
+                    <h4 class="font-bold text-lg text-red-800 mb-3">
+                        <i class="fas fa-exclamation-circle ml-2"></i>آثار الطفرات
+                    </h4>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-white rounded-lg p-4">
+                            <h5 class="font-semibold text-red-600 mb-2">طفرات صامتة</h5>
+                            <p class="text-sm text-gray-700">لا تغير تسلسل الأحماض الأمينية</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4">
+                            <h5 class="font-semibold text-orange-600 mb-2">طفرات Missense</h5>
+                            <p class="text-sm text-gray-700">تغير حمض أميني واحد</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4">
+                            <h5 class="font-semibold text-purple-600 mb-2">طفرات Nonsense</h5>
+                            <p class="text-sm text-gray-700">تخلق كودون توقف مبكر</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Biotechnology Section -->
+    <section id="biotechnology" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12 scroll-reveal">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">التكنولوجيا الحيوية</h2>
+                    <p class="text-xl text-gray-600">
+                        تطبيقات الكيمياء الحيوية الجزيئية في حل مشاكل الإنسان والبيئة
+                    </p>
+                </div>
+
+                <!-- PCR Technology -->
+                <div class="bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl p-8 mb-12 scroll-reveal">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">تقنية PCR (Polymerase Chain Reaction)</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-xl font-bold text-purple-700 mb-4">ما هي PCR؟</h4>
+                            <p class="text-gray-700 mb-4">
+                                تقنية لتضخيم مقاطع محددة من الـ DNA بشكل أسي، مما يسمح بدراسة كميات صغيرة جداً من الحمض النووي.
+                            </p>
+                            
+                            <h4 class="text-lg font-semibold text-purple-600 mb-3">المكونات الأساسية:</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-vial text-purple-500 ml-2 mt-1"></i>
+                                    <span>قالب DNA</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-vial text-purple-500 ml-2 mt-1"></i>
+                                    <span>البادئات (Primers)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-vial text-purple-500 ml-2 mt-1"></i>
+                                    <span>DNA بوليميراز (Taq)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-vial text-purple-500 ml-2 mt-1"></i>
+                                    <span>نوكليوتيدات (dNTPs)</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-xl font-bold text-pink-700 mb-4">مراحل PCR</h4>
+                            <div class="space-y-4">
+                                <div class="bg-white rounded-lg p-4 shadow-sm">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center ml-3">
+                                            <span class="text-white font-bold">1</span>
+                                        </div>
+                                        <h5 class="font-semibold">التفكيك (Denaturation)</h5>
+                                    </div>
+                                    <p class="text-sm text-gray-600">تسخين إلى 94-98°C لفصل سلسلتي DNA</p>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-4 shadow-sm">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center ml-3">
+                                            <span class="text-white font-bold">2</span>
+                                        </div>
+                                        <h5 class="font-semibold">الارتباط (Annealing)</h5>
+                                    </div>
+                                    <p class="text-sm text-gray-600">تبريد إلى 50-65°C لارتباط البادئات</p>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-4 shadow-sm">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center ml-3">
+                                            <span class="text-white font-bold">3</span>
+                                        </div>
+                                        <h5 class="font-semibold">الاستطالة (Extension)</h5>
+                                    </div>
+                                    <p class="text-sm text-gray-600">72°C لتخليق سلسلة DNA جديدة</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Genetic Engineering -->
+                <div class="bg-gradient-to-r from-blue-50 to-green-50 rounded-2xl p-8 mb-12 scroll-reveal">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">الهندسة الوراثية</h3>
+                    
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="tech-card rounded-xl p-6">
+                            <i class="fas fa-cut text-4xl text-blue-400 mb-4"></i>
+                            <h4 class="font-bold text-lg mb-3">إنزيمات التقييد</h4>
+                            <p class="text-sm text-gray-700 mb-3">مقصات جزيئية تقطع DNA في مواقع محددة</p>
+                            <div class="text-xs text-gray-500">
+                                <p>مثال: EcoRI, HindIII</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-card rounded-xl p-6">
+                            <i class="fas fa-plug text-4xl text-green-400 mb-4"></i>
+                            <h4 class="font-bold text-lg mb-3">النواقل (Vectors)</h4>
+                            <p class="text-sm text-gray-700 mb-3">أدوات لنقل الجينات بين الكائنات</p>
+                            <div class="text-xs text-gray-500">
+                                <p>البلازميدات، الفيروسات</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-card rounded-xl p-6">
+                            <i class="fas fa-microscope text-4xl text-purple-400 mb-4"></i>
+                            <h4 class="font-bold text-lg mb-3">التقنيات الحديثة</h4>
+                            <p class="text-sm text-gray-700 mb-3">أدوات دقيقة لتعديل الجينوم</p>
+                            <div class="text-xs text-gray-500">
+                                <p>CRISPR-Cas9, TALENs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Applications -->
+                <div class="scroll-reveal">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">تطبيقات التكنولوجيا الحيوية</h3>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Medical Applications -->
+                        <div class="bg-gradient-to-br from-red-50 to-pink-50 rounded-xl p-6 card-hover">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-heartbeat text-5xl text-red-500"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-3 text-center">التطبيقات الطبية</h4>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li>• إنتاج الأنسولين</li>
+                                <li>• العلاج الجيني</li>
+                                <li>• التشخيص الجيني</li>
+                                <li>• اللقاحات الحيوية</li>
+                            </ul>
+                        </div>
+
+                        <!-- Agricultural Applications -->
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 card-hover">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-seedling text-5xl text-green-500"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-3 text-center">التطبيقات الزراعية</h4>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li>• محاصيل معدلة وراثياً</li>
+                                <li>• مقاومة الآفات</li>
+                                <li>• تحسين القيمة الغذائية</li>
+                                <li>• تحمل الظروف البيئية</li>
+                            </ul>
+                        </div>
+
+                        <!-- Industrial Applications -->
+                        <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 card-hover">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-industry text-5xl text-blue-500"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-3 text-center">التطبيقات الصناعية</h4>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li>• الإنزيمات الصناعية</li>
+                                <li>• الوقود الحيوي</li>
+                                <li>• البلاستيك القابل للتحلل</li>
+                                <li>• المنظفات الحيوية</li>
+                            </ul>
+                        </div>
+
+                        <!-- Environmental Applications -->
+                        <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-6 card-hover">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-leaf text-5xl text-yellow-500"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-3 text-center">التطبيقات البيئية</h4>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li>• المعالجة الحيوية</li>
+                                <li>• التنقية الحيوية</li>
+                                <li>• الكشف عن الملوثات</li>
+                                <li>• استعادة النظم البيئية</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CRISPR Technology -->
+                <div class="mt-12 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8 scroll-reveal">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">تقنية CRISPR-Cas9</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-xl font-bold text-indigo-700 mb-4">ما هي CRISPR؟</h4>
+                            <p class="text-gray-700 mb-4">
+                                نظام مناعي بكتيري تم تطويره كأداة قوية لتعديل الجينوم بدقة عالية.
+                            </p>
+                            
+                            <h4 class="text-lg font-semibold text-indigo-600 mb-3">المكونات:</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-scissors text-indigo-500 ml-2 mt-1"></i>
+                                    <span>Cas9: إنزيم يقص DNA</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-map text-indigo-500 ml-2 mt-1"></i>
+                                    <span>gRNA: دليل RNA يوجه Cas9</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-puzzle-piece text-indigo-500 ml-2 mt-1"></i>
+                                    <span>قالب الإصلاح (اختياري)</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-xl font-bold text-purple-700 mb-4">التطبيقات الثورية</h4>
+                            <div class="space-y-3">
+                                <div class="bg-white rounded-lg p-3 flex items-center">
+                                    <i class="fas fa-user-md text-purple-500 ml-3"></i>
+                                    <div>
+                                        <h5 class="font-semibold">علاج الأمراض الوراثية</h5>
+                                        <p class="text-sm text-gray-600">فقر الدم المنجلي، التليف الكيسي</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-3 flex items-center">
+                                    <i class="fas fa-dna text-purple-500 ml-3"></i>
+                                    <div>
+                                        <h5 class="font-semibold">تحسين المحاصيل</h5>
+                                        <p class="text-sm text-gray-600">زيادة الإنتاجية ومقاومة الأمراض</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-3 flex items-center">
+                                    <i class="fas fa-virus text-purple-500 ml-3"></i>
+                                    <div>
+                                        <h5 class="font-semibold">مكافحة الأمراض</h5>
+                                        <p class="text-sm text-gray-600">القضاء على البعث الناقل للملاريا</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Section -->
+    <section class="py-20 gradient-bg text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-6">مستقبل الكيمياء الحيوية الجزيئية</h2>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div>
+                            <i class="fas fa-brain text-5xl mb-4 text-blue-300"></i>
+                            <h3 class="text-xl font-bold mb-2">الطب الدقيق</h3>
+                            <p>علاجات مخصصة بناءً على التركيب الجيني الفردي</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-robot text-5xl mb-4 text-green-300"></i>
+                            <h3 class="text-xl font-bold mb-2">الذكاء الاصطناعي</h3>
+                            <p>تنبؤ ببنية البروتينات وتصميم أدوية جديدة</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-globe text-5xl mb-4 text-yellow-300"></i>
+                            <h3 class="text-xl font-bold mb-2">الاستدامة</h3>
+                            <p>حلول بيئية مبتكرة باستخدام الكائنات الحية</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="mb-2">© 2024 الكيمياء الحيوية الجزيئية - منصة تعليمية تفاعلية</p>
+                <p class="text-gray-400">استكشف عالم الجزيئات الحيوية وتطبيقاتها المتقدمة</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('hidden');
+            nav.classList.toggle('absolute');
+            nav.classList.toggle('top-full');
+            nav.classList.toggle('left-0');
+            nav.classList.toggle('right-0');
+            nav.classList.toggle('bg-blue-900');
+            nav.classList.toggle('p-4');
+            nav.classList.toggle('flex-col');
+            nav.classList.toggle('space-y-2');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for scroll reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with scroll-reveal class
+        document.querySelectorAll('.scroll-reveal').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Interactive DNA base pairs
+        document.querySelectorAll('.base-pair').forEach(basePair => {
+            basePair.addEventListener('click', function() {
+                const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#a8e6cf', '#ff8b94', '#b4a7d6'];
+                const currentColor = this.style.stroke;
+                let newColor;
+                do {
+                    newColor = colors[Math.floor(Math.random() * colors.length)];
+                } while (currentColor === newColor);
+                this.style.stroke = newColor;
+            });
+        });
+
+        // Mutation cards interaction
+        document.querySelectorAll('.border-2').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // PCR cycle animation
+        let pcrStep = 0;
+        const pcrSteps = document.querySelectorAll('.bg-white.rounded-lg.p-4.shadow-sm');
+        
+        setInterval(() => {
+            pcrSteps.forEach(step => step.classList.remove('ring-2', 'ring-blue-500'));
+            pcrSteps[pcrStep].classList.add('ring-2', 'ring-blue-500');
+            pcrStep = (pcrStep + 1) % pcrSteps.length;
+        }, 3000);
+
+        // Add tooltip functionality
+        const tooltipData = {
+            'PCR': 'تقنية تضخيم الحمض النووي',
+            'CRISPR': 'أداة تعديل جيني دقيقة',
+            'DNA': 'الحمض النووي الديوكسي ريبوز',
+            'RNA': 'الحمض النووي الريبوز'
+        };
+
+        // Dynamic content loading simulation
+        window.addEventListener('load', () => {
+            // Simulate loading animations
+            document.querySelectorAll('.card-hover').forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.style.transition = 'all 0.5s ease';
+                    
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 100);
+            });
+        });
+
+        // Interactive gene expression flow
+        const expressionElements = document.querySelectorAll('.gene-expression');
+        expressionElements.forEach(element => {
+            element.addEventListener('click', function() {
+                this.style.animationPlayState = this.style.animationPlayState === 'paused' ? 'running' : 'paused';
+            });
+        });
+    </script>
+</body>
+</html>

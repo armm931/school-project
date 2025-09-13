@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مقدمة في الكيمياء الحيوية - عالم الجزيئات الحية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c5f2d;
+            --secondary: #4a9d4c;
+            --accent: #97bc62;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --info: #3498db;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            color: var(--accent);
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 95, 45, 0.85), rgba(74, 157, 76, 0.85)), url('https://images.unsplash.com/photo-1532184659819-617f1f0e5b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: #7fa54e;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title .divider {
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 0 auto;
+        }
+
+        /* Introduction Cards */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .intro-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .intro-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .intro-header {
+            background: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .intro-header i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .intro-body {
+            padding: 1.5rem;
+        }
+
+        .intro-body h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        /* Biomolecules Section */
+        .biomolecules-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .biomolecule-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .biomolecule-tab {
+            background: var(--light);
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .biomolecule-tab.active {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .biomolecule-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .biomolecule-content.active {
+            display: block;
+        }
+
+        .biomolecule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .biomolecule-card {
+            background: linear-gradient(135deg, var(--light), #e8f5e9);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .biomolecule-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .biomolecule-card i {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* Metabolism Section */
+        .metabolism-container {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .process-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .process-step {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .process-step:not(:last-child):after {
+            content: "\f054";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--secondary);
+            font-size: 1.5rem;
+        }
+
+        .process-step h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Enzymes Section */
+        .enzymes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .enzyme-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .enzyme-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .enzyme-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .enzyme-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .enzyme-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Interactive Quiz */
+        .quiz-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .quiz-question {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .quiz-option {
+            background: white;
+            border: 2px solid var(--secondary);
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .quiz-option.correct {
+            background: var(--success);
+            color: white;
+            border-color: var(--success);
+        }
+
+        .quiz-option.incorrect {
+            background: var(--danger);
+            color: white;
+            border-color: var(--danger);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .process-step:not(:last-child):after {
+                display: none;
+            }
+            
+            .process-flow {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-dna"></i>
+                <span>الكيمياء الحيوية</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#biomolecules">الجزيئات الحيوية</a></li>
+                    <li><a href="#metabolism">الأيض</a></li>
+                    <li><a href="#enzymes">الإنزيمات</a></li>
+                    <li><a href="#quiz">اختبار</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>مقدمة في الكيمياء الحيوية</h1>
+            <p>اكتشف عالم الجزيئات الحية والعمليات الكيميائية التي تحكم الحياة</p>
+            <a href="#intro" class="btn">ابدأ رحلتك العلمية</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Introduction Section -->
+            <section id="intro" class="section">
+                <div class="section-title">
+                    <h2>ما هي الكيمياء الحيوية؟</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="intro-grid">
+                    <div class="intro-card">
+                        <div class="intro-header">
+                            <i class="fas fa-microscope"></i>
+                            <h3>تعريف الكيمياء الحيوية</h3>
+                        </div>
+                        <div class="intro-body">
+                            <p>الكيمياء الحيوية هي علم يدرس التركيب الكيميائي والعمليات الكيميائية التي تحدث في الكائنات الحية. تركز على فهم كيفية تفاعل الجزيئات البيولوجية مع بعضها البعض لتكوين الحياة.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="intro-card">
+                        <div class="intro-header">
+                            <i class="fas fa-history"></i>
+                            <h3>تاريخ الكيمياء الحيوية</h3>
+                        </div>
+                        <div class="intro-body">
+                            <p>بدأت كعلم في أوائل القرن العشرين على يد علماء مثل إميل فيشر الذي درس البروتينات والإنزيمات. تطور العلم بسرعة مع اكتشاف DNA وتطور التقنيات الحديثة.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="intro-card">
+                        <div class="intro-header">
+                            <i class="fas fa-star"></i>
+                            <h3>أهمية الكيمياء الحيوية</h3>
+                        </div>
+                        <div class="intro-body">
+                            <p>تعد أساساً لفهم الأمراض وتطوير الأدوية، وتلعب دوراً حيوياً في الطب والصيدلة والزراعة والتكنولوجيا الحيوية. تساعد في تطوير علاجات جديدة وفهم آليات الأمراض.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Biomolecules Section -->
+            <section id="biomolecules" class="section">
+                <div class="section-title">
+                    <h2>الجزيئات الحيوية الأساسية</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="biomolecules-section">
+                    <div class="biomolecule-tabs">
+                        <button class="biomolecule-tab active" onclick="showBiomolecule('carbohydrates')">الكربوهيدرات</button>
+                        <button class="biomolecule-tab" onclick="showBiomolecule('proteins')">البروتينات</button>
+                        <button class="biomolecule-tab" onclick="showBiomolecule('lipids')">الدهون</button>
+                        <button class="biomolecule-tab" onclick="showBiomolecule('nucleic')">الأحماض النووية</button>
+                    </div>
+                    
+                    <!-- Carbohydrates Content -->
+                    <div id="carbohydrates" class="biomolecule-content active">
+                        <h3>الكربوهيدرات</h3>
+                        <p>الكربوهيدرات هي مركبات عضوية تتكون من الكربون والهيدروجين والأكسجين. تعمل كمصدر رئيسي للطاقة وتشكل جزءاً من هيكل الخلية.</p>
+                        
+                        <div class="biomolecule-grid">
+                            <div class="biomolecule-card">
+                                <i class="fas fa-cube"></i>
+                                <h4>السكريات الأحادية</h4>
+                                <p>أبسط أشكال الكربوهيدرات مثل الجلوكوز والفركتوز والجالاكتوز</p>
+                            </div>
+                            <div class="biomolecule-card">
+                                <i class="fas fa-link"></i>
+                                <h4>السكريات الثنائية</h4>
+                                <p>تتكون من اتحاد سكرين أحاديين مثل السكروز واللاكتوز والمالتوز</p>
+                            </div>
+                            <div class="biomolecule-card">
+                                <i class="fas fa-project-diagram"></i>
+                                <h4>السكريات المتعددة</h4>
+                                <p>سلاسل طويلة من السكريات الأحادية مثل النشا والسليلوز والجليكوجين</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Proteins Content -->
+                    <div id="proteins" class="biomolecule-content">
+                        <h3>البروتينات</h3>
+                        <p>البروتينات هي بوليمرات تتكون من الأحماض الأمينية. تقوم بوظائف متعددة حيوية مثل الإنزيمات والأجسام المضادة والهرمونات.</p>
+                        
+                        <div class="biomolecule-grid">
+                            <div class="biomolecule-card">
+                                <i class="fas fa-level-up-alt"></i>
+                                <h4>الهيكل الأولي</h4>
+                                <p>تسلسل الأحماض الأمينية في سلسلة البولي ببتيد</p>
+                            </div>
+                            <div class="biomolecule-card">
+                                <i class="fas fa-wave-square"></i>
+                                <h4>الهيكل الثانوي</h4>
+                                <p>الطيات واللفائف المحلية مثل ألفا هيليكس وبيتا شيت</p>
+                            </div>
+                            <div class="biomolecule-card">
+                                <i class="fas fa-cube"></i>
+                                <h4>الهيكل الثلاثي والرباعي</h4>
+                                <p>الطي ثلاثي الأبعاد وتجمع عدة سلاسل بولي ببتيد</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Lipids Content -->
+                    <div id="lipids" class="biomolecule-content">
+                        <h3>الدهون</h3>
+                        <p>الدهون هي مركبات غير قطبية تذوب في المذيبات العضوية. تعمل كمخزن للطاقة وتكوين الأغشية الخلوية.</p>
+                        
+                        <div class="biomolecule-grid">
+                            <div class="biomolecule-card">
+                                <i class="fas fa-oil-can"></i>
+                                <h4>الدهون الثلاثية</h4>
+                                <p>مخزن الطاقة الرئيسي في الجسم تتكون من الجلسرول وثلاثة أحماض دهنية</p>
+                            </div>
+                            <div class="biomolecule-card">
+                                <i class="fas fa-border-style"></i>
+                                <h4>الفوسفوليبيدات</h4>
+                                <p>المكون الرئيسي للأغشية الخلوية ذات الطبيعة الأمفية</p>
+                            </div>
+                            <div class="biomolecule-card">
+                                <i class="fas fa-ring"></i>
+                                <h4>الستيرويدات</h4>
+                                <p>مركبات ذات حلقات أربع مثل الكوليسترول والهرمونات الستيرويدية</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Nucleic Acids Content -->
+                    <div id="nucleic" class="biomolecule-content">
+                        <h3>الأحماض النووية</h3>
+                        <p>الأحماض النووية هي جزيئات تحمل المعلومات الوراثية وتوجه تخليق البروتينات. تشمل DNA و RNA.</p>
+                        
+                        <div class="biomolecule-grid">
+                            <div class="biomolecule-card">
+                                <i class="fas fa-dna"></i>
+                                <h4>DNA</h4>
+                                <p>الحامض النووي الريبوزي منقوص الأكسجين، يحمل المعلومات الوراثية</p>
+                            </div>
+                            <div class="biomolecule-card">
+                                <i class="fas fa-virus"></i>
+                                <h4>RNA</h4>
+                                <p>الحامض النووي الريبوزي، يشارك في تخليق البروتينات</p>
+                            </div>
+                            <div class="biomolecule-card">
+                                <i class="fas fa-puzzle-piece"></i>
+                                <h4>النيوكليوتيدات</h4>
+                                <p>الوحدات الأساسية المكونة للأحماض النووية</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Metabolism Section -->
+            <section id="metabolism" class="section">
+                <div class="section-title">
+                    <h2>الأيض (التمثيل الغذائي)</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="metabolism-container">
+                    <p>الأيض هو مجموعة التفاعلات الكيميائية التي تحدث في الخلايا الحية للحفاظ على الحياة. ينقسم إلى:</p>
+                    
+                    <div class="process-flow">
+                        <div class="process-step">
+                            <i class="fas fa-arrow-down" style="color: var(--danger); font-size: 2rem;"></i>
+                            <h4>التمثيل الغذائي الهدمي</h4>
+                            <p>تحطيم الجزيئات المعقدة لإنتاج الطاقة</p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <i class="fas fa-bolt" style="color: var(--warning); font-size: 2rem;"></i>
+                            <h4>إنتاج الطاقة</h4>
+                            <p>تحويل الطاقة الكيميائية إلى ATP</p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <i class="fas fa-arrow-up" style="color: var(--success); font-size: 2rem;"></i>
+                            <h4>التمثيل الغذائي البنائي</h4>
+                            <p>بناء الجزيئات المعقدة من بسيطة</p>
+                        </div>
+                    </div>
+                    
+                    <div class="intro-grid" style="margin-top: 2rem;">
+                        <div class="intro-card" style="border-right: 4px solid var(--danger);">
+                            <h3 style="color: var(--danger);">التنفس الخلوي</h3>
+                            <p>عملية تحطيم الجلوكوز لإنتاج الطاقة في وجود الأكسجين. تشمل Glycolysis، دورة كريبس، وسلسلة نقل الإلكترون.</p>
+                        </div>
+                        
+                        <div class="intro-card" style="border-right: 4px solid var(--success);">
+                            <h3 style="color: var(--success);">التمثيل الضوئي</h3>
+                            <p>عملية تحويل الطاقة الضوئية إلى طاقة كيميائية في النباتات. تشمل المرحلة الضوئية والمرحلة المظلمة.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Enzymes Section -->
+            <section id="enzymes" class="section">
+                <div class="section-title">
+                    <h2>الإنزيمات</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="enzymes-grid">
+                    <div class="enzyme-card">
+                        <div class="enzyme-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h4>ما هي الإنزيمات؟</h4>
+                        <p>الإنزيمات هي بروتينات تعمل كعوامل حفازة تسرع التفاعلات الكيميائية دون استهلاكها. تقلل طاقة التنشيط اللازمة للتفاعل.</p>
+                    </div>
+                    
+                    <div class="enzyme-card">
+                        <div class="enzyme-icon">
+                            <i class="fas fa-key"></i>
+                        </div>
+                        <h4>نموذج القفل والمفتاح</h4>
+                        <p>يرتبط الركيزة بالموقع النشط للإنزيم بشكل محدد، تماماً كما يتناسب المفتاح مع القفل. هذا يضمن اختصاصية الإنزيم.</p>
+                    </div>
+                    
+                    <div class="enzyme-card">
+                        <div class="enzyme-icon">
+                            <i class="fas fa-thermometer-half"></i>
+                        </div>
+                        <h4>العوامل المؤثرة</h4>
+                        <p>تتأثر فعالية الإنزيمات بدرجة الحرارة، الرقم الهيدروجيني، تركيز الركيزة، ووجود منشطات أو مثبطات.</p>
+                    </div>
+                    
+                    <div class="enzyme-card">
+                        <div class="enzyme-icon">
+                            <i class="fas fa-list-ul"></i>
+                        </div>
+                        <h4>تصنيف الإنزيمات</h4>
+                        <p>تصنف الإنزيمات إلى 6 فئات رئيسية: أوكسيدوريدكتاز، ترانسفيراز، هيدرولاز، لياز، إيزوميراز، وليجاز.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section id="quiz" class="section">
+                <div class="section-title">
+                    <h2>اختبار تفاعلي</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">
+                        <h3>ما هو المصدر الرئيسي للطاقة في الخلايا الحية؟</h3>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">البروتينات</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">الدهون</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, true)">ATP</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">DNA</div>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-question" style="display: none;">
+                        <h3>أي من الجزيئات التالية يحمل المعلومات الوراثية؟</h3>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">البروتينات</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, true)">DNA</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">الكربوهيدرات</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">الدهون</div>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-question" style="display: none;">
+                        <h3>ما هي وظيفة الإنزيمات؟</h3>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="checkAnswer(this, true)">تسريع التفاعلات الكيميائية</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">تخزين الطاقة</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">نقل المعلومات</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">بناء الأغشية</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن الموقع</h3>
+                    <p>منصة تعليمية تقدم مقدمة شاملة في الكيمياء الحيوية بطريقة مبسطة وتفاعلية للطلاب والمهتمين بالعلوم الحيوية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>المواضيع</h3>
+                    <ul class="footer-links">
+                        <li><a href="#intro">مقدمة في الكيمياء الحيوية</a></li>
+                        <li><a href="#biomolecules">الجزيئات الحيوية</a></li>
+                        <li><a href="#metabolism">الأيض والتمثيل الغذائي</a></li>
+                        <li><a href="#enzymes">الإنزيمات</a></li>
+                        <li><a href="#quiz">اختبارات تفاعلية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@biochemistry.com</li>
+                        <li><i class="fas fa-phone"></i> +966 50 123 4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                        <li><i class="fas fa-clock"></i> السبت - الخميس: 9 ص - 5 م</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع الكيمياء الحيوية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Biomolecule tabs functionality
+        function showBiomolecule(type) {
+            // Hide all biomolecule contents
+            document.querySelectorAll('.biomolecule-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.biomolecule-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected content
+            document.getElementById(type).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Quiz functionality
+        let currentQuestion = 0;
+        const questions = document.querySelectorAll('.quiz-question');
+
+        function checkAnswer(element, isCorrect) {
+            // Disable all options for current question
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+            });
+            
+            // Mark correct/incorrect
+            if (isCorrect) {
+                element.classList.add('correct');
+                setTimeout(() => {
+                    // Move to next question
+                    questions[currentQuestion].style.display = 'none';
+                    currentQuestion++;
+                    if (currentQuestion < questions.length) {
+                        questions[currentQuestion].style.display = 'block';
+                    } else {
+                        // Show completion message
+                        const quizContainer = document.querySelector('.quiz-container');
+                        quizContainer.innerHTML = `
+                            <div style="text-align: center; padding: 3rem;">
+                                <i class="fas fa-trophy" style="font-size: 4rem; color: var(--success); margin-bottom: 1rem;"></i>
+                                <h3>أحسنت! لقد أكملت الاختبار بنجاح</h3>
+                                <p>لقد أجبت على جميع الأسئلة بشكل صحيح</p>
+                                <button class="btn" onclick="location.reload()" style="margin-top: 1rem;">إعادة الاختبار</button>
+                            </div>
+                        `;
+                    }
+                }, 1500);
+            } else {
+                element.classList.add('incorrect');
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.intro-card, .enzyme-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

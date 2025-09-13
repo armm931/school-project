@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التطبيقات الصناعية والزراعية للتقنيات النووية - منصة تعليمية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a8a;
+            --secondary-blue: #3b82f6;
+            --accent-blue: #60a5fa;
+            --light-blue: #dbeafe;
+            --dark-blue: #1e40af;
+            --white: #ffffff;
+            --light-gray: #f8fafc;
+            --dark-gray: #1e293b;
+            --text-color: #334155;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+            background: var(--light-gray);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.9), rgba(59, 130, 246, 0.8)),
+                        url('https://picsum.photos/seed/nuclear-tech/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: var(--primary-blue);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-blue);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-blue);
+        }
+
+        /* Feature Cards */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue));
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-icon::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: var(--light-blue);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .feature-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-card p {
+            color: var(--text-color);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-link {
+            color: var(--secondary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .feature-link:hover {
+            gap: 1rem;
+        }
+
+        /* Process Section */
+        .process-section {
+            margin-top: 4rem;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .process-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .process-number {
+            position: absolute;
+            top: -15px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 40px;
+            height: 40px;
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .process-icon {
+            font-size: 2.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Applications Section */
+        .applications-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .application-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .application-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .application-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .application-header h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .application-content {
+            padding: 2rem;
+        }
+
+        .application-list {
+            list-style: none;
+        }
+
+        .application-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .application-list li:last-child {
+            border-bottom: none;
+        }
+
+        .application-list i {
+            color: var(--success);
+            font-size: 1.2rem;
+        }
+
+        /* Interactive Demo */
+        .demo-container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 3rem;
+        }
+
+        .demo-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--light-gray);
+            flex-wrap: wrap;
+        }
+
+        .demo-tab {
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .demo-tab.active {
+            color: var(--primary-blue);
+        }
+
+        .demo-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-blue);
+        }
+
+        .demo-tab:hover {
+            color: var(--primary-blue);
+        }
+
+        .demo-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .demo-content.active {
+            display: block;
+        }
+
+        .demo-visual {
+            background: var(--light-blue);
+            border-radius: 15px;
+            padding: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .demo-icon {
+            font-size: 5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--primary-blue);
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--light-blue);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: var(--light-blue);
+        }
+
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Resources Section */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .resource-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .resource-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .resource-card:hover .resource-image img {
+            transform: scale(1.1);
+        }
+
+        .resource-content {
+            padding: 1.5rem;
+        }
+
+        .resource-type {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .resource-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .resource-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-blue);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .demo-tabs {
+                flex-direction: column;
+            }
+
+            .demo-tab {
+                text-align: center;
+                border: 1px solid var(--light-gray);
+                border-radius: 5px;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--light-blue);
+            border-top-color: var(--primary-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                التقنيات النووية
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#applications">التطبيقات</a></li>
+                <li><a href="#sterilization">التعقيم</a></li>
+                <li><a href="#imaging">التصوير</a></li>
+                <li><a href="#tracing">التتبع</a></li>
+                <li><a href="#resources">الموارد</a></li>
+                <li><a href="#faq">الأسئلة</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>التطبيقات الصناعية والزراعية للتقنيات النووية</h1>
+            <p>منصة تعليمية شاملة تقدم معلومات مفصلة عن استخدامات التقنيات النووية في المجالات الصناعية والزراعية بطريقة آمنة ومفيدة</p>
+            <div class="hero-buttons">
+                <a href="#applications" class="btn btn-primary">اكتشف التطبيقات</a>
+                <a href="#sterilization" class="btn btn-secondary">ابدأ التعلم</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Applications Section -->
+    <section id="applications" class="section">
+        <div class="container">
+            <h2 class="section-title">التطبيقات الرئيسية</h2>
+            <p class="section-subtitle">تستخدم التقنيات النووية في مجالات متعددة لتحسين الإنتاجية وجودة المنتجات وحماية البيئة</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-virus"></i>
+                    </div>
+                    <h3>التعقيم بالإشعاع</h3>
+                    <p>تقنية متقدمة تستخدم إشعاعات جاما أو أشعة إكس لتعقيم المواد الطبية والمواد الغذائية والأدوات الجراحية</p>
+                    <a href="#sterilization" class="feature-link">
+                        تعلم المزيد <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-x-ray"></i>
+                    </div>
+                    <h3>فحص المواد بالتصوير الإشعاعي</h3>
+                    <p>استخدام أشعة جاما وأشعة إكس لفحص المواد والكشف عن العيوب الداخلية في المكونات الصناعية</p>
+                    <a href="#imaging" class="feature-link">
+                        تعلم المزيد <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3>استخدام النظائر للتتبع</h3>
+                    <p>تتبع العمليات الصناعية والزراعية باستخدام نظائر مشعة لفهم وتحسين كفاءة العمليات المختلفة</p>
+                    <a href="#tracing" class="feature-link">
+                        تعلم المزيد <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sterilization Section -->
+    <section id="sterilization" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">التعقيم بالإشعاع</h2>
+            <p class="section-subtitle">تقنية آمنة وفعالة لتعقيم المواد الحساسة للحرارة والمواد الغذائية</p>
+            
+            <div class="process-section">
+                <h3 style="text-align: center; color: var(--primary-blue); margin-bottom: 2rem;">كيف يعمل التعقيم بالإشعاع؟</h3>
+                <div class="process-grid">
+                    <div class="process-item">
+                        <div class="process-number">1</div>
+                        <div class="process-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <h4>تحضير المواد</h4>
+                        <p>تعبئة المواد المراد تعقيمها في حاويات مناسبة</p>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-number">2</div>
+                        <div class="process-icon">
+                            <i class="fas fa-radiation"></i>
+                        </div>
+                        <h4>التعرض للإشعاع</h4>
+                        <p>تعرض المواد لجرعة محددة من إشعاعات جاما أو أشعة إكس</p>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-number">3</div>
+                        <div class="process-icon">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <h4>التحقق من الجرعة</h4>
+                        <p>مراقبة وقياس الجرعة الإشعاعية المستلمة</p>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-number">4</div>
+                        <div class="process-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h4>التحقق من النتائج</h4>
+                        <p>فحص المنتجات للتأكد من نجاح عملية التعقيم</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="applications-container">
+                <div class="application-card">
+                    <div class="application-header">
+                        <h3>التطبيقات الطبية</h3>
+                    </div>
+                    <div class="application-content">
+                        <ul class="application-list">
+                            <li><i class="fas fa-check"></i> تعقيم الأدوات الجراحية</li>
+                            <li><i class="fas fa-check"></i> تعقيم المواد الطبية的一次性</li>
+                            <li><i class="fas fa-check"></i> تعقيم زراعة الأنسجة</li>
+                            <li><i class="fas fa-check"></i> تعقيم المواد الحساسة للحرارة</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-header">
+                        <h3>التطبيقات الغذائية</h3>
+                    </div>
+                    <div class="application-content">
+                        <ul class="application-list">
+                            <li><i class="fas fa-check"></i> إطالة عمر المنتجات الغذائية</li>
+                            <li><i class="fas fa-check"></i> القضاء على البكتيريا المسببة للأمراض</li>
+                            <li><i class="fas fa-check"></i> منع إنبات البذور والدرنات</li>
+                            <li><i class="fas fa-check"></i> تحسين جودة المنتجات الغذائية</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-header">
+                        <h3>التطبيقات الصناعية</h3>
+                    </div>
+                    <div class="application-content">
+                        <ul class="application-list">
+                            <li><i class="fas fa-check"></i> تعقيم مواد التغليف</li>
+                            <li><i class="fas fa-check"></i> تعقيم مستحضرات التجميل</li>
+                            <li><i class="fas fa-check"></i> تعقيم منتجات النظافة</li>
+                            <li><i class="fas fa-check"></i> تعقيم المواد الخام</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Imaging Section -->
+    <section id="imaging" class="section">
+        <div class="container">
+            <h2 class="section-title">فحص المواد بالتصوير الإشعاعي</h2>
+            <p class="section-subtitle">تقنية غير متلفة لفحص المواد والكشف عن العيوب الداخلية</p>
+            
+            <div class="demo-container">
+                <div class="demo-tabs">
+                    <button class="demo-tab active" onclick="switchTab('principle')">مبدأ العمل</button>
+                    <button class="demo-tab" onclick="switchTab('applications')">التطبيقات</button>
+                    <button class="demo-tab" onclick="switchTab('advantages')">المميزات</button>
+                </div>
+                
+                <div class="demo-content active" id="principle">
+                    <div class="demo-visual">
+                        <i class="fas fa-x-ray demo-icon"></i>
+                        <h3>مبدأ التصوير الإشعاعي</h3>
+                        <p>يعتمد على اختلاف قدرة المواد على امتصاص الإشعاعات</p>
+                        <p style="margin-top: 1rem;">المواد الكثيفة تمتص إشعاعات أكثر وتظهر أغمق في الصورة</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">أنواع التصوير الإشعاعي المستخدمة</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <div style="background: var(--light-blue); padding: 1rem; border-radius: 10px;">
+                                <i class="fas fa-wave-square" style="font-size: 2rem; color: var(--primary-blue);"></i>
+                                <h5>أشعة جاما</h5>
+                                <p>من مصادر كوبالت-60 أو السيزيوم-137</p>
+                            </div>
+                            <div style="background: var(--light-blue); padding: 1rem; border-radius: 10px;">
+                                <i class="fas fa-bolt" style="font-size: 2rem; color: var(--primary-blue);"></i>
+                                <h5>أشعة إكس</h5>
+                                <p>من مولدات أشعة إكس الصناعية</p>
+                            </div>
+                            <div style="background: var(--light-blue); padding: 1rem; border-radius: 10px;">
+                                <i class="fas fa-satellite" style="font-size: 2rem; color: var(--primary-blue);"></i>
+                                <h5>النيوترونات</h5>
+                                <p>للمواد الخفيفة مثل الهيدروجين</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="demo-content" id="applications">
+                    <div class="demo-visual">
+                        <i class="fas fa-industry demo-icon"></i>
+                        <h3>التطبيقات الصناعية الرئيسية</h3>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div style="background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                            <h4 style="color: var(--primary-blue); margin-bottom: 0.5rem;">صناعة الطيران</h4>
+                            <p>فحص أجزاء الطائرات والمحركات للتأكد من خلوها من الشقوق والعيوب</p>
+                        </div>
+                        <div style="background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                            <h4 style="color: var(--primary-blue); margin-bottom: 0.5rem;">البناء والإنشاءات</h4>
+                            <p>فحص اللحامات والوصلات في الهياكل المعدنية والخرسانية</p>
+                        </div>
+                        <div style="background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                            <h4 style="color: var(--primary-blue); margin-bottom: 0.5rem;">صناعة السيارات</h4>
+                            <p>فحص جودة مكونات المحركات والهياكل المعدنية</p>
+                        </div>
+                        <div style="background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                            <h4 style="color: var(--primary-blue); margin-bottom: 0.5rem;">صناعة النفط والغاز</h4>
+                            <p>فحص الأنابيب والمعدات للتأكد من سلامتها الهيكلية</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="demo-content" id="advantages">
+                    <div class="demo-visual">
+                        <i class="fas fa-star demo-icon"></i>
+                        <h3>مميزات التصوير الإشعاعي</h3>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div style="background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                            <h4 style="color: var(--success); margin-bottom: 0.5rem;">
+                                <i class="fas fa-check-circle"></i> غير متلف
+                            </h4>
+                            <p>لا يتطلب تدمير أو تلف المادة المفحوصة</p>
+                        </div>
+                        <div style="background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                            <h4 style="color: var(--success); margin-bottom: 0.5rem;">
+                                <i class="fas fa-check-circle"></i> دقة عالية
+                            </h4>
+                            <p>قدرة على الكشف عن أصغر العيوب الداخلية</p>
+                        </div>
+                        <div style="background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                            <h4 style="color: var(--success); margin-bottom: 0.5rem;">
+                                <i class="fas fa-check-circle"></i> سريع وفعال
+                            </h4>
+                            <p>إجراء الفحوصات بسرعة وكفاءة عالية</p>
+                        </div>
+                        <div style="background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                            <h4 style="color: var(--success); margin-bottom: 0.5rem;">
+                                <i class="fas fa-check-circle"></i> شامل
+                            </h4>
+                            <p>فحص جميع أنواع المواد المعدنية وغير المعدنية</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tracing Section -->
+    <section id="tracing" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">استخدام النظائر للتتبع</h2>
+            <p class="section-subtitle">تقنية متقدمة لدراسة وتحسين العمليات الصناعية والزراعية</p>
+            
+            <div class="row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-top: 3rem;">
+                <div>
+                    <h3 style="color: var(--primary-blue); margin-bottom: 1.5rem;">ما هي نظائر التتبع؟</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1rem;">
+                        نظائر التتبع هي ذرات مشعة من نفس العنصر الكيميائي يمكن تتبع حركتها وانتشارها في الأنظمة المختلفة باستخدام أجهزة الكشف الإشعاعي.
+                    </p>
+                    <div style="background: var(--light-blue); padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                        <h4 style="color: var(--primary-blue); margin-bottom: 0.5rem;">الخصائص المطلوبة في نظائر التتبع:</h4>
+                        <ul style="list-style: none; margin-top: 1rem;">
+                            <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--success); margin-left: 0.5rem;"></i> عمر نصف مناسب للتطبيق</li>
+                            <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--success); margin-left: 0.5rem;"></i> طاقة إشعاع مناسبة للكشف</li>
+                            <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--success); margin-left: 0.5rem;"></i> سلوك كيميائي مماثل للعنصر المستقر</li>
+                            <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--success); margin-left: 0.5rem;"></i> سهولة الإنتاج والتكلفة المناسبة</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <img src="https://picsum.photos/seed/isotope-tracing/500/400.jpg" alt="نظائر التتبع" style="width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                </div>
+            </div>
+
+            <div style="margin-top: 4rem;">
+                <h3 style="text-align: center; color: var(--primary-blue); margin-bottom: 2rem;">التطبيقات الرئيسية</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); text-align: center;">
+                        <i class="fas fa-seedling" style="font-size: 3rem; color: var(--success); margin-bottom: 1rem;"></i>
+                        <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">التطبيقات الزراعية</h4>
+                        <ul style="list-style: none; text-align: right;">
+                            <li style="margin-bottom: 0.5rem;"><i class="fas fa-arrow-left" style="color: var(--accent-blue); margin-left: 0.5rem;"></i> دراسة امتصاص الأسمدة</li>
+                            <li style="margin-bottom: 0.5rem;"><i class="fas fa-arrow-left" style="color: var(--accent-blue); margin-left: 0.5rem;"></i> تتبع حركة الماء في التربة</li>
+                            <li style="margin-bottom: 0.5rem;"><i class="fas fa-arrow-left" style="color: var(--accent-blue); margin-left: 0.5rem;"></i> تحسين كفاءة الري</li>
+                            <li style="margin-bottom: 0.5rem;"><i class="fas fa-arrow-left" style="color: var(--accent-blue); margin-left: 0.5rem;"></i> دراسة التمثيل الضوئي</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); text-align: center;">
+                        <i class="fas fa-industry" style="font-size: 3rem; color: var(--warning); margin-bottom: 1rem;"></i>
+                        <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">التطبيقات الصناعية</h4>
+                        <ul style="list-style: none; text-align: right;">
+                            <li style="margin-bottom: 0.5rem;"><i class="fas fa-arrow-left" style="color: var(--accent-blue); margin-left: 0.5rem;"></i> قياس التآكل في الأنابيب</li>
+                            <li style="margin-bottom: 0.5rem;"><i class="fas fa-arrow-left" style="color: var(--accent-blue); margin-left: 0.5rem;"></i> تحديد تسرب الموائع</li>
+                            <li style="margin-bottom: 0.5rem;"><i class="fas fa-arrow-left" style="color: var(--accent-blue); margin-left: 0.5rem;"></i> دراسة كفاءة المرشحات</li>
+                            <li style="margin-bottom: 0.5rem;"><i class="fas fa-arrow-left" style="color: var(--accent-blue); margin-left: 0.5rem;"></i> مراقبة عمليات الخلط</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); text-align: center;">
+                        <i class="fas fa-flask" style="font-size: 3rem; color: var(--danger); margin-bottom: 1rem;"></i>
+                        <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">التطبيقات البحثية</h4>
+                        <ul style="list-style: none; text-align: right;">
+                            <li style="margin-bottom: 0.5rem;"><i class="fas fa-arrow-left" style="color: var(--accent-blue); margin-left: 0.5rem;"></i> دراسة آليات التفاعلات</li>
+                            <li style="margin-bottom: 0.5rem;"><i class="fas fa-arrow-left" style="color: var(--accent-blue); margin-left: 0.5rem;"></i> تحليل مسارات التفاعل</li>
+                            <li style="margin-bottom: 0.5rem;"><i class="fas fa-arrow-left" style="color: var(--accent-blue); margin-left: 0.5rem;"></i> قياس معدلات التفاعل</li>
+                            <li style="margin-bottom: 0.5rem;"><i class="fas fa-arrow-left" style="color: var(--accent-blue); margin-left: 0.5rem;"></i> تطوير مواد جديدة</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="section">
+        <div class="container">
+            <h2 class="section-title">الموارد التعليمية</h2>
+            <p class="section-subtitle">مجموعة من الموارد التعليمية لمساعدتك في فهم التطبيقات النووية بشكل أفضل</p>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-image">
+                        <img src="https://picsum.photos/seed/video-course/400/200.jpg" alt="دورة فيديو">
+                    </div>
+                    <div class="resource-content">
+                        <span class="resource-type">فيديو</span>
+                        <h3>مقدمة في التعقيم بالإشعاع</h3>
+                        <p>دورة تعليمية شاملة تغطي أساسيات التعقيم بالإشعاع وتطبيقاته العملية</p>
+                        <div class="resource-meta">
+                            <span><i class="fas fa-clock"></i> 45 دقيقة</span>
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-image">
+                        <img src="https://picsum.photos/seed/pdf-guide/400/200.jpg" alt="دليل PDF">
+                    </div>
+                    <div class="resource-content">
+                        <span class="resource-type">PDF</span>
+                        <h3>دليل التصوير الإشعاعي الصناعي</h3>
+                        <p>دليل شامل يشرح تقنيات التصوير الإشعاعي واستخداماته في الصناعة</p>
+                        <div class="resource-meta">
+                            <span><i class="fas fa-file-pdf"></i> 25 صفحة</span>
+                            <span><i class="fas fa-download"></i> 1.2K</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-image">
+                        <img src="https://picsum.photos/seed/interactive-sim/400/200.jpg" alt="محاكاة تفاعلية">
+                    </div>
+                    <div class="resource-content">
+                        <span class="resource-type">محاكاة</span>
+                        <h3>محاكاة نظائر التتبع</h3>
+                        <p>تجربة تفاعلية لتوضيح كيفية عمل نظائر التتبع في العمليات الصناعية</p>
+                        <div class="resource-meta">
+                            <span><i class="fas fa-laptop"></i> تفاعلي</span>
+                            <span><i class="fas fa-users"></i> 345</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-image">
+                        <img src="https://picsum.photos/seed/quiz/400/200.jpg" alt="اختبار">
+                    </div>
+                    <div class="resource-content">
+                        <span class="resource-type">اختبار</span>
+                        <h3>اختبار معرفي شامل</h3>
+                        <p>اختبر معرفتك بجميع جوانب التطبيقات النووية الصناعية والزراعية</p>
+                        <div class="resource-meta">
+                            <span><i class="fas fa-question-circle"></i> 30 سؤال</span>
+                            <span><i class="fas fa-trophy"></i> متوسط</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-image">
+                        <img src="https://picsum.photos/seed/case-study/400/200.jpg" alt="دراسة حالة">
+                    </div>
+                    <div class="resource-content">
+                        <span class="resource-type">دراسة حالة</span>
+                        <h3>حالات عملية ناجحة</h3>
+                        <p>دراسات حالة واقعية لتطبيقات ناجحة في الصناعة والزراعة</p>
+                        <div class="resource-meta">
+                            <span><i class="fas fa-book"></i> 5 حالات</span>
+                            <span><i class="fas fa-eye"></i> 892</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-image">
+                        <img src="https://picsum.photos/seed/glossary/400/200.jpg" alt="معجم مصطلحات">
+                    </div>
+                    <div class="resource-content">
+                        <span class="resource-type">معجم</span>
+                        <h3>معجم المصطلحات النووية</h3>
+                        <p>معجم شامل للمصطلحات المستخدمة في التقنيات النووية التطبيقية</p>
+                        <div class="resource-meta">
+                            <span><i class="fas fa-language"></i> عربي/إنجليزي</span>
+                            <span><i class="fas fa-bookmark"></i> 150 مصطلح</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">الأسئلة الشائعة</h2>
+            <p class="section-subtitle">إجابات على الأسئلة الأكثر شيوعاً حول التطبيقات النووية الصناعية والزراعية</p>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>هل التعقيم بالإشعاع آمن للغذاء؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، التعقيم بالإشعاع آمن تماماً للغذاء وقد تم اعتماده من قبل منظمة الصحة العالمية وهيئة الأغذية والدواء الأمريكية. الإشعاع المستخدم لا يجعل الغذاء مشعاً ولا يغير من قيمته الغذائية.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>ما الفرق بين التصوير الإشعاعي والأشعة السينية الطبية؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>التصوير الإشعاعي الصناعي يستخدم طاقات إشعاعية أعلى لاختراق المواد الصناعية الكثيفة، بينما الأشعة السينية الطبية تستخدم طاقات أقل مناسبة للأنسجة الحية. كما أن أجهزة التصوير الصناعي مصممة للكشف عن العيوب الدقيقة في المواد.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>كيف يتم التخلص الآمن من النظائر المشعة بعد الاستخدام؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>يتم التخلص من النظائر المشعة بطرق آمنة ومعتمدة دولياً، مثل التخزين المؤقت حتى انخفاض نشاطها الإشعاعي، أو التخلص منها في مواقع مخصصة للنفايات المشعة تحت إشراف جهات مختصة.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>ما هي تكلفة تطبيق التقنيات النووية في الصناعة؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>تختلف التكلفة حسب نوع التقنية وحجم التطبيق. على الرغم من أن الاستثمار الأولي قد يكون مرتفعاً، إلا أن الفوائد طويلة الأمد مثل تحسين الجودة وزيادة الكفاءة تجعله استثماراً مجدياً اقتصادياً.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>هل تتطلب هذه التقنيات تراخيص خاصة؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، تتطلب جميع التطبيقات النووية تراخيص خاصة من الهيئات الرقابية النووية في كل دولة. يتم منح هذه التراخيص بعد التأكد من توفر شروط السلامة والأمان اللازمة.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن المنصة</h3>
+                    <p>منصة تعليمية متخصصة في التطبيقات الصناعية والزراعية للتقنيات النووية، تقدم محتوى علمي دقيق وموثق بطريقة سهلة ومبسطة.</p>
+                    <div style="margin-top: 1rem;">
+                        <i class="fab fa-facebook-f" style="font-size: 1.5rem; margin-left: 1rem; cursor: pointer;"></i>
+                        <i class="fab fa-twitter" style="font-size: 1.5rem; margin-left: 1rem; cursor: pointer;"></i>
+                        <i class="fab fa-linkedin-in" style="font-size: 1.5rem; margin-left: 1rem; cursor: pointer;"></i>
+                        <i class="fab fa-youtube" style="font-size: 1.5rem; margin-left: 1rem; cursor: pointer;"></i>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#applications">التطبيقات الرئيسية</a></li>
+                        <li><a href="#sterilization">التعقيم بالإشعاع</a></li>
+                        <li><a href="#imaging">التصوير الإشعاعي</a></li>
+                        <li><a href="#tracing">نظائر التتبع</a></li>
+                        <li><a href="#resources">الموارد التعليمية</a></li>
+                        <li><a href="#faq">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>الدعم</h3>
+                    <ul>
+                        <li><a href="#">مركز المساعدة</a></li>
+                        <li><a href="#">اتصل بنا</a></li>
+                        <li><a href="#">الشروط والأحكام</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                        <li><a href="#">خريطة الموقع</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>النشرة البريدية</h3>
+                    <p>اشترك في نشرتنا البريدية للحصول على أحدث المحتويات التعليمية</p>
+                    <form style="margin-top: 1rem;">
+                        <input type="email" placeholder="بريدك الإلكتروني" style="width: 100%; padding: 0.8rem; border: none; border-radius: 5px; margin-bottom: 1rem;">
+                        <button type="submit" style="width: 100%; padding: 0.8rem; background: var(--accent-blue); color: var(--primary-blue); border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">اشترك الآن</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 منصة التطبيقات الصناعية والزراعية للتقنيات النووية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hide loader when page loads
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loader').classList.add('hidden');
+            }, 500);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Tab switching functionality
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.demo-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.demo-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // FAQ toggle functionality
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const faqAnswer = faqItem.querySelector('.faq-answer');
+            const faqIcon = element.querySelector('.faq-icon');
+            
+            faqItem.classList.toggle('active');
+            faqAnswer.classList.toggle('active');
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.width = '100%';
+                navLinks.style.padding = '1rem';
+                navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Form submission prevention
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('شكراً لاشتراكك في نشرتنا البريدية!');
+                this.reset();
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature cards and process items
+        document.querySelectorAll('.feature-card, .process-item, .application-card, .resource-card').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = 'all 0.6s ease';
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>

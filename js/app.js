@@ -1,24 +1,24 @@
-// app.js - Main JavaScript file for EduHub Educational Platform
-
-// DOM Elements
-const mobileMenu = document.getElementById('mobileMenu');
-const loginModal = document.getElementById('loginModal');
-const registerModal = document.getElementById('registerModal');
-const subjectModal = document.getElementById('subjectModal');
-const notificationContainer = document.getElementById('notificationContainer');
-
 // Mobile Menu Toggle
 function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
     mobileMenu.classList.toggle('hidden');
+}
+
+// Scroll to Subjects Section
+function scrollToSubjects() {
+    const subjectsSection = document.getElementById('subjects');
+    subjectsSection.scrollIntoView({ behavior: 'smooth' });
 }
 
 // Modal Functions
 function showLoginModal() {
+    const loginModal = document.getElementById('loginModal');
     loginModal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
 }
 
 function showRegisterModal() {
+    const registerModal = document.getElementById('registerModal');
     registerModal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
 }
@@ -29,282 +29,187 @@ function closeModal(modalId) {
     document.body.style.overflow = 'auto';
 }
 
+// Switch between Login and Register Modals
 function switchToRegister() {
     closeModal('loginModal');
-    showRegisterModal();
+    setTimeout(() => {
+        showRegisterModal();
+    }, 300);
 }
 
 function switchToLogin() {
     closeModal('registerModal');
-    showLoginModal();
+    setTimeout(() => {
+        showLoginModal();
+    }, 300);
 }
 
-// Subject Modal Functions
-function showSubjectModal(subjectName) {
-    // This would typically fetch subject data from an API
-    // For demo purposes, we'll use static content
-    const subjectContent = document.getElementById('subjectContent');
-    
-    // Sample subject content based on subject name
-    let content = '';
-    
-    switch(subjectName) {
-        case 'Chemistry':
-            content = `
-                <h2 class="text-3xl font-bold mb-6">الكيمياء</h2>
-                <div class="mb-6">
-                    <img src="/img/chemistry.jpg" alt="Chemistry" class="w-full h-64 object-cover rounded-lg mb-4">
-                    <p class="text-lg mb-4">عِلْمُ الكِيمِيَاءِ هو العلم الذي يدرس المادة والتغيُّرات التي تطرأ عليها، تحديدًا بدراسة خواصها، بِنيتها، تركيبها، سلوكها، تفاعلاتها وما تحدثه من خلالها.</p>
-                    <h3 class="text-xl font-semibold mb-3">الفروع الرئيسية:</h3>
-                    <ul class="list-disc pl-6 mb-4">
-                        <li>الكيمياء العضوية</li>
-                        <li>الكيمياء غير العضوية</li>
-                        <li>الكيمياء التحليلية</li>
-                        <li>الكيمياء الفيزيائية</li>
-                        <li>الكيمياء الحيوية</li>
-                    </ul>
-                </div>
-                <div class="flex justify-end">
-                    <button onclick="closeModal('subjectModal')" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">إغلاق</button>
-                </div>
-            `;
-            break;
-        case 'Physics':
-            content = `
-                <h2 class="text-3xl font-bold mb-6">الفيزياء</h2>
-                <div class="mb-6">
-                    <img src="/img/physics.jpg" alt="Physics" class="w-full h-64 object-cover rounded-lg mb-4">
-                    <p class="text-lg mb-4">الفِيزِيَاءُ أو علم الفيزياء أو الفِيزِيقَا هو العلم الذي يدرس المفاهيم الأساسية مثل الطاقة، القوة، والزمان، وكل ما ينبع من هذا، مثل الكتلة، المادة وحركتها.</p>
-                    <h3 class="text-xl font-semibold mb-3">الفروع الرئيسية:</h3>
-                    <ul class="list-disc pl-6 mb-4">
-                        <li>الفيزياء الكلاسيكية</li>
-                        <li>الفيزياء الحديثة</li>
-                        <li>الكهرومغناطيسية</li>
-                        <li>الفيزياء النووية</li>
-                        <li>ميكانيكا الكم</li>
-                    </ul>
-                </div>
-                <div class="flex justify-end">
-                    <button onclick="closeModal('subjectModal')" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">إغلاق</button>
-                </div>
-            `;
-            break;
-        case 'Mathematics':
-            content = `
-                <h2 class="text-3xl font-bold mb-6">الرياضيات</h2>
-                <div class="mb-6">
-                    <img src="/img/Noj7cPv62g-571.jpg_729x410.jpg" alt="Mathematics" class="w-full h-64 object-cover rounded-lg mb-4">
-                    <p class="text-lg mb-4">الرِّيَاضِيَّات هي مجموعة من المعارف المجردة الناتجة عن الاستنتاجات المنطقية المطبقة على مُختلف الكائنات الرياضية مثل المجموعات، والأعداد، والأشكال والبنيات والتحويلات.</p>
-                    <h3 class="text-xl font-semibold mb-3">الفروع الرئيسية:</h3>
-                    <ul class="list-disc pl-6 mb-4">
-                        <li>الجبر</li>
-                        <li>التفاضل والتكامل</li>
-                        <li>الهندسة</li>
-                        <li>الإحصاء والاحتمالات</li>
-                        <li>الرياضيات المتقدمة</li>
-                    </ul>
-                </div>
-                <div class="flex justify-end">
-                    <button onclick="closeModal('subjectModal')" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">إغلاق</button>
-                </div>
-            `;
-            break;
-        default:
-            content = `
-                <h2 class="text-3xl font-bold mb-6">موضوع غير معروف</h2>
-                <div class="mb-6">
-                    <p class="text-lg mb-4">عذرًا، لا توجد معلومات متاحة حول هذا الموضوع حاليًا.</p>
-                </div>
-                <div class="flex justify-end">
-                    <button onclick="closeModal('subjectModal')" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">إغلاق</button>
-                </div>
-            `;
-    }
-    
-    subjectContent.innerHTML = content;
-    subjectModal.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-}
-
-// Navigation Functions
-function scrollToSubjects() {
-    const subjectsSection = document.getElementById('subjects');
-    subjectsSection.scrollIntoView({ behavior: 'smooth' });
-}
-
-// Form Handlers
+// Form Submissions
 function handleLogin(event) {
     event.preventDefault();
     
-    // Get form values
+    // Get form data
     const email = event.target.querySelector('input[type="email"]').value;
     const password = event.target.querySelector('input[type="password"]').value;
     
-    // Simple validation (in a real app, this would be server-side)
-    if (email && password) {
-        // Simulate login process
-        showNotification('تم تسجيل الدخول بنجاح!', 'success');
+    // Simulate login process
+    setTimeout(() => {
         closeModal('loginModal');
+        showNotification('تم تسجيل الدخول بنجاح!', 'success');
         
-        // In a real app, you would redirect or update the UI
-        // window.location.href = '/dashboard';
-    } else {
-        showNotification('يرجى إدخال البريد الإلكتروني وكلمة المرور', 'error');
-    }
+        // Reset form
+        event.target.reset();
+    }, 1000);
 }
 
 function handleRegister(event) {
     event.preventDefault();
     
-    // Get form values
+    // Get form data
     const fullName = event.target.querySelector('input[type="text"]').value;
     const email = event.target.querySelector('input[type="email"]').value;
-    const password = event.target.querySelectorAll('input[type="password"]')[0].value;
+    const password = event.target.querySelector('input[type="password"]').value;
     const confirmPassword = event.target.querySelectorAll('input[type="password"]')[1].value;
     
-    // Simple validation
-    if (!fullName || !email || !password || !confirmPassword) {
-        showNotification('يرجى ملء جميع الحقول', 'error');
-        return;
-    }
-    
+    // Validate passwords match
     if (password !== confirmPassword) {
         showNotification('كلمات المرور غير متطابقة', 'error');
         return;
     }
     
     // Simulate registration process
-    showNotification('تم إنشاء الحساب بنجاح!', 'success');
-    closeModal('registerModal');
-    
-    // In a real app, you might automatically log the user in
-    // or redirect to a verification page
+    setTimeout(() => {
+        closeModal('registerModal');
+        showNotification('تم إنشاء الحساب بنجاح!', 'success');
+        
+        // Reset form
+        event.target.reset();
+    }, 1000);
 }
 
 function handleContactSubmit(event) {
     event.preventDefault();
     
-    // Get form values
+    // Get form data
     const name = event.target.querySelector('input[type="text"]').value;
-    const email = event.target.querySelector('input[type="email"]').value;
+    const email = event.target.querySelectorAll('input[type="email"]')[0].value;
     const subject = event.target.querySelectorAll('input[type="text"]')[1].value;
     const message = event.target.querySelector('textarea').value;
     
-    // Simple validation
-    if (!name || !email || !subject || !message) {
-        showNotification('يرجى ملء جميع الحقول', 'error');
-        return;
-    }
-    
     // Simulate form submission
-    showNotification('تم إرسال رسالتك بنجاح! سنتواصل معك قريبًا.', 'success');
-    
-    // Reset form
-    event.target.reset();
+    setTimeout(() => {
+        showNotification('تم إرسال رسالتك بنجاح!', 'success');
+        
+        // Reset form
+        event.target.reset();
+    }, 1000);
 }
 
 // Notification System
-function showNotification(message, type = 'info') {
+function showNotification(message, type = 'success') {
+    const notificationContainer = document.getElementById('notificationContainer');
+    
+    // Create notification element
     const notification = document.createElement('div');
-    notification.className = `notification ${type}`;
+    notification.className = `notification notification-${type}`;
     
     // Add icon based on type
-    let icon = '';
-    switch(type) {
-        case 'success':
-            icon = '<i class="fas fa-check-circle mr-2"></i>';
-            break;
-        case 'error':
-            icon = '<i class="fas fa-exclamation-circle mr-2"></i>';
-            break;
-        case 'warning':
-            icon = '<i class="fas fa-exclamation-triangle mr-2"></i>';
-            break;
-        default:
-            icon = '<i class="fas fa-info-circle mr-2"></i>';
-    }
+    const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
     
     notification.innerHTML = `
-        <div class="flex items-center">
-            ${icon}
-            <span>${message}</span>
-            <button class="ml-4 text-gray-500 hover:text-gray-700" onclick="this.parentElement.parentElement.remove()">
-                <i class="fas fa-times"></i>
-            </button>
+        <div class="notification-icon">
+            <i class="fas ${icon}"></i>
         </div>
+        <div>${message}</div>
     `;
     
+    // Add to container
     notificationContainer.appendChild(notification);
     
-    // Auto-remove notification after 5 seconds
+    // Trigger animation
     setTimeout(() => {
-        if (notification.parentElement) {
-            notification.remove();
-        }
+        notification.classList.add('show');
+    }, 10);
+    
+    // Remove after 5 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            notificationContainer.removeChild(notification);
+        }, 300);
     }, 5000);
 }
 
-// Add click event listeners to subject cards
+// Subject Modal
+function showSubjectModal(subjectName) {
+    const subjectModal = document.getElementById('subjectModal');
+    const subjectContent = document.getElementById('subjectContent');
+    
+    // Simulate loading subject content
+    subjectContent.innerHTML = `
+        <div class="text-center">
+            <div class="spinner-border text-purple-600" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-3">جاري تحميل محتوى مادة ${subjectName}...</p>
+        </div>
+    `;
+    
+    // Show modal
+    subjectModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    
+    // Simulate content loading
+    setTimeout(() => {
+        subjectContent.innerHTML = `
+            <h2 class="text-3xl font-bold mb-6">${subjectName}</h2>
+            <div class="mb-6">
+                <img src="https://picsum.photos/seed/${subjectName}/800/400.jpg" alt="${subjectName}" class="img-fluid rounded-lg mb-4">
+            </div>
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-3">وصف المادة</h3>
+                <p class="text-gray-600 mb-4">
+                    هذا وصف تفصيلي لمادة ${subjectName}. تحتوي هذه المادة على محتوى تعليمي شامل يغطي جميع الجوانب الأساسية للموضوع.
+                </p>
+            </div>
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-3">المحتويات</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">مقدمة في ${subjectName}</li>
+                    <li class="list-group-item">المبادئ الأساسية</li>
+                    <li class="list-group-item">التطبيقات العملية</li>
+                    <li class="list-group-item">الدراسات المتقدمة</li>
+                    <li class="list-group-item">التقييم النهائي</li>
+                </ul>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-purple btn-lg" onclick="closeModal('subjectModal')">إغلاق</button>
+            </div>
+        `;
+    }, 1500);
+}
+
+// Add event listeners to subject cards
 document.addEventListener('DOMContentLoaded', function() {
-    // Get all subject cards
     const subjectCards = document.querySelectorAll('.card');
     
-    // Add click event to each card
     subjectCards.forEach(card => {
         const titleElement = card.querySelector('.card-title');
         if (titleElement) {
-            const title = titleElement.textContent.trim();
-            
-            // Make the entire card clickable (except the footer button)
-            card.addEventListener('click', function(e) {
-                // Check if the click is on the footer button
-                if (!e.target.closest('.card-footer')) {
-                    // Map Arabic titles to English for the modal function
-                    let subjectName = '';
-                    switch(title) {
-                        case 'الكيمياء':
-                            subjectName = 'Chemistry';
-                            break;
-                        case 'الفيزياء':
-                            subjectName = 'Physics';
-                            break;
-                        case 'الرياضيات':
-                            subjectName = 'Mathematics';
-                            break;
-                        default:
-                            subjectName = title;
-                    }
-                    showSubjectModal(subjectName);
-                }
+            const subjectName = titleElement.textContent;
+            card.addEventListener('click', function() {
+                showSubjectModal(subjectName);
             });
-            
-            // Add cursor pointer to indicate clickable
-            card.style.cursor = 'pointer';
         }
     });
     
-    // Add smooth scrolling to all anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-                
-                // Close mobile menu if open
-                if (!mobileMenu.classList.contains('hidden')) {
-                    toggleMobileMenu();
-                }
+    // Close modals on escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            const openModal = document.querySelector('.fixed.inset-0.z-50:not(.hidden)');
+            if (openModal) {
+                closeModal(openModal.id);
             }
-        });
+        }
     });
-});
-
-// Initialize tooltips if using Bootstrap
-var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl)
 });

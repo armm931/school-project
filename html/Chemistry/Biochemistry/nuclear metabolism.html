@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأيض النووي - تركيب النيوكليوتيدات ونسخ DNA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+        }
+        
+        .dna-gradient {
+            background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .nucleotide {
+            animation: rotate 10s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .dna-strand {
+            animation: wave 3s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .repair-animation {
+            animation: repair 2s ease-in-out infinite;
+        }
+        
+        @keyframes repair {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        .transcription-flow {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: flow 3s ease-in-out forwards;
+        }
+        
+        @keyframes flow {
+            to { stroke-dashoffset: 0; }
+        }
+        
+        .enzyme-active {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .base-pair {
+            transition: all 0.3s ease;
+        }
+        
+        .base-pair:hover {
+            transform: scale(1.2);
+            filter: brightness(1.2);
+        }
+        
+        .molecule-glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 0 10px #3b82f6; }
+            to { box-shadow: 0 0 20px #3b82f6, 0 0 30px #3b82f6; }
+        }
+        
+        .replication-fork {
+            animation: forkMove 4s linear infinite;
+        }
+        
+        @keyframes forkMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(50px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-reverse space-x-4">
+                    <i class="fas fa-dna text-3xl"></i>
+                    <h1 class="text-3xl font-bold">الأيض النووي</h1>
+                </div>
+                <nav class="hidden md:flex space-x-reverse space-x-6">
+                    <a href="#nucleotides" class="hover:text-purple-200 transition">تركيب النيوكليوتيدات</a>
+                    <a href="#transcription" class="hover:text-purple-200 transition">نسخ DNA</a>
+                    <a href="#repair" class="hover:text-purple-200 transition">إصلاح DNA</a>
+                </nav>
+                <button id="mobileMenuBtn" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">عالم الأيض النووي</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    اكتشف كيف يتم بناء ونسخ وإصلاح الحمض النووي DNA - المادة الوراثية للحياة
+                </p>
+            </div>
+            
+            <!-- DNA Animation -->
+            <div class="flex justify-center mb-12">
+                <div class="dna-strand">
+                    <svg width="300" height="200" viewBox="0 0 300 200">
+                        <defs>
+                            <linearGradient id="dnaGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <!-- DNA Double Helix -->
+                        <path d="M 50 20 Q 100 50 150 80 T 250 140" stroke="url(#dnaGradient)" stroke-width="4" fill="none"/>
+                        <path d="M 50 180 Q 100 150 150 120 T 250 60" stroke="url(#dnaGradient)" stroke-width="4" fill="none"/>
+                        <!-- Base Pairs -->
+                        <line x1="75" y1="35" x2="75" y2="165" stroke="#6b7280" stroke-width="2"/>
+                        <line x1="125" y1="65" x2="125" y2="135" stroke="#6b7280" stroke-width="2"/>
+                        <line x1="175" y1="95" x2="175" y2="105" stroke="#6b7280" stroke-width="2"/>
+                        <line x1="225" y1="125" x2="225" y2="75" stroke="#6b7280" stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Overview Cards -->
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-20 h-20 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-cubes text-3xl text-blue-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">تركيب النيوكليوتيدات</h3>
+                    </div>
+                    <p class="text-gray-600 text-center">
+                        الوحدات الأساسية لبناء الحمض النووي DNA و RNA
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-20 h-20 mx-auto bg-purple-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-copy text-3xl text-purple-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">نسخ DNA</h3>
+                    </div>
+                    <p class="text-gray-600 text-center">
+                        عملية مضاعفة الحمض النووي قبل انقسام الخلية
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-20 h-20 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-tools text-3xl text-green-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">إصلاح DNA</h3>
+                    </div>
+                    <p class="text-gray-600 text-center">
+                        آليات حماية الحمض النووي من التلف والطفرات
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nucleotides Section -->
+    <section id="nucleotides" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">تركيب النيوكليوتيدات</h2>
+                    <p class="text-lg text-gray-600">
+                        اللبنات الأساسية التي تتكون منها الأحماض النووية DNA و RNA
+                    </p>
+                </div>
+
+                <!-- Nucleotide Structure -->
+                <div class="bg-gray-50 rounded-xl p-8 mb-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">بنية النيوكليوتيد</h3>
+                    <div class="flex flex-wrap justify-center items-center gap-8">
+                        <!-- Sugar -->
+                        <div class="text-center nucleotide">
+                            <div class="w-32 h-32 bg-blue-200 rounded-full flex items-center justify-center mx-auto mb-2 molecule-glow">
+                                <div class="text-center">
+                                    <i class="fas fa-candy-cane text-4xl text-blue-600 mb-2"></i>
+                                    <p class="font-bold text-blue-800">سكر</p>
+                                </div>
+                            </div>
+                            <p class="font-semibold">ديوكسي ريبوز</p>
+                        </div>
+
+                        <!-- Plus -->
+                        <div class="text-4xl text-gray-400">+</div>
+
+                        <!-- Phosphate -->
+                        <div class="text-center">
+                            <div class="w-32 h-32 bg-orange-200 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <div class="text-center">
+                                    <i class="fas fa-circle-nodes text-4xl text-orange-600 mb-2"></i>
+                                    <p class="font-bold text-orange-800">فوسفات</p>
+                                </div>
+                            </div>
+                            <p class="font-semibold">مجموعة الفوسفات</p>
+                        </div>
+
+                        <!-- Plus -->
+                        <div class="text-4xl text-gray-400">+</div>
+
+                        <!-- Nitrogen Base -->
+                        <div class="text-center">
+                            <div class="w-32 h-32 bg-purple-200 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <div class="text-center">
+                                    <i class="fas fa-shapes text-4xl text-purple-600 mb-2"></i>
+                                    <p class="font-bold text-purple-800">قاعدة نيتروجينية</p>
+                                </div>
+                            </div>
+                            <p class="font-semibold">A, T, G, C</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nitrogen Bases -->
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div class="bg-blue-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-4">
+                            <i class="fas fa-layer-group ml-2"></i>القواعد البيورينية
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-lg p-4 shadow-sm">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="font-bold text-lg">أدينين (A)</h4>
+                                        <p class="text-sm text-gray-600">Adenine</p>
+                                    </div>
+                                    <div class="w-16 h-16 bg-red-400 rounded-lg flex items-center justify-center text-white font-bold text-xl">A</div>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-lg p-4 shadow-sm">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="font-bold text-lg">جوانين (G)</h4>
+                                        <p class="text-sm text-gray-600">Guanine</p>
+                                    </div>
+                                    <div class="w-16 h-16 bg-green-400 rounded-lg flex items-center justify-center text-white font-bold text-xl">G</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-purple-800 mb-4">
+                            <i class="fas fa-layer-group ml-2"></i>القواعد البيريميدينية
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-lg p-4 shadow-sm">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="font-bold text-lg">ثايمين (T)</h4>
+                                        <p class="text-sm text-gray-600">Thymine</p>
+                                    </div>
+                                    <div class="w-16 h-16 bg-blue-400 rounded-lg flex items-center justify-center text-white font-bold text-xl">T</div>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-lg p-4 shadow-sm">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="font-bold text-lg">سايتوزين (C)</h4>
+                                        <p class="text-sm text-gray-600">Cytosine</p>
+                                    </div>
+                                    <div class="w-16 h-16 bg-yellow-400 rounded-lg flex items-center justify-center text-white font-bold text-xl">C</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Base Pairing -->
+                <div class="bg-gradient-to-r from-blue-100 to-purple-100 rounded-xl p-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">التزاوج القاعدي</h3>
+                    <div class="flex flex-wrap justify-center gap-8">
+                        <div class="text-center base-pair">
+                            <div class="flex items-center justify-center space-x-reverse space-x-4 mb-2">
+                                <div class="w-16 h-16 bg-red-400 rounded-lg flex items-center justify-center text-white font-bold text-xl">A</div>
+                                <div class="text-2xl text-gray-600">—</div>
+                                <div class="w-16 h-16 bg-blue-400 rounded-lg flex items-center justify-center text-white font-bold text-xl">T</div>
+                            </div>
+                            <p class="font-semibold">رابطان هيدروجيني</p>
+                        </div>
+                        
+                        <div class="text-center base-pair">
+                            <div class="flex items-center justify-center space-x-reverse space-x-4 mb-2">
+                                <div class="w-16 h-16 bg-green-400 rounded-lg flex items-center justify-center text-white font-bold text-xl">G</div>
+                                <div class="text-2xl text-gray-600">≡</div>
+                                <div class="w-16 h-16 bg-yellow-400 rounded-lg flex items-center justify-center text-white font-bold text-xl">C</div>
+                            </div>
+                            <p class="font-semibold">ثلاثة روابط هيدروجينية</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DNA Replication Section -->
+    <section id="transcription" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">نسخ DNA</h2>
+                    <p class="text-lg text-gray-600">
+                        عملية مضاعفة الحمض النووي DNA قبل انقسام الخلية
+                    </p>
+                </div>
+
+                <!-- Replication Animation -->
+                <div class="bg-white rounded-xl p-8 mb-8 shadow-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">آلية النسخ</h3>
+                    <div class="relative">
+                        <svg viewBox="0 0 800 400" class="w-full h-auto">
+                            <!-- Original DNA -->
+                            <g id="originalDNA">
+                                <path d="M 100 100 Q 200 150 300 200" stroke="#3b82f6" stroke-width="4" fill="none"/>
+                                <path d="M 100 300 Q 200 250 300 200" stroke="#3b82f6" stroke-width="4" fill="none"/>
+                                <line x1="150" y1="125" x2="150" y2="275" stroke="#6b7280" stroke-width="2"/>
+                                <line x1="250" y1="175" x2="250" y2="225" stroke="#6b7280" stroke-width="2"/>
+                            </g>
+                            
+                            <!-- Replication Fork -->
+                            <g class="replication-fork">
+                                <circle cx="300" cy="200" r="30" fill="#f59e0b" class="enzyme-active"/>
+                                <text x="300" y="205" text-anchor="middle" fill="white" font-size="12" font-weight="bold">Helicase</text>
+                            </g>
+                            
+                            <!-- New DNA Strands -->
+                            <g id="newDNA">
+                                <path d="M 300 200 Q 400 150 500 100" stroke="#8b5cf6" stroke-width="4" fill="none" stroke-dasharray="5,5"/>
+                                <path d="M 300 200 Q 400 250 500 300" stroke="#8b5cf6" stroke-width="4" fill="none" stroke-dasharray="5,5"/>
+                                <line x1="350" y1="175" x2="350" y2="225" stroke="#6b7280" stroke-width="2"/>
+                                <line x1="450" y1="125" x2="450" y2="275" stroke="#6b7280" stroke-width="2"/>
+                            </g>
+                            
+                            <!-- Leading and Lagging Strands -->
+                            <text x="400" y="80" text-anchor="middle" fill="#3b82f6" font-weight="bold">السلسلة المتقدمة</text>
+                            <text x="400" y="330" text-anchor="middle" fill="#8b5cf6" font-weight="bold">السلسلة المتأخرة</text>
+                            
+                            <!-- Enzymes -->
+                            <g transform="translate(400, 150)">
+                                <circle r="20" fill="#10b981"/>
+                                <text y="5" text-anchor="middle" fill="white" font-size="10">DNA Pol</text>
+                            </g>
+                            
+                            <g transform="translate(400, 250)">
+                                <circle r="20" fill="#ef4444"/>
+                                <text y="5" text-anchor="middle" fill="white" font-size="10">Primase</text>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Replication Steps -->
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white rounded-lg p-6 shadow-md card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-unlock text-2xl text-orange-600"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">البدء</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li>• التعرف على نقطة البدء</li>
+                            <li>• فك شريطي DNA</li>
+                            <li>• تكوين شوكة النسخ</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-6 shadow-md card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-code-branch text-2xl text-green-600"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">الاستطالة</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li>• إضافة النيوكليوتيدات</li>
+                            <li>• السلسلة المتقدمة المستمرة</li>
+                            <li>• السلسلة المتأخرة المجزأة</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-6 shadow-md card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-check-circle text-2xl text-purple-600"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">الانتهاء</h4>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li>• إزالة البادئات</li>
+                            <li>• ربط الأجزاء</li>
+                            <li>• تدقيق النسخة</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Key Enzymes -->
+                <div class="bg-blue-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-blue-800 mb-4">
+                        <i class="fas fa-flask ml-2"></i>الإنزيمات الرئيسية في النسخ
+                    </h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-unlock text-white"></i>
+                            </div>
+                            <h4 class="font-semibold">Helicase</h4>
+                            <p class="text-sm text-gray-600">يفك شريطي DNA</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-pencil-alt text-white"></i>
+                            </div>
+                            <h4 class="font-semibold">DNA Polymerase</h4>
+                            <p class="text-sm text-gray-600">يضيف النيوكليوتيدات</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-flag text-white"></i>
+                            </div>
+                            <h4 class="font-semibold">Primase</h4>
+                            <p class="text-sm text-gray-600">يصنع البادئات</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-link text-white"></i>
+                            </div>
+                            <h4 class="font-semibold">DNA Ligase</h4>
+                            <p class="text-sm text-gray-600">يربط الأجزاء</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DNA Repair Section -->
+    <section id="repair" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">إصلاح DNA</h2>
+                    <p class="text-lg text-gray-600">
+                        الآليات التي تحمي الحمض النووي من التلف وتمنع الطفرات
+                    </p>
+                </div>
+
+                <!-- Damage Types -->
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-red-50 rounded-xl p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-sun text-4xl text-red-500 mb-3"></i>
+                            <h3 class="text-xl font-bold text-red-800">تلف الأشعة فوق البنفسجية</h3>
+                        </div>
+                        <p class="text-gray-700 text-center">
+                            تسبب ثنائيات الثايمين التي تعيق النسخ
+                        </p>
+                    </div>
+                    
+                    <div class="bg-yellow-50 rounded-xl p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-radiation text-4xl text-yellow-600 mb-3"></i>
+                            <h3 class="text-xl font-bold text-yellow-800">تلف الإشعاع المؤين</h3>
+                        </div>
+                        <p class="text-gray-700 text-center">
+                            يسبب تكسر في خيوط DNA وتغيرات كيميائية
+                        </p>
+                    </div>
+                    
+                    <div class="bg-blue-50 rounded-xl p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-vial text-4xl text-blue-600 mb-3"></i>
+                            <h3 class="text-xl font-bold text-blue-800">المواد الكيميائية</h3>
+                        </div>
+                        <p class="text-gray-700 text-center">
+                            تسبب تغيرات في القواعد النيتروجينية
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Repair Mechanisms -->
+                <div class="bg-gray-50 rounded-xl p-8 mb-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">آليات الإصلاح</h3>
+                    <div class="space-y-6">
+                        <!-- Direct Repair -->
+                        <div class="bg-white rounded-lg p-6 shadow-md">
+                            <div class="flex items-start">
+                                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center ml-4 flex-shrink-0">
+                                    <i class="fas fa-magic text-2xl text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-800 mb-2">الإصلاح المباشر</h4>
+                                    <p class="text-gray-600 mb-3">
+                                        إصلاح التلف مباشرة دون إزالة القاعدة المتضررة
+                                    </p>
+                                    <div class="bg-green-50 rounded p-3">
+                                        <p class="text-sm text-green-700">
+                                            <strong>مثال:</strong> إنزيم فوتولياز يعكس ثنائيات الثايمين باستخدام الطاقة الضوئية
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Excision Repair -->
+                        <div class="bg-white rounded-lg p-6 shadow-md">
+                            <div class="flex items-start">
+                                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center ml-4 flex-shrink-0">
+                                    <i class="fas fa-cut text-2xl text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-800 mb-2">الإصلاح بالاستئصال</h4>
+                                    <p class="text-gray-600 mb-3">
+                                        إزالة الجزء التالف واستبداله بالتسلسل الصحيح
+                                    </p>
+                                    <div class="grid md:grid-cols-2 gap-3">
+                                        <div class="bg-blue-50 rounded p-3">
+                                            <p class="text-sm text-blue-700 font-semibold">الإصلاح بالاستئصال القاعدي</p>
+                                            <p class="text-xs text-blue-600">لإصلاح قواعد متغيرة</p>
+                                        </div>
+                                        <div class="bg-blue-50 rounded p-3">
+                                            <p class="text-sm text-blue-700 font-semibold">الإصلاح بالنوكليوتيدات</p>
+                                            <p class="text-xs text-blue-600">لإصلاح أضرار أكبر</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mismatch Repair -->
+                        <div class="bg-white rounded-lg p-6 shadow-md">
+                            <div class="flex items-start">
+                                <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center ml-4 flex-shrink-0">
+                                    <i class="fas fa-search text-2xl text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-800 mb-2">إصلاح عدم التطابق</h4>
+                                    <p class="text-gray-600 mb-3">
+                                        تصحيح الأخطاء التي تحدث أثناء النسخ
+                                    </p>
+                                    <div class="bg-purple-50 rounded p-3">
+                                        <p class="text-sm text-purple-700">
+                                            <strong>العملية:</strong> التعرف على الخيط الجديد، إزالة الجزء الخاطئ، إعادة التركيب الصحيح
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Repair Animation -->
+                <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">عملية الإصلاح خطوة بخطوة</h3>
+                    <div class="flex flex-wrap justify-center items-center gap-6">
+                        <div class="text-center repair-animation">
+                            <div class="w-24 h-24 bg-red-200 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-exclamation-triangle text-3xl text-red-600"></i>
+                            </div>
+                            <p class="font-semibold">اكتشاف التلف</p>
+                        </div>
+                        
+                        <i class="fas fa-arrow-left text-2xl text-gray-400"></i>
+                        
+                        <div class="text-center repair-animation" style="animation-delay: 0.5s">
+                            <div class="w-24 h-24 bg-orange-200 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-cut text-3xl text-orange-600"></i>
+                            </div>
+                            <p class="font-semibold">إزالة التالف</p>
+                        </div>
+                        
+                        <i class="fas fa-arrow-left text-2xl text-gray-400"></i>
+                        
+                        <div class="text-center repair-animation" style="animation-delay: 1s">
+                            <div class="w-24 h-24 bg-blue-200 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-plus-circle text-3xl text-blue-600"></i>
+                            </div>
+                            <p class="font-semibold">إضافة النيوكليوتيدات</p>
+                        </div>
+                        
+                        <i class="fas fa-arrow-left text-2xl text-gray-400"></i>
+                        
+                        <div class="text-center repair-animation" style="animation-delay: 1.5s">
+                            <div class="w-24 h-24 bg-green-200 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-check-circle text-3xl text-green-600"></i>
+                            </div>
+                            <p class="font-semibold">الإصلاح المكتمل</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summary Section -->
+    <section class="py-16 gradient-bg text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-6">أهمية الأيض النووي</h2>
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8">
+                    <div class="grid md:grid-cols-3 gap-6 mb-8">
+                        <div>
+                            <i class="fas fa-shield-alt text-5xl mb-3 text-green-300"></i>
+                            <h3 class="text-xl font-bold mb-2">الحماية</h3>
+                            <p>آليات الإصلاح تحمي المعلومات الوراثية</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-copy text-5xl mb-3 text-blue-300"></i>
+                            <h3 class="text-xl font-bold mb-2">التكاثر</h3>
+                            <p>النسخ الدقيق يضمن استمرار الحياة</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-dna text-5xl mb-3 text-purple-300"></i>
+                            <h3 class="text-xl font-bold mb-2">التنوع</h3>
+                            <p>النيوكليوتيدات أساس التنوع البيولوجي</p>
+                        </div>
+                    </div>
+                    <div class="text-2xl font-bold">
+                        <p>الأيض النووي: <span class="text-4xl text-yellow-300">أساس الحياة</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="mb-2">© 2024 الأيض النووي - موقع تعليمي تفاعلي</p>
+                <p class="text-gray-400">تم تصميمه لتوضيح عمليات بناء ونسخ وإصلاح الحمض النووي</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('hidden');
+            nav.classList.toggle('absolute');
+            nav.classList.toggle('top-full');
+            nav.classList.toggle('left-0');
+            nav.classList.toggle('right-0');
+            nav.classList.toggle('bg-blue-900');
+            nav.classList.toggle('p-4');
+            nav.classList.toggle('flex-col');
+            nav.classList.toggle('space-y-2');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        // Interactive base pairing
+        document.querySelectorAll('.base-pair').forEach(pair => {
+            pair.addEventListener('click', function() {
+                this.style.transform = 'scale(1.3) rotate(10deg)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1) rotate(0deg)';
+                }, 300);
+            });
+        });
+
+        // Nucleotide structure interaction
+        document.querySelectorAll('.nucleotide > div').forEach(nucleotide => {
+            nucleotide.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1) rotate(180deg)';
+                this.style.transition = 'transform 0.5s ease';
+            });
+            
+            nucleotide.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+
+        // Enzyme information tooltips
+        const enzymeInfo = {
+            'Helicase': 'يفك شريطي DNA المزدوجين',
+            'DNA Pol': 'يضيف النيوكليوتيدات المكملة',
+            'Primase': 'يصنع RNA البادئ',
+            'Ligase': 'يربط أجزاء DNA معاً'
+        };
+
+        // Add click interaction to enzyme circles
+        document.querySelectorAll('circle[fill="#f59e0b"], circle[fill="#10b981"], circle[fill="#ef4444"]').forEach(enzyme => {
+            enzyme.style.cursor = 'pointer';
+            enzyme.addEventListener('click', function() {
+                const enzymeName = this.nextElementSibling.textContent;
+                if (enzymeInfo[enzymeName]) {
+                    alert(enzymeInfo[enzymeName]);
+                }
+            });
+        });
+
+        // DNA damage simulation
+        let damageCount = 0;
+        const damageTypes = ['UV', 'Radiation', 'Chemical'];
+        
+        document.querySelectorAll('.fa-sun, .fa-radiation, .fa-vial').forEach(icon => {
+            icon.addEventListener('click', function() {
+                damageCount++;
+                this.style.animation = 'pulse 0.5s ease-in-out';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 500);
+                
+                // Show damage effect
+                const damageEffect = document.createElement('div');
+                damageEffect.className = 'fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+                damageEffect.textContent = `Damage detected: ${damageTypes[Math.floor(Math.random() * damageTypes.length)]}`;
+                document.body.appendChild(damageEffect);
+                
+                setTimeout(() => {
+                    damageEffect.remove();
+                }, 3000);
+            });
+        });
+
+        // Repair mechanism simulation
+        document.querySelectorAll('.repair-animation').forEach((repair, index) => {
+            repair.addEventListener('click', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = `repair 2s ease-in-out infinite`;
+                    this.style.animationDelay = `${index * 0.5}s`;
+                }, 100);
+            });
+        });
+
+        // Base pair matching game
+        let selectedBase = null;
+        document.querySelectorAll('.base-pair > div > div').forEach(base => {
+            base.style.cursor = 'pointer';
+            base.addEventListener('click', function() {
+                if (!selectedBase) {
+                    selectedBase = this;
+                    this.style.transform = 'scale(1.2)';
+                    this.style.boxShadow = '0 0 20px rgba(59, 130, 246, 0.8)';
+                } else {
+                    // Check if it's a valid pair
+                    const base1 = selectedBase.textContent;
+                    const base2 = this.textContent;
+                    const isValidPair = (base1 === 'A' && base2 === 'T') || 
+                                      (base1 === 'T' && base2 === 'A') ||
+                                      (base1 === 'G' && base2 === 'C') || 
+                                      (base1 === 'C' && base2 === 'G');
+                    
+                    if (isValidPair) {
+                        this.style.transform = 'scale(1.2)';
+                        this.style.boxShadow = '0 0 20px rgba(34, 197, 94, 0.8)';
+                        selectedBase.style.boxShadow = '0 0 20px rgba(34, 197, 94, 0.8)';
+                        
+                        setTimeout(() => {
+                            this.style.transform = 'scale(1)';
+                            this.style.boxShadow = '';
+                            selectedBase.style.transform = 'scale(1)';
+                            selectedBase.style.boxShadow = '';
+                        }, 1000);
+                    } else {
+                        this.style.animation = 'shake 0.5s ease-in-out';
+                        selectedBase.style.animation = 'shake 0.5s ease-in-out';
+                        
+                        setTimeout(() => {
+                            this.style.animation = '';
+                            selectedBase.style.animation = '';
+                            this.style.transform = 'scale(1)';
+                            this.style.boxShadow = '';
+                            selectedBase.style.transform = 'scale(1)';
+                            selectedBase.style.boxShadow = '';
+                        }, 500);
+                    }
+                    
+                    selectedBase = null;
+                }
+            });
+        });
+
+        // Add shake animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

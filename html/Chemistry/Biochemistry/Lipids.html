@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عالم الليبيدات - الدهون في علم الأحياء</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c5f2d;
+            --secondary: #4a934a;
+            --accent: #97bc62;
+            --light: #f8f9fa;
+            --dark: #2d3436;
+            --warning: #f39c12;
+            --info: #3498db;
+            --danger: #e74c3c;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            color: var(--accent);
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 95, 45, 0.85), rgba(74, 147, 74, 0.85)), url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: #7fa050;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title .divider {
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 0 auto;
+        }
+
+        /* Introduction Section */
+        .intro-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .intro-card h3 {
+            color: var(--secondary);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Lipid Types Grid */
+        .lipids-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .lipid-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .lipid-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .lipid-header {
+            padding: 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .lipid-header.fatty-acids {
+            background: linear-gradient(135deg, var(--warning), #e67e22);
+        }
+
+        .lipid-header.phospholipids {
+            background: linear-gradient(135deg, var(--info), #2980b9);
+        }
+
+        .lipid-header.cholesterol {
+            background: linear-gradient(135deg, var(--danger), #c0392b);
+        }
+
+        .lipid-header i {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .lipid-header h3 {
+            font-size: 1.6rem;
+        }
+
+        .lipid-body {
+            padding: 2rem;
+        }
+
+        .lipid-body h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            padding-right: 1.5rem;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "\f00c";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 0;
+            color: var(--success);
+        }
+
+        /* Structure Visualization */
+        .structure-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .structure-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--light);
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .tab-btn.active {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .structure-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+            min-height: 200px;
+        }
+
+        .molecule {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .molecule-visual {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1rem;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .fatty-acid-visual {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+        }
+
+        .phospholipid-visual {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        .cholesterol-visual {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+        }
+
+        /* Functions Section */
+        .functions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .function-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .function-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .function-card i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .function-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Membrane Section */
+        .membrane-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .membrane-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+            position: relative;
+            height: 300px;
+        }
+
+        .membrane-layer {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: rgba(52, 152, 219, 0.1);
+            border: 2px dashed var(--info);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 2rem;
+        }
+
+        .phospholipid-bilayer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .lipid-head {
+            width: 40px;
+            height: 40px;
+            background: var(--info);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .lipid-tails {
+            display: flex;
+            gap: 5px;
+        }
+
+        .lipid-tail {
+            width: 8px;
+            height: 60px;
+            background: var(--warning);
+            border-radius: 4px;
+        }
+
+        /* Interactive Quiz */
+        .quiz-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .quiz-question {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .quiz-option {
+            background: white;
+            border: 2px solid var(--secondary);
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .quiz-option:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .quiz-option.correct {
+            background: var(--success);
+            color: white;
+            border-color: var(--success);
+        }
+
+        .quiz-option.incorrect {
+            background: var(--danger);
+            color: white;
+            border-color: var(--danger);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .membrane-layer {
+                flex-direction: column;
+                height: auto;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-dna"></i>
+                <span>عالم الليبيدات</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#types">أنواع الليبيدات</a></li>
+                    <li><a href="#structure">التركيب</a></li>
+                    <li><a href="#functions">الوظائف</a></li>
+                    <li><a href="#membrane">الأغشية</a></li>
+                    <li><a href="#quiz">اختبار</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>اكتشف عالم الليبيدات</h1>
+            <p>الدهون في علم الأحياء: من الأحماض الدهنية إلى الكوليسترول، ودورها الحيوي في الخلايا</p>
+            <a href="#types" class="btn">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Introduction Section -->
+            <section class="section">
+                <div class="intro-card">
+                    <h3>ما هي الليبيدات؟</h3>
+                    <p>الليبيدات هي مجموعة متنوعة من المركبات العضوية غير القطبية التي تذوب في المذيبات العضوية ولا تذوب في الماء. تلعب دوراً حيوياً في تخزين الطاقة، تكوين الأغشية الخلوية، ونقل الإشارات في الخلايا.</p>
+                </div>
+            </section>
+
+            <!-- Lipid Types Section -->
+            <section id="types" class="section">
+                <div class="section-title">
+                    <h2>أنواع الليبيدات الرئيسية</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="lipids-grid">
+                    <!-- Fatty Acids & Triglycerides Card -->
+                    <div class="lipid-card">
+                        <div class="lipid-header fatty-acids">
+                            <i class="fas fa-oil-can"></i>
+                            <h3>الأحماض الدهنية والدهون الثلاثية</h3>
+                        </div>
+                        <div class="lipid-body">
+                            <h4>الأحماض الدهنية</h4>
+                            <p>سلاسل كربونية طويلة تنتهي بمجموعة كربوكسيل. تصنف إلى:</p>
+                            <ul class="feature-list">
+                                <li>مشبعة: لا تحتوي على روابط مزدوجة</li>
+                                <li>غير مشبعة: تحتوي على روابط مزدوجة واحدة أو أكثر</li>
+                                <li>أساسية: لا يمكن تصنيعها في الجسم</li>
+                            </ul>
+                            
+                            <h4>الدهون الثلاثية</h4>
+                            <p>تتكون من ثلاثة أحماض دهنية مرتبطة بجلسرين. تعمل ك:</p>
+                            <ul class="feature-list">
+                                <li>مخزن رئيسي للطاقة في الجسم</li>
+                                <li>عزل حراري وحماية للأعضاء</li>
+                                <li>ناقل للفيتامينات الذائبة في الدهون</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Phospholipids Card -->
+                    <div class="lipid-card">
+                        <div class="lipid-header phospholipids">
+                            <i class="fas fa-border-all"></i>
+                            <h3>الفوسفوليبيدات</h3>
+                        </div>
+                        <div class="lipid-body">
+                            <h4>التركيب</h4>
+                            <p>تشبه الدهون الثلاثية ولكن تحتوي على مجموعتين من الأحماض الدهنية ومجموعة فوسفات مرتبطة بالجلسرول.</p>
+                            
+                            <h4>الخصائص الفريدة</h4>
+                            <ul class="feature-list">
+                                <li>طبيعة مزدوجة: قطبية الرأس وغير قطبية الذيل</li>
+                                <li>تشكل الثنائي الفوسفوليبدي في الماء</li>
+                                <li>أساس تكوين الأغشية الخلوية</li>
+                                <li>تسمح بمرور المواد选择性</li>
+                            </ul>
+                            
+                            <h4>الأهمية البيولوجية</h4>
+                            <p>تكون الغشاء الخلوي، تنظم النفاذية، وتشارك في نقل الإشارات الخلوية.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Cholesterol & Steroids Card -->
+                    <div class="lipid-card">
+                        <div class="lipid-header cholesterol">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>الكوليسترول والستيرويدات</h3>
+                        </div>
+                        <div class="lipid-body">
+                            <h4>الكوليسترول</h4>
+                            <p>ستيرويد أساسي في الحيوانات. يوجد في:</p>
+                            <ul class="feature-list">
+                                <li>أغشية الخلايا: يزيد من المرونة</li>
+                                <li>البروتينات الدهنية: HDL و LDL</li>
+                                <li> precursor للهرمونات الستيرويدية</li>
+                            </ul>
+                            
+                            <h4>الستيرويدات</h4>
+                            <p>مركبات ذات 4 حلقات كربونية. تشمل:</p>
+                            <ul class="feature-list">
+                                <li>الهرمونات الجنسية: تستوستيرون، إستروجين</li>
+                                <li>هرمونات القشرة الكظرية: كورتيزول</li>
+                                <li>فيتامين D وأملاح الصفراء</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Structure Visualization Section -->
+            <section id="structure" class="section">
+                <div class="section-title">
+                    <h2>التركيب الجزيئي</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="structure-section">
+                    <div class="structure-tabs">
+                        <button class="tab-btn active" onclick="showStructure('fatty')">حمض دهني</button>
+                        <button class="tab-btn" onclick="showStructure('phospho')">فوسفوليبيد</button>
+                        <button class="tab-btn" onclick="showStructure('sterol')">كوليسترول</button>
+                    </div>
+                    
+                    <!-- Fatty Acid Tab -->
+                    <div id="fatty-tab" class="tab-content active">
+                        <h3>تركيب الحمض الدهني</h3>
+                        <div class="structure-diagram">
+                            <div class="molecule">
+                                <div class="molecule-visual fatty-acid-visual">
+                                    <i class="fas fa-wave-square"></i>
+                                </div>
+                                <h4>سلسلة كربونية طويلة</h4>
+                                <p>COOH - (CH₂)ₙ - CH₃</p>
+                            </div>
+                        </div>
+                        <p>يتكون الحمض الدهني من سلسلة هيدروكربونية طويلة تنتهي بمجموعة كربوكسيل (-COOH). طول السلسلة وعدد الروابط المزدوجة يحدد خصائصه.</p>
+                    </div>
+                    
+                    <!-- Phospholipid Tab -->
+                    <div id="phospho-tab" class="tab-content">
+                        <h3>تركيب الفوسفوليبيد</h3>
+                        <div class="structure-diagram">
+                            <div class="molecule">
+                                <div class="molecule-visual phospholipid-visual">
+                                    <i class="fas fa-circle-notch"></i>
+                                </div>
+                                <h4>بنية أمفيباتيكية</h4>
+                                <p>رأس قطبي + ذيلان غير قطبيين</p>
+                            </div>
+                        </div>
+                        <p>الفوسفوليبيد له رأس قطبي يحتوي على الفوسفات، وذيلان غير قطبيين من الأحماض الدهنية. هذه البنية تسمح له بتكوين الثنائي الفوسفوليبدي في الماء.</p>
+                    </div>
+                    
+                    <!-- Sterol Tab -->
+                    <div id="sterol-tab" class="tab-content">
+                        <h3>تركيب الكوليسترول</h3>
+                        <div class="structure-diagram">
+                            <div class="molecule">
+                                <div class="molecule-visual cholesterol-visual">
+                                    <i class="fas fa-ring"></i>
+                                </div>
+                                <h4>هيكل حلقي</h4>
+                                <p>4 حلقات كربونية متحدة</p>
+                            </div>
+                        </div>
+                        <p>الكوليسترول يتكون من 4 حلقات كربونية (3 حلقات سداسية وحلقة خماسية) مع مجموعة هيدروكسيل ومجموعة كربونية. هذا التركيب يمنحه صلابة ويجعله precursor للهرمونات.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Functions Section -->
+            <section id="functions" class="section">
+                <div class="section-title">
+                    <h2>الوظائف الحيوية لليبيدات</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="functions-grid">
+                    <div class="function-card">
+                        <i class="fas fa-battery-full"></i>
+                        <h4>تخزين الطاقة</h4>
+                        <p>الدهون الثلاثية تخزن طاقة أكثر من الكربوهيدرات (9 كالوري/جم مقابل 4 كالوري/جم)</p>
+                    </div>
+                    
+                    <div class="function-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>العزل والحماية</h4>
+                        <p>تحمي الأعضاء الداخلية وتوفر عزلاً حرارياً للجسم</p>
+                    </div>
+                    
+                    <div class="function-card">
+                        <i class="fas fa-border-style"></i>
+                        <h4>تكوين الأغشية</h4>
+                        <p>الفوسفوليبيدات والكوليسترول تكون الأغشية الخلوية وتنظم نفاذيتها</p>
+                    </div>
+                    
+                    <div class="function-card">
+                        <i class="fas fa-signal"></i>
+                        <h4>الإشارات الخلوية</h4>
+                        <p>الستيرويدات تعمل كهرمونات تنقل الإشارات بين الخلايا</p>
+                    </div>
+                    
+                    <div class="function-card">
+                        <i class="fas fa-capsules"></i>
+                        <h4>نقل الفيتامينات</h4>
+                        <p>تساعد في امتصاص ونقل الفيتامينات الذائبة في الدهون (A, D, E, K)</p>
+                    </div>
+                    
+                    <div class="function-card">
+                        <i class="fas fa-vial"></i>
+                        <h4>المكونات الهيكلية</h4>
+                        <p>تدخل في تكوين البروتينات الدهنية وأغشية الخلايا العصبية</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Membrane Section -->
+            <section id="membrane" class="section">
+                <div class="section-title">
+                    <h2>دور الليبيدات في الأغشية البيولوجية</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="membrane-section">
+                    <h3>الغشاء الخلوي: ثنائي الفوسفوليبدي</h3>
+                    <p>الغشاء الخلوي يتكون أساساً من ثنائي الفوسفوليبدي، حيث تترتب الفوسفوليبيدات مع رؤوسها القطبية متجهة للخارج (نحو الماء) وذيولها غير القطبية متجهة للداخل (بعيداً عن الماء).</p>
+                    
+                    <div class="membrane-visual">
+                        <div class="membrane-layer">
+                            <div class="phospholipid-bilayer">
+                                <div class="lipid-head">P</div>
+                                <div class="lipid-tails">
+                                    <div class="lipid-tail"></div>
+                                    <div class="lipid-tail"></div>
+                                </div>
+                            </div>
+                            <div class="phospholipid-bilayer">
+                                <div class="lipid-head">P</div>
+                                <div class="lipid-tails">
+                                    <div class="lipid-tail"></div>
+                                    <div class="lipid-tail"></div>
+                                </div>
+                            </div>
+                            <div class="phospholipid-bilayer">
+                                <div class="lipid-head">P</div>
+                                <div class="lipid-tails">
+                                    <div class="lipid-tail"></div>
+                                    <div class="lipid-tail"></div>
+                                </div>
+                            </div>
+                            <div class="phospholipid-bilayer">
+                                <div class="lipid-head">P</div>
+                                <div class="lipid-tails">
+                                    <div class="lipid-tail"></div>
+                                    <div class="lipid-tail"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h4>خصائص الغشاء الليبيدي:</h4>
+                    <ul class="feature-list">
+                        <li>سائل عند درجة حرارة الجسم</li>
+                        <li>شبه منفذ: يسمح بمرور بعض المواد ويمنع أخرى</li>
+                        <li>مرن: بفضل وجود الكوليسترول</li>
+                        <li>ذاتي الترميم: يمكن إصلاح التمزقات</li>
+                    </ul>
+                    
+                    <h4>دور الكوليسترول في الغشاء:</h4>
+                    <p>الكوليسترول ي inserted بين الفوسفوليبيدات ويساعد في:</p>
+                    <ul class="feature-list">
+                        <li>زيادة مرونة الغشاء</li>
+                        <li>تقليل نفاذية الماء والأيونات</li>
+                        <li>منع تجمد الأغشية في درجات الحرارة المنخفضة</li>
+                        <li>منع زيادة السيولة في درجات الحرارة العالية</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Interactive Quiz Section -->
+            <section id="quiz" class="section">
+                <div class="section-title">
+                    <h2>اختبر معرفتك</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="quiz-section">
+                    <div class="quiz-question">
+                        <h3>سؤال 1: أي من الليبيدات التالية يشكل الأساس الهيكلي للأغشية الخلوية؟</h3>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">الدهون الثلاثية</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, true)">الفوسفوليبيدات</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">الكوليسترول</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">الستيرويدات</div>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <h3>سؤال 2: ما هي الخاصية الفريدة للفوسفوليبيدات؟</h3>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">قابلة للذوبان في الماء فقط</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, true)">طبيعة مزدوجة (أمفيباتيكية)</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">تحتوي على 4 حلقات كربونية</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">تخزن الطاقة بكفاءة عالية</div>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <h3>سؤال 3: أي الهرمونات التالية مشتقة من الكوليسترول؟</h3>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">الأنسولين</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">الجلوكاجون</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, true)">التستوستيرون</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">الأدرينالين</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن الموقع</h3>
+                    <p>منصة تعليمية متخصصة في علم الليبيديات، تقدم محتوى علمي دقيق ومبسط عن الدهون وأهميتها في علم الأحياء.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#types">أنواع الليبيدات</a></li>
+                        <li><a href="#structure">التركيب الجزيئي</a></li>
+                        <li><a href="#functions">الوظائف</a></li>
+                        <li><a href="#membrane">الأغشية البيولوجية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@lipidsworld.com</li>
+                        <li><i class="fas fa-phone"></i> +966 50 123 4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                        <li><i class="fas fa-graduation-cap"></i> للدعم الأكاديمي</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 عالم الليبيدات. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Structure tab functionality
+        function showStructure(type) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(type + '-tab').classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Quiz functionality
+        function checkAnswer(element, isCorrect) {
+            // Remove previous selections
+            const parent = element.parentElement;
+            parent.querySelectorAll('.quiz-option').forEach(option => {
+                option.classList.remove('correct', 'incorrect');
+                option.style.pointerEvents = 'none';
+            });
+            
+            // Mark selected answer
+            if (isCorrect) {
+                element.classList.add('correct');
+                showFeedback('إجابة صحيحة! 🎉', 'success');
+            } else {
+                element.classList.add('incorrect');
+                showFeedback('إجابة خاطئة، حاول مرة أخرى', 'error');
+                
+                // Show correct answer
+                parent.querySelectorAll('.quiz-option').forEach(option => {
+                    if (option.onclick.toString().includes('true')) {
+                        option.classList.add('correct');
+                    }
+                });
+            }
+        }
+
+        function showFeedback(message, type) {
+            // Create feedback element
+            const feedback = document.createElement('div');
+            feedback.textContent = message;
+            feedback.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 1rem 2rem;
+                border-radius: 8px;
+                color: white;
+                font-weight: bold;
+                z-index: 1000;
+                animation: slideIn 0.3s ease;
+                background: ${type === 'success' ? '#27ae60' : '#e74c3c'};
+            `;
+            
+            document.body.appendChild(feedback);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                feedback.remove();
+            }, 3000);
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.lipid-card, .function-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add slideIn animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

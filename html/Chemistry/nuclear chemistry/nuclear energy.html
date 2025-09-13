@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة الطاقة النووية التعليمية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a8a;
+            --light-blue: #3b82f6;
+            --accent-blue: #60a5fa;
+            --dark-blue: #1e40af;
+            --nuclear-green: #10b981;
+            --warning-yellow: #f59e0b;
+            --danger-red: #ef4444;
+            --white: #ffffff;
+            --light-gray: #f3f4f6;
+            --dark-gray: #1f2937;
+            --text-color: #374151;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(30, 58, 138, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.9), rgba(59, 130, 246, 0.9)),
+                        url('https://picsum.photos/seed/nuclear-plant/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: var(--nuclear-green);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-blue);
+        }
+
+        /* Reactors Section */
+        .reactors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .reactor-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .reactor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .reactor-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+
+        .reactor-content {
+            padding: 2rem;
+        }
+
+        .reactor-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .reactor-content p {
+            color: var(--text-color);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .reactor-specs {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .spec {
+            text-align: center;
+        }
+
+        .spec-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--nuclear-green);
+        }
+
+        .spec-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        /* Waste Management Section */
+        .waste-management {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .waste-info h3 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .waste-info p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .waste-steps {
+            list-style: none;
+        }
+
+        .waste-steps li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .waste-steps li:hover {
+            transform: translateX(-10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--nuclear-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .waste-visual {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .waste-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Comparison Section */
+        .comparison-table {
+            margin-top: 3rem;
+            overflow-x: auto;
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-table th {
+            background: var(--primary-blue);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .comparison-table tr:hover {
+            background: #dbeafe;
+        }
+
+        .rating {
+            display: flex;
+            justify-content: center;
+            gap: 0.2rem;
+        }
+
+        .rating i {
+            color: var(--nuclear-green);
+        }
+
+        .rating i.empty {
+            color: #e5e7eb;
+        }
+
+        /* Interactive Features */
+        .feature-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            padding: 1rem 2rem;
+            background: white;
+            border: 2px solid var(--light-blue);
+            color: var(--primary-blue);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .tab-button.active {
+            background: var(--light-blue);
+            color: white;
+        }
+
+        .tab-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Info Cards */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .info-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .info-card.nuclear .info-icon {
+            color: var(--nuclear-green);
+        }
+
+        .info-card.safety .info-icon {
+            color: var(--warning-yellow);
+        }
+
+        .info-card.waste .info-icon {
+            color: var(--danger-red);
+        }
+
+        .info-card.future .info-icon {
+            color: var(--light-blue);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-blue);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .waste-management {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 1rem 0.5rem;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--nuclear-green);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--primary-blue);
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                منصة الطاقة النووية
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#reactors">المفاعلات النووية</a></li>
+                <li><a href="#waste">النفايات النووية</a></li>
+                <li><a href="#comparison">المقارنات</a></li>
+                <li><a href="#features">المميزات</a></li>
+                <li><a href="#about">عن المنصة</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>منصة الطاقة النووية التعليمية</h1>
+            <p>مصدرك الشامل للتعلم عن الطاقة النووية، المفاعلات النووية، إدارة النفايات، ومقارنة مصادر الطاقة المختلفة</p>
+            <div class="hero-buttons">
+                <a href="#reactors" class="btn btn-primary">ابدأ التعلم</a>
+                <a href="#features" class="btn btn-secondary">اكتشف المميزات</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reactors Section -->
+    <section id="reactors" class="section">
+        <div class="container">
+            <h2 class="section-title">المفاعلات النووية: التصميم والتشغيل</h2>
+            <div class="reactors-grid">
+                <div class="reactor-card">
+                    <div class="reactor-image">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <div class="reactor-content">
+                        <h3>المفاعلات المائية المضغوطة (PWR)</h3>
+                        <p>النوع الأكثر شيوعاً في العالم، يستخدم الماء المضغوط لتبريد القلب النووي ونقل الحرارة. يتميز بكفاءة عالية وأمان متقدم.</p>
+                        <div class="reactor-specs">
+                            <div class="spec">
+                                <div class="spec-value">300-1700</div>
+                                <div class="spec-label">ميجاوات</div>
+                            </div>
+                            <div class="spec">
+                                <div class="spec-value">60+</div>
+                                <div class="spec-label">سنة</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reactor-card">
+                    <div class="reactor-image">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="reactor-content">
+                        <h3>المفاعلات المغلية (BWR)</h3>
+                        <p>يسمح للماء بالغليان في قلب المفاعل مباشرة، مما يبخّر الماء ويدير التوربينات. تصميم أبسط وأكثر كفاءة.</p>
+                        <div class="reactor-specs">
+                            <div class="spec">
+                                <div class="spec-value">500-1600</div>
+                                <div class="spec-label">ميجاوات</div>
+                            </div>
+                            <div class="spec">
+                                <div class="spec-label">كفاءة عالية</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reactor-card">
+                    <div class="reactor-image">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="reactor-content">
+                        <h3>المفاعلات سريعة التبريد (FBR)</h3>
+                        <p>تستخدم الصوديوم السائل أو الغازات كمواد تبريد، قادرة على إنتاج وقود نووي أكثر مما تستهلك (مولّدة).</p>
+                        <div class="reactor-specs">
+                            <div class="spec">
+                                <div class="spec-value">600-1500</div>
+                                <div class="spec-label">ميجاوات</div>
+                            </div>
+                            <div class="spec">
+                                <div class="spec-label">مستقبلية</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reactor-card">
+                    <div class="reactor-image">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <div class="reactor-content">
+                        <h3>المفاعلات المعيارية الصغيرة (SMR)</h3>
+                        <p>مفاعلات صغيرة الحجم يمكن تصنيعها في المصنع ونقلها للموقع. تتميز بمرونة عالية وتكلفة أقل.</p>
+                        <div class="reactor-specs">
+                            <div class="spec">
+                                <div class="spec-value">50-300</div>
+                                <div class="spec-label">ميجاوات</div>
+                            </div>
+                            <div class="spec">
+                                <div class="spec-label">مبتكرة</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waste Management Section -->
+    <section id="waste" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">النفايات النووية وإدارتها</h2>
+            <div class="waste-management">
+                <div class="waste-info">
+                    <h3>فهم وتحدي إدارة النفايات النووية</h3>
+                    <p>النفايات النووية هي المواد المشعة الناتجة عن استخدام الطاقة النووية. تتطلب إدارة آمنة وطويلة الأمد لحماية البيئة والصحة العامة.</p>
+                    <p>تتميز النفايات النووية بمستويات مختلفة من الإشعاع، وتصنف إلى:</p>
+                    <ul class="waste-steps">
+                        <li>
+                            <div class="step-number">1</div>
+                            <div>
+                                <strong>نفايات منخفضة المستوى</strong>
+                                <p>أدوات وملابس وقفازات مستخدمة في المفاعلات</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step-number">2</div>
+                            <div>
+                                <strong>نفايات متوسطة المستوى</strong>
+                                <p>أجزاء من المفاعلات ومواد ملوثة</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step-number">3</div>
+                            <div>
+                                <strong>نفايات عالية المستوى</strong>
+                                <p>وقود نووي مستخدم ومواد مشعة عالية</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step-number">4</div>
+                            <div>
+                                <strong>طرق التخلص الآمن</strong>
+                                <p>التخزين المؤقت، المعالجة، والتخزين الجيولوجي العميق</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="waste-visual">
+                    <img src="https://picsum.photos/seed/nuclear-waste/600/400.jpg" alt="إدارة النفايات النووية">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section id="comparison" class="section">
+        <div class="container">
+            <h2 class="section-title">مقارنة بين مصادر الطاقة</h2>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>مصدر الطاقة</th>
+                            <th>الكفاءة</th>
+                            <th>التكلفة</th>
+                            <th>الأثر البيئي</th>
+                            <th>الموثوقية</th>
+                            <th>الاستدامة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>الطاقة النووية</strong></td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </td>
+                            <td>متوسطة إلى عالية</td>
+                            <td>منخفض جداً</td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star empty"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>الطاقة الشمسية</strong></td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                </div>
+                            </td>
+                            <td>منخفضة</td>
+                            <td>منخفض جداً</td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>طاقة الرياح</strong></td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                </div>
+                            </td>
+                            <td>منخفضة</td>
+                            <td>منخفض جداً</td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>الطاقة الحرارية الأرضية</strong></td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                </div>
+                            </td>
+                            <td>متوسطة</td>
+                            <td>منخفض جداً</td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star empty"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>الوقود الأحفوري</strong></td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                </div>
+                            </td>
+                            <td>منخفضة</td>
+                            <td>مرتفع جداً</td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star empty"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">مميزات الطاقة النووية</h2>
+            <div class="feature-tabs">
+                <button class="tab-button active" onclick="showTab('advantages')">المميزات</button>
+                <button class="tab-button" onclick="showTab('safety')">السلامة</button>
+                <button class="tab-button" onclick="showTab('future')">المستقبل</button>
+            </div>
+            
+            <div id="advantages" class="tab-content active">
+                <div class="info-cards">
+                    <div class="info-card nuclear">
+                        <div class="info-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>كفاءة عالية</h3>
+                        <p>تنتج كمية هائلة من الطاقة من كمية صغيرة من الوقود، حيث يمكن لغرام واحد من اليورانيوم إنتاج طاقة تعادل طن من الفحم</p>
+                    </div>
+                    <div class="info-card nuclear">
+                        <div class="info-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>صديقة للبيئة</h3>
+                        <p>لا تنتج انبعاثات كربونية أثناء التشغيل، مما يجعلها حلاً فعالاً لمكافحة تغير المناخ</p>
+                    </div>
+                    <div class="info-card nuclear">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>موثوقية عالية</h3>
+                        <p>تعمل المفاعلات النووية على مدار الساعة طوال أيام الأسبوع، وتوفر طاقة مستقرة وموثوقة</p>
+                    </div>
+                    <div class="info-card nuclear">
+                        <div class="info-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>كثافة طاقة عالية</h3>
+                        <p>تتطلب مساحة صغيرة مقارنة بمصادر الطاقة الأخرى لإنتاج نفس كمية الطاقة</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="safety" class="tab-content">
+                <div class="info-cards">
+                    <div class="info-card safety">
+                        <div class="info-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>أنظمة سلامة متعددة</h3>
+                        <p>تحتوي المفاعلات الحديثة على أنظمة سلامة متعددة ومستقلة لمنع أي حوادث محتملة</p>
+                    </div>
+                    <div class="info-card safety">
+                        <div class="info-icon">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <h3>هيكل احتواء قوي</h3>
+                        <p>تحتوي المفاعلات على هياكل فولاذية وخراسانية قوية تحتوي على أي مواد مشعة في حالة الطوارئ</p>
+                    </div>
+                    <div class="info-card safety">
+                        <div class="info-icon">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <h3>تدريب وتأهيل عالي</h3>
+                        <p>يتلقى العاملون في المفاعلات تدريباً مكثفاً ويخضعون لاختبارات دورية لضمان أعلى معايير السلامة</p>
+                    </div>
+                    <div class="info-card safety">
+                        <div class="info-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>رقابة مستمرة</h3>
+                        <p>تراقب الهيئات الدولية والمحلية المفاعلات النووية بشكل مستمر لضمان الامتثال للمعايير</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="future" class="tab-content">
+                <div class="info-cards">
+                    <div class="info-card future">
+                        <div class="info-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>مفاعلات الجيل الرابع</h3>
+                        <p>تطور مفاعلات جديدة أكثر كفاءة وأماناً، بما في ذلك المفاعلات المبردة بالصوديوم والملح المصهور</p>
+                    </div>
+                    <div class="info-card future">
+                        <div class="info-icon">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <h3>المفاعلات المعيارية الصغيرة</h3>
+                        <p>مفاعلات صغيرة يمكن تصنيعها في المصانع ونقلها للموقع، مما يقلل التكاليف ويزيد المرونة</p>
+                    </div>
+                    <div class="info-card future">
+                        <div class="info-icon">
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                        <h3>إعادة تدوير الوقود</h3>
+                        <p>تقنيات جديدة لإعادة تدوير الوقود النووي المستخدم واستخدامه مرة أخرى، مما يقلل النفايات</p>
+                    </div>
+                    <div class="info-card future">
+                        <div class="info-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3>طاقة نظيفة عالمية</h3>
+                        <p>الطاقة النووية كحل مستدام لتوفير طاقة نظيفة للدول النامية والمتقدمة على حد سواء</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="about">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن المنصة</h3>
+                    <p>منصة تعليمية متخصصة في تقديم معلومات دقيقة وشاملة عن الطاقة النووية، مصممة للطلاب والباحثين والمهتمين بمجال الطاقة النووية.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#reactors">المفاعلات النووية</a></li>
+                        <li><a href="#waste">إدارة النفايات</a></li>
+                        <li><a href="#comparison">المقارنات</a></li>
+                        <li><a href="#features">المميزات</a></li>
+                        <li><a href="#">المصادر والمراجع</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@nuclear-edu.com</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تابعنا</h3>
+                    <p>ابق على اطلاع بآخر التطورات في مجال الطاقة النووية</p>
+                    <div style="margin-top: 1rem;">
+                        <a href="#" style="color: white; font-size: 1.5rem; margin: 0 0.5rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem; margin: 0 0.5rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem; margin: 0 0.5rem;"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem; margin: 0 0.5rem;"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 منصة الطاقة النووية التعليمية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(30, 58, 138, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(30, 58, 138, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Tab functionality
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'rgba(30, 58, 138, 0.98)';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.width = '100%';
+                navLinks.style.padding = '1rem';
+                navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Add hover effects to cards
+        const cards = document.querySelectorAll('.reactor-card, .info-card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.reactor-card, .info-card, .waste-steps li').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

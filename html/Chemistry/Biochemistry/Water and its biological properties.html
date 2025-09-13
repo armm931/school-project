@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الماء - سر الحياة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #006994;
+            --secondary: #00a8cc;
+            --accent: #00d4ff;
+            --light: #e6f7ff;
+            --dark: #1a3a52;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            color: var(--accent);
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 105, 148, 0.8), rgba(0, 168, 204, 0.8)), url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23e6f7ff" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: #00a8cc;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title .divider {
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 0 auto;
+        }
+
+        /* Feature Cards */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .feature-icon i {
+            font-size: 3rem;
+            color: var(--accent);
+        }
+
+        .feature-content {
+            padding: 1.5rem;
+        }
+
+        .feature-content h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        /* Properties Section */
+        .properties-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .property-item {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-bottom: 4px solid var(--accent);
+        }
+
+        .property-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .property-item i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .property-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Water Cycle */
+        .cycle-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cycle-diagram {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .cycle-stage {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .cycle-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .cycle-stage:hover .cycle-icon {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Interactive Demo */
+        .demo-container {
+            background: linear-gradient(135deg, #e6f7ff, #cceeff);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .molecule-demo {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 2rem;
+            position: relative;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .water-molecule {
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .atom {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .oxygen {
+            width: 80px;
+            height: 80px;
+            background: var(--danger);
+            left: 0;
+            top: 0;
+        }
+
+        .hydrogen1 {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            left: -60px;
+            top: 40px;
+        }
+
+        .hydrogen2 {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            left: 60px;
+            top: 40px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Statistics */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .cycle-diagram {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-tint"></i>
+                <span>الماء - سر الحياة</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#properties">الخصائص</a></li>
+                    <li><a href="#importance">الأهمية</a></li>
+                    <li><a href="#cycle">الدورة</a></li>
+                    <li><a href="#stats">إحصائيات</a></li>
+                    <li><a href="#contact">تواصل</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>الماء: كنز الحياة على الأرض</h1>
+            <p>اكتشف أسرار الماء وخصائصه الفريدة التي تجعله أساس وجود الحياة على كوكبنا</p>
+            <a href="#properties" class="btn">استكشف عالم الماء</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Introduction Section -->
+            <section class="section">
+                <div class="section-title">
+                    <h2>لماذا الماء مهم جداً؟</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>أساس الحياة</h3>
+                            <p>الماء هو المكون الأساسي لجميع الكائنات الحية. يشكل حوالي 60% من جسم الإنسان و90% من دمائنا، وبدونه لا يمكن للخلايا أن تعمل أو تتكاثر.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>منظم المناخ</h3>
+                            <p>يلعب الماء دوراً حيوياً في تنظيم درجة حرارة الأرض من خلال المحيطات والبحيرات والأنهار، ويساعد في توزيع الحرارة حول الكوكب.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>مصدر للطاقة</h3>
+                            <p>الماء مصدر مهم للطاقة المتجددة من خلال توليد الكهرباء بالسدود، كما أنه ضروري للزراعة وإنتاج الغذاء في جميع أنحاء العالم.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Properties Section -->
+            <section id="properties" class="section">
+                <div class="section-title">
+                    <h2>الخصائص الفريدة للماء</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="properties-container">
+                    <div class="property-item">
+                        <i class="fas fa-temperature-high"></i>
+                        <h4>السعة الحرارية العالية</h4>
+                        <p>يمكن للماء امتصاص كمية كبيرة من الحرارة قبل أن ترتفع درجة حرارته، مما يجعله منظمًا ممتازًا للحرارة.</p>
+                    </div>
+                    
+                    <div class="property-item">
+                        <i class="fas fa-cube"></i>
+                        <h4>الكثافة غير العادية</h4>
+                        <p>الماء الجامد أقل كثافة من الماء السائل، مما يجعل الجليد يطفو ويحمي الحياة تحت الماء في الشتاء.</p>
+                    </div>
+                    
+                    <div class="property-item">
+                        <i class="fas fa-hand-holding-water"></i>
+                        <h4>التماسك السطحي</h4>
+                        <p>يمتلك الماء توترًا سطحيًا عاليًا بسبب الروابط الهيدروجينية، مما يسمح للحشرات بالمشي على سطحه.</p>
+                    </div>
+                    
+                    <div class="property-item">
+                        <i class="fas fa-flask"></i>
+                        <h4>المذيب العام</h4>
+                        <p>يذوب الماء العديد من المواد، مما يجعله وسطًا مثاليًا للتفاعلات الكيميائية في الكائنات الحية.</p>
+                    </div>
+                    
+                    <div class="property-item">
+                        <i class="fas fa-atom"></i>
+                        <h4>القطبية</h4>
+                        <p>جزيء الماء قطبي بسبب شكله المنحني، مما يسمح له بتكوين روابط هيدروجينية قوية.</p>
+                    </div>
+                    
+                    <div class="property-item">
+                        <i class="fas fa-snowflake"></i>
+                        <h4>نقطة الغليان والتجمد</h4>
+                        <p>يغلي الماء عند 100°C ويتجمد عند 0°C، وهي درجات حرارة مناسبة للحياة على الأرض.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Water Cycle Section -->
+            <section id="cycle" class="section">
+                <div class="section-title">
+                    <h2>دورة الماء في الطبيعة</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="cycle-container">
+                    <p>دورة الماء هي العملية المستمرة التي يتحرك فيها الماء بين الأرض والغلاف الجوي. هذه الدورة ضرورية للحفاظ على الحياة على كوكبنا.</p>
+                    
+                    <div class="cycle-diagram">
+                        <div class="cycle-stage">
+                            <div class="cycle-icon">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <h4>التبخر</h4>
+                            <p>تحول الماء من السائل إلى الغاز بسبب حرارة الشمس</p>
+                        </div>
+                        
+                        <div class="cycle-stage">
+                            <div class="cycle-icon">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <h4>التكثف</h4>
+                            <p>تكثف بخار الماء في السحب عند البرودة</p>
+                        </div>
+                        
+                        <div class="cycle-stage">
+                            <div class="cycle-icon">
+                                <i class="fas fa-cloud-rain"></i>
+                            </div>
+                            <h4>الهطول</h4>
+                            <p>سقوط الماء على شكل مطر أو ثلج</p>
+                        </div>
+                        
+                        <div class="cycle-stage">
+                            <div class="cycle-icon">
+                                <i class="fas fa-mountain"></i>
+                            </div>
+                            <h4>الجريان السطحي</h4>
+                            <p>عودة الماء إلى المحيطات والأنهار</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Demo -->
+            <section class="section">
+                <div class="section-title">
+                    <h2>جزيء الماء</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="demo-container">
+                    <p>جزيء الماء (H₂O) يتكون من ذرة أكسجين مرتبطة بذرتي هيدروجين بزاوية 104.5 درجة. هذا الشكل المنحني يجعل الجزيء قطبيًا ويسمح له بتكوين روابط هيدروجينية.</p>
+                    
+                    <div class="molecule-demo">
+                        <div class="water-molecule">
+                            <div class="atom oxygen">O</div>
+                            <div class="atom hydrogen1">H</div>
+                            <div class="atom hydrogen2">H</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section id="stats" class="section">
+                <div class="section-title">
+                    <h2>إحصائيات مذهلة عن الماء</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">71%</div>
+                        <div class="stat-label">من سطح الأرض مغطى بالماء</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number">97%</div>
+                        <div class="stat-label">من مياه الأرض مالحة</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number">60%</div>
+                        <div class="stat-label">من جسم الإنسان ماء</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number">2.5%</div>
+                        <div class="stat-label">فقط من مياه الأرض عذبة</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن الموقع</h3>
+                    <p>منصة تعليمية تهدف إلى نشر الوعي بأهمية الماء وخصائصه الحيوية، ودوره في الحفاظ على الحياة على كوكبنا.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#properties">خصائص الماء</a></li>
+                        <li><a href="#importance">أهمية الماء</a></li>
+                        <li><a href="#cycle">دورة الماء</a></li>
+                        <li><a href="#stats">إحصائيات</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@water-life.com</li>
+                        <li><i class="fas fa-phone"></i> +966 50 123 4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع الماء - سر الحياة. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .property-item, .stat-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animate numbers on scroll
+        const animateNumbers = () => {
+            const numbers = document.querySelectorAll('.stat-number');
+            numbers.forEach(num => {
+                const finalValue = parseInt(num.textContent);
+                let currentValue = 0;
+                const increment = finalValue / 50;
+                
+                const updateNumber = () => {
+                    currentValue += increment;
+                    if (currentValue < finalValue) {
+                        num.textContent = Math.floor(currentValue) + '%';
+                        requestAnimationFrame(updateNumber);
+                    } else {
+                        num.textContent = finalValue + '%';
+                    }
+                };
+                
+                updateNumber();
+            });
+        };
+
+        // Trigger number animation when stats section is visible
+        const statsSection = document.getElementById('stats');
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateNumbers();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statsObserver.observe(statsSection);
+    </script>
+</body>
+</html>

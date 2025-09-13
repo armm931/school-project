@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كيمياء التربة - أساس الحياة النباتية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .soil-gradient {
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #D2691E 100%);
+        }
+        
+        .earth-gradient {
+            background: linear-gradient(135deg, #654321 0%, #8B4513 100%);
+        }
+        
+        .green-gradient {
+            background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+        }
+        
+        .nutrient-gradient {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+        }
+        
+        .pollution-gradient {
+            background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .soil-particle {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        
+        .water-drop {
+            animation: drop 3s ease-in-out infinite;
+        }
+        
+        @keyframes drop {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+        
+        .plant-grow {
+            animation: grow 5s ease-in-out infinite;
+        }
+        
+        @keyframes grow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .ph-meter {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .nutrient-bubble {
+            animation: bubble-rise 4s ease-in-out infinite;
+        }
+        
+        @keyframes bubble-rise {
+            0% { transform: translateY(0) scale(0.8); opacity: 0.7; }
+            50% { transform: translateY(-20px) scale(1); opacity: 1; }
+            100% { transform: translateY(-40px) scale(0.8); opacity: 0.7; }
+        }
+        
+        .reaction-arrow {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw 3s ease-in-out forwards;
+        }
+        
+        @keyframes draw {
+            to { stroke-dashoffset: 0; }
+        }
+        
+        .soil-layer {
+            transition: all 0.3s ease;
+        }
+        
+        .soil-layer:hover {
+            transform: translateX(10px);
+        }
+        
+        .pollution-warning {
+            animation: warning 2s ease-in-out infinite;
+        }
+        
+        @keyframes warning {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="soil-gradient text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-reverse space-x-4">
+                    <i class="fas fa-mountain text-3xl"></i>
+                    <h1 class="text-3xl font-bold">كيمياء التربة</h1>
+                </div>
+                <nav class="hidden md:flex space-x-reverse space-x-6">
+                    <a href="#introduction" class="hover:text-amber-200 transition">مقدمة</a>
+                    <a href="#components" class="hover:text-amber-200 transition">المكونات</a>
+                    <a href="#reactions" class="hover:text-amber-200 transition">التفاعلات</a>
+                    <a href="#ph" class="hover:text-amber-200 transition">درجة الحموضة</a>
+                    <a href="#nutrients" class="hover:text-amber-200 transition">المغذيات</a>
+                    <a href="#pollution" class="hover:text-amber-200 transition">التلوث</a>
+                    <a href="#improvement" class="hover:text-amber-200 transition">التحسين</a>
+                    <a href="#sustainable" class="hover:text-amber-200 transition">الاستدامة</a>
+                </nav>
+                <button id="mobileMenuBtn" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 bg-gradient-to-br from-amber-50 to-orange-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">أساس الحياة النباتية</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    استكشف عالم كيمياء التربة وكيف تؤثر على نمو النباتات والبيئة
+                </p>
+            </div>
+            
+            <!-- Feature Cards -->
+            <div class="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 mx-auto bg-amber-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-flask text-2xl text-amber-600"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">التركيب الكيميائي</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm text-center">
+                        المعادن والمواد العضوية
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-leaf text-2xl text-green-600"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">المغذيات</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm text-center">
+                        العناصر الغذائية الأساسية
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-tint text-2xl text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">درجة الحموضة</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm text-center">
+                        توازن pH التربة
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-exclamation-triangle text-2xl text-red-600"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">التلوث</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm text-center">
+                        التحديات البيئية
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="introduction" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                            <i class="fas fa-seedling text-green-600 ml-3"></i>
+                            ما هي كيمياء التربة؟
+                        </h2>
+                        <p class="text-gray-600 mb-4">
+                            كيمياء التربة هي فرع من علم التربة يدرس التركيب الكيميائي للتربة والتفاعلات الكيميائية التي تحدث فيها، وتأثير هذه العمليات على خصوبة التربة ونمو النباتات.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">الأهمية الزراعية</h4>
+                                    <p class="text-gray-600 text-sm">تحديد مدى خصوبة التربة وقدرتها على دعم نمو النباتات</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">الأهمية البيئية</h4>
+                                    <p class="text-gray-600 text-sm">فهم دور التربة في دورة العناصر وتخزين الكربون</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">الأهمية الاقتصادية</h4>
+                                    <p class="text-gray-600 text-sm">تحسين الإنتاجية الزراعية وتقليل التكاليف</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="bg-gradient-to-br from-amber-100 to-orange-100 rounded-2xl p-8">
+                            <div class="text-center">
+                                <i class="fas fa-mountain text-8xl text-amber-600 soil-particle"></i>
+                            </div>
+                            <div class="mt-6 space-y-3">
+                                <div class="bg-white/80 backdrop-blur rounded-lg p-3">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-semibold">المعادن</span>
+                                        <span class="text-amber-600 font-bold">45%</span>
+                                    </div>
+                                </div>
+                                <div class="bg-white/80 backdrop-blur rounded-lg p-3">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-semibold">مواد عضوية</span>
+                                        <span class="text-green-600 font-bold">5%</span>
+                                    </div>
+                                </div>
+                                <div class="bg-white/80 backdrop-blur rounded-lg p-3">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-semibold">ماء</span>
+                                        <span class="text-blue-600 font-bold">25%</span>
+                                    </div>
+                                </div>
+                                <div class="bg-white/80 backdrop-blur rounded-lg p-3">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-semibold">هواء</span>
+                                        <span class="text-gray-600 font-bold">25%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Components Section -->
+    <section id="components" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">مكونات التربة الكيميائية</h2>
+                    <p class="text-lg text-gray-600">
+                        العناصر الأساسية التي تشكل التربة وتحدد خصائصها الكيميائية
+                    </p>
+                </div>
+
+                <!-- Soil Components Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Organic Matter -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-green-500 p-6 text-white text-center">
+                            <i class="fas fa-leaf text-5xl mb-3"></i>
+                            <h3 class="text-xl font-bold">المواد العضوية</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-2 text-gray-700 text-sm">
+                                <li>• الهيومس (مستقر)</li>
+                                <li>• المواد النشطة</li>
+                                <li>• الكربون العضوي</li>
+                                <li>• النيتروجين العضوي</li>
+                            </ul>
+                            <div class="mt-4 bg-green-50 rounded-lg p-3">
+                                <p class="text-xs text-green-800">
+                                    <i class="fas fa-info-circle ml-1"></i>
+                                    تحسين بنية التربة واحتباس الماء
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Minerals -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-amber-600 p-6 text-white text-center">
+                            <i class="fas fa-gem text-5xl mb-3"></i>
+                            <h3 class="text-xl font-bold">المعادن</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-2 text-gray-700 text-sm">
+                                <li>• السيليكا (SiO₂)</li>
+                                <li>• أكسيد الألومنيوم</li>
+                                <li>• أكسيد الحديد</li>
+                                <li>• معادن الطين</li>
+                            </ul>
+                            <div class="mt-4 bg-amber-50 rounded-lg p-3">
+                                <p class="text-xs text-amber-800">
+                                    <i class="fas fa-info-circle ml-1"></i>
+                                    مصدر العناصر الغذائية
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Water -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-blue-500 p-6 text-white text-center">
+                            <i class="fas fa-tint text-5xl mb-3 water-drop"></i>
+                            <h3 class="text-xl font-bold">الماء</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-2 text-gray-700 text-sm">
+                                <li>• ماء التربة</li>
+                                <li>• المحلول التربي</li>
+                                <li>• الماء المتاح</li>
+                                <li>• الماء الهيجروسكوبي</li>
+                            </ul>
+                            <div class="mt-4 bg-blue-50 rounded-lg p-3">
+                                <p class="text-xs text-blue-800">
+                                    <i class="fas fa-info-circle ml-1"></i>
+                                    وسط نقل المغذيات
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Air -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-gray-500 p-6 text-white text-center">
+                            <i class="fas fa-wind text-5xl mb-3"></i>
+                            <h3 class="text-xl font-bold">الهواء</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-2 text-gray-700 text-sm">
+                                <li>• الأكسجين (O₂)</li>
+                                <li>• ثاني أكسيد الكربون</li>
+                                <li>• النيتروجين (N₂)</li>
+                                <li>• غازات أخرى</li>
+                            </ul>
+                            <div class="mt-4 bg-gray-50 rounded-lg p-3">
+                                <p class="text-xs text-gray-800">
+                                    <i class="fas fa-info-circle ml-1"></i>
+                                    ضروري لتنفس الجذور
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reactions Section -->
+    <section id="reactions" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">التفاعلات الكيميائية في التربة</h2>
+                    <p class="text-lg text-gray-600">
+                        العمليات الكيميائية التي تحدث في التربة وتؤثر على خصوبتها
+                    </p>
+                </div>
+
+                <!-- Reactions Grid -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Oxidation-Reduction -->
+                    <div class="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-red-800 mb-4">
+                            <i class="fas fa-fire text-red-600 ml-2"></i>
+                            الأكسدة والاختزال
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-red-700 mb-2">الأكسدة:</h4>
+                                <div class="bg-white rounded-lg p-3 mb-2">
+                                    <p class="text-sm font-mono">Fe²⁺ → Fe³⁺ + e⁻</p>
+                                </div>
+                                <p class="text-sm text-gray-600">يحدث في التربة المهواة جيداً</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-red-700 mb-2">الاختزال:</h4>
+                                <div class="bg-white rounded-lg p-3 mb-2">
+                                    <p class="text-sm font-mono">NO₃⁻ + 2H⁺ + 2e⁻ → NO₂⁻ + H₂O</p>
+                                </div>
+                                <p class="text-sm text-gray-600">يحدث في التربة المغمورة</p>
+                            </div>
+                            <div class="bg-red-100 rounded-lg p-3">
+                                <p class="text-sm text-red-800">
+                                    <i class="fas fa-lightbulb ml-1"></i>
+                                    يؤثر على توافر المغذيات للنباتات
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ion Exchange -->
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-4">
+                            <i class="fas fa-exchange-alt text-blue-600 ml-2"></i>
+                            التبادل الأيوني
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-blue-700 mb-2">التبادل الكاتيوني:</h4>
+                                <div class="bg-white rounded-lg p-3 mb-2">
+                                    <p class="text-sm font-mono">Ca²⁺ + 2Na⁺-Clay → Ca²⁺-Clay + 2Na⁺</p>
+                                </div>
+                                <p class="text-sm text-gray-600">يحتفظ التربة بالكاتيونات الموجبة</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-blue-700 mb-2">التبادل الأنيوني:</h4>
+                                <div class="bg-white rounded-lg p-3 mb-2">
+                                    <p class="text-sm font-mono">PO₄³⁻ + OH⁻-Clay → PO₄³⁻-Clay + OH⁻</p>
+                                </div>
+                                <p class="text-sm text-gray-600">أقل شيوعاً في التربة</p>
+                            </div>
+                            <div class="bg-blue-100 rounded-lg p-3">
+                                <p class="text-sm text-blue-800">
+                                    <i class="fas fa-lightbulb ml-1"></i>
+                                    يحدد قدرة التربة على الاحتفاظ بالمغذيات
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Precipitation -->
+                    <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-purple-800 mb-4">
+                            <i class="fas fa-cloud-rain text-purple-600 ml-2"></i>
+                            الترسيب
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-purple-700 mb-2">أمثلة الترسيب:</h4>
+                                <div class="bg-white rounded-lg p-3 mb-2">
+                                    <p class="text-sm font-mono">Ca²⁺ + CO₃²⁻ → CaCO₃↓</p>
+                                </div>
+                                <div class="bg-white rounded-lg p-3 mb-2">
+                                    <p class="text-sm font-mono">Fe³⁺ + 3OH⁻ → Fe(OH)₃↓</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600">يقلل من توافر المغذيات الذائبة</p>
+                            <div class="bg-purple-100 rounded-lg p-3">
+                                <p class="text-sm text-purple-800">
+                                    <i class="fas fa-lightbulb ml-1"></i>
+                                    مهم في تحديد pH التربة
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Complexation -->
+                    <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-4">
+                            <i class="fas fa-link text-green-600 ml-2"></i>
+                            التكوين المعقد
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-green-700 mb-2">معقدات الهيومس:</h4>
+                                <div class="bg-white rounded-lg p-3 mb-2">
+                                    <p class="text-sm font-mono">Fe³⁺ + Humate → Fe-Humate</p>
+                                </div>
+                                <p class="text-sm text-gray-600">تزيد من ذوبان المعادن</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-green-700 mb-2">المركبات العضوية المعدنية:</h4>
+                                <p class="text-sm text-gray-600">تسهل نقل المغذيات للنباتات</p>
+                            </div>
+                            <div class="bg-green-100 rounded-lg p-3">
+                                <p class="text-sm text-green-800">
+                                    <i class="fas fa-lightbulb ml-1"></i>
+                                    يقلل من سمية المعادن الثقيلة
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- pH Section -->
+    <section id="ph" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">درجة حموضة التربة (pH)</h2>
+                    <p class="text-lg text-gray-600">
+                        مؤشر حاسم يحدد خصوبة التربة ونمو النباتات
+                    </p>
+                </div>
+
+                <!-- pH Scale Visualization -->
+                <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                    <div class="relative">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-sm font-semibold text-red-600">0</span>
+                            <span class="text-sm font-semibold text-orange-600">4</span>
+                            <span class="text-sm font-semibold text-yellow-600">7</span>
+                            <span class="text-sm font-semibold text-green-600">10</span>
+                            <span class="text-sm font-semibold text-blue-600">14</span>
+                        </div>
+                        <div class="h-16 rounded-full relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-r from-red-500 via-orange-500 via-yellow-500 via-green-500 to-blue-500"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="bg-white rounded-full px-4 py-2 shadow-lg ph-meter">
+                                    <span class="text-lg font-bold">pH 6.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-center">
+                            <p class="text-sm text-gray-600">المدى الأمثل لمعظم النباتات: 6.0 - 7.0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- pH Effects Grid -->
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-red-50 rounded-xl p-6">
+                        <h3 class="text-lg font-bold text-red-800 mb-3">
+                            <i class="fas fa-arrow-down text-red-600 ml-2"></i>
+                            التربة الحمضية (pH < 6)
+                        </h3>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• نقص الكالسيوم والمغنيسيوم</li>
+                            <li>• زيادة سمية الألومنيوم</li>
+                            <li>• نقص الفوسفور المتاح</li>
+                            <li>• انخفاض نشاط الكائنات الدقيقة</li>
+                        </ul>
+                        <div class="mt-4 bg-red-100 rounded-lg p-3">
+                            <p class="text-xs text-red-800">
+                                <i class="fas fa-seedling ml-1"></i>
+                                النباتات المحبة للحمضية: الشاي، الأزاليات
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 rounded-xl p-6">
+                        <h3 class="text-lg font-bold text-green-800 mb-3">
+                            <i class="fas fa-check text-green-600 ml-2"></i>
+                            التربة المحايدة (pH 6-7)
+                        </h3>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• توازن مثالي للمغذيات</li>
+                            <li>• نشاط كيميائي أمثل</li>
+                            <li>• تنوع بيولوجي عالي</li>
+                            <li>• امتصاص فعال للمغذيات</li>
+                        </ul>
+                        <div class="mt-4 bg-green-100 rounded-lg p-3">
+                            <p class="text-xs text-green-800">
+                                <i class="fas fa-seedling ml-1"></i>
+                                معظم المحاصيل الزراعية تفضل هذا المدى
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 rounded-xl p-6">
+                        <h3 class="text-lg font-bold text-blue-800 mb-3">
+                            <i class="fas fa-arrow-up text-blue-600 ml-2"></i>
+                            التربة القلوية (pH > 7.5)
+                        </h3>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• نقص الحديد والمنجنيز</li>
+                            <li>• نقص الزنك والنحاس</li>
+                            <li>• زيادة الصوديوم</li>
+                            <li>• انخفاض نفاذية التربة</li>
+                        </ul>
+                        <div class="mt-4 bg-blue-100 rounded-lg p-3">
+                            <p class="text-xs text-blue-800">
+                                <i class="fas fa-seedling ml-1"></i>
+                                النباتات المحبة للقلوية: القمح، الشعير
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nutrients Section -->
+    <section id="nutrients" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">المغذيات النباتية</h2>
+                    <p class="text-lg text-gray-600">
+                        العناصر الأساسية والثانوية اللازمة لنمو النباتات
+                    </p>
+                </div>
+
+                <!-- Primary Nutrients -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+                        <i class="fas fa-star text-yellow-500 ml-2"></i>
+                        المغذيات الأساسية (NPK)
+                    </h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <!-- Nitrogen -->
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 card-hover">
+                            <div class="text-center mb-4">
+                                <div class="w-20 h-20 mx-auto bg-blue-500 rounded-full flex items-center justify-center mb-3 nutrient-bubble">
+                                    <span class="text-2xl font-bold text-white">N</span>
+                                </div>
+                                <h4 class="text-xl font-bold text-blue-800">النيتروجين</h4>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="bg-white rounded-lg p-3">
+                                    <h5 class="font-semibold text-blue-700 text-sm">الوظائف:</h5>
+                                    <ul class="text-xs text-gray-600 mt-1 space-y-1">
+                                        <li>• بناء البروتينات</li>
+                                        <li>• نمو الأوراق والسيقان</li>
+                                        <li>• التمثيل الضوئي</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-blue-100 rounded-lg p-3">
+                                    <p class="text-xs text-blue-800">
+                                        <i class="fas fa-flask ml-1"></i>
+                                        أشكال متاحة: NO₃⁻, NH₄⁺
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Phosphorus -->
+                        <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6 card-hover">
+                            <div class="text-center mb-4">
+                                <div class="w-20 h-20 mx-auto bg-purple-500 rounded-full flex items-center justify-center mb-3 nutrient-bubble">
+                                    <span class="text-2xl font-bold text-white">P</span>
+                                </div>
+                                <h4 class="text-xl font-bold text-purple-800">الفوسفور</h4>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="bg-white rounded-lg p-3">
+                                    <h5 class="font-semibold text-purple-700 text-sm">الوظائف:</h5>
+                                    <ul class="text-xs text-gray-600 mt-1 space-y-1">
+                                        <li>• نقل الطاقة (ATP)</li>
+                                        <li>• نمو الجذور</li>
+                                        <li>• الإزهار والإثمار</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-purple-100 rounded-lg p-3">
+                                    <p class="text-xs text-purple-800">
+                                        <i class="fas fa-flask ml-1"></i>
+                                        أشكال متاحة: H₂PO₄⁻, HPO₄²⁻
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Potassium -->
+                        <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-6 card-hover">
+                            <div class="text-center mb-4">
+                                <div class="w-20 h-20 mx-auto bg-orange-500 rounded-full flex items-center justify-center mb-3 nutrient-bubble">
+                                    <span class="text-2xl font-bold text-white">K</span>
+                                </div>
+                                <h4 class="text-xl font-bold text-orange-800">البوتاسيوم</h4>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="bg-white rounded-lg p-3">
+                                    <h5 class="font-semibold text-orange-700 text-sm">الوظائف:</h5>
+                                    <ul class="text-xs text-gray-600 mt-1 space-y-1">
+                                        <li>• تنظيم الماء</li>
+                                        <li>• تنشيط الإنزيمات</li>
+                                        <li>• مقاومة الأمراض</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-orange-100 rounded-lg p-3">
+                                    <p class="text-xs text-orange-800">
+                                        <i class="fas fa-flask ml-1"></i>
+                                        شكل متاح: K⁺
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Secondary Nutrients -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+                        <i class="fas fa-leaf text-green-500 ml-2"></i>
+                        المغذيات الثانوية
+                    </h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <!-- Calcium -->
+                        <div class="bg-white rounded-lg shadow-md p-4 card-hover">
+                            <div class="flex items-center mb-3">
+                                <div class="w-12 h-12 bg-gray-400 rounded-full flex items-center justify-center ml-3">
+                                    <span class="text-lg font-bold text-white">Ca</span>
+                                </div>
+                                <h4 class="font-semibold text-gray-800">الكالسيوم</h4>
+                            </div>
+                            <p class="text-sm text-gray-600">بناء جدر الخلايا، تنظيم pH</p>
+                        </div>
+
+                        <!-- Magnesium -->
+                        <div class="bg-white rounded-lg shadow-md p-4 card-hover">
+                            <div class="flex items-center mb-3">
+                                <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center ml-3">
+                                    <span class="text-lg font-bold text-white">Mg</span>
+                                </div>
+                                <h4 class="font-semibold text-gray-800">المغنيسيوم</h4>
+                            </div>
+                            <p class="text-sm text-gray-600">مكون الكلوروفيل، تنشيط الإنزيمات</p>
+                        </div>
+
+                        <!-- Sulfur -->
+                        <div class="bg-white rounded-lg shadow-md p-4 card-hover">
+                            <div class="flex items-center mb-3">
+                                <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center ml-3">
+                                    <span class="text-lg font-bold text-white">S</span>
+                                </div>
+                                <h4 class="font-semibold text-gray-800">الكبريت</h4>
+                            </div>
+                            <p class="text-sm text-gray-600">بناء الأحماض الأمينية، الفيتامينات</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pollution Section -->
+    <section id="pollution" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">تلوث التربة الكيميائي</h2>
+                    <p class="text-lg text-gray-600">
+                        المصادر والآثار والحلول لتلوث التربة
+                    </p>
+                </div>
+
+                <!-- Pollution Types -->
+                <div class="grid md:grid-cols-3 gap-8 mb-8">
+                    <!-- Heavy Metals -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="pollution-gradient p-6 text-white text-center">
+                            <i class="fas fa-radiation text-5xl mb-3 pollution-warning"></i>
+                            <h3 class="text-2xl font-bold">المعادن الثقيلة</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-2 text-gray-700 mb-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-red-600 mt-1 ml-2"></i>
+                                    <span>الرصاص (Pb)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-red-600 mt-1 ml-2"></i>
+                                    <span>الكادميوم (Cd)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-red-600 mt-1 ml-2"></i>
+                                    <span>الزئبق (Hg)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-red-600 mt-1 ml-2"></i>
+                                    <span>الزرنيخ (As)</span>
+                                </li>
+                            </ul>
+                            <div class="bg-red-50 rounded-lg p-3">
+                                <p class="text-sm text-red-800">
+                                    <i class="fas fa-exclamation-triangle ml-1"></i>
+                                    تتراكم في السلسلة الغذائية
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pesticides -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-orange-600 p-6 text-white text-center">
+                            <i class="fas fa-spray-can text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">المبيدات</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-2 text-gray-700 mb-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-orange-600 mt-1 ml-2"></i>
+                                    <span>المبيدات الحشرية</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-orange-600 mt-1 ml-2"></i>
+                                    <span>مبيدات الأعشاب</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-orange-600 mt-1 ml-2"></i>
+                                    <span>مبيدات الفطريات</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-orange-600 mt-1 ml-2"></i>
+                                    <span>المبيدات الحشرية العضوية</span>
+                                </li>
+                            </ul>
+                            <div class="bg-orange-50 rounded-lg p-3">
+                                <p class="text-sm text-orange-800">
+                                    <i class="fas fa-exclamation-triangle ml-1"></i>
+                                    تضر بالكائنات غير المستهدفة
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Oil Pollution -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-gray-700 p-6 text-white text-center">
+                            <i class="fas fa-oil-can text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">تلوث النفط</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-2 text-gray-700 mb-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-gray-600 mt-1 ml-2"></i>
+                                    <span>تسربات النفط الخام</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-gray-600 mt-1 ml-2"></i>
+                                    <span>الوقود الأحفوري</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-gray-600 mt-1 ml-2"></i>
+                                    <span>المذيبات العضوية</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-gray-600 mt-1 ml-2"></i>
+                                    <span>المواد الهيدروكربونية</span>
+                                </li>
+                            </ul>
+                            <div class="bg-gray-100 rounded-lg p-3">
+                                <p class="text-sm text-gray-800">
+                                    <i class="fas fa-exclamation-triangle ml-1"></i>
+                                    تمنع تبادل الغازات في التربة
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Effects and Solutions -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-red-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-red-800 mb-4">
+                            <i class="fas fa-skull-crossbones text-red-600 ml-2"></i>
+                            الآثار الضارة
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="flex items-start">
+                                <i class="fas fa-times-circle text-red-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-red-700">على النباتات</h4>
+                                    <p class="text-sm text-gray-600">تثبيط النمو، اصفرار الأوراق، موت النباتات</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-times-circle text-red-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-red-700">على الحيوانات</h4>
+                                    <p class="text-sm text-gray-600">تراكم سام، أمراض، موت الكائنات الحية</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-times-circle text-red-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-red-700">على الإنسان</h4>
+                                    <p class="text-sm text-gray-600">أمراض سرطانية، تلف الأعضاء، مشاكل عصبية</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-times-circle text-red-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-red-700">على البيئة</h4>
+                                    <p class="text-sm text-gray-600">تلوث المياه الجوفية، تدهور النظام البيئي</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-4">
+                            <i class="fas fa-seedling text-green-600 ml-2"></i>
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-green-700">المعالجة الفيزيائية</h4>
+                                    <p class="text-sm text-gray-600">إزالة التربة الملوثة، غسل التربة، تبخير</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-green-700">المعالجة الكيميائية</h4>
+                                    <p class="text-sm text-gray-600">تعديل pH، الترسيب، الأكسدة الكيميائية</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-green-700">المعالجة البيولوجية</h4>
+                                    <p class="text-sm text-gray-600">التحلل الميكروبي، النباتات المفرزة</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-green-700">الوقاية</h4>
+                                    <p class="text-sm text-gray-600">استخدام مبيدات آمنة، إدارة النفايات</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Improvement Section -->
+    <section id="improvement" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">تحسين التربة</h2>
+                    <p class="text-lg text-gray-600">
+                        طرق وتقنيات لتحسين خصوبة التربة وزيادة إنتاجيتها
+                    </p>
+                </div>
+
+                <!-- Fertilizers -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">
+                        <i class="fas fa-flask text-blue-600 ml-2"></i>
+                        الأسمدة
+                    </h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <!-- Organic Fertilizers -->
+                        <div class="bg-green-50 rounded-xl p-6">
+                            <h4 class="text-lg font-bold text-green-800 mb-3">الأسمدة العضوية</h4>
+                            <ul class="space-y-2 text-sm text-gray-700 mb-4">
+                                <li>• السماد العضوي</li>
+                                <li>• الكمبوست</li>
+                                <li>• روث الحيوانات</li>
+                                <li>• بقايا المحاصيل</li>
+                            </ul>
+                            <div class="bg-green-100 rounded-lg p-3">
+                                <p class="text-xs text-green-800">
+                                    <i class="fas fa-plus-circle ml-1"></i>
+                                    تحسن بنية التربة والمحتوى العضوي
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Inorganic Fertilizers -->
+                        <div class="bg-blue-50 rounded-xl p-6">
+                            <h4 class="text-lg font-bold text-blue-800 mb-3">الأسمدة المعدنية</h4>
+                            <ul class="space-y-2 text-sm text-gray-700 mb-4">
+                                <li>• يوريا (46% N)</li>
+                                <li>• سوبر فوسفات (16-20% P)</li>
+                                <li>• كلوريد البوتاسيوم (60% K)</li>
+                                <li>• الأسمدة المركبة</li>
+                            </ul>
+                            <div class="bg-blue-100 rounded-lg p-3">
+                                <p class="text-xs text-blue-800">
+                                    <i class="fas fa-bolt ml-1"></i>
+                                    تركيز عالي من المغذيات وسريع المفعول
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Biofertilizers -->
+                        <div class="bg-purple-50 rounded-xl p-6">
+                            <h4 class="text-lg font-bold text-purple-800 mb-3">الأسمدة الحيوية</h4>
+                            <ul class="space-y-2 text-sm text-gray-700 mb-4">
+                                <li>• بكتيريا تثبيت النيتروجين</li>
+                                <li>• الفطريات الميكوريزية</li>
+                                <li>• بكتيريا إذابة الفوسفور</li>
+                                <li>• البكتيريا المحفزة للنمو</li>
+                            </ul>
+                            <div class="bg-purple-100 rounded-lg p-3">
+                                <p class="text-xs text-purple-800">
+                                    <i class="fas fa-leaf ml-1"></i>
+                                    صديقة للبيئة ومستدامة
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chemical Amendments -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">
+                        <i class="fas fa-adjust text-orange-600 ml-2"></i>
+                        التعديلات الكيميائية
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- pH Adjustment -->
+                        <div class="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl p-6">
+                            <h4 class="text-lg font-bold text-orange-800 mb-4">تعديل درجة الحموضة</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <h5 class="font-semibold text-orange-700 mb-2">لزيادة pH (التربة الحمضية):</h5>
+                                    <div class="bg-white rounded-lg p-3 space-y-2">
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-sm">جير Agricultural</span>
+                                            <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">CaCO₃</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-sm">جير دولوميتي</span>
+                                            <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">CaMg(CO₃)₂</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-sm">هيدروكسيد الكالسيوم</span>
+                                            <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">Ca(OH)₂</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold text-orange-700 mb-2">لخفض pH (التربة القلوية):</h5>
+                                    <div class="bg-white rounded-lg p-3 space-y-2">
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-sm">كبريتات الألومنيوم</span>
+                                            <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">Al₂(SO₄)₃</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-sm">كبريت عنصري</span>
+                                            <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">S</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Soil Structure Improvement -->
+                        <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl p-6">
+                            <h4 class="text-lg font-bold text-green-800 mb-4">تحسين بنية التربة</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <h5 class="font-semibold text-green-700 mb-2">المواد العضوية:</h5>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>• الهيومس يحسن تجميع التربة</li>
+                                        <li>• يزيد من المسامية والتهوية</li>
+                                        <li>• يحسن احتباس الماء</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold text-green-700 mb-2">البوليمرات:</h5>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>• PAM (بولي أكريلاميد)</li>
+                                        <li>• يقلل من التآكل</li>
+                                        <li>• يحسن نفاذية التربة</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold text-green-700 mb-2">الجبس:</h5>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>• يحل محل الصوديوم</li>
+                                        <li>• يحسن بنية التربة المالحة</li>
+                                        <li>• يوفر الكالسيوم والكبريت</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainable Agriculture Section -->
+    <section id="sustainable" class="py-16 bg-gradient-to-br from-green-50 to-blue-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">كيمياء التربة في الزراعة المستدامة</h2>
+                    <p class="text-lg text-gray-600">
+                        دور كيمياء التربة في تحقيق الزراعة المستدامة وحماية البيئة
+                    </p>
+                </div>
+
+                <!-- Sustainable Practices Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                    <!-- Crop Rotation -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 mx-auto bg-green-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-sync-alt text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800">تداول المحاصيل</h3>
+                        </div>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• تقليل استنزاف المغذيات</li>
+                            <li>• كسر دورات الآفات</li>
+                            <li>• تحسين بنية التربة</li>
+                            <li>• زيادة التنوع البيولوجي</li>
+                        </ul>
+                    </div>
+
+                    <!-- Cover Crops -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 mx-auto bg-blue-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-seedling text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800">محاصيل الغطاء</h3>
+                        </div>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• منع تآكل التربة</li>
+                            <li>• تثبيت النيتروجين</li>
+                            <li>• زيادة المواد العضوية</li>
+                            <li>• قمع الأعشاب الضارة</li>
+                        </ul>
+                    </div>
+
+                    <!-- Conservation Tillage -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 mx-auto bg-amber-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-leaf text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800">الحراثة المحافظة</h3>
+                        </div>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• الحفاظ على بقايا المحاصيل</li>
+                            <li>• تقليل انبعاثات CO₂</li>
+                            <li>• حفظ رطوبة التربة</li>
+                            <li>• تقليل استهلاك الوقود</li>
+                        </ul>
+                    </div>
+
+                    <!-- Integrated Nutrient Management -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 mx-auto bg-purple-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-balance-scale text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800">الإدارة المتكاملة</h3>
+                        </div>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• دمج الأسمدة العضوية والمعدنية</li>
+                            <li>• استخدام الأسمدة الحيوية</li>
+                            <li>• تحليل التربة بانتظام</li>
+                            <li>• التطبيق الدقيق للمغذيات</li>
+                        </ul>
+                    </div>
+
+                    <!-- Water Management -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 mx-auto bg-cyan-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-tint text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800">إدارة المياه</h3>
+                        </div>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• الري بالتنقيط</li>
+                            <li>• الري تحت السطحي</li>
+                            <li>• جمع مياه الأمطار</li>
+                            <li>• استخدام الرطوبة الحقلية</li>
+                        </ul>
+                    </div>
+
+                    <!-- Biological Control -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 mx-auto bg-red-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-bug text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800">المكافحة الحيوية</h3>
+                        </div>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• استخدام المفترسات الطبيعية</li>
+                            <li>• المبيدات الحيوية</li>
+                            <li>• مقاومة الآفات</li>
+                            <li>• الحفاظ على التوازن البيئي</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Benefits Summary -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">فوائد الزراعة المستدامة</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="text-center">
+                            <div class="w-20 h-20 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-globe text-3xl text-green-600"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">حماية البيئة</h4>
+                            <p class="text-sm text-gray-600">تقليل التلوث والحفاظ على الموارد</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-20 h-20 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-coins text-3xl text-blue-600"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">الربحية الاقتصادية</h4>
+                            <p class="text-sm text-gray-600">تقليل التكاليف وزيادة العائد</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-20 h-20 mx-auto bg-purple-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-heart text-3xl text-purple-600"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">الصحة العامة</h4>
+                            <p class="text-sm text-gray-600">منتجات غذائية أكثر أماناً</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-20 h-20 mx-auto bg-orange-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-infinity text-3xl text-orange-600"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">الاستدامة</h4>
+                            <p class="text-sm text-gray-600">للأجيال القادمة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="mb-2">© 2024 كيمياء التربة - موقع تعليمي تفاعلي</p>
+                <p class="text-gray-400">مكرس لنشر الوعي بأهمية كيمياء التربة في الزراعة والبيئة</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('hidden');
+            nav.classList.toggle('absolute');
+            nav.classList.toggle('top-full');
+            nav.classList.toggle('left-0');
+            nav.classList.toggle('right-0');
+            nav.classList.toggle('bg-amber-800');
+            nav.classList.toggle('p-4');
+            nav.classList.toggle('flex-col');
+            nav.classList.toggle('space-y-2');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        // Interactive soil particles
+        document.querySelectorAll('.soil-particle').forEach(particle => {
+            particle.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1) rotate(10deg)';
+            });
+            
+            particle.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+
+        // pH meter interaction
+        const phMeter = document.querySelector('.ph-meter');
+        if (phMeter) {
+            phMeter.addEventListener('click', function() {
+                const currentpH = parseFloat(this.textContent.match(/pH (\d+\.\d+)/)[1]);
+                const newpH = (Math.random() * 4 + 4).toFixed(1);
+                this.innerHTML = `<span class="text-lg font-bold">pH ${newpH}</span>`;
+                
+                // Update color based on pH
+                let colorClass = 'text-yellow-600';
+                if (newpH < 6) colorClass = 'text-red-600';
+                else if (newpH > 7.5) colorClass = 'text-blue-600';
+                
+                this.className = `bg-white rounded-full px-4 py-2 shadow-lg ph-meter ${colorClass}`;
+            });
+        }
+
+        // Nutrient bubble animation
+        document.querySelectorAll('.nutrient-bubble').forEach(bubble => {
+            bubble.addEventListener('mouseenter', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = 'bubble-rise 4s ease-in-out infinite';
+                }, 100);
+            });
+        });
+
+        // Soil layer hover effects
+        document.querySelectorAll('.soil-layer').forEach(layer => {
+            layer.addEventListener('mouseenter', function() {
+                this.style.backgroundColor = 'rgba(139, 69, 19, 0.1)';
+            });
+            
+            layer.addEventListener('mouseleave', function() {
+                this.style.backgroundColor = '';
+            });
+        });
+
+        // Pollution warning animation
+        document.querySelectorAll('.pollution-warning').forEach(warning => {
+            const originalAnimation = warning.style.animation;
+            warning.addEventListener('mouseenter', function() {
+                this.style.animation = 'none';
+            });
+            
+            warning.addEventListener('mouseleave', function() {
+                this.style.animation = originalAnimation;
+            });
+        });
+
+        // Add click interaction to cards
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+
+        // Dynamic soil layer visualization
+        function createSoilLayers() {
+            const layers = [
+                { name: 'الطبقة العضوية', color: '#8B4513', depth: '0-5 cm' },
+                { name: 'الطبقة العليا', color: '#A0522D', depth: '5-30 cm' },
+                { name: 'الطبقة السفلية', color: '#654321', depth: '30-60 cm' },
+                { name: 'الطبقة الصخرية', color: '#8B7355', depth: '60+ cm' }
+            ];
+            
+            // This could be used to create an interactive soil profile visualization
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            createSoilLayers();
+        });
+    </script>
+</body>
+</html>

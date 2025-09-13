@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السلامة النووية وحماية البيئة - المركز الوطني للمعلومات النووية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a8a;
+            --light-blue: #3b82f6;
+            --accent-blue: #60a5fa;
+            --safety-green: #10b981;
+            --warning-orange: #f59e0b;
+            --danger-red: #ef4444;
+            --dark-gray: #1f2937;
+            --light-gray: #f3f4f6;
+            --white: #ffffff;
+            --text-color: #111827;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(30, 58, 138, 0.85), rgba(30, 58, 138, 0.85)),
+                        url('https://picsum.photos/seed/nuclear-power/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--safety-green);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: var(--light-blue);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-blue);
+        }
+
+        /* Radiation Principles */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .principle-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            border-top: 4px solid var(--safety-green);
+        }
+
+        .principle-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .principle-icon {
+            font-size: 3rem;
+            color: var(--safety-green);
+            margin-bottom: 1rem;
+        }
+
+        .principle-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Laws Section */
+        .laws-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .laws-content h3 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .laws-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .laws-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .laws-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .laws-list li:hover {
+            padding-right: 1rem;
+            color: var(--primary-blue);
+        }
+
+        .laws-list li i {
+            color: var(--light-blue);
+            font-size: 1.2rem;
+        }
+
+        .laws-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .laws-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .laws-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Accidents Section */
+        .accidents-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .accident-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .accident-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .accident-header {
+            background: var(--danger-red);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .accident-header.chernobyl {
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+        }
+
+        .accident-header.fukushima {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+        }
+
+        .accident-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .accident-date {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .accident-content {
+            padding: 2rem;
+        }
+
+        .accident-details {
+            margin-bottom: 1.5rem;
+        }
+
+        .accident-details h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .lessons-learned {
+            background: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .lessons-learned h4 {
+            color: var(--safety-green);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .lessons-learned ul {
+            list-style: none;
+        }
+
+        .lessons-learned li {
+            padding: 0.5rem 0;
+            padding-right: 1.5rem;
+            position: relative;
+        }
+
+        .lessons-learned li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--safety-green);
+            font-weight: bold;
+        }
+
+        /* Safety Indicators */
+        .safety-indicators {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .indicator-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .indicator-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .indicator-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .indicator-value.safe {
+            color: var(--safety-green);
+        }
+
+        .indicator-value.warning {
+            color: var(--warning-orange);
+        }
+
+        .indicator-value.danger {
+            color: var(--danger-red);
+        }
+
+        .indicator-label {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-blue);
+            transform: translateX(50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+        }
+
+        .timeline-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: auto;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-date {
+            position: absolute;
+            right: 50%;
+            top: 50%;
+            transform: translate(50%, -50%);
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-blue);
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-blue);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--primary-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--light-blue);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .laws-container {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                right: 30px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-right: 60px !important;
+            }
+
+            .timeline-date {
+                right: 30px;
+            }
+
+            .safety-indicators {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Alert Banner */
+        .alert-banner {
+            background: var(--warning-orange);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .alert-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Alert Banner -->
+    <div class="alert-banner">
+        <i class="fas fa-exclamation-triangle"></i> موقع تحت التطوير - المعلومات قيد التحديث المستمر
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-radiation"></i>
+                السلامة النووية
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#principles">مبادئ الوقاية</a></li>
+                <li><a href="#laws">القوانين</a></li>
+                <li><a href="#accidents">الحوادث</a></li>
+                <li><a href="#indicators">المؤشرات</a></li>
+                <li><a href="#timeline">التطور</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>السلامة النووية وحماية البيئة</h1>
+            <p>منصة متخصصة في نشر الوعي بالسلامة النووية، مبادئ الوقاية من الإشعاع، القوانين والتشريعات، ودراسة الحوادث النووية والدروس المستفادة</p>
+            <a href="#principles" class="cta-button">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Radiation Protection Principles -->
+    <section id="principles" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">مبادئ الوقاية من الإشعاع</h2>
+            <div class="principles-grid">
+                <div class="principle-card">
+                    <div class="principle-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>مبدأ التبرير</h3>
+                    <p>يجب أن تكون هناك فائدة محققة من أي نشاط إشعاعي تفوق الأضرار المحتملة. لا ينبغي استخدام الإشعاع إلا إذا كانت الفوائد تفوق المخاطر.</p>
+                </div>
+                <div class="principle-card">
+                    <div class="principle-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>مبدأ التحسين</h3>
+                    <p>يجب تحسين حماية الإشعاع إلى أقصى حد ممكن عملياً (ALARP)، مع مراعاة العوامل الاقتصادية والاجتماعية.</p>
+                </div>
+                <div class="principle-card">
+                    <div class="principle-icon">
+                        <i class="fas fa-ruler-horizontal"></i>
+                    </div>
+                    <h3>مبدأ الحدود</h3>
+                    <p>يجب ألا تتجاوز جرعات الإشعاع الحدود المحددة للعمال والعامة، حتى عند تطبيق مبادئ التبرير والتحسين.</p>
+                </div>
+                <div class="principle-card">
+                    <div class="principle-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>الوقت</h3>
+                    <p>تقليل وقت التعرض للإشعاع يقلل من الجرعة الإشعاعية المستلمة. كلما قصرت فترة التعرض، قلت الجرعة.</p>
+                </div>
+                <div class="principle-card">
+                    <div class="principle-icon">
+                        <i class="fas fa-arrows-alt-h"></i>
+                    </div>
+                    <h3>المسافة</h3>
+                    <p>زيادة المسافة من مصدر الإشعاع تقلل من شدة الإشعاع بشكل كبير تبعاً لقانون التربيع العكسي.</p>
+                </div>
+                <div class="principle-card">
+                    <div class="principle-icon">
+                        <i class="fas fa-wall"></i>
+                    </div>
+                    <h3>الحماية</h3>
+                    <p>استخدام مواد حاجزة مثل الرصاص والخرسانة لتقليل التعرض للإشعاع. تعتمد فعالية الحماية على نوع الإشعاع وسمك المادة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nuclear Laws Section -->
+    <section id="laws" class="section">
+        <div class="container">
+            <h2 class="section-title">القوانين والتشريعات النووية</h2>
+            <div class="laws-container">
+                <div class="laws-content">
+                    <h3>الإطار القانوني للسلامة النووية</h3>
+                    <p>تتكون التشريعات النووية من مجموعة متكاملة من القوانين واللوائح والمعايير التي تهدف إلى ضمان السلامة النووية وحماية الإنسان والبيئة من أخطار الإشعاع.</p>
+                    <p>تشمل هذه التشريعات:</p>
+                    <ul class="laws-list">
+                        <li><i class="fas fa-gavel"></i> القوانين الوطنية للرقابة النووية</li>
+                        <li><i class="fas fa-file-contract"></i> اتفاقيات دولية للسلامة النووية</li>
+                        <li><i class="fas fa-clipboard-list"></i> لوائح الترخيص والتفتيش</li>
+                        <li><i class="fas fa-user-shield"></i> متطلبات التأهيل والتدريب</li>
+                        <li><i class="fas fa-exclamation-triangle"></i> إجراءات الطوارئ النووية</li>
+                        <li><i class="fas fa-dumpster"></i> إدارة النفايات المشعة</li>
+                        <li><i class="fas fa-ship"></i> نقل المواد المشعة</li>
+                        <li><i class="fas fa-ban"></i> منع الانتشار النووي</li>
+                    </ul>
+                </div>
+                <div class="laws-image">
+                    <img src="https://picsum.photos/seed/nuclear-laws/600/400.jpg" alt="القوانين النووية">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nuclear Accidents Section -->
+    <section id="accidents" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">الحوادث النووية والدروس المستفادة</h2>
+            <div class="accidents-container">
+                <div class="accident-card">
+                    <div class="accident-header chernobyl">
+                        <h3>كارثة تشرنوبيل</h3>
+                        <div class="accident-date">26 أبريل 1986</div>
+                    </div>
+                    <div class="accident-content">
+                        <div class="accident-details">
+                            <h4><i class="fas fa-info-circle"></i> ملخص الحادث</h4>
+                            <p>حدث الانفجار في المفاعل رقم 4 بمحطة تشرنوبيل للطاقة النووية في أوكرانيا بسبب اختبار أمني غير آمن وتصميم معيب في المفاعل. أدى الانفجار إلى إطلاق كميات هائلة من المواد المشعة في الغلاف الجوي.</p>
+                            
+                            <h4><i class="fas fa-exclamation-triangle"></i> الأسباب الرئيسية</h4>
+                            <p>• تصميم المفاعل المعيب<br>• أخطاء تشغيلية بشرية<br>• نقص في ثقافة السلامة<br>• إجراءات طوارئ غير كافية</p>
+                        </div>
+                        
+                        <div class="lessons-learned">
+                            <h4><i class="fas fa-lightbulb"></i> الدروس المستفادة</h4>
+                            <ul>
+                                <li>تحسين تصميم المفاعلات النووية</li>
+                                <li>تعزيز ثقافة السلامة النووية</li>
+                                <li>تطوير أنظمة إنذار مبكر</li>
+                                <li>تحسين التعاون الدولي</li>
+                                <li>تطوير برامج التدريب والتأهيل</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accident-card">
+                    <div class="accident-header fukushima">
+                        <h3>كارثة فوكوشيما</h3>
+                        <div class="accident-date">11 مارس 2011</div>
+                    </div>
+                    <div class="accident-content">
+                        <div class="accident-details">
+                            <h4><i class="fas fa-info-circle"></i> ملخص الحادث</h4>
+                            <p>بعد زلزال وتسونامي مدمرين في اليابان، تعطلت أنظمة التبريد في محطة فوكوشيما دايتشي النووية، مما أدى إلى انصهار جزئي لثلاثة مفاعلات وتسرب إشعاعي كبير.</p>
+                            
+                            <h4><i class="fas fa-exclamation-triangle"></i> الأسباب الرئيسية</h4>
+                            <p>• زلزال وتسونامي يتجاوزان التصميم<br>• فشل أنظمة التبريد الاحتياطية<br>• تقدير خاطئ لمخاطر الكوارث الطبيعية<br>• ضعف في إدارة الأزمات</p>
+                        </div>
+                        
+                        <div class="lessons-learned">
+                            <h4><i class="fas fa-lightbulb"></i> الدروس المستفادة</h4>
+                            <ul>
+                                <li>إعادة تقييم مخاطر الكوارث الطبيعية</li>
+                                <li>تعزيز أنظمة التبريد الاحتياطية</li>
+                                <li>تحسين إدارة الطوارئ النووية</li>
+                                <li>تطوير معايير السلامة الدولية</li>
+                                <li>زيادة الشفافية في الإبلاغ عن الحوادث</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety Indicators Section -->
+    <section id="indicators" class="section">
+        <div class="container">
+            <h2 class="section-title">مؤشرات السلامة النووية</h2>
+            <div class="safety-indicators">
+                <div class="indicator-card">
+                    <div class="indicator-value safe">98%</div>
+                    <div class="indicator-label">معدل الامتثال للمعايير</div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-value safe">450+</div>
+                    <div class="indicator-label">مفاعل نووي يعمل بأمان</div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-value warning">3</div>
+                    <div class="indicator-label">حوادث كبرى منذ 1950</div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-value safe">99.9%</div>
+                    <div class="indicator-label">معدل التشغيل الآمن</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">التطور التاريخي للسلامة النووية</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">1945</div>
+                    <div class="timeline-content">
+                        <h3>العصر النووي</h3>
+                        <p>بداية العصر النووي مع استخدام القنابل الذرية في الحرب العالمية الثانية، وتأسيس اللجنة الأمريكية للطاقة الذرية</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1954</div>
+                    <div class="timeline-content">
+                        <h3>أول محطة طاقة نووية</h3>
+                        <p>تشغيل أول محطة طاقة نووية تجارية في العالم في أوبنينسك، روسيا</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1957</div>
+                    <div class="timeline-content">
+                        <h3>تأسيس الوكالة الدولية</h3>
+                        <p>تأسيس الوكالة الدولية للطاقة الذرية (IAEA) لتعزيز الاستخدام السلمي للطاقة النووية</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1979</div>
+                    <div class="timeline-content">
+                        <h3>حادث ثري مايل آيلاند</h3>
+                        <p>حادث جزئي في بنسلفانيا، الولايات المتحدة، أدى إلى إصلاحات شاملة في معايير السلامة النووية</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1986</div>
+                    <div class="timeline-content">
+                        <h3>كارثة تشرنوبيل</h3>
+                        <p>أسوأ حادث نووي في التاريخ، أدى إلى ثورة في معايير السلامة النووية العالمية</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2011</div>
+                    <div class="timeline-content">
+                        <h3>كارثة فوكوشيما</h3>
+                        <p>أدت إلى إعادة تقييم شامل لمخاطر الكوارث الطبيعية وتطوير معايير سلامة جديدة</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2023</div>
+                    <div class="timeline-content">
+                        <h3>معايير السلامة الحديثة</h3>
+                        <p>تطبيق أحدث معايير السلامة النووية مع التركيز على الاستدامة وحماية البيئة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>من نحن</h3>
+                    <p>منصة متخصصة في نشر الوعي بالسلامة النووية وحماية البيئة، تقدم معلومات دقيقة وموثوقة عن مبادئ الوقاية من الإشعاع، القوانين النووية، ودراسة الحوادث النووية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#principles">مبادئ الوقاية</a></li>
+                        <li><a href="#laws">القوانين النووية</a></li>
+                        <li><a href="#accidents">الحوادث النووية</a></li>
+                        <li><a href="#indicators">مؤشرات السلامة</a></li>
+                        <li><a href="#timeline">التطور التاريخي</a></li>
+                        <li><a href="#">الدراسات والأبحاث</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> العنوان: المركز الوطني للسلامة النووية</li>
+                        <li><i class="fas fa-phone"></i> الهاتف: +966 12 345 6789</li>
+                        <li><i class="fas fa-envelope"></i> البريد: info@nuclearsafety.gov.sa</li>
+                        <li><i class="fas fa-clock"></i> ساعات العمل: 8:00 ص - 5:00 م</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>الخدمات</h3>
+                    <ul>
+                        <li><a href="#">التدريب على السلامة النووية</a></li>
+                        <li><a href="#">الاستشارات الفنية</a></li>
+                        <li><a href="#">التراخيص النووية</a></li>
+                        <li><a href="#">الرصد البيئي</a></li>
+                        <li><a href="#">إدارة الطوارئ</a></li>
+                        <li><a href="#">البحث العلمي</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 المركز الوطني للسلامة النووية وحماية البيئة. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Timeline animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Animate principle cards on scroll
+        const principleCards = document.querySelectorAll('.principle-card');
+        const principleObserver = new IntersectionObserver(function(entries) {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        principleCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.5s ease';
+            principleObserver.observe(card);
+        });
+
+        // Animate accident cards on scroll
+        const accidentCards = document.querySelectorAll('.accident-card');
+        const accidentObserver = new IntersectionObserver(function(entries) {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 200);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        accidentCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'all 0.6s ease';
+            accidentObserver.observe(card);
+        });
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.right = '0';
+            navLinks.style.background = 'white';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.width = '100%';
+            navLinks.style.padding = '1rem';
+            navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+        });
+
+        // Add hover effect to safety indicators
+        const indicators = document.querySelectorAll('.indicator-card');
+        indicators.forEach(indicator => {
+            indicator.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.05)';
+            });
+            
+            indicator.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add interactive alert banner close functionality
+        const alertBanner = document.querySelector('.alert-banner');
+        if (alertBanner) {
+            alertBanner.style.cursor = 'pointer';
+            alertBanner.addEventListener('click', function() {
+                this.style.display = 'none';
+            });
+        }
+    </script>
+</body>
+</html>

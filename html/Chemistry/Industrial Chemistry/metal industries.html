@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصناعات المعدنية - عالم المعادن والسبائك</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+        }
+        
+        .metal-gradient-1 {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+        }
+        
+        .metal-gradient-2 {
+            background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+        }
+        
+        .metal-gradient-3 {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+        
+        .metal-gradient-4 {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+        
+        .metal-gradient-5 {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .furnace-animation {
+            animation: furnace-glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes furnace-glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3) drop-shadow(0 0 20px #f59e0b); }
+        }
+        
+        .mining-cart {
+            animation: cart-move 4s linear infinite;
+        }
+        
+        @keyframes cart-move {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(100px); }
+        }
+        
+        .metal-flow {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: flow 4s ease-in-out infinite;
+        }
+        
+        @keyframes flow {
+            0% { stroke-dashoffset: 1000; }
+            100% { stroke-dashoffset: 0; }
+        }
+        
+        .sparkle {
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        .rotating-gear {
+            animation: rotate 10s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .pulse-metal {
+            animation: pulse-metal 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-metal {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+        
+        .metal-shine {
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+            background-size: 200% 200%;
+            animation: shine 3s ease-in-out infinite;
+        }
+        
+        @keyframes shine {
+            0% { background-position: -200% -200%; }
+            100% { background-position: 200% 200%; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-reverse space-x-4">
+                    <i class="fas fa-industry text-3xl"></i>
+                    <h1 class="text-3xl font-bold">الصناعات المعدنية</h1>
+                </div>
+                <nav class="hidden md:flex space-x-reverse space-x-6">
+                    <a href="#iron" class="hover:text-gray-300 transition">الحديد والصلب</a>
+                    <a href="#aluminum" class="hover:text-gray-300 transition">الألومنيوم</a>
+                    <a href="#copper" class="hover:text-gray-300 transition">النحاس</a>
+                    <a href="#gold" class="hover:text-gray-300 transition">الذهب</a>
+                    <a href="#processes" class="hover:text-gray-300 transition">العمليات</a>
+                </nav>
+                <button id="mobileMenuBtn" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 bg-gradient-to-br from-gray-900 to-gray-700 text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">عالم المعادن والسبائك</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    استكشف عالم الصناعات المعدنية من استخراج الخامات إلى تصنيع المنتجات النهائية
+                </p>
+            </div>
+            
+            <!-- Metal Categories -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-20 h-20 mx-auto bg-gray-400 rounded-full flex items-center justify-center mb-3 pulse-metal">
+                            <i class="fas fa-cube text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">الحديد والصلب</h3>
+                    </div>
+                    <p class="text-gray-300 text-center text-sm">
+                        أساس الصناعات الحديثة والبناء
+                    </p>
+                    <div class="mt-4 text-center">
+                        <span class="inline-block bg-gray-600 text-white px-3 py-1 rounded-full text-sm">
+                            1.8 مليار طن/سنة
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-20 h-20 mx-auto bg-gray-300 rounded-full flex items-center justify-center mb-3 pulse-metal">
+                            <i class="fas fa-plane text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">الألومنيوم</h3>
+                    </div>
+                    <p class="text-gray-300 text-center text-sm">
+                        معدن خفيف وقوي للصناعات المتقدمة
+                    </p>
+                    <div class="mt-4 text-center">
+                        <span class="inline-block bg-gray-600 text-white px-3 py-1 rounded-full text-sm">
+                            65 مليون طن/سنة
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-20 h-20 mx-auto bg-orange-600 rounded-full flex items-center justify-center mb-3 pulse-metal">
+                            <i class="fas fa-bolt text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">النحاس</h3>
+                    </div>
+                    <p class="text-gray-300 text-center text-sm">
+                        موصل كهربائي ممتاز
+                    </p>
+                    <div class="mt-4 text-center">
+                        <span class="inline-block bg-gray-600 text-white px-3 py-1 rounded-full text-sm">
+                            20 مليون طن/سنة
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-20 h-20 mx-auto bg-yellow-500 rounded-full flex items-center justify-center mb-3 pulse-metal">
+                            <i class="fas fa-coins text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">الذهب</h3>
+                    </div>
+                    <p class="text-gray-300 text-center text-sm">
+                        معدن ثمين للاستثمار والصناعة
+                    </p>
+                    <div class="mt-4 text-center">
+                        <span class="inline-block bg-gray-600 text-white px-3 py-1 rounded-full text-sm">
+                            3,500 طن/سنة
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Iron and Steel Section -->
+    <section id="iron" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">الحديد والصلب</h2>
+                    <p class="text-lg text-gray-600">
+                        العمليات الصناعية لإنتاج الحديد والصلب من خامات الحديد
+                    </p>
+                </div>
+
+                <!-- Steel Production Process -->
+                <div class="bg-gray-100 rounded-xl p-8 mb-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">عملية إنتاج الصلب</h3>
+                    
+                    <div class="relative">
+                        <svg viewBox="0 0 1200 400" class="w-full h-auto">
+                            <!-- Mining -->
+                            <g transform="translate(150, 200)">
+                                <rect x="-60" y="-60" width="120" height="120" rx="10" fill="#6b7280"/>
+                                <text y="-5" text-anchor="middle" fill="white" font-weight="bold">التعدين</text>
+                                <text y="15" text-anchor="middle" fill="white" font-size="12">خامات الحديد</text>
+                                <i class="fas fa-mountain text-4xl text-white opacity-50 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></i>
+                            </g>
+                            
+                            <!-- Arrow 1 -->
+                            <path d="M 210 200 L 330 200" stroke="#4b5563" stroke-width="3" marker-end="url(#arrowhead-gray)" class="metal-flow"/>
+                            
+                            <!-- Blast Furnace -->
+                            <g transform="translate(400, 200)">
+                                <rect x="-70" y="-80" width="140" height="160" rx="10" fill="#ef4444" class="furnace-animation"/>
+                                <text y="-10" text-anchor="middle" fill="white" font-weight="bold">فرن عالي</text>
+                                <text y="10" text-anchor="middle" fill="white" font-size="12">1500°C</text>
+                                <text y="-100" text-anchor="middle" font-size="14">Fe₂O₃ + 3CO → 2Fe + 3CO₂</text>
+                            </g>
+                            
+                            <!-- Arrow 2 -->
+                            <path d="M 470 200 L 590 200" stroke="#4b5563" stroke-width="3" marker-end="url(#arrowhead-gray)" class="metal-flow"/>
+                            
+                            <!-- Basic Oxygen Furnace -->
+                            <g transform="translate(670, 200)">
+                                <rect x="-70" y="-70" width="140" height="140" rx="10" fill="#dc2626" class="furnace-animation"/>
+                                <text y="-10" text-anchor="middle" fill="white" font-weight="bold">فرن الأكسجين</text>
+                                <text y="10" text-anchor="middle" fill="white" font-size="12">إزالة الكربون</text>
+                            </g>
+                            
+                            <!-- Arrow 3 -->
+                            <path d="M 740 200 L 860 200" stroke="#4b5563" stroke-width="3" marker-end="url(#arrowhead-gray)" class="metal-flow"/>
+                            
+                            <!-- Steel Products -->
+                            <g transform="translate(950, 200)">
+                                <rect x="-60" y="-60" width="120" height="120" rx="10" fill="#1f2937"/>
+                                <text y="-5" text-anchor="middle" fill="white" font-weight="bold">الصلب</text>
+                                <text y="15" text-anchor="middle" fill="white" font-size="12">منتجات نهائية</text>
+                            </g>
+                            
+                            <!-- Arrow marker -->
+                            <defs>
+                                <marker id="arrowhead-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#4b5563"/>
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Detailed Process -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">
+                            <i class="fas fa-fire ml-2"></i>الفرن العالي (Blast Furnace)
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <span class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center ml-3 flex-shrink-0">1</span>
+                                <div>
+                                    <h4 class="font-semibold text-gray-700">المواد الخام</h4>
+                                    <p class="text-gray-600 text-sm mt-1">خامات الحديد (Fe₂O₃)، فحم الكوك، حجر الجير</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center ml-3 flex-shrink-0">2</span>
+                                <div>
+                                    <h4 class="font-semibold text-gray-700">التفاعلات الكيميائية</h4>
+                                    <div class="bg-white rounded p-3 mt-2">
+                                        <p class="text-sm font-mono">C + O₂ → CO₂</p>
+                                        <p class="text-sm font-mono">CO₂ + C → 2CO</p>
+                                        <p class="text-sm font-mono">Fe₂O₃ + 3CO → 2Fe + 3CO₂</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center ml-3 flex-shrink-0">3</span>
+                                <div>
+                                    <h4 class="font-semibold text-gray-700">المنتجات</h4>
+                                    <p class="text-gray-600 text-sm mt-1">حديد خام (Pig Iron) يحتوي على 4% كربون</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-red-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-red-800 mb-4">
+                            <i class="fas fa-wind ml-2"></i>فرن الأكسجين الأساسي
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <span class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center ml-3 flex-shrink-0">1</span>
+                                <div>
+                                    <h4 class="font-semibold text-red-700">العملية</h4>
+                                    <p class="text-gray-600 text-sm mt-1">نفخ أكسجين نقي في الحديد المصهور</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center ml-3 flex-shrink-0">2</span>
+                                <div>
+                                    <h4 class="font-semibold text-red-700">إزالة الشوائب</h4>
+                                    <p class="text-gray-600 text-sm mt-1">أكسدة الكربون والفوسفور والكبريت</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center ml-3 flex-shrink-0">3</span>
+                                <div>
+                                    <h4 class="font-semibold text-red-700">التحكم في التركيب</h4>
+                                    <p class="text-gray-600 text-sm mt-1">إضافة عناصر السبائك للحصول على أنواع مختلفة من الصلب</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Steel Types -->
+                <div class="mt-8 bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-layer-group ml-2"></i>أنواع الصلب
+                    </h3>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <h4 class="font-semibold text-gray-800 mb-2">صلب الكربون</h4>
+                            <p class="text-sm text-gray-600">يحتوي على حديد وكربون فقط</p>
+                            <div class="mt-2">
+                                <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">0.2-2.1% كربون</span>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <h4 class="font-semibold text-gray-800 mb-2">صلب السبائك</h4>
+                            <p class="text-sm text-gray-600">يحتوي على عناصر أخرى مثل الكروم والنيكل</p>
+                            <div class="mt-2">
+                                <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">صلب مقاوم للصدأ</span>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <h4 class="font-semibold text-gray-800 mb-2">صلب الأدوات</h4>
+                            <p class="text-sm text-gray-600">صلب عالي الكربون للقطع والأدوات</p>
+                            <div class="mt-2">
+                                <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">0.6-1.5% كربون</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aluminum Section -->
+    <section id="aluminum" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">الألومنيوم</h2>
+                    <p class="text-lg text-gray-600">
+                        إنتاج الألومنيوم من البوكسيت عبر عملية هول-هيرو
+                    </p>
+                </div>
+
+                <!-- Aluminum Production Process -->
+                <div class="bg-gray-200 rounded-xl p-8 mb-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">عملية هول-هيرو لإنتاج الألومنيوم</h3>
+                    
+                    <div class="relative">
+                        <svg viewBox="0 0 1200 500" class="w-full h-auto">
+                            <!-- Bauxite -->
+                            <g transform="translate(150, 250)">
+                                <circle r="60" fill="#9ca3af"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">بوكسيت</text>
+                                <text y="-80" text-anchor="middle" font-size="14">Al₂O₃·2H₂O</text>
+                            </g>
+                            
+                            <!-- Arrow 1 -->
+                            <path d="M 210 250 L 330 250" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-silver)" class="metal-flow"/>
+                            
+                            <!-- Bayer Process -->
+                            <g transform="translate(400, 250)">
+                                <rect x="-70" y="-70" width="140" height="140" rx="10" fill="#6b7280"/>
+                                <text y="-10" text-anchor="middle" fill="white" font-weight="bold">عملية باير</text>
+                                <text y="10" text-anchor="middle" fill="white" font-size="12">NaOH</text>
+                                <text y="-90" text-anchor="middle" font-size="12">استخراج أكسيد الألومنيوم</text>
+                            </g>
+                            
+                            <!-- Arrow 2 -->
+                            <path d="M 470 250 L 590 250" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-silver)" class="metal-flow"/>
+                            
+                            <!-- Calcination -->
+                            <g transform="translate(670, 250)">
+                                <rect x="-70" y="-60" width="140" height="120" rx="10" fill="#4b5563"/>
+                                <text y="-5" text-anchor="middle" fill="white" font-weight="bold">التحميص</text>
+                                <text y="15" text-anchor="middle" fill="white" font-size="12">1200°C</text>
+                                <text y="-80" text-anchor="middle" font-size="12">Al(OH)₃ → Al₂O₃ + 3H₂O</text>
+                            </g>
+                            
+                            <!-- Arrow 3 -->
+                            <path d="M 740 250 L 860 250" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-silver)" class="metal-flow"/>
+                            
+                            <!-- Electrolysis -->
+                            <g transform="translate(950, 250)">
+                                <rect x="-70" y="-70" width="140" height="140" rx="10" fill="#374151" class="furnace-animation"/>
+                                <text y="-10" text-anchor="middle" fill="white" font-weight="bold">التحليل الكهربائي</text>
+                                <text y="10" text-anchor="middle" fill="white" font-size="12">950°C</text>
+                                <text y="-90" text-anchor="middle" font-size="12">2Al₂O₃ → 4Al + 3O₂</text>
+                            </g>
+                            
+                            <!-- Final Product -->
+                            <g transform="translate(950, 100)">
+                                <rect x="-50" y="-30" width="100" height="60" rx="5" fill="#e5e7eb" class="metal-shine"/>
+                                <text y="5" text-anchor="middle" fill="#1f2937" font-weight="bold">ألومنيوم</text>
+                            </g>
+                            
+                            <!-- Arrow to product -->
+                            <path d="M 950 180 L 950 130" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead-silver)" class="metal-flow"/>
+                            
+                            <!-- Arrow marker -->
+                            <defs>
+                                <marker id="arrowhead-silver" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Process Details -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gray-100 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">
+                            <i class="fas fa-flask ml-2"></i>عملية باير
+                        </h3>
+                        <div class="space-y-3">
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-1">المرحلة الأولى: الذوبان</h4>
+                                <p class="text-gray-600 text-sm">يذوب البوكسيت في هيدروكسيد الصوديوم المركز تحت الضغط</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-1">المرحلة الثانية: الترسيب</h4>
+                                <p class="text-gray-600 text-sm">يتم تبريد المحلول لترسيب هيدروكسيد الألومنيوم</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-1">المرحلة الثالثة: الترشيح</h4>
+                                <p class="text-gray-600 text-sm">فصل هيدروكسيد الألومنيوم عن المحلول</p>
+                            </div>
+                            <div class="bg-white rounded p-3 mt-3">
+                                <p class="text-sm font-mono text-center">Al₂O₃ + 2NaOH → 2NaAlO₂ + H₂O</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-200 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">
+                            <i class="fas fa-bolt ml-2"></i>التحليل الكهربائي
+                        </h3>
+                        <div class="space-y-3">
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-1">المصهر</h4>
+                                <p class="text-gray-600 text-sm">كريوليت (Na₃AlF₆) عند 950°C</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-1">الكاثود</h4>
+                                <p class="text-gray-600 text-sm">قاع الخلية من الكربون</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-1">الأنود</h4>
+                                <p class="text-gray-600 text-sm">أقطاب كربونية قابلة للاستهلاك</p>
+                            </div>
+                            <div class="bg-white rounded p-3 mt-3">
+                                <p class="text-sm font-mono text-center">2Al₂O₃ → 4Al + 3O₂</p>
+                                <p class="text-xs text-gray-600 text-center mt-1">يستهلك 13-15 كيلوواط ساعة/كجم</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Applications -->
+                <div class="mt-8 bg-white rounded-xl p-6 shadow-md">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-cogs ml-2"></i>استخدامات الألومنيوم
+                    </h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto bg-gray-300 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-plane text-2xl text-gray-700"></i>
+                            </div>
+                            <h4 class="font-semibold">الطيران</h4>
+                            <p class="text-xs text-gray-600">هياكل الطائرات خفيفة الوزن</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto bg-gray-300 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-car text-2xl text-gray-700"></i>
+                            </div>
+                            <h4 class="font-semibold">السيارات</h4>
+                            <p class="text-xs text-gray-600">تقليل وزن المركبات</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto bg-gray-300 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-building text-2xl text-gray-700"></i>
+                            </div>
+                            <h4 class="font-semibold">البناء</h4>
+                            <p class="text-xs text-gray-600">نوافذ وأبواب وهياكل</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto bg-gray-300 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-wine-bottle text-2xl text-gray-700"></i>
+                            </div>
+                            <h4 class="font-semibold">التغليف</h4>
+                            <p class="text-xs text-gray-600">علب وأغلفة غذائية</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Copper Section -->
+    <section id="copper" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">النحاس</h2>
+                    <p class="text-lg text-gray-600">
+                        إنتاج النحاس من الخامات الكبريتية والأكسيدية
+                    </p>
+                </div>
+
+                <!-- Copper Production Process -->
+                <div class="bg-orange-50 rounded-xl p-8 mb-8">
+                    <h3 class="text-xl font-bold text-orange-800 mb-6 text-center">عمليات إنتاج النحاس</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Pyrometallurgy -->
+                        <div>
+                            <h4 class="text-lg font-bold text-orange-700 mb-4 text-center">الصهر الحراري</h4>
+                            <div class="space-y-3">
+                                <div class="bg-white rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-semibold">التحميص</span>
+                                        <i class="fas fa-fire text-orange-500"></i>
+                                    </div>
+                                    <p class="text-sm text-gray-600">تحويل كبريتيد النحاس إلى أكسيد</p>
+                                    <div class="text-xs font-mono mt-2">2CuFeS₂ + 3O₂ → 2CuS + 2FeO + 2SO₂</div>
+                                </div>
+                                <div class="bg-white rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-semibold">الصهر</span>
+                                        <i class="fas fa-temperature-high text-orange-500"></i>
+                                    </div>
+                                    <p class="text-sm text-gray-600">صهر الخامات مع عوامل مساعدة</p>
+                                    <div class="text-xs font-mono mt-2">Cu₂S + O₂ → 2Cu + SO₂</div>
+                                </div>
+                                <div class="bg-white rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-semibold">التنقية</span>
+                                        <i class="fas fa-filter text-orange-500"></i>
+                                    </div>
+                                    <p class="text-sm text-gray-600">إزالة الشوائب بالصهر الكهربائي</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hydrometallurgy -->
+                        <div>
+                            <h4 class="text-lg font-bold text-orange-700 mb-4 text-center">الصهر المائي</h4>
+                            <div class="space-y-3">
+                                <div class="bg-white rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-semibold">الاستخلاص</span>
+                                        <i class="fas fa-tint text-orange-500"></i>
+                                    </div>
+                                    <p class="text-sm text-gray-600">ذوبان النحاس في حمض الكبريتيك</p>
+                                    <div class="text-xs font-mono mt-2">CuO + H₂SO₄ → CuSO₄ + H₂O</div>
+                                </div>
+                                <div class="bg-white rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-semibold">الترسيب</span>
+                                        <i class="fas fa-vial text-orange-500"></i>
+                                    </div>
+                                    <p class="text-sm text-gray-600">ترسيب النحاس بالكهرباء</p>
+                                    <div class="text-xs font-mono mt-2">Cu²⁺ + 2e⁻ → Cu</div>
+                                </div>
+                                <div class="bg-white rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-semibold">التركيز</span>
+                                        <i class="fas fa-compress text-orange-500"></i>
+                                    </div>
+                                    <p class="text-sm text-gray-600">تركيز المحاليل بالتبخير</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Copper Properties -->
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-orange-100 rounded-xl p-6">
+                        <h3 class="text-lg font-bold text-orange-800 mb-3">
+                            <i class="fas fa-bolt ml-2"></i>الخصائص الكهربائية
+                        </h3>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• أفضل موصل للكهرباء بعد الفضة</li>
+                            <li>• مقاومة كهربائية منخفضة</li>
+                            <li>• يستخدم في الكابلات والأسلاك</li>
+                            <li>• مقاومة للتآكل الكهروكيميائي</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-orange-50 rounded-xl p-6">
+                        <h3 class="text-lg font-bold text-orange-800 mb-3">
+                            <i class="fas fa-thermometer-half ml-2"></i>الخصائص الحرارية
+                        </h3>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• موصل حراري ممتاز</li>
+                            <li>• نقطة انصهار 1083°C</li>
+                            <li>• يستخدم في المبادلات الحرارية</li>
+                            <li>• مقاومة للتغيرات الحرارية</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-amber-100 rounded-xl p-6">
+                        <h3 class="text-lg font-bold text-amber-800 mb-3">
+                            <i class="fas fa-shield-alt ml-2"></i>الخصائص الميكانيكية
+                        </h3>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• قابلية عالية للتشكيل</li>
+                            <li>• مقاومة جيدة للتآكل</li>
+                            <li>• يقاوم التآكل في الماء والهواء</li>
+                            <li>• يشكل طبقة واقية من أكسيد النحاس</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Applications -->
+                <div class="mt-8 bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-plug ml-2"></i>تطبيقات النحاس
+                    </h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-bolt text-3xl text-orange-500 ml-3"></i>
+                                <h4 class="font-semibold">الكهرباء والإلكترونيات</h4>
+                            </div>
+                            <p class="text-sm text-gray-600">أسلاك، كابلات، دوائر كهربائية، محولات</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-home text-3xl text-orange-500 ml-3"></i>
+                                <h4 class="font-semibold">البناء والتشييد</h4>
+                            </div>
+                            <p class="text-sm text-gray-600">أنابيب، أسقف، ألواح، أجهزة تكييف</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-cogs text-3xl text-orange-500 ml-3"></i>
+                                <h4 class="font-semibold">الآلات الصناعية</h4>
+                            </div>
+                            <p class="text-sm text-gray-600">محامل، تروس، مضخات، صمامات</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-ship text-3xl text-orange-500 ml-3"></i>
+                                <h4 class="font-semibold">النقل البحري</h4>
+                            </div>
+                            <p class="text-sm text-gray-600">هياكل السفن، أنابيب تبريد</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-coins text-3xl text-orange-500 ml-3"></i>
+                                <h4 class="font-semibold">العملات المعدنية</h4>
+                            </div>
+                            <p class="text-sm text-gray-600">سبائك النحاس للعملات والمجوهرات</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-microscope text-3xl text-orange-500 ml-3"></i>
+                                <h4 class="font-semibold">المعدات الطبية</h4>
+                            </div>
+                            <p class="text-sm text-gray-600">أدوات جراحية، أجهزة طبية</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gold Section -->
+    <section id="gold" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">الذهب</h2>
+                    <p class="text-lg text-gray-600">
+                        استخراج وتنقية الذهب من الخامات المختلفة
+                    </p>
+                </div>
+
+                <!-- Gold Mining and Processing -->
+                <div class="bg-yellow-50 rounded-xl p-8 mb-8">
+                    <h3 class="text-xl font-bold text-yellow-800 mb-6 text-center">عمليات استخراج وتنقية الذهب</h3>
+                    
+                    <div class="relative">
+                        <svg viewBox="0 0 1200 500" class="w-full h-auto">
+                            <!-- Mining -->
+                            <g transform="translate(150, 250)">
+                                <rect x="-60" y="-60" width="120" height="120" rx="10" fill="#fbbf24"/>
+                                <text y="-5" text-anchor="middle" fill="white" font-weight="bold">التعدين</text>
+                                <text y="15" text-anchor="middle" fill="white" font-size="12">خامات الذهب</text>
+                                <i class="fas fa-pickaxe text-4xl text-white opacity-50 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></i>
+                            </g>
+                            
+                            <!-- Arrow 1 -->
+                            <path d="M 210 250 L 330 250" stroke="#f59e0b" stroke-width="3" marker-end="url(#arrowhead-gold)" class="metal-flow"/>
+                            
+                            <!-- Crushing -->
+                            <g transform="translate(400, 250)">
+                                <rect x="-60" y="-50" width="120" height="100" rx="10" fill="#f59e0b"/>
+                                <text y="-5" text-anchor="middle" fill="white" font-weight="bold">السحق</text>
+                                <text y="15" text-anchor="middle" fill="white" font-size="12">طحن الخام</text>
+                            </g>
+                            
+                            <!-- Arrow 2 -->
+                            <path d="M 460 250 L 580 250" stroke="#f59e0b" stroke-width="3" marker-end="url(#arrowhead-gold)" class="metal-flow"/>
+                            
+                            <!-- Cyanidation -->
+                            <g transform="translate(670, 250)">
+                                <rect x="-70" y="-60" width="140" height="120" rx="10" fill="#d97706"/>
+                                <text y="-10" text-anchor="middle" fill="white" font-weight="bold">السيانيد</text>
+                                <text y="10" text-anchor="middle" fill="white" font-size="12">NaCN</text>
+                                <text y="-80" text-anchor="middle" font-size="12">4Au + 8NaCN + O₂ + 2H₂O → 4NaAu(CN)₂ + 4NaOH</text>
+                            </g>
+                            
+                            <!-- Arrow 3 -->
+                            <path d="M 740 250 L 860 250" stroke="#f59e0b" stroke-width="3" marker-end="url(#arrowhead-gold)" class="metal-flow"/>
+                            
+                            <!-- Refining -->
+                            <g transform="translate(950, 250)">
+                                <rect x="-70" y="-60" width="140" height="120" rx="10" fill="#b45309"/>
+                                <text y="-10" text-anchor="middle" fill="white" font-weight="bold">التنقية</text>
+                                <text y="10" text-anchor="middle" fill="white" font-size="12">الزنك أو الكربون</text>
+                            </g>
+                            
+                            <!-- Final Product -->
+                            <g transform="translate(950, 100)">
+                                <rect x="-50" y="-30" width="100" height="60" rx="5" fill="#fbbf24" class="metal-shine"/>
+                                <text y="5" text-anchor="middle" fill="#78350f" font-weight="bold">ذهب نقي</text>
+                            </g>
+                            
+                            <!-- Arrow to product -->
+                            <path d="M 950 190 L 950 130" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowhead-gold)" class="metal-flow"/>
+                            
+                            <!-- Arrow marker -->
+                            <defs>
+                                <marker id="arrowhead-gold" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#f59e0b"/>
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Extraction Methods -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-yellow-100 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-yellow-800 mb-4">
+                            <i class="fas fa-flask ml-2"></i>طرق الاستخلاص الكيميائي
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-yellow-700 mb-2">السيانيد (الطريقة الأكثر شيوعاً)</h4>
+                                <p class="text-gray-700 text-sm">يذيب الذهب في محلول سيانيد الصوديوم في وجود الأكسجين</p>
+                                <div class="bg-white rounded p-3 mt-2">
+                                    <p class="text-xs font-mono">4Au + 8NaCN + O₂ + 2H₂O → 4NaAu(CN)₂ + 4NaOH</p>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-yellow-700 mb-2">الزئبق (الملغمة)</h4>
+                                <p class="text-gray-700 text-sm">يشكل الذهب سبيكة مع الزئبق ثم يتم تبخير الزئبق</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-yellow-700 mb-2">التيو يوريا</h4>
+                                <p class="text-gray-700 text-sm">بديل أقل سمية للسيانيد في بعض التطبيقات</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-100 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-amber-800 mb-4">
+                            <i class="fas fa-industry ml-2"></i>طرق التنقية
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-amber-700 mb-2">التنقية بالزنك</h4>
+                                <p class="text-gray-700 text-sm">يترسب الذهب عند إضافة مسحوق الزنك</p>
+                                <div class="bg-white rounded p-3 mt-2">
+                                    <p class="text-xs font-mono">2NaAu(CN)₂ + Zn → 2Au + Na₂Zn(CN)₄</p>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-amber-700 mb-2">التنقية بالكربون</h4>
+                                <p class="text-gray-700 text-sm">يمتص الكربون المنشط الذهب من المحلول</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-amber-700 mb-2">الصهر الكهربائي</h4>
+                                <p class="text-gray-700 text-sm">للحصول على ذهب نقية 99.99%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gold Properties and Uses -->
+                <div class="mt-8 grid md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-xl p-6 shadow-md">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">
+                            <i class="fas fa-gem ml-2"></i>خصائص الذهب
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 bg-yellow-50 rounded">
+                                <span class="font-semibold">الكثافة</span>
+                                <span class="text-yellow-700">19.3 جم/سم³</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-yellow-50 rounded">
+                                <span class="font-semibold">نقطة الانصهار</span>
+                                <span class="text-yellow-700">1064°C</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-yellow-50 rounded">
+                                <span class="font-semibold">الموصلية الكهربائية</span>
+                                <span class="text-yellow-700">70% من النحاس</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-yellow-50 rounded">
+                                <span class="font-semibold">مقاومة التآكل</span>
+                                <span class="text-yellow-700">ممتازة</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-6 shadow-md">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">
+                            <i class="fas fa-chart-line ml-2"></i>استخدامات الذهب
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center p-3 bg-yellow-50 rounded">
+                                <i class="fas fa-coins text-2xl text-yellow-600 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold">المجوهرات والعملات</h4>
+                                    <p class="text-sm text-gray-600">حوالي 50% من الإنتاج</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-3 bg-yellow-50 rounded">
+                                <i class="fas fa-microchip text-2xl text-yellow-600 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold">الإلكترونيات</h4>
+                                    <p class="text-sm text-gray-600">أسلاك وموصلات دقيقة</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-3 bg-yellow-50 rounded">
+                                <i class="fas fa-university text-2xl text-yellow-600 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold">الاحتياطيات المصرفية</h4>
+                                    <p class="text-sm text-gray-600">تخزين القيمة</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-3 bg-yellow-50 rounded">
+                                <i class="fas fa-tooth text-2xl text-yellow-600 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold">الطب والأسنان</h4>
+                                    <p class="text-sm text-gray-600">حشوات وتاج ذهبي</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mining Processes Section -->
+    <section id="processes" class="py-16 bg-gray-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">العمليات الصناعية في التعدين</h2>
+                    <p class="text-lg text-gray-300">التكنولوجيا الحديثة في استخراج ومعالجة المعادن</p>
+                </div>
+
+                <!-- Mining Process Flow -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center card-hover">
+                        <div class="w-20 h-20 mx-auto bg-gray-600 rounded-full flex items-center justify-center mb-4 rotating-gear">
+                            <i class="fas fa-search text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">الاستكشاف</h3>
+                        <p class="text-gray-300 text-sm">استخدام تقنيات حديثة لتحديد مواقع الخامات</p>
+                        <ul class="mt-3 text-sm text-gray-400 text-right">
+                            <li>• المسح الجيولوجي</li>
+                            <li>• التصوير الجوي</li>
+                            <li>• الحفر الاستكشافي</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center card-hover">
+                        <div class="w-20 h-20 mx-auto bg-gray-600 rounded-full flex items-center justify-center mb-4 mining-cart">
+                            <i class="fas fa-truck text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">التعدين</h3>
+                        <p class="text-gray-300 text-sm">استخراج الخامات من باطن الأرض</p>
+                        <ul class="mt-3 text-sm text-gray-400 text-right">
+                            <li>• التعدين السطحي</li>
+                            <li>• التعدين العميق</li>
+                            <li>• التعدين تحت الماء</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center card-hover">
+                        <div class="w-20 h-20 mx-auto bg-gray-600 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-filter text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">التركيز</h3>
+                        <p class="text-gray-300 text-sm">فصل المعدن عن الخام</p>
+                        <ul class="mt-3 text-sm text-gray-400 text-right">
+                            <li>• الطحن والسحق</li>
+                            <li>• الفصل بالجاذبية</li>
+                            <li>• الفصل المغناطيسي</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center card-hover">
+                        <div class="w-20 h-20 mx-auto bg-gray-600 rounded-full flex items-center justify-center mb-4 furnace-animation">
+                            <i class="fas fa-fire text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">الصهر والتنقية</h3>
+                        <p class="text-gray-300 text-sm">الحصول على المعدن النقي</p>
+                        <ul class="mt-3 text-sm text-gray-400 text-right">
+                            <li>• الصهر الحراري</li>
+                            <li>• التحليل الكهربائي</li>
+                            <li>• التنقية الكيميائية</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Modern Technologies -->
+                <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8">
+                    <h3 class="text-2xl font-bold mb-6 text-center">التكنولوجيا الحديثة في الصناعات المعدنية</h3>
+                    
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-white/10 rounded-lg p-6">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-robot text-3xl text-blue-400 ml-3"></i>
+                                <h4 class="text-lg font-bold">الأتمتة والروبوتات</h4>
+                            </div>
+                            <p class="text-gray-300 text-sm">استخدام الروبوتات في العمليات الخطرة وتحسين الكفاءة</p>
+                            <div class="mt-3 space-y-2">
+                                <div class="flex items-center text-sm text-gray-400">
+                                    <i class="fas fa-check-circle ml-2 text-green-400"></i>
+                                    <span>زيادة السلامة</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-400">
+                                    <i class="fas fa-check-circle ml-2 text-green-400"></i>
+                                    <span>تقليل التكاليف</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white/10 rounded-lg p-6">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-leaf text-3xl text-green-400 ml-3"></i>
+                                <h4 class="text-lg font-bold">التعدين المستدام</h4>
+                            </div>
+                            <p class="text-gray-300 text-sm">تقنيات صديقة للبيئة وتقليل الأثر البيئي</p>
+                            <div class="mt-3 space-y-2">
+                                <div class="flex items-center text-sm text-gray-400">
+                                    <i class="fas fa-check-circle ml-2 text-green-400"></i>
+                                    <span>إعادة التدوير</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-400">
+                                    <i class="fas fa-check-circle ml-2 text-green-400"></i>
+                                    <span>طاقة نظيفة</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white/10 rounded-lg p-6">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-microchip text-3xl text-purple-400 ml-3"></i>
+                                <h4 class="text-lg font-bold">الذكاء الاصطناعي</h4>
+                            </div>
+                            <p class="text-gray-300 text-sm">تحسين العمليات والتنبؤ بالأعطال</p>
+                            <div class="mt-3 space-y-2">
+                                <div class="flex items-center text-sm text-gray-400">
+                                    <i class="fas fa-check-circle ml-2 text-green-400"></i>
+                                    <span>صيانة تنبؤية</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-400">
+                                    <i class="fas fa-check-circle ml-2 text-green-400"></i>
+                                    <span>تحسين الجودة</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Environmental Impact -->
+                <div class="mt-8 bg-red-900/30 rounded-xl p-6">
+                    <h3 class="text-xl font-bold mb-4">
+                        <i class="fas fa-exclamation-triangle ml-2"></i>التحديات البيئية والحلول
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-red-300 mb-3">التحديات</h4>
+                            <ul class="space-y-2 text-sm text-gray-300">
+                                <li class="flex items-start">
+                                    <i class="fas fa-times-circle ml-2 text-red-400 mt-1"></i>
+                                    <span>تلوث المياه والتربة</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-times-circle ml-2 text-red-400 mt-1"></i>
+                                    <span>انبعاثات غازية ضارة</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-times-circle ml-2 text-red-400 mt-1"></i>
+                                    <span>استنزاف الموارد الطبيعية</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-times-circle ml-2 text-red-400 mt-1"></i>
+                                    <span>تدمير النظم البيئية</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-green-300 mb-3">الحلول المقترحة</h4>
+                            <ul class="space-y-2 text-sm text-gray-300">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle ml-2 text-green-400 mt-1"></i>
+                                    <span>معالجة المياه قبل التصريف</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle ml-2 text-green-400 mt-1"></i>
+                                    <span>استخدام تقنيات تنقية الغازات</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle ml-2 text-green-400 mt-1"></i>
+                                    <span>إعادة تأهيل مواقع التعدين</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle ml-2 text-green-400 mt-1"></i>
+                                    <span>زيادة كفاءة استخدام الموارد</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="mb-2">© 2024 الصناعات المعدنية - موقع تعليمي تفاعلي</p>
+                <p class="text-gray-400">تم تصميمه لتوضيح عمليات التعدين والصناعات المعدنية المختلفة</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('hidden');
+            nav.classList.toggle('absolute');
+            nav.classList.toggle('top-full');
+            nav.classList.toggle('left-0');
+            nav.classList.toggle('right-0');
+            nav.classList.toggle('bg-gray-800');
+            nav.classList.toggle('p-4');
+            nav.classList.toggle('flex-col');
+            nav.classList.toggle('space-y-2');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        // Interactive metal cards
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Furnace animation interaction
+        document.querySelectorAll('.furnace-animation').forEach(furnace => {
+            furnace.addEventListener('click', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = 'furnace-glow 3s ease-in-out infinite';
+                }, 100);
+            });
+        });
+
+        // Process flow animation restart on scroll
+        const processFlows = document.querySelectorAll('.metal-flow');
+        
+        const flowObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'none';
+                    setTimeout(() => {
+                        entry.target.style.animation = 'flow 4s ease-in-out infinite';
+                    }, 100);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        processFlows.forEach(flow => {
+            flowObserver.observe(flow);
+        });
+
+        // Add sparkle effects to metal products
+        function createSparkle(element) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'absolute w-2 h-2 bg-yellow-300 rounded-full sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            element.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }
+
+        // Add sparkles to metal shine elements
+        document.querySelectorAll('.metal-shine').forEach(element => {
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    createSparkle(element);
+                }
+            }, 1000);
+        });
+
+        // Interactive process steps
+        document.querySelectorAll('.step-number').forEach(step => {
+            step.addEventListener('click', function() {
+                this.style.transform = 'scale(1.2) rotate(360deg)';
+                this.style.transition = 'transform 0.5s ease';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1) rotate(0deg)';
+                }, 500);
+            });
+        });
+
+        // Add tooltips for additional information
+        const tooltipData = {
+            'التعدين': 'عملية استخراج المعادن من باطن الأرض',
+            'الفرن العالي': 'يستخدم لصهر خامات الحديد عند 1500°C',
+            'عملية باير': 'طريقة استخراج أكسيد الألومنيوم من البوكسيت',
+            'السيانيد': 'يستخدم لاستخلاص الذهب من الخامات منخفضة التركيز',
+            'التحليل الكهربائي': 'فصل المعدن باستخدام التيار الكهربائي'
+        };
+
+        document.querySelectorAll('.furnace-animation, .pulse-metal').forEach(element => {
+            const text = element.querySelector('text');
+            if (text && tooltipData[text.textContent]) {
+                element.title = tooltipData[text.textContent];
+                element.style.cursor = 'help';
+            }
+        });
+    </script>
+</body>
+</html>

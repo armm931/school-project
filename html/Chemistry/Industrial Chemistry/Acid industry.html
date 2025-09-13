@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صناعة الأحماض - العمليات الصناعية الكيميائية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
+        }
+        
+        .acid-gradient-1 {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+        }
+        
+        .acid-gradient-2 {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        }
+        
+        .acid-gradient-3 {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .process-flow {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: flow 3s ease-in-out forwards;
+        }
+        
+        @keyframes flow {
+            to { stroke-dashoffset: 0; }
+        }
+        
+        .bubble {
+            animation: bubble-rise 3s ease-in-out infinite;
+        }
+        
+        @keyframes bubble-rise {
+            0%, 100% { transform: translateY(0); opacity: 0.7; }
+            50% { transform: translateY(-20px); opacity: 1; }
+        }
+        
+        .reactor-pulse {
+            animation: reactor-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes reactor-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .chemical-symbol {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+        
+        .factory-icon {
+            animation: factory-work 4s ease-in-out infinite;
+        }
+        
+        @keyframes factory-work {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        
+        .smoke-animation {
+            animation: smoke-rise 5s ease-out infinite;
+        }
+        
+        @keyframes smoke-rise {
+            0% { transform: translateY(0) scale(0.5); opacity: 0.8; }
+            100% { transform: translateY(-50px) scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-reverse space-x-4">
+                    <i class="fas fa-flask text-3xl"></i>
+                    <h1 class="text-3xl font-bold">صناعة الأحماض</h1>
+                </div>
+                <nav class="hidden md:flex space-x-reverse space-x-6">
+                    <a href="#sulfuric" class="hover:text-blue-200 transition">حمض الكبريتيك</a>
+                    <a href="#nitric" class="hover:text-blue-200 transition">حمض النيتريك</a>
+                    <a href="#hydrochloric" class="hover:text-blue-200 transition">حمض الهيدروكلوريك</a>
+                </nav>
+                <button id="mobileMenuBtn" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">العمليات الصناعية للأحماض</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    استكشف العمليات الصناعية لتصنيع أهم الأحماض الكيميائية المستخدمة في الصناعات المختلفة
+                </p>
+            </div>
+            
+            <!-- Acid Cards -->
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="acid-gradient-1 p-6 text-white text-center">
+                        <i class="fas fa-vial text-5xl mb-3"></i>
+                        <h3 class="text-2xl font-bold">حمض الكبريتيك</h3>
+                        <p class="text-lg mt-2">H₂SO₄</p>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">
+                            أكثر الأحماض إنتاجًا في العالم، يستخدم في صناعة الأسمدة والبطاريات
+                        </p>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-yellow-600 font-semibold">عملية التماس</span>
+                            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full">
+                                180 مليون طن/سنة
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="acid-gradient-2 p-6 text-white text-center">
+                        <i class="fas fa-fire text-5xl mb-3"></i>
+                        <h3 class="text-2xl font-bold">حمض النيتريك</h3>
+                        <p class="text-lg mt-2">HNO₃</p>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">
+                            يستخدم في صناعة المتفجرات والأسمدة النيتروجينية
+                        </p>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-red-600 font-semibold">عملية أوستوالد</span>
+                            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full">
+                                60 مليون طن/سنة
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="acid-gradient-3 p-6 text-white text-center">
+                        <i class="fas fa-tint text-5xl mb-3"></i>
+                        <h3 class="text-2xl font-bold">حمض الهيدروكلوريك</h3>
+                        <p class="text-lg mt-2">HCl</p>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">
+                            يستخدم في تنظيف الفولاذ وتصنيع المواد الكيميائية
+                        </p>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-green-600 font-semibold">عملية كلور-قلوي</span>
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full">
+                                20 مليون طن/سنة
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sulfuric Acid Section -->
+    <section id="sulfuric" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">حمض الكبريتيك - عملية التماس</h2>
+                    <p class="text-lg text-gray-600">
+                        العملية الصناعية الأكثر أهمية لإنتاج حمض الكبريتيك المركز
+                    </p>
+                </div>
+
+                <!-- Contact Process Animation -->
+                <div class="bg-yellow-50 rounded-xl p-8 mb-8">
+                    <h3 class="text-xl font-bold text-yellow-800 mb-6 text-center">مراحل عملية التماس</h3>
+                    
+                    <!-- Process Flow -->
+                    <div class="relative">
+                        <svg viewBox="0 0 1200 400" class="w-full h-auto">
+                            <!-- Stage 1: Sulfur Burning -->
+                            <g transform="translate(100, 150)">
+                                <rect x="-60" y="-40" width="120" height="80" rx="10" fill="#fbbf24" class="reactor-pulse"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">احتراق الكبريت</text>
+                                <text y="-60" text-anchor="middle" font-size="14">S + O₂ → SO₂</text>
+                            </g>
+                            
+                            <!-- Arrow 1 -->
+                            <path d="M 160 150 L 280 150" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead)" class="process-flow"/>
+                            
+                            <!-- Stage 2: Catalytic Converter -->
+                            <g transform="translate(350, 150)">
+                                <rect x="-70" y="-50" width="140" height="100" rx="10" fill="#f59e0b" class="reactor-pulse"/>
+                                <text y="-10" text-anchor="middle" fill="white" font-weight="bold">المحفز</text>
+                                <text y="10" text-anchor="middle" fill="white" font-size="12">V₂O₅</text>
+                                <text y="-70" text-anchor="middle" font-size="14">2SO₂ + O₂ ⇌ 2SO₃</text>
+                            </g>
+                            
+                            <!-- Arrow 2 -->
+                            <path d="M 420 150 L 540 150" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead)" class="process-flow"/>
+                            
+                            <!-- Stage 3: Absorption -->
+                            <g transform="translate(610, 150)">
+                                <circle r="50" fill="#d97706" class="reactor-pulse"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">الامتصاص</text>
+                                <text y="-70" text-anchor="middle" font-size="14">SO₃ + H₂SO₄ → H₂S₂O₇</text>
+                            </g>
+                            
+                            <!-- Arrow 3 -->
+                            <path d="M 660 150 L 780 150" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead)" class="process-flow"/>
+                            
+                            <!-- Stage 4: Dilution -->
+                            <g transform="translate(850, 150)">
+                                <rect x="-60" y="-40" width="120" height="80" rx="10" fill="#92400e"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">التمييع</text>
+                                <text y="-60" text-anchor="middle" font-size="14">H₂S₂O₇ + H₂O → 2H₂SO₄</text>
+                            </g>
+                            
+                            <!-- Temperature indicators -->
+                            <text x="100" y="250" text-anchor="middle" font-size="12" fill="#6b7280">1000°C</text>
+                            <text x="350" y="250" text-anchor="middle" font-size="12" fill="#6b7280">400-500°C</text>
+                            <text x="610" y="250" text-anchor="middle" font-size="12" fill="#6b7280">80°C</text>
+                            <text x="850" y="250" text-anchor="middle" font-size="12" fill="#6b7280">الغرفة</text>
+                            
+                            <!-- Arrow marker -->
+                            <defs>
+                                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Detailed Steps -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-orange-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-orange-800 mb-4">
+                            <i class="fas fa-fire-alt ml-2"></i>المرحلة الأولى: إنتاج ثاني أكسيد الكبريت
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <span class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center ml-3 flex-shrink-0">1</span>
+                                <div>
+                                    <h4 class="font-semibold text-orange-700">تحضير الكبريت</h4>
+                                    <p class="text-gray-600 text-sm mt-1">يتم استخدام الكبريت النقي أو خامات الكبريتيد مثل FeS₂</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center ml-3 flex-shrink-0">2</span>
+                                <div>
+                                    <h4 class="font-semibold text-orange-700">الاحتراق</h4>
+                                    <p class="text-gray-600 text-sm mt-1">يحترق الكبريت في الهواء لتكوين ثاني أكسيد الكبريت</p>
+                                    <div class="chemical-symbol rounded p-2 mt-2 text-center">
+                                        <span class="text-sm font-mono">S(s) + O₂(g) → SO₂(g) ΔH = -297 kJ/mol</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center ml-3 flex-shrink-0">3</span>
+                                <div>
+                                    <h4 class="font-semibold text-orange-700">التنقية</h4>
+                                    <p class="text-gray-600 text-sm mt-1">تنقية غاز SO₂ من الشوائب مثل الغبار وغيره</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-yellow-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-yellow-800 mb-4">
+                            <i class="fas fa-cogs ml-2"></i>المرحلة الثانية: تحويل إلى ثلاثي أكسيد الكبريت
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <span class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center ml-3 flex-shrink-0">1</span>
+                                <div>
+                                    <h4 class="font-semibold text-yellow-700">المحفز</h4>
+                                    <p class="text-gray-600 text-sm mt-1">يستخدم أكسيد الفاناديوم الخامس (V₂O₅) كمحفز</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center ml-3 flex-shrink-0">2</span>
+                                <div>
+                                    <h4 class="font-semibold text-yellow-700">درجة الحرارة</h4>
+                                    <p class="text-gray-600 text-sm mt-1">تتم العملية عند 400-500°C لتحقيق التوازن الأمثل</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center ml-3 flex-shrink-0">3</span>
+                                <div>
+                                    <h4 class="font-semibold text-yellow-700">التفاعل</h4>
+                                    <p class="text-gray-600 text-sm mt-1">تفاعل انعكاسي طارد للحرارة</p>
+                                    <div class="chemical-symbol rounded p-2 mt-2 text-center">
+                                        <span class="text-sm font-mono">2SO₂(g) + O₂(g) ⇌ 2SO₃(g) ΔH = -197 kJ/mol</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final Stages -->
+                <div class="grid md:grid-cols-2 gap-8 mt-8">
+                    <div class="bg-amber-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-amber-800 mb-4">
+                            <i class="fas fa-water ml-2"></i>المرحلة الثالثة: الامتصاص
+                        </h3>
+                        <div class="space-y-3">
+                            <p class="text-gray-700">يمتص غاز SO₃ في حمض الكبريتيك المركز (98%) لتكوين حمض الأوليوم:</p>
+                            <div class="chemical-symbol rounded p-3 text-center">
+                                <span class="font-mono">SO₃(g) + H₂SO₄(l) → H₂S₂O₇(l)</span>
+                            </div>
+                            <p class="text-gray-600 text-sm">• يتم الامتصاص في أبراج خاصة</p>
+                            <p class="text-gray-600 text-sm">• درجة الحرارة حوالي 80°C</p>
+                            <p class="text-gray-600 text-sm">• يمنع التفاعل المباشر مع الماء لتجنب الضباب</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-yellow-100 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-yellow-900 mb-4">
+                            <i class="fas fa-flask ml-2"></i>المرحلة الرابعة: التمييع
+                        </h3>
+                        <div class="space-y-3">
+                            <p class="text-gray-700">يتم تمييع حمض الأوليوم بالماء للحصول على حمض الكبريتيك:</p>
+                            <div class="chemical-symbol rounded p-3 text-center">
+                                <span class="font-mono">H₂S₂O₇(l) + H₂O(l) → 2H₂SO₄(l)</span>
+                            </div>
+                            <p class="text-gray-600 text-sm">• ينتج حمض كبريتيك مركز (98%)</p>
+                            <p class="text-gray-600 text-sm">• يمكن تخفيفه حسب الاستخدام المطلوب</p>
+                            <p class="text-gray-600 text-sm">• الكفاءة الإجمالية تصل إلى 99.7%</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Applications -->
+                <div class="mt-8 bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-industry ml-2"></i>استخدامات حمض الكبريتيك
+                    </h3>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <i class="fas fa-seedling text-3xl text-green-600 mb-2"></i>
+                            <h4 class="font-semibold">الأسمدة</h4>
+                            <p class="text-sm text-gray-600">إنتاج فوسفات الأمونيوم والسوبر فوسفات</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <i class="fas fa-car-battery text-3xl text-blue-600 mb-2"></i>
+                            <h4 class="font-semibold">البطاريات</h4>
+                            <p class="text-sm text-gray-600">إلكتروليت في بطاريات الرصاص الحمضية</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <i class="fas fa-oil-can text-3xl text-purple-600 mb-2"></i>
+                            <h4 class="font-semibold">تكرير النفط</h4>
+                            <p class="text-sm text-gray-600">تنقية الزيوت والوقود</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nitric Acid Section -->
+    <section id="nitric" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">حمض النيتريك - عملية أوستوالد</h2>
+                    <p class="text-lg text-gray-600">
+                        العملية الصناعية لإنتاج حمض النيتريك من الأمونيا
+                    </p>
+                </div>
+
+                <!-- Ostwald Process Animation -->
+                <div class="bg-red-50 rounded-xl p-8 mb-8">
+                    <h3 class="text-xl font-bold text-red-800 mb-6 text-center">مراحل عملية أوستوالد</h3>
+                    
+                    <div class="relative">
+                        <svg viewBox="0 0 1200 400" class="w-full h-auto">
+                            <!-- Stage 1: Ammonia Oxidation -->
+                            <g transform="translate(150, 150)">
+                                <rect x="-70" y="-40" width="140" height="80" rx="10" fill="#dc2626" class="reactor-pulse"/>
+                                <text y="-5" text-anchor="middle" fill="white" font-weight="bold">أكسدة الأمونيا</text>
+                                <text y="10" text-anchor="middle" fill="white" font-size="12">Pt-Rh محفز</text>
+                                <text y="-60" text-anchor="middle" font-size="14">4NH₃ + 5O₂ → 4NO + 6H₂O</text>
+                            </g>
+                            
+                            <!-- Arrow 1 -->
+                            <path d="M 220 150 L 340 150" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-red)" class="process-flow"/>
+                            
+                            <!-- Stage 2: NO Oxidation -->
+                            <g transform="translate(410, 150)">
+                                <circle r="45" fill="#ef4444" class="reactor-pulse"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">أكسدة NO</text>
+                                <text y="-60" text-anchor="middle" font-size="14">2NO + O₂ → 2NO₂</text>
+                            </g>
+                            
+                            <!-- Arrow 2 -->
+                            <path d="M 455 150 L 575 150" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-red)" class="process-flow"/>
+                            
+                            <!-- Stage 3: Absorption -->
+                            <g transform="translate(645, 150)">
+                                <rect x="-70" y="-50" width="140" height="100" rx="10" fill="#991b1b"/>
+                                <text y="-10" text-anchor="middle" fill="white" font-weight="bold">امتصاص</text>
+                                <text y="10" text-anchor="middle" fill="white" font-size="12">في الماء</text>
+                                <text y="-70" text-anchor="middle" font-size="14">3NO₂ + H₂O → 2HNO₃ + NO</text>
+                            </g>
+                            
+                            <!-- Arrow 3 (recycle) -->
+                            <path d="M 645 200 Q 645 250 410 250 Q 410 220 410 195" stroke="#6b7280" stroke-width="2" fill="none" marker-end="url(#arrowhead-red)" stroke-dasharray="5,5"/>
+                            <text x="530" y="270" text-anchor="middle" font-size="12" fill="#6b7280">إعادة تدوير NO</text>
+                            
+                            <!-- Arrow 4 -->
+                            <path d="M 715 150 L 835 150" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-red)" class="process-flow"/>
+                            
+                            <!-- Final Product -->
+                            <g transform="translate(905, 150)">
+                                <circle r="40" fill="#7f1d1d"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">HNO₃</text>
+                                <text y="-60" text-anchor="middle" font-size="14">حمض النيتريك</text>
+                            </g>
+                            
+                            <!-- Temperature indicators -->
+                            <text x="150" y="250" text-anchor="middle" font-size="12" fill="#6b7280">800-900°C</text>
+                            <text x="410" y="250" text-anchor="middle" font-size="12" fill="#6b7280">30-50°C</text>
+                            <text x="645" y="250" text-anchor="middle" font-size="12" fill="#6b7280">الغرفة</text>
+                            
+                            <!-- Arrow marker -->
+                            <defs>
+                                <marker id="arrowhead-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Process Details -->
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-red-50 rounded-xl p-6">
+                        <h3 class="text-lg font-bold text-red-800 mb-3">
+                            <i class="fas fa-temperature-high ml-2"></i>المرحلة الأولى
+                        </h3>
+                        <h4 class="font-semibold text-red-700 mb-2">أكسدة الأمونيا</h4>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• محفز البلاتين-روديوم</li>
+                            <li>• درجة حرارة 800-900°C</li>
+                            <li>• ضغط 5-10 atm</li>
+                            <li>• كفاءة تحويل 95-98%</li>
+                        </ul>
+                        <div class="chemical-symbol rounded p-2 mt-3 text-center">
+                            <span class="text-xs font-mono">4NH₃ + 5O₂ → 4NO + 6H₂O</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-orange-50 rounded-xl p-6">
+                        <h3 class="text-lg font-bold text-orange-800 mb-3">
+                            <i class="fas fa-wind ml-2"></i>المرحلة الثانية
+                        </h3>
+                        <h4 class="font-semibold text-orange-700 mb-2">أكسدة أكسيد النيتريك</h4>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• تفاعل تلقائي</li>
+                            <li>• درجة حرارة منخفضة</li>
+                            <li>• زيادة الضغط يسرع التفاعل</li>
+                            <li>• إنتاج ثاني أكسيد النيتريك</li>
+                        </ul>
+                        <div class="chemical-symbol rounded p-2 mt-3 text-center">
+                            <span class="text-xs font-mono">2NO + O₂ → 2NO₂</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-yellow-50 rounded-xl p-6">
+                        <h3 class="text-lg font-bold text-yellow-800 mb-3">
+                            <i class="fas fa-recycle ml-2"></i>المرحلة الثالثة
+                        </h3>
+                        <h4 class="font-semibold text-yellow-700 mb-2">الامتصاص والتكثيف</h4>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• امتصاص في أبراج</li>
+                            <li>• إعادة تدوير NO</li>
+                            <li>• تركيز 50-70%</li>
+                            <li>• يمكن التركيز بالتبخير</li>
+                        </ul>
+                        <div class="chemical-symbol rounded p-2 mt-3 text-center">
+                            <span class="text-xs font-mono">3NO₂ + H₂O → 2HNO₃ + NO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Applications -->
+                <div class="mt-8 bg-white rounded-xl p-6 shadow-md">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-rocket ml-2"></i>استخدامات حمض النيتريك
+                    </h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-bomb text-2xl text-red-600"></i>
+                            </div>
+                            <h4 class="font-semibold">المتفجرات</h4>
+                            <p class="text-xs text-gray-600">TNT, نيتروجليسرين</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-leaf text-2xl text-green-600"></i>
+                            </div>
+                            <h4 class="font-semibold">الأسمدة</h4>
+                            <p class="text-xs text-gray-600">نترات الأمونيوم</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-paint-brush text-2xl text-blue-600"></i>
+                            </div>
+                            <h4 class="font-semibold">الطلاء</h4>
+                            <p class="text-xs text-gray-600">الورنيش والطلاء</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto bg-purple-100 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-vial text-2xl text-purple-600"></i>
+                            </div>
+                            <h4 class="font-semibold">المختبرات</h4>
+                            <p class="text-xs text-gray-600">متفاعل كيميائي</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hydrochloric Acid Section -->
+    <section id="hydrochloric" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">حمض الهيدروكلوريك - عملية كلور-قلوي</h2>
+                    <p class="text-lg text-gray-600">
+                        الإنتاج الصناعي لحمض الهيدروكلوريك كمنتج ثانوي
+                    </p>
+                </div>
+
+                <!-- Chlor-Alkali Process -->
+                <div class="bg-green-50 rounded-xl p-8 mb-8">
+                    <h3 class="text-xl font-bold text-green-800 mb-6 text-center">عملية كلور-قلوي</h3>
+                    
+                    <div class="relative">
+                        <svg viewBox="0 0 1200 500" class="w-full h-auto">
+                            <!-- Electrolytic Cell -->
+                            <g transform="translate(600, 250)">
+                                <!-- Cell Container -->
+                                <rect x="-150" y="-100" width="300" height="200" rx="10" fill="#10b981" stroke="#059669" stroke-width="3"/>
+                                
+                                <!-- Anode -->
+                                <rect x="-140" y="-90" width="20" height="180" rx="5" fill="#dc2626"/>
+                                <text x="-130" y="-100" text-anchor="middle" font-size="12" fill="#dc2626" font-weight="bold">المصعد (+)</text>
+                                
+                                <!-- Cathode -->
+                                <rect x="120" y="-90" width="20" height="180" rx="5" fill="#2563eb"/>
+                                <text x="130" y="-100" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="bold">المهبط (-)</text>
+                                
+                                <!-- Membrane -->
+                                <line x1="0" y1="-90" x2="0" y2="90" stroke="#6b7280" stroke-width="2" stroke-dasharray="5,5"/>
+                                <text x="0" y="110" text-anchor="middle" font-size="12" fill="#6b7280">غشاء</text>
+                                
+                                <!-- Products -->
+                                <text x="-80" y="-50" text-anchor="middle" fill="white" font-size="14">Cl₂</text>
+                                <text x="80" y="-50" text-anchor="middle" fill="white" font-size="14">H₂</text>
+                                <text x="80" y="50" text-anchor="middle" fill="white" font-size="14">NaOH</text>
+                                
+                                <!-- Solution -->
+                                <text x="0" y="0" text-anchor="middle" fill="white" font-size="16" font-weight="bold">NaCl(aq)</text>
+                            </g>
+                            
+                            <!-- Arrows to products -->
+                            <path d="M 450 200 L 300 150" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-green)" class="process-flow"/>
+                            <path d="M 750 200 L 900 150" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-green)" class="process-flow"/>
+                            <path d="M 750 300 L 900 350" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-green)" class="process-flow"/>
+                            
+                            <!-- Products -->
+                            <g transform="translate(250, 120)">
+                                <circle r="30" fill="#fbbf24"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">Cl₂</text>
+                                <text y="-50" text-anchor="middle" font-size="12">الكلور</text>
+                            </g>
+                            
+                            <g transform="translate(950, 120)">
+                                <circle r="30" fill="#60a5fa"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">H₂</text>
+                                <text y="-50" text-anchor="middle" font-size="12">الهيدروجين</text>
+                            </g>
+                            
+                            <g transform="translate(950, 380)">
+                                <circle r="30" fill="#f87171"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">NaOH</text>
+                                <text y="50" text-anchor="middle" font-size="12">هيدروكسيد الصوديوم</text>
+                            </g>
+                            
+                            <!-- HCl Production -->
+                            <g transform="translate(600, 450)">
+                                <rect x="-100" y="-30" width="200" height="60" rx="10" fill="#059669"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">H₂ + Cl₂ → 2HCl</text>
+                            </g>
+                            
+                            <!-- Arrow to HCl -->
+                            <path d="M 250 150 Q 250 300 500 450" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead-green)" fill="none"/>
+                            <path d="M 950 150 Q 950 300 700 450" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead-green)" fill="none"/>
+                            
+                            <!-- Arrow marker -->
+                            <defs>
+                                <marker id="arrowhead-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Process Details -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-green-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-4">
+                            <i class="fas fa-bolt ml-2"></i>التحليل الكهربائي
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-green-700 mb-2">عند المصعد (الأنود):</h4>
+                                <div class="chemical-symbol rounded p-3 text-center mb-2">
+                                    <span class="font-mono">2Cl⁻ → Cl₂ + 2e⁻</span>
+                                </div>
+                                <p class="text-sm text-gray-600">يتأكسد أيون الكلوريد إلى غاز الكلور</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-green-700 mb-2">عند المهبط (الكاثود):</h4>
+                                <div class="chemical-symbol rounded p-3 text-center mb-2">
+                                    <span class="font-mono">2H₂O + 2e⁻ → H₂ + 2OH⁻</span>
+                                </div>
+                                <p class="text-sm text-gray-600">يتحلل الماء إلى هيدروجين وهيدروكسيد</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-green-700 mb-2">التفاعل الكلي:</h4>
+                                <div class="chemical-symbol rounded p-3 text-center mb-2">
+                                    <span class="font-mono">2NaCl + 2H₂O → Cl₂ + H₂ + 2NaOH</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-emerald-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-emerald-800 mb-4">
+                            <i class="fas fa-flask ml-2"></i>إنتاج حمض الهيدروكلوريك
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-emerald-700 mb-2">التفاعل المباشر:</h4>
+                                <div class="chemical-symbol rounded p-3 text-center mb-2">
+                                    <span class="font-mono">H₂(g) + Cl₂(g) → 2HCl(g)</span>
+                                </div>
+                                <p class="text-sm text-gray-600">تفاعل انفجاري في الضوء أو الحرارة</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-emerald-700 mb-2">الذوبان في الماء:</h4>
+                                <div class="chemical-symbol rounded p-3 text-center mb-2">
+                                    <span class="font-mono">HCl(g) + H₂O(l) → H₃O⁺ + Cl⁻</span>
+                                </div>
+                                <p class="text-sm text-gray-600">يذوب غاز HCl في الماء لتكوين المحلول</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-emerald-700 mb-2">التركيز:</h4>
+                                <p class="text-sm text-gray-600">يتم إنتاج حمض بتركيزات مختلفة (10-38%)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Applications -->
+                <div class="mt-8 bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-tools ml-2"></i>استخدامات حمض الهيدروكلوريك
+                    </h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-industry text-3xl text-gray-600 ml-3"></i>
+                                <h4 class="font-semibold">تنظيف الفولاذ</h4>
+                            </div>
+                            <p class="text-sm text-gray-600">إزالة الصدأ والشوائب من سطح الفولاذ قبل المعالجة</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-swimming-pool text-3xl text-blue-600 ml-3"></i>
+                                <h4 class="font-semibold">تنقية المياه</h4>
+                            </div>
+                            <p class="text-sm text-gray-600">ضبط pH المياه في أحواض السباحة ومحطات المعالجة</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-utensils text-3xl text-green-600 ml-3"></i>
+                                <h4 class="font-semibold">صناعة الأغذية</h4>
+                            </div>
+                            <p class="text-sm text-gray-600">إنتاج الجيلاتين والمواد الحافظة الغذائية</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-oil-can text-3xl text-yellow-600 ml-3"></i>
+                                <h4 class="font-semibold">صناعة البترول</h4>
+                            </div>
+                            <p class="text-sm text-gray-600">تنقية الزيوت المعدنية وتحسين جودة المنتجات البترولية</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-pills text-3xl text-purple-600 ml-3"></i>
+                                <h4 class="font-semibold">الصناعات الدوائية</h4>
+                            </div>
+                            <p class="text-sm text-gray-600">إنتاج العديد من المركبات الدوائية والمستحضرات الطبية</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-home text-3xl text-red-600 ml-3"></i>
+                                <h4 class="font-semibold">التنظيف المنزلي</h4>
+                            </div>
+                            <p class="text-sm text-gray-600">مكون أساسي في many منظفات الحمامات والمطابخ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="py-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">مقارنة بين الأحماض الثلاثة</h2>
+                    <p class="text-lg text-gray-300">نظرة شاملة على الخصائص والإنتاج والاستخدام</p>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full bg-white/10 backdrop-blur-sm rounded-xl overflow-hidden">
+                        <thead>
+                            <tr class="bg-white/20">
+                                <th class="px-6 py-4 text-right">الخاصية</th>
+                                <th class="px-6 py-4 text-center">حمض الكبريتيك</th>
+                                <th class="px-6 py-4 text-center">حمض النيتريك</th>
+                                <th class="px-6 py-4 text-center">حمض الهيدروكلوريك</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-white/10">
+                                <td class="px-6 py-4 font-semibold">الصيغة الكيميائية</td>
+                                <td class="px-6 py-4 text-center">H₂SO₄</td>
+                                <td class="px-6 py-4 text-center">HNO₃</td>
+                                <td class="px-6 py-4 text-center">HCl</td>
+                            </tr>
+                            <tr class="border-b border-white/10 bg-white/5">
+                                <td class="px-6 py-4 font-semibold">العملية الصناعية</td>
+                                <td class="px-6 py-4 text-center">عملية التماس</td>
+                                <td class="px-6 py-4 text-center">عملية أوستوالد</td>
+                                <td class="px-6 py-4 text-center">عملية كلور-قلوي</td>
+                            </tr>
+                            <tr class="border-b border-white/10">
+                                <td class="px-6 py-4 font-semibold">الإنتاج العالمي</td>
+                                <td class="px-6 py-4 text-center">180 مليون طن</td>
+                                <td class="px-6 py-4 text-center">60 مليون طن</td>
+                                <td class="px-6 py-4 text-center">20 مليون طن</td>
+                            </tr>
+                            <tr class="border-b border-white/10 bg-white/5">
+                                <td class="px-6 py-4 font-semibold">قوة الحمض</td>
+                                <td class="px-6 py-4 text-center">ثنائي البروتون</td>
+                                <td class="px-6 py-4 text-center">أحادي البروتون</td>
+                                <td class="px-6 py-4 text-center">أحادي البروتون</td>
+                            </tr>
+                            <tr class="border-b border-white/10">
+                                <td class="px-6 py-4 font-semibold">الاستخدام الرئيسي</td>
+                                <td class="px-6 py-4 text-center">الأسمدة</td>
+                                <td class="px-6 py-4 text-center">المتفجرات</td>
+                                <td class="px-6 py-4 text-center">تنظيف الفولاذ</td>
+                            </tr>
+                            <tr class="bg-white/5">
+                                <td class="px-6 py-4 font-semibold">الخواص المميزة</td>
+                                <td class="px-6 py-4 text-center text-sm">مجفف قوي، ماءات</td>
+                                <td class="px-6 py-4 text-center text-sm">مؤكسد قوي</td>
+                                <td class="px-6 py-4 text-center text-sm">متطاير</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="mb-2">© 2024 صناعة الأحماض - موقع تعليمي تفاعلي</p>
+                <p class="text-gray-400">تم تصميمه لتوضيح العمليات الصناعية للأحماض الكيميائية الهامة</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('hidden');
+            nav.classList.toggle('absolute');
+            nav.classList.toggle('top-full');
+            nav.classList.toggle('left-0');
+            nav.classList.toggle('right-0');
+            nav.classList.toggle('bg-blue-800');
+            nav.classList.toggle('p-4');
+            nav.classList.toggle('flex-col');
+            nav.classList.toggle('space-y-2');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        // Interactive chemical equations
+        document.querySelectorAll('.chemical-symbol').forEach(equation => {
+            equation.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            equation.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Process flow animation restart on scroll
+        const processFlows = document.querySelectorAll('.process-flow');
+        
+        const flowObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'none';
+                    setTimeout(() => {
+                        entry.target.style.animation = 'flow 3s ease-in-out forwards';
+                    }, 100);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        processFlows.forEach(flow => {
+            flowObserver.observe(flow);
+        });
+
+        // Reactor pulse effect on click
+        document.querySelectorAll('.reactor-pulse').forEach(reactor => {
+            reactor.addEventListener('click', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = 'reactor-pulse 2s ease-in-out infinite';
+                }, 100);
+            });
+        });
+
+        // Add tooltip functionality for process details
+        const tooltipData = {
+            'احتراق الكبريت': 'يتم عند 1000°C لضمان اكتمال التفاعل',
+            'المحفز': 'أكسيد الفاناديوم الخامس يزيد سرعة التفاعل',
+            'الامتصاص': 'يتم في أبراج امتصاص خاصة',
+            'أكسدة الأمونيا': 'محفز البلاتين-روديوم بكفاءة عالية',
+            'أكسدة NO': 'تفاعل تلقائي بزيادة الضغط',
+            'التحليل الكهربائي': 'يتم بغشاء لفصل المنتجات'
+        };
+
+        document.querySelectorAll('.reactor-pulse').forEach(reactor => {
+            const text = reactor.querySelector('text');
+            if (text && tooltipData[text.textContent]) {
+                reactor.title = tooltipData[text.textContent];
+                reactor.style.cursor = 'help';
+            }
+        });
+    </script>
+</body>
+</html>

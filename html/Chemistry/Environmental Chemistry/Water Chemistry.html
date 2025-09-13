@@ -1,0 +1,1984 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كيمياء المياه - علم الحياة الأزرق</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+        }
+        
+        .water-gradient {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+        }
+        
+        .pollution-gradient {
+            background: linear-gradient(135deg, #f59e0b 0%, #dc2626 100%);
+        }
+        
+        .clean-gradient {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .water-drop {
+            animation: water-drop 3s ease-in-out infinite;
+        }
+        
+        @keyframes water-drop {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .wave-animation {
+            animation: wave 3s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+        
+        .bubble-rise {
+            animation: bubble-rise 4s ease-out infinite;
+        }
+        
+        @keyframes bubble-rise {
+            0% { transform: translateY(0) scale(0.5); opacity: 0.8; }
+            100% { transform: translateY(-50px) scale(1.5); opacity: 0; }
+        }
+        
+        .pulse-blue {
+            animation: pulse-blue 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-blue {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(14, 165, 233, 0); }
+        }
+        
+        .molecule-rotate {
+            animation: molecule-rotate 10s linear infinite;
+        }
+        
+        @keyframes molecule-rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .progress-fill {
+            transition: width 2s ease-out;
+        }
+        
+        .water-flow {
+            animation: water-flow 4s ease-in-out infinite;
+        }
+        
+        @keyframes water-flow {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(15px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-reverse space-x-4">
+                    <i class="fas fa-tint text-3xl"></i>
+                    <h1 class="text-3xl font-bold">كيمياء المياه</h1>
+                </div>
+                <nav class="hidden md:flex space-x-reverse space-x-6">
+                    <a href="#introduction" class="hover:text-blue-200 transition">مقدمة</a>
+                    <a href="#properties" class="hover:text-blue-200 transition">الخصائص</a>
+                    <a href="#types" class="hover:text-blue-200 transition">أنواع المياه</a>
+                    <a href="#pollution" class="hover:text-blue-200 transition">التلوث</a>
+                    <a href="#treatment" class="hover:text-blue-200 transition">المعالجة</a>
+                    <a href="#analysis" class="hover:text-blue-200 transition">التحليل</a>
+                    <a href="#cycle" class="hover:text-blue-200 transition">الدورة</a>
+                </nav>
+                <button id="mobileMenuBtn" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 bg-gradient-to-br from-blue-50 to-cyan-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">علم الحياة الأزرق</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    اكتشف عالم المياه الرائع من منظور كيميائي - من التركيب الجزيئي إلى التطبيقات الصناعية
+                </p>
+            </div>
+            
+            <!-- Water Molecule Animation -->
+            <div class="flex justify-center mb-12">
+                <div class="relative">
+                    <svg width="200" height="200" viewBox="0 0 200 200" class="molecule-rotate">
+                        <!-- Oxygen -->
+                        <circle cx="100" cy="100" r="40" fill="#ef4444" opacity="0.8"/>
+                        <text x="100" y="105" text-anchor="middle" fill="white" font-size="24" font-weight="bold">O</text>
+                        <!-- Hydrogen 1 -->
+                        <circle cx="60" cy="60" r="25" fill="#3b82f6" opacity="0.8"/>
+                        <text x="60" y="65" text-anchor="middle" fill="white" font-size="18" font-weight="bold">H</text>
+                        <!-- Hydrogen 2 -->
+                        <circle cx="140" cy="60" r="25" fill="#3b82f6" opacity="0.8"/>
+                        <text x="140" y="65" text-anchor="middle" fill="white" font-size="18" font-weight="bold">H</text>
+                        <!-- Bonds -->
+                        <line x1="100" y1="100" x2="60" y2="60" stroke="white" stroke-width="3"/>
+                        <line x1="100" y1="100" x2="140" y2="60" stroke="white" stroke-width="3"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Feature Cards -->
+            <div class="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-atom text-2xl text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">التركيب الكيميائي</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm text-center">
+                        H₂O - جزيء فريد بخصائص استثنائية
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 mx-auto bg-cyan-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-vial text-2xl text-cyan-600"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">التحليل الكيميائي</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm text-center">
+                        قياس جودة المياه ومعايير السلامة
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-recycle text-2xl text-green-600"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">المعالجة</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm text-center">
+                        تقنيات تنقية المياه المتقدمة
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 mx-auto bg-purple-100 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-industry text-2xl text-purple-600"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">التطبيقات</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm text-center">
+                        الاستخدامات الصناعية والمنزلية
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="introduction" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                            <i class="fas fa-tint text-blue-600 ml-3"></i>
+                            ما هي كيمياء المياه؟
+                        </h2>
+                        <p class="text-gray-600 mb-4">
+                            كيمياء المياه هي فرع من الكيمياء يدرس خصائص المياه وتفاعلاتها وتأثيرها على البيئة والصحة العامة.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">الأهمية الحيوية</h4>
+                                    <p class="text-gray-600 text-sm">المياه أساس الحياة على الأرض</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">المذيب العالمي</h4>
+                                    <p class="text-gray-600 text-sm">تذيب أكثر المواد الكيميائية</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">التنظيم الحراري</h4>
+                                    <p class="text-gray-600 text-sm">تنظيم حرارة الأرض والكائنات الحية</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl p-8">
+                            <div class="text-center">
+                                <i class="fas fa-water text-8xl text-blue-600 water-drop"></i>
+                            </div>
+                            <div class="mt-6 space-y-3">
+                                <div class="bg-white/80 backdrop-blur rounded-lg p-3">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-semibold">نسبة المياه على الأرض</span>
+                                        <span class="text-blue-600 font-bold">71%</span>
+                                    </div>
+                                </div>
+                                <div class="bg-white/80 backdrop-blur rounded-lg p-3">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-semibold">المياه العذبة</span>
+                                        <span class="text-cyan-600 font-bold">2.5%</span>
+                                    </div>
+                                </div>
+                                <div class="bg-white/80 backdrop-blur rounded-lg p-3">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-semibold">المياه المتاحة</span>
+                                        <span class="text-green-600 font-bold">1%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Properties Section -->
+    <section id="properties" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">خصائص المياه الفريدة</h2>
+                    <p class="text-lg text-gray-600">
+                        الخصائص الفيزيائية والكيميائية التي تجعل المياه مادة استثنائية
+                    </p>
+                </div>
+
+                <!-- Properties Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Physical Properties -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-blue-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-thermometer-half text-3xl text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">الخصائص الفيزيائية</h3>
+                        </div>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-left text-blue-500 mt-1 ml-2"></i>
+                                <span><strong>درجة الغليان:</strong> 100°C عند الضغط الجوي</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-left text-blue-500 mt-1 ml-2"></i>
+                                <span><strong>درجة التجمد:</strong> 0°C</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-left text-blue-500 mt-1 ml-2"></i>
+                                <span><strong>الكثافة:</strong> 1 g/cm³ عند 4°C</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-left text-blue-500 mt-1 ml-2"></i>
+                                <span><strong>اللزوجة:</strong> 0.001 Pa·s عند 20°C</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-left text-blue-500 mt-1 ml-2"></i>
+                                <span><strong>السطحية:</strong> 72.8 mN/m</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Chemical Properties -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-green-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-flask text-3xl text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">الخصائص الكيميائية</h3>
+                        </div>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-left text-green-500 mt-1 ml-2"></i>
+                                <span><strong>pH:</strong> 7 (محايد)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-left text-green-500 mt-1 ml-2"></i>
+                                <span><strong>التأين:</strong> H₂O ⇌ H⁺ + OH⁻</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-left text-green-500 mt-1 ml-2"></i>
+                                <span><strong>ثابت التأين:</strong> 10⁻¹⁴</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-left text-green-500 mt-1 ml-2"></i>
+                                <span><strong>القطبية:</strong> عالية</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-left text-green-500 mt-1 ml-2"></i>
+                                <span><strong>الروابط الهيدروجينية:</strong> قوية</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Unique Properties -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-purple-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-star text-3xl text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">خصائص فريدة</h3>
+                        </div>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-left text-purple-500 mt-1 ml-2"></i>
+                                <span><strong>الكثافة القصوى:</strong> عند 4°C</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-left text-purple-500 mt-1 ml-2"></i>
+                                <span><strong>السعة الحرارية:</strong> عالية جداً</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-left text-purple-500 mt-1 ml-2"></i>
+                                <span><strong>حرارة التبخر:</strong> 2260 kJ/kg</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-left text-purple-500 mt-1 ml-2"></i>
+                                <span><strong>الشفافية:</strong> للأشعة المرئية</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-left text-purple-500 mt-1 ml-2"></i>
+                                <span><strong>قابلية الذوبان:</strong> استثنائية</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Properties Comparison -->
+                <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">مقارنة مع مواد أخرى</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="px-4 py-3 text-right">الخاصية</th>
+                                    <th class="px-4 py-3 text-center">الماء</th>
+                                    <th class="px-4 py-3 text-center">الميثانول</th>
+                                    <th class="px-4 py-3 text-center">الإيثانول</th>
+                                    <th class="px-4 py-3 text-center">الأسيتون</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b">
+                                    <td class="px-4 py-3 font-semibold">درجة الغليان (°C)</td>
+                                    <td class="px-4 py-3 text-center">100</td>
+                                    <td class="px-4 py-3 text-center">65</td>
+                                    <td class="px-4 py-3 text-center">78</td>
+                                    <td class="px-4 py-3 text-center">56</td>
+                                </tr>
+                                <tr class="border-b bg-gray-50">
+                                    <td class="px-4 py-3 font-semibold">السعة الحرارية (J/g·K)</td>
+                                    <td class="px-4 py-3 text-center">4.18</td>
+                                    <td class="px-4 py-3 text-center">2.5</td>
+                                    <td class="px-4 py-3 text-center">2.4</td>
+                                    <td class="px-4 py-3 text-center">2.2</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="px-4 py-3 font-semibold">حرارة التبخر (kJ/mol)</td>
+                                    <td class="px-4 py-3 text-center">40.7</td>
+                                    <td class="px-4 py-3 text-center">35.2</td>
+                                    <td class="px-4 py-3 text-center">38.6</td>
+                                    <td class="px-4 py-3 text-center">29.1</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-4 py-3 font-semibold">الثابت العازلي</td>
+                                    <td class="px-4 py-3 text-center">80</td>
+                                    <td class="px-4 py-3 text-center">33</td>
+                                    <td class="px-4 py-3 text-center">24</td>
+                                    <td class="px-4 py-3 text-center">21</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Types of Water Section -->
+    <section id="types" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">أنواع المياه</h2>
+                    <p class="text-lg text-gray-600">
+                        تصنيف المياه حسب مصدرها وتركيبها الكيميائي واستخداماتها
+                    </p>
+                </div>
+
+                <!-- Water Types Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Fresh Water -->
+                    <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-blue-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-tint text-3xl text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">المياه العذبة</h3>
+                        </div>
+                        <div class="space-y-3 text-gray-700">
+                            <p class="text-sm">تحتوي على أقل من 500 ppm من الأملاح الذائبة</p>
+                            <div class="bg-white rounded-lg p-3">
+                                <h4 class="font-semibold text-blue-700 mb-2">المصادر:</h4>
+                                <ul class="text-sm space-y-1">
+                                    <li>• الأنهار والجداول</li>
+                                    <li>• البحيرات</li>
+                                    <li>• المياه الجوفية</li>
+                                    <li>• المطر والثلوج</li>
+                                </ul>
+                            </div>
+                            <div class="bg-blue-100 rounded-lg p-3">
+                                <p class="text-sm text-blue-800">
+                                    <i class="fas fa-info-circle ml-1"></i>
+                                    تمثل 2.5% من إجمالي المياه على الأرض
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Salt Water -->
+                    <div class="bg-gradient-to-br from-cyan-50 to-blue-100 rounded-xl p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-cyan-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-water text-3xl text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">المياه المالحة</h3>
+                        </div>
+                        <div class="space-y-3 text-gray-700">
+                            <p class="text-sm">تحتوي على أكثر من 35,000 ppm من الأملاح الذائبة</p>
+                            <div class="bg-white rounded-lg p-3">
+                                <h4 class="font-semibold text-cyan-700 mb-2">المكونات الرئيسية:</h4>
+                                <ul class="text-sm space-y-1">
+                                    <li>• كلوريد الصوديوم (NaCl) 85%</li>
+                                    <li>• كبريتات المغنيسيوم (MgSO₄)</li>
+                                    <li>• كربونات الكالسيوم (CaCO₃)</li>
+                                    <li>• بروميد البوتاسيوم (KBr)</li>
+                                </ul>
+                            </div>
+                            <div class="bg-cyan-100 rounded-lg p-3">
+                                <p class="text-sm text-cyan-800">
+                                    <i class="fas fa-info-circle ml-1"></i>
+                                    تمثل 97.5% من إجمالي المياه على الأرض
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mineral Water -->
+                    <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-green-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-gem text-3xl text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">المياه المعدنية</h3>
+                        </div>
+                        <div class="space-y-3 text-gray-700">
+                            <p class="text-sm">تحتوي على معادن وأملاح بنسب محددة</p>
+                            <div class="bg-white rounded-lg p-3">
+                                <h4 class="font-semibold text-green-700 mb-2">المعادن الشائعة:</h4>
+                                <ul class="text-sm space-y-1">
+                                    <li>• الكالسيوم (Ca²⁺)</li>
+                                    <li>• المغنيسيوم (Mg²⁺)</li>
+                                    <li>• الصوديوم (Na⁺)</li>
+                                    <li>• البوتاسيوم (K⁺)</li>
+                                </ul>
+                            </div>
+                            <div class="bg-green-100 rounded-lg p-3">
+                                <p class="text-sm text-green-800">
+                                    <i class="fas fa-info-circle ml-1"></i>
+                                    لها فوائد صحية متعددة
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Distilled Water -->
+                    <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-purple-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-flask text-3xl text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">المياه المقطرة</h3>
+                        </div>
+                        <div class="space-y-3 text-gray-700">
+                            <p class="text-sm">مياه نقية 99.9% من الشوائب والأملاح</p>
+                            <div class="bg-white rounded-lg p-3">
+                                <h4 class="font-semibold text-purple-700 mb-2">طريقة الإنتاج:</h4>
+                                <ul class="text-sm space-y-1">
+                                    <li>• الغليان والتكثيف</li>
+                                    <li>• التبخير تحت الضغط</li>
+                                    <li>• الترشيح الغشائي</li>
+                                    <li>-> التأين المتقدم</li>
+                                </ul>
+                            </div>
+                            <div class="bg-purple-100 rounded-lg p-3">
+                                <p class="text-sm text-purple-800">
+                                    <i class="fas fa-info-circle ml-1"></i>
+                                    تستخدم في المختبرات والصناعات الدقيقة
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hard Water -->
+                    <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-orange-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-cube text-3xl text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">المياه العسرة</h3>
+                        </div>
+                        <div class="space-y-3 text-gray-700">
+                            <p class="text-sm">غنية بأيونات الكالسيوم والمغنيسيوم</p>
+                            <div class="bg-white rounded-lg p-3">
+                                <h4 class="font-semibold text-orange-700 mb-2">المشاكل:</h4>
+                                <ul class="text-sm space-y-1">
+                                    <li>• تكوين الرواسب</li>
+                                    <li>• تقليل فعالية الصابون</li>
+                                    <li>• انسداد الأنابيب</li>
+                                    <li>-> تآكل الأجهزة</li>
+                                </ul>
+                            </div>
+                            <div class="bg-orange-100 rounded-lg p-3">
+                                <p class="text-sm text-orange-800">
+                                    <i class="fas fa-info-circle ml-1"></i>
+                                    درجة العسر: > 120 ppm CaCO₃
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Soft Water -->
+                    <div class="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-xl p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-indigo-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-hand-sparkles text-3xl text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">المياه اللينة</h3>
+                        </div>
+                        <div class="space-y-3 text-gray-700">
+                            <p class="text-sm">قليلة المحتوى من أيونات الكالسيوم والمغنيسيوم</p>
+                            <div class="bg-white rounded-lg p-3">
+                                <h4 class="font-semibold text-indigo-700 mb-2">المميزات:</h4>
+                                <ul class="text-sm space-y-1">
+                                    <li>• فعالية عالية للصابون</li>
+                                    <li>• لا تترك رواسب</li>
+                                    <li>-> مناسبة للغسيل</li>
+                                    <li>• تحمي الأجهزة</li>
+                                </ul>
+                            </div>
+                            <div class="bg-indigo-100 rounded-lg p-3">
+                                <p class="text-sm text-indigo-800">
+                                    <i class="fas fa-info-circle ml-1"></i>
+                                    درجة العسر: < 60 ppm CaCO₃
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Water Pollution Section -->
+    <section id="pollution" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">تلوث المياه</h2>
+                    <p class="text-lg text-gray-600">
+                        مصادر التلوث الكيميائي وأثره على البيئة والصحة
+                    </p>
+                </div>
+
+                <!-- Pollution Sources -->
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">
+                            <i class="fas fa-industry text-red-600 ml-2"></i>
+                            المصادر الصناعية
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-red-500 pl-4">
+                                <h4 class="font-semibold text-gray-700">المواد الكيميائية السامة</h4>
+                                <p class="text-sm text-gray-600 mt-1">المعادن الثقيلة (الرصاص، الزئبق، الكادميوم)</p>
+                            </div>
+                            <div class="border-l-4 border-red-500 pl-4">
+                                <h4 class="font-semibold text-gray-700">المذيبات العضوية</h4>
+                                <p class="text-sm text-gray-600 mt-1">البنزين، التولوين، الزايلين</p>
+                            </div>
+                            <div class="border-l-4 border-red-500 pl-4">
+                                <h4 class="font-semibold text-gray-700">المواد المشعة</h4>
+                                <p class="text-sm text-gray-600 mt-1">اليورانيوم، السيزيوم، السترونشيوم</p>
+                            </div>
+                            <div class="border-l-4 border-red-500 pl-4">
+                                <h4 class="font-semibold text-gray-700">المواد المسببة للتآكل</h4>
+                                <p class="text-sm text-gray-600 mt-1">الأحماض والقلويات القوية</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">
+                            <i class="fas fa-home text-orange-600 ml-2"></i>
+                            المصادر المنزلية والزراعية
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-orange-500 pl-4">
+                                <h4 class="font-semibold text-gray-700">المبيدات الحشرية</h4>
+                                <p class="text-sm text-gray-600 mt-1">DDT، الديلدرين، الألدرين</p>
+                            </div>
+                            <div class="border-l-4 border-orange-500 pl-4">
+                                <h4 class="font-semibold text-gray-700">الأسمدة الكيميائية</h4>
+                                <p class="text-sm text-gray-600 mt-1">النترات، الفوسفات، البوتاسيوم</p>
+                            </div>
+                            <div class="border-l-4 border-orange-500 pl-4">
+                                <h4 class="font-semibold text-gray-700">المنظفات المنزلية</h4>
+                                <p class="text-sm text-gray-600 mt-1">الفوسفات، المواد السطحية</p>
+                            </div>
+                            <div class="border-l-4 border-orange-500 pl-4">
+                                <h4 class="font-semibold text-gray-700">النفايات العضوية</h4>
+                                <p class="text-sm text-gray-600 mt-1">الدهون، البروتينات، الكربوهيدرات</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pollution Effects -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">آثار التلوث الكيميائي</h3>
+                    
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="w-24 h-24 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-heartbeat text-4xl text-red-600"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">الصحة الإنسانية</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• أمراض السرطان</li>
+                                <li>• تلف الكبد والكلى</li>
+                                <li>• اضطرابات عصبية</li>
+                                <li>-> تشوهات خلقية</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-24 h-24 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-fish text-4xl text-green-600"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">النظام البيئي</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• موت الكائنات المائية</li>
+                                <li>-> تدمير الشعاب المرجانية</li>
+                                <li>• نقص الأكسجين</li>
+                                <li>-> اختلال التوازن البيئي</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-24 h-24 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-coins text-4xl text-blue-600"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">الاقتصاد</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• تكاليف المعالجة</li>
+                                <li>• خسائر السياحة</li>
+                                <li>-> انخفاض الإنتاج الزراعي</li>
+                                <li>-> تدهور الصناعات السمكية</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pollution Standards -->
+                <div class="mt-8 bg-gradient-to-r from-red-50 to-orange-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">معايير جودة المياه (WHO)</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full bg-white rounded-lg overflow-hidden">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="px-4 py-3 text-right">المادة</th>
+                                    <th class="px-4 py-3 text-center">الحد الأقصى (mg/L)</th>
+                                    <th class="px-4 py-3 text-center">الأثر الصحي</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b">
+                                    <td class="px-4 py-3 font-semibold">الرصاص (Pb)</td>
+                                    <td class="px-4 py-3 text-center">0.01</td>
+                                    <td class="px-4 py-3 text-center">تسمم عصبي</td>
+                                </tr>
+                                <tr class="border-b bg-gray-50">
+                                    <td class="px-4 py-3 font-semibold">الزئبق (Hg)</td>
+                                    <td class="px-4 py-3 text-center">0.001</td>
+                                    <td class="px-4 py-3 text-center">تلف الجهاز العصبي</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="px-4 py-3 font-semibold">الكادميوم (Cd)</td>
+                                    <td class="px-4 py-3 text-center">0.003</td>
+                                    <td class="px-4 py-3 text-center">تلف الكلى</td>
+                                </tr>
+                                <tr class="border-b bg-gray-50">
+                                    <td class="px-4 py-3 font-semibold">الزرنيخ (As)</td>
+                                    <td class="px-4 py-3 text-center">0.01</td>
+                                    <td class="px-4 py-3 text-center">سرطان الجلد</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-4 py-3 font-semibold">النترات (NO₃⁻)</td>
+                                    <td class="px-4 py-3 text-center">50</td>
+                                    <td class="px-4 py-3 text-center">متلازمة الطفل الأزرق</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Water Treatment Section -->
+    <section id="treatment" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">معالجة وتنقية المياه</h2>
+                    <p class="text-lg text-gray-600">
+                        العمليات الكيميائية والفيزيائية لتحويل المياه الملوثة إلى مياه صالحة للاستخدام
+                    </p>
+                </div>
+
+                <!-- Treatment Process -->
+                <div class="bg-blue-50 rounded-xl p-8 mb-8">
+                    <h3 class="text-xl font-bold text-blue-800 mb-6 text-center">مراحل معالجة المياه</h3>
+                    
+                    <div class="relative">
+                        <svg viewBox="0 0 1200 400" class="w-full h-auto">
+                            <!-- Process Flow -->
+                            <g transform="translate(100, 200)">
+                                <!-- Coagulation -->
+                                <rect x="-60" y="-40" width="120" height="80" rx="10" fill="#3b82f6" class="tech-icon"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">التخثير</text>
+                                <text y="-60" text-anchor="middle" font-size="12">إضافة مواد كيميائية</text>
+                            </g>
+                            
+                            <!-- Arrow 1 -->
+                            <path d="M 160 200 L 260 200" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-blue)" class="water-flow"/>
+                            
+                            <!-- Flocculation -->
+                            <g transform="translate(330, 200)">
+                                <circle r="40" fill="#0ea5e9" class="tech-icon"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">التكتل</text>
+                                <text y="-60" text-anchor="middle" font-size="12">تجميع الجسيمات</text>
+                            </g>
+                            
+                            <!-- Arrow 2 -->
+                            <path d="M 370 200 L 470 200" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-blue)" class="water-flow"/>
+                            
+                            <!-- Sedimentation -->
+                            <g transform="translate(540, 200)">
+                                <rect x="-60" y="-40" width="120" height="80" rx="10" fill="#06b6d4" class="tech-icon"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">الترسيب</text>
+                                <text y="-60" text-anchor="middle" font-size="12">فصل المواد الصلبة</text>
+                            </g>
+                            
+                            <!-- Arrow 3 -->
+                            <path d="M 600 200 L 700 200" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-blue)" class="water-flow"/>
+                            
+                            <!-- Filtration -->
+                            <g transform="translate(770, 200)">
+                                <circle r="40" fill="#0891b2" class="tech-icon"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">الترشيح</text>
+                                <text y="-60" text-anchor="middle" font-size="12">إزالة الجسيمات الدقيقة</text>
+                            </g>
+                            
+                            <!-- Arrow 4 -->
+                            <path d="M 810 200 L 910 200" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-blue)" class="water-flow"/>
+                            
+                            <!-- Disinfection -->
+                            <g transform="translate(980, 200)">
+                                <rect x="-60" y="-40" width="120" height="80" rx="10" fill="#0e7490" class="tech-icon"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">التعقيم</text>
+                                <text y="-60" text-anchor="middle" font-size="12">قتل الكائنات الحية</text>
+                            </g>
+                            
+                            <!-- Clean Water -->
+                            <g transform="translate(1100, 200)">
+                                <circle r="30" fill="#10b981" class="pulse-blue"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">مياه نظيفة</text>
+                            </g>
+                            
+                            <!-- Arrow marker -->
+                            <defs>
+                                <marker id="arrowhead-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Treatment Methods -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-blue-500 rounded-full flex items-center justify-center mb-3 bubble-rise">
+                                <i class="fas fa-flask text-3xl text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-blue-800">المعالجة الكيميائية</h4>
+                        </div>
+                        <ul class="space-y-2 text-gray-700 text-sm">
+                            <li>• التخثير بكبريتات الألومنيوم</li>
+                            <li>• التعادل بالجير أو الصودا</li>
+                            <li>• التطهير بالكلور</li>
+                            <li>• الأكسدة بالأوزون</li>
+                        </ul>
+                        <div class="mt-4 bg-blue-100 rounded-lg p-3">
+                            <p class="text-sm text-blue-800">
+                                <i class="fas fa-chart-line ml-1"></i>
+                                كفاءة: 95-99%
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-green-500 rounded-full flex items-center justify-center mb-3 bubble-rise">
+                                <i class="fas fa-filter text-3xl text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-green-800">المعالجة الفيزيائية</h4>
+                        </div>
+                        <ul class="space-y-2 text-gray-700 text-sm">
+                            <li>• الترشيح بالرمل والحصى</li>
+                            <li>• الترشيح الغشائي</li>
+                            <li>• الترسيب بالجاذبية</li>
+                            <li>-> التهوية</li>
+                        </ul>
+                        <div class="mt-4 bg-green-100 rounded-lg p-3">
+                            <p class="text-sm text-green-800">
+                                <i class="fas fa-chart-line ml-1"></i>
+                                كفاءة: 90-95%
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-purple-500 rounded-full flex items-center justify-center mb-3 bubble-rise">
+                                <i class="fas fa-bacteria text-3xl text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-purple-800">المعالجة البيولوجية</h4>
+                        </div>
+                        <ul class="space-y-2 text-gray-700 text-sm">
+                            <li>• المعالجة بالهواء</li>
+                            <li>-> الهضم اللاهوائي</li>
+                            <li>• الترشيح البيولوجي</li>
+                            <li>• البرك الطبيعية</li>
+                        </ul>
+                        <div class="mt-4 bg-purple-100 rounded-lg p-3">
+                            <p class="text-sm text-purple-800">
+                                <i class="fas fa-chart-line ml-1"></i>
+                                كفاءة: 85-95%
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Technologies -->
+                <div class="mt-8 bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">تقنيات متقدمة</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-gray-700 mb-3">التناضح العكسي (RO)</h4>
+                            <p class="text-sm text-gray-600 mb-3">استخدام أغشية شبه نفاذة لإزالة الأملاح والشوائب</p>
+                            <div class="bg-white rounded-lg p-3">
+                                <div class="flex justify-between text-sm mb-2">
+                                    <span>إزالة الأملاح</span>
+                                    <span class="font-bold text-blue-600">99%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-blue-500 h-2 rounded-full progress-fill" style="width: 0%" data-width="99%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700 mb-3">التبادل الأيوني</h4>
+                            <p class="text-sm text-gray-600 mb-3">استخدام راتنجات لتبديل الأيونات الضارة</p>
+                            <div class="bg-white rounded-lg p-3">
+                                <div class="flex justify-between text-sm mb-2">
+                                    <span>إزالة العسر</span>
+                                    <span class="font-bold text-green-600">98%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full progress-fill" style="width: 0%" data-width="98%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Water Analysis Section -->
+    <section id="analysis" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">تحليل المياه واختبارات الجودة</h2>
+                    <p class="text-lg text-gray-600">
+                        الطرق الكيميائية والفيزيائية لتقييم جودة المياه
+                    </p>
+                </div>
+
+                <!-- Analysis Parameters -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                        <div class="w-16 h-16 mx-auto bg-red-500 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-tachometer-alt text-2xl text-white"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-800 mb-2">pH</h4>
+                        <p class="text-sm text-gray-600 mb-3">قياس حموضة أو قلوية المياه</p>
+                        <div class="bg-red-50 rounded-lg p-2">
+                            <span class="text-lg font-bold text-red-600">6.5 - 8.5</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                        <div class="w-16 h-16 mx-auto bg-blue-500 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-thermometer-half text-2xl text-white"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-800 mb-2">الحرارة</h4>
+                        <p class="text-sm text-gray-600 mb-3">درجة حرارة المياه</p>
+                        <div class="bg-blue-50 rounded-lg p-2">
+                            <span class="text-lg font-bold text-blue-600">10 - 25°C</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                        <div class="w-16 h-16 mx-auto bg-green-500 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-eye text-2xl text-white"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-800 mb-2">العكورة</h4>
+                        <p class="text-sm text-gray-600 mb-3">وضوح المياه</p>
+                        <div class="bg-green-50 rounded-lg p-2">
+                            <span class="text-lg font-bold text-green-600">< 5 NTU</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                        <div class="w-16 h-16 mx-auto bg-purple-500 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-bolt text-2xl text-white"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-800 mb-2">التوصيلية</h4>
+                        <p class="text-sm text-gray-600 mb-3">محتوى الأملاح الذائبة</p>
+                        <div class="bg-purple-50 rounded-lg p-2">
+                            <span class="text-lg font-bold text-purple-600">< 500 μS/cm</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testing Methods -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">طرق الاختبار</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-semibold text-gray-700 mb-4">الاختبارات الميدانية</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <i class="fas fa-vial text-blue-500 mt-1 ml-3"></i>
+                                    <div>
+                                        <h5 class="font-medium">شرائط الاختبار</h5>
+                                        <p class="text-sm text-gray-600">قياس سريع للـ pH والكلور والنترات</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-mobile-alt text-blue-500 mt-1 ml-3"></i>
+                                    <div>
+                                        <h5 class="font-medium">أجهزة محمولة</h5>
+                                        <p class="text-sm text-gray-600">قياس التوصيلية والأكسجين الذائب</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-eye-dropper text-blue-500 mt-1 ml-3"></i>
+                                    <div>
+                                        <h5 class="font-medium">العينات المرئية</h5>
+                                        <p class="text-sm text-gray-600">تقييم اللون والرائحة والعكورة</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-gray-700 mb-4">الاختبارات المختبرية</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <i class="fas fa-microscope text-green-500 mt-1 ml-3"></i>
+                                    <div>
+                                        <h5 class="font-medium">التحليل الطيفي</h5>
+                                        <p class="text-sm text-gray-600">تحديد العناصر والمعادن الثقيلة</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-flask text-green-500 mt-1 ml-3"></i>
+                                    <div>
+                                        <h5 class="font-medium">التركيبات</h5>
+                                        <p class="text-sm text-gray-600">قياس BOD و COD</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-bacteria text-green-500 mt-1 ml-3"></i>
+                                    <div>
+                                        <h5 class="font-medium">التحليل الميكروبيولوجي</h5>
+                                        <p class="text-sm text-gray-600">كشف البكتيريا والفيروسات</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quality Standards -->
+                <div class="mt-8 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">معايير جودة مياه الشرب</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full bg-white rounded-lg overflow-hidden">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="px-4 py-3 text-right">المعيار</th>
+                                    <th class="px-4 py-3 text-center">الحد المسموح</th>
+                                    <th class="px-4 py-3 text-center">طريقة القياس</th>
+                                    <th class="px-4 py-3 text-center">التأثير على الصحة</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b">
+                                    <td class="px-4 py-3 font-semibold">الكلور المتبقي</td>
+                                    <td class="px-4 py-3 text-center">0.2 - 0.5 mg/L</td>
+                                    <td class="px-4 py-3 text-center">DPD</td>
+                                    <td class="px-4 py-3 text-center">التعقيم</td>
+                                </tr>
+                                <tr class="border-b bg-gray-50">
+                                    <td class="px-4 py-3 font-semibold">الفلوريد</td>
+                                    <td class="px-4 py-3 text-center">0.5 - 1.5 mg/L</td>
+                                    <td class="px-4 py-3 text-center">أيون انتقائي</td>
+                                    <td class="px-4 py-3 text-center">الأسنان</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="px-4 py-3 font-semibold">النترات</td>
+                                    <td class="px-4 py-3 text-center">< 50 mg/L</td>
+                                    <td class="px-4 py-3 text-center">طيفي</td>
+                                    <td class="px-4 py-3 text-center">ميثيموجلوبينemia</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-4 py-3 font-semibold">الأكسجين الذائب</td>
+                                    <td class="px-4 py-3 text-center">> 6 mg/L</td>
+                                    <td class="px-4 py-3 text-center">إلكترود</td>
+                                    <td class="px-4 py-3 text-center">الحياة المائية</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Water Cycle Section -->
+    <section id="cycle" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">دورة المياه في الطبيعة</h2>
+                    <p class="text-lg text-gray-600">
+                        الرحلة المستمرة للمياه بين المحيطات والغلاف الجوي واليابسة
+                    </p>
+                </div>
+
+                <!-- Water Cycle Animation -->
+                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-8 mb-8">
+                    <div class="relative">
+                        <svg viewBox="0 0 800 600" class="w-full h-auto max-w-4xl mx-auto">
+                            <!-- Ocean -->
+                            <rect x="0" y="450" width="800" height="150" fill="#0ea5e9" opacity="0.6"/>
+                            <text x="400" y="530" text-anchor="middle" fill="white" font-size="20" font-weight="bold">المحيط</text>
+                            
+                            <!-- Sun -->
+                            <circle cx="400" cy="80" r="40" fill="#fbbf24"/>
+                            <text x="400" y="85" text-anchor="middle" fill="white" font-size="16" font-weight="bold">الشمس</text>
+                            
+                            <!-- Evaporation -->
+                            <g>
+                                <path d="M 200 450 Q 200 350 200 250" stroke="#6b7280" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+                                <circle cx="200" cy="240" r="8" fill="#93c5fd" opacity="0.8">
+                                    <animate attributeName="cy" values="450;240;450" dur="4s" repeatCount="indefinite"/>
+                                    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="4s" repeatCount="indefinite"/>
+                                </circle>
+                                <text x="200" y="200" text-anchor="middle" font-size="14" fill="#374151">التبخر</text>
+                            </g>
+                            
+                            <!-- Cloud Formation -->
+                            <g transform="translate(400, 200)">
+                                <ellipse cx="0" cy="0" rx="80" ry="40" fill="#e5e7eb" opacity="0.8"/>
+                                <ellipse cx="-30" cy="-10" rx="50" ry="30" fill="#e5e7eb" opacity="0.8"/>
+                                <ellipse cx="30" cy="-10" rx="50" ry="30" fill="#e5e7eb" opacity="0.8"/>
+                                <text y="5" text-anchor="middle" font-size="14" fill="#374151">التكثف</text>
+                            </g>
+                            
+                            <!-- Precipitation -->
+                            <g>
+                                <path d="M 400 240 L 400 350" stroke="#6b7280" stroke-width="2" fill="none"/>
+                                <circle cx="395" cy="260" r="3" fill="#3b82f6">
+                                    <animate attributeName="cy" values="240;450" dur="1s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="400" cy="280" r="3" fill="#3b82f6">
+                                    <animate attributeName="cy" values="240;450" dur="1s" begin="0.2s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="405" cy="300" r="3" fill="#3b82f6">
+                                    <animate attributeName="cy" values="240;450" dur="1s" begin="0.4s" repeatCount="indefinite"/>
+                                </circle>
+                                <text x="400" y="320" text-anchor="middle" font-size="14" fill="#374151">السقوط</text>
+                            </g>
+                            
+                            <!-- Surface Runoff -->
+                            <g>
+                                <path d="M 400 450 Q 500 470 600 450" stroke="#6b7280" stroke-width="3" fill="none"/>
+                                <text x="500" y="440" text-anchor="middle" font-size="14" fill="#374151">الجريان السطحي</text>
+                            </g>
+                            
+                            <!-- Groundwater -->
+                            <g>
+                                <path d="M 600 450 Q 600 500 550 500 L 450 500 Q 400 500 400 450" stroke="#6b7280" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+                                <text x="500" y="520" text-anchor="middle" font-size="14" fill="#374151">المياه الجوفية</text>
+                            </g>
+                            
+                            <!-- Plant Transpiration -->
+                            <g transform="translate(600, 400)">
+                                <rect x="-5" y="0" width="10" height="50" fill="#059669"/>
+                                <circle cx="0" cy="-10" r="20" fill="#10b981"/>
+                                <path d="M 0 -10 Q -10 -30 0 -40 Q 10 -30 0 -10" fill="#10b981"/>
+                                <path d="M 0 -10 Q -15 -20 -10 -30 Q -5 -20 0 -10" fill="#10b981"/>
+                                <path d="M 0 -10 Q 15 -20 10 -30 Q 5 -20 0 -10" fill="#10b981"/>
+                                <circle cx="0" cy="-50" r="5" fill="#93c5fd" opacity="0.8">
+                                    <animate attributeName="cy" values="-50;-80;-50" dur="3s" repeatCount="indefinite"/>
+                                    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="3s" repeatCount="indefinite"/>
+                                </circle>
+                                <text x="0" y="70" text-anchor="middle" font-size="14" fill="#374151">النتح</text>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Cycle Stages -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                        <div class="w-20 h-20 mx-auto bg-yellow-500 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-sun text-3xl text-white"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-800 mb-2">التبخر</h4>
+                        <p class="text-sm text-gray-600">تحول المياه من الحالة السائلة إلى غازية بفعل حرارة الشمس</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                        <div class="w-20 h-20 mx-auto bg-gray-500 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-cloud text-3xl text-white"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-800 mb-2">التكثف</h4>
+                        <p class="text-sm text-gray-600">تحول بخار الماء إلى سائل عند تبريده في الغلاف الجوي</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                        <div class="w-20 h-20 mx-auto bg-blue-500 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-cloud-rain text-3xl text-white"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-800 mb-2">السقوط</h4>
+                        <p class="text-sm text-gray-600">هطول المياه على شكل مطر أو ثلج أو برد</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                        <div class="w-20 h-20 mx-auto bg-green-500 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-mountain text-3xl text-white"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-800 mb-2">الجريان</h4>
+                        <p class="text-sm text-gray-600">عودة المياه إلى المحيطات والبحار عبر الأنهار والمياه الجوفية</p>
+                    </div>
+                </div>
+
+                <!-- Human Impact -->
+                <div class="mt-8 bg-red-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-red-800 mb-4">تأثير الإنسان على دورة المياه</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-red-700 mb-3">التأثيرات السلبية</h4>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-times-circle text-red-500 mt-1 ml-2"></i>
+                                    <span>استنزاف المياه الجوفية</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-times-circle text-red-500 mt-1 ml-2"></i>
+                                    <span>تلوث المياه السطحية</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-times-circle text-red-500 mt-1 ml-2"></i>
+                                    <span>تغير المناخ وتقلب الأمطار</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-times-circle text-red-500 mt-1 ml-2"></i>
+                                    <span>تجفيف المستنقعات</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-green-700 mb-3">الحلول المقترحة</h4>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 ml-2"></i>
+                                    <span>إدارة مستدامة للمياه</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 ml-2"></i>
+                                    <span>معالجة مياه الصرف الصحي</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 ml-2"></i>
+                                    <span>الحفاظ على الغطاء النباتي</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 ml-2"></i>
+                                    <span>تقليل استهلاك المياه</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industrial Applications Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">الاستخدامات الصناعية للمياه</h2>
+                    <p class="text-lg text-gray-600">
+                        دور المياه في العمليات الصناعية المختلفة ومتطلبات الجودة
+                    </p>
+                </div>
+
+                <!-- Industry Applications -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Power Generation -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-blue-600 p-6 text-white text-center">
+                            <i class="fas fa-bolt text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">توليد الطاقة</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-2 text-gray-700 mb-4">
+                                <li>• تبريد المفاعلات النووية</li>
+                                <li>• توليد البخار في محطات الفحم</li>
+                <li>• توربينات المياه</li>
+                                <li>-> أنظمة التبريد</li>
+                            </ul>
+                            <div class="bg-blue-50 rounded-lg p-3">
+                                <p class="text-sm text-blue-800">
+                                    <i class="fas fa-info-circle ml-1"></i>
+                                    90% من مياه التبريد تعاد إلى المصدر
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Manufacturing -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-green-600 p-6 text-white text-center">
+                            <i class="fas fa-industry text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">التصنيع</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-2 text-gray-700 mb-4">
+                                <li>• غسل وتنظيف المنتجات</li>
+                                <li>• مذيب في العمليات الكيميائية</li>
+                                <li>• نقل الحرارة</li>
+                                <li>-> تكوين المنتجات</li>
+                            </ul>
+                            <div class="bg-green-50 rounded-lg p-3">
+                                <p class="text-sm text-green-800">
+                                    <i class="fas fa-info-circle ml-1"></i>
+                                    20-50 متر مكعب لكل طن منتج
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Food Industry -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-orange-600 p-6 text-white text-center">
+                            <i class="fas fa-utensils text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">صناعة الأغذية</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-2 text-gray-700 mb-4">
+                                <li>• غسل وتنظيف الخضروات</li>
+                                <li>• الطهي والبسترة</li>
+                                <li>-> التبريد والتجميد</li>
+                                <li>• مكون رئيسي في المنتجات</li>
+                            </ul>
+                            <div class="bg-orange-50 rounded-lg p-3">
+                                <p class="text-sm text-orange-800">
+                                    <i class="fas fa-info-circle ml-1"></i>
+                                    مياه نقية عالية الجودة مطلوبة
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Textile Industry -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-purple-600 p-6 text-white text-center">
+                            <i class="fas fa-tshirt text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">النسيج</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-2 text-gray-700 mb-4">
+                                <li>• غسل وصباغة الأقمشة</li>
+                                <li>-> التبييض والتنظيف</li>
+                                <li>• التشطيب النهائي</li>
+                                <li>• غسل المنتجات النهائية</li>
+                            </ul>
+                            <div class="bg-purple-50 rounded-lg p-3">
+                                <p class="text-sm text-purple-800">
+                                    <i class="fas fa-info-circle ml-1"></i>
+                                    100-200 لتر لكل كجم من القماش
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pharmaceutical -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-red-600 p-6 text-white text-center">
+                            <i class="fas fa-pills text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">الأدوية</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-2 text-gray-700 mb-4">
+                                <li>• مذيب في التفاعلات</li>
+                                <li>• غسل وتنقية المنتجات</li>
+                                <li>-> تكوين المحاليل</li>
+                                <li>-> التعقيم والتنظيف</li>
+                            </ul>
+                            <div class="bg-red-50 rounded-lg p-3">
+                                <p class="text-sm text-red-800">
+                                    <i class="fas fa-info-circle ml-1"></i>
+                                    مياه نقية للغاية (WFI)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mining -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-yellow-600 p-6 text-white text-center">
+                            <i class="fas fa-hard-hat text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">التعدين</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-2 text-gray-700 mb-4">
+                                <li>• غسل الخامات</li>
+                                <li>-> فصل المعادن</li>
+                                <li>• منع الغبار</li>
+                                <li>-> تبريد المعدات</li>
+                            </ul>
+                            <div class="bg-yellow-50 rounded-lg p-3">
+                                <p class="text-sm text-yellow-800">
+                                    <i class="fas fa-info-circle ml-1"></i>
+                                    مياه معالجة وإعادة استخدام
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Water Quality Requirements -->
+                <div class="mt-8 bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">متطلبات جودة المياه حسب الصناعة</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="px-4 py-3 text-right">الصناعة</th>
+                                    <th class="px-4 py-3 text-center">pH</th>
+                                    <th class="px-4 py-3 text-center">العكورة</th>
+                                    <th class="px-4 py-3 text-center">التوصيلية</th>
+                                    <th class="px-4 py-3 text-center">متطلبات خاصة</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b">
+                                    <td class="px-4 py-3 font-semibold">توليد الطاقة</td>
+                                    <td class="px-4 py-3 text-center">6.5 - 9.0</td>
+                                    <td class="px-4 py-3 text-center">< 100 NTU</td>
+                                    <td class="px-4 py-3 text-center">< 1500 μS/cm</td>
+                                    <td class="px-4 py-3 text-center">قليلة المعادن</td>
+                                </tr>
+                                <tr class="border-b bg-gray-50">
+                                    <td class="px-4 py-3 font-semibold">الأغذية</td>
+                                    <td class="px-4 py-3 text-center">6.5 - 8.5</td>
+                                    <td class="px-4 py-3 text-center">< 1 NTU</td>
+                                    <td class="px-4 py-3 text-center">< 500 μS/cm</td>
+                                    <td class="px-4 py-3 text-center">خالية من البكتيريا</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="px-4 py-3 font-semibold">الأدوية</td>
+                                    <td class="px-4 py-3 text-center">5.0 - 7.0</td>
+                                    <td class="px-4 py-3 text-center">0 NTU</td>
+                                    <td class="px-4 py-3 text-center">< 1 μS/cm</td>
+                                    <td class="px-4 py-3 text-center">مياه للحقن</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-4 py-3 font-semibold">الإلكترونيات</td>
+                                    <td class="px-4 py-3 text-center">6.8 - 7.2</td>
+                                    <td class="px-4 py-3 text-center">0 NTU</td>
+                                    <td class="px-4 py-3 text-center">< 0.1 μS/cm</td>
+                                    <td class="px-4 py-3 text-center">مياه فائقة النقاء</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Desalination Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">تحلية المياه</h2>
+                    <p class="text-lg text-gray-600">
+                        تحويل المياه المالحة إلى مياه عذبة صالحة للشرب والاستخدام
+                    </p>
+                </div>
+
+                <!-- Desalination Methods -->
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-4">
+                            <i class="fas fa-filter text-blue-600 ml-2"></i>
+                            التناضح العكسي (RO)
+                        </h3>
+                        <div class="space-y-4">
+                            <p class="text-gray-700">
+                                استخدام ضغط عالٍ ل强行 المياه عبر أغشية شبه نفاذة تسمح بمرور جزيئات الماء وتمنع مرور الأملاح
+                            </p>
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-blue-700 mb-2">المميزات:</h4>
+                                <ul class="text-sm space-y-1 text-gray-600">
+                                    <li>• كفاءة عالية في إزالة الأملاح (99%)</li>
+                                    <li>-> استهلاك طاقة منخفض نسبياً</li>
+                                    <li>• سهولة التشغيل والصيانة</li>
+                                    <li>-> إنتاج مياه عالية الجودة</li>
+                                </ul>
+                            </div>
+                            <div class="bg-blue-100 rounded-lg p-3">
+                                <p class="text-sm text-blue-800">
+                                    <i class="fas fa-chart-line ml-1"></i>
+                                    التكلفة: 0.5 - 1.5 دولار/م³
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-orange-800 mb-4">
+                            <i class="fas fa-fire text-orange-600 ml-2"></i>
+                            التقطير الحراري
+                        </h3>
+                        <div class="space-y-4">
+                            <p class="text-gray-700">
+                                غليان المياه المالحة وتكثيف البخار الناتج للحصول على مياه عذبة، مع تركيز الأملاق في المتبقي
+                            </p>
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-orange-700 mb-2">الأنواع:</h4>
+                                <ul class="text-sm space-y-1 text-gray-600">
+                                    <li>• التقطير متعدد المراحل (MSF)</li>
+                                    <li>-> التقطير متعدد التأثير (MED)</li>
+                                    <li>• الضغط البخاري (VC)</li>
+                                    <li>-> التقطير الشمسي</li>
+                                </ul>
+                            </div>
+                            <div class="bg-orange-100 rounded-lg p-3">
+                                <p class="text-sm text-orange-800">
+                                    <i class="fas fa-chart-line ml-1"></i>
+                                    التكلفة: 1 - 2 دولار/م³
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Global Desalination -->
+                <div class="bg-gray-50 rounded-xl p-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">التحلية عالمياً</h3>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 mb-6">
+                        <div class="bg-white rounded-lg p-6 text-center">
+                            <div class="text-4xl font-bold text-blue-600 mb-2">150+</div>
+                            <p class="text-gray-700">دولة تطبق التحلية</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-6 text-center">
+                            <div class="text-4xl font-bold text-green-600 mb-2">95M</div>
+                            <p class="text-gray-700">م³/يوم إجمالي الإنتاج</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-6 text-center">
+                            <div class="text-4xl font-bold text-orange-600 mb-2">300M</div>
+                            <p class="text-gray-700">شخص يعتمد على التحلية</p>
+                        </div>
+                    </div>
+
+                    <!-- Leading Countries -->
+                    <div class="bg-white rounded-lg p-6">
+                        <h4 class="font-semibold text-gray-800 mb-4">أكبر دول التحلية:</h4>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="flex items-center justify-between p-3 bg-blue-50 rounded">
+                                <span class="font-medium">السعودية</span>
+                                <span class="text-blue-600 font-bold">8.5M m³/يوم</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-green-50 rounded">
+                                <span class="font-medium">الإمارات</span>
+                                <span class="text-green-600 font-bold">7.1M m³/يوم</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-orange-50 rounded">
+                                <span class="font-medium">الولايات المتحدة</span>
+                                <span class="text-orange-600 font-bold">5.8M m³/يوم</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-purple-50 rounded">
+                                <span class="font-medium">إسبانيا</span>
+                                <span class="text-purple-600 font-bold">4.2M m³/يوم</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Environmental Impact -->
+                <div class="mt-8 bg-red-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-red-800 mb-4">التحديات البيئية</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-red-700 mb-3">المشاكل:</h4>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-exclamation-triangle text-red-500 mt-1 ml-2"></i>
+                                    <span>تركيز عالٍ للأملاح في المياه المطرحة</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-exclamation-triangle text-red-500 mt-1 ml-2"></i>
+                                    <span>استهلاك كبير للطاقة</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-exclamation-triangle text-red-500 mt-1 ml-2"></i>
+                                    <span>تأثير على الحياة البحرية</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-exclamation-triangle text-red-500 mt-1 ml-2"></i>
+                                    <span>انبعاثات غازات الاحتباس الحراري</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-green-700 mb-3">الحلول المستدامة:</h4>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-leaf text-green-500 mt-1 ml-2"></i>
+                                    <span>استخدام الطاقة المتجددة</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-recycle text-green-500 mt-1 ml-2"></i>
+                                    <span>استعادة الأملاق والمعادن</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-wind text-green-500 mt-1 ml-2"></i>
+                                    <span>نظام Diffuser لتقليل التركيز</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-solar-panel text-green-500 mt-1 ml-2"></i>
+                                    <span>تحسين كفاءة الطاقة</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conservation Section -->
+    <section class="py-16 bg-gradient-to-br from-green-50 to-blue-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">الحفاظ على المياه والاستدامة</h2>
+                    <p class="text-lg text-gray-600">
+                        استراتيجيات وأساليب للحفاظ على موارد المياه للأجيال القادمة
+                    </p>
+                </div>
+
+                <!-- Conservation Strategies -->
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-blue-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-home text-3xl text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">الحفاظ المنزلي</h3>
+                        </div>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 ml-2"></i>
+                                <span>إصلاح التسريبات فوراً</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 ml-2"></i>
+                                <span>استخدام أجهزة موفرة للمياه</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 ml-2"></i>
+                                <span>جمع مياه الأمطار</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 ml-2"></i>
+                                <span>إعادة استخدام المياه الرمادية</span>
+                            </li>
+                        </ul>
+                        <div class="mt-4 bg-blue-50 rounded-lg p-3">
+                            <p class="text-sm text-blue-800">
+                                <i class="fas fa-lightbulb ml-1"></i>
+                                توفير 30-50% من استهلاك المياه
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-green-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-seedling text-3xl text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">الزراعة المستدامة</h3>
+                        </div>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 ml-2"></i>
+                                <span>الري بالتنقيط</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 ml-2"></i>
+                                <span>الري بالرش</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 ml-2"></i>
+                                <span>الزراعة العضوية</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 ml-2"></i>
+                                <span>الدورات الزراعية</span>
+                            </li>
+                        </ul>
+                        <div class="mt-4 bg-green-50 rounded-lg p-3">
+                            <p class="text-sm text-green-800">
+                                <i class="fas fa-lightbulb ml-1"></i>
+                                توفير 40-60% من مياه الري
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-purple-500 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-industry text-3xl text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">الصناعة الخضراء</h3>
+                        </div>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 ml-2"></i>
+                                <span>إعادة تدوير المياه</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 ml-2"></i>
+                                <span>أنظمة مغلقة</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 ml-2"></i>
+                                <span>معالجة متقدمة</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 ml-2"></i>
+                                <span>مراقبة الاستهلاك</span>
+                            </li>
+                        </ul>
+                        <div class="mt-4 bg-purple-50 rounded-lg p-3">
+                            <p class="text-sm text-purple-800">
+                                <i class="fas fa-lightbulb ml-1"></i>
+                                توفير 25-40% من المياه الصناعية
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Future Technologies -->
+                <div class="mt-8 bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">تقنيات المستقبل</h3>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-satellite text-2xl text-blue-600"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">المراقبة الذكية</h4>
+                            <p class="text-sm text-gray-600">أجهزة استشعار IoT لمراقبة جودة المياه</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-brain text-2xl text-green-600"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">الذكاء الاصطناعي</h4>
+                            <p class="text-sm text-gray-600">تنبؤ بالجفاف وإدارة الموارد</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto bg-purple-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-atom text-2xl text-purple-600"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">النانوتكنولوجيا</h4>
+                            <p class="text-sm text-gray-600">ترشيح فائق الدقة وإزالة الملوثات</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto bg-orange-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-dna text-2xl text-orange-600"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">التقنية الحيوية</h4>
+                            <p class="text-sm text-gray-600">معالجة بيولوجية متقدمة</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="mt-8 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl p-8 text-white text-center">
+                    <h3 class="text-2xl font-bold mb-4">المياه هي الحياة</h3>
+                    <p class="text-lg mb-6">
+                        كل قطرة مياه توفر اليوم هي استثمار في مستقبل أكثر استدامة
+                    </p>
+                    <div class="flex justify-center space-x-reverse space-x-4">
+                        <button class="bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                            تعلم المزيد
+                        </button>
+                        <button class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition">
+                            انضم للحركة
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="mb-2">© 2024 كيمياء المياه - موقع تعليمي تفاعلي</p>
+                <p class="text-gray-400">مكرس لنشر الوعي بأهمية المياه وكيميائها</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('hidden');
+            nav.classList.toggle('absolute');
+            nav.classList.toggle('top-full');
+            nav.classList.toggle('left-0');
+            nav.classList.toggle('right-0');
+            nav.classList.toggle('bg-blue-800');
+            nav.classList.toggle('p-4');
+            nav.classList.toggle('flex-col');
+            nav.classList.toggle('space-y-2');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    // Animate progress bars
+                    if (entry.target.querySelector('.progress-fill')) {
+                        const progressBars = entry.target.querySelectorAll('.progress-fill');
+                        progressBars.forEach(bar => {
+                            const width = bar.getAttribute('data-width');
+                            setTimeout(() => {
+                                bar.style.width = width;
+                            }, 200);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        // Interactive water drop animation
+        document.querySelectorAll('.water-drop').forEach(drop => {
+            drop.addEventListener('mouseenter', function() {
+                this.style.animationDuration = '1s';
+            });
+            
+            drop.addEventListener('mouseleave', function() {
+                this.style.animationDuration = '3s';
+            });
+        });
+
+        // Create bubble animation periodically
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.className = 'absolute w-2 h-2 bg-blue-400 rounded-full bubble-rise';
+            bubble.style.left = Math.random() * 100 + '%';
+            bubble.style.bottom = '0';
+            bubble.style.opacity = '0.6';
+            
+            const sections = document.querySelectorAll('section');
+            const randomSection = sections[Math.floor(Math.random() * sections.length)];
+            if (randomSection) {
+                randomSection.style.position = 'relative';
+                randomSection.appendChild(bubble);
+                
+                setTimeout(() => {
+                    bubble.remove();
+                }, 4000);
+            }
+        }
+
+        // Create bubbles periodically
+        setInterval(createBubble, 3000);
+
+        // Water flow animation restart on scroll
+        const waterFlows = document.querySelectorAll('.water-flow');
+        
+        const flowObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'none';
+                    setTimeout(() => {
+                        entry.target.style.animation = 'water-flow 4s ease-in-out infinite';
+                    }, 100);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        waterFlows.forEach(flow => {
+            flowObserver.observe(flow);
+        });
+
+        // Tech icon interactions
+        document.querySelectorAll('.tech-icon').forEach(icon => {
+            icon.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1) rotate(5deg)';
+            });
+            
+            icon.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+
+        // Pulse animation for clean water indicator
+        const pulseElements = document.querySelectorAll('.pulse-blue');
+        
+        const pulseObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'pulse-blue 2s ease-in-out infinite';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        pulseElements.forEach(element => {
+            pulseObserver.observe(element);
+        });
+    </script>
+</body>
+</html>

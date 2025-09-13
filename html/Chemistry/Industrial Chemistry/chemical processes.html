@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>العمليات الكيميائية - رحلة التفاعلات الكيميائية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+        
+        .process-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .process-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.6s ease;
+        }
+        
+        .process-card:hover::before {
+            transform: scale(1);
+        }
+        
+        .process-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .molecule-animation {
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .reaction-arrow {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        .electron {
+            animation: electronMove 3s linear infinite;
+        }
+        
+        @keyframes electronMove {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(20px); }
+            100% { transform: translateX(0); }
+        }
+        
+        .flame {
+            animation: flicker 1.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes flicker {
+            0% { transform: scaleY(1); opacity: 0.8; }
+            100% { transform: scaleY(1.2); opacity: 1; }
+        }
+        
+        .rust-progress {
+            animation: rustGrow 4s ease-in-out infinite;
+        }
+        
+        @keyframes rustGrow {
+            0% { width: 0%; }
+            50% { width: 100%; }
+            100% { width: 0%; }
+        }
+        
+        .bubble {
+            animation: bubbleRise 2s ease-in-out infinite;
+        }
+        
+        @keyframes bubbleRise {
+            0% { transform: translateY(0) scale(0.8); opacity: 0.7; }
+            100% { transform: translateY(-50px) scale(1.2); opacity: 0; }
+        }
+        
+        .equation-highlight {
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,0,0.3) 50%, transparent 100%);
+            background-size: 200% 100%;
+            animation: highlight 3s ease-in-out infinite;
+        }
+        
+        @keyframes highlight {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-reverse space-x-4">
+                    <i class="fas fa-flask text-3xl"></i>
+                    <h1 class="text-3xl font-bold">العمليات الكيميائية</h1>
+                </div>
+                <nav class="hidden md:flex space-x-reverse space-x-6">
+                    <a href="#photosynthesis" class="hover:text-blue-200 transition">التمثيل الضوئي</a>
+                    <a href="#respiration" class="hover:text-blue-200 transition">التنفس الخلوي</a>
+                    <a href="#combustion" class="hover:text-blue-200 transition">الاحتراق</a>
+                    <a href="#corrosion" class="hover:text-blue-200 transition">التآكل</a>
+                    <a href="#fermentation" class="hover:text-blue-200 transition">التخمر</a>
+                </nav>
+                <button id="mobileMenuBtn" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-20 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-5xl font-bold text-gray-800 mb-6">اكتشف عالم التفاعلات الكيميائية</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    رحلة ممتعة في عالم العمليات الكيميائية التي تحكم حياتنا والكون من حولنا
+                </p>
+            </div>
+            
+            <!-- Interactive Molecule -->
+            <div class="flex justify-center mb-12">
+                <div class="relative">
+                    <div class="w-64 h-64 bg-blue-200 rounded-full flex items-center justify-center molecule-animation">
+                        <div class="text-center">
+                            <i class="fas fa-atom text-6xl text-blue-600 mb-2"></i>
+                            <p class="text-lg font-bold text-blue-800">تفاعل</p>
+                        </div>
+                    </div>
+                    <div class="absolute -top-4 -right-4 w-16 h-16 bg-green-200 rounded-full flex items-center justify-center">
+                        <i class="fas fa-plus text-2xl text-green-600"></i>
+                    </div>
+                    <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-red-200 rounded-full flex items-center justify-center">
+                        <i class="fas fa-equals text-2xl text-red-600"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photosynthesis Section -->
+    <section id="photosynthesis" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-green-700 mb-4">
+                        <i class="fas fa-leaf ml-3"></i>التمثيل الضوئي
+                    </h2>
+                    <p class="text-lg text-gray-600">
+                        العملية السحرية التي تحول الطاقة الضوئية إلى طاقة كيميائية
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="bg-green-50 rounded-xl p-8 mb-6">
+                            <h3 class="text-2xl font-bold text-green-800 mb-4">المعادلة الكيميائية</h3>
+                            <div class="equation-highlight bg-white p-6 rounded-lg text-center text-2xl font-mono">
+                                6CO₂ + 6H₂O + الضوء → C₆H₁₂O₆ + 6O₂
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-green-100 rounded-full p-3 ml-4">
+                                    <i class="fas fa-sun text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">المرحلة الضوئية</h4>
+                                    <p class="text-gray-600">تحويل الطاقة الضوئية إلى ATP و NADPH</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-green-100 rounded-full p-3 ml-4">
+                                    <i class="fas fa-cloud text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">المرحلة المظلمة</h4>
+                                    <p class="text-gray-600">تثبيت ثاني أكسيد الكربون لتكوين الجلوكوز</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative">
+                        <div class="bg-gradient-to-b from-green-100 to-blue-100 rounded-xl p-8 h-96 flex items-center justify-center">
+                            <div class="relative">
+                                <!-- Sun -->
+                                <div class="absolute -top-20 left-1/2 transform -translate-x-1/2">
+                                    <div class="w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg">
+                                        <i class="fas fa-sun text-3xl text-yellow-600"></i>
+                                    </div>
+                                </div>
+                                
+                                <!-- Plant -->
+                                <div class="text-center">
+                                    <div class="w-32 h-48 bg-green-500 rounded-t-full mx-auto relative">
+                                        <div class="absolute -left-8 top-8 w-16 h-16 bg-green-400 rounded-full"></div>
+                                        <div class="absolute -right-8 top-8 w-16 h-16 bg-green-400 rounded-full"></div>
+                                        <div class="absolute -left-12 top-24 w-20 h-20 bg-green-400 rounded-full"></div>
+                                        <div class="absolute -right-12 top-24 w-20 h-20 bg-green-400 rounded-full"></div>
+                                    </div>
+                                    <div class="w-24 h-16 bg-brown-600 mx-auto rounded-b-lg"></div>
+                                </div>
+                                
+                                <!-- CO2 and O2 -->
+                                <div class="absolute -left-16 top-20">
+                                    <div class="text-gray-600 font-bold">CO₂</div>
+                                    <i class="fas fa-arrow-right text-2xl text-gray-400 reaction-arrow"></i>
+                                </div>
+                                <div class="absolute -right-16 top-20">
+                                    <i class="fas fa-arrow-left text-2xl text-gray-400 reaction-arrow"></i>
+                                    <div class="text-blue-600 font-bold">O₂</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cellular Respiration Section -->
+    <section id="respiration" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-red-700 mb-4">
+                        <i class="fas fa-lungs ml-3"></i>التنفس الخلوي
+                    </h2>
+                    <p class="text-lg text-gray-600">
+                        عملية تحويل الطاقة الكيميائية في الغذاء إلى طاقة قابلة للاستخدام
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">المعادلة العامة</h3>
+                        <div class="equation-highlight bg-red-50 p-6 rounded-lg text-2xl font-mono inline-block">
+                            C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + طاقة (ATP)
+                        </div>
+                    </div>
+                    
+                    <!-- Three Stages -->
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-blue-50 rounded-lg p-6 text-center process-card">
+                            <div class="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-cube text-3xl text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2">التحلل السكري</h4>
+                            <p class="text-sm text-gray-600">في السيتوبلازم</p>
+                            <div class="mt-3 text-blue-600 font-bold">2 ATP</div>
+                        </div>
+                        
+                        <div class="bg-purple-50 rounded-lg p-6 text-center process-card">
+                            <div class="w-20 h-20 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-sync-alt text-3xl text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2">دورة كريبس</h4>
+                            <p class="text-sm text-gray-600">في الميتوكوندريا</p>
+                            <div class="mt-3 text-purple-600 font-bold">2 ATP</div>
+                        </div>
+                        
+                        <div class="bg-green-50 rounded-lg p-6 text-center process-card">
+                            <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-bolt text-3xl text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2">سلسلة نقل الإلكترون</h4>
+                            <p class="text-sm text-gray-600">في الغشاء الداخلي</p>
+                            <div class="mt-3 text-green-600 font-bold">32 ATP</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Electron Transport Animation -->
+                <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-xl p-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">سلسلة نقل الإلكترون</h3>
+                    <div class="flex justify-center items-center space-x-reverse space-x-8">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mb-2">
+                                <span class="text-white font-bold">I</span>
+                            </div>
+                            <p class="text-sm">مجمع I</p>
+                        </div>
+                        
+                        <div class="relative">
+                            <div class="w-20 h-1 bg-gray-300"></div>
+                            <div class="absolute top-1/2 -translate-y-1/2 electron">
+                                <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mb-2">
+                                <span class="text-white font-bold">III</span>
+                            </div>
+                            <p class="text-sm">مجمع III</p>
+                        </div>
+                        
+                        <div class="relative">
+                            <div class="w-20 h-1 bg-gray-300"></div>
+                            <div class="absolute top-1/2 -translate-y-1/2 electron" style="animation-delay: 0.5s">
+                                <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mb-2">
+                                <span class="text-white font-bold">IV</span>
+                            </div>
+                            <p class="text-sm">مجمع IV</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Combustion Section -->
+    <section id="combustion" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-orange-700 mb-4">
+                        <i class="fas fa-fire ml-3"></i>الاحتراق
+                    </h2>
+                    <p class="text-lg text-gray-600">
+                        تفاعل أكسدة سريع يصاحبه انطلاق حرارة وضوء
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="bg-orange-50 rounded-xl p-8 mb-6">
+                            <h3 class="text-2xl font-bold text-orange-800 mb-4">معادلة احتراق الميثان</h3>
+                            <div class="equation-highlight bg-white p-6 rounded-lg text-center text-2xl font-mono">
+                                CH₄ + 2O₂ → CO₂ + 2H₂O + طاقة
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                                <h4 class="font-bold text-lg mb-2">شروط الاحتراق</h4>
+                                <ul class="space-y-1 text-gray-700">
+                                    <li>• وجود وقود (مادة قابلة للاحتراق)</li>
+                                    <li>• وجود مؤكسد (عادة الأكسجين)</li>
+                                    <li>• وصول درجة الحرارة إلى نقطة الاشتعال</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-lg">
+                                <h4 class="font-bold text-lg mb-2">أنواع الاحتراق</h4>
+                                <ul class="space-y-1 text-gray-700">
+                                    <li>• الاحتراق التام (يصاحبه لهب أزرق)</li>
+                                    <li>• الاحتراق الناقص (يصاحبه لهب أصفر وانتاج كربون)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative">
+                        <div class="bg-gradient-to-b from-gray-100 to-gray-200 rounded-xl p-8 h-96 flex items-center justify-center">
+                            <div class="relative">
+                                <!-- Flame Animation -->
+                                <div class="text-center">
+                                    <div class="relative inline-block">
+                                        <div class="w-24 h-32 bg-gradient-to-t from-red-500 via-orange-400 to-yellow-300 rounded-t-full mx-auto flame"></div>
+                                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2">
+                                            <div class="w-16 h-24 bg-gradient-to-t from-yellow-300 to-white rounded-t-full opacity-70 flame"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-8">
+                                        <div class="w-32 h-4 bg-gray-700 rounded mx-auto"></div>
+                                        <div class="text-center mt-2">
+                                            <span class="text-gray-700 font-bold">CH₄</span>
+                                            <i class="fas fa-plus mx-2 text-gray-500"></i>
+                                            <span class="text-blue-600 font-bold">O₂</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Products -->
+                                <div class="absolute -bottom-8 left-0 right-0 flex justify-around">
+                                    <div class="text-center">
+                                        <div class="w-12 h-12 bg-gray-400 rounded-full flex items-center justify-center">
+                                            <span class="text-white font-bold text-sm">CO₂</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center">
+                                            <span class="text-white font-bold text-sm">H₂O</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Corrosion Section -->
+    <section id="corrosion" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-brown-700 mb-4">
+                        <i class="fas fa-rust ml-3"></i>التآكل
+                    </h2>
+                    <p class="text-lg text-gray-600">
+                        التآكل الكهروكيميائي للمعادن خاصة الحديد في وجود الأكسجين والرطوبة
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <div class="grid lg:grid-cols-2 gap-12">
+                        <div>
+                            <div class="bg-brown-50 rounded-xl p-6 mb-6">
+                                <h3 class="text-2xl font-bold text-brown-800 mb-4">معادلة أكسدة الحديد</h3>
+                                <div class="space-y-3">
+                                    <div class="equation-highlight bg-white p-4 rounded-lg text-lg font-mono">
+                                        4Fe + 3O₂ → 2Fe₂O₃
+                                    </div>
+                                    <div class="equation-highlight bg-white p-4 rounded-lg text-lg font-mono">
+                                        Fe₂O₃ + xH₂O → Fe₂O₃·xH₂O (صدأ)
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="bg-red-100 rounded-full p-3 ml-4">
+                                        <i class="fas fa-tint text-red-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-lg">عوامل التآكل</h4>
+                                        <p class="text-gray-600">الرطوبة، الأكسجين، الأملاح، درجة الحرارة</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 rounded-full p-3 ml-4">
+                                        <i class="fas fa-shield-alt text-blue-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-lg">طرق الوقاية</h4>
+                                        <p class="text-gray-600">الطلاء، الجلفنة، السبائك المقاومة للصدأ</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="bg-gradient-to-br from-gray-200 to-brown-200 rounded-xl p-8 h-96 relative overflow-hidden">
+                                <h3 class="text-xl font-bold text-center mb-6">عملية التآكل المتدرجة</h3>
+                                
+                                <!-- Iron Nail -->
+                                <div class="relative">
+                                    <div class="w-8 h-32 bg-gray-600 mx-auto rounded relative">
+                                        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-brown-400 to-transparent rust-progress opacity-60"></div>
+                                    </div>
+                                    
+                                    <!-- Water and Oxygen -->
+                                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2">
+                                        <div class="text-center">
+                                            <i class="fas fa-tint text-3xl text-blue-500"></i>
+                                            <p class="text-sm">H₂O</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="absolute -top-8 right-0">
+                                        <div class="text-center">
+                                            <i class="fas fa-wind text-3xl text-gray-500"></i>
+                                            <p class="text-sm">O₂</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Rust Formation -->
+                                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2">
+                                        <div class="text-center">
+                                            <div class="w-12 h-12 bg-brown-500 rounded-full flex items-center justify-center">
+                                                <span class="text-white text-xs font-bold">Fe₂O₃</span>
+                                            </div>
+                                            <p class="text-sm mt-1">صدأ</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Bubbles -->
+                                <div class="absolute top-20 left-10">
+                                    <div class="w-4 h-4 bg-blue-300 rounded-full bubble"></div>
+                                </div>
+                                <div class="absolute top-32 right-12">
+                                    <div class="w-3 h-3 bg-blue-300 rounded-full bubble" style="animation-delay: 0.5s"></div>
+                                </div>
+                                <div class="absolute top-24 left-20">
+                                    <div class="w-5 h-5 bg-blue-300 rounded-full bubble" style="animation-delay: 1s"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fermentation Section -->
+    <section id="fermentation" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-purple-700 mb-4">
+                        <i class="fas fa-wine-bottle ml-3"></i>التخمر
+                    </h2>
+                    <p class="text-lg text-gray-600">
+                        عملية تحلل لاهوائي للمواد العضوية بواسطة الإنزيمات أو الكائنات الحية الدقيقة
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Alcoholic Fermentation -->
+                    <div class="bg-purple-50 rounded-xl p-8 process-card">
+                        <h3 class="text-2xl font-bold text-purple-800 mb-4 text-center">التخمر الكحولي</h3>
+                        
+                        <div class="bg-white rounded-lg p-6 mb-6">
+                            <div class="equation-highlight text-center text-xl font-mono mb-4">
+                                C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂ + طاقة
+                            </div>
+                            <p class="text-center text-gray-600">جلوكوز ← إيثانول + ثاني أكسيد الكربون</p>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between bg-purple-100 p-3 rounded-lg">
+                                <span class="font-semibold">الكائنات المنتجة:</span>
+                                <span>الخميرة، بعض البكتيريا</span>
+                            </div>
+                            <div class="flex items-center justify-between bg-purple-100 p-3 rounded-lg">
+                                <span class="font-semibold">المنتجات:</span>
+                                <span>الكحول الإيثيلي، CO₂</span>
+                            </div>
+                            <div class="flex items-center justify-between bg-purple-100 p-3 rounded-lg">
+                                <span class="font-semibold">التطبيقات:</span>
+                                <span>صنع الخبز، المشروبات الكحولية</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Yeast Animation -->
+                        <div class="mt-6 text-center">
+                            <div class="inline-block relative">
+                                <div class="w-16 h-16 bg-purple-400 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-microscope text-white text-2xl"></i>
+                                </div>
+                                <div class="absolute -top-2 -right-2">
+                                    <div class="w-6 h-6 bg-yellow-400 rounded-full bubble"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Lactic Acid Fermentation -->
+                    <div class="bg-green-50 rounded-xl p-8 process-card">
+                        <h3 class="text-2xl font-bold text-green-800 mb-4 text-center">تخمر حمض اللاكتيك</h3>
+                        
+                        <div class="bg-white rounded-lg p-6 mb-6">
+                            <div class="equation-highlight text-center text-xl font-mono mb-4">
+                                C₆H₁₂O₆ → 2C₃H₆O₃ + طاقة
+                            </div>
+                            <p class="text-center text-gray-600">جلوكوز ← حمض اللاكتيك</p>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between bg-green-100 p-3 rounded-lg">
+                                <span class="font-semibold">الكائنات المنتجة:</span>
+                                <span>بكتيريا حمض اللاكتيك</span>
+                            </div>
+                            <div class="flex items-center justify-between bg-green-100 p-3 rounded-lg">
+                                <span class="font-semibold">المنتجات:</span>
+                                <span>حمض اللاكتيك</span>
+                            </div>
+                            <div class="flex items-center justify-between bg-green-100 p-3 rounded-lg">
+                                <span class="font-semibold">التطبيقات:</span>
+                                <span>اللبن، الزبادي، العضلات</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Muscle Animation -->
+                        <div class="mt-6 text-center">
+                            <div class="inline-block relative">
+                                <div class="w-20 h-12 bg-red-400 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-dumbbell text-white text-2xl"></i>
+                                </div>
+                                <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                                    <div class="text-xs font-bold text-red-600">عضلة</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Comparison Table -->
+                <div class="mt-12 bg-gray-50 rounded-xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">مقارنة بين نوعي التخمر</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full max-w-4xl mx-auto">
+                            <thead>
+                                <tr class="bg-gray-200">
+                                    <th class="px-4 py-3 text-right">الميزة</th>
+                                    <th class="px-4 py-3 text-center">التخمر الكحولي</th>
+                                    <th class="px-4 py-3 text-center">تخمر حمض اللاكتيك</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b">
+                                    <td class="px-4 py-3 text-right font-semibold">المنتج الرئيسي</td>
+                                    <td class="px-4 py-3 text-center">إيثانول</td>
+                                    <td class="px-4 py-3 text-center">حمض اللاكتيك</td>
+                                </tr>
+                                <tr class="border-b bg-gray-50">
+                                    <td class="px-4 py-3 text-right font-semibold">الغاز المنبعث</td>
+                                    <td class="px-4 py-3 text-center">CO₂</td>
+                                    <td class="px-4 py-3 text-center">لا يوجد</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="px-4 py-3 text-right font-semibold">الطاقة المنتجة</td>
+                                    <td class="px-4 py-3 text-center">2 ATP</td>
+                                    <td class="px-4 py-3 text-center">2 ATP</td>
+                                </tr>
+                                <tr class="border-b bg-gray-50">
+                                    <td class="px-4 py-3 text-right font-semibold">أمثلة</td>
+                                    <td class="px-4 py-3 text-center">خبز، نبيذ</td>
+                                    <td class="px-4 py-3 text-center">لبن، زبادي</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summary Section -->
+    <section class="py-20 gradient-bg text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-8">ملخص العمليات الكيميائية</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition">
+                        <i class="fas fa-leaf text-4xl mb-3 text-green-300"></i>
+                        <h3 class="text-xl font-bold mb-2">التمثيل الضوئي</h3>
+                        <p>بناء المواد العضوية من مواد غير عضوية باستخدام الطاقة الضوئية</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition">
+                        <i class="fas fa-lungs text-4xl mb-3 text-red-300"></i>
+                        <h3 class="text-xl font-bold mb-2">التنفس الخلوي</h3>
+                        <p>تحليل المواد العضوية لإنتاج الطاقة في شكل ATP</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition">
+                        <i class="fas fa-fire text-4xl mb-3 text-orange-300"></i>
+                        <h3 class="text-xl font-bold mb-2">الاحتراق</h3>
+                        <p>تفاعل أكسدة سريع يصاحبه انطلاق حرارة وضوء</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition">
+                        <i class="fas fa-rust text-4xl mb-3 text-brown-300"></i>
+                        <h3 class="text-xl font-bold mb-2">التآكل</h3>
+                        <p>تآكل المعادن بسبب التفاعل مع البيئة المحيطة</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition">
+                        <i class="fas fa-wine-bottle text-4xl mb-3 text-purple-300"></i>
+                        <h3 class="text-xl font-bold mb-2">التخمر</h3>
+                        <p>تحلل لاهوائي للمواد العضوية لإنتاج طاقة ومنتجات مفيدة</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition">
+                        <i class="fas fa-balance-scale text-4xl mb-3 text-blue-300"></i>
+                        <h3 class="text-xl font-bold mb-2">التوازن الكيميائي</h3>
+                        <p>جميع هذه العمليات تحافظ على توازن الطبيعة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="mb-2">© 2024 العمليات الكيميائية - موقع تعليمي تفاعلي</p>
+                <p class="text-gray-400">استكشف عالم التفاعلات الكيميائية التي تشكل حياتنا والكون</p>
+                <div class="mt-4 flex justify-center space-x-reverse space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-facebook text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-twitter text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-youtube text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('hidden');
+            nav.classList.toggle('absolute');
+            nav.classList.toggle('top-full');
+            nav.classList.toggle('left-0');
+            nav.classList.toggle('right-0');
+            nav.classList.toggle('bg-blue-800');
+            nav.classList.toggle('p-4');
+            nav.classList.toggle('flex-col');
+            nav.classList.toggle('space-y-2');
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        // Interactive equation highlighting
+        document.querySelectorAll('.equation-highlight').forEach(equation => {
+            equation.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            equation.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Process card interactions
+        document.querySelectorAll('.process-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+
+        // Add tooltips for additional information
+        const tooltips = {
+            photosynthesis: 'العملية التي تقوم بها النباتات لتحويل الضوء إلى طاقة',
+            respiration: 'عملية إنتاج الطاقة في الخلايا الحية',
+            combustion: 'تفاعل كيميائي سريع مع الأكسجين',
+            corrosion: 'تآكل المعادن بسبب العوامل البيئية',
+            fermentation: 'تحلل المواد العضوية بدون أكسجين'
+        };
+
+        document.querySelectorAll('section[id]').forEach(section => {
+            const id = section.id;
+            if (tooltips[id]) {
+                section.title = tooltips[id];
+            }
+        });
+
+        // Dynamic flame intensity based on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const flames = document.querySelectorAll('.flame');
+            flames.forEach(flame => {
+                const intensity = 1 + (scrolled / 1000);
+                flame.style.filter = `brightness(${Math.min(intensity, 1.5)})`;
+            });
+        });
+    </script>
+</body>
+</html>

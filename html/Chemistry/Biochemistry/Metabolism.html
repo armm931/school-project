@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التمثيل الغذائي - عالم الأيض الخلوي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c5f2d;
+            --secondary: #4a9d4a;
+            --accent: #97bc62;
+            --light: #f0f7f0;
+            --dark: #1a3d1a;
+            --energy: #ff6b35;
+            --build: #4ecdc4;
+            --break: #ff6b6b;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            color: var(--accent);
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 95, 45, 0.9), rgba(74, 157, 74, 0.9)), url('https://images.unsplash.com/photo-1580136599404-6c5b6c6f2602?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: #7fa050;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title .divider {
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 0 auto;
+        }
+
+        /* Metabolism Overview */
+        .metabolism-overview {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .metabolism-diagram {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .process-box {
+            flex: 1;
+            min-width: 250px;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .process-box.catabolism {
+            background: linear-gradient(135deg, var(--break), #ff5252);
+        }
+
+        .process-box.energy {
+            background: linear-gradient(135deg, var(--energy), #ff8c42);
+        }
+
+        .process-box.anabolism {
+            background: linear-gradient(135deg, var(--build), #45b7aa);
+        }
+
+        .process-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .process-box i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .process-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .arrow {
+            font-size: 2rem;
+            color: var(--secondary);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Detailed Sections */
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .detail-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .detail-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            padding: 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .card-header.catabolism {
+            background: linear-gradient(135deg, var(--break), #ff5252);
+        }
+
+        .card-header.anabolism {
+            background: linear-gradient(135deg, var(--build), #45b7aa);
+        }
+
+        .card-header i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .card-body h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .feature-list li {
+            padding: 0.8rem 0;
+            padding-right: 2rem;
+            position: relative;
+            border-bottom: 1px solid #eee;
+        }
+
+        .feature-list li:before {
+            content: "\f058";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 0;
+            color: var(--accent);
+        }
+
+        /* ATP Section */
+        .atp-section {
+            background: linear-gradient(135deg, var(--light), #e8f5e9);
+            border-radius: 15px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .atp-structure {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .atp-component {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .atp-component:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .atp-component i {
+            font-size: 2.5rem;
+            color: var(--energy);
+            margin-bottom: 0.5rem;
+        }
+
+        .atp-bond {
+            font-size: 2rem;
+            color: var(--secondary);
+            animation: pulse 2s infinite;
+        }
+
+        /* Interactive Demo */
+        .demo-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .demo-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .process-btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .process-btn:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .process-btn.active {
+            background: var(--energy);
+        }
+
+        .demo-result {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .energy-flow {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .energy-flow.active {
+            display: block;
+        }
+
+        .energy-molecule {
+            font-size: 4rem;
+            margin: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Pathways Section */
+        .pathways-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .pathway-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--secondary);
+        }
+
+        .pathway-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .pathway-card i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .pathway-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .metabolism-diagram {
+                flex-direction: column;
+            }
+            
+            .arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-dna"></i>
+                <span>التمثيل الغذائي</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#overview">نظرة عامة</a></li>
+                    <li><a href="#catabolism">التقويض</a></li>
+                    <li><a href="#anabolism">البناء</a></li>
+                    <li><a href="#atp">الطاقة (ATP)</a></li>
+                    <li><a href="#pathways">المسارات</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>عالم التمثيل الغذائي</h1>
+            <p>اكتشف أسرار الأيض الخلوي وكيفية تحويل الطاقة في الكائنات الحية</p>
+            <a href="#overview" class="btn">ابدأ الاستكشاف</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Metabolism Overview -->
+            <section id="overview" class="section">
+                <div class="section-title">
+                    <h2>ما هو التمثيل الغذائي؟</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="metabolism-overview">
+                    <p>التمثيل الغذائي هو مجموعة جميع التفاعلات الكيميائية الحيوية التي تحدث في الخلايا الحية للحفاظ على الحياة. يتضمن عملية تحويل الطاقة والمواد الغذائية لبناء الأنسجة وتوليد الطاقة.</p>
+                    
+                    <div class="metabolism-diagram">
+                        <div class="process-box catabolism">
+                            <i class="fas fa-compress-alt"></i>
+                            <h3>التقويض (Catabolism)</h3>
+                            <p>تفكيك الجزيئات الكبيرة</p>
+                        </div>
+                        
+                        <div class="arrow">
+                            <i class="fas fa-arrow-left"></i>
+                        </div>
+                        
+                        <div class="process-box energy">
+                            <i class="fas fa-bolt"></i>
+                            <h3>الطاقة (ATP)</h3>
+                            <p>عملة الطاقة الخلوية</p>
+                        </div>
+                        
+                        <div class="arrow">
+                            <i class="fas fa-arrow-left"></i>
+                        </div>
+                        
+                        <div class="process-box anabolism">
+                            <i class="fas fa-expand-alt"></i>
+                            <h3>البناء (Anabolism)</h3>
+                            <p>بناء الجزيئات المعقدة</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Catabolism and Anabolism Details -->
+            <section class="section">
+                <div class="detail-grid">
+                    <!-- Catabolism Card -->
+                    <div class="detail-card" id="catabolism">
+                        <div class="card-header catabolism">
+                            <i class="fas fa-compress-alt"></i>
+                            <h3>التقويض (Catabolism)</h3>
+                        </div>
+                        <div class="card-body">
+                            <h4>المفهوم:</h4>
+                            <p>هو مجموعة التفاعلات التي تقوم بتفكيك الجزيئات الكبيرة والمعقدة إلى جزيئات أصغر وأبسط، مع إطلاق الطاقة المخزنة في الروابط الكيميائية.</p>
+                            
+                            <h4>الأمثلة:</h4>
+                            <ul class="feature-list">
+                                <li>هضم الكربوهيدرات إلى جلوكوز</li>
+                                <li>تفكيك البروتينات إلى أحماض أمينية</li>
+                                <li>تحلل الدهون إلى أحماض دهنية</li>
+                                <li>تنفس الخلية (الجلايكوليس ودورة كريبس)</li>
+                            </ul>
+                            
+                            <h4>النتائج:</h4>
+                            <p>إنتاج ATP (الطاقة)، NADH، FADH2، وثاني أكسيد الكربون والماء كنواتج نهائية.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Anabolism Card -->
+                    <div class="detail-card" id="anabolism">
+                        <div class="card-header anabolism">
+                            <i class="fas fa-expand-alt"></i>
+                            <h3>البناء (Anabolism)</h3>
+                        </div>
+                        <div class="card-body">
+                            <h4>المفهوم:</h4>
+                            <p>هو مجموعة التفاعلات التي تقوم ببناء الجزيئات المعقدة من جزيئات أبسط، مع استهلاك الطاقة لتكوين روابط كيميائية جديدة.</p>
+                            
+                            <h4>الأمثلة:</h4>
+                            <ul class="feature-list">
+                                <li>تصنيع البروتينات من أحماض أمينية</li>
+                                <li>بناء الدهون من أحماض دهنية</li>
+                                <li>تخليق الحمض النووي (DNA و RNA)</li>
+                                <li>تصنيع الجليكوجين من الجلوكوز</li>
+                            </ul>
+                            
+                            <h4>النتائج:</h4>
+                            <p>بناء الأنسجة، نمو الخلايا، تخزين الطاقة، وإصلاح الأنسجة التالفة.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ATP Section -->
+            <section id="atp" class="section">
+                <div class="section-title">
+                    <h2>ATP - عملة الطاقة الخلوية</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="atp-section">
+                    <p>الأدينوزين ثلاثي الفوسفات (ATP) هو الجزيء الرئيسي لنقل الطاقة في جميع الكائنات الحية. يعمل كـ "عملة طاقة" يمكن استخدامها مباشرة في التفاعلات الخلوية.</p>
+                    
+                    <div class="atp-structure">
+                        <div class="atp-component">
+                            <i class="fas fa-cube"></i>
+                            <h4>الأدينوزين</h4>
+                            <p>قاعدة نيتروجينية</p>
+                        </div>
+                        
+                        <div class="atp-bond">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        
+                        <div class="atp-component">
+                            <i class="fas fa-circle"></i>
+                            <h4>الريبوز</h4>
+                            <p>سكر خماسي</p>
+                        </div>
+                        
+                        <div class="atp-bond">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        
+                        <div class="atp-component">
+                            <i class="fas fa-bolt"></i>
+                            <h4>ثلاث فوسفات</h4>
+                            <p>مصدر الطاقة</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-grid" style="margin-top: 2rem;">
+                        <div class="detail-card" style="transform: none;">
+                            <div class="card-body">
+                                <h3>تحرير الطاقة</h3>
+                                <p>عند تحلل ATP إلى ADP + Pi، يتم تحرير حوالي 7.3 كيلو كالوري من الطاقة لكل مول. هذه الطاقة تستخدم في:</p>
+                                <ul class="feature-list">
+                                    <li>انقباض العضلات</li>
+                                    <li>النقل النشط عبر الأغشية</li>
+                                    <li>التفاعلات الابتنائية</li>
+                                    <li>إشارات الخلية</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-card" style="transform: none;">
+                            <div class="card-body">
+                                <h3>تجديد ATP</h3>
+                                <p>يتم تجديد ATP من خلال ثلاث طرق رئيسية:</p>
+                                <ul class="feature-list">
+                                    <li><strong>الفسفرة التأكسدية:</strong> في الميتوكوندريا (90% من ATP)</li>
+                                    <li><strong>الفسفرة على مستوى الركيزة:</strong> في الجلايكوليس ودورة كريبس</li>
+                                    <li><strong>الفسفرة اللاهوائية:</strong> في العضلات أثناء النشاط الشديد</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Demo -->
+            <section class="section">
+                <div class="section-title">
+                    <h2>تجربة تفاعلية: دورة الطاقة</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="demo-container">
+                    <p>انقر على الأزرار لمشاهدة كيفية تدفق الطاقة في عمليات التقويض والبناء</p>
+                    
+                    <div class="demo-controls">
+                        <button class="process-btn" onclick="showProcess('glucose')">هضم الجلوكوز</button>
+                        <button class="process-btn" onclick="showProcess('protein')">هضم البروتين</button>
+                        <button class="process-btn" onclick="showProcess('synthesis')">تصنيع البروتين</button>
+                        <button class="process-btn" onclick="showProcess('storage')">تخزين الطاقة</button>
+                    </div>
+                    
+                    <div class="demo-result">
+                        <div id="glucose-process" class="energy-flow">
+                            <h3>هضم الجلوكوز (التقويض)</h3>
+                            <div class="energy-molecule">C₆H₁₂O₆</div>
+                            <i class="fas fa-arrow-down" style="font-size: 2rem; color: var(--break);"></i>
+                            <div class="energy-molecule">2 ATP + 2 NADH</div>
+                            <i class="fas fa-arrow-down" style="font-size: 2rem; color: var(--break);"></i>
+                            <div class="energy-molecule">32 ATP + CO₂ + H₂O</div>
+                            <p style="margin-top: 1rem;">إجمالي الطاقة المنتجة: 36 ATP</p>
+                        </div>
+                        
+                        <div id="protein-process" class="energy-flow">
+                            <h3>هضم البروتين (التقويض)</h3>
+                            <div class="energy-molecule">البروتين</div>
+                            <i class="fas fa-arrow-down" style="font-size: 2rem; color: var(--break);"></i>
+                            <div class="energy-molecule">أحماض أمينية</div>
+                            <i class="fas fa-arrow-down" style="font-size: 2rem; color: var(--break);"></i>
+                            <div class="energy-molecule">ATP + يوريا</div>
+                            <p style="margin-top: 1rem;">الطاقة الناتجة تعتمد على نوع الأحماض الأمينية</p>
+                        </div>
+                        
+                        <div id="synthesis-process" class="energy-flow">
+                            <h3>تصنيع البروتين (البناء)</h3>
+                            <div class="energy-molecule">أحماض أمينية</div>
+                            <i class="fas fa-arrow-down" style="font-size: 2rem; color: var(--build);"></i>
+                            <div class="energy-molecule">-ATP</div>
+                            <i class="fas fa-arrow-down" style="font-size: 2rem; color: var(--build);"></i>
+                            <div class="energy-molecule">البروتين</div>
+                            <p style="margin-top: 1rem;">استهلاك 4 ATP لكل رابلة ببتيدية</p>
+                        </div>
+                        
+                        <div id="storage-process" class="energy-flow">
+                            <h3>تخزين الطاقة (البناء)</h3>
+                            <div class="energy-molecule">الجلوكوز</div>
+                            <i class="fas fa-arrow-down" style="font-size: 2rem; color: var(--build);"></i>
+                            <div class="energy-molecule">-ATP</div>
+                            <i class="fas fa-arrow-down" style="font-size: 2rem; color: var(--build);"></i>
+                            <div class="energy-molecule">الجليكوجين</div>
+                            <p style="margin-top: 1rem;">استهلاك 2 ATP لكل وحدة جلوكوز</p>
+                        </div>
+                        
+                        <div id="default-message">
+                            <i class="fas fa-hand-pointer" style="font-size: 3rem; color: var(--secondary); margin-bottom: 1rem;"></i>
+                            <p>اختر عملية من الأزرار أعلاه لمشاهدة التفاعلات الطاقية</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Metabolic Pathways -->
+            <section id="pathways" class="section">
+                <div class="section-title">
+                    <h2>المسارات الأيضية الرئيسية</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="pathways-grid">
+                    <div class="pathway-card">
+                        <i class="fas fa-fire"></i>
+                        <h4>الجلايكوليس</h4>
+                        <p>تحلل الجلوكوز إلى بيروفات في السيتوبلازم</p>
+                        <p><strong>الطاقة:</strong> 2 ATP صافي</p>
+                    </div>
+                    
+                    <div class="pathway-card">
+                        <i class="fas fa-circle-notch"></i>
+                        <h4>دورة كريبس</h4>
+                        <p>أكسدة البيروفات في الميتوكوندريا</p>
+                        <p><strong>الطاقة:</strong> 2 ATP لكل جلوكوز</p>
+                    </div>
+                    
+                    <div class="pathway-card">
+                        <i class="fas fa-bolt"></i>
+                        <h4>سلسلة نقل الإلكترون</h4>
+                        <p>إنتاج ATP من خلال التدرج البروتوني</p>
+                        <p><strong>الطاقة:</strong> 32 ATP لكل جلوكوز</p>
+                    </div>
+                    
+                    <div class="pathway-card">
+                        <i class="fas fa-dna"></i>
+                        <h4>تخليق الحمض النووي</h4>
+                        <p>بناء DNA و RNA من النيوكليوتيدات</p>
+                        <p><strong>الطاقة:</strong> استهلاك ATP</p>
+                    </div>
+                    
+                    <div class="pathway-card">
+                        <i class="fas fa-cube"></i>
+                        <h4>تخليق الجليكوجين</h4>
+                        <p>تخزين الجلوكوز الزائد في الكبد والعضلات</p>
+                        <p><strong>الطاقة:</strong> استهلاك ATP</p>
+                    </div>
+                    
+                    <div class="pathway-card">
+                        <i class="fas fa-dumbbell"></i>
+                        <h4>تخليق البروتين</h4>
+                        <p>بناء البروتينات من الأحماض الأمينية</p>
+                        <p><strong>الطاقة:</strong> استهلاك ATP</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>علم التمثيل الغذائي</h3>
+                    <p>منصة تعليمية تقدم شرحاً مفصلاً لعمليات الأيض الخلوي وتفاعلات الطاقة في الكائنات الحية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#overview">نظرة عامة</a></li>
+                        <li><a href="#catabolism">التقويض</a></li>
+                        <li><a href="#anabolism">البناء</a></li>
+                        <li><a href="#atp">الطاقة (ATP)</a></li>
+                        <li><a href="#pathways">المسارات الأيضية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>موارد تعليمية</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">دروس تفاعلية</a></li>
+                        <li><a href="#">اختبارات ذاتية</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">فيديوهات تعليمية</a></li>
+                        <li><a href="#">تمارين تطبيقية</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 موقع التمثيل الغذائي. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Interactive Demo Functions
+        function showProcess(processType) {
+            // Hide all processes
+            document.querySelectorAll('.energy-flow').forEach(flow => {
+                flow.classList.remove('active');
+            });
+            document.getElementById('default-message').style.display = 'none';
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.process-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected process
+            document.getElementById(processType + '-process').classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.detail-card, .pathway-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

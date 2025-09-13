@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكيمياء الصناعية الخضراء - نحو مستقبل مستدام</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        }
+        
+        .eco-gradient {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        
+        .sustainable-gradient {
+            background: linear-gradient(135deg, #84cc16 0%, #65a30d 100%);
+        }
+        
+        .innovation-gradient {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .leaf-animation {
+            animation: leaf-float 6s ease-in-out infinite;
+        }
+        
+        @keyframes leaf-float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(5deg); }
+            50% { transform: translateY(-20px) rotate(0deg); }
+            75% { transform: translateY(-10px) rotate(-5deg); }
+        }
+        
+        .molecule-rotate {
+            animation: molecule-rotate 20s linear infinite;
+        }
+        
+        @keyframes molecule-rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .principle-card {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .principle-card:hover {
+            border-color: #10b981;
+            transform: scale(1.02);
+        }
+        
+        .progress-fill {
+            transition: width 2s ease-out;
+        }
+        
+        .eco-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .eco-icon:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+        
+        .case-study {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .case-study.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .tech-badge {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid #10b981;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-badge:hover {
+            background: #10b981;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .carbon-footprint {
+            animation: pulse-green 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-green {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            50% { box-shadow: 0 0 0 20px rgba(16, 185, 129, 0); }
+        }
+        
+        .water-drop {
+            animation: water-drop 3s ease-in-out infinite;
+        }
+        
+        @keyframes water-drop {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-reverse space-x-4">
+                    <i class="fas fa-leaf text-3xl leaf-animation"></i>
+                    <h1 class="text-3xl font-bold">الكيمياء الصناعية الخضراء</h1>
+                </div>
+                <nav class="hidden md:flex space-x-reverse space-x-6">
+                    <a href="#principles" class="hover:text-green-200 transition">المبادئ</a>
+                    <a href="#applications" class="hover:text-green-200 transition">التطبيقات</a>
+                    <a href="#innovations" class="hover:text-green-200 transition">الابتكارات</a>
+                    <a href="#case-studies" class="hover:text-green-200 transition">دراسات الحالة</a>
+                </nav>
+                <button id="mobileMenuBtn" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-20 bg-gradient-to-br from-green-50 to-emerald-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-5xl font-bold text-gray-800 mb-6">نحو مستقبل كيميائي مستدام</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                    الكيمياء الصناعية الخضراء هي نهج مبتكر لتصميم المنتجات والعمليات الكيميائية التي تقلل أو تقضي على استخدام وتوليد المواد الخطرة
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="bg-white rounded-full px-6 py-3 shadow-md flex items-center">
+                        <i class="fas fa-recycle text-green-600 ml-2"></i>
+                        <span class="font-semibold">صديقة للبيئة</span>
+                    </div>
+                    <div class="bg-white rounded-full px-6 py-3 shadow-md flex items-center">
+                        <i class="fas fa-chart-line text-green-600 ml-2"></i>
+                        <span class="font-semibold">كفاءة عالية</span>
+                    </div>
+                    <div class="bg-white rounded-full px-6 py-3 shadow-md flex items-center">
+                        <i class="fas fa-hand-holding-heart text-green-600 ml-2"></i>
+                        <span class="font-semibold">آمنة وصحية</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Stats -->
+            <div class="grid md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                <div class="bg-white rounded-xl p-6 text-center card-hover">
+                    <i class="fas fa-globe text-4xl text-green-600 mb-3"></i>
+                    <h3 class="text-3xl font-bold text-gray-800">90%</h3>
+                    <p class="text-gray-600">تقليل النفايات</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 text-center card-hover">
+                    <i class="fas fa-tint text-4xl text-blue-600 mb-3 water-drop"></i>
+                    <h3 class="text-3xl font-bold text-gray-800">75%</h3>
+                    <p class="text-gray-600">ترشيد استهلاك المياه</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 text-center card-hover">
+                    <i class="fas fa-bolt text-4xl text-yellow-600 mb-3"></i>
+                    <h3 class="text-3xl font-bold text-gray-800">60%</h3>
+                    <p class="text-gray-600">توفير الطاقة</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 text-center card-hover">
+                    <i class="fas fa-leaf text-4xl text-green-500 mb-3 leaf-animation"></i>
+                    <h3 class="text-3xl font-bold text-gray-800">100%</h3>
+                    <p class="text-gray-600">مواد متجددة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12 Principles Section -->
+    <section id="principles" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">المبادئ الاثنا عشر للكيمياء الخضراء</h2>
+                    <p class="text-lg text-gray-600">
+                        المبادئ الأساسية التي توجه تطوير العمليات الكيميائية المستدامة
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <!-- Principle 1 -->
+                    <div class="principle-card bg-green-50 rounded-xl p-6 text-center">
+                        <div class="w-16 h-16 mx-auto bg-green-500 rounded-full flex items-center justify-center mb-4 eco-icon">
+                            <i class="fas fa-recycle text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">منع النفايات</h3>
+                        <p class="text-sm text-gray-600">من الأفضل منع النفايات من معالحتها بعد تكوينها</p>
+                    </div>
+
+                    <!-- Principle 2 -->
+                    <div class="principle-card bg-blue-50 rounded-xl p-6 text-center">
+                        <div class="w-16 h-16 mx-auto bg-blue-500 rounded-full flex items-center justify-center mb-4 eco-icon">
+                            <i class="fas fa-atom text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">الكفاءة الذرية</h3>
+                        <p class="text-sm text-gray-600">تصميم طرق تركيب تزيد من دمج جميع المواد</p>
+                    </div>
+
+                    <!-- Principle 3 -->
+                    <div class="principle-card bg-yellow-50 rounded-xl p-6 text-center">
+                        <div class="w-16 h-16 mx-auto bg-yellow-500 rounded-full flex items-center justify-center mb-4 eco-icon">
+                            <i class="fas fa-flask text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">تركيب كيميائي أقل سمية</h3>
+                        <p class="text-sm text-gray-600">تصميم تركيبات كيميائية فعالة وقليلة السمية</p>
+                    </div>
+
+                    <!-- Principle 4 -->
+                    <div class="principle-card bg-purple-50 rounded-xl p-6 text-center">
+                        <div class="w-16 h-16 mx-auto bg-purple-500 rounded-full flex items-center justify-center mb-4 eco-icon">
+                            <i class="fas fa-shield-alt text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">تصميم مواد كيميائية آمنة</h3>
+                        <p class="text-sm text-gray-600">تصميم منتجات تحافظ على الفعالية مع تقليل السمية</p>
+                    </div>
+
+                    <!-- Principle 5 -->
+                    <div class="principle-card bg-red-50 rounded-xl p-6 text-center">
+                        <div class="w-16 h-16 mx-auto bg-red-500 rounded-full flex items-center justify-center mb-4 eco-icon">
+                            <i class="fas fa-leaf text-white text-2xl"></i>
+                        </div>
+                        <3 class="font-bold text-lg mb-2">مذيبات ومساعدات آمنة</h3>
+                        <p class="text-sm text-gray-600">استخدام مواد مساعدة آمنة عند الحاجة</p>
+                    </div>
+
+                    <!-- Principle 6 -->
+                    <div class="principle-card bg-indigo-50 rounded-xl p-6 text-center">
+                        <div class="w-16 h-16 mx-auto bg-indigo-500 rounded-full flex items-center justify-center mb-4 eco-icon">
+                            <i class="fas fa-thermometer-half text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">كفاءة الطاقة</h3>
+                        <p class="text-sm text-gray-600">تصميم عمليات تقلل استهلاك الطاقة</p>
+                    </div>
+
+                    <!-- Principle 7 -->
+                    <div class="principle-card bg-pink-50 rounded-xl p-6 text-center">
+                        <div class="w-16 h-16 mx-auto bg-pink-500 rounded-full flex items-center justify-center mb-4 eco-icon">
+                            <i class="fas fa-seedling text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">مواد أولية متجددة</h3>
+                        <p class="text-sm text-gray-600">استخدام مواد أولية متجددة بدلاً من المستنفدة</p>
+                    </div>
+
+                    <!-- Principle 8 -->
+                    <div class="principle-card bg-teal-50 rounded-xl p-6 text-center">
+                        <div class="w-16 h-16 mx-auto bg-teal-500 rounded-full flex items-center justify-center mb-4 eco-icon">
+                            <i class="fas fa-vial text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">تقليل المشتقات</h3>
+                        <p class="text-sm text-gray-600">تجنب المشتقات غير الضرورية</p>
+                    </div>
+
+                    <!-- Principle 9 -->
+                    <div class="principle-card bg-orange-50 rounded-xl p-6 text-center">
+                        <div class="w-16 h-16 mx-auto bg-orange-500 rounded-full flex items-center justify-center mb-4 eco-icon">
+                            <i class="fas fa-catalyst text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">المحفزات</h3>
+                        <p class="text-sm text-gray-600">استخدام محفزات انتقائية بدلاً من المواد المتفاعلة</p>
+                    </div>
+
+                    <!-- Principle 10 -->
+                    <div class="principle-card bg-cyan-50 rounded-xl p-6 text-center">
+                        <div class="w-16 h-16 mx-auto bg-cyan-500 rounded-full flex items-center justify-center mb-4 eco-icon">
+                            <i class="fas fa-recycle text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">التصميم للتحلل</h3>
+                        <p class="text-sm text-gray-600">تصميم منتجات تتحلل بعد انتهاء عمرها الافتراضي</p>
+                    </div>
+
+                    <!-- Principle 11 -->
+                    <div class="principle-card bg-lime-50 rounded-xl p-6 text-center">
+                        <div class="w-16 h-16 mx-auto bg-lime-500 rounded-full flex items-center justify-center mb-4 eco-icon">
+                            <i class="fas fa-tachometer-alt text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">التحليل في الوقت الحقيقي</h3>
+                        <p class="text-sm text-gray-600">تطوير طرق تحليلية لمراقبة العمليات</p>
+                    </div>
+
+                    <!-- Principle 12 -->
+                    <div class="principle-card bg-rose-50 rounded-xl p-6 text-center">
+                        <div class="w-16 h-16 mx-auto bg-rose-500 rounded-full flex items-center justify-center mb-4 eco-icon">
+                            <i class="fas fa-shield-alt text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">الكيمياء الآمنة بطبيعتها</h3>
+                        <p class="text-sm text-gray-600">تصمير عمليات آمنة لتقليل مخاطر الحوادث</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">تطبيقات الكيمياء الخضراء</h2>
+                    <p class="text-lg text-gray-600">
+                        كيف تطبق مبادئ الكيمياء الخضراء في الصناعات المختلفة
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Pharmaceutical Industry -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                        <div class="eco-gradient p-6 text-white text-center">
+                            <i class="fas fa-pills text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">الصناعة الدوائية</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>تصميم أدوية أقل سمية وأكثر فعالية</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>استخدام مذيبات خضراء مثل الماء والإيثانول</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>تحسين كفاءة التركيب الذرية</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>تقليل النفايات بنسبة تصل إلى 90%</span>
+                                </li>
+                            </ul>
+                            <div class="mt-4">
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span>تقليل النفايات</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full progress-fill" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Agriculture -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                        <div class="sustainable-gradient p-6 text-white text-center">
+                            <i class="fas fa-seedling text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">الزراعة</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>أسمدة بطيئة الإطلاق لتقليل التلوث</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>مبيدات حيوية بدلاً من الكيميائية</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>استخدام النانوتكنولوجيا في الزراعة</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>تقليل استهلاك المياه بنسبة 50%</span>
+                                </li>
+                            </ul>
+                            <div class="mt-4">
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span>ترشيد المياه</span>
+                                    <span>50%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full progress-fill" style="width: 50%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Energy -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                        <div class="innovation-gradient p-6 text-white text-center">
+                            <i class="fas fa-solar-panel text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">الطاقة</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>خلايا وقود الهيدروجين الأخضر</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>بطاريات الليثيوم أيون القابلة لإعادة التدوير</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>الوقود الحيوي من المصادر المتجددة</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>زيادة كفاءة الطاقة بنسبة 70%</span>
+                                </li>
+                            </ul>
+                            <div class="mt-4">
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span>كفاءة الطاقة</span>
+                                    <span>70%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full progress-fill" style="width: 70%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Textiles -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                        <div class="bg-gradient-to-r from-purple-500 to-pink-500 p-6 text-white text-center">
+                            <i class="fas fa-tshirt text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">المنسوجات</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>صباغة بالماء بدلاً من المذيبات العضوية</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>ألياف قابلة للتحلل الحيوي</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>إعادة تدوير النسيج بنسبة 95%</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>تقليل استهلاك المياه بنسبة 80%</span>
+                                </li>
+                            </ul>
+                            <div class="mt-4">
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span>ترشيد المياه</span>
+                                    <span>80%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full progress-fill" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Plastics -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                        <div class="bg-gradient-to-r from-yellow-500 to-orange-500 p-6 text-white text-center">
+                            <i class="fas fa-recycle text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">البلاستيك</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>بلاستيك حيوي قابل للتحلل</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>استخدام مصادر نباتية بدلاً من البترول</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>إعادة تدوير متقدمة للبلاستيك</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>تقليل انبعاثات الكربون بنسبة 60%</span>
+                                </li>
+                            </ul>
+                            <div class="mt-4">
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span>تقليل الكربون</span>
+                                    <span>60%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full progress-fill" style="width: 60%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Construction -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                        <div class="bg-gradient-to-r from-gray-600 to-gray-800 p-6 text-white text-center">
+                            <i class="fas fa-building text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">البناء</h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>خرسانة ذاتية الشفاء</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>طلاءات نانوية مقاومة للتآكل</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>مواد عازلة صديقة للبيئة</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-1"></i>
+                                    <span>تقليل استهلاك الطاقة بنسبة 40%</span>
+                                </li>
+                            </ul>
+                            <div class="mt-4">
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span>ترشيد الطاقة</span>
+                                    <span>40%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full progress-fill" style="width: 40%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Innovations Section -->
+    <section id="innovations" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">الابتكارات في الكيمياء الخضراء</h2>
+                    <p class="text-lg text-gray-600">
+                        أحدث التقنيات والاكتشافات التي تحول مستقبل الصناعة الكيميائية
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Biocatalysis -->
+                    <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-8">
+                        <div class="flex items-center mb-6">
+                            <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center ml-4 molecule-rotate">
+                                <i class="fas fa-dna text-white text-3xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-800">التحفيز الحيوي</h3>
+                                <p class="text-gray-600">استخدام الإنزيمات والكائنات الحية</p>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-star text-yellow-500 ml-2 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">كفاءة عالية</h4>
+                                    <p class="text-sm text-gray-600">إنزيمات انتقائية تعمل في درجات حرارة منخفضة</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-star text-yellow-500 ml-2 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">صديقة للبيئة</h4>
+                                    <p class="text-sm text-gray-600">تعمل في الماء وتنتج نفايات قليلة</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-star text-yellow-500 ml-2 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">تطبيقات متعددة</h4>
+                                    <p class="text-sm text-gray-600">صناعة الأدوية، الوقود الحيوي، المواد الغذائية</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6 flex flex-wrap gap-2">
+                            <span class="tech-badge px-3 py-1 rounded-full text-sm">إنزيمات مهندسة</span>
+                            <span class="tech-badge px-3 py-1 rounded-full text-sm">تخمير صناعي</span>
+                            <span class="tech-badge px-3 py-1 rounded-full text-sm">كيمياء حيوية</span>
+                        </div>
+                    </div>
+
+                    <!-- Green Solvents -->
+                    <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-8">
+                        <div class="flex items-center mb-6">
+                            <div class="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center ml-4">
+                                <i class="fas fa-tint text-white text-3xl water-drop"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-800">المذيبات الخضراء</h3>
+                                <p class="text-gray-600">بدائل صديقة للبيئة</p>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-star text-yellow-500 ml-2 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">سوبرcritical CO₂</h4>
+                                    <p class="text-sm text-gray-600">ثاني أكسيد الكربون فائق الحرج كناقل فعال</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-star text-yellow-500 ml-2 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">السوائل الأيونية</h4>
+                                    <p class="text-sm text-gray-600">مذيبات غير متطايرة وقابلة لإعادة الاستخدام</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-star text-yellow-500 ml-2 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">الماء كناقل</h4>
+                                    <p class="text-sm text-gray-600">استخدام الماء في تفاعلات عضوية جديدة</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6 flex flex-wrap gap-2">
+                            <span class="tech-badge px-3 py-1 rounded-full text-sm">CO₂ فائق الحرج</span>
+                            <span class="tech-badge px-3 py-1 rounded-full text-sm">سوائل أيونية</span>
+                            <span class="tech-badge px-3 py-1 rounded-full text-sm">مذيبات حيوية</span>
+                        </div>
+                    </div>
+
+                    <!-- Nanotechnology -->
+                    <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-8">
+                        <div class="flex items-center mb-6">
+                            <div class="w-20 h-20 bg-purple-500 rounded-full flex items-center justify-center ml-4">
+                                <i class="fas fa-atom text-white text-3xl molecule-rotate"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-800">نانوتكنولوجيا خضراء</h3>
+                                <p class="text-gray-600">مواد نانوية مستدامة</p>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-star text-yellow-500 ml-2 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">محفزات نانوية</h4>
+                                    <p class="text-sm text-gray-600">مساحة سطح كبيرة تزيد من الكفاءة</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-star text-yellow-500 ml-2 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">ترشيح متقدم</h4>
+                                    <p class="text-sm text-gray-600">أغشية نانوية لتنقية المياه والهواء</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-star text-yellow-500 ml-2 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">تخزين الطاقة</h4>
+                                    <p class="text-sm text-gray-600">بطاريات وخلايا وقود نانوية</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6 flex flex-wrap gap-2">
+                            <span class="tech-badge px-3 py-1 rounded-full text-sm">جسيمات نانوية</span>
+                            <span class="tech-badge px-3 py-1 rounded-full text-sm">أغشية نانوية</span>
+                            <span class="tech-badge px-3 py-1 rounded-full text-sm">كاتاليزرات</span>
+                        </div>
+                    </div>
+
+                    <!-- Renewable Feedstocks -->
+                    <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-8">
+                        <div class="flex items-center mb-6">
+                            <div class="w-20 h-20 bg-orange-500 rounded-full flex items-center justify-center ml-4 leaf-animation">
+                                <i class="fas fa-leaf text-white text-3xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-800">المواد الأولية المتجددة</h3>
+                                <p class="text-gray-600">بدائل مستدامة للنفط</p>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-star text-yellow-500 ml-2 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">الكتلة الحيوية</h4>
+                                    <p class="text-sm text-gray-600">نباتات ومخلفات زراعية كمصادر للطاقة</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-star text-yellow-500 ml-2 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">ثاني أكسيد الكربون</h4>
+                                    <p class="text-sm text-gray-600">تحويل CO₂ إلى وقود ومواد كيميائية</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-star text-yellow-500 ml-2 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">المواد المعاد تدويرها</h4>
+                                    <p class="text-sm text-gray-600">تحويل النفايات إلى مواد قيمة</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6 flex flex-wrap gap-2">
+                            <span class="tech-badge px-3 py-1 rounded-full text-sm">كتلة حيوية</span>
+                            <span class="tech-badge px-3 py-1 rounded-full text-sm">CO₂ utilization</span>
+                            <span class="tech-badge px-3 py-1 rounded-full text-sm">اقتصاد دائري</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section id="case-studies" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">دراسات حالة ناجحة</h2>
+                    <p class="text-lg text-gray-600">
+                        أمثلة واقعية لتطبيق الكيمياء الخضراء في الصناعة
+                    </p>
+                </div>
+
+                <div class="space-y-8">
+                    <!-- Case Study 1: Ibuprofen -->
+                    <div class="case-study bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="md:flex">
+                            <div class="md:w-1/3 bg-gradient-to-br from-blue-500 to-blue-600 p-8 text-white">
+                                <i class="fas fa-pills text-5xl mb-4"></i>
+                                <h3 class="text-2xl font-bold mb-2">إيبوبروفين الأخضر</h3>
+                                <p class="text-blue-100">إعادة تصميم عملية تصنيع دواء الإيبوبروفين</p>
+                            </div>
+                            <div class="md:w-2/3 p-8">
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <h4 class="font-bold text-gray-800 mb-3">العملية التقليدية</h4>
+                                        <ul class="space-y-2 text-sm text-gray-600">
+                                            <li class="flex items-start">
+                                                <i class="fas fa-times text-red-500 ml-2 mt-0.5"></i>
+                                                <span>6 خطوات تركيب</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-times text-red-500 ml-2 mt-0.5"></i>
+                                                <span>كفاءة ذرية 40%</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-times text-red-500 ml-2 mt-0.5"></i>
+                                                <span>استخدام مذيبات كلورية</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-times text-red-500 ml-2 mt-0.5"></i>
+                                                <span>نفايات كثيرة</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800 mb-3">العملية الخضراء</h4>
+                                        <ul class="space-y-2 text-sm text-gray-600">
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check text-green-500 ml-2 mt-0.5"></i>
+                                                <span>3 خطوات تركيب فقط</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check text-green-500 ml-2 mt-0.5"></i>
+                                                <span>كفاءة ذرية 77%</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check text-green-500 ml-2 mt-0.5"></i>
+                                                <span>مذيبات غير كلورية</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check text-green-500 ml-2 mt-0.5"></i>
+                                                <span>تقليل النفايات بنسبة 99%</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="mt-6 p-4 bg-green-50 rounded-lg">
+                                    <p class="text-green-800 font-semibold">
+                                        <i class="fas fa-trophy ml-2"></i>
+                                        حازت على جائزة الرئاسية الأمريكية للكيمياء الخضراء 1997
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case Study 2: Bio-PET -->
+                    <div class="case-study bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="md:flex">
+                            <div class="md:w-1/3 bg-gradient-to-br from-green-500 to-green-600 p-8 text-white">
+                                <i class="fas fa-wine-bottle text-5xl mb-4"></i>
+                                <h3 class="text-2xl font-bold mb-2">PET حيوي</h3>
+                                <p class="text-green-100">زجاجات بلاستيكية من مصادر نباتية</p>
+                            </div>
+                            <div class="md:w-2/3 p-8">
+                                <div class="space-y-4">
+                                    <div>
+                                        <h4 class="font-bold text-gray-800 mb-2">الابتكار</h4>
+                                        <p class="text-gray-600">
+                                            تطوير عملية لإنتاج بولي إيثيلين تيريفثاليت (PET) من قصب السكر بدلاً من البترول
+                                        </p>
+                                    </div>
+                                    <div class="grid md:grid-cols-3 gap-4">
+                                        <div class="text-center p-4 bg-gray-50 rounded-lg">
+                                            <i class="fas fa-leaf text-3xl text-green-600 mb-2"></i>
+                                            <h5 class="font-semibold">مصدر متجدد</h5>
+                                            <p class="text-sm text-gray-600">30% من مصادر نباتية</p>
+                                        </div>
+                                        <div class="text-center p-4 bg-gray-50 rounded-lg">
+                                            <i class="fas fa-recycle text-3xl text-blue-600 mb-2"></i>
+                                            <h5 class="font-semibold">قابل لإعادة التدوير</h5>
+                                            <p class="text-sm text-gray-600">100% قابل للإعادة</p>
+                                        </div>
+                                        <div class="text-center p-4 bg-gray-50 rounded-lg">
+                                            <i class="fas fa-chart-line text-3xl text-purple-600 mb-2"></i>
+                                            <h5 class="font-semibold">تقليل الكربون</h5>
+                                            <p class="text-sm text-gray-600">19% أقل انبعاثات</p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h5 class="font-semibold text-gray-800 mb-2">الشركات الرائدة</h5>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="bg-gray-100 px-3 py-1 rounded-full text-sm">Coca-Cola</span>
+                                            <span class="bg-gray-100 px-3 py-1 rounded-full text-sm">PepsiCo</span>
+                                            <span class="bg-gray-100 px-3 py-1 rounded-full text-sm">Danone</span>
+                                            <span class="bg-gray-100 px-3 py-1 rounded-full text-sm">Gevo</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case Study 3: Green Cement -->
+                    <div class="case-study bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="md:flex">
+                            <div class="md:w-1/3 bg-gradient-to-br from-gray-600 to-gray-800 p-8 text-white">
+                                <i class="fas fa-building text-5xl mb-4"></i>
+                                <h3 class="text-2xl font-bold mb-2">أسمنت أخضر</h3>
+                                <p class="text-gray-300">تقليل انبعاثات صناعة الأسمنت</p>
+                            </div>
+                            <div class="md:w-2/3 p-8">
+                                <div class="space-y-4">
+                                    <div>
+                                        <h4 class="font-bold text-gray-800 mb-2">التحدي</h4>
+                                        <p class="text-gray-600">
+                                            صناعة الأسمنت مسؤولة عن 8% من انبعاثات CO₂ العالمية. الحل: تطوير أسمنت منخفض الكربون
+                                        </p>
+                                    </div>
+                                    <div class="grid md:grid-cols-2 gap-6">
+                                        <div>
+                                            <h5 class="font-semibold text-gray-800 mb-3">الحلول المبتكرة</h5>
+                                            <ul class="space-y-2 text-sm text-gray-600">
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-0.5"></i>
+                                                    <span>استخدام مواد ثانوية مثل الرماد المتطاير</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-0.5"></i>
+                                                    <span>تطوير محفزات جديدة لتقليل الطاقة</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-0.5"></i>
+                                                    <span>أسمنت جيولوجي بدرجات حرارة منخفضة</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-check-circle text-green-500 ml-2 mt-0.5"></i>
+                                                    <span>تقنية التقاط الكربون واستخدامه</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-semibold text-gray-800 mb-3">النتائج</h5>
+                                            <div class="space-y-3">
+                                                <div>
+                                                    <div class="flex justify-between text-sm mb-1">
+                                                        <span>تقليل انبعاثات CO₂</span>
+                                                        <span class="font-bold">80%</span>
+                                                    </div>
+                                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                                        <div class="bg-green-500 h-2 rounded-full" style="width: 80%"></div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="flex justify-between text-sm mb-1">
+                                                        <span>توفير الطاقة</span>
+                                                        <span class="font-bold">40%</span>
+                                                    </div>
+                                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                                        <div class="bg-blue-500 h-2 rounded-full" style="width: 40%"></div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="flex justify-between text-sm mb-1">
+                                                        <span>استخدام مواد معاد تدويرها</span>
+                                                        <span class="font-bold">95%</span>
+                                                    </div>
+                                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                                        <div class="bg-purple-500 h-2 rounded-full" style="width: 95%"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Outlook Section -->
+    <section class="py-16 bg-gradient-to-br from-green-600 to-emerald-700 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-6">مستقبل الكيمياء الخضراء</h2>
+                <p class="text-xl mb-8 text-green-100">
+                    نحو اقتصاد دائري وصناعة كيميائية مستدامة بالكامل
+                </p>
+                
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                        <i class="fas fa-globe-americas text-4xl mb-3"></i>
+                        <h3 class="text-xl font-bold mb-2">التحول العالمي</h3>
+                        <p class="text-green-100">تبني المبادئ الخضراء في جميع الصناعات الكيميائية بحلول 2050</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                        <i class="fas fa-rocket text-4xl mb-3"></i>
+                        <h3 class="text-xl font-bold mb-2">الابتكار المستمر</h3>
+                        <p class="text-green-100">تطوير تقنيات جديدة لتحقيق الاستدامة الكاملة</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                        <i class="fas fa-users text-4xl mb-3"></i>
+                        <h3 class="text-xl font-bold mb-2">التعاون الدولي</h3>
+                        <p class="text-green-100">شراكات عالمية لمواجهة تحديات المناخ</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white/20 backdrop-blur-sm rounded-xl p-8">
+                    <h3 class="text-2xl font-bold mb-4">أهداف التنمية المستدامة</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-center">
+                        <div class="bg-white/10 rounded-lg p-4">
+                            <i class="fas fa-industry text-3xl mb-2"></i>
+                            <p class="font-semibold">الصناعة والابتكار</p>
+                        </div>
+                        <div class="bg-white/10 rounded-lg p-4">
+                            <i class="fas fa-water text-3xl mb-2"></i>
+                            <p class="font-semibold">المياه النظيفة</p>
+                        </div>
+                        <div class="bg-white/10 rounded-lg p-4">
+                            <i class="fas fa-solar-panel text-3xl mb-2"></i>
+                            <p class="font-semibold">طاقة نظيفة</p>
+                        </div>
+                        <div class="bg-white/10 rounded-lg p-4">
+                            <i class="fas fa-handshake text-3xl mb-2"></i>
+                            <p class="font-semibold">شراكات عالمية</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">انضم إلى الثورة الخضراء</h2>
+                <p class="text-lg text-gray-600 mb-8">
+                    ساهم في بناء مستقبل أكثر استدامة من خلال تبني مبادئ الكيمياء الخضراء
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button class="bg-green-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-green-700 transition">
+                        <i class="fas fa-graduation-cap ml-2"></i>
+                        تعلم المزيد
+                    </button>
+                    <button class="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition">
+                        <i class="fas fa-handshake ml-2"></i>
+                        شارك في المبادرة
+                    </button>
+                    <button class="bg-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-purple-700 transition">
+                        <i class="fas fa-lightbulb ml-2"></i>
+                        قدم فكرتك
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-reverse space-x-3 mb-4">
+                        <i class="fas fa-leaf text-2xl text-green-400"></i>
+                        <h3 class="text-xl font-bold">الكيمياء الخضراء</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        نحو مستقبل كيميائي مستدام وصديق للبيئة
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">روابط سريعة</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#principles" class="hover:text-green-400 transition">المبادئ</a></li>
+                        <li><a href="#applications" class="hover:text-green-400 transition">التطبيقات</a></li>
+                        <li><a href="#innovations" class="hover:text-green-400 transition">الابتكارات</a></li>
+                        <li><a href="#case-studies" class="hover:text-green-400 transition">دراسات الحالة</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">المصادر</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-green-400 transition">الأبحاث العلمية</a></li>
+                        <li><a href="#" class="hover:text-green-400 transition">المنشورات</a></li>
+                        <li><a href="#" class="hover:text-green-400 transition">المؤتمرات</a></li>
+                        <li><a href="#" class="hover:text-green-400 transition">الشركاء</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">تابعنا</h4>
+                    <div class="flex space-x-reverse space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-green-400 transition">
+                            <i class="fab fa-facebook text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 transition">
+                            <i class="fab fa-twitter text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 transition">
+                            <i class="fab fa-linkedin text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 transition">
+                            <i class="fab fa-youtube text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-400">
+                    © 2024 الكيمياء الصناعية الخضراء. جميع الحقوق محفوظة.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('hidden');
+            nav.classList.toggle('absolute');
+            nav.classList.toggle('top-full');
+            nav.classList.toggle('left-0');
+            nav.classList.toggle('right-0');
+            nav.classList.toggle('bg-green-800');
+            nav.classList.toggle('p-4');
+            nav.classList.toggle('flex-col');
+            nav.classList.toggle('space-y-2');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    // Animate progress bars
+                    if (entry.target.classList.contains('progress-fill')) {
+                        entry.target.style.width = entry.target.style.width;
+                    }
+                    
+                    // Animate case studies
+                    if (entry.target.classList.contains('case-study')) {
+                        entry.target.classList.add('visible');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        // Animate progress bars on scroll
+        const progressBars = document.querySelectorAll('.progress-fill');
+        progressBars.forEach(bar => {
+            bar.style.width = '0%';
+            observer.observe(bar);
+        });
+
+        // Animate case studies
+        const caseStudies = document.querySelectorAll('.case-study');
+        caseStudies.forEach(study => {
+            observer.observe(study);
+        });
+
+        // Interactive principle cards
+        document.querySelectorAll('.principle-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1.02)';
+                }, 200);
+            });
+        });
+
+        // Tech badges interaction
+        document.querySelectorAll('.tech-badge').forEach(badge => {
+            badge.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px) scale(1.05)';
+            });
+            
+            badge.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.gradient-to-br.from-green-50');
+            if (parallax) {
+                parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Counter animation for stats
+        const animateValue = (element, start, end, duration) => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                element.textContent = Math.floor(progress * (end - start) + start) + '%';
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        // Trigger counter animation when stats are visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.text-3xl');
+                    statNumbers.forEach(stat => {
+                        const value = parseInt(stat.textContent);
+                        animateValue(stat, 0, value, 2000);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.grid.md\\:grid-cols-4');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+    </script>
+</body>
+</html>

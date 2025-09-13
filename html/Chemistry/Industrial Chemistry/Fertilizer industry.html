@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صناعة الأسمدة - تغذية العالم</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+        }
+        
+        .fertilizer-gradient-1 {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+        
+        .fertilizer-gradient-2 {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+        
+        .fertilizer-gradient-3 {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .plant-grow {
+            animation: plant-grow 4s ease-in-out infinite;
+        }
+        
+        @keyframes plant-grow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .chemical-flow {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: flow 3s ease-in-out forwards;
+        }
+        
+        @keyframes flow {
+            to { stroke-dashoffset: 0; }
+        }
+        
+        .reactor-pulse {
+            animation: reactor-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes reactor-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .grain-animation {
+            animation: grain-fall 3s ease-in-out infinite;
+        }
+        
+        @keyframes grain-fall {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .eco-badge {
+            animation: eco-rotate 10s linear infinite;
+        }
+        
+        @keyframes eco-rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .progress-fill {
+            transition: width 2s ease-out;
+        }
+        
+        .particle {
+            animation: particle-float 4s ease-in-out infinite;
+        }
+        
+        @keyframes particle-float {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(10px, -10px); }
+            50% { transform: translate(-10px, 10px); }
+            75% { transform: translate(5px, 5px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-reverse space-x-4">
+                    <i class="fas fa-seedling text-3xl"></i>
+                    <h1 class="text-3xl font-bold">صناعة الأسمدة</h1>
+                </div>
+                <nav class="hidden md:flex space-x-reverse space-x-6">
+                    <a href="#introduction" class="hover:text-green-200 transition">مقدمة</a>
+                    <a href="#nitrogen" class="hover:text-green-200 transition">الأسمدة النيتروجينية</a>
+                    <a href="#phosphate" class="hover:text-green-200 transition">الأسمدة الفوسفاتية</a>
+                    <a href="#potassium" class="hover:text-green-200 transition">الأسمدة البوتاسية</a>
+                    <a href="#environment" class="hover:text-green-200 transition">التأثير البيئي</a>
+                    <a href="#future" class="hover:text-green-200 transition">المستقبل</a>
+                </nav>
+                <button id="mobileMenuBtn" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 bg-gradient-to-br from-green-50 to-emerald-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">صناعة الأسمدة - أساس الأمن الغذائي العالمي</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    استكشف عالم صناعة الأسمدة وكيف تساهم في تغذية سكان العالم المتزايد
+                </p>
+            </div>
+            
+            <!-- Statistics Cards -->
+            <div class="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                    <i class="fas fa-users text-4xl text-blue-600 mb-3"></i>
+                    <h3 class="text-3xl font-bold text-gray-800">50%</h3>
+                    <p class="text-gray-600">زيادة الإنتاج الغذائي بفضل الأسمدة</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                    <i class="fas fa-globe text-4xl text-green-600 mb-3"></i>
+                    <h3 class="text-3xl font-bold text-gray-800">200</h3>
+                    <p class="text-gray-600">مليون طن سنوياً من الأسمدة النيتروجينية</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                    <i class="fas fa-industry text-4xl text-orange-600 mb-3"></i>
+                    <h3 class="text-3xl font-bold text-gray-800">50</h3>
+                    <p class="text-gray-600">مصنع رئيسي حول العالم</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                    <i class="fas fa-chart-line text-4xl text-purple-600 mb-3"></i>
+                    <h3 class="text-3xl font-bold text-gray-800">3%</h3>
+                    <p class="text-gray-600">نمو سنوي في الطلب العالمي</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="introduction" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                            <i class="fas fa-leaf text-green-600 ml-3"></i>
+                            ما هي الأسمدة؟
+                        </h2>
+                        <p class="text-gray-600 mb-4">
+                            الأسمدة هي مواد طبيعية أو صناعية تضاف إلى التربة أو النباتات لتوفير العناصر الغذائية الضرورية للنمو والتطور.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">العناصر الأساسية</h4>
+                                    <p class="text-gray-600 text-sm">النيتروجين (N)، الفوسفور (P)، البوتاسيوم (K) - NPK</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">العناصر الثانوية</h4>
+                                    <p class="text-gray-600 text-sm">الكالسيوم، المغنيسيوم، الكبريت</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 ml-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">العناصر النادرة</h4>
+                                    <p class="text-gray-600 text-sm">الحديد، الزنك، النحاس، المنجنيز</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="bg-gradient-to-br from-green-100 to-blue-100 rounded-2xl p-8">
+                            <div class="text-center">
+                                <i class="fas fa-wheat-awn text-8xl text-amber-600 plant-grow"></i>
+                            </div>
+                            <div class="mt-6 grid grid-cols-2 gap-4">
+                                <div class="bg-white/80 backdrop-blur rounded-lg p-3 text-center">
+                                    <i class="fas fa-flask text-2xl text-blue-600 mb-2"></i>
+                                    <h4 class="font-semibold text-sm">كيميائية</h4>
+                                </div>
+                                <div class="bg-white/80 backdrop-blur rounded-lg p-3 text-center">
+                                    <i class="fas fa-leaf text-2xl text-green-600 mb-2"></i>
+                                    <h4 class="font-semibold text-sm">عضوية</h4>
+                                </div>
+                                <div class="bg-white/80 backdrop-blur rounded-lg p-3 text-center">
+                                    <i class="fas fa-bacteria text-2xl text-purple-600 mb-2"></i>
+                                    <h4 class="font-semibold text-sm">حيوية</h4>
+                                </div>
+                                <div class="bg-white/80 backdrop-blur rounded-lg p-3 text-center">
+                                    <i class="fas fa-microchip text-2xl text-orange-600 mb-2"></i>
+                                    <h4 class="font-semibold text-sm">ذكية</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nitrogen Fertilizers Section -->
+    <section id="nitrogen" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">الأسمدة النيتروجينية</h2>
+                    <p class="text-lg text-gray-600">
+                        عملية هابر-بوش: ثورة في صناعة الأسمدة
+                    </p>
+                </div>
+
+                <!-- Haber-Bosch Process -->
+                <div class="bg-blue-50 rounded-xl p-8 mb-8">
+                    <h3 class="text-xl font-bold text-blue-800 mb-6 text-center">عملية هابر-بوش</h3>
+                    
+                    <div class="relative">
+                        <svg viewBox="0 0 1200 400" class="w-full h-auto">
+                            <!-- Reactor -->
+                            <g transform="translate(600, 200)">
+                                <rect x="-100" y="-80" width="200" height="160" rx="20" fill="#3b82f6" class="reactor-pulse"/>
+                                <text y="-5" text-anchor="middle" fill="white" font-weight="bold">المفاعل</text>
+                                <text y="15" text-anchor="middle" fill="white" font-size="12">محفز الحديد</text>
+                                <text y="-100" text-anchor="middle" font-size="14">N₂ + 3H₂ ⇌ 2NH₃</text>
+                            </g>
+                            
+                            <!-- Inputs -->
+                            <g transform="translate(200, 200)">
+                                <rect x="-60" y="-40" width="120" height="80" rx="10" fill="#60a5fa"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">N₂</text>
+                                <text y="-60" text-anchor="middle" font-size="12">نيتروجين</text>
+                            </g>
+                            
+                            <g transform="translate(200, 100)">
+                                <rect x="-60" y="-40" width="120" height="80" rx="10" fill="#93c5fd"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">H₂</text>
+                                <text y="-60" text-anchor="middle" font-size="12">هيدروجين</text>
+                            </g>
+                            
+                            <!-- Arrows to reactor -->
+                            <path d="M 260 200 L 500 200" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-blue)" class="chemical-flow"/>
+                            <path d="M 260 100 Q 400 100 400 150 L 500 180" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-blue)" class="chemical-flow"/>
+                            
+                            <!-- Output -->
+                            <g transform="translate(1000, 200)">
+                                <circle r="50" fill="#1e40af"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">NH₃</text>
+                                <text y="-70" text-anchor="middle" font-size="12">أمونيا</text>
+                            </g>
+                            
+                            <!-- Arrow from reactor -->
+                            <path d="M 700 200 L 950 200" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-blue)" class="chemical-flow"/>
+                            
+                            <!-- Conditions -->
+                            <text x="600" y="320" text-anchor="middle" font-size="14" fill="#6b7280">
+                                الظروف: 400-500°C, 150-300 atm
+                            </text>
+                            
+                            <!-- Arrow marker -->
+                            <defs>
+                                <marker id="arrowhead-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Nitrogen Fertilizer Types -->
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-vial text-3xl text-blue-600"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800">يوريا</h4>
+                            <p class="text-sm text-gray-600">CO(NH₂)₂</p>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• أعلى تركيز نيتروجين (46%)</li>
+                            <li>• سهلة التخزين والنقل</li>
+                            <li>• الأكثر استخداماً عالمياً</li>
+                        </ul>
+                        <div class="mt-4 bg-blue-50 rounded-lg p-3">
+                            <p class="text-xs text-blue-800">
+                                <i class="fas fa-chart-line ml-1"></i>
+                                55% من إنتاج الأسمدة النيتروجينية
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-indigo-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-cube text-3xl text-indigo-600"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800">نترات الأمونيوم</h4>
+                            <p class="text-sm text-gray-600">NH₄NO₃</p>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• تركيز نيتروجين 33-34%</li>
+                            <li>• ذوبان سريع في الماء</li>
+                            <li>• مناسب للري بالتنقيط</li>
+                        </ul>
+                        <div class="mt-4 bg-indigo-50 rounded-lg p-3">
+                            <p class="text-xs text-indigo-800">
+                                <i class="fas fa-tint ml-1"></i>
+                                ذوبان عالي في الماء
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="text-center mb-4">
+                            <div class="w-20 h-20 mx-auto bg-purple-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-snowflake text-3xl text-purple-600"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-800">كبريتات الأمونيوم</h4>
+                            <p class="text-sm text-gray-600">(NH₄)₂SO₄</p>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• تركيز نيتروجين 21%</li>
+                            <li>• يحتوي على الكبريت (24%)</li>
+                            <li>• حمضي - يناسب التربة القلوية</li>
+                        </ul>
+                        <div class="mt-4 bg-purple-50 rounded-lg p-3">
+                            <p class="text-xs text-purple-800">
+                                <i class="fas fa-leaf ml-1"></i>
+                                مصدر للكبريت أيضاً
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phosphate Fertilizers Section -->
+    <section id="phosphate" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">الأسمدة الفوسفاتية</h2>
+                    <p class="text-lg text-gray-600">
+                        تحويل صخور الفوسفات إلى أسمدة قابلة للامتصاص
+                    </p>
+                </div>
+
+                <!-- Phosphate Process -->
+                <div class="bg-amber-50 rounded-xl p-8 mb-8">
+                    <h3 class="text-xl font-bold text-amber-800 mb-6 text-center">عملية إنتاج الأسمدة الفوسفاتية</h3>
+                    
+                    <div class="relative">
+                        <svg viewBox="0 0 1200 400" class="w-full h-auto">
+                            <!-- Rock Phosphate -->
+                            <g transform="translate(150, 200)">
+                                <rect x="-60" y="-40" width="120" height="80" rx="10" fill="#f59e0b"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">صخر فوسفات</text>
+                                <text y="-60" text-anchor="middle" font-size="12">Ca₅(PO₄)₃F</text>
+                            </g>
+                            
+                            <!-- Arrow 1 -->
+                            <path d="M 210 200 L 330 200" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-amber)" class="chemical-flow"/>
+                            
+                            <!-- Grinding -->
+                            <g transform="translate(400, 200)">
+                                <circle r="40" fill="#f97316" class="reactor-pulse"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">طحن</text>
+                            </g>
+                            
+                            <!-- Arrow 2 -->
+                            <path d="M 440 200 L 560 200" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-amber)" class="chemical-flow"/>
+                            
+                            <!-- Acid Treatment -->
+                            <g transform="translate(630, 200)">
+                                <rect x="-70" y="-50" width="140" height="100" rx="10" fill="#ea580c"/>
+                                <text y="-10" text-anchor="middle" fill="white" font-weight="bold">معالجة بالحمض</text>
+                                <text y="10" text-anchor="middle" fill="white" font-size="12">H₂SO₄ أو H₃PO₄</text>
+                            </g>
+                            
+                            <!-- Arrow 3 -->
+                            <path d="M 700 200 L 820 200" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead-amber)" class="chemical-flow"/>
+                            
+                            <!-- Products -->
+                            <g transform="translate(900, 120)">
+                                <circle r="35" fill="#dc2626"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">سوبر فوسفات</text>
+                            </g>
+                            
+                            <g transform="translate(900, 280)">
+                                <circle r="35" fill="#b91c1c"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">TSP</text>
+                            </g>
+                            
+                            <!-- Arrows to products -->
+                            <path d="M 820 200 Q 860 200 860 120 L 865 120" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead-amber)" fill="none"/>
+                            <path d="M 820 200 Q 860 200 860 280 L 865 280" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead-amber)" fill="none"/>
+                            
+                            <!-- Arrow marker -->
+                            <defs>
+                                <marker id="arrowhead-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Phosphate Fertilizer Types -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-6">
+                        <h4 class="font-bold text-amber-800 mb-4">
+                            <i class="fas fa-mountain text-amber-600 ml-2"></i>
+                            الأسمدة الفوسفاتية العادية
+                        </h4>
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-lg p-4">
+                                <h5 class="font-semibold text-gray-800">سوبر فوسفات بسيط (SSP)</h5>
+                                <p class="text-sm text-gray-600 mt-1">16-22% P₂O₅</p>
+                                <p class="text-xs text-gray-500 mt-1">أرخص وأقدم نوع من الأسمدة الفوسفاتية</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <h5 class="font-semibold text-gray-800">سوبر فوسفات مزدوج (DSP)</h5>
+                                <p class="text-sm text-gray-600 mt-1">32-48% P₂O₅</p>
+                                <p class="text-xs text-gray-500 mt-1">تركيز أعلى وأقل كمية من الشوائب</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-6">
+                        <h4 class="font-bold text-orange-800 mb-4">
+                            <i class="fas fa-flask text-orange-600 ml-2"></i>
+                            الأسمدة الفوسفاتية المركزة
+                        </h4>
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-lg p-4">
+                                <h5 class="font-semibold text-gray-800">فوسفات الأمونيوم (MAP/DAP)</h5>
+                                <p class="text-sm text-gray-600 mt-1">48-62% P₂O₅ + نيتروجين</p>
+                                <p class="text-xs text-gray-500 mt-1">أسمدة NPK متوازنة</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <h5 class="font-semibold text-gray-800">فوسفات البوتاسيوم</h5>
+                                <p class="text-sm text-gray-600 mt-1">32-34% P₂O₅ + K₂O</p>
+                                <p class="text-xs text-gray-500 mt-1">مناسبة للتربة الحمضية</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Potassium Fertilizers Section -->
+    <section id="potassium" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">الأسمدة البوتاسية</h2>
+                    <p class="text-lg text-gray-600">
+                        استخراج وتجهيز أملاح البوتاسيوم من الرواسب الطبيعية
+                    </p>
+                </div>
+
+                <!-- Potassium Sources -->
+                <div class="bg-purple-50 rounded-xl p-8 mb-8">
+                    <h3 class="text-xl font-bold text-purple-800 mb-6 text-center">مصادر البوتاسيوم</h3>
+                    
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-lg p-6 text-center">
+                            <i class="fas fa-gem text-5xl text-purple-600 mb-3 grain-animation"></i>
+                            <h4 class="font-bold text-gray-800">سيلفيت</h4>
+                            <p class="text-sm text-gray-600">K₂SO₄</p>
+                            <p class="text-xs text-gray-500 mt-2">يحتوي على الكبريت - مناسب للمحاصيل الحساسة للكلوريد</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6 text-center">
+                            <i class="fas fa-cube text-5xl text-indigo-600 mb-3 grain-animation"></i>
+                            <h4 class="font-bold text-gray-800">كلوريد</h4>
+                            <p class="text-sm text-gray-600">KCl</p>
+                            <p class="text-xs text-gray-500 mt-2">الأكثر شيوعاً - 60% من إنتاج البوتاسيوم</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6 text-center">
+                            <i class="fas fa-layer-group text-5xl text-pink-600 mb-3 grain-animation"></i>
+                            <h4 class="font-bold text-gray-800">نترات</h4>
+                            <p class="text-sm text-gray-600">KNO₃</p>
+                            <p class="text-xs text-gray-500 mt-2">مصدر للنيتروجين أيضاً - ذوبان سريع</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Potassium Processing -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">مراحل معالجة البوتاسيوم</h3>
+                    
+                    <div class="relative">
+                        <div class="flex flex-wrap justify-center items-center gap-8">
+                            <!-- Mining -->
+                            <div class="text-center">
+                                <div class="w-24 h-24 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-2 reactor-pulse">
+                                    <i class="fas fa-hard-hat text-3xl text-white"></i>
+                                </div>
+                                <p class="font-semibold">التعدين</p>
+                                <p class="text-xs text-gray-600">استخراج الخام</p>
+                            </div>
+                            
+                            <i class="fas fa-arrow-left text-2xl text-gray-400"></i>
+                            
+                            <!-- Crushing -->
+                            <div class="text-center">
+                                <div class="w-24 h-24 bg-indigo-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                                    <i class="fas fa-hammer text-3xl text-white"></i>
+                                </div>
+                                <p class="font-semibold">السحق</p>
+                                <p class="text-xs text-gray-600">تقليل الحجم</p>
+                            </div>
+                            
+                            <i class="fas fa-arrow-left text-2xl text-gray-400"></i>
+                            
+                            <!-- Dissolution -->
+                            <div class="text-center">
+                                <div class="w-24 h-24 bg-pink-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                                    <i class="fas fa-tint text-3xl text-white"></i>
+                                </div>
+                                <p class="font-semibold">الذوبان</p>
+                                <p class="text-xs text-gray-600">فصل الأملاح</p>
+                            </div>
+                            
+                            <i class="fas fa-arrow-left text-2xl text-gray-400"></i>
+                            
+                            <!-- Crystallization -->
+                            <div class="text-center">
+                                <div class="w-24 h-24 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                                    <i class="fas fa-snowflake text-3xl text-white"></i>
+                                </div>
+                                <p class="font-semibold">التبلور</p>
+                                <p class="text-xs text-gray-600">الحصول على البلورات</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Environmental Impact Section -->
+    <section id="environment" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">التأثير البيئي لصناعة الأسمدة</h2>
+                    <p class="text-lg text-gray-600">
+                        التحديات والحلول لصناعة أكثر استدامة
+                    </p>
+                </div>
+
+                <!-- Environmental Challenges -->
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div class="bg-red-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-red-800 mb-4">
+                            <i class="fas fa-exclamation-triangle text-red-600 ml-2"></i>
+                            التحديات البيئية
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-red-700 mb-2">انبعاثات غازات الاحتباس الحراري</h4>
+                                <p class="text-sm text-gray-600">عملية هابر-بوش تستهلك 1-2% من الطاقة العالمية وتنتج CO₂</p>
+                                <div class="mt-2">
+                                    <div class="flex justify-between text-sm">
+                                        <span>انبعاثات CO₂</span>
+                                        <span class="font-bold text-red-600">1.8 طن/طن أمونيا</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2 mt-1">
+                                        <div class="bg-red-500 h-2 rounded-full progress-fill" style="width: 0%" data-width="90%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-red-700 mb-2">تلوث المياه</h4>
+                                <p class="text-sm text-gray-600">الترسيب الزائد يؤدي إلى تلوث المياه الجوفية والسطحية</p>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-red-700 mb-2">استنزاف الموارد</h4>
+                                <p class="text-sm text-gray-600">استهلاك الفوسفات والبوتاسيوم بمعدلات غير مستدامة</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-4">
+                            <i class="fas fa-leaf text-green-600 ml-2"></i>
+                            الحلول المستدامة
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-green-700 mb-2">كفاءة استخدام الأسمدة</h4>
+                                <p class="text-sm text-gray-600">تحسين طرق التطبيق والتوقيت لزيادة الامتصاص</p>
+                                <div class="mt-2">
+                                    <div class="flex justify-between text-sm">
+                                        <span>زيادة الكفاءة</span>
+                                        <span class="font-bold text-green-600">+40%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2 mt-1">
+                                        <div class="bg-green-500 h-2 rounded-full progress-fill" style="width: 0%" data-width="40%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-green-700 mb-2">الأسمدة الخضراء</h4>
+                                <p class="text-sm text-gray-600">تطوير أسمدة ذات تأثير بيئي أقل</p>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-green-700 mb-2">إعادة التدوير</h4>
+                                <p class="text-sm text-gray-600">استعادة العناصر الغذائية من النفايات العضوية</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="bg-blue-50 rounded-xl p-8">
+                    <h3 class="text-xl font-bold text-blue-800 mb-6 text-center">الممارسات البيئية المثلى</h3>
+                    
+                    <div class="grid md:grid-cols-4 gap-4">
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <i class="fas fa-tachometer-alt text-3xl text-blue-600 mb-2"></i>
+                            <h4 class="font-semibold text-sm">الري الدقيق</h4>
+                            <p class="text-xs text-gray-600 mt-1">تقليل الهدر وتحسين الامتصاص</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <i class="fas fa-seedling text-3xl text-green-600 mb-2"></i>
+                            <h4 class="font-semibold text-sm">التخصيص الحيوي</h4>
+                            <p class="text-xs text-gray-600 mt-1">أسمدة حسب احتياجات النبات</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <i class="fas fa-recycle text-3xl text-purple-600 mb-2"></i>
+                            <h4 class="font-semibold text-sm">التدوير المغذوي</h4>
+                            <p class="text-xs text-gray-600 mt-1">استعادة العناصر من النفايات</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-4 text-center">
+                            <i class="fas fa-microchip text-3xl text-orange-600 mb-2"></i>
+                            <h4 class="font-semibold text-sm">الأسمدة الذكية</h4>
+                            <p class="text-xs text-gray-600 mt-1">إطلاق متحكم فيه للعناصر</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Section -->
+    <section id="future" class="py-16 bg-gradient-to-br from-green-50 to-blue-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">مستقبل صناعة الأسمدة</h2>
+                    <p class="text-lg text-gray-600">
+                        ابتكارات وتقنيات جديدة نحو زراعة أكثر استدامة
+                    </p>
+                </div>
+
+                <!-- Future Technologies -->
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-gradient-to-br from-green-400 to-green-600 p-6 text-white text-center">
+                            <i class="fas fa-microscope text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">الأسمدة النانوية</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">
+                                استخدام تقنيات النانو لتحسين كفاءة امتصاص النباتات للعناصر الغذائية
+                            </p>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mt-1 ml-2"></i>
+                                    <span>زيادة الامتصاص بنسبة 70%</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mt-1 ml-2"></i>
+                                    <span>تقليل الجرعات المطلوبة</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mt-1 ml-2"></i>
+                                    <span>تحرير متحكم فيه</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-gradient-to-br from-blue-400 to-blue-600 p-6 text-white text-center">
+                            <i class="fas fa-dna text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">الأسمدة الحيوية</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">
+                                استخدام الكائنات الحية الدقيقة لتحسين خصوبة التربة وتثبيت النيتروجين
+                            </p>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-blue-500 mt-1 ml-2"></i>
+                                    <span>بكتيريا مثبتة للنيتروجين</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-blue-500 mt-1 ml-2"></i>
+                                    <span>فطريات الميكوريزا</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-blue-500 mt-1 ml-2"></i>
+                                    <span>تحسين بنية التربة</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-gradient-to-br from-purple-400 to-purple-600 p-6 text-white text-center">
+                            <i class="fas fa-robot text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">الزراعة الدقيقة</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">
+                                استخدام التكنولوجيا لتطبيق الأسمدة بدقة حسب احتياجات كل نبات
+                            </p>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-purple-500 mt-1 ml-2"></i>
+                                    <span>طائرات بدون طيار</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-purple-500 mt-1 ml-2"></i>
+                                    <span>حساسات ذكية</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-purple-500 mt-1 ml-2"></i>
+                                    <span>تحليل البيانات</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Innovation Timeline -->
+                <div class="mt-12 bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">خارطة طريق الابتكار</h3>
+                    
+                    <div class="relative">
+                        <div class="absolute top-1/2 left-0 right-0 h-1 bg-gray-300 transform -translate-y-1/2"></div>
+                        
+                        <div class="flex justify-between items-center relative">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-2 eco-badge">
+                                    <span class="text-white font-bold">2025</span>
+                                </div>
+                                <h4 class="font-semibold text-sm">الأسمدة الذكية</h4>
+                                <p class="text-xs text-gray-600">إطلاق متحكم فيه</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-2 eco-badge">
+                                    <span class="text-white font-bold">2030</span>
+                                </div>
+                                <h4 class="font-semibold text-sm">صفر انبعاثات</h4>
+                                <p class="text-xs text-gray-600">إنتاج أخضر</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-2 eco-badge">
+                                    <span class="text-white font-bold">2035</span>
+                                </div>
+                                <h4 class="font-semibold text-sm">تدوير كامل</h4>
+                                <p class="text-xs text-gray-600">اقتصاد دائري</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-2 eco-badge">
+                                    <span class="text-white font-bold">2040</span>
+                                </div>
+                                <h4 class="font-semibold text-sm">زراعة مستدامة</h4>
+                                <p class="text-xs text-gray-600">توازن مثالي</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section class="py-16 bg-gradient-to-br from-gray-800 to-gray-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-6">نحو مستقبل غذائي مستدام</h2>
+                <p class="text-lg text-gray-300 mb-8">
+                    صناعة الأسمدة تقف عند مفترق طرق بين الحاجة الملحة لتغذية العالم والمسؤولية البيئية. من خلال الابتكار والتكنولوجيا، يمكننا تحقيق التوازن بين الأمن الغذائي وحماية كوكبنا للأجيال القادمة.
+                </p>
+                
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white/10 backdrop-blur rounded-lg p-6">
+                        <i class="fas fa-globe text-4xl text-green-400 mb-3"></i>
+                        <h3 class="font-bold text-lg mb-2">الأمن الغذائي</h3>
+                        <p class="text-sm text-gray-300">تغذية 9.7 مليار شخص بحلول 2050</p>
+                    </div>
+                    
+                    <div class="bg-white/10 backdrop-blur rounded-lg p-6">
+                        <i class="fas fa-leaf text-4xl text-blue-400 mb-3"></i>
+                        <h3 class="font-bold text-lg mb-2">الاستدامة</h3>
+                        <p class="text-sm text-gray-300">حماية الموارد الطبيعية للأجيال القادمة</p>
+                    </div>
+                    
+                    <div class="bg-white/10 backdrop-blur rounded-lg p-6">
+                        <i class="fas fa-lightbulb text-4xl text-yellow-400 mb-3"></i>
+                        <h3 class="font-bold text-lg mb-2">الابتكار</h3>
+                        <p class="text-sm text-gray-300">تطوير حلول جديدة ومبتكرة</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-green-500 to-blue-500 rounded-xl p-6">
+                    <p class="text-lg font-semibold">
+                        "الأسمدة ليست مجرد منتجات كيميائية، بل هي أمل في مستقبل لا يعاني فيه أحد من الجوع"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="mb-2">© 2024 صناعة الأسمدة - موقع تعليمي تفاعلي</p>
+                <p class="text-gray-400">مكرس لنشر الوعي بأهمية الأسمدة في تحقيق الأمن الغذائي العالمي</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('hidden');
+            nav.classList.toggle('absolute');
+            nav.classList.toggle('top-full');
+            nav.classList.toggle('left-0');
+            nav.classList.toggle('right-0');
+            nav.classList.toggle('bg-green-800');
+            nav.classList.toggle('p-4');
+            nav.classList.toggle('flex-col');
+            nav.classList.toggle('space-y-2');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    // Animate progress bars
+                    if (entry.target.querySelector('.progress-fill')) {
+                        const progressBars = entry.target.querySelectorAll('.progress-fill');
+                        progressBars.forEach(bar => {
+                            const width = bar.getAttribute('data-width');
+                            setTimeout(() => {
+                                bar.style.width = width;
+                            }, 200);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        // Chemical flow animation restart on scroll
+        const chemicalFlows = document.querySelectorAll('.chemical-flow');
+        
+        const flowObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'none';
+                    setTimeout(() => {
+                        entry.target.style.animation = 'flow 3s ease-in-out forwards';
+                    }, 100);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        chemicalFlows.forEach(flow => {
+            flowObserver.observe(flow);
+        });
+
+        // Interactive reactor pulse
+        document.querySelectorAll('.reactor-pulse').forEach(reactor => {
+            reactor.addEventListener('click', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = 'reactor-pulse 2s ease-in-out infinite';
+                }, 100);
+            });
+        });
+
+        // Add particle animation to fertilizer cards
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                const particle = document.createElement('div');
+                particle.className = 'absolute w-2 h-2 bg-green-400 rounded-full particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                this.style.position = 'relative';
+                this.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 4000);
+            });
+        });
+
+        // Grain animation on scroll
+        const grains = document.querySelectorAll('.grain-animation');
+        
+        const grainObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'grain-fall 3s ease-in-out infinite';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        grains.forEach(grain => {
+            grainObserver.observe(grain);
+        });
+
+        // Eco badge rotation
+        const ecoBadges = document.querySelectorAll('.eco-badge');
+        
+        const ecoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'eco-rotate 10s linear infinite';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        ecoBadges.forEach(badge => {
+            ecoObserver.observe(badge);
+        });
+    </script>
+</body>
+</html>

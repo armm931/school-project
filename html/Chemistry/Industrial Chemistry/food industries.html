@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصناعات الغذائية - من المزرعة إلى المائدة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+        }
+        
+        .food-gradient-1 {
+            background: linear-gradient(135deg, #84cc16 0%, #65a30d 100%);
+        }
+        
+        .food-gradient-2 {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+        }
+        
+        .food-gradient-3 {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .process-flow {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: flow 3s ease-in-out forwards;
+        }
+        
+        @keyframes flow {
+            to { stroke-dashoffset: 0; }
+        }
+        
+        .ingredient-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        .conveyor-belt {
+            animation: conveyor 10s linear infinite;
+        }
+        
+        @keyframes conveyor {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .quality-check {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+        
+        .package-rotate {
+            animation: rotate 8s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .factory-smoke {
+            animation: smoke-rise 4s ease-out infinite;
+        }
+        
+        @keyframes smoke-rise {
+            0% { transform: translateY(0) scale(0.5); opacity: 0.8; }
+            100% { transform: translateY(-30px) scale(1.5); opacity: 0; }
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-reverse space-x-4">
+                    <i class="fas fa-utensils text-3xl"></i>
+                    <h1 class="text-3xl font-bold">الصناعات الغذائية</h1>
+                </div>
+                <nav class="hidden md:flex space-x-reverse space-x-6">
+                    <a href="#overview" class="hover:text-orange-200 transition">نظرة عامة</a>
+                    <a href="#types" class="hover:text-orange-200 transition">أنواع الصناعة</a>
+                    <a href="#processes" class="hover:text-orange-200 transition">العمليات</a>
+                    <a href="#quality" class="hover:text-orange-200 transition">الجودة</a>
+                    <a href="#packaging" class="hover:text-orange-200 transition">التغليف</a>
+                    <a href="#innovation" class="hover:text-orange-200 transition">الابتكار</a>
+                </nav>
+                <button id="mobileMenuBtn" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 bg-gradient-to-br from-orange-50 to-red-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">من المزرعة إلى المائدة</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    استكشف عالم الصناعات الغذائية التي توفر الغذاء الآمن والمغذي لمليارات البشر حول العالم
+                </p>
+            </div>
+            
+            <!-- Food Industry Stats -->
+            <div class="grid md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                    <i class="fas fa-globe text-4xl text-green-600 mb-3"></i>
+                    <h3 class="text-3xl font-bold text-gray-800">9 تريليون</h3>
+                    <p class="text-gray-600">قيمة السوق العالمية بالدولار</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                    <i class="fas fa-users text-4xl text-blue-600 mb-3"></i>
+                    <h3 class="text-3xl font-bold text-gray-800">28 مليون</h3>
+                    <p class="text-gray-600">عامل في القطاع عالمياً</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                    <i class="fas fa-industry text-4xl text-orange-600 mb-3"></i>
+                    <h3 class="text-3xl font-bold text-gray-800">400 ألف</h3>
+                    <p class="text-gray-600">منشأة غذائية حول العالم</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+                    <i class="fas fa-chart-line text-4xl text-purple-600 mb-3"></i>
+                    <h3 class="text-3xl font-bold text-gray-800">4.3%</h3>
+                    <p class="text-gray-600">معدل النمو السنوي</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">ما هي الصناعات الغذائية؟</h2>
+                    <p class="text-lg text-gray-600">
+                        مجموعة واسعة من الأنشطة التي تقوم بتحويل المنتجات الزراعية والحيوانية إلى أغذية صالحة للاستهلاك البشري
+                    </p>
+                </div>
+
+                <!-- Food Chain Animation -->
+                <div class="bg-green-50 rounded-xl p-8 mb-8">
+                    <h3 class="text-xl font-bold text-green-800 mb-6 text-center">سلسلة القيمة الغذائية</h3>
+                    
+                    <div class="relative">
+                        <svg viewBox="0 0 1200 300" class="w-full h-auto">
+                            <!-- Farm -->
+                            <g transform="translate(100, 150)">
+                                <rect x="-60" y="-40" width="120" height="80" rx="10" fill="#84cc16" class="ingredient-float"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">المزرعة</text>
+                                <text y="-60" text-anchor="middle" font-size="14">المواد الخام</text>
+                            </g>
+                            
+                            <!-- Arrow 1 -->
+                            <path d="M 160 150 L 280 150" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead)" class="process-flow"/>
+                            
+                            <!-- Processing -->
+                            <g transform="translate(350, 150)">
+                                <rect x="-70" y="-50" width="140" height="100" rx="10" fill="#fbbf24"/>
+                                <text y="-5" text-anchor="middle" fill="white" font-weight="bold">المعالجة</text>
+                                <text y="15" text-anchor="middle" fill="white" font-size="12">التصنيع</text>
+                                <text y="-70" text-anchor="middle" font-size="14">التحويل والتجهيز</text>
+                            </g>
+                            
+                            <!-- Arrow 2 -->
+                            <path d="M 420 150 L 540 150" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead)" class="process-flow"/>
+                            
+                            <!-- Packaging -->
+                            <g transform="translate(610, 150)">
+                                <circle r="45" fill="#f97316" class="package-rotate"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">التغليف</text>
+                                <text y="-70" text-anchor="middle" font-size="14">الحفظ والتعبئة</text>
+                            </g>
+                            
+                            <!-- Arrow 3 -->
+                            <path d="M 655 150 L 775 150" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead)" class="process-flow"/>
+                            
+                            <!-- Distribution -->
+                            <g transform="translate(850, 150)">
+                                <rect x="-60" y="-40" width="120" height="80" rx="10" fill="#3b82f6"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">التوزيع</text>
+                                <text y="-60" text-anchor="middle" font-size="14">النقل والتسويق</text>
+                            </g>
+                            
+                            <!-- Arrow 4 -->
+                            <path d="M 910 150 L 1030 150" stroke="#6b7280" stroke-width="3" marker-end="url(#arrowhead)" class="process-flow"/>
+                            
+                            <!-- Consumer -->
+                            <g transform="translate(1100, 150)">
+                                <circle r="40" fill="#ef4444"/>
+                                <text y="5" text-anchor="middle" fill="white" font-weight="bold">المستهلك</text>
+                                <text y="-60" text-anchor="middle" font-size="14">الاستهلاك</text>
+                            </g>
+                            
+                            <!-- Arrow marker -->
+                            <defs>
+                                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Key Features -->
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-orange-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-orange-800 mb-4">
+                            <i class="fas fa-shield-alt ml-2"></i>السلامة الغذائية
+                        </h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li>• تطبيق معايير HACCP</li>
+                            <li>• مراقبة الجودة في جميع المراحل</li>
+                            <li>• التتبع من المصدر إلى المستهلك</li>
+                            <li>• الامتثال للمواصفات الدولية</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-green-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-4">
+                            <i class="fas fa-leaf ml-2"></i>الاستدامة
+                        </h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li>• تقليل الهدر الغذائي</li>
+                            <li>• استخدام مصادر طاقة متجددة</li>
+                            <li>• إعادة تدوير المياه</li>
+                            <li>• تغليف صديق للبيئة</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-blue-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-4">
+                            <i class="fas fa-microscope ml-2"></i>الابتكار
+                        </h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li>• تقنيات معالجة متقدمة</li>
+                            <li>• أغذية وظيفية ومحسنة</li>
+                            <li>• أتمتة والذكاء الاصطناعي</li>
+                            <li>• بدائل نباتية وبروتينات بديلة</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Types of Food Industries Section -->
+    <section id="types" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">أنواع الصناعات الغذائية</h2>
+                    <p class="text-lg text-gray-600">
+                        تصنيف واسع يشمل العديد من القطاعات المتخصصة
+                    </p>
+                </div>
+
+                <!-- Industry Types Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Dairy Industry -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="food-gradient-1 p-6 text-white text-center">
+                            <i class="fas fa-cheese text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">صناعة الألبان</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">
+                                إنتاج الحليب والجبن والزبادي والزبدة والآيس كريم
+                            </p>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex items-center justify-between">
+                                    <span>حجم السوق:</span>
+                                    <span class="font-semibold">$836 مليار</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span>النمو السنوي:</span>
+                                    <span class="font-semibold text-green-600">+5.2%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Meat Industry -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="food-gradient-2 p-6 text-white text-center">
+                            <i class="fas fa-drumstick-bite text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">صناعة اللحوم</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">
+                                معالجة وتجهيز اللحوم الحمراء والدواجن والأسماك
+                            </p>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex items-center justify-between">
+                                    <span>حجم السوق:</span>
+                                    <span class="font-semibold">$1.3 تريليون</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span>النمو السنوي:</span>
+                                    <span class="font-semibold text-green-600">+3.8%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bakery Industry -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="food-gradient-3 p-6 text-white text-center">
+                            <i class="fas fa-bread-slice text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">صناعة المخبوزات</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">
+                                الخبز والكعك والمعجنات والبسكويت والمعكرونة
+                            </p>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex items-center justify-between">
+                                    <span>حجم السوق:</span>
+                                    <span class="font-semibold">$524 مليار</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span>النمو السنوي:</span>
+                                    <span class="font-semibold text-green-600">+4.1%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Beverage Industry -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-gradient-to-br from-blue-500 to-blue-700 p-6 text-white text-center">
+                            <i class="fas fa-glass-water text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">صناعة المشروبات</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">
+                                المشروبات الغازية والعصائر والمياه المعبأة والقهوة والشاي
+                            </p>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex items-center justify-between">
+                                    <span>حجم السوق:</span>
+                                    <span class="font-semibold">$1.5 تريليون</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span>النمو السنوي:</span>
+                                    <span class="font-semibold text-green-600">+5.5%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Canned Industry -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-gradient-to-br from-purple-500 to-purple-700 p-6 text-white text-center">
+                            <i class="fas fa-box text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">صناعة المعلبات</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">
+                                الخضروات والفواكه المعلبة والصلصات والمربيات
+                            </p>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex items-center justify-between">
+                                    <span>حجم السوق:</span>
+                                    <span class="font-semibold">$312 مليار</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span>النمو السنوي:</span>
+                                    <span class="font-semibold text-green-600">+3.2%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Snack Industry -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-gradient-to-br from-pink-500 to-pink-700 p-6 text-white text-center">
+                            <i class="fas fa-cookie text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">صناعة الوجبات الخفيفة</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">
+                                رقائق البطاطس والمكسرات والحلويات والشوكولاتة
+                            </p>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex items-center justify-between">
+                                    <span>حجم السوق:</span>
+                                    <span class="font-semibold">$685 مليار</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span>النمو السنوي:</span>
+                                    <span class="font-semibold text-green-600">+6.3%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Food Processing Section -->
+    <section id="processes" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">عمليات التصنيع الغذائي</h2>
+                    <p class="text-lg text-gray-600">
+                        التقنيات والعمليات المستخدمة لتحويل المواد الخام إلى منتجات غذائية نهائية
+                    </p>
+                </div>
+
+                <!-- Processing Methods -->
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <!-- Thermal Processing -->
+                    <div class="bg-red-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-red-800 mb-4">
+                            <i class="fas fa-fire ml-2"></i>المعالجة الحرارية
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-red-700 mb-2">البسترة</h4>
+                                <p class="text-sm text-gray-600 mb-2">تسخين عند 60-85°C لقتل البكتيريا المسببة للأمراض</p>
+                                <div class="flex items-center text-xs text-gray-500">
+                                    <i class="fas fa-check-circle ml-1 text-green-500"></i>
+                                    <span>يستخدم في: الحليب، العصائر، البيرة</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-red-700 mb-2">التعقيم</h4>
+                                <p class="text-sm text-gray-600 mb-2">تسخين عند 121°C تحت ضغط لقتل جميع الكائنات الحية</p>
+                                <div class="flex items-center text-xs text-gray-500">
+                                    <i class="fas fa-check-circle ml-1 text-green-500"></i>
+                                    <span>يستخدم في: المعلبات، الأغذية الجاهزة</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-red-700 mb-2">الطبخ والقلي</h4>
+                                <p class="text-sm text-gray-600 mb-2">تحسين النكهة والقوام وقتل الميكروبات</p>
+                                <div class="flex items-center text-xs text-gray-500">
+                                    <i class="fas fa-check-circle ml-1 text-green-500"></i>
+                                    <span>يستخدم في: الوجبات الجاهزة، الوجبات السريعة</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Non-Thermal Processing -->
+                    <div class="bg-blue-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-4">
+                            <i class="fas fa-snowflake ml-2"></i>المعالجة غير الحرارية
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-blue-700 mb-2">التبريد والتجميد</h4>
+                                <p class="text-sm text-gray-600 mb-2">إبطاء نمو الميكروبات والحفاظ على الجودة</p>
+                                <div class="flex items-center text-xs text-gray-500">
+                                    <i class="fas fa-check-circle ml-1 text-green-500"></i>
+                                    <span>يستخدم في: اللحوم، الخضروات، الآيس كريم</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-blue-700 mb-2">التجفيف</h4>
+                                <p class="text-sm text-gray-600 mb-2">إزالة الماء لمنع نمو الميكروبات</p>
+                                <div class="flex items-center text-xs text-gray-500">
+                                    <i class="fas fa-check-circle ml-1 text-green-500"></i>
+                                    <span>يستخدم في: الفواكه، الخضروات، الحليب المجفف</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-4">
+                                <h4 class="font-semibold text-blue-700 mb-2">التخمير</h4>
+                                <p class="text-sm text-gray-600 mb-2">استخدام الكائنات الحية الدقيقة لتحويل المواد</p>
+                                <div class="flex items-center text-xs text-gray-500">
+                                    <i class="fas fa-check-circle ml-1 text-green-500"></i>
+                                    <span>يستخدم في: الزبادي، الخبز، الجبن، النبيذ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Processing Technologies -->
+                <div class="bg-purple-50 rounded-xl p-8">
+                    <h3 class="text-xl font-bold text-purple-800 mb-6 text-center">تقنيات المعالجة المتقدمة</h3>
+                    
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-lg p-5 text-center">
+                            <div class="w-16 h-16 mx-auto bg-purple-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-bolt text-2xl text-purple-600"></i>
+                            </div>
+                            <h4 class="font-semibold text-purple-700 mb-2">المعالجة بالنبضات الكهربائية</h4>
+                            <p class="text-sm text-gray-600">استخدام مجالات كهربائية قصيرة لقتل الميكروبات</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-5 text-center">
+                            <div class="w-16 h-16 mx-auto bg-purple-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-compress-arrows-alt text-2xl text-purple-600"></i>
+                            </div>
+                            <h4 class="font-semibold text-purple-700 mb-2">المعالجة بالضغط العالي</h4>
+                            <p class="text-sm text-gray-600">استخدام ضغط يصل إلى 6000 بار للحفاظ على الجودة</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-5 text-center">
+                            <div class="w-16 h-16 mx-auto bg-purple-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-radiation text-2xl text-purple-600"></i>
+                            </div>
+                            <h4 class="font-semibold text-purple-700 mb-2">المعالجة بالإشعاع</h4>
+                            <p class="text-sm text-gray-600">استخدام إشعاع جاما لقتل الميكروبات وإطالة العمر الافتراضي</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quality Control Section -->
+    <section id="quality" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">مراقبة الجودة والسلامة الغذائية</h2>
+                    <p class="text-lg text-gray-600">
+                        ضمان أعلى معايير الجودة والسلامة في جميع مراحل الإنتاج
+                    </p>
+                </div>
+
+                <!-- HACCP System -->
+                <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">نظام HACCP</h3>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="text-center">
+                            <div class="w-20 h-20 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-3 quality-check">
+                                <span class="text-2xl font-bold text-green-600">1</span>
+                            </div>
+                            <h4 class="font-semibold mb-2">تحليل المخاطر</h4>
+                            <p class="text-sm text-gray-600">تحديد المخاطر البيولوجية والكيميائية والفيزيائية</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-20 h-20 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-3 quality-check">
+                                <span class="text-2xl font-bold text-blue-600">2</span>
+                            </div>
+                            <h4 class="font-semibold mb-2">نقاط التحكم</h4>
+                            <p class="text-sm text-gray-600">تحديد النقاط الحرجة التي يجب السيطرة عليها</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-20 h-20 mx-auto bg-orange-100 rounded-full flex items-center justify-center mb-3 quality-check">
+                                <span class="text-2xl font-bold text-orange-600">3</span>
+                            </div>
+                            <h4 class="font-semibold mb-2">الحدود الحرجة</h4>
+                            <p class="text-sm text-gray-600">وضع حدود لدرجات الحرارة والوقت والـ pH</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-20 h-20 mx-auto bg-purple-100 rounded-full flex items-center justify-center mb-3 quality-check">
+                                <span class="text-2xl font-bold text-purple-600">4</span>
+                            </div>
+                            <h4 class="font-semibold mb-2">المراقبة والتسجيل</h4>
+                            <p class="text-sm text-gray-600">مراقبة مستمرة وتوثيق جميع الإجراءات</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quality Assurance Methods -->
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-green-50 rounded-xl p-6">
+                        <h3 class="text-lg font-bold text-green-800 mb-4">
+                            <i class="fas fa-microscope ml-2"></i>الفحوصات الميكروبيولوجية
+                        </h3>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• عد البكتيريا الكلية</li>
+                            <li>• كشف السالمونيلا</li>
+                            <li>• كشف الإشريكية القولونية</li>
+                            <li>• اختبارات العفن والخميرة</li>
+                            <li>• اختبارات العبوات المعقمة</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-blue-50 rounded-xl p-6">
+                        <h3 class="text-lg font-bold text-blue-800 mb-4">
+                            <i class="fas fa-flask ml-2"></i>الفحوصات الكيميائية
+                        </h3>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• تحليل المكونات الغذائية</li>
+                            <li>• قياس الـ pH والحموضة</li>
+                            <li>• كشف المبيدات والمواد الكيميائية</li>
+                            <li>• اختبارات الثبات والفساد</li>
+                            <li>• تحليل المواد الحافظة</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-orange-50 rounded-xl p-6">
+                        <h3 class="text-lg font-bold text-orange-800 mb-4">
+                            <i class="fas fa-ruler-combined ml-2"></i>الفحوصات الفيزيائية
+                        </h3>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• قياس درجات الحرارة</li>
+                            <li>• اختبارات القوام والملمس</li>
+                            <li>• فحص التغليف والختم</li>
+                            <li>• قياس الوزن والحجم</li>
+                            <li>• اختبارات اللون والرائحة</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- International Standards -->
+                <div class="mt-8 bg-gray-100 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">المعايير الدولية</h3>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <div class="bg-white rounded-lg px-4 py-2 shadow-sm">
+                            <span class="font-semibold text-blue-600">ISO 22000</span>
+                        </div>
+                        <div class="bg-white rounded-lg px-4 py-2 shadow-sm">
+                            <span class="font-semibold text-green-600">FSSC 22000</span>
+                        </div>
+                        <div class="bg-white rounded-lg px-4 py-2 shadow-sm">
+                            <span class="font-semibold text-orange-600">BRCGS</span>
+                        </div>
+                        <div class="bg-white rounded-lg px-4 py-2 shadow-sm">
+                            <span class="font-semibold text-purple-600">IFS</span>
+                        </div>
+                        <div class="bg-white rounded-lg px-4 py-2 shadow-sm">
+                            <span class="font-semibold text-red-600">SQF</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Food Packaging Section -->
+    <section id="packaging" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">تغليف الأغذية</h2>
+                    <p class="text-lg text-gray-600">
+                        الحماية والحفاظ والتسويق للمنتجات الغذائية
+                    </p>
+                </div>
+
+                <!-- Packaging Animation -->
+                <div class="bg-blue-50 rounded-xl p-8 mb-8">
+                    <h3 class="text-xl font-bold text-blue-800 mb-6 text-center">أنواع التغليف الغذائي</h3>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="text-center">
+                            <div class="w-32 h-32 mx-auto bg-white rounded-lg shadow-md flex items-center justify-center mb-3 package-rotate">
+                                <i class="fas fa-box text-5xl text-blue-600"></i>
+                            </div>
+                            <h4 class="font-semibold mb-2">التغليف الصلب</h4>
+                            <p class="text-sm text-gray-600">علب معدنية، زجاج، بلاستيك صلب</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-32 h-32 mx-auto bg-white rounded-lg shadow-md flex items-center justify-center mb-3">
+                                <i class="fas fa-layer-group text-5xl text-green-600"></i>
+                            </div>
+                            <h4 class="font-semibold mb-2">التغليف المرن</h4>
+                            <p class="text-sm text-gray-600">أكياس، رقائق، مواد لاصقة</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-32 h-32 mx-auto bg-white rounded-lg shadow-md flex items-center justify-center mb-3">
+                                <i class="fas fa-cube text-5xl text-orange-600"></i>
+                            </div>
+                            <h4 class="font-semibold mb-2">التغليف شبه الصلب</h4>
+                            <p class="text-sm text-gray-600">عبوات بلاستيكية، علب كرتون</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-32 h-32 mx-auto bg-white rounded-lg shadow-md flex items-center justify-center mb-3">
+                                <i class="fas fa-recycle text-5xl text-purple-600"></i>
+                            </div>
+                            <h4 class="font-semibold mb-2">التغليف الصديق للبيئة</h4>
+                            <p class="text-sm text-gray-600">مواد قابلة للتحلل، معاد تدويرها</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Packaging Functions -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-green-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-4">
+                            <i class="fas fa-shield-alt ml-2"></i>وظائف الحماية
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 ml-2 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-green-700">الحماية الميكانيكية</h4>
+                                    <p class="text-sm text-gray-600">منع التلف أثناء النقل والتخزين</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 ml-2 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-green-700">الحاجز ضد الملوثات</h4>
+                                    <p class="text-sm text-gray-600">منع دخول الميكروبات والأكسجين والرطوبة</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 ml-2 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-green-700">الحفظ من الضوء</h4>
+                                    <p class="text-sm text-gray-600">حماية المنتجات الحساسة للضوء</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-purple-800 mb-4">
+                            <i class="fas fa-tags ml-2"></i>وظائف التسويق والمعلومات
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-600 ml-2 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-purple-700">عرض المنتج</h4>
+                                    <p class="text-sm text-gray-600">جذب انتباه المستهلك وتحفيز الشراء</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-600 ml-2 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-purple-700">المعلومات الغذائية</h4>
+                                    <p class="text-sm text-gray-600">المكونات، القيمة الغذائية، تاريخ الانتهاء</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-600 ml-2 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-purple-700">سهولة الاستخدام</h4>
+                                    <p class="text-sm text-gray-600">فتح وإغلاق سهل، ملائم للاستهلاك</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Smart Packaging -->
+                <div class="mt-8 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8">
+                    <h3 class="text-xl font-bold text-indigo-800 mb-6 text-center">التغليف الذكي</h3>
+                    
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-lg p-5 text-center">
+                            <div class="w-16 h-16 mx-auto bg-indigo-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-thermometer-half text-2xl text-indigo-600"></i>
+                            </div>
+                            <h4 class="font-semibold text-indigo-700 mb-2">مؤشرات الحرارة</h4>
+                            <p class="text-sm text-gray-600">تغير اللون عند تعرض المنتج لدرجات حرارة غير مناسبة</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-5 text-center">
+                            <div class="w-16 h-16 mx-auto bg-indigo-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-clock text-2xl text-indigo-600"></i>
+                            </div>
+                            <h4 class="font-semibold text-indigo-700 mb-2">مؤشرات النضج</h4>
+                            <p class="text-sm text-gray-600">تظهر مدى نضج الفواكه والخضروات</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-5 text-center">
+                            <div class="w-16 h-16 mx-auto bg-indigo-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-qrcode text-2xl text-indigo-600"></i>
+                            </div>
+                            <h4 class="font-semibold text-indigo-700 mb-2">الباركود الذكي</h4>
+                            <p class="text-sm text-gray-600">تتبع المنتج من المصدر إلى المستهلك</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Innovation Section -->
+    <section id="innovation" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">الابتكار في الصناعات الغذائية</h2>
+                    <p class="text-lg text-gray-600">
+                        التقنيات الحديثة والاتجاهات المستقبلية في قطاع الأغذية
+                    </p>
+                </div>
+
+                <!-- Innovation Areas -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                    <!-- Plant-Based Foods -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-gradient-to-br from-green-400 to-green-600 p-6 text-white text-center">
+                            <i class="fas fa-leaf text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">الأغذية النباتية</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">
+                                بدائل اللحوم والألبان النباتية بتقنيات متقدمة
+                            </p>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-yellow-500 ml-2"></i>
+                                    <span>بروتينات البازلاء والفول</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-yellow-500 ml-2"></i>
+                                    <span>لحوم مزرعة المختبر</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-yellow-500 ml-2"></i>
+                                    <span>ألبان نباتية مدعمة</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Functional Foods -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-gradient-to-br from-blue-400 to-blue-600 p-6 text-white text-center">
+                            <i class="fas fa-heartbeat text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">الأغذية الوظيفية</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">
+                                أغذية مخصصة لتوفير فوائد صحية إضافية
+                            </p>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-yellow-500 ml-2"></i>
+                                    <span>البروبيوتيك والبريبايوتك</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-yellow-500 ml-2"></i>
+                                    <span>الأغذية المدعمة بالفيتامينات</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-yellow-500 ml-2"></i>
+                                    <span>مضادات الأكسدة الطبيعية</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI and Automation -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="bg-gradient-to-br from-purple-400 to-purple-600 p-6 text-white text-center">
+                            <i class="fas fa-robot text-5xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">الذكاء الاصطناعي</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">
+                                استخدام الذكاء الاصطناعي في التصنيع والجودة
+                            </p>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-yellow-500 ml-2"></i>
+                                    <span>الروبوتات في خطوط الإنتاج</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-yellow-500 ml-2"></i>
+                                    <span>التنبؤ بالفساد والجودة</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-yellow-500 ml-2"></i>
+                                    <span>تحسين سلاسل الإمداد</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Future Trends -->
+                <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-8">
+                    <h3 class="text-xl font-bold text-orange-800 mb-6 text-center">اتجاهات المستقبل</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-semibold text-orange-700 mb-3">التكنولوجيا الحيوية الغذائية</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-orange-500 ml-2 mt-1"></i>
+                                    <span>هندسة البروتينات لتحسين القوام والنكهة</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-orange-500 ml-2 mt-1"></i>
+                                    <span>التخمير الدقيق لإنتاج نكهات طبيعية</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-orange-500 ml-2 mt-1"></i>
+                                    <span>الطابعات ثلاثية الأبعاد للطعام</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-orange-700 mb-3">الاستدامة والاقتصاد الدائري</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-orange-500 ml-2 mt-1"></i>
+                                    <span>تحويل النفايات الغذائية إلى منتجات قيمة</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-orange-500 ml-2"></i>
+                                    <span>تغليف قائم على المواد الحيوية</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chevron-left text-orange-500 ml-2"></i>
+                                    <span>الزراعة العمودية والزراعة المائية</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainability Section -->
+    <section class="py-16 bg-gradient-to-br from-green-600 to-green-800 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-4">الاستدامة في الصناعات الغذائية</h2>
+                <p class="text-lg mb-8">نحو مستقبل أكثر استدامة وصحة</p>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                        <i class="fas fa-tint text-5xl mb-4 text-blue-300"></i>
+                        <h3 class="text-xl font-bold mb-2">الحفاظ على المياه</h3>
+                        <p>تقليل استهلاك المياه بنسبة 40% من خلال التقنيات الحديثة وإعادة التدوير</p>
+                    </div>
+                    
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                        <i class="fas fa-solar-panel text-5xl mb-4 text-yellow-300"></i>
+                        <h3 class="text-xl font-bold mb-2">الطاقة المتجددة</h3>
+                        <p>تحويل 60% من مصادر الطاقة إلى طاقة نظيفة ومتجددة بحلول 2030</p>
+                    </div>
+                    
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                        <i class="fas fa-trash-alt text-5xl mb-4 text-red-300"></i>
+                        <h3 class="text-xl font-bold mb-2">تقليل الهدر</h3>
+                        <p>هدف خفض الهدر الغذائي بنسبة 50% وتحسين كفاءة سلسلة التوريد</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="mb-2">© 2024 الصناعات الغذائية - موقع تعليمي تفاعلي</p>
+                <p class="text-gray-400">استكشف عالم الصناعات الغذائية وتعلم عن التقنيات والابتكارات</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('hidden');
+            nav.classList.toggle('absolute');
+            nav.classList.toggle('top-full');
+            nav.classList.toggle('left-0');
+            nav.classList.toggle('right-0');
+            nav.classList.toggle('bg-orange-800');
+            nav.classList.toggle('p-4');
+            nav.classList.toggle('flex-col');
+            nav.classList.toggle('space-y-2');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        // Process flow animation restart on scroll
+        const processFlows = document.querySelectorAll('.process-flow');
+        
+        const flowObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'none';
+                    setTimeout(() => {
+                        entry.target.style.animation = 'flow 3s ease-in-out forwards';
+                    }, 100);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        processFlows.forEach(flow => {
+            flowObserver.observe(flow);
+        });
+
+        // Interactive card hover effects
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Quality check pulse effect
+        document.querySelectorAll('.quality-check').forEach(check => {
+            check.addEventListener('click', function() {
+                this.style.animation = 'pulse 0.5s ease-in-out';
+                setTimeout(() => {
+                    this.style.animation = 'pulse 2s ease-in-out infinite';
+                }, 500);
+            });
+        });
+
+        // Add tooltips for additional information
+        const tooltipData = {
+            'البسترة': 'تسمى باسم لويس باستير الذي اكتشفها عام 1864',
+            'التعقيم': 'تستخدم في المعلبات لضمان الحفاظ لفترات طويلة',
+            'التجفيف': 'أقدم طرق الحفظ المعروفة للإنسان',
+            'التخمير': 'عملية طبيعية تستخدم منذ آلاف السنين'
+        };
+
+        document.querySelectorAll('h4').forEach(heading => {
+            if (tooltipData[heading.textContent]) {
+                heading.title = tooltipData[heading.textContent];
+                heading.style.cursor = 'help';
+            }
+        });
+
+        // Dynamic counter animation for stats
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value.toLocaleString();
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Animate stats when in view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statElement = entry.target.querySelector('h3');
+                    if (statElement && statElement.textContent.includes('تريليون')) {
+                        animateValue(statElement, 0, 9000, 2000);
+                    } else if (statElement && statElement.textContent.includes('مليون')) {
+                        const value = parseInt(statElement.textContent);
+                        animateValue(statElement, 0, value, 2000);
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.card-hover').forEach(card => {
+            statsObserver.observe(card);
+        });
+    </script>
+</body>
+</html>

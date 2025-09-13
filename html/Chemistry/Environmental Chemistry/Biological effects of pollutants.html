@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التأثيرات البيولوجية للملوثات - موقع تعليمي شامل</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap');
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        /* Loading Screen */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loader-content {
+            text-align: center;
+            color: white;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fbbf24;
+            border-radius: 50%;
+            animation: float 3s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #1e3a8a, #7c3aed);
+            border-radius: 5px;
+        }
+        
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Pollutant Animation */
+        .pollutant-particle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #ef4444, #dc2626);
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: pollutant-move 10s infinite linear;
+        }
+        
+        @keyframes pollutant-move {
+            0% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(100px, -50px) scale(1.2); }
+            50% { transform: translate(-50px, -100px) scale(0.8); }
+            75% { transform: translate(-100px, 50px) scale(1.1); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+        
+        /* Timeline Styles */
+        .timeline-item {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -30px;
+            top: 30px;
+            width: 20px;
+            height: 20px;
+            background: #7c3aed;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #7c3aed;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            right: -20px;
+            top: 50px;
+            width: 2px;
+            height: calc(100% - 20px);
+            background: #e5e7eb;
+        }
+        
+        /* Counter Animation */
+        .counter {
+            transition: all 0.3s ease;
+        }
+        
+        /* Hover Effects */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Alert Animation */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .alert-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Food Chain Animation */
+        .food-chain-item {
+            transition: all 0.3s ease;
+        }
+        
+        .food-chain-item:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Quiz Styles */
+        .quiz-option {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-option:hover {
+            background-color: #f3f4f6;
+            transform: translateX(-5px);
+        }
+        
+        .quiz-option.correct {
+            background-color: #d1fae5;
+            border-color: #10b981;
+        }
+        
+        .quiz-option.incorrect {
+            background-color: #fee2e2;
+            border-color: #ef4444;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="relative w-32 h-32 mb-4">
+                <div class="particle" style="top: 20%; right: 30%; animation-delay: 0s;"></div>
+                <div class="particle" style="top: 40%; right: 60%; animation-delay: 0.5s;"></div>
+                <div class="particle" style="top: 60%; right: 20%; animation-delay: 1s;"></div>
+                <div class="particle" style="top: 80%; right: 70%; animation-delay: 1.5s;"></div>
+                <i class="fas fa-atom text-6xl text-white animate-spin"></i>
+            </div>
+            <h2 class="text-2xl font-bold">جاري تحميل المحتوى التعليمي...</h2>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 right-0 left-0 bg-white shadow-lg z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-reverse space-x-4">
+                    <i class="fas fa-atom text-3xl text-purple-600"></i>
+                    <h1 class="text-2xl font-bold text-gray-800">التأثيرات البيولوجية للملوثات</h1>
+                </div>
+                <div class="hidden md:flex space-x-reverse space-x-6">
+                    <a href="#types" class="nav-link text-gray-700 hover:text-purple-600 transition">أنواع الملوثات</a>
+                    <a href="#effects" class="nav-link text-gray-700 hover:text-purple-600 transition">التأثيرات البيولوجية</a>
+                    <a href="#food-chain" class="nav-link text-gray-700 hover:text-purple-600 transition">سلسلة الغذاء</a>
+                    <a href="#health" class="nav-link text-gray-700 hover:text-purple-600 transition">التأثيرات الصحية</a>
+                    <a href="#cases" class="nav-link text-gray-700 hover:text-purple-600 transition">دراسات حالة</a>
+                    <a href="#prevention" class="nav-link text-gray-700 hover:text-purple-600 transition">الوقاية</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-4 space-y-2">
+                <a href="#types" class="block py-2 text-gray-700 hover:text-purple-600">أنواع الملوثات</a>
+                <a href="#effects" class="block py-2 text-gray-700 hover:text-purple-600">التأثيرات البيولوجية</a>
+                <a href="#food-chain" class="block py-2 text-gray-700 hover:text-purple-600">سلسلة الغذاء</a>
+                <a href="#health" class="block py-2 text-gray-700 hover:text-purple-600">التأثيرات الصحية</a>
+                <a href="#cases" class="block py-2 text-gray-700 hover:text-purple-600">دراسات حالة</a>
+                <a href="#prevention" class="block py-2 text-gray-700 hover:text-purple-600">الوقاية</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-12 bg-gradient-to-br from-blue-900 via-purple-800 to-pink-700 text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 fade-in">
+                    فهم التأثيرات البيولوجية للملوثات
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 fade-in" style="animation-delay: 0.2s;">
+                    استكشف كيف تؤثر الملوثات على الكائنات الحية والبيئة
+                </p>
+                <div class="flex flex-wrap justify-center gap-4 fade-in" style="animation-delay: 0.4s;">
+                    <a href="#types" class="bg-white text-purple-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition transform hover:scale-105">
+                        ابدأ التعلم
+                    </a>
+                    <a href="#quiz" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-700 transition transform hover:scale-105">
+                        اختبر معرفتك
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Animated Pollutants -->
+        <div class="relative h-32 overflow-hidden">
+            <div class="pollutant-particle" style="top: 10%; right: 20%; animation-delay: 0s;"></div>
+            <div class="pollutant-particle" style="top: 30%; right: 60%; animation-delay: 2s;"></div>
+            <div class="pollutant-particle" style="top: 50%; right: 40%; animation-delay: 4s;"></div>
+            <div class="pollutant-particle" style="top: 70%; right: 80%; animation-delay: 6s;"></div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="text-center fade-in">
+                    <div class="text-4xl font-bold text-blue-600 counter" data-target="9000000">0</div>
+                    <p class="text-gray-600 mt-2">وفاة سنوية بسبب تلوث الهواء</p>
+                </div>
+                <div class="text-center fade-in" style="animation-delay: 0.1s;">
+                    <div class="text-4xl font-bold text-orange-600 counter" data-target="80">0</div>
+                    <p class="text-gray-600 mt-2">% من مياه المحيطات ملوثة</p>
+                </div>
+                <div class="text-center fade-in" style="animation-delay: 0.2s;">
+                    <div class="text-4xl font-bold text-red-600 counter" data-target="500">0</div>
+                    <p class="text-gray-600 mt-2">مليون طن من النفايات البلاستيكية</p>
+                </div>
+                <div class="text-center fade-in" style="animation-delay: 0.3s;">
+                    <div class="text-4xl font-bold text-purple-600 counter" data-target="100000">0</div>
+                    <p class="text-gray-600 mt-2">مادة كيميائية جديدة سنوياً</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Types of Pollutants Section -->
+    <section id="types" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 fade-in">أنواع الملوثات</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Chemical Pollutants -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover-lift fade-in">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-flask text-6xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">الملوثات الكيميائية</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><i class="fas fa-check text-green-500 ml-2"></i>المعادن الثقيلة (الرصاص، الزئبق)</li>
+                        <li><i class="fas fa-check text-green-500 ml-2"></i>المبيدات الحشرية</li>
+                        <li><i class="fas fa-check text-green-500 ml-2"></i>المواد البلاستيكية</li>
+                        <li><i class="fas fa-check text-green-500 ml-2"></i>المذيبات العضوية</li>
+                        <li><i class="fas fa-check text-green-500 ml-2"></i>الغازات السامة</li>
+                    </ul>
+                    <div class="mt-4 p-3 bg-blue-50 rounded-lg">
+                        <p class="text-sm text-blue-800">
+                            <strong>التأثير:</strong> تسبب تلفاً في الأعضاء، اضطرابات عصبية، وأمراض سرطانية
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Biological Pollutants -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover-lift fade-in" style="animation-delay: 0.2s;">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-bacteria text-6xl text-orange-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">الملوثات البيولوجية</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><i class="fas fa-check text-green-500 ml-2"></i>البكتيريا والفيروسات</li>
+                        <li><i class="fas fa-check text-green-500 ml-2"></i>الطفيليات</li>
+                        <li><i class="fas fa-check text-green-500 ml-2"></i>الفطريات</li>
+                        <li><i class="fas fa-check text-green-500 ml-2"></i>مسببات الحساسية</li>
+                        <li><i class="fas fa-check text-green-500 ml-2"></i>السموم البيولوجية</li>
+                    </ul>
+                    <div class="mt-4 p-3 bg-orange-50 rounded-lg">
+                        <p class="text-sm text-orange-800">
+                            <strong>التأثير:</strong> تسبب أمراضاً معدية، تفاعلات تحسسية، وتسممات غذائية
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Physical Pollutants -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover-lift fade-in" style="animation-delay: 0.4s;">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-radiation text-6xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">الملوثات الفيزيائية</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><i class="fas fa-check text-green-500 ml-2"></i>الإشعاعات المؤينة</li>
+                        <li><i class="fas fa-check text-green-500 ml-2"></i>الضوضاء</li>
+                        <li><i class="fas fa-check text-green-500 ml-2"></i>الاهتزازات</li>
+                        <li><i class="fas fa-check text-green-500 ml-2"></i>الحرارة الزائدة</li>
+                        <li><i class="fas fa-check text-green-500 ml-2"></i>الضوء الزائد</li>
+                    </ul>
+                    <div class="mt-4 p-3 bg-red-50 rounded-lg">
+                        <p class="text-sm text-red-800">
+                            <strong>التأثير:</strong> تسبب طفرات جينية، إجهاد، واضطرابات في النظام البيئي
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Biological Effects Timeline -->
+    <section id="effects" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 fade-in">التأثيرات البيولوجية</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="relative">
+                    <!-- Timeline Line -->
+                    <div class="absolute right-0 top-0 bottom-0 w-1 bg-purple-200"></div>
+                    
+                    <!-- Timeline Items -->
+                    <div class="space-y-8">
+                        <div class="timeline-item fade-in">
+                            <div class="bg-purple-50 rounded-lg p-6 ml-12">
+                                <h3 class="text-xl font-bold text-purple-800 mb-2">التعرض المباشر</h3>
+                                <p class="text-gray-700">دخول الملوثات إلى الجسم عبر الجلد، الاستنشاق، أو الابتلاع. تبدأ التفاعلات الكيميائية فوراً مع الأنسجة والخلايا.</p>
+                                <div class="mt-3 flex items-center text-purple-600">
+                                    <i class="fas fa-clock ml-2"></i>
+                                    <span class="text-sm">دقائق إلى ساعات</span>
+                                </div>
+                            </div>
+                            <div class="timeline-line"></div>
+                        </div>
+
+                        <div class="timeline-item fade-in" style="animation-delay: 0.2s;">
+                            <div class="bg-blue-50 rounded-lg p-6 ml-12">
+                                <h3 class="text-xl font-bold text-blue-800 mb-2">الامتصاص والتوزيع</h3>
+                                <p class="text-gray-700">انتشار الملوثات عبر الدم إلى مختلف أعضاء الجسم. تراكم في الأنسجة الدهنية والأعضاء الحيوية مثل الكبد والكلى.</p>
+                                <div class="mt-3 flex items-center text-blue-600">
+                                    <i class="fas fa-clock ml-2"></i>
+                                    <span class="text-sm">ساعات إلى أيام</span>
+                                </div>
+                            </div>
+                            <div class="timeline-line"></div>
+                        </div>
+
+                        <div class="timeline-item fade-in" style="animation-delay: 0.4s;">
+                            <div class="bg-orange-50 rounded-lg p-6 ml-12">
+                                <h3 class="text-xl font-bold text-orange-800 mb-2">الاستقلاب والتحول</h3>
+                                <p class="text-gray-700">تحول الملوثات في الكبد إلى مواد أكثر سمية أو أقل سمية. تكوين مركبات وسيطة قد تكون أكثر ضرراً من المادة الأصلية.</p>
+                                <div class="mt-3 flex items-center text-orange-600">
+                                    <i class="fas fa-clock ml-2"></i>
+                                    <span class="text-sm">أيام إلى أسابيع</span>
+                                </div>
+                            </div>
+                            <div class="timeline-line"></div>
+                        </div>
+
+                        <div class="timeline-item fade-in" style="animation-delay: 0.6s;">
+                            <div class="bg-red-50 rounded-lg p-6 ml-12">
+                                <h3 class="text-xl font-bold text-red-800 mb-2">التأثيرات البيولوجية</h3>
+                                <p class="text-gray-700">تلف الخلايا، اضطرابات في وظائف الأعضاء، طفرات جينية، أمراض مزمنة، وفي الحالات الشديدة الوفاة.</p>
+                                <div class="mt-3 flex items-center text-red-600">
+                                    <i class="fas fa-clock ml-2"></i>
+                                    <span class="text-sm">أسابيع إلى سنوات</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Food Chain Section -->
+    <section id="food-chain" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 fade-in">التراكم البيولوجي في سلسلة الغذاء</h2>
+            <div class="max-w-6xl mx-auto">
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
+                        <!-- Water -->
+                        <div class="text-center food-chain-item fade-in">
+                            <div class="w-24 h-24 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-water text-4xl text-blue-600"></i>
+                            </div>
+                            <p class="font-semibold">الماء</p>
+                            <p class="text-sm text-gray-600">1 جزء من المليون</p>
+                        </div>
+                        
+                        <!-- Arrow -->
+                        <div class="text-center fade-in">
+                            <i class="fas fa-arrow-left text-2xl text-gray-400"></i>
+                        </div>
+                        
+                        <!-- Plankton -->
+                        <div class="text-center food-chain-item fade-in" style="animation-delay: 0.2s;">
+                            <div class="w-24 h-24 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-seedling text-4xl text-green-600"></i>
+                            </div>
+                            <p class="font-semibold">العوالق</p>
+                            <p class="text-sm text-gray-600">10 أضعاف</p>
+                        </div>
+                        
+                        <!-- Arrow -->
+                        <div class="text-center fade-in" style="animation-delay: 0.3s;">
+                            <i class="fas fa-arrow-left text-2xl text-gray-400"></i>
+                        </div>
+                        
+                        <!-- Small Fish -->
+                        <div class="text-center food-chain-item fade-in" style="animation-delay: 0.4s;">
+                            <div class="w-24 h-24 mx-auto bg-cyan-100 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-fish text-4xl text-cyan-600"></i>
+                            </div>
+                            <p class="font-semibold">أسماك صغيرة</p>
+                            <p class="text-sm text-gray-600">100 أضعاف</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+                        <!-- Arrow -->
+                        <div class="text-center fade-in" style="animation-delay: 0.5s;">
+                            <i class="fas fa-arrow-down text-2xl text-gray-400"></i>
+                        </div>
+                        
+                        <!-- Big Fish -->
+                        <div class="text-center food-chain-item fade-in" style="animation-delay: 0.6s;">
+                            <div class="w-24 h-24 mx-auto bg-indigo-100 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-fish text-4xl text-indigo-600"></i>
+                            </div>
+                            <p class="font-semibold">أسماك كبيرة</p>
+                            <p class="text-sm text-gray-600">1000 أضعاف</p>
+                        </div>
+                        
+                        <!-- Arrow -->
+                        <div class="text-center fade-in" style="animation-delay: 0.7s;">
+                            <i class="fas fa-arrow-down text-2xl text-gray-400"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-8">
+                        <div class="inline-block food-chain-item fade-in" style="animation-delay: 0.8s;">
+                            <div class="w-24 h-24 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-user text-4xl text-red-600"></i>
+                            </div>
+                            <p class="font-semibold">الإنسان</p>
+                            <p class="text-sm text-gray-600">10000 أضعاف</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 p-4 bg-yellow-50 rounded-lg">
+                        <h4 class="font-bold text-yellow-800 mb-2">
+                            <i class="fas fa-exclamation-triangle ml-2"></i>
+                            ما هو التراكم البيولوجي؟
+                        </h4>
+                        <p class="text-yellow-700">
+                            هو عملية تراكم الملوثات في أجسام الكائنات الحية بتركيزات أعلى بكثير من تركيزها في البيئة المحيطة.
+                            كلما ارتفع الكائن في سلسلة الغذاء، زادت تركيزات الملوثات في جسمه.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Effects Section -->
+    <section id="health" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 fade-in">التأثيرات الصحية</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Acute Effects -->
+                <div class="bg-gradient-to-br from-red-50 to-orange-50 rounded-lg shadow-lg p-6 hover-lift fade-in">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-exclamation-circle text-6xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center text-red-800">التأثيرات الحادة</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><i class="fas fa-angle-left text-red-500 ml-2"></i>ضيق التنفس</li>
+                        <li><i class="fas fa-angle-left text-red-500 ml-2"></i>تهيج العين والجلد</li>
+                        <li><i class="fas fa-angle-left text-red-500 ml-2"></i>غثيان وقيء</li>
+                        <li><i class="fas fa-angle-left text-red-500 ml-2"></i>صداع شديد</li>
+                        <li><i class="fas fa-angle-left text-red-500 ml-2"></i>تشنجات وفقدان الوعي</li>
+                    </ul>
+                    <div class="mt-4 p-3 bg-white rounded-lg">
+                        <p class="text-sm text-gray-600">
+                            <strong>الوقت:</strong> تظهر خلال دقائق إلى ساعات من التعرض
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Chronic Effects -->
+                <div class="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-lg shadow-lg p-6 hover-lift fade-in" style="animation-delay: 0.2s;">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-clock text-6xl text-orange-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center text-orange-800">التأثيرات المزمنة</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><i class="fas fa-angle-left text-orange-500 ml-2"></i>أمراض الجهاز التنفسي</li>
+                        <li><i class="fas fa-angle-left text-orange-500 ml-2"></i>أمراض القلب والأوعية</li>
+                        <li><i class="fas fa-angle-left text-orange-500 ml-2"></i>تلف الكبد والكلى</li>
+                        <li><i class="fas fa-angle-left text-orange-500 ml-2"></i>اضطرابات عصبية</li>
+                        <li><i class="fas fa-angle-left text-orange-500 ml-2"></i>ضعف الجهاز المناعي</li>
+                    </ul>
+                    <div class="mt-4 p-3 bg-white rounded-lg">
+                        <p class="text-sm text-gray-600">
+                            <strong>الوقت:</strong> تتطور على مدى شهور أو سنوات
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Genetic Effects -->
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg shadow-lg p-6 hover-lift fade-in" style="animation-delay: 0.4s;">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-dna text-6xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center text-purple-800">التأثيرات الوراثية</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><i class="fas fa-angle-left text-purple-500 ml-2"></i>طفرات جينية</li>
+                        <li><i class="fas fa-angle-left text-purple-500 ml-2"></i>تشوهات خلقية</li>
+                        <li><i class="fas fa-angle-left text-purple-500 ml-2"></i>العقم</li>
+                        <li><i class="fas fa-angle-left text-purple-500 ml-2"></i>السرطان</li>
+                        <li><i class="fas fa-angle-left text-purple-500 ml-2"></i>تأثيرات على الأجيال</li>
+                    </ul>
+                    <div class="mt-4 p-3 bg-white rounded-lg">
+                        <p class="text-sm text-gray-600">
+                            <strong>الوقت:</strong> قد تظهر في الأجيال اللاحقة
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Important Alert -->
+            <div class="mt-12 bg-red-100 border-2 border-red-300 rounded-lg p-6 alert-pulse fade-in" style="animation-delay: 0.6s;">
+                <div class="flex items-start">
+                    <i class="fas fa-exclamation-triangle text-3xl text-red-600 ml-4 mt-1"></i>
+                    <div>
+                        <h4 class="text-xl font-bold text-red-800 mb-2">تنبيه هام</h4>
+                        <p class="text-red-700">
+                            بعض التأثيرات الصحية للملوثات قد لا تظهر إلا بعد سنوات طويلة من التعرض. الوقاية المبكرة وتجنب التعرض للملوثات هو أفضل طريقة لحماية صحتك وصحة أسرتك.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section id="cases" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 fade-in">دراسات حالة</h2>
+            <div class="max-w-6xl mx-auto">
+                <!-- Toggle Buttons -->
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <button class="case-btn bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition" data-case="minamata">
+                        ميناماتا
+                    </button>
+                    <button class="case-btn bg-gray-300 text-gray-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-400 transition" data-case="bhopal">
+                        بوبال
+                    </button>
+                    <button class="case-btn bg-gray-300 text-gray-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-400 transition" data-case="chernobyl">
+                        تشيرنوبل
+                    </button>
+                </div>
+
+                <!-- Case Content -->
+                <div id="case-content" class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <!-- Minamata Case -->
+                    <div id="minamata" class="case-content p-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <img src="https://picsum.photos/seed/minamata/600/400" alt="ميناماتا" class="rounded-lg shadow-md w-full">
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-bold mb-4 text-blue-800">كارثة ميناماتا</h3>
+                                <p class="text-gray-700 mb-4">
+                                    وقعت كارثة ميناماتا في اليابان بين عامي 1932-1968، حيث قامت شركة كيميائية بإطلاق ميثيل الزئبق في خليج ميناماتا.
+                                </p>
+                                <div class="space-y-3">
+                                    <div class="flex items-start">
+                                        <i class="fas fa-calendar text-blue-600 ml-3 mt-1"></i>
+                                        <div>
+                                            <strong>الزمن:</strong> 1956-1968
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fas fa-users text-blue-600 ml-3 mt-1"></i>
+                                        <div>
+                                            <strong>المتضررون:</strong> أكثر من 2000 شخص توفي، وآلاف الإصابات
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fas fa-skull text-blue-600 ml-3 mt-1"></i>
+                                        <div>
+                                            <strong>الأعراض:</strong> تشوهات عصبية، شلل، عمى، ووفيات
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fas fa-flask text-blue-600 ml-3 mt-1"></i>
+                                        <div>
+                                            <strong>الملوث:</strong> ميثيل الزئبق
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+                                    <p class="text-blue-800">
+                                        <strong>الدروس المستفادة:</strong> أهمية الرقابة الصناعية، الحاجة لمعايير بيئية صارمة، ومسؤولية الشركات عن التلوث.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bhopal Case -->
+                    <div id="bhopal" class="case-content p-8 hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <img src="https://picsum.photos/seed/bhopal/600/400" alt="بوبال" class="rounded-lg shadow-md w-full">
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-bold mb-4 text-orange-800">كارثة بوبال</h3>
+                                <p class="text-gray-700 mb-4">
+                                    في 3 ديسمبر 1984، تسرب غاز ميثيل إيزوسيانات من مصنع يونيون كاربايد في بوبال بالهند، مما أدى إلى واحدة من أسوأ الكوارث الصناعية في التاريخ.
+                                </p>
+                                <div class="space-y-3">
+                                    <div class="flex items-start">
+                                        <i class="fas fa-calendar text-orange-600 ml-3 mt-1"></i>
+                                        <div>
+                                            <strong>التاريخ:</strong> 3 ديسمبر 1984
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fas fa-users text-orange-600 ml-3 mt-1"></i>
+                                        <div>
+                                            <strong>الضحايا:</strong> 15,000-20,000 وفاة، أكثر من 500,000 إصابة
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fas fa-lungs text-orange-600 ml-3 mt-1"></i>
+                                        <div>
+                                            <strong>الأعراض:</strong> حروق في العين، مشاكل تنفسية، وفشل كلوي
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fas fa-industry text-orange-600 ml-3 mt-1"></i>
+                                        <div>
+                                            <strong>الملوث:</strong> ميثيل إيزوسيانات
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-6 p-4 bg-orange-50 rounded-lg">
+                                    <p class="text-orange-800">
+                                        <strong>الدروس المستفادة:</strong> ضرورة وجود خطط طوارئ، أهمية السلامة الصناعية، وحماية المجتمعات المحيطة بالمصانع.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chernobyl Case -->
+                    <div id="chernobyl" class="case-content p-8 hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <img src="https://picsum.photos/seed/chernobyl/600/400" alt="تشيرنوبل" class="rounded-lg shadow-md w-full">
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-bold mb-4 text-red-800">كارثة تشيرنوبل</h3>
+                                <p class="text-gray-700 mb-4">
+                                    في 26 أبريل 1986، وقع انفجار في المفاعل النووي رقم 4 في محطة تشيرنوبل للطاقة النووية في أوكرانيا، مما أدى إلى أسوأ كارثة نووية في التاريخ.
+                                </p>
+                                <div class="space-y-3">
+                                    <div class="flex items-start">
+                                        <i class="fas fa-calendar text-red-600 ml-3 mt-1"></i>
+                                        <div>
+                                            <strong>التاريخ:</strong> 26 أبريل 1986
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fas fa-users text-red-600 ml-3 mt-1"></i>
+                                        <div>
+                                            <strong>المتضررون:</strong> آلاف الوفيات المباشرة وغير المباشرة
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fas fa-radiation text-red-600 ml-3 mt-1"></i>
+                                        <div>
+                                            <strong>الأعراض:</strong> إشعاع حاد، سرطان الغدة الدرقية، تشوهات خلقية
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fas fa-atom text-red-600 ml-3 mt-1"></i>
+                                        <div>
+                                            <strong>الملوث:</strong> مواد مشعة (يود-131، سيزيوم-137)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-6 p-4 bg-red-50 rounded-lg">
+                                    <p class="text-red-800">
+                                        <strong>الدروس المستفادة:</strong> أهمية معايير السلامة النووية، الشفافية في الكوارث، والتعاون الدولي في إدارة الأزمات.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prevention Section -->
+    <section id="prevention" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 fade-in">طرق الوقاية</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Personal Prevention -->
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg shadow-lg p-6 hover-lift fade-in">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-user-shield text-5xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center text-green-800">الوقاية الشخصية</h3>
+                    <ul class="space-y-2 text-gray-700 text-sm">
+                        <li><i class="fas fa-check-circle text-green-500 ml-2"></i>استخدام أقنعة الوجه</li>
+                        <li><i class="fas fa-check-circle text-green-500 ml-2"></i>تجنب المناطق الملوثة</li>
+                        <li><i class="fas fa-check-circle text-green-500 ml-2"></i>غسل الخضاوات جيداً</li>
+                        <li><i class="fas fa-check-circle text-green-500 ml-2"></i>شرب الماء النقي</li>
+                        <li><i class="fas fa-check-circle text-green-500 ml-2"></i>التغذية السليمة</li>
+                    </ul>
+                </div>
+
+                <!-- Industrial Prevention -->
+                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg shadow-lg p-6 hover-lift fade-in" style="animation-delay: 0.1s;">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-industry text-5xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center text-blue-800">الوقاية الصناعية</h3>
+                    <ul class="space-y-2 text-gray-700 text-sm">
+                        <li><i class="fas fa-check-circle text-blue-500 ml-2"></i>معالجة النفايات</li>
+                        <li><i class="fas fa-check-circle text-blue-500 ml-2"></i>استخدام تكنولوجيا نظيفة</li>
+                        <li><i class="fas fa-check-circle text-blue-500 ml-2"></i>الرقابة البيئية</li>
+                        <li><i class="fas fa-check-circle text-blue-500 ml-2"></i>التدريب على السلامة</li>
+                        <li><i class="fas fa-check-circle text-blue-500 ml-2"></i>الالتزام بالمعايير</li>
+                    </ul>
+                </div>
+
+                <!-- Environmental Prevention -->
+                <div class="bg-gradient-to-br from-purple-50 to-violet-50 rounded-lg shadow-lg p-6 hover-lift fade-in" style="animation-delay: 0.2s;">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-leaf text-5xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center text-purple-800">الوقاية البيئية</h3>
+                    <ul class="space-y-2 text-gray-700 text-sm">
+                        <li><i class="fas fa-check-circle text-purple-500 ml-2"></i>زراعة الأشجار</li>
+                        <li><i class="fas fa-check-circle text-purple-500 ml-2"></i>حماية المصادر المائية</li>
+                        <li><i class="fas fa-check-circle text-purple-500 ml-2"></i>الحفاظ على التنوع</li>
+                        <li><i class="fas fa-check-circle text-purple-500 ml-2"></i>إعادة التدوير</li>
+                        <li><i class="fas fa-check-circle text-purple-500 ml-2"></i>تقليل الاستهلاك</li>
+                    </ul>
+                </div>
+
+                <!-- Medical Prevention -->
+                <div class="bg-gradient-to-br from-red-50 to-pink-50 rounded-lg shadow-lg p-6 hover-lift fade-in" style="animation-delay: 0.3s;">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-heartbeat text-5xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center text-red-800">الوقاية الطبية</h3>
+                    <ul class="space-y-2 text-gray-700 text-sm">
+                        <li><i class="fas fa-check-circle text-red-500 ml-2"></i>الفحوصات الدورية</li>
+                        <li><i class="fas fa-check-circle text-red-500 ml-2"></i>مراقبة المؤشرات</li>
+                        <li><i class="fas fa-check-circle text-red-500 ml-2"></i>العلاج المبكر</li>
+                        <li><i class="fas fa-check-circle text-red-500 ml-2"></i>التطعيمات</li>
+                        <li><i class="fas fa-check-circle text-red-500 ml-2"></i>التثقيف الصحي</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Quiz Section -->
+    <section id="quiz" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 fade-in">اختبر معرفتك</h2>
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <div id="quiz-container">
+                        <div class="mb-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-sm text-gray-600">السؤال <span id="current-question">1</span> من <span id="total-questions">5</span></span>
+                                <span class="text-sm text-gray-600">النقاط: <span id="score">0</span></span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div id="progress-bar" class="bg-purple-600 h-2 rounded-full transition-all duration-300" style="width: 20%"></div>
+                            </div>
+                        </div>
+                        
+                        <div id="question-container">
+                            <h3 id="question-text" class="text-xl font-bold mb-6">ما هو أكثر أنواع التلوث خطورة على صحة الإنسان؟</h3>
+                            <div class="space-y-3">
+                                <div class="quiz-option border-2 border-gray-300 rounded-lg p-4" data-answer="0">
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="radio" name="answer" class="ml-3">
+                                        <span>تلوث الهواء</span>
+                                    </label>
+                                </div>
+                                <div class="quiz-option border-2 border-gray-300 rounded-lg p-4" data-answer="1">
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="radio" name="answer" class="ml-3">
+                                        <span>تلوث الماء</span>
+                                    </label>
+                                </div>
+                                <div class="quiz-option border-2 border-gray-300 rounded-lg p-4" data-answer="2">
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="radio" name="answer" class="ml-3">
+                                        <span>تلوث التربة</span>
+                                    </label>
+                                </div>
+                                <div class="quiz-option border-2 border-gray-300 rounded-lg p-4" data-answer="3">
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="radio" name="answer" class="ml-3">
+                                        <span>جميعها خطيرة بنفس القدر</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 flex justify-between">
+                            <button id="prev-btn" class="bg-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-400 transition disabled:opacity-50" disabled>
+                                السابق
+                            </button>
+                            <button id="next-btn" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">
+                                التالي
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="quiz-result" class="hidden text-center">
+                        <i class="fas fa-trophy text-6xl text-yellow-500 mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-4">انتهى الاختبار!</h3>
+                        <p class="text-lg mb-4">نقاطك: <span id="final-score" class="font-bold text-purple-600">0</span> من <span id="max-score">5</span></p>
+                        <p id="result-message" class="text-gray-600 mb-6"></p>
+                        <button id="restart-quiz" class="bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition">
+                            إعادة الاختبار
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-gradient-to-r from-purple-600 to-pink-600 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-4 fade-in">اشترك في نشرتنا البريدية</h2>
+                <p class="text-lg mb-8 fade-in" style="animation-delay: 0.2s;">
+                    احصل على آخر المعلومات عن التلوث البيئي وطرق الوقاية
+                </p>
+                <form class="flex flex-col sm:flex-row gap-4 fade-in" style="animation-delay: 0.4s;">
+                    <input type="email" placeholder="أدخل بريدك الإلكتروني" class="flex-1 px-6 py-3 rounded-lg text-gray-800 focus:outline-none focus:ring-4 focus:ring-white/50">
+                    <button type="submit" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition transform hover:scale-105">
+                        اشترك الآن
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-reverse space-x-3 mb-4">
+                        <i class="fas fa-atom text-3xl text-purple-400"></i>
+                        <h3 class="text-xl font-bold">التأثيرات البيولوجية</h3>
+                    </div>
+                    <p class="text-gray-400">
+                        منصة تعليمية شاملة لفهم تأثيرات الملوثات على الكائنات الحية والبيئة.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">روابط سريعة</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#types" class="hover:text-white transition">أنواع الملوثات</a></li>
+                        <li><a href="#effects" class="hover:text-white transition">التأثيرات البيولوجية</a></li>
+                        <li><a href="#health" class="hover:text-white transition">التأثيرات الصحية</a></li>
+                        <li><a href="#prevention" class="hover:text-white transition">الوقاية</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">تواصل معنا</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-envelope ml-2"></i>info@pollutants-effects.org</li>
+                        <li><i class="fas fa-phone ml-2"></i>+966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt ml-2"></i>الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">تابعنا</h4>
+                    <div class="flex space-x-reverse space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition text-2xl">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition text-2xl">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition text-2xl">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition text-2xl">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 التأثيرات البيولوجية للملوثات. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 left-8 bg-purple-600 text-white w-12 h-12 rounded-full shadow-lg hover:bg-purple-700 transition transform hover:scale-110 hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('loader').style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // Fade In Animation on Scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        const counterObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const duration = 2000;
+                    const increment = target / (duration / 16);
+                    let current = 0;
+                    
+                    const updateCounter = () => {
+                        current += increment;
+                        if (current < target) {
+                            counter.textContent = Math.floor(current).toLocaleString();
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = target.toLocaleString();
+                        }
+                    };
+                    
+                    updateCounter();
+                    counterObserver.unobserve(counter);
+                }
+            });
+        }, observerOptions);
+
+        counters.forEach(counter => {
+            counterObserver.observe(counter);
+        });
+
+        // Case Studies Toggle
+        const caseButtons = document.querySelectorAll('.case-btn');
+        const caseContents = document.querySelectorAll('.case-content');
+
+        caseButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const caseName = this.getAttribute('data-case');
+                
+                // Update button styles
+                caseButtons.forEach(btn => {
+                    btn.classList.remove('bg-blue-600', 'text-white');
+                    btn.classList.add('bg-gray-300', 'text-gray-700');
+                });
+                this.classList.remove('bg-gray-300', 'text-gray-700');
+                this.classList.add('bg-blue-600', 'text-white');
+                
+                // Show corresponding content
+                caseContents.forEach(content => {
+                    content.classList.add('hidden');
+                });
+                document.getElementById(caseName).classList.remove('hidden');
+            });
+        });
+
+        // Quiz Functionality
+        const quizData = [
+            {
+                question: "ما هو أكثر أنواع التلوث خطورة على صحة الإنسان؟",
+                options: ["تلوث الهواء", "تلوث الماء", "تلوث التربة", "جميعها خطيرة بنفس القدر"],
+                correct: 3
+            },
+            {
+                question: "ماذا يسمى تراكم الملوثات في سلسلة الغذاء؟",
+                options: ["التلوث المباشر", "التراكم البيولوجي", "التلوث العرضي", "التلوث الثانوي"],
+                correct: 1
+            },
+            {
+                question: "أي المعادن الثقيلة يسبب مرض ميناماتا؟",
+                options: ["الرصاص", "الزئبق", "الزرنيخ", "الكادميوم"],
+                correct: 1
+            },
+            {
+                question: "ما هي المدة التي قد تستغرقها التأثيرات المزمنة للملوثات؟",
+                options: ["دقائق", "ساعات", "أيام", "سنوات"],
+                correct: 3
+            },
+            {
+                question: "ما هو أفضل طريقة للوقاية من تأثيرات الملوثات؟",
+                options: ["العلاج بعد التعرض", "الوقاية المبكرة", "تجاهل المشكلة", "الاعتماد على الأدوية"],
+                correct: 1
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let selectedAnswers = [];
+
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.querySelector('.quiz-option').parentElement;
+        const currentQuestionSpan = document.getElementById('current-question');
+        const scoreSpan = document.getElementById('score');
+        const progressBar = document.getElementById('progress-bar');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const quizContainer = document.getElementById('quiz-container');
+        const quizResult = document.getElementById('quiz-result');
+
+        function loadQuestion() {
+            const question = quizData[currentQuestionIndex];
+            questionText.textContent = question.question;
+            currentQuestionSpan.textContent = currentQuestionIndex + 1;
+            
+            // Clear previous options
+            optionsContainer.innerHTML = '';
+            
+            // Create new options
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'quiz-option border-2 border-gray-300 rounded-lg p-4';
+                optionDiv.setAttribute('data-answer', index);
+                
+                const label = document.createElement('label');
+                label.className = 'flex items-center cursor-pointer';
+                
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.name = 'answer';
+                input.className = 'ml-3';
+                input.value = index;
+                
+                const span = document.createElement('span');
+                span.textContent = option;
+                
+                label.appendChild(input);
+                label.appendChild(span);
+                optionDiv.appendChild(label);
+                
+                // Check if this option was previously selected
+                if (selectedAnswers[currentQuestionIndex] === index) {
+                    input.checked = true;
+                }
+                
+                // Add click event
+                optionDiv.addEventListener('click', function() {
+                    input.checked = true;
+                    selectedAnswers[currentQuestionIndex] = index;
+                });
+                
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            // Update progress bar
+            progressBar.style.width = ((currentQuestionIndex + 1) / quizData.length * 100) + '%';
+            
+            // Update buttons
+            prevBtn.disabled = currentQuestionIndex === 0;
+            nextBtn.textContent = currentQuestionIndex === quizData.length - 1 ? 'إنهاء' : 'التالي';
+        }
+
+        function showResults() {
+            quizContainer.classList.add('hidden');
+            quizResult.classList.remove('hidden');
+            
+            document.getElementById('final-score').textContent = score;
+            document.getElementById('max-score').textContent = quizData.length;
+            
+            let message = '';
+            if (score === quizData.length) {
+                message = 'ممتاز! لديك معرفة ممتازة عن التأثيرات البيولوجية للملوثات.';
+            } else if (score >= quizData.length * 0.7) {
+                message = 'جيد جداً! معلوماتك قوية ولكن هناك مجال للتحسين.';
+            } else if (score >= quizData.length * 0.5) {
+                message = 'جيد! حاول مراجعة المزيد من المعلومات لتحسين معرفتك.';
+            } else {
+                message = 'تحتاج إلى المزيد من التعلم. قم بمراجعة المحتوى التعليمي مرة أخرى.';
+            }
+            
+            document.getElementById('result-message').textContent = message;
+        }
+
+        nextBtn.addEventListener('click', function() {
+            const selectedOption = document.querySelector('input[name="answer"]:checked');
+            if (!selectedOption) {
+                alert('الرجاء اختيار إجابة');
+                return;
+            }
+            
+            const answerIndex = parseInt(selectedOption.value);
+            selectedAnswers[currentQuestionIndex] = answerIndex;
+            
+            // Check if answer is correct
+            if (answerIndex === quizData[currentQuestionIndex].correct) {
+                score++;
+                scoreSpan.textContent = score;
+            }
+            
+            if (currentQuestionIndex < quizData.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        });
+
+        prevBtn.addEventListener('click', function() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        });
+
+        document.getElementById('restart-quiz').addEventListener('click', function() {
+            currentQuestionIndex = 0;
+            score = 0;
+            selectedAnswers = [];
+            scoreSpan.textContent = '0';
+            quizContainer.classList.remove('hidden');
+            quizResult.classList.add('hidden');
+            loadQuestion();
+        });
+
+        // Initialize quiz
+        loadQuestion();
+
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.remove('hidden');
+            } else {
+                backToTopBtn.classList.add('hidden');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Newsletter Form
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            if (email) {
+                alert('شكراً لاشتراكك! ستصلك نشرتنا البريدية قريباً.');
+                this.reset();
+            }
+        });
+
+        // Add more animated particles on scroll
+        let particleCount = 0;
+        window.addEventListener('scroll', function() {
+            if (particleCount < 20 && Math.random() > 0.95) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.right = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                document.body.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 3000);
+                
+                particleCount++;
+            }
+        });
+    </script>
+</body>
+</html>

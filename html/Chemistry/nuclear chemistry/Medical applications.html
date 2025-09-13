@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة التطبيقات الطبية - الطب النووي والتشخيص الإشعاعي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0066cc;
+            --light-blue: #4da6ff;
+            --accent-blue: #e6f2ff;
+            --dark-blue: #004499;
+            --medical-green: #00cc66;
+            --white: #ffffff;
+            --light-gray: #f5f7fa;
+            --dark-gray: #2c3e50;
+            --text-color: #34495e;
+            --danger-red: #e74c3c;
+            --warning-orange: #f39c12;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--medical-green);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.9), rgba(0, 204, 102, 0.8)),
+                        url('https://picsum.photos/seed/medical-nuclear/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: var(--medical-green);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-blue);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--medical-green));
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--medical-green));
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--medical-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .feature-card h3 {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+
+        /* Imaging Techniques */
+        .imaging-techniques {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .technique-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .technique-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .technique-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .technique-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .technique-card:hover .technique-image img {
+            transform: scale(1.1);
+        }
+
+        .technique-content {
+            padding: 2rem;
+        }
+
+        .technique-badge {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: var(--primary-blue);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .technique-content h3 {
+            color: var(--primary-blue);
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .technique-content ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .technique-content li {
+            padding: 0.5rem 0;
+            padding-right: 1.5rem;
+            position: relative;
+        }
+
+        .technique-content li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--medical-green);
+            font-weight: bold;
+        }
+
+        /* Radiation Therapy Section */
+        .therapy-section {
+            background: linear-gradient(135deg, var(--light-gray), white);
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .therapy-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .therapy-text h3 {
+            color: var(--primary-blue);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .therapy-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .therapy-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .therapy-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .therapy-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 250px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Videos Section */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 102, 204, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover .play-button {
+            background: var(--primary-blue);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-info {
+            padding: 1.5rem;
+        }
+
+        .video-info h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .video-duration {
+            color: var(--text-color);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--accent-blue);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 2rem;
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 1.5rem 2rem;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Registration Form */
+        .registration-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--medical-green));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 102, 204, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--medical-green);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--medical-green);
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info i {
+            color: var(--medical-green);
+            width: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-align: center;
+            line-height: 45px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--medical-green);
+            color: var(--dark-blue);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .therapy-content {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid,
+            .imaging-techniques {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--primary-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 5px 20px rgba(0, 102, 204, 0.3);
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--dark-blue);
+            transform: translateY(-5px);
+        }
+
+        /* Modal for Gallery */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: var(--medical-green);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-microscope"></i>
+                التطبيقات الطبية
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#nuclear-medicine">الطب النووي</a></li>
+                <li><a href="#imaging">التصوير الإشعاعي</a></li>
+                <li><a href="#therapy">العلاج الإشعاعي</a></li>
+                <li><a href="#diagnosis">التشخيص بالنظائر</a></li>
+                <li><a href="#gallery">معرض الصور</a></li>
+                <li><a href="#videos">الفيديوهات</a></li>
+                <li><a href="#faq">الأسئلة الشائعة</a></li>
+                <li><a href="#registration">التسجيل</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>منصة التطبيقات الطبية المتقدمة</h1>
+            <p class="subtitle">تعلم كل ما يتعلق بالطب النووي، التصوير الإشعاعي، PET، SPECT، والعلاج الإشعاعي للسرطان</p>
+            <div class="hero-buttons">
+                <a href="#nuclear-medicine" class="btn btn-primary">ابدأ التعلم</a>
+                <a href="#registration" class="btn btn-secondary">سجل الآن</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nuclear Medicine Introduction -->
+    <section id="nuclear-medicine" class="section">
+        <div class="container">
+            <h2 class="section-title">الطب النووي</h2>
+            <p class="section-subtitle">الطب النووي هو تخصص طبي يستخدم المواد المشعة للتشخيص والعلاج، ويوفر معلومات فريدة عن وظائف الأعضاء والأمراض</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-radiation"></i>
+                    </div>
+                    <h3>ما هو الطب النووي؟</h3>
+                    <p>فرع من الطب يستخدم كميات صغيرة من المواد المشعة لتشخيص وعلاج مجموعة متنوعة من الأمراض، بما في ذلك أنواع عديدة من السرطان وأمراض القلب وغيرها من الحالات الطبية.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>كيف يعمل؟</h3>
+                    <p>يتم حقن المريض بمادة مشعة تسمى "النظير المشع" الذي يتراكم في الأعضاء أو الأنسجة المستهدفة. تقوم الكاميرات الخاصة بتصوير الإشعاع المنبعث من هذه المواد.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>السلامة</h3>
+                    <p>كميات الإشعاع المستخدمة في الطب النووي صغيرة جداً وآمنة. الفائدة التشخيصية أو العلاجية تفوق بكثير المخاطر المحتملة الصغيرة جداً.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Imaging Techniques -->
+    <section id="imaging" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">تقنيات التصوير الإشعاعي</h2>
+            <p class="section-subtitle">استكشف أحدث تقنيات التصوير الطبي المستخدمة في التشخيص الدقيق</p>
+            
+            <div class="imaging-techniques">
+                <div class="technique-card">
+                    <div class="technique-image">
+                        <img src="https://picsum.photos/seed/pet-scan/600/400.jpg" alt="PET Scan">
+                    </div>
+                    <div class="technique-content">
+                        <span class="technique-badge">PET</span>
+                        <h3>التصوير بالانبعاث البوزيتروني</h3>
+                        <p>تقنية متطورة تظهر النشاط الأيضي في الأنسجة، مفيدة بشكل خاص في تشخيص السرطان وأمراض القلب والاضطرابات العصبية.</p>
+                        <ul>
+                            <li>كشف الأورام الخبيثة في مراحلها المبكرة</li>
+                            <li>تقييم فعالية العلاج الكيميائي</li>
+                            <li>تشخيص أمراض القلب التاجية</li>
+                            <li>دراسة اضطرابات الدماغ</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="technique-card">
+                    <div class="technique-image">
+                        <img src="https://picsum.photos/seed/spect-scan/600/400.jpg" alt="SPECT Scan">
+                    </div>
+                    <div class="technique-content">
+                        <span class="technique-badge">SPECT</span>
+                        <h3>التصوير المقطعي بالانبعاث البوزيتروني المفرد</h3>
+                        <p>تقنية تصوير ثلاثية الأبعاد توفر صوراً مفصلة لتدفق الدم ووظائف الأعضاء في الجسم.</p>
+                        <ul>
+                            <li>تقييم وظائف القلب</li>
+                            <li>كشف أمراض العظام</li>
+                            <li>تشخيص أمراض الدماغ</li>
+                            <li>دراسة وظائف الكلى</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="technique-card">
+                    <div class="technique-image">
+                        <img src="https://picsum.photos/seed/ct-scan/600/400.jpg" alt="CT Scan">
+                    </div>
+                    <div class="technique-content">
+                        <span class="technique-badge">CT</span>
+                        <h3>التصوير المقطعي المحوسب</h3>
+                        <p>يستخدم أشعة X لإنشاء صور مفصلة مقطوعة للجسم، غالباً ما يتم دمجه مع تقنيات الطب النووي.</p>
+                        <ul>
+                            <li>صور عالية الدقة للأنسجة الرخوة</li>
+                            <li>تشخيص الإصابات الداخلية</li>
+                            <li>تخطيط للجراحات</li>
+                            <li>متابعة تطور الأمراض</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Radiation Therapy -->
+    <section id="therapy" class="therapy-section">
+        <div class="container">
+            <h2 class="section-title">العلاج الإشعاعي للسرطان</h2>
+            <p class="section-subtitle">علاج متقدم يستخدم الإشعاع لتدمير الخلايا السرطانية مع الحفاظ على الأنسجة السليمة</p>
+            
+            <div class="therapy-content">
+                <div class="therapy-text">
+                    <h3>ما هو العلاج الإشعاعي؟</h3>
+                    <p>العلاج الإشعاعي هو علاج للسرطان يستخدم حزم عالية الطاقة من الإشعاع لتدمير الخلايا السرطانية. يعمل الإشعاع عن طريق إتلاف الحمض النووي (DNA) للخلايا السرطانية، مما يمنعها من النمو والانقسام.</p>
+                    
+                    <h3 style="margin-top: 2rem; font-size: 1.8rem;">أنواع العلاج الإشعاعي</h3>
+                    <p><strong>العلاج الإشعاعي الخارجي:</strong> يستخدم جهازاً خارجياً لتوجيه الإشعاع إلى الورم السرطاني.</p>
+                    <p><strong>العلاج الإشعاعي الداخلي (البراكيثيرابي):</strong> يتم وضع مصدر إشعاعي داخل الجسم بالقرب من الورم.</p>
+                    <p><strong>العلاج الإشعاعي النظامي:</strong> يتم حقن مادة مشعة في الوريد تبحث عن الخلايا السرطانية وتدمرها.</p>
+                    
+                    <h3 style="margin-top: 2rem; font-size: 1.8rem;">مزايا العلاج الإشعاعي</h3>
+                    <p>• علاج موجه يركز على الورم السرطاني فقط</p>
+                    <p>• يمكن استخدامه بمفرده أو مع علاجات أخرى</p>
+                    <p>• فعال في علاج العديد من أنواع السرطان</p>
+                    <p>• تقليل خطر عودة السرطان بعد الجراحة</p>
+                </div>
+                <div class="therapy-image">
+                    <img src="https://picsum.photos/seed/radiation-therapy/600/500.jpg" alt="العلاج الإشعاعي">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diagnosis with Radioisotopes -->
+    <section id="diagnosis" class="section">
+        <div class="container">
+            <h2 class="section-title">التشخيص باستخدام النظائر المشعة</h2>
+            <p class="section-subtitle">تقنيات متقدمة لتشخيص الأمراض بدقة وفعالية عالية</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lungs"></i>
+                    </div>
+                    <h3>تشخيص أمراض الرئة</h3>
+                    <p>يستخدم نظير التكنيشيوم-99m لتقييم تدفق الدم والهواء في الرئتين، مفيد في تشخيص الانصمام الرئوي وأمراض الرئة الأخرى.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>تقييم وظائف القلب</h3>
+                    <p>يستخدم الثاليوم-201 والتكنيشيوم-99m لتصوير تدفق الدم إلى عضلة القلب وتقييم وظائفه، مهم في تشخيص أمراض القلب التاجية.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>دراسة وظائف الدماغ</h3>
+                    <p>يستخدم FDG-PET لتقييم النشاط الأيضي في الدماغ، مفيد في تشخيص الخرف، الصرع، وتقييم استجابة الأورام الدماغية للعلاج.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bone"></i>
+                    </div>
+                    <h3>تشخيص أمراض العظام</h3>
+                    <p>مسح العظام باستخدام التكنيشيوم-99m يكشف عن انتقالات السرطان، التهابات العظام، والكسور غير المرئية في الأشعة العادية.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-kidney"></i>
+                    </div>
+                    <h3>تقييم وظائف الكلى</h3>
+                    <p>يستخدم DTPA وMAG3 المشعة لتقييم وظائف الكلى وتدفق الدم إليها، مهم في تشخيص انسداد المسالك البولية وأمراض الكلى.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-ribbon"></i>
+                    </div>
+                    <h3>كشف الأورام</h3>
+                    <p>يستخدم Gallium-67 وIndium-111 لتشخيص الليمفوما وأورام أخرى، كما يستخدم FDG-PET لكشف وتصنيف الأورام الخبيثة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">معرض الصور الطبية</h2>
+            <p class="section-subtitle">صور حقيقية توضح تطبيقات الطب النووي والتقنيات الإشعاعية</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openModal('https://picsum.photos/seed/gallery1/800/600.jpg')">
+                    <img src="https://picsum.photos/seed/gallery1/400/300.jpg" alt="PET Scan">
+                    <div class="gallery-overlay">
+                        <h4>مسح PET للدماغ</h4>
+                        <p>يظهر النشاط الأيضي في مناطق الدماغ المختلفة</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openModal('https://picsum.photos/seed/gallery2/800/600.jpg')">
+                    <img src="https://picsum.photos/seed/gallery2/400/300.jpg" alt="SPECT Scan">
+                    <div class="gallery-overlay">
+                        <h4>مسح SPECT للقلب</h4>
+                        <p>تقييم تدفق الدم إلى عضلة القلب</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openModal('https://picsum.photos/seed/gallery3/800/600.jpg')">
+                    <img src="https://picsum.photos/seed/gallery3/400/300.jpg" alt="Bone Scan">
+                    <div class="gallery-overlay">
+                        <h4>مسح العظام</h4>
+                        <p>كشف انتقالات السرطان إلى العظام</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openModal('https://picsum.photos/seed/gallery4/800/600.jpg')">
+                    <img src="https://picsum.photos/seed/gallery4/400/300.jpg" alt="Radiation Therapy">
+                    <div class="gallery-overlay">
+                        <h4>جهاز العلاج الإشعاعي</h4>
+                        <p>أحدث تقنيات العلاج الإشعاعي الموجه</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openModal('https://picsum.photos/seed/gallery5/800/600.jpg')">
+                    <img src="https://picsum.photos/seed/gallery5/400/300.jpg" alt="Thyroid Scan">
+                    <div class="gallery-overlay">
+                        <h4>مسح الغدة الدرقية</h4>
+                        <p>تقييم وظائف الغدة الدرقية وكشف الأورام</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openModal('https://picsum.photos/seed/gallery6/800/600.jpg')">
+                    <img src="https://picsum.photos/seed/gallery6/400/300.jpg" alt="PET-CT">
+                    <div class="gallery-overlay">
+                        <h4>مسح PET-CT مدمج</h4>
+                        <p>صور متكاملة تشريحية ووظيفية</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section id="videos" class="section">
+        <div class="container">
+            <h2 class="section-title">الفيديوهات التعليمية</h2>
+            <p class="section-subtitle">شاهد شرحاً مفصلاً للمفاهيم والإجراءات الطبية</p>
+            
+            <div class="videos-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://picsum.photos/seed/video1/600/400.jpg" alt="مقدمة في الطب النووي">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>مقدمة في الطب النووي</h3>
+                        <p>شرح مبسط لمبادئ الطب النووي وتطبيقاته في التشخيص والعلاج</p>
+                        <div class="video-duration">
+                            <i class="fas fa-clock"></i>
+                            <span>15:30 دقيقة</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://picsum.photos/seed/video2/600/400.jpg" alt="كيف يعمل PET Scan">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>كيف يعمل PET Scan</h3>
+                        <p>شرح تفصيلي لعملية مسح PET واستخداماته السريرية</p>
+                        <div class="video-duration">
+                            <i class="fas fa-clock"></i>
+                            <span>20:15 دقيقة</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://picsum.photos/seed/video3/600/400.jpg" alt="العلاج الإشعاعي">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>العلاج الإشعاعي للسرطان</h3>
+                        <p>شرح كامل لأنواع العلاج الإشعاعي وخطوات العلاج</p>
+                        <div class="video-duration">
+                            <i class="fas fa-clock"></i>
+                            <span>25:00 دقيقة</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://picsum.photos/seed/video4/600/400.jpg" alt="السلامة الإشعاعية">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>السلامة الإشعاعية</h3>
+                        <p>مبادئ السلامة الإشعاعية في الطب النووي والإجراءات الوقائية</p>
+                        <div class="video-duration">
+                            <i class="fas fa-clock"></i>
+                            <span>18:45 دقيقة</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">الأسئلة الشائعة</h2>
+            <p class="section-subtitle">أجوبة على أكثر الأسئلة شيوعاً حول الطب النووي والتطبيقات الإشعاعية</p>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>هل الطب النووي آمن؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، الطب النووي آمن جداً. كميات الإشعاع المستخدمة صغيرة جداً ومحسوبة بدقة. الفائدة التشخيصية أو العلاجية تفوق بكثير أي مخاطر محتملة. يتم اتباع بروتوكولات السلامة الصارمة لحماية المرضى والموظفين.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>ما الفرق بين PET و SPECT؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>PET يستخدم نظائر مشعة تطلق بوزيترونات، بينما SPECT يستخدم نظائر تطلق أشعة جاما. PET يوفر صوراً ذات دقة مكانية أعلى وحساسية أفضل، لكنه أكثر تكلفة. SPECT متوفر على نطاق أوسع وأقل تكلفة.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>كم تستغرق عملية التصوير؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>تعتمد المدة على نوع الفحص. بشكل عام، يستغرق حقن المادة المشعة بضع دقائق، ثم فترة انتظار تتراوح بين 30 دقيقة إلى ساعتين حتى تتراكم المادة في الأنسجة المستهدفة. عملية التصوير نفسها تستغرق من 20 إلى 60 دقيقة.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>هل هناك آثار جانبية للعلاج الإشعاعي؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>قد تحدث بعض الآثار الجانبية حسب منطقة العلاج، مثل التعب، تهيج الجلد، أو الغثيان. معظم هذه الآثار مؤقتة ويمكن التحكم فيها. يراقب الفريق الطبي حالة المريض عن كثب ويتخذ الإجراءات اللازمة لتقليل الآثار الجانبية.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>من يمكنه الخضوع للطب النووي؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>يمكن لمعظم المرضى الخضوع لإجراءات الطب النووي. ومع ذلك، هناك بعض الحالات التي تتخذ فيها احتياطات خاصة، مثل النساء الحوامل أو المرضعات. يجب إبلاغ الطبيب بأي حالة صحية خاصة أو أدوية تتناولها قبل الإجراء.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section id="registration" class="section">
+        <div class="container">
+            <h2 class="section-title">سجل في دوراتنا التعليمية</h2>
+            <p class="section-subtitle">انضم إلى مجتمعنا التعليمي واحصل على المعرفة المتخصصة في الطب النووي</p>
+            
+            <form class="registration-form" onsubmit="handleRegistration(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">الاسم الأول</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">الاسم الأخير</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">رقم الهاتف</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="profession">المهنة</label>
+                    <select id="profession" name="profession" required>
+                        <option value="">اختر مهنتك</option>
+                        <option value="doctor">طبيب</option>
+                        <option value="technician">فني أشعة</option>
+                        <option value="student">طالب</option>
+                        <option value="researcher">باحث</option>
+                        <option value="other">أخرى</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="course">الدورة المطلوبة</label>
+                    <select id="course" name="course" required>
+                        <option value="">اختر الدورة</option>
+                        <option value="basic">مبادئ الطب النووي الأساسية</option>
+                        <option value="pet">تقنية PET المتقدمة</option>
+                        <option value="spect">تقنية SPECT والتطبيقات السريرية</option>
+                        <option value="therapy">العلاج الإشعاعي للسرطان</option>
+                        <option value="safety">السلامة الإشعاعية</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">رسالة إضافية (اختياري)</label>
+                    <textarea id="message" name="message" rows="4" placeholder="اكتب أي معلومات إضافية تود مشاركتها"></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">سجل الآن</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>منصة التطبيقات الطبية</h3>
+                    <p>منصة تعليمية متخصصة في الطب النووي والتشخيص الإشعاعي والعلاج الإشعاعي للسرطان. نقدم محتوى عالي الجودة للطلاب والأطباء والفنيين الطبيين.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#nuclear-medicine">الطب النووي</a></li>
+                        <li><a href="#imaging">التصوير الإشعاعي</a></li>
+                        <li><a href="#therapy">العلاج الإشعاعي</a></li>
+                        <li><a href="#diagnosis">التشخيص بالنظائر</a></li>
+                        <li><a href="#gallery">معرض الصور</a></li>
+                        <li><a href="#videos">الفيديوهات</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>الدورات التعليمية</h3>
+                    <ul>
+                        <li><a href="#">مبادئ الطب النووي</a></li>
+                        <li><a href="#">تقنية PET المتقدمة</a></li>
+                        <li><a href="#">تقنية SPECT</a></li>
+                        <li><a href="#">العلاج الإشعاعي</a></li>
+                        <li><a href="#">السلامة الإشعاعية</a></li>
+                        <li><a href="#">الشهادات المعتمدة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>الرياض، المملكة العربية السعودية</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        <span>+966 12 345 6789</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@medicalapps.edu.sa</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-clock"></i>
+                        <span>الأحد - الخميس: 8:00 ص - 5:00 م</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 منصة التطبيقات الطبية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for Gallery -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="صورة مكبرة">
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // FAQ Toggle
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const icon = element.querySelector('.faq-icon');
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-answer').classList.remove('active');
+                }
+            });
+            
+            // Toggle current FAQ
+            faqItem.classList.toggle('active');
+            answer.classList.toggle('active');
+        }
+
+        // Gallery Modal
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'block';
+            modalImg.src = imageSrc;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        // Registration Form Handler
+        function handleRegistration(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Show success message
+            alert('شكراً لتسجيلك! سنتواصل معك قريباً بتأكيد التسجيل ومعلومات الدورة.');
+            
+            // Reset form
+            event.target.reset();
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.width = '100%';
+                navLinks.style.padding = '1rem';
+                navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature cards and technique cards
+        document.querySelectorAll('.feature-card, .technique-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Video play button animation
+        document.querySelectorAll('.play-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                // In a real implementation, this would open the video
+                alert('سيتم فتح الفيديو قريباً!');
+            });
+        });
+    </script>
+</body>
+</html>

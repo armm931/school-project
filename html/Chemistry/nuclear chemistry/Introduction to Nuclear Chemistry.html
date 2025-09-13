@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مقدمة في الكيمياء النووية - بوابة المعرفة النووية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a8a;
+            --light-blue: #3b82f6;
+            --accent-blue: #60a5fa;
+            --dark-blue: #1e293b;
+            --white: #ffffff;
+            --light-gray: #f8fafc;
+            --gray: #e2e8f0;
+            --dark-gray: #334155;
+            --text-color: #1e293b;
+            --danger: #dc2626;
+            --success: #16a34a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(30, 58, 138, 0.9), rgba(30, 58, 138, 0.9)),
+                        url('https://picsum.photos/seed/nuclear-chemistry/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent-blue);
+            color: var(--primary-blue);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: var(--white);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-blue);
+        }
+
+        /* Introduction Section */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .intro-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .intro-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Concept Cards */
+        .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .concept-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-color: var(--accent-blue);
+        }
+
+        .concept-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .concept-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-blue);
+            transform: translateX(50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+        }
+
+        .timeline-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: auto;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-date {
+            position: absolute;
+            right: 50%;
+            top: 50%;
+            transform: translate(50%, -50%);
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        /* Applications Section */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .application-card {
+            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .application-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.3);
+        }
+
+        .application-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .application-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        /* Safety Section */
+        .safety-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 3rem;
+        }
+
+        .safety-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .safety-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--light-gray);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .safety-item:hover {
+            background: var(--accent-blue);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .safety-icon {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .safety-item:hover .safety-icon {
+            color: white;
+        }
+
+        /* Research Section */
+        .research-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .research-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .research-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .research-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .research-card:hover .research-image img {
+            transform: scale(1.1);
+        }
+
+        .research-content {
+            padding: 1.5rem;
+        }
+
+        .research-tag {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: var(--primary-blue);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .research-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Resources Section */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .resource-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid var(--gray);
+        }
+
+        .resource-card:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-5px);
+        }
+
+        .resource-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .resource-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .resource-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .resource-link:hover {
+            color: var(--light-blue);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-blue);
+            color: var(--primary-blue);
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                right: 30px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-right: 60px !important;
+            }
+
+            .timeline-date {
+                right: 30px;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--primary-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--dark-blue);
+            transform: translateY(-5px);
+        }
+
+        /* Nuclear animation */
+        .nuclear-icon {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-atom nuclear-icon"></i>
+                الكيمياء النووية
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#introduction">مقدمة</a></li>
+                <li><a href="#concepts">المفاهيم</a></li>
+                <li><a href="#history">التاريخ</a></li>
+                <li><a href="#applications">التطبيقات</a></li>
+                <li><a href="#safety">السلامة</a></li>
+                <li><a href="#research">الأبحاث</a></li>
+                <li><a href="#resources">الموارد</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>مقدمة في الكيمياء النووية</h1>
+            <p>استكشف عالم الذرات والطاقة النووية، من المفاهيم الأساسية إلى التطبيقات المتقدمة في حياتنا اليومية</p>
+            <a href="#introduction" class="cta-button">ابدأ رحلتك</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="introduction" class="section">
+        <div class="container">
+            <h2 class="section-title">ما هي الكيمياء النووية؟</h2>
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <h3>علم الذرات والطاقة</h3>
+                    <p>الكيمياء النووية هي فرع من الكيمياء يدرس التغيرات التي تحدث في نوى الذرات، بما في ذلك الانشطار النووي والاندماج النووي والنشاط الإشعاعي.</p>
+                    <p>تهتم الكيمياء النووية بفهم كيفية تفاعل النوى الذرية وتحويلها إلى عناصر أخرى، وكيفية إطلاق الطاقة من هذه التفاعلات.</p>
+                    <p>تستخدم الكيمياء النووية في مجالات متعددة مثل الطب النووي، إنتاج الطاقة، والبحث العلمي، وتلعب دوراً حيوياً في حياتنا اليومية.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://picsum.photos/seed/nuclear-atom/600/400.jpg" alt="الذرة النووية">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Basic Concepts Section -->
+    <section id="concepts" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">المفاهيم الأساسية</h2>
+            <div class="concepts-grid">
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-radiation"></i>
+                    </div>
+                    <h3>النشاط الإشعاعي</h3>
+                    <p>العملية التي تتحلل فيها النوى غير المستقرة وتطلق إشعاعات، وتشمل ألفا وبيتا وجاما</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3>الانشطار النووي</h3>
+                    <p>انقسام النوى الثقيلة مثل اليورانيوم إلى نوى أصغر مع إطلاق كمية هائلة من الطاقة</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-compress-arrows-alt"></i>
+                    </div>
+                    <h3>الاندماج النووي</h3>
+                    <p>اتحاد نوي خفيف لتكوين نوى أثقل مع إطلاق طاقة، كما يحدث في الشمس</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>عمر النصف</h3>
+                    <p>الزمن اللازم لنصف ذرات العنصر المشع كي تتحلل، وهو مفهوم أساسي في التأريخ الإشعاعي</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>الطاقة النووية</h3>
+                    <p>الطاقة المخزونة في نوى الذرات، والتي يمكن تحريرها من خلال التفاعلات النووية</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>الحماية الإشعاعية</h3>
+                    <p>الإجراءات والمواد المستخدمة لحماية البشر والبيئة من الإشعاعات الضارة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Timeline -->
+    <section id="history" class="section">
+        <div class="container">
+            <h2 class="section-title">التطور التاريخي للكيمياء النووية</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">1896</div>
+                    <div class="timeline-content">
+                        <h3>اكتشاف النشاط الإشعاعي</h3>
+                        <p>اكتشف هنري بكيريل النشاط الإشعاعي عن طريق الصدفة أثناء دراسة أملاح اليورانيوم</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1898</div>
+                    <div class="timeline-content">
+                        <h3>اكتشاف الراديوم والبولونيوم</h3>
+                        <p>اكتفت ماري وبيير كوري عنصرين جديدين مشعين: الراديوم والبولونيوم</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1938</div>
+                    <div class="timeline-content">
+                        <h3>اكتشاف الانشطار النووي</h3>
+                        <p>أوتو هان وفريتز ستراسمان اكتشفا انشطار نوى اليورانيوم عند قصفها بالنيوترونات</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1942</div>
+                    <div class="timeline-content">
+                        <h3>أول مفاعل نووي</h3>
+                        <p>أنشأ إنريكو فيرمي أول مفاعل نووي متحكم فيه في جامعة شيكاغو</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1954</div>
+                    <div class="timeline-content">
+                        <h3>أول محطة طاقة نووية</h3>
+                        <p>بدأت أول محطة طاقة نووية تجارية في العمل في أوبنينسك، روسيا</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1979</div>
+                    <div class="timeline-content">
+                        <h3>ثلاث مايل آيلاند</h3>
+                        <p>حدث تسرب إشعاعي في الولايات المتحدة، مما أدى إلى تحسين معايير السلامة النووية</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">تطبيقات الكيمياء النووية</h2>
+            <div class="applications-grid">
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>الطب النووي</h3>
+                    <p>التشخيص والعلاج باستخدام النظائر المشعة، مثل التصوير المقطعي والعلاج باليود المشع</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>إنتاج الطاقة</h3>
+                    <p>توليد الكهرباء في المفاعلات النووية بطريقة نظيفة وفعالة</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>الصناعة</h3>
+                    <p>فحص المواد، قياس السماكة، وتتبع العمليات الصناعية باستخدام النظائر المشعة</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>الزراعة</h3>
+                    <p>تحسين المحاصيل، مكافحة الآفات، وحفظ الأغذية باستخدام الإشعاعات</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>البحث العلمي</h3>
+                    <p>دراسة بنية المادة، التأريخ الإشعاعي، وتطوير تقنيات جديدة</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-space-shuttle"></i>
+                    </div>
+                    <h3>استكشاف الفضاء</h3>
+                    <p>تزود المركبات الفضائية بالطاقة باستخدام البطاريات النووية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety Section -->
+    <section id="safety" class="section">
+        <div class="container">
+            <h2 class="section-title">السلامة النووية</h2>
+            <div class="safety-container">
+                <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">مبادئ السلامة النووية الأساسية</h3>
+                <p style="font-size: 1.1rem; margin-bottom: 2rem;">السلامة النووية هي مجموعة المبادئ والإجراءات المصممة لحماية البشر والبيئة من الآثار الضارة للإشعاعات النووية.</p>
+                
+                <div class="safety-grid">
+                    <div class="safety-item">
+                        <div class="safety-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h4>الحماية الشخصية</h4>
+                        <p>استخدام معدات الوقاية الشخصية والحد من التعرض للإشعاع</p>
+                    </div>
+                    <div class="safety-item">
+                        <div class="safety-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h4>الحماية الهندسية</h4>
+                        <p>تصميم مبانٍ ومعدات بمواد تحجب الإشعاع بفعالية</p>
+                    </div>
+                    <div class="safety-item">
+                        <div class="safety-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>المراقبة المستمرة</h4>
+                        <p>قياس مستويات الإشعاع باستمرار باستخدام أجهزة دقيقة</p>
+                    </div>
+                    <div class="safety-item">
+                        <div class="safety-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h4>التدريب والتأهيل</h4>
+                        <p>تدريب العاملين على إجراءات السلامة والتعامل مع الطوارئ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">أحدث الأبحاث والتطورات</h2>
+            <div class="research-cards">
+                <article class="research-card">
+                    <div class="research-image">
+                        <img src="https://picsum.photos/seed/fusion-research/400/200.jpg" alt="بحث اندماج نووي">
+                    </div>
+                    <div class="research-content">
+                        <span class="research-tag">بحث</span>
+                        <h3>تقدم في الاندماج النووي</h3>
+                        <p>أحدث التطورات في تقنيات الاندماج النووي والتحديات التي تواجه تحقيق الطاقة النظيفة</p>
+                    </div>
+                </article>
+                <article class="research-card">
+                    <div class="research-image">
+                        <img src="https://picsum.photos/seed/nuclear-waste/400/200.jpg" alt="معالجة النفايات">
+                    </div>
+                    <div class="research-content">
+                        <span class="research-tag">تقنية</span>
+                        <h3>معالجة النفايات النووية</h3>
+                        <p>طرق مبتكرة للتخلص الآمن من النفايات النووية وتقليل تأثيرها البيئي</p>
+                    </div>
+                </article>
+                <article class="research-card">
+                    <div class="research-image">
+                        <img src="https://picsum.photos/seed/cancer-treatment/400/200.jpg" alt="علاج السرطان">
+                    </div>
+                    <div class="research-content">
+                        <span class="research-tag">طب</span>
+                        <h3>علاجات نووية جديدة للسرطان</h3>
+                        <p>تطوير نظائر مشعة جديدة تستهدف الخلايا السرطانية بدقة أكبر</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="section">
+        <div class="container">
+            <h2 class="section-title">الموارد التعليمية</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>الكتب المرجعية</h3>
+                    <p>مجموعة من أفضل الكتب والمصادر في الكيمياء النووية للمبتدئين والمتقدمين</p>
+                    <a href="#" class="resource-link">تصفح الكتب <i class="fas fa-arrow-left"></i></a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>المحاضرات المرئية</h3>
+                    <p>سلسلة من المحاضرات التوضيحية تغطي جميع جوانب الكيمياء النووية الأساسية</p>
+                    <a href="#" class="resource-link">شاهد المحاضرات <i class="fas fa-arrow-left"></i></a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>التجارب العملية</h3>
+                    <p>تجارب آمنة يمكن إجراؤها لفهم المفاهيم النووية بشكل عملي</p>
+                    <a href="#" class="resource-link">جرب الآن <i class="fas fa-arrow-left"></i></a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>الأدوات الحسابية</h3>
+                    <p>حاسبات تفاعلية لحساب عمر النصف، الطاقة، والكميات الإشعاعية</p>
+                    <a href="#" class="resource-link">استخدم الحاسبات <i class="fas fa-arrow-left"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>من نحن</h3>
+                    <p>منصة تعليمية متخصصة في تقديم معلومات دقيقة وشاملة عن الكيمياء النووية للطلاب والباحثين والمهتمين.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#introduction">مقدمة في الكيمياء النووية</a></li>
+                        <li><a href="#concepts">المفاهيم الأساسية</a></li>
+                        <li><a href="#applications">التطبيقات العملية</a></li>
+                        <li><a href="#safety">السلامة النووية</a></li>
+                        <li><a href="#research">أحدث الأبحاث</a></li>
+                        <li><a href="#resources">الموارد التعليمية</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> العنوان: كلية العلوم، مبنى الكيمياء</li>
+                        <li><i class="fas fa-phone"></i> الهاتف: +966 12 345 6789</li>
+                        <li><i class="fas fa-envelope"></i> البريد: info@nuclearchem.edu.sa</li>
+                        <li><i class="fas fa-clock"></i> ساعات العمل: 8:00 ص - 5:00 م</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>النشرة البريدية</h3>
+                    <p>اشترك في نشرتنا البريدية للحصول على آخر الأبحاث والتطورات في الكيمياء النووية</p>
+                    <form style="margin-top: 1rem;">
+                        <input type="email" placeholder="بريدك الإلكتروني" style="width: 100%; padding: 0.8rem; border: none; border-radius: 5px; margin-bottom: 1rem;">
+                        <button type="submit" style="width: 100%; padding: 0.8rem; background: var(--accent-blue); color: var(--primary-blue); border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">اشترك الآن</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 مقدمة في الكيمياء النووية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Timeline animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle (basic implementation)
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.right = '0';
+            navLinks.style.background = 'white';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.width = '100%';
+            navLinks.style.padding = '1rem';
+            navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+        });
+
+        // Form submission prevention
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('شكراً لاشتراكك في نشرتنا البريدية!');
+            this.reset();
+        });
+
+        // Add hover effect to application cards
+        document.querySelectorAll('.application-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.animation = 'pulse 0.5s ease';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
