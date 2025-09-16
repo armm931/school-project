@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المعلوماتية الكيميائية - بوابة العلوم الحاسوبية الكيميائية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a8a;
+            --secondary-blue: #3b82f6;
+            --accent-purple: #7c3aed;
+            --accent-green: #10b981;
+            --dark-bg: #0f172a;
+            --light-bg: #f8fafc;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --white: #ffffff;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            background: var(--light-bg);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.9), rgba(124, 58, 237, 0.9)),
+                        url('https://picsum.photos/seed/chemistry/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: 50px 50px;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); }
+            100% { transform: translateY(-50px) translateX(-50px); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--white);
+            color: var(--primary-blue);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--white);
+            text-decoration: none;
+            border: 2px solid var(--white);
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--light-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gradient-1);
+        }
+
+        /* Introduction Section */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .intro-text h3 {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: var(--light-bg);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateX(-5px);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .feature-item i {
+            color: var(--secondary-blue);
+            font-size: 1.2rem;
+        }
+
+        .intro-visual {
+            position: relative;
+            background: var(--gradient-2);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .molecule-icon {
+            font-size: 8rem;
+            margin-bottom: 1rem;
+            animation: rotate 20s infinite linear;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Applications Section */
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .app-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-1);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .app-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .app-icon {
+            font-size: 3rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+        }
+
+        .app-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .app-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Tools Section */
+        .tools-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .tool-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .tool-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .tool-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .tool-info h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.3rem;
+        }
+
+        .tool-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Research Section */
+        .research-timeline {
+            position: relative;
+            padding: 3rem 0;
+        }
+
+        .research-timeline::before {
+            content: '';
+            position: absolute;
+            right: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--gradient-1);
+            transform: translateX(50%);
+        }
+
+        .research-item {
+            position: relative;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+        }
+
+        .research-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .research-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            position: relative;
+        }
+
+        .research-item:nth-child(odd) .research-content {
+            margin-right: auto;
+        }
+
+        .research-item:nth-child(even) .research-content {
+            margin-left: auto;
+        }
+
+        .research-year {
+            position: absolute;
+            right: 50%;
+            top: 50%;
+            transform: translate(50%, -50%);
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            z-index: 1;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .research-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .research-content .tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--secondary-blue);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        /* Education Section */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-header {
+            background: var(--gradient-2);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .course-header h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-body {
+            padding: 2rem;
+        }
+
+        .course-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .course-body ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-body ul li {
+            padding: 0.5rem 0;
+            padding-right: 1.5rem;
+            position: relative;
+        }
+
+        .course-body ul li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        .course-footer {
+            padding: 0 2rem 2rem;
+        }
+
+        .btn-course {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-course:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Jobs Section */
+        .jobs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .job-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--accent-green);
+        }
+
+        .job-card:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1.5rem;
+        }
+
+        .job-title h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .job-company {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .job-type {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-green);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .job-details {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .job-skills {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-tag {
+            background: var(--light-bg);
+            color: var(--text-secondary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        .job-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .job-salary {
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        .btn-apply {
+            padding: 0.5rem 1.5rem;
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-apply:hover {
+            transform: scale(1.05);
+        }
+
+        /* Projects Gallery */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--gradient-1);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .research-timeline::before {
+                right: 30px;
+            }
+
+            .research-content {
+                width: calc(100% - 60px);
+                margin-right: 60px !important;
+            }
+
+            .research-year {
+                right: 30px;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--gradient-1);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                المعلوماتية الكيميائية
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#intro">مقدمة</a></li>
+                <li><a href="#applications">التطبيقات</a></li>
+                <li><a href="#tools">الأدوات</a></li>
+                <li><a href="#research">الأبحاث</a></li>
+                <li><a href="#education">التعليم</a></li>
+                <li><a href="#jobs">الوظائف</a></li>
+                <li><a href="#projects">المشاريع</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>المعلوماتية الكيميائية</h1>
+            <div class="subtitle">حيث يلتقي العلم مع التكنولوجيا</div>
+            <p>اكتشف عالم المعلوماتية الكيميائية - المجال الذي يجمع بين قوة الكيمياء وثورة الحوسبة لحل تحديات المستقبل</p>
+            <div class="hero-buttons">
+                <a href="#intro" class="btn-primary">ابدأ الاستكشاف</a>
+                <a href="#applications" class="btn-secondary">شاهد التطبيقات</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">ما هي المعلوماتية الكيميائية؟</h2>
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <h3>الجسر بين الكيمياء والحوسبة</h3>
+                    <p>المعلوماتية الكيميائية (Chemoinformatics) هو مجال متخصص يجمع بين الكيمياء وعلوم الحاسب والمعلوماتية. يهدف إلى تطوير وتطبيق الأساليب الحاسوبية لحل المشكلات الكيميائية.</p>
+                    <p>من خلال استخدام الذكاء الاصطناعي والتعلم الآلي وتحليل البيانات الضخمة، تمكننا المعلوماتية الكيميائية من:</p>
+                    <div class="intro-features">
+                        <div class="feature-item">
+                            <i class="fas fa-flask"></i>
+                            <span>اكتشاف أدوية جديدة</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-microscope"></i>
+                            <span>تصميم مواد مبتكرة</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>التنبؤ بالخصائص الكيميائية</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-dna"></i>
+                            <span>تحليل التفاعلات البيولوجية</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-visual">
+                    <div class="molecule-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>البيانات + الخوارزميات = الابتكار</h3>
+                    <p>دمج المعرفة الكيميائية مع قوة الحوسبة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="section">
+        <div class="container">
+            <h2 class="section-title">التطبيقات الرئيسية</h2>
+            <div class="apps-grid">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3>اكتشاف الأدوية</h3>
+                    <p>استخدام النمذجة الحاسوبية لتصميم وتحسين الجزيئات الدوائية، وتقليل الوقت والتكلفة المطلوبة لتطوير الأدوية الجديدة</p>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>تصميم المواد</h3>
+                    <p>تطوير مواد جديدة بخصائص محددة مسبقاً مثل المواد فائقة الموصلية، البوليمرات المتقدمة، والنانومواد</p>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>الكيمياء الخضراء</h3>
+                    <p>تصميم عمليات كيميائية صديقة للبيئة، وتقليل النفايات السامة، وتطوير بدائل مستدامة للمواد الكيميائية التقليدية</p>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>الذكاء الاصطناعي الكيميائي</h3>
+                    <p>تطبيق خوارزميات التعلم الآلي والشبكات العصبية للتنبؤ بالخصائص الكيميائية واكتشاف علاقات جديدة</p>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>قواعد البيانات الكيميائية</h3>
+                    <p>إدارة وتحليل مجموعات ضخمة من البيانات الكيميائية، وتطوير أدوات للبحث والاسترجاع الفعال</p>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>تقييم السلامة</h3>
+                    <p>التنبؤ بالسمية والخطر المحتمل للمواد الكيميائية، وتطوير نماذج لتقييم المخاطر البيئية والصحية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">الأدوات والبرامج المستخدمة</h2>
+            <div class="tools-container">
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h4>Python</h4>
+                        <p>لغة البرمجة الأساسية مع مكتبات مثل RDKit و OpenBabel</p>
+                    </div>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h4>RDKit</h4>
+                        <p>مجموعة أدوات مفتوحة المصدر للمعلوماتية الكيميائية</p>
+                    </div>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h4>Schrodinger Suite</h4>
+                        <p>برامج احترافية للنمذجة الجزيئية وتصميم الأدوية</p>
+                    </div>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h4>KNIME</h4>
+                        <p>منصة تحليل بيانات مرئية للمعلوماتية الكيميائية</p>
+                    </div>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h4>ChemAxon</h4>
+                        <p>أدوات متقدمة لمعالجة وتصور البيانات الكيميائية</p>
+                    </div>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h4>OpenBabel</h4>
+                        <p>أداة لتحويل تنسيقات الملفات الكيميائية</p>
+                    </div>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h4>DeepChem</h4>
+                        <p>مكتبة بايثون للتعلم العميق في الكيمياء</p>
+                    </div>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h4>ChemDraw</h4>
+                        <p>برنامج احترافي لرسم الهياكل الكيميائية</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="section">
+        <div class="container">
+            <h2 class="section-title">أحدث الأبحاث والتطورات</h2>
+            <div class="research-timeline">
+                <div class="research-item">
+                    <div class="research-year">2023</div>
+                    <div class="research-content">
+                        <h3>نماذج اللغة الكبيرة في الكيمياء</h3>
+                        <p>تطوير نماذج لغوية ضخمة قادرة على فهم وتوليد التركيبات الكيميائية والتنبؤ بخصائصها بدقة عالية</p>
+                        <div class="tags">
+                            <span class="tag">AI</span>
+                            <span class="tag">LLM</span>
+                            <span class="tag">التنبؤ</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="research-item">
+                    <div class="research-year">2022</div>
+                    <div class="research-content">
+                        <h3>اكتشاف مضادات حيوية جديدة باستخدام الذكاء الاصطناعي</h3>
+                        <p>نجاح باحثين في اكتشاف فئة جديدة من المضادات الحيوية باستخدام خوارزميات تعلم الآلة</p>
+                        <div class="tags">
+                            <span class="tag">أدوية</span>
+                            <span class="tag">مضادات حيوية</span>
+                            <span class="tag">AI</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="research-item">
+                    <div class="research-year">2021</div>
+                    <div class="research-content">
+                        <h3>تصميم بطاريات ليثيوم-كبريت متقدمة</h3>
+                        <p>استخدام المعلوماتية الكيميائية لتصميم مواد كاثود جديدة لبطاريات ذات كفاءة أعلى</p>
+                        <div class="tags">
+                            <span class="tag">طاقة</span>
+                            <span class="tag">بطاريات</span>
+                            <span class="tag">مواد</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="research-item">
+                    <div class="research-year">2020</div>
+                    <div class="research-content">
+                        <h3>تطوير لقاح COVID-19 باستخدام المعلوماتية الكيميائية</h3>
+                        <p>دور المعلوماتية الكيميائية في تسريع تطوير وتصميم لقاحات فعالة ضد فيروس كورونا</p>
+                        <div class="tags">
+                            <span class="tag">لقاح</span>
+                            <span class="tag">COVID-19</span>
+                            <span class="tag">سرعة</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">الموارد التعليمية والدورات</h2>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3>مقدمة في المعلوماتية الكيميائية</h3>
+                        <p>للمبتدئين</p>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-info">
+                            <span><i class="fas fa-clock"></i> 40 ساعة</span>
+                            <span><i class="fas fa-users"></i> 1,234 طالب</span>
+                        </div>
+                        <ul>
+                            <li>أساسيات الكيمياء الحاسوبية</li>
+                            <li>تمثيل الجزيئات رقمياً</li>
+                            <li>مقدمة في برمجة بايثون للكيمياء</li>
+                            <li>مشاريع عملية تطبيقية</li>
+                        </ul>
+                    </div>
+                    <div class="course-footer">
+                        <button class="btn-course">سجل الآن</button>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-header" style="background: linear-gradient(135deg, #7c3aed, #3b82f6);">
+                        <h3>التعلم الآلي في الكيمياء</h3>
+                        <p>متوسط</p>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-info">
+                            <span><i class="fas fa-clock"></i> 60 ساعة</span>
+                            <span><i class="fas fa-users"></i> 856 طالب</span>
+                        </div>
+                        <ul>
+                            <li>خوارزميات التعلم الآلي الأساسية</li>
+                            <li>التعامل مع البيانات الكيميائية</li>
+                            <li>بناء نماذج تنبؤية</li>
+                            <li>تقييم وتحسين النماذج</li>
+                        </ul>
+                    </div>
+                    <div class="course-footer">
+                        <button class="btn-course">سجل الآن</button>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-header" style="background: linear-gradient(135deg, #10b981, #3b82f6);">
+                        <h3>تصميم الأدوية المتقدم</h3>
+                        <p>متقدم</p>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-info">
+                            <span><i class="fas fa-clock"></i> 80 ساعة</span>
+                            <span><i class="fas fa-users"></i> 432 طالب</span>
+                        </div>
+                        <ul>
+                            <li>تصميم الجزيئات الدوائية</li>
+                            <li>محاكاة الديناميكا الجزيئية</li>
+                            <li>الرابط الدوائي والخصائص الفيزيائية</li>
+                            <li>دراسات حالة واقعية</li>
+                        </ul>
+                    </div>
+                    <div class="course-footer">
+                        <button class="btn-course">سجل الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jobs Section -->
+    <section id="jobs" class="section">
+        <div class="container">
+            <h2 class="section-title">فرص العمل والتوظيف</h2>
+            <div class="jobs-container">
+                <div class="job-card">
+                    <div class="job-header">
+                        <div class="job-title">
+                            <h3>عالم بيانات كيميائية</h3>
+                            <div class="job-company">شركة الأدوية المتقدمة</div>
+                        </div>
+                        <span class="job-type">دوام كامل</span>
+                    </div>
+                    <div class="job-details">
+                        نبحث عن عالم بيانات كيميائية متخصص للانضمام إلى فريق البحث والتطوير. المسؤوليات تشمل تحليل البيانات الكيميائية الضخمة وتطوير نماذج تنبؤية.
+                    </div>
+                    <div class="job-skills">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">RDKit</span>
+                        <span class="skill-tag">SQL</span>
+                    </div>
+                    <div class="job-footer">
+                        <span class="job-salary">15,000 - 20,000 ريال</span>
+                        <button class="btn-apply">تقدم الآن</button>
+                    </div>
+                </div>
+                <div class="job-card">
+                    <div class="job-header">
+                        <div class="job-title">
+                            <h3>مطور برمجيات كيميائية</h3>
+                            <div class="job-company">مختبرات الابتكار</div>
+                        </div>
+                        <span class="job-type">دوام كامل</span>
+                    </div>
+                    <div class="job-details">
+                        تحتاج إلى مطور برمجيات ذو خلفية كيميائية لتطوير أدوات وتطبيقات للمعلوماتية الكيميائية وتحسين الأداء الحالي.
+                    </div>
+                    <div class="job-skills">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">ChemAxon</span>
+                        <span class="skill-tag">API</span>
+                    </div>
+                    <div class="job-footer">
+                        <span class="job-salary">12,000 - 18,000 ريال</span>
+                        <button class="btn-apply">تقدم الآن</button>
+                    </div>
+                </div>
+                <div class="job-card">
+                    <div class="job-header">
+                        <div class="job-title">
+                            <h3>باحث في الذكاء الاصطناعي الكيميائي</h3>
+                            <div class="job-company">جامعة المستقبل</div>
+                        </div>
+                        <span class="job-type">دوام جزئي</span>
+                    </div>
+                    <div class="job-details">
+                        فرصة للباحثين الشباب للانضمام إلى فريق يعمل على تطوير خوارزميات ذكاء اصطناعي مبتكرة للتطبيقات الكيميائية.
+                    </div>
+                    <div class="job-skills">
+                        <span class="skill-tag">Deep Learning</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Research</span>
+                        <span class="skill-tag">Publications</span>
+                    </div>
+                    <div class="job-footer">
+                        <span class="job-salary">متفاوض عليه</span>
+                        <button class="btn-apply">تقدم الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Gallery -->
+    <section id="projects" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">معرض المشاريع والإنجازات</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://picsum.photos/seed/project1/400/200.jpg" alt="مشروع 1">
+                        <div class="project-overlay">
+                            <h3>مشروع اكتشاف الأدوية</h3>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>منصة ذكية لاكتشاف الأدوية</h3>
+                        <p>تطوير منصة متكاملة تستخدم الذكاء الاصطناعي لتسريع عملية اكتشاف وتطوير الأدوية الجديدة</p>
+                        <div class="project-meta">
+                            <span><i class="fas fa-user"></i> فريق البحث</span>
+                            <span><i class="fas fa-calendar"></i> 2023</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://picsum.photos/seed/project2/400/200.jpg" alt="مشروع 2">
+                        <div class="project-overlay">
+                            <h3>مشروع المواد الخضراء</h3>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>تصميم مواد بلاستيكية قابلة للتحلل</h3>
+                        <p>استخدام المعلوماتية الكيميائية لتصميم بوليمرات جديدة صديقة للبيئة وقابلة للتحلل البيولوجي</p>
+                        <div class="project-meta">
+                            <span><i class="fas fa-user"></i> مختبر المواد</span>
+                            <span><i class="fas fa-calendar"></i> 2023</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://picsum.photos/seed/project3/400/200.jpg" alt="مشروع 3">
+                        <div class="project-overlay">
+                            <h3>مشروع الطاقة النظيفة</h3>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>محفزات جديدة لخلايا الوقود</h3>
+                        <p>اكتشاف وتصميم محفزات فعالة ومنخفضة التكلفة لخلايا الوقود الهيدروجينية</p>
+                        <div class="project-meta">
+                            <span><i class="fas fa-user"></i> فريق الطاقة</span>
+                            <span><i class="fas fa-calendar"></i> 2022</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن الموقع</h3>
+                    <p>منصة رائدة في المعلوماتية الكيميائية تقدم محتوى تعليمي وبحثي متخصص، وتوفر فرص تواصل بين الخبراء والباحثين والطلاب في هذا المجال المبتكر.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#intro">ما هي المعلوماتية الكيميائية</a></li>
+                        <li><a href="#applications">التطبيقات الرئيسية</a></li>
+                        <li><a href="#tools">الأدوات والبرامج</a></li>
+                        <li><a href="#research">أحدث الأبحاث</a></li>
+                        <li><a href="#education">الدورات التعليمية</a></li>
+                        <li><a href="#jobs">فرص العمل</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>الموارد</h3>
+                    <ul>
+                        <li><a href="#">المكتبة الرقمية</a></li>
+                        <li><a href="#">قواعد البيانات</a></li>
+                        <li><a href="#">المنشورات العلمية</a></li>
+                        <li><a href="#">الندوات والمؤتمرات</a></li>
+                        <li><a href="#">الشهادات المهنية</a></li>
+                        <li><a href="#">المنتدى العلمي</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@chemoinformatics.sa</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                        <li><i class="fas fa-clock"></i> السبت - الخميس: 9:00 ص - 5:00 م</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 بوابة المعلوماتية الكيميائية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Research timeline animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.research-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.right = '0';
+            navLinks.style.background = 'white';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.width = '100%';
+            navLinks.style.padding = '1rem';
+            navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+        });
+
+        // Course registration
+        document.querySelectorAll('.btn-course').forEach(button => {
+            button.addEventListener('click', function() {
+                const courseName = this.closest('.course-card').querySelector('h3').textContent;
+                alert(`تم تسجيلك في دورة: ${courseName}\nسنتواصل معك قريباً بتفاصيل الدفع والوصول للمحتوى.`);
+            });
+        });
+
+        // Job application
+        document.querySelectorAll('.btn-apply').forEach(button => {
+            button.addEventListener('click', function() {
+                const jobTitle = this.closest('.job-card').querySelector('h3').textContent;
+                alert(`شكراً لتقديمك لوظيفة: ${jobTitle}\nسيقوم فريق التوظيف بمراجعة طلبك والتواصل معك قريباً.`);
+            });
+        });
+
+        // Add hover effect to project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

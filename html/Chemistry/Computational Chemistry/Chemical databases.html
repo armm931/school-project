@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قواعد البيانات الكيميائية - المنصة العربية للبيانات الكيميائية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a8a;
+            --secondary-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-green: #10b981;
+            --light-blue: #dbeafe;
+            --white: #ffffff;
+            --dark-gray: #1f2937;
+            --light-gray: #f3f4f6;
+            --text-color: #374151;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+            background: var(--light-gray);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--accent-purple);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-purple);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.9), rgba(139, 92, 246, 0.9)),
+                        url('https://picsum.photos/seed/chemistry/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 1.2rem 3rem 1.2rem 1.5rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--dark-gray);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            outline: none;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .search-btn {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--accent-purple);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: var(--primary-blue);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-green));
+            border-radius: 2px;
+        }
+
+        /* Database Categories */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .category-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-green));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .category-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .category-card p {
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+
+        .category-count {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1.2rem;
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        /* Compound Display */
+        .compound-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .compound-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .compound-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .compound-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .compound-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .compound-formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .compound-body {
+            padding: 1.5rem;
+        }
+
+        .compound-image {
+            width: 100%;
+            height: 200px;
+            background: var(--light-gray);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .compound-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .compound-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item {
+            text-align: center;
+            padding: 0.8rem;
+            background: var(--light-gray);
+            border-radius: 10px;
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            color: var(--text-color);
+            margin-bottom: 0.3rem;
+        }
+
+        .info-value {
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .view-details {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-green));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-details:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Spectral Data Section */
+        .spectral-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .spectral-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .spectral-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-purple);
+        }
+
+        .spectral-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .spectral-chart {
+            height: 150px;
+            background: var(--light-gray);
+            border-radius: 10px;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+        }
+
+        /* Tools Section */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tool-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .tool-icon {
+            font-size: 2.5rem;
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+        }
+
+        /* News Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.1);
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-date {
+            color: var(--accent-purple);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .news-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--accent-purple);
+            font-size: 1.3rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-purple);
+            transform: translateX(-5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-align: center;
+            line-height: 45px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-purple);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Filter Section */
+        .filter-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+            margin-bottom: 0.5rem;
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            padding: 0.8rem;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .filter-group select:focus,
+        .filter-group input:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+        }
+
+        .filter-btn {
+            grid-column: span 2;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-green));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .compound-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-btn {
+                grid-column: span 1;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-green));
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-flask"></i>
+                قواعد البيانات الكيميائية
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#database">قاعدة البيانات</a></li>
+                <li><a href="#compounds">المركبات</a></li>
+                <li><a href="#spectral">البيانات الطيفية</a></li>
+                <li><a href="#tools">الأدوات</a></li>
+                <li><a href="#news">الأخبار</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>المنصة العربية للبيانات الكيميائية</h1>
+            <p>أكبر قاعدة بيانات كيميائية عربية تحتوي على آلاف المركبات الكيميائية مع خصائصها وهياكلها الجزيئية</p>
+            <div class="search-container">
+                <input type="text" class="search-box" placeholder="ابحث عن مركب كيميائي، صيغة كيميائية، أو رقم CAS...">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Database Categories -->
+    <section id="database" class="section">
+        <div class="container">
+            <h2 class="section-title">فئات قاعدة البيانات</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>المركبات العضوية</h3>
+                    <p>قاعدة بيانات شاملة تحتوي على جميع أنواع المركبات العضوية مع هياكلها الجزيئية وخصائصها</p>
+                    <span class="category-count">15,000+ مركب</span>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h3>المركبات غير العضوية</h3>
+                    <p>بيانات مفصلة عن المركبات غير العضوية والأملاح والمعادن والخصائص الفيزيائية والكيميائية</p>
+                    <span class="category-count">8,500+ مركب</span>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>المركبات البيولوجية</h3>
+                    <p>معلومات عن الأحماض الأمينية، البروتينات، الإنزيمات والمركبات البيولوجية النشطة</p>
+                    <span class="category-count">12,000+ مركب</span>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3>الأدوية والمستحضرات</h3>
+                    <p>قاعدة بيانات الأدوية المعتمدة والتركيبات الدوائية مع آليات العمل والجرعات</p>
+                    <span class="category-count">5,000+ دواء</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compounds Section -->
+    <section id="compounds" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">المركبات الكيميائية</h2>
+            
+            <!-- Filter Section -->
+            <div class="filter-container">
+                <div class="filter-grid">
+                    <div class="filter-group">
+                        <label>الفئة</label>
+                        <select>
+                            <option>الكل</option>
+                            <option>مركبات عضوية</option>
+                            <option>مركبات غير عضوية</option>
+                            <option>مركبات بيولوجية</option>
+                            <option>أدوية</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>الكتلة المولية</label>
+                        <select>
+                            <option>الكل</option>
+                            <option>أقل من 100</option>
+                            <option>100-500</option>
+                            <option>أكثر من 500</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>درجة الانصهار</label>
+                        <input type="text" placeholder="°C">
+                    </div>
+                    <div class="filter-group">
+                        <label>الذوبانية</label>
+                        <select>
+                            <option>الكل</option>
+                            <option>قابل للذوبان في الماء</option>
+                            <option>قليل الذوبان</option>
+                            <option>غير قابل للذوبان</option>
+                        </select>
+                    </div>
+                    <button class="filter-btn">تطبيق الفلتر</button>
+                </div>
+            </div>
+
+            <!-- Compounds Grid -->
+            <div class="compound-grid">
+                <div class="compound-card">
+                    <div class="compound-header">
+                        <div class="compound-name">الماء</div>
+                        <div class="compound-formula">H₂O</div>
+                    </div>
+                    <div class="compound-body">
+                        <div class="compound-image">
+                            <img src="https://picsum.photos/seed/water/300/200.jpg" alt="هيكل الماء">
+                        </div>
+                        <div class="compound-info">
+                            <div class="info-item">
+                                <div class="info-label">الكتلة المولية</div>
+                                <div class="info-value">18.02 g/mol</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">درجة الانصهار</div>
+                                <div class="info-value">0°C</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">درجة الغليان</div>
+                                <div class="info-value">100°C</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">الكثافة</div>
+                                <div class="info-value">1 g/cm³</div>
+                            </div>
+                        </div>
+                        <button class="view-details">عرض التفاصيل</button>
+                    </div>
+                </div>
+
+                <div class="compound-card">
+                    <div class="compound-header">
+                        <div class="compound-name">الإيثانول</div>
+                        <div class="compound-formula">C₂H₅OH</div>
+                    </div>
+                    <div class="compound-body">
+                        <div class="compound-image">
+                            <img src="https://picsum.photos/seed/ethanol/300/200.jpg" alt="هيكل الإيثانول">
+                        </div>
+                        <div class="compound-info">
+                            <div class="info-item">
+                                <div class="info-label">الكتلة المولية</div>
+                                <div class="info-value">46.07 g/mol</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">درجة الانصهار</div>
+                                <div class="info-value">-114°C</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">درجة الغليان</div>
+                                <div class="info-value">78°C</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">الكثافة</div>
+                                <div class="info-value">0.789 g/cm³</div>
+                            </div>
+                        </div>
+                        <button class="view-details">عرض التفاصيل</button>
+                    </div>
+                </div>
+
+                <div class="compound-card">
+                    <div class="compound-header">
+                        <div class="compound-name">الأسبرين</div>
+                        <div class="compound-formula">C₉H₈O₄</div>
+                    </div>
+                    <div class="compound-body">
+                        <div class="compound-image">
+                            <img src="https://picsum.photos/seed/aspirin/300/200.jpg" alt="هيكل الأسبرين">
+                        </div>
+                        <div class="compound-info">
+                            <div class="info-item">
+                                <div class="info-label">الكتلة المولية</div>
+                                <div class="info-value">180.16 g/mol</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">درجة الانصهار</div>
+                                <div class="info-value">135°C</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">درجة الغليان</div>
+                                <div class="info-value">140°C</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">الذوبانية</div>
+                                <div class="info-value">3.3 mg/mL</div>
+                            </div>
+                        </div>
+                        <button class="view-details">عرض التفاصيل</button>
+                    </div>
+                </div>
+
+                <div class="compound-card">
+                    <div class="compound-header">
+                        <div class="compound-name">الجلوكوز</div>
+                        <div class="compound-formula">C₆H₁₂O₆</div>
+                    </div>
+                    <div class="compound-body">
+                        <div class="compound-image">
+                            <img src="https://picsum.photos/seed/glucose/300/200.jpg" alt="هيكل الجلوكوز">
+                        </div>
+                        <div class="compound-info">
+                            <div class="info-item">
+                                <div class="info-label">الكتلة المولية</div>
+                                <div class="info-value">180.16 g/mol</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">درجة الانصهار</div>
+                                <div class="info-value">146°C</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">الذوبانية</div>
+                                <div class="info-value">91 g/100mL</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">pKa</div>
+                                <div class="info-value">12.43</div>
+                            </div>
+                        </div>
+                        <button class="view-details">عرض التفاصيل</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spectral Data Section -->
+    <section id="spectral" class="section">
+        <div class="container">
+            <h2 class="section-title">البيانات الطيفية</h2>
+            <div class="spectral-container">
+                <div class="spectral-card">
+                    <div class="spectral-icon">
+                        <i class="fas fa-wave-square"></i>
+                    </div>
+                    <h3>NMR - الرنين النووي المغناطيسي</h3>
+                    <p>بيانات طيفية NMR لجميع المركبات مع تحليل الذرات والتبدلات الكيميائية</p>
+                    <div class="spectral-chart">
+                        <i class="fas fa-chart-line" style="font-size: 3rem; color: var(--accent-purple);"></i>
+                    </div>
+                    <button class="view-details">استعراض البيانات</button>
+                </div>
+                <div class="spectral-card">
+                    <div class="spectral-icon">
+                        <i class="fas fa-infrared"></i>
+                    </div>
+                    <h3>IR - الأشعة تحت الحمراء</h3>
+                    <p>طيف الأشعة تحت الحمراء مع تحليل الروابط والمجموعات الوظيفية</p>
+                    <div class="spectral-chart">
+                        <i class="fas fa-chart-area" style="font-size: 3rem; color: var(--accent-green);"></i>
+                    </div>
+                    <button class="view-details">استعراض البيانات</button>
+                </div>
+                <div class="spectral-card">
+                    <div class="spectral-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>MS - مطيافية الكتلة</h3>
+                    <p>بيانات مطيافية الكتلة مع تحليل الأيونات والنماذج الشظية</p>
+                    <div class="spectral-chart">
+                        <i class="fas fa-chart-bar" style="font-size: 3rem; color: var(--secondary-blue);"></i>
+                    </div>
+                    <button class="view-details">استعراض البيانات</button>
+                </div>
+                <div class="spectral-card">
+                    <div class="spectral-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3>UV-Vis - الطيف المرئي فوق البنفسجي</h3>
+                    <p>بيانات الامتصاص في نطاق UV-Vis مع تحليل الانتقالات الإلكترونية</p>
+                    <div class="spectral-chart">
+                        <i class="fas fa-chart-line" style="font-size: 3rem; color: var(--accent-purple);"></i>
+                    </div>
+                    <button class="view-details">استعراض البيانات</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">الأدوات والمحاكيات الكيميائية</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>حاسبة الكتلة المولية</h3>
+                    <p>احسب الكتلة المولية لأي مركب كيميائي بدقة</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>موازنة المعادلات</h3>
+                    <p>وازن المعادلات الكيميائية تلقائياً</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h3>محلل التركيز</h3>
+                    <p>احسب التركيزات والمولارية للمحاليل</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>محاكي الهيكل الجزيئي</h3>
+                    <p>أنشئ وعدل الهياكل الجزيئية ثلاثية الأبعاد</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>راسم الطيفي</h3>
+                    <p>ارسم الأطياف الكيميائية بشكل تفاعلي</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>محاكي التفاعلات</h3>
+                    <p>شاهد التفاعلات الكيميائية خطوة بخطوة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="section">
+        <div class="container">
+            <h2 class="section-title">أخبار الكيمياء والتحديثات</h2>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://picsum.photos/seed/chem-news1/400/200.jpg" alt="خبر كيميائي">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">
+                            <i class="fas fa-calendar-alt"></i> 20 ديسمبر 2023
+                        </div>
+                        <h3>اكتشاف مركب كيميائي جديد لعلاج السرطان</h3>
+                        <p>فريق من الباحثين يعرفون مركباً كيميائياً جديداً يظهر فعالية واعدة في علاج أنواع معينة من السرطان</p>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://picsum.photos/seed/chem-news2/400/200.jpg" alt="خبر كيميائي">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">
+                            <i class="fas fa-calendar-alt"></i> 18 ديسمبر 2023
+                        </div>
+                        <h3>تحديث قاعدة البيانات بإضافة 500 مركب جديد</h3>
+                        <p>تم تحديث قاعدة البيانات بإضافة 500 مركب كيميائي جديد مع بياناتهم الطيفية والخصائص الفيزيائية</p>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://picsum.photos/seed/chem-news3/400/200.jpg" alt="خبر كيميائي">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">
+                            <i class="fas fa-calendar-alt"></i> 15 ديسمبر 2023
+                        </div>
+                        <h3>إطلاق أداة جديدة لمحاكاة التفاعلات الكيميائية</h3>
+                        <p>تم إطلاق أداة متقدمة لمحاكاة التفاعلات الكيميائية ثلاثية الأبعاد بدقة عالية</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن المنصة</h3>
+                    <p>المنصة العربية الرائدة لقواعد البيانات الكيميائية، توفر معلومات دقيقة وشاملة عن المركبات الكيميائية وخصائصها للباحثين والطلاب والمهنيين.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#database"><i class="fas fa-database"></i> قاعدة البيانات</a></li>
+                        <li><a href="#compounds"><i class="fas fa-flask"></i> المركبات الكيميائية</a></li>
+                        <li><a href="#spectral"><i class="fas fa-wave-square"></i> البيانات الطيفية</a></li>
+                        <li><a href="#tools"><i class="fas fa-tools"></i> الأدوات</a></li>
+                        <li><a href="#"><i class="fas fa-download"></i> تحميل البيانات</a></li>
+                        <li><a href="#"><i class="fas fa-book"></i> المراجع</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>الدعم الفني</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-question-circle"></i> الأسئلة الشائعة</a></li>
+                        <li><a href="#"><i class="fas fa-book-open"></i> دليل المستخدم</a></li>
+                        <li><a href="#"><i class="fas fa-video"></i> دروس فيديو</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> التواصل الفني</a></li>
+                        <li><a href="#"><i class="fas fa-bug"></i> الإبلاغ عن مشكلة</a></li>
+                        <li><a href="#"><i class="fas fa-lightbulb"></i> اقتراحات التحسين</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> العنوان: مبنى الكيمياء، الحي العلمي</li>
+                        <li><i class="fas fa-phone"></i> الهاتف: +966 12 345 6789</li>
+                        <li><i class="fas fa-envelope"></i> البريد: info@chemdb.edu.sa</li>
+                        <li><i class="fas fa-clock"></i> ساعات العمل: 8:00 ص - 5:00 م</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 المنصة العربية لقواعد البيانات الكيميائية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Search functionality
+        const searchBox = document.querySelector('.search-box');
+        const searchBtn = document.querySelector('.search-btn');
+
+        searchBtn.addEventListener('click', function() {
+            const searchTerm = searchBox.value.trim();
+            if (searchTerm) {
+                alert(`جاري البحث عن: ${searchTerm}`);
+                // In a real application, this would perform an actual search
+            }
+        });
+
+        searchBox.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchBtn.click();
+            }
+        });
+
+        // Filter functionality
+        const filterBtn = document.querySelector('.filter-btn');
+        filterBtn.addEventListener('click', function() {
+            // Get all filter values
+            const filters = {};
+            document.querySelectorAll('.filter-group select, .filter-group input').forEach(input => {
+                const label = input.previousElementSibling.textContent;
+                filters[label] = input.value;
+            });
+            
+            // Show loading state
+            filterBtn.innerHTML = '<span class="loading"></span> جاري التطبيق...';
+            filterBtn.disabled = true;
+            
+            // Simulate filtering
+            setTimeout(() => {
+                filterBtn.innerHTML = 'تطبيق الفلتر';
+                filterBtn.disabled = false;
+                alert('تم تطبيق الفلتر بنجاح!');
+            }, 1500);
+        });
+
+        // View details functionality
+        document.querySelectorAll('.view-details').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const compoundName = this.closest('.compound-card').querySelector('.compound-name').textContent;
+                alert(`جاري عرض تفاصيل المركب: ${compoundName}`);
+            });
+        });
+
+        // Tool card click functionality
+        document.querySelectorAll('.tool-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const toolName = this.querySelector('h3').textContent;
+                alert(`جاري فتح أداة: ${toolName}`);
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.width = '100%';
+                navLinks.style.padding = '1rem';
+                navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.category-card, .compound-card, .spectral-card, .tool-card, .news-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

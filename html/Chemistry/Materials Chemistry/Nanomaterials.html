@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المواد النانوية - بوابة الأبحاث والاكتشافات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #2c3e50;
+            --accent-blue: #3498db;
+            --light-blue: #5dade2;
+            --purple: #8e44ad;
+            --light-purple: #bb8fce;
+            --dark-purple: #6c3483;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+            --text-color: #2c3e50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9), rgba(142, 68, 173, 0.9)),
+                        url('https://picsum.photos/seed/nanotechnology/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: var(--white);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-blue);
+        }
+
+        /* Introduction Section */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .intro-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .intro-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Types of Nanomaterials */
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .type-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+
+        .type-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-color: var(--accent-blue);
+        }
+
+        .type-icon {
+            font-size: 3rem;
+            color: var(--purple);
+            margin-bottom: 1rem;
+        }
+
+        .type-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Research Section */
+        .research-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .research-timeline::before {
+            content: '';
+            position: absolute;
+            right: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-blue);
+            transform: translateX(50%);
+        }
+
+        .research-item {
+            position: relative;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+        }
+
+        .research-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .research-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            position: relative;
+        }
+
+        .research-item:nth-child(odd) .research-content {
+            margin-right: auto;
+        }
+
+        .research-item:nth-child(even) .research-content {
+            margin-left: auto;
+        }
+
+        .research-date {
+            position: absolute;
+            right: 50%;
+            top: 50%;
+            transform: translate(50%, -50%);
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        /* Applications Section */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .application-card {
+            background: linear-gradient(135deg, var(--light-blue), var(--light-purple));
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .application-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .application-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .application-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        /* News Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.1);
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-date {
+            color: var(--accent-blue);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Statistics */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--purple));
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-weight: 500;
+        }
+
+        /* Map Section */
+        .map-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .map-placeholder {
+            height: 400px;
+            background: url('https://picsum.photos/seed/researchmap/1200/400.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-blue);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--light-blue);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--light-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .research-timeline::before {
+                right: 30px;
+            }
+
+            .research-content {
+                width: calc(100% - 60px);
+                margin-right: 60px !important;
+            }
+
+            .research-date {
+                right: 30px;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--primary-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--purple);
+            transform: translateY(-5px);
+        }
+
+        /* Research Highlight Box */
+        .research-highlight {
+            background: linear-gradient(135deg, var(--light-blue), var(--light-purple));
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .research-highlight::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .research-highlight h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .research-highlight p {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                المواد النانوية
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#intro">مقدمة</a></li>
+                <li><a href="#types">الأنواع</a></li>
+                <li><a href="#research">الأبحاث</a></li>
+                <li><a href="#applications">التطبيقات</a></li>
+                <li><a href="#news">الأخبار</a></li>
+                <li><a href="#statistics">الإحصائيات</a></li>
+                <li><a href="#map">الخريطة</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>بوابة المواد النانوية</h1>
+            <p>منصة شاملة تقدم آخر الأبحاث والاكتشافات في مجال المواد النانوية وتطبيقاتها المتقدمة</p>
+            <a href="#intro" class="cta-button">استكشف العالم النانوي</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="section">
+        <div class="container">
+            <h2 class="section-title">ما هي المواد النانوية؟</h2>
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <h3>عالم الابتكار في المقياس النانوي</h3>
+                    <p>المواد النانوية هي مواد ذات أبعاد تتراوح بين 1 و 100 نانومتر، حيث تظهر خصائص فريدة ومختلفة تماماً عن خصائص المواد في الحجم العادي. هذه الخصائص الاستثنائية فتحت آفاقاً جديدة في:</p>
+                    <p>• الطب: علاجات مستهدفة وتشخيص دقيق</p>
+                    <p>• الإلكترونيات: أجهزة أصغر وأكثر كفاءة</p>
+                    <p>• الطاقة: خلايا شمسية وبطاريات فائقة</p>
+                    <p>• البيئة: تقنيات تنقية المياه والهواء</p>
+                    <p>• الصناعة: مواد أقوى وأخف وزناً</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://picsum.photos/seed/nanomaterials/600/400.jpg" alt="المواد النانوية">
+                </div>
+            </div>
+            
+            <div class="research-highlight">
+                <h3><i class="fas fa-lightbulb"></i> أحدث الاكتشاف</h3>
+                <p>فريق من الباحثين يطور جسيمات نانوية ذكية تستطيع استهداف الخلايا السرطانية بدقة 99% دون التأثير على الخلايا السليمة، مما يمثل ثورة في علاج السرطان.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Types Section -->
+    <section id="types" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">أنواع المواد النانوية</h2>
+            <div class="types-grid">
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-circle"></i>
+                    </div>
+                    <h3>الجسيمات النانوية الكروية</h3>
+                    <p>جسيمات كروية صغيرة تستخدم في التوصيل الدوائي والتصوير الطبي والكشف المبكر عن الأمراض</p>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-stream"></i>
+                    </div>
+                    <h3>الأنابيب النانوية</h3>
+                    <p>هياكل أسطوانية مجوفة تتميز بقوة ميكانيكية فائقة وتوصيلية كهربائية ممتازة</p>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>الرقائق النانوية</h3>
+                    <p>مواد ثنائية الأبعاد ذات سمك ذري، مثل الجرافين، تستخدم في الإلكترونيات المرنة</p>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3>الكميات النانوية</h3>
+                    <p>بلورات نانوية تظهر خصائص بصرية وكهربائية فريدة تعتمد على حجمها وشكلها</p>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>النانوبوليمرات</h3>
+                    <p>بوليمرات هندسية على المقياس النانوي تستخدم في التغليف الذكي والأغلفة الطبية</p>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>النانو المركبات</h3>
+                    <p>مواد مركبة تجمع بين خصائص متعددة لتحقيق أداء فائق في التطبيقات الصناعية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="section">
+        <div class="container">
+            <h2 class="section-title">آخر الأبحاث والاكتشافات</h2>
+            <div class="research-timeline">
+                <div class="research-item">
+                    <div class="research-date">ديسمبر 2023</div>
+                    <div class="research-content">
+                        <h3>تطوير بطاريات ليثيوم-كبريت نانوية</h3>
+                        <p>باحثون يطورون بطاريات جديدة باستخدام مواد نانوية تزيد من سعة التخزين 5 أضعاف وتقلل زمن الشحن إلى 10 دقائق فقط</p>
+                    </div>
+                </div>
+                <div class="research-item">
+                    <div class="research-date">نوفمبر 2023</div>
+                    <div class="research-content">
+                        <h3>نانو روبوتات للجراحة الدقيقة</h3>
+                        <p>اختراع نانو روبوتات قادرة على إجراء جراحات دقيقة داخل الجسم بدقة ميكرونية دون الحاجة لفتح جراحي</p>
+                    </div>
+                </div>
+                <div class="research-item">
+                    <div class="research-date">أكتوبر 2023</div>
+                    <div class="research-content">
+                        <h3>أقمار صناعية نانوية للمراقبة البيئية</h3>
+                        <p>إطلاق أول مجموعة من الأقمار الصناعية النانوية المجهزة بأجهزة استشعار نانوية لمراقبة التلوث البيئي في الوقت الفعلي</p>
+                    </div>
+                </div>
+                <div class="research-item">
+                    <div class="research-date">سبتمبر 2023</div>
+                    <div class="research-content">
+                        <h3>مواد نانوية ذاتية الشفاء</h3>
+                        <p>تطوير مواد نانوية قادرة على إصلاح نفسها تلقائياً عند التعرض للتلف، مما يزيد من عمرها الافتراضي بشكل كبير</p>
+                    </div>
+                </div>
+                <div class="research-item">
+                    <div class="research-date">أغسطس 2023</div>
+                    <div class="research-content">
+                        <h3>مرشحات نانوية لتحلية المياه</h3>
+                        <p>ابتكار مرشحات نانوية جديدة تزيل 99.9% من الملوثات والملوحات من مياه البحر بتكلفة أقل بنسبة 70%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">التطبيقات المتقدمة</h2>
+            <div class="applications-grid">
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>الطب الحيوي</h3>
+                    <p>تطبيقات في التشخيص والعلاج المستهدف، توصيل الأدوية، والهندسة النسيجية</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>الإلكترونيات</h3>
+                    <p>معالجات أسرع، ذاكرة عالية الكثافة، وشاشات مرنة شفافة</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-solar-panel"></i>
+                    </div>
+                    <h3>الطاقة المتجددة</h3>
+                    <p>خلايا شمسية عالية الكفاءة، بطاريات فائقة، وتخزين الطاقة</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>التصنيع</h3>
+                    <p>مواد مركبة فائقة القوة، طلاءات مقاومة، وتصنيع دقيق</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>الأمن والدفاع</h3>
+                    <p>مواد خفيفة وقوية، أجهزة استشعار متطورة، وحماية متقدمة</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>الزراعة</h3>
+                    <p>أسمدة ذكية، مبيدات مستهدفة، ورصد صحة المحاصيل</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="section">
+        <div class="container">
+            <h2 class="section-title">آخر الأخبار والتحديثات</h2>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://picsum.photos/seed/nanotech1/400/200.jpg" alt="خبر نانوتكنولوجي">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">
+                            <i class="fas fa-calendar-alt"></i> 20 ديسمبر 2023
+                        </div>
+                        <h3> breakthrough في علاج الزهايمر باستخدام الجسيمات النانوية</h3>
+                        <p>تجارب سريرية ناجحة تستخدم جسيمات نانوية ذكية لتوصيل الأدوية مباشرة إلى الدماغ</p>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://picsum.photos/seed/nanotech2/400/200.jpg" alt="خبر نانوتكنولوجي">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">
+                            <i class="fas fa-calendar-alt"></i> 18 ديسمبر 2023
+                        </div>
+                        <h3>إطلاق أول معهد عربي متخصص في النانوتكنولوجيا</h3>
+                        <p>استثمار بمليار دولار لإنشاء أكبر مركز بحثي في الشرق الأوسط</p>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://picsum.photos/seed/nanotech3/400/200.jpg" alt="خبر نانوتكنولوجي">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">
+                            <i class="fas fa-calendar-alt"></i> 15 ديسمبر 2023
+                        </div>
+                        <h3>مواد نانوية ثورية في مجال الفضاء</h3>
+                        <p>تطوير مواد نانوية خفيفة للغاية وقوية لاستخدامها في صناعة المركبات الفضائية</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section id="statistics" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">إحصائيات النانوتكنولوجيا</h2>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="350">0</div>
+                    <div class="stat-label">مليار دولار حجم السوق</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="25">0</div>
+                    <div class="stat-label">٪ نمو سنوي</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="1800">0</div>
+                    <div class="stat-label">باحث نشط</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="450">0</div>
+                    <div class="stat-label">براءة اختراع</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section id="map" class="section">
+        <div class="container">
+            <h2 class="section-title">خريطة المراكز البحثية</h2>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <div class="map-overlay">
+                        <div>
+                            <i class="fas fa-map-marked-alt" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <p>خريطة تفاعلية تظهر مواقع المراكز البحثية المتخصصة في النانوتكنولوجيا</p>
+                            <p style="font-size: 0.9rem; margin-top: 0.5rem;">انقر لعرض التفاصيل</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>من نحن</h3>
+                    <p>منصة رائدة في تقديم أحدث الأبحاث والاكتشافات في مجال المواد النانوية، نسعى لنشر الوعي العلمي وتسهيل الوصول إلى المعرفة النانوية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#intro">مقدمة في النانوتكنولوجيا</a></li>
+                        <li><a href="#types">أنواع المواد النانوية</a></li>
+                        <li><a href="#research">آخر الأبحاث</a></li>
+                        <li><a href="#applications">التطبيقات</a></li>
+                        <li><a href="#news">الأخبار</a></li>
+                        <li><a href="#">المكتبة البحثية</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> العنوان: مركز البحوث النانوية، المدينة العلمية</li>
+                        <li><i class="fas fa-phone"></i> الهاتف: +966 12 987 6543</li>
+                        <li><i class="fas fa-envelope"></i> البريد: info@nanomaterials.edu.sa</li>
+                        <li><i class="fas fa-clock"></i> ساعات العمل: 8:00 ص - 6:00 م</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>النشرة العلمية</h3>
+                    <p>اشترك في نشرتنا للحصول على آخر الأبحاث والاكتشافات في عالم النانوتكنولوجيا</p>
+                    <form style="margin-top: 1rem;">
+                        <input type="email" placeholder="بريدك الإلكتروني" style="width: 100%; padding: 0.8rem; border: none; border-radius: 5px; margin-bottom: 1rem;">
+                        <button type="submit" style="width: 100%; padding: 0.8rem; background: var(--light-blue); color: var(--primary-blue); border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">اشترك الآن</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 بوابة المواد النانوية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Timeline animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.research-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Animated statistics counter
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200;
+
+        const countUp = (counter) => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const increment = target / speed;
+
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(() => countUp(counter), 10);
+            } else {
+                counter.innerText = target;
+            }
+        };
+
+        const statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    countUp(entry.target);
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => {
+            statsObserver.observe(counter);
+        });
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.right = '0';
+            navLinks.style.background = 'white';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.width = '100%';
+            navLinks.style.padding = '1rem';
+            navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+        });
+
+        // Form submission prevention
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('شكراً لاشتراكك في نشرتنا العلمية!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

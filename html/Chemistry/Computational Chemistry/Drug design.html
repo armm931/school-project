@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تصميم الأدوية - منصة الابتكار الدوائي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-purple: #6B46C1;
+            --light-purple: #9333EA;
+            --accent-purple: #C084FC;
+            --dark-purple: #4C1D95;
+            --science-blue: #1E40AF;
+            --light-blue: #3B82F6;
+            --accent-blue: #60A5FA;
+            --medical-green: #059669;
+            --light-green: #10B981;
+            --white: #ffffff;
+            --light-gray: #F9FAFB;
+            --dark-gray: #1F2937;
+            --text-color: #374151;
+            --gradient-1: linear-gradient(135deg, #6B46C1, #9333EA);
+            --gradient-2: linear-gradient(135deg, #1E40AF, #3B82F6);
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-purple);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-purple);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(107, 70, 193, 0.9), rgba(30, 64, 175, 0.8)),
+                        url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--white);
+            color: var(--primary-purple);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--white);
+            text-decoration: none;
+            border: 2px solid var(--white);
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary-purple);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-purple);
+        }
+
+        /* About Drug Design */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--light-gray);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary-purple);
+        }
+
+        .about-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Drug Design Process */
+        .process-container {
+            margin-top: 3rem;
+        }
+
+        .process-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            right: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--gradient-2);
+            transform: translateX(50%);
+        }
+
+        .process-step {
+            position: relative;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+        }
+
+        .process-step.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .process-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            position: relative;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            transition: all 0.3s ease;
+        }
+
+        .process-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .process-step:nth-child(odd) .process-content {
+            margin-right: auto;
+            background: linear-gradient(white, white) padding-box,
+                        var(--gradient-1) border-box;
+        }
+
+        .process-step:nth-child(even) .process-content {
+            margin-left: auto;
+            background: linear-gradient(white, white) padding-box,
+                        var(--gradient-2) border-box;
+        }
+
+        .process-number {
+            position: absolute;
+            right: 50%;
+            top: 50%;
+            transform: translate(50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            z-index: 1;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .process-step:nth-child(even) .process-number {
+            background: var(--gradient-2);
+        }
+
+        .process-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-purple);
+        }
+
+        .process-step:nth-child(even) .process-content h3 {
+            color: var(--science-blue);
+        }
+
+        /* Technologies Section */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tech-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(107, 70, 193, 0.05), transparent);
+            transition: right 0.5s ease;
+        }
+
+        .tech-card:hover::before {
+            right: 100%;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .tech-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tech-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-purple);
+        }
+
+        .tech-card p {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Research Section */
+        .research-container {
+            margin-top: 3rem;
+        }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .research-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .research-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .research-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .research-card:hover .research-image img {
+            transform: scale(1.1);
+        }
+
+        .research-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--medical-green);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .research-content {
+            padding: 1.5rem;
+        }
+
+        .research-date {
+            color: var(--primary-purple);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .research-content h3 {
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .research-content p {
+            color: var(--text-color);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: var(--primary-purple);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--light-gray);
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-purple);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-purple);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-purple);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-purple);
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-purple);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--dark-gray);
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: white;
+            box-shadow: 0 0 0 2px var(--accent-purple);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            background: var(--accent-purple);
+            color: var(--dark-purple);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-purple);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .process-timeline::before {
+                right: 30px;
+            }
+
+            .process-content {
+                width: calc(100% - 60px);
+                margin-right: 60px !important;
+            }
+
+            .process-number {
+                right: 30px;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--primary-purple);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--dark-purple);
+            transform: translateY(-5px);
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .molecule {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            animation: rotate 2s linear infinite;
+        }
+
+        .molecule::before,
+        .molecule::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-purple);
+            border-radius: 50%;
+        }
+
+        .molecule::before {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .molecule::after {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .molecule span {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: var(--science-blue);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="molecule">
+            <span></span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                تصميم الأدوية
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#about">عن التصميم</a></li>
+                <li><a href="#process">المراحل</a></li>
+                <li><a href="#technologies">التقنيات</a></li>
+                <li><a href="#research">الأبحاث</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>ابتكار مستقبل العلاج الدوائي</h1>
+            <p>منصة متخصصة في تصميم وتطوير الأدوية باستخدام أحدث التقنيات والأساليب العلمية</p>
+            <div class="hero-buttons">
+                <a href="#process" class="btn-primary">اكتشف المراحل</a>
+                <a href="#research" class="btn-secondary">آخر الأبحاث</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Drug Design Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">ما هو تصميم الأدوية؟</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>فن وعلم تطوير العلاجات</h3>
+                    <p>تصميم الأدوية هو عملية علمية معقدة تهدف إلى اكتشاف وتطوير مركبات دوائية جديدة فعالة وآمنة لعلاج الأمراض. يجمع هذا المجال بين الكيمياء، الأحياء، وتقنيات الحاسوب لخلق حلول علاجية مبتكرة.</p>
+                    <p>تتطلب عملية تصميم الأدوية فهماً عميقاً للبيولوجيا الجزيئية، الديناميكا الدوائية، والسمية، بالإضافة إلى القدرة على التنبؤ بسلوك المركبات داخل الجسم.</p>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <div>
+                                <strong>دقة علمية</strong>
+                                <p>استخدام منهجيات علمية دقيقة</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <strong>أمان وفعالية</strong>
+                                <p>ضمان سلامة المركبات الدوائية</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div>
+                                <strong>ابتكار مستمر</strong>
+                                <p>تطوير حلول علاجية جديدة</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div>
+                                <strong>تأثير عالمي</strong>
+                                <p>معالجة التحديات الصحية العالمية</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1584362917165-526a968579e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="مختبر تصميم الأدوية">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Drug Design Process Section -->
+    <section id="process" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">مراحل تصميم الأدوية</h2>
+            <div class="process-container">
+                <div class="process-timeline">
+                    <div class="process-step">
+                        <div class="process-number">1</div>
+                        <div class="process-content">
+                            <h3>اكتشاف الهدف الدوائي</h3>
+                            <p>تحديد البروتين أو الإنزيم المستهدف في الجسم الذي يمكن استهدافه لعلاج المرض. يشمل هذا المرحلة دراسة البيولوجيا الجزيئية وفهم آلية المرض.</p>
+                            <ul style="margin-top: 1rem; list-style: none;">
+                                <li><i class="fas fa-check" style="color: var(--medical-green); margin-left: 0.5rem;"></i> تحليل المسارات البيولوجية</li>
+                                <li><i class="fas fa-check" style="color: var(--medical-green); margin-left: 0.5rem;"></i> تحديد الأهداف العلاجية</li>
+                                <li><i class="fas fa-check" style="color: var(--medical-green); margin-left: 0.5rem;"></i> التحقق من صلاحية الهدف</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-number">2</div>
+                        <div class="process-content">
+                            <h3>تصميم المركبات القائدة</h3>
+                            <p>تصميم وتصنيع مركبات كيميائية قادرة على التفاعل مع الهدف الدوائي. تستخدم في هذه المرحلة تقنيات المحاكاة الحاسوبية والنمذجة الجزيئية.</p>
+                            <ul style="margin-top: 1rem; list-style: none;">
+                                <li><i class="fas fa-check" style="color: var(--medical-green); margin-left: 0.5rem;"></i> البحث في قواعد البيانات</li>
+                                <li><i class="fas fa-check" style="color: var(--medical-green); margin-left: 0.5rem;"></i> المحاكاة الحاسوبية</li>
+                                <li><i class="fas fa-check" style="color: var(--medical-green); margin-left: 0.5rem;"></i> تركيب المركبات</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-number">3</div>
+                        <div class="process-content">
+                            <h3>التحسين والتحسين</h3>
+                            <p>تحسين خصائص المركبات القائدة لزيادة الفعالية وتقليل الآثار الجانبية. يشمل تعديل البنية الكيميائية لتحقيق الخصائص المثلى.</p>
+                            <ul style="margin-top: 1rem; list-style: none;">
+                                <li><i class="fas fa-check" style="color: var(--medical-green); margin-left: 0.5rem;"></i> تحسين الخصائص الفيزيائية</li>
+                                <li><i class="fas fa-check" style="color: var(--medical-green); margin-left: 0.5rem;"></i> زيادة الانتقائية</li>
+                                <li><i class="fas fa-check" style="color: var(--medical-green); margin-left: 0.5rem;"></i> تقليل السمية</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-number">4</div>
+                        <div class="process-content">
+                            <h3>التجارب قبل السريرية</h3>
+                            <p>إجراء اختبارات معمقة على المركبات المرشحة باستخدام نماذج حيوانية وخلايا لتقييم الفعالية والسلامة قبل الانتقال للتجارب البشرية.</p>
+                            <ul style="margin-top: 1rem; list-style: none;">
+                                <li><i class="fas fa-check" style="color: var(--medical-green); margin-left: 0.5rem;"></i> اختبارات السمية</li>
+                                <li><i class="fas fa-check" style="color: var(--medical-green); margin-left: 0.5rem;"></i> دراسة الديناميكا الدوائية</li>
+                                <li><i class="fas fa-check" style="color: var(--medical-green); margin-left: 0.5rem;"></i> تقييم الفعالية</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-number">5</div>
+                        <div class="process-content">
+                            <h3>التجارب السريرية</h3>
+                            <p>تقييم الدواء على البشر من خلال مراحل متعددة لضمان الأمان والفعالية. تتم هذه المرحلة تحت إشراف صارم من الهيئات التنظيمية.</p>
+                            <ul style="margin-top: 1rem; list-style: none;">
+                                <li><i class="fas fa-check" style="color: var(--medical-green); margin-left: 0.5rem;"></i> المرحلة الأولى: السلامة</li>
+                                <li><i class="fas fa-check" style="color: var(--medical-green); margin-left: 0.5rem;"></i> المرحلة الثانية: الفعالية</li>
+                                <li><i class="fas fa-check" style="color: var(--medical-green); margin-left: 0.5rem;"></i> المرحلة الثالثة: المقارنة</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section id="technologies" class="section">
+        <div class="container">
+            <h2 class="section-title">التقنيات المستخدمة</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>الذكاء الاصطناعي</h3>
+                    <p>استخدام خوارزميات التعلم الآلي والذكاء الاصطناعي للتنبؤ بخصائص المركبات الدوائية وتسريع عملية الاكتشاف</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3>النمذجة الجزيئية</h3>
+                    <p>محاكاة ثلاثية الأبعاد للتفاعلات بين المركبات الدوائية والأهداف البيولوجية باستخدام برامج متخصصة</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>البيولوجيا الحاسوبية</h3>
+                    <p>تحليل البيانات البيولوجية الضخمة لفهم آليات الأمراض وتحديد أهداف علاجية جديدة</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>الكيمياء الحاسوبية</h3>
+                    <p>حسابات كيميائية متقدمة للتنبؤ بخصائص المركبات وتصميم جزيئات جديدة بخصائص محسنة</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>الفحص عالي الإنتاجية</h3>
+                    <p>اختبار آلاف المركبات بشكل متوازن باستخدام أنظمة آلية متطورة لتحديد المركبات الواعدة</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h3>التقنيات الحيوية</h3>
+                    <p>استخدام التقنيات الحيوية المتقدمة مثل هندسة الأجسام المضادة والعلاج الجيني</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">أحدث الأبحاث والابتكارات</h2>
+            <div class="research-container">
+                <div class="research-grid">
+                    <article class="research-card">
+                        <div class="research-image">
+                            <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="بحث علمي">
+                            <span class="research-badge">مبتكر</span>
+                        </div>
+                        <div class="research-content">
+                            <div class="research-date">
+                                <i class="fas fa-calendar-alt"></i> 15 ديسمبر 2023
+                            </div>
+                            <h3>تطوير مضادات حيوية جديدة باستخدام الذكاء الاصطناعي</h3>
+                            <p>فريق الباحثين يكتشف فئة جديدة من المضادات الحيوية فعالة ضد البكتيريا المقاومة باستخدام خوارزميات تعلم الآلة</p>
+                            <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                        </div>
+                    </article>
+                    <article class="research-card">
+                        <div class="research-image">
+                            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="بحث علمي">
+                            <span class="research-badge">منشور</span>
+                        </div>
+                        <div class="research-content">
+                            <div class="research-date">
+                                <i class="fas fa-calendar-alt"></i> 10 ديسمبر 2023
+                            </div>
+                            <h3>علاج جديد لمرض الزهايمر يستهدف بروتينات تاو</h3>
+                            <p>تجارب سريرية ناجحة لعقار جديد يبطئ تقدم مرض الزهايمر عن طريق استهداف تجمعات بروتين تاو</p>
+                            <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                        </div>
+                    </article>
+                    <article class="research-card">
+                        <div class="research-image">
+                            <img src="https://images.unsplash.com/photo-1579154204601-015b65d0d8b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="بحث علمي">
+                            <span class="research-badge">مهم</span>
+                        </div>
+                        <div class="research-content">
+                            <div class="research-date">
+                                <i class="fas fa-calendar-alt"></i> 5 ديسمبر 2023
+                            </div>
+                            <h3>تصميم لقاحات mRNA جديدة للأمراض المعدية</h3>
+                            <p>تقنية mRNA تفتح آفاقاً جديدة لتطوير لقاحات سريعة وفعالة ضد مجموعة واسعة من الأمراض المعدية</p>
+                            <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">انضم إلى ثورة تصميم الأدوية</h2>
+                <p class="cta-text">سواء كنت باحثاً، طالباً، أو مهتماً بمجال الصيدلة، نحن نقدم لك الموارد والمعرفة اللازمة للمساهمة في مستقبل العلاج الدوائي</p>
+                <a href="#contact" class="btn-primary">تواصل معنا</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>من نحن</h3>
+                    <p>edstudy في مجال تصميم وتطوير الأدوية، نجمع بين الخبرة العلمية والتقنيات الحديثة لخلق حلول علاجية مبتكرة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#about">عن التصميم</a></li>
+                        <li><a href="#process">مراحل التصميم</a></li>
+                        <li><a href="#technologies">التقنيات</a></li>
+                        <li><a href="#research">الأبحاث</a></li>
+                        <li><a href="#">المكتبة العلمية</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>خدماتنا</h3>
+                    <ul>
+                        <li><a href="#">الاستشارات العلمية</a></li>
+                        <li><a href="#">التعاون البحثي</a></li>
+                        <li><a href="#">التدريب العلمي</a></li>
+                        <li><a href="#">التحليل المخبري</a></li>
+                        <li><a href="#">المحاكاة الحاسوبية</a></li>
+                        <li><a href="#">تطوير البروتوكولات</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <form class="contact-form" onsubmit="handleContactSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">الاسم</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">البريد الإلكتروني</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">رسالتك</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">إرسال الرسالة</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 edstudy. جميع الحقوق محفوظة. | <a href="#" style="color: var(--accent-purple);">سياسة الخصوصية</a> | <a href="#" style="color: var(--accent-purple);">الشروط والأحكام</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Hide loader when page loads
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Timeline animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.process-step').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Handle contact form submission
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            
+            // Show success message
+            const submitBtn = form.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'جاري الإرسال...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                submitBtn.textContent = 'تم الإرسال بنجاح!';
+                submitBtn.style.background = 'var(--medical-green)';
+                
+                // Reset form
+                setTimeout(() => {
+                    form.reset();
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                }, 2000);
+            }, 1500);
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.right = '0';
+            navLinks.style.background = 'white';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.width = '100%';
+            navLinks.style.padding = '1rem';
+            navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+        });
+
+        // Add hover effect to tech cards
+        document.querySelectorAll('.tech-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Research cards interaction
+        document.querySelectorAll('.research-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (!e.target.classList.contains('read-more') && !e.target.closest('.read-more')) {
+                    const title = this.querySelector('h3').textContent;
+                    alert('سيتم فتح تفاصيل البحث: ' + title);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

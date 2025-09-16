@@ -1,13 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edstudy - منصة تعليمية شاملة</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/css/app.css">
+    
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
     <!-- Header -->
@@ -20,18 +28,19 @@
                 </div>
                 
                 <div class="hidden md:flex items-center space-x-6">
-                    <a href="#home" class="nav-link text-gray-600 hover:text-purple-600 transition">Home</a>
-                    <a href="#subjects" class="nav-link text-gray-600 hover:text-purple-600 transition">Subjects</a>
-                    <a href="#about" class="nav-link text-gray-600 hover:text-purple-600 transition">About</a>
-                    <a href="#contact" class="nav-link text-gray-600 hover:text-purple-600 transition">Contact</a>
+                    <a href="#home" class="nav-link text-gray-600 hover:text-purple-600 transition">الرئيسية</a>
+                    <a href="#subjects" class="nav-link text-gray-600 hover:text-purple-600 transition">المواد الدراسية</a>
+                    <a href="#about" class="nav-link text-gray-600 hover:text-purple-600 transition">حول المنصة</a>
+                    <a href="#contact" class="nav-link text-gray-600 hover:text-purple-600 transition">تواصل معنا</a>
                 </div>
                 
                 <div class="flex items-center space-x-4">
                     <button onclick="showLoginModal()" class="text-gray-600 hover:text-purple-600 transition">
-                        <i class="fas fa-user mr-2"></i>Login
+                        <i class="fas fa-user ml-2"></i>
+                        <span>تسجيل الدخول</span>
                     </button>
                     <button onclick="showRegisterModal()" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">
-                        Sign Up
+                        <span>إنشاء حساب</span>
                     </button>
                     <button class="md:hidden" onclick="toggleMobileMenu()">
                         <i class="fas fa-bars text-2xl text-gray-600"></i>
@@ -41,10 +50,14 @@
             
             <!-- Mobile Menu -->
             <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4">
-                <a href="#home" class="block py-2 text-gray-600 hover:text-purple-600">Home</a>
-                <a href="#subjects" class="block py-2 text-gray-600 hover:text-purple-600">Subjects</a>
-                <a href="#about" class="block py-2 text-gray-600 hover:text-purple-600">About</a>
-                <a href="#contact" class="block py-2 text-gray-600 hover:text-purple-600">Contact</a>
+                <a href="#home" class="block py-2 text-gray-600 hover:text-purple-600">الرئيسية</a>
+                <br>
+                <a href="#subjects" class="block py-2 text-gray-600 hover:text-purple-600">المواد الدراسية</a>
+                <br>
+                <a href="#about" class="block py-2 text-gray-600 hover:text-purple-600">حول المنصة</a>
+                <br>
+                <a href="#contact" class="block py-2 text-gray-600 hover:text-purple-600">تواصل معنا</a>
+                <br>
             </div>
         </nav>
     </header>
@@ -53,13 +66,13 @@
     <section id="home" class="gradient-bg text-white py-20">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-5xl font-bold mb-6 animate-fade-in">مرحباً بكم في Edstudy</h2>
-            <p class="text-xl mb-8 animate-fade-in">منصتك التعليمية الشاملة لجميع التخصصات الأكاديمية</p>
+            <p class="text-xl mb-8 animate-fade-in">منصتكم التعليمية الشاملة لجميع التخصصات الأكاديمية</p>
             <div class="flex flex-wrap justify-center gap-4 animate-fade-in">
                 <button onclick="scrollToSubjects()" class="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
-                استكشاف المواضيع
+                    استكشاف المواد الدراسية
                 </button>
                 <button onclick="showRegisterModal()" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition">
-                البدء
+                    ابدأ الآن
                 </button>
             </div>
         </div>
@@ -76,7 +89,7 @@
                 </div>
                 <div class="stat-card">
                     <i class="fas fa-users text-4xl text-purple-600 mb-2"></i>
-                    <h3 class="text-3xl font-bold text-gray-800">10K+</h3>
+                    <h3 class="text-3xl font-bold text-gray-800">10 آلاف+</h3>
                     <p class="text-gray-600">طلاب</p>
                 </div>
                 <div class="stat-card">
@@ -102,7 +115,7 @@
                 <!-- Chemistry Card -->
                 <div class="col">
                     <div class="card h-100">  
-                        <img src="/img/chemistry.jpg" class="card-img-top" alt="Chemistry">
+                        <img src="/img/chemistry.jpg" class="card-img-top" alt="الكيمياء">
                         <div class="card-body">
                             <h5 class="card-title">الكيمياء</h5>
                             <p class="card-text">
@@ -110,7 +123,7 @@
                             </p>
                         </div>
                         <div class="card-footer">
-                            <small class="text-body-secondary"><button><a href="/html/Chemistry/Chemistry.html">next</a></button></small>
+                            <small class="text-body-secondary"><a href="/html/Chemistry/Chemistry.html" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
                         </div>
                     </div>
                 </div>
@@ -118,7 +131,7 @@
                 <!-- Physics Card -->
                 <div class="col">
                     <div class="card h-100">
-                        <img src="/img/physics.jpg" class="card-img-top" alt="Physics">
+                        <img src="/img/physics.jpg" class="card-img-top" alt="الفيزياء">
                         <div class="card-body">
                             <h5 class="card-title">الفيزياء</h5>
                             <p class="card-text">
@@ -126,7 +139,7 @@
                             </p>
                         </div>
                         <div class="card-footer">
-                            <small class="text-body-secondary"><button><a href="/html/Physics/Physics.html">next</a></button></small>
+                            <small class="text-body-secondary"><a href="/html/Physics/Physics.html" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
                         </div>
                     </div>
                 </div>
@@ -134,7 +147,7 @@
                 <!-- Mathematics Card -->
                 <div class="col">
                     <div class="card h-100">
-                        <img src="/img/Noj7cPv62g-571.jpg_729x410.jpg" class="card-img-top" alt="Mathematics">
+                        <img src="/img/Noj7cPv62g-571.jpg_729x410.jpg" class="card-img-top" alt="الرياضيات">
                         <div class="card-body">
                             <h5 class="card-title">الرياضيات</h5>
                             <p class="card-text">
@@ -142,7 +155,7 @@
                             </p>
                         </div>
                         <div class="card-footer">
-                            <small class="text-body-secondary"><button><a href="/html/mathematics/mathmatics.html">next</a></button></small>
+                            <small class="text-body-secondary"><a href="/html/mathematics/mathmatics.html" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
                         </div>
                     </div>
                 </div>
@@ -150,7 +163,7 @@
                 <!-- Programming Card -->
                 <div class="col">
                     <div class="card h-100">
-                        <img src="/img/أشهر-لغات-البرمجة.webp" class="card-img-top" alt="Programming">
+                        <img src="/img/أشهر-لغات-البرمجة.webp" class="card-img-top" alt="البرمجة">
                         <div class="card-body">
                             <h5 class="card-title">البرمجة</h5>
                             <p class="card-text">
@@ -158,7 +171,7 @@
                             </p>
                         </div>
                         <div class="card-footer">
-                            <small class="text-body-secondary"><button><a href="/html/Programming/Programming.html">next</a></button></small>
+                            <small class="text-body-secondary"><a href="/html/Programming/Programming.html" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
                         </div>
                     </div>
                 </div>
@@ -166,15 +179,15 @@
                 <!-- Biology Card -->
                 <div class="col">
                     <div class="card h-100">
-                        <img src="/img/1711444560NWnqpDREYy.jpg" class="card-img-top" alt="Biology">
+                        <img src="/img/1711444560NWnqpDREYy.jpg" class="card-img-top" alt="الأحياء">
                         <div class="card-body">
-                            <h5 class="card-title">الاحياء</h5>
+                            <h5 class="card-title">الأحياء</h5>
                             <p class="card-text">
                                 علم الأحياء هو علم طبيعي يُعنى بدراسة الحياة والكائنات الحية، بما في ذلك هياكلها ووظائفها ونموها وتطورها وتوزيعها وتصنيفها.
                             </p>
                         </div>
                         <div class="card-footer">
-                            <small class="text-body-secondary"><button><a href="/html/Biology/Biology.html">next</a></button></small>
+                            <small class="text-body-secondary"><a href="/html/Biology/Biology.html" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
                         </div>
                     </div>
                 </div>
@@ -182,7 +195,7 @@
                 <!-- Geology Card -->
                 <div class="col">
                     <div class="card h-100">
-                        <img src="/img/geology.jpg" class="card-img-top" alt="Geology">
+                        <img src="/img/geology.jpg" class="card-img-top" alt="الجيولوجيا">
                         <div class="card-body">
                             <h5 class="card-title">الجيولوجيا</h5>
                             <p class="card-text">
@@ -190,7 +203,7 @@
                             </p>
                         </div>
                         <div class="card-footer">
-                            <small class="text-body-secondary"><button><a href="/html/Geology/Geology.html">next</a></button></small>
+                            <small class="text-body-secondary"><a href="/html/Geology/Geology.html" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
                         </div>
                     </div>
                 </div>
@@ -199,35 +212,35 @@
             <div class="card-group mt-4">
                 <!-- Design Card -->
                 <div class="card">
-                    <img src="/img/Design.png" class="card-img-top" alt="Design">
+                    <img src="/img/Design.png" class="card-img-top" alt="التصميم">
                     <div class="card-body">
-                        <h5 class="card-title">تصميم</h5>
+                        <h5 class="card-title">التصميم</h5>
                         <p class="card-text">
                             التصميم هو عملية إبداعية منهجية لتخطيط وابتكار حلول عملية ووظيفية وجمالية لمشكلة معينة.
                         </p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-body-secondary"><button><a href="/html/Design/Design.html">next</a></button></small>
+                        <small class="text-body-secondary"><a href="/html/Design/Design.html" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
                     </div>
                 </div>
                 <br>
                 <!-- 3D Design Card -->
                 <div class="card">
-                    <img src="/img/3D Design.jpeg" class="card-img-top" alt="3D Design">
+                    <img src="/img/3D Design.jpeg" class="card-img-top" alt="التصميم ثلاثي الأبعاد">
                     <div class="card-body">
-                        <h5 class="card-title">تصميم ثلاثي الأبعاد</h5>
+                        <h5 class="card-title">التصميم ثلاثي الأبعاد</h5>
                         <p class="card-text">
                             العرض ثلاثي الأبعاد هو عملية تصميم صور ثنائية الأبعاد واقعية من موديلات ثلاثية الأبعاد.
                         </p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-body-secondary"><button><a href="/html/3D Design/3D Design.html">next</a></button></small>
+                        <small class="text-body-secondary"><a href="/html/3D Design/3D Design.html" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
                     </div>
                 </div>
                 <br>
                 <!-- Languages Card -->
                 <div class="card">
-                    <img src="/img/1-989985.webp" class="card-img-top" alt="Languages">
+                    <img src="/img/1-989985.webp" class="card-img-top" alt="اللغات">
                     <div class="card-body">
                         <h5 class="card-title">اللغات</h5>
                         <p class="card-text">
@@ -235,7 +248,7 @@
                         </p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-body-secondary"><button><a href="/html/Languages/Languages.html">next</a></button></small>
+                        <small class="text-body-secondary"><a href="/html/Languages/Languages.html" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
                     </div>
                 </div>
             </div>
@@ -245,7 +258,7 @@
     <!-- Features Section -->
     <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">لماذا تختار EduHub?</h2>
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">لماذا تختار Edstudy?</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="text-center">
                     <i class="fas fa-laptop-house text-5xl text-purple-600 mb-4"></i>
@@ -270,9 +283,9 @@
     <section id="about" class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
             <div class="max-w-3xl mx-auto text-center">
-                <h2 class="text-4xl font-bold mb-6 text-gray-800">عن EduHub</h2>
+                <h2 class="text-4xl font-bold mb-6 text-gray-800">عن Edstudy</h2>
                 <p class="text-lg text-gray-600 mb-6">
-                   EduHub منصة تعليمية شاملة عبر الإنترنت، مُخصصة لتوفير تعليم عالي الجودة في مختلف التخصصات. رسالتنا هي جعل التعلم متاحًا وجذابًا وفعالًا للطلاب حول العالم.
+                   Edstudy منصة تعليمية شاملة عبر الإنترنت، مُخصصة لتوفير تعليم عالي الجودة في مختلف التخصصات. رسالتنا هي جعل التعلم متاحًا وجذابًا وفعالًا للطلاب حول العالم.
                 </p>
                 <p class="text-lg text-gray-600">
                     من خلال دورات تتراوح من العلوم الأساسية إلى التقنيات المتطورة، فإننا نعمل على تمكين المتعلمين من تحقيق أهدافهم التعليمية والمهنية من خلال المحتوى التفاعلي والتعليمات المتخصصة ومجتمع التعلم الداعم.
@@ -289,20 +302,20 @@
                 <form onsubmit="handleContactSubmit(event)" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-gray-700 mb-2">اسم</label>
+                            <label class="block text-gray-700 mb-2">الاسم</label>
                             <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500">
                         </div>
                         <div>
-                            <label class="block text-gray-700 mb-2">بريد إلكتروني</label>
+                            <label class="block text-gray-700 mb-2">البريد الإلكتروني</label>
                             <input type="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500">
                         </div>
                     </div>
                     <div>
-                        <label class="block text-gray-700 mb-2">موضوع</label>
+                        <label class="block text-gray-700 mb-2">الموضوع</label>
                         <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500">
                     </div>
                     <div>
-                        <label class="block text-gray-700 mb-2">رسالة</label>
+                        <label class="block text-gray-700 mb-2">الرسالة</label>
                         <textarea rows="5" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500"></textarea>
                     </div>
                     <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition">
@@ -318,29 +331,29 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-xl font-semibold mb-4">EduHub</h3>
+                    <h3 class="text-xl font-semibold mb-4">Edstudy</h3>
                     <p class="text-gray-400">بوابتك إلى التعليم الشامل عبر الإنترنت.</p>
                 </div>
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <h4 class="text-lg font-semibold mb-4">روابط سريعة</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#home" class="hover:text-white transition">Home</a></li>
-                        <li><a href="#subjects" class="hover:text-white transition">Subjects</a></li>
-                        <li><a href="#about" class="hover:text-white transition">About</a></li>
-                        <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
+                        <li><a href="#home" class="hover:text-white transition">الرئيسية</a></li>
+                        <li><a href="#subjects" class="hover:text-white transition">المواد الدراسية</a></li>
+                        <li><a href="#about" class="hover:text-white transition">حول المنصة</a></li>
+                        <li><a href="#contact" class="hover:text-white transition">تواصل معنا</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Subjects</h4>
+                    <h4 class="text-lg font-semibold mb-4">المواد الدراسية</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">Chemistry</a></li>
-                        <li><a href="#" class="hover:text-white transition">Physics</a></li>
-                        <li><a href="#" class="hover:text-white transition">Mathematics</a></li>
-                        <li><a href="#" class="hover:text-white transition">Programming</a></li>
+                        <li><a href="#" class="hover:text-white transition">الكيمياء</a></li>
+                        <li><a href="#" class="hover:text-white transition">الفيزياء</a></li>
+                        <li><a href="#" class="hover:text-white transition">الرياضيات</a></li>
+                        <li><a href="#" class="hover:text-white transition">البرمجة</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
+                    <h4 class="text-lg font-semibold mb-4">تابعنا</h4>
                     <div class="flex space-x-4">
                         <a href="#" class="text-gray-400 hover:text-white transition">
                             <i class="fab fa-facebook-f text-xl"></i>
@@ -358,7 +371,7 @@
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 EduHub. All rights reserved.</p>
+                <p>&copy; 2024 Edstudy. جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>
@@ -368,25 +381,25 @@
         <div class="modal-backdrop absolute inset-0 bg-black bg-opacity-50" onclick="closeModal('loginModal')"></div>
         <div class="flex items-center justify-center min-h-screen p-4">
             <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8 relative animate-fade-in">
-                <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                <button onclick="closeModal('loginModal')" class="absolute top-4 left-4 text-gray-400 hover:text-gray-600">
                     <i class="fas fa-times text-xl"></i>
                 </button>
-                <h2 class="text-3xl font-bold text-center mb-6">Welcome Back</h2>
+                <h2 class="text-3xl font-bold text-center mb-6">مرحباً بكم مجدداً</h2>
                 <form onsubmit="handleLogin(event)">
                     <div class="mb-4">
-                        <label class="block text-gray-700 mb-2">Email</label>
+                        <label class="block text-gray-700 mb-2">البريد الإلكتروني</label>
                         <input type="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500">
                     </div>
                     <div class="mb-6">
-                        <label class="block text-gray-700 mb-2">Password</label>
+                        <label class="block text-gray-700 mb-2">كلمة المرور</label>
                         <input type="password" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500">
                     </div>
                     <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition mb-4">
-                        Login
+                        تسجيل الدخول
                     </button>
                     <p class="text-center text-gray-600">
-                        Don't have an account? 
-                        <a href="#" onclick="switchToRegister()" class="text-purple-600 hover:underline">Sign Up</a>
+                        ليس لديك حساب؟ 
+                        <a href="#" onclick="switchToRegister()" class="text-purple-600 hover:underline">إنشاء حساب</a>
                     </p>
                 </form>
             </div>
@@ -398,33 +411,33 @@
         <div class="modal-backdrop absolute inset-0 bg-black bg-opacity-50" onclick="closeModal('registerModal')"></div>
         <div class="flex items-center justify-center min-h-screen p-4">
             <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8 relative animate-fade-in">
-                <button onclick="closeModal('registerModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                <button onclick="closeModal('registerModal')" class="absolute top-4 left-4 text-gray-400 hover:text-gray-600">
                     <i class="fas fa-times text-xl"></i>
                 </button>
-                <h2 class="text-3xl font-bold text-center mb-6">Create Account</h2>
+                <h2 class="text-3xl font-bold text-center mb-6">إنشاء حساب جديد</h2>
                 <form onsubmit="handleRegister(event)">
                     <div class="mb-4">
-                        <label class="block text-gray-700 mb-2">Full Name</label>
+                        <label class="block text-gray-700 mb-2">الاسم الكامل</label>
                         <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500">
                     </div>
                     <div class="mb-4">
-                        <label class="block text-gray-700 mb-2">Email</label>
+                        <label class="block text-gray-700 mb-2">البريد الإلكتروني</label>
                         <input type="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500">
                     </div>
                     <div class="mb-4">
-                        <label class="block text-gray-700 mb-2">Password</label>
+                        <label class="block text-gray-700 mb-2">كلمة المرور</label>
                         <input type="password" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500">
                     </div>
                     <div class="mb-6">
-                        <label class="block text-gray-700 mb-2">Confirm Password</label>
+                        <label class="block text-gray-700 mb-2">تأكيد كلمة المرور</label>
                         <input type="password" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500">
                     </div>
                     <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition mb-4">
-                        Sign Up
+                        إنشاء حساب
                     </button>
                     <p class="text-center text-gray-600">
-                        Already have an account? 
-                        <a href="#" onclick="switchToLogin()" class="text-purple-600 hover:underline">Login</a>
+                        لديك حساب بالفعل؟ 
+                        <a href="#" onclick="switchToLogin()" class="text-purple-600 hover:underline">تسجيل الدخول</a>
                     </p>
                 </form>
             </div>
@@ -436,7 +449,7 @@
         <div class="modal-backdrop absolute inset-0 bg-black bg-opacity-50" onclick="closeModal('subjectModal')"></div>
         <div class="flex items-center justify-center min-h-screen p-4">
             <div class="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative animate-fade-in">
-                <button onclick="closeModal('subjectModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 z-10">
+                <button onclick="closeModal('subjectModal')" class="absolute top-4 left-4 text-gray-400 hover:text-gray-600 z-10">
                     <i class="fas fa-times text-xl"></i>
                 </button>
                 <div id="subjectContent" class="p-8">
@@ -447,9 +460,12 @@
     </div>
 
     <!-- Notification Container -->
-    <div id="notificationContainer" class="fixed top-20 right-4 z-50 space-y-2"></div>
+    <div id="notificationContainer" class="fixed top-20 left-4 z-50 space-y-2"></div>
 
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+    
+    <!-- Custom JS -->
     <script src="/js/app.js"></script>
 </body>
 </html>

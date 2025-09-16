@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مقدمة في الكيمياء الحاسوبية - بوابة المعرفة العلمية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a8a;
+            --secondary-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --light-purple: #a78bfa;
+            --dark-purple: #6d28d9;
+            --white: #ffffff;
+            --light-gray: #f8fafc;
+            --dark-gray: #1e293b;
+            --text-color: #334155;
+            --gradient: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+            background: var(--light-gray);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-purple);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(30, 58, 138, 0.9), rgba(139, 92, 246, 0.9)),
+                        url('https://picsum.photos/seed/chemistry/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--white);
+            color: var(--primary-blue);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--white);
+            text-decoration: none;
+            border: 2px solid var(--white);
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary-blue);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-purple);
+        }
+
+        /* Introduction Section */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .intro-visual {
+            position: relative;
+            height: 400px;
+            background: var(--gradient);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Concepts Cards */
+        .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .concept-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+
+        .concept-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .concept-icon {
+            font-size: 3rem;
+            color: var(--accent-purple);
+            margin-bottom: 1rem;
+        }
+
+        .concept-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Applications Section */
+        .applications-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .app-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .app-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* Tools Section */
+        .tools-table {
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 3rem;
+        }
+
+        .tools-table thead {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .tools-table th,
+        .tools-table td {
+            padding: 1rem;
+            text-align: right;
+        }
+
+        .tools-table tr:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .tools-table tr:hover {
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        /* Interactive Demo */
+        .demo-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .molecule-viewer {
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            position: relative;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+
+        .molecule {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .atom {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary-blue);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .atom:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
+        .atom:nth-child(2) { bottom: 0; left: 50%; transform: translateX(-50%); }
+        .atom:nth-child(3) { left: 0; top: 50%; transform: translateY(-50%); }
+        .atom:nth-child(4) { right: 0; top: 50%; transform: translateY(-50%); }
+
+        .bond {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            height: 3px;
+            transform-origin: right center;
+        }
+
+        /* Resources Section */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .resource-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .resource-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .resource-card:hover .resource-image img {
+            transform: scale(1.1);
+        }
+
+        .resource-content {
+            padding: 1.5rem;
+        }
+
+        .resource-type {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: var(--light-purple);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .resource-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Quiz Section */
+        .quiz-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 3rem;
+        }
+
+        .question {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .options {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .option {
+            padding: 1rem;
+            background: var(--light-gray);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: var(--accent-purple);
+        }
+
+        .option.selected {
+            background: var(--accent-purple);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--light-purple);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--light-purple);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-purple);
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--light-purple);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tools-table {
+                font-size: 0.9rem;
+            }
+
+            .tools-table th,
+            .tools-table td {
+                padding: 0.5rem;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--gradient);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .molecule-loader {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            animation: rotate 2s linear infinite;
+        }
+
+        .loader-atom {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-purple);
+            border-radius: 50%;
+        }
+
+        .loader-atom:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
+        .loader-atom:nth-child(2) { bottom: 0; left: 50%; transform: translateX(-50%); }
+        .loader-atom:nth-child(3) { left: 0; top: 50%; transform: translateY(-50%); }
+        .loader-atom:nth-child(4) { right: 0; top: 50%; transform: translateY(-50%); }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="molecule-loader">
+            <div class="loader-atom"></div>
+            <div class="loader-atom"></div>
+            <div class="loader-atom"></div>
+            <div class="loader-atom"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                الكيمياء الحاسوبية
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#intro">مقدمة</a></li>
+                <li><a href="#concepts">المفاهيم</a></li>
+                <li><a href="#applications">التطبيقات</a></li>
+                <li><a href="#tools">الأدوات</a></li>
+                <li><a href="#demo">تجربة تفاعلية</a></li>
+                <li><a href="#resources">الموارد</a></li>
+                <li><a href="#quiz">اختبار</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>مقدمة في الكيمياء الحاسوبية</h1>
+            <p>استكشف عالم الكيمياء الحاسوبية - حيث تلتقي الكيمياء مع علوم الحاسب لفهم وتوقع سلوك الجزيئات والمواد</p>
+            <div class="hero-buttons">
+                <a href="#intro" class="btn-primary">ابدأ التعلم</a>
+                <a href="#demo" class="btn-secondary">جرب التجربة التفاعلية</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="section">
+        <div class="container">
+            <h2 class="section-title">ما هي الكيمياء الحاسوبية؟</h2>
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <h3>تعريف شامل</h3>
+                    <p>الكيمياء الحاسوبية هي فرع من فروع الكيمياء يستخدم نماذج المحاكاة الحاسوبية لحل المشاكل الكيميائية. إنها تجمع بين مبادئ الكيمياء النظرية وعلوم الحاسب لفهم وتوقع الخصائص الكيميائية والفيزيائية للجزيئات.</p>
+                    <p>تهدف الكيمياء الحاسوبية إلى:</p>
+                    <p>• فهم التفاعلات الكيميائية على المستوى الجزيئي</p>
+                    <p>• التنبؤ بخصائص المواد قبل تصنيعها</p>
+                    <p>• تصميم جزيئات جديدة بأداء محدد</p>
+                    <p>• تفسير النتائج التجريبية المعقدة</p>
+                </div>
+                <div class="intro-visual">
+                    <i class="fas fa-flask"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Concepts Section -->
+    <section id="concepts" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">المفاهيم الأساسية</h2>
+            <div class="concepts-grid">
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>ميكانيكا الكم الحاسوبية</h3>
+                    <p>استخدام معادلات شرودنجر لحساب الخصائص الإلكترونية للجزيئات. تشمل طرق مثل نظرية الوظائف الكثافة (DFT) والطرق ab initio.</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>نمذجة الجزيئات</h3>
+                    <p>بناء نماذج ثلاثية الأبعاد للجزيئات وحساب طاقاتها وهندستها. تستخدم في فهم التفاعلات والروابط الكيميائية.</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3>المحاكاة الديناميكية</h3>
+                    <p>محاكاة حركة الذرات والجزيئات بمرور الوقت باستخدام معادلات نيوتن الكلاسيكية. مفيدة لدراسة الديناميكا الجزيئية.</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>الذكاء الاصطناعي في الكيمياء</h3>
+                    <p>استخدام التعلم الآلي والشبكات العصبية للتنبؤ بالخصائص الكيميائية وتسريع اكتشاف المواد والأدوية الجديدة.</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>قواعد البيانات الكيميائية</h3>
+                    <p>مجموعات ضخمة من البيانات الكيميائية التي تستخدم لتدريب النماذج الحاسوبية وإجراء التحليلات الإحصائية.</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>التحليل الكمي للبنية-النشاط</h3>
+                    <p>دراسة العلاقة بين البنية الكيميائية للجزيئات وخصائصها البيولوجية أو الفيزيائية باستخدام طرق إحصائية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="section">
+        <div class="container">
+            <h2 class="section-title">التطبيقات العملية</h2>
+            <div class="applications-showcase">
+                <div class="app-item">
+                    <div class="app-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3>اكتشاف الأدوية</h3>
+                    <p>تصميم وتطوير أدوية جديدة بأقل تكلفة ووقت</p>
+                </div>
+                <div class="app-item">
+                    <div class="app-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>تصميم المواد</h3>
+                    <p>تطوير مواد جديدة بخصائص محددة مسبقاً</p>
+                </div>
+                <div class="app-item">
+                    <div class="app-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>الكيمياء الخضراء</h3>
+                    <p>تصميم عمليات كيميائية صديقة للبيئة</p>
+                </div>
+                <div class="app-item">
+                    <div class="app-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>البيولوجيا الجزيئية</h3>
+                    <p>فهم التفاعلات البيولوجية على المستوى الجزيئي</p>
+                </div>
+                <div class="app-item">
+                    <div class="app-icon">
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                    <h3>طاقة البطاريات</h3>
+                    <p>تطوير مواد كهروكيميائية أفضل للبطاريات</p>
+                </div>
+                <div class="app-item">
+                    <div class="app-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>التحليل الطيفي</h3>
+                    <p>تفسير وتحليل البيانات الطيفية المعقدة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">الأدوات والبرامج الشائعة</h2>
+            <table class="tools-table">
+                <thead>
+                    <tr>
+                        <th>البرنامج</th>
+                        <th>النوع</th>
+                        <th>الاستخدام الرئيسي</th>
+                        <th>الترخيص</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Gaussian</td>
+                        <td>ميكانيكا الكم</td>
+                        <td>حسابات الكم الدقيقة</td>
+                        <td>تجاري</td>
+                    </tr>
+                    <tr>
+                        <td>VASP</td>
+                        <td>فيزياء المواد</td>
+                        <td>محاكاة المواد الصلبة</td>
+                        <td>تجاري</td>
+                    </tr>
+                    <tr>
+                        <td>GROMACS</td>
+                        <td>ديناميكا جزيئية</td>
+                        <td>محاكاة البروتينات</td>
+                        <td>مجاني</td>
+                    </tr>
+                    <tr>
+                        <td>ORCA</td>
+                        <td>ميكانيكا الكم</td>
+                        <td>حسابات الكم العامة</td>
+                        <td>مجاني</td>
+                    </tr>
+                    <tr>
+                        <td>AutoDock</td>
+                        <td>رسو جزيئي</td>
+                        <td>تصميم الأدوية</td>
+                        <td>مجاني</td>
+                    </tr>
+                    <tr>
+                        <td>RDKit</td>
+                        <td>معلوماتية كيميائية</td>
+                        <td>معالجة البيانات الكيميائية</td>
+                        <td>مفتوح المصدر</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section id="demo" class="section">
+        <div class="container">
+            <h2 class="section-title">تجربة تفاعلية: نموذج جزيئي</h2>
+            <div class="demo-container">
+                <h3>استكشف بنية جزيء الماء (H₂O)</h3>
+                <p>الجزيء يدور تلقائياً - يمكنك ملاحظة الزاوية بين الروابط الهيدروجينية والأكسجين</p>
+                <div class="molecule-viewer">
+                    <div class="molecule">
+                        <div class="atom">O</div>
+                        <div class="atom">H</div>
+                        <div class="atom">H</div>
+                        <div class="bond" style="width: 100px; top: 50%; right: 50%; transform: rotate(45deg);"></div>
+                        <div class="bond" style="width: 100px; top: 50%; right: 50%; transform: rotate(-45deg);"></div>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                    <button onclick="changeSpeed('slow')" class="btn-primary">بطيء</button>
+                    <button onclick="changeSpeed('normal')" class="btn-primary">عادي</button>
+                    <button onclick="changeSpeed('fast')" class="btn-primary">سريع</button>
+                    <button onclick="pauseRotation()" class="btn-secondary">إيقاف</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">الموارد التعليمية</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-image">
+                        <img src="https://picsum.photos/seed/book1/400/200.jpg" alt="كتاب">
+                    </div>
+                    <div class="resource-content">
+                        <span class="resource-type">كتاب</span>
+                        <h3>مقدمة في الكيمياء الحاسوبية</h3>
+                        <p>كتاب شامل يغطي جميع جوانب الكيمياء الحاسوبية للمبتدئين والمتقدمين</p>
+                        <a href="#" class="btn-primary" style="display: inline-block; margin-top: 1rem; padding: 0.5rem 1.5rem; font-size: 0.9rem;">تحميل</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-image">
+                        <img src="https://picsum.photos/seed/course1/400/200.jpg" alt="دورة">
+                    </div>
+                    <div class="resource-content">
+                        <span class="resource-type">دورة تدريبية</span>
+                        <h3>أساسيات ميكانيكا الكم الحاسوبية</h3>
+                        <p>دورة تفاعلية تغطي المفاهيم الأساسية والتطبيقات العملية</p>
+                        <a href="#" class="btn-primary" style="display: inline-block; margin-top: 1rem; padding: 0.5rem 1.5rem; font-size: 0.9rem;">سجل الآن</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-image">
+                        <img src="https://picsum.photos/seed/video1/400/200.jpg" alt="فيديو">
+                    </div>
+                    <div class="resource-content">
+                        <span class="resource-type">فيديو</span>
+                        <h3>محاضرات تمهيدية في الكيمياء الحاسوبية</h3>
+                        <p>سلسلة من المحاضرات المصورة تشرح المفاهيم الأساسية</p>
+                        <a href="#" class="btn-primary" style="display: inline-block; margin-top: 1rem; padding: 0.5rem 1.5rem; font-size: 0.9rem;">مشاهدة</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-image">
+                        <img src="https://picsum.photos/seed/paper1/400/200.jpg" alt="ورقة بحثية">
+                    </div>
+                    <div class="resource-content">
+                        <span class="resource-type">ورقة بحثية</span>
+                        <h3>أحدث الأبحاث في تصميم الأدوية الحاسوبي</h3>
+                        <p>مراجعة شاملة لأحدث التطورات في مجال اكتشاف الأدوية</p>
+                        <a href="#" class="btn-primary" style="display: inline-block; margin-top: 1rem; padding: 0.5rem 1.5rem; font-size: 0.9rem;">قراءة</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="section">
+        <div class="container">
+            <h2 class="section-title">اختبر معلوماتك</h2>
+            <div class="quiz-container">
+                <div class="question">
+                    سؤال 1: ما هو الهدف الرئيسي للكيمياء الحاسوبية؟
+                </div>
+                <div class="options">
+                    <div class="option" onclick="selectOption(this)">استخدام الحاسوب فقط لرسم الجزيئات</div>
+                    <div class="option" onclick="selectOption(this)">حل المشاكل الكيميائية باستخدام نماذج المحاكاة الحاسوبية</div>
+                    <div class="option" onclick="selectOption(this)">تخزين البيانات الكيميائية فقط</div>
+                    <div class="option" onclick="selectOption(this)">استبدال التجارب المختبرية تماماً</div>
+                </div>
+                <button onclick="checkAnswer()" class="btn-primary" style="margin-top: 2rem;">تحقق من الإجابة</button>
+                <div id="quiz-result" style="margin-top: 1rem; font-weight: bold; display: none;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن الموقع</h3>
+                    <p>منصة تعليمية شاملة تقدم مقدمة مفصلة في الكيمياء الحاسوبية، مصممة للطلاب والباحثين والمهتمين بهذا المجال العلمي المتقدم.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#intro">مقدمة في الكيمياء الحاسوبية</a></li>
+                        <li><a href="#concepts">المفاهيم الأساسية</a></li>
+                        <li><a href="#applications">التطبيقات العملية</a></li>
+                        <li><a href="#tools">الأدوات والبرامج</a></li>
+                        <li><a href="#resources">الموارد التعليمية</a></li>
+                        <li><a href="#quiz">اختبار المعرفة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>الموارد الإضافية</h3>
+                    <ul>
+                        <li><a href="#">المراجع العلمية</a></li>
+                        <li><a href="#">المحاضرات المسجلة</a></li>
+                        <li><a href="#">التمارين العملية</a></li>
+                        <li><a href="#">منتدى النقاش</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>النشرة البريدية</h3>
+                    <p>اشترك في نشرتنا البريدية للحصول على آخر التحديثات والموارد التعليمية</p>
+                    <form style="margin-top: 1rem;" onsubmit="subscribeNewsletter(event)">
+                        <input type="email" placeholder="بريدك الإلكتروني" required style="width: 100%; padding: 0.8rem; border: none; border-radius: 5px; margin-bottom: 1rem;">
+                        <button type="submit" style="width: 100%; padding: 0.8rem; background: var(--accent-purple); color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">اشترك الآن</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 مقدمة في الكيمياء الحاسوبية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Hide loader when page loads
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Interactive demo functions
+        let rotationSpeed = 10;
+        let isPaused = false;
+
+        function changeSpeed(speed) {
+            const molecule = document.querySelector('.molecule');
+            switch(speed) {
+                case 'slow':
+                    rotationSpeed = 20;
+                    break;
+                case 'normal':
+                    rotationSpeed = 10;
+                    break;
+                case 'fast':
+                    rotationSpeed = 5;
+                    break;
+            }
+            molecule.style.animationDuration = rotationSpeed + 's';
+        }
+
+        function pauseRotation() {
+            const molecule = document.querySelector('.molecule');
+            if (isPaused) {
+                molecule.style.animationPlayState = 'running';
+                isPaused = false;
+            } else {
+                molecule.style.animationPlayState = 'paused';
+                isPaused = true;
+            }
+        }
+
+        // Quiz functions
+        let selectedOption = null;
+
+        function selectOption(element) {
+            // Remove previous selection
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            // Add selection to clicked option
+            element.classList.add('selected');
+            selectedOption = element;
+        }
+
+        function checkAnswer() {
+            if (!selectedOption) {
+                alert('الرجاء اختيار إجابة أولاً');
+                return;
+            }
+
+            const result = document.getElementById('quiz-result');
+            const correctAnswer = 'حل المشاكل الكيميائية باستخدام نماذج المحاكاة الحاسوبية';
+            
+            if (selectedOption.textContent === correctAnswer) {
+                result.style.color = '#10b981';
+                result.textContent = '✓ إجابة صحيحة! أحسنت!';
+            } else {
+                result.style.color = '#ef4444';
+                result.textContent = '✗ إجابة خاطئة. الإجابة الصحيحة هي: ' + correctAnswer;
+            }
+            
+            result.style.display = 'block';
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.width = '100%';
+                navLinks.style.padding = '1rem';
+                navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Newsletter subscription
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            alert('شكراً لاشتراكك في نشرتنا البريدية! ستصلك آخر التحديثات على: ' + email);
+            event.target.reset();
+        }
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.concept-card, .app-item, .resource-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

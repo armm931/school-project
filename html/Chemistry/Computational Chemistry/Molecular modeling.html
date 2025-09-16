@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة النمذجة الجزيئية - بوابة العلوم الحاسوبية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a8a;
+            --light-blue: #3b82f6;
+            --accent-blue: #60a5fa;
+            --dark-blue: #1e40af;
+            --white: #ffffff;
+            --light-gray: #f8fafc;
+            --dark-gray: #1e293b;
+            --text-color: #334155;
+            --gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://picsum.photos/seed/molecular/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            animation: slowZoom 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--white);
+            color: var(--primary-blue);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--white);
+            color: var(--primary-blue);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-blue);
+        }
+
+        /* Introduction Section */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .intro-content h3 {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .intro-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .feature-list li {
+            padding: 0.8rem 0;
+            padding-right: 2rem;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        .feature-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 0;
+            color: var(--light-blue);
+        }
+
+        .intro-visual {
+            position: relative;
+            height: 400px;
+            background: var(--light-gray);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .molecule-animation {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .atom {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: var(--light-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .atom:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
+        .atom:nth-child(2) { bottom: 0; left: 50%; transform: translateX(-50%); }
+        .atom:nth-child(3) { left: 0; top: 50%; transform: translateY(-50%); }
+        .atom:nth-child(4) { right: 0; top: 50%; transform: translateY(-50%); }
+        .atom:nth-child(5) { top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--primary-blue); }
+
+        /* Software Section */
+        .software-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .software-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .software-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .software-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .software-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .software-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .software-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .software-card p {
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .software-link {
+            color: var(--light-blue);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .software-link:hover {
+            gap: 1rem;
+        }
+
+        /* Applications Section */
+        .applications-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .application-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .application-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--light-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--primary-blue);
+        }
+
+        /* 3D Gallery Section */
+        .gallery-container {
+            margin-top: 3rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .model-viewer {
+            height: 250px;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .model-placeholder {
+            font-size: 4rem;
+            color: var(--light-blue);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .gallery-info {
+            padding: 1.5rem;
+        }
+
+        .gallery-info h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-info p {
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        /* Research Section */
+        .research-timeline {
+            position: relative;
+            padding: 3rem 0;
+        }
+
+        .research-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .research-item:hover {
+            transform: translateX(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .research-date {
+            background: var(--primary-blue);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 100px;
+            flex-shrink: 0;
+        }
+
+        .research-date .day {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .research-date .month {
+            font-size: 0.9rem;
+        }
+
+        .research-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .research-content p {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .research-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: var(--light-gray);
+            color: var(--primary-blue);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* Community Section */
+        .community-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .forum-preview {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .forum-topics {
+            margin-top: 1.5rem;
+        }
+
+        .forum-topic {
+            padding: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .forum-topic:hover {
+            background: var(--light-gray);
+        }
+
+        .forum-topic:last-child {
+            border-bottom: none;
+        }
+
+        .topic-info h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.3rem;
+        }
+
+        .topic-meta {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        .topic-stats {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-blue);
+            color: var(--dark-blue);
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .research-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .community-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--primary-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--dark-blue);
+            transform: translateY(-5px);
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .molecule-loader {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            animation: rotate 2s linear infinite;
+        }
+
+        .loader-atom {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+        }
+
+        .loader-atom:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
+        .loader-atom:nth-child(2) { bottom: 0; left: 50%; transform: translateX(-50%); }
+        .loader-atom:nth-child(3) { left: 0; top: 50%; transform: translateY(-50%); }
+        .loader-atom:nth-child(4) { right: 0; top: 50%; transform: translateY(-50%); }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="molecule-loader">
+            <div class="loader-atom"></div>
+            <div class="loader-atom"></div>
+            <div class="loader-atom"></div>
+            <div class="loader-atom"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                النمذجة الجزيئية
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#intro">مقدمة</a></li>
+                <li><a href="#software">البرامج</a></li>
+                <li><a href="#applications">التطبيقات</a></li>
+                <li><a href="#gallery">المعرض</a></li>
+                <li><a href="#research">الأبحاث</a></li>
+                <li><a href="#community">المجتمع</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>منصة النمذجة الجزيئية</h1>
+            <p>اكتشف عالم النمذجة الجزيئية الحاسوبية وأدواتها المتقدمة للتنبؤ بخصائص الجزيئات وتصميم مواد جديدة</p>
+            <div class="cta-buttons">
+                <a href="#intro" class="cta-button">ابدأ التعلم</a>
+                <a href="#software" class="cta-button secondary">استكشف الأدوات</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">ما هي النمذجة الجزيئية؟</h2>
+            <div class="intro-grid">
+                <div class="intro-content">
+                    <h3>علم المحاكاة الحاسوبية للجزيئات</h3>
+                    <p>النمذجة الجزيئية هي فرع من العلوم الحاسوبية يستخدم طرقاً رياضية وحاسوبية لمحاكاة سلوك الجزيئات والأنظمة الجزيئية. تتيح لنا هذه التقنيات فهم التفاعلات الكيميائية والتنبؤ بخصائص المواد قبل تصنيعها.</p>
+                    
+                    <ul class="feature-list">
+                        <li>محاكاة ديناميكية الجزيئات (MD)</li>
+                        <li>حسابات الكم الكيميائية</li>
+                        <li>نمذجة الربط الجزيئي</li>
+                        <li>تصميم الأدوية والمواد</li>
+                        <li>تحليل الطيف والخصائص</li>
+                    </ul>
+                </div>
+                <div class="intro-visual">
+                    <div class="molecule-animation">
+                        <div class="atom"></div>
+                        <div class="atom"></div>
+                        <div class="atom"></div>
+                        <div class="atom"></div>
+                        <div class="atom"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Software Section -->
+    <section id="software" class="section">
+        <div class="container">
+            <h2 class="section-title">برامج النمذجة الجزيئية</h2>
+            <div class="software-grid">
+                <div class="software-card">
+                    <div class="software-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3>Gaussian</h3>
+                    <p>برنامج متخصص في الحسابات الكمية الكيميائية وتحليل الطيف الجزيئي</p>
+                    <a href="#" class="software-link">
+                        تعلم المزيد <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+                <div class="software-card">
+                    <div class="software-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>VMD</h3>
+                    <p>برنامج تصور وتحليل الأنظمة البيولوجية الجزيئية ثلاثية الأبعاد</p>
+                    <a href="#" class="software-link">
+                        تعلم المزيد <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+                <div class="software-card">
+                    <div class="software-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Schrodinger Suite</h3>
+                    <p>حزمة برامج متكاملة للنمذجة الجزيئية وتصميم الأدوية</p>
+                    <a href="#" class="software-link">
+                        تعلم المزيد <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+                <div class="software-card">
+                    <div class="software-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>Avogadro</h3>
+                    <p>محرر جزيئي مجاني ومفتوح المصدر للرسم والتحليل الجزيئي</p>
+                    <a href="#" class="software-link">
+                        تعلم المزيد <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+                <div class="software-card">
+                    <div class="software-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>LAMMPS</h3>
+                    <p>برنامج محاكاة ديناميكية جزيئية واسع النطاق</p>
+                    <a href="#" class="software-link">
+                        تعلم المزيد <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+                <div class="software-card">
+                    <div class="software-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>AMBER</h3>
+                    <p>حزمة برامج متخصصة في محاكاة البروتينات والأحماض النووية</p>
+                    <a href="#" class="software-link">
+                        تعلم المزيد <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">تطبيقات النمذجة الجزيئية</h2>
+            <div class="applications-container">
+                <div class="application-item">
+                    <div class="app-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3>تصميم الأدوية</h3>
+                    <p>تطوير أدوية جديدة من خلال فهم التفاعل بين الجزيئات الدوائية والبروتينات المستهدفة</p>
+                </div>
+                <div class="application-item">
+                    <div class="app-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>المواد المتقدمة</h3>
+                    <p>تصميم مواد جديدة بخصائص محسنة للطاقة والإلكترونيات والطباعة</p>
+                </div>
+                <div class="application-item">
+                    <div class="app-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>الكيمياء الخضراء</h3>
+                    <p>تطوير عمليات كيميائية صديقة للبيئة وأكثر كفاءة</p>
+                </div>
+                <div class="application-item">
+                    <div class="app-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>النانوتكنولوجيا</h3>
+                    <p>دراسة وتصميم المواد النانوية وتطبيقاتها المتعددة</p>
+                </div>
+                <div class="application-item">
+                    <div class="app-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>البيولوجيا الهيكلية</h3>
+                    <p>فهم الهياكل ثلاثية الأبعاد للبروتينات والأحماض النووية</p>
+                </div>
+                <div class="application-item">
+                    <div class="app-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>الطاقة النظيفة</h3>
+                    <p>تصميم مواد لتخزين الطاقة وتحويلها بكفاءة عالية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3D Gallery Section -->
+    <section id="gallery" class="section">
+        <div class="container">
+            <h2 class="section-title">معرض النماذج ثلاثية الأبعاد</h2>
+            <div class="gallery-container">
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <div class="model-viewer">
+                            <div class="model-placeholder">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>هيكل البروتين</h3>
+                            <p>نموذج ثلاثي الأبعاد لهيكل بروتين هموجلوبين</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="model-viewer">
+                            <div class="model-placeholder">
+                                <i class="fas fa-atom"></i>
+                            </div>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>جزيء الدواء</h3>
+                            <p>هيكل جزيء الأسبرين مع روابطه الكيميائية</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="model-viewer">
+                            <div class="model-placeholder">
+                                <i class="fas fa-dna"></i>
+                            </div>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>الحامض النووي</h3>
+                            <p>شريط DNA مزدوج مع تفاصيل القواعد النيتروجينية</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="model-viewer">
+                            <div class="model-placeholder">
+                                <i class="fas fa-vial"></i>
+                            </div>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>المواد النانوية</h3>
+                            <p>هيكل أنابيب الكربون النانوية وتطبيقاتها</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="model-viewer">
+                            <div class="model-placeholder">
+                                <i class="fas fa-water"></i>
+                            </div>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>الجزيئات المائية</h3>
+                            <p>تركيب جزيئات الماء وروابط الهيدروجين</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="model-viewer">
+                            <div class="model-placeholder">
+                                <i class="fas fa-battery-full"></i>
+                            </div>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>بطارية الليثيوم</h3>
+                            <p>نموذج لبطارية ليثيوم أيون على المستوى الجزيئي</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">أحدث الأبحاث والتطورات</h2>
+            <div class="research-timeline">
+                <div class="research-item">
+                    <div class="research-date">
+                        <div class="day">15</div>
+                        <div class="month">ديسمبر</div>
+                    </div>
+                    <div class="research-content">
+                        <h3>تطوير خوارزمية جديدة للتنبؤ بخصائص المواد</h3>
+                        <p>فريق بحثي يطور خوارزمية تعلم الآلة لتسريع عمليات اكتشاف المواد الجديدة بدقة 95%</p>
+                        <div class="research-tags">
+                            <span class="tag">تعلم الآلة</span>
+                            <span class="tag">مواد جديدة</span>
+                            <span class="tag">ذكاء اصطناعي</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="research-item">
+                    <div class="research-date">
+                        <div class="day">10</div>
+                        <div class="month">ديسمبر</div>
+                    </div>
+                    <div class="research-content">
+                        <h3>نجاح محاكاة فيروس كورونا على المستوى الجزيئي</h3>
+                        <p>محاكاة دقيقة لبروتين السنبكة الفيروسية تفتح آفاقاً جديدة لتطوير لقاحات وأدوية</p>
+                        <div class="research-tags">
+                            <span class="tag">فيروسات</span>
+                            <span class="tag">أدوية</span>
+                            <span class="tag">محاكاة</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="research-item">
+                    <div class="research-date">
+                        <div class="day">5</div>
+                        <div class="month">ديسمبر</div>
+                    </div>
+                    <div class="research-content">
+                        <h3>اكتشاف مادة جديدة لتخزين الهيدروجين</h3>
+                        <p>نمذجة جزيئية تؤدي إلى اكتشاف مادة قادرة على تخزين الهيدروجين بكفاءة غير مسبوقة</p>
+                        <div class="research-tags">
+                            <span class="tag">طاقة نظيفة</span>
+                            <span class="tag">هيدروجين</span>
+                            <span class="tag">تخزين</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="section">
+        <div class="container">
+            <h2 class="section-title">المجتمع العلمي</h2>
+            <div class="community-stats">
+                <div class="stat-box">
+                    <div class="stat-number" data-target="5000">0</div>
+                    <div class="stat-label">باحث نشط</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" data-target="250">0</div>
+                    <div class="stat-label">منشور بحثي</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" data-target="100">0</div>
+                    <div class="stat-label">جامعة مشاركة</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" data-target="50">0</div>
+                    <div class="stat-label">شريك صناعي</div>
+                </div>
+            </div>
+
+            <div class="forum-preview">
+                <h3>آخر النقاشات في المنتدى</h3>
+                <div class="forum-topics">
+                    <div class="forum-topic">
+                        <div class="topic-info">
+                            <h4>كيفية اختيار برنامج النمذجة المناسب؟</h4>
+                            <div class="topic-meta">
+                                بواسطة د. أحمد محمد • منذ 3 ساعات
+                            </div>
+                        </div>
+                        <div class="topic-stats">
+                            <span><i class="fas fa-comment"></i> 23</span>
+                            <span><i class="fas fa-eye"></i> 156</span>
+                        </div>
+                    </div>
+                    <div class="forum-topic">
+                        <div class="topic-info">
+                            <h4>مشكلة في تحسين هندسة جزيئي</h4>
+                            <div class="topic-meta">
+                                بواسطة سارة علي • منذ 5 ساعات
+                            </div>
+                        </div>
+                        <div class="topic-stats">
+                            <span><i class="fas fa-comment"></i> 15</span>
+                            <span><i class="fas fa-eye"></i> 89</span>
+                        </div>
+                    </div>
+                    <div class="forum-topic">
+                        <div class="topic-info">
+                            <h4>دورة تدريبية في النمذجة الجزيئية</h4>
+                            <div class="topic-meta">
+                                بواسطة مركز التدريب • منذ يوم
+                            </div>
+                        </div>
+                        <div class="topic-stats">
+                            <span><i class="fas fa-comment"></i> 45</span>
+                            <span><i class="fas fa-eye"></i> 234</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>من نحن</h3>
+                    <p>منصة رائدة في مجال النمذجة الجزيئية، توفر موارد تعليمية وأدوات متقدمة للباحثين والطلاب في العالم العربي.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#software">البرامج والأدوات</a></li>
+                        <li><a href="#applications">التطبيقات</a></li>
+                        <li><a href="#gallery">المعرض ثلاثي الأبعاد</a></li>
+                        <li><a href="#research">الأبحاث</a></li>
+                        <li><a href="#">الدورات التدريبية</a></li>
+                        <li><a href="#">المكتبة العلمية</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>الموارد التعليمية</h3>
+                    <ul>
+                        <li><a href="#">دروس للمبتدئين</a></li>
+                        <li><a href="#">فيديوهات تعليمية</a></li>
+                        <li><a href="#">كتب ومراجع</a></li>
+                        <li><a href="#">أمثلة عملية</a></li>
+                        <li><a href="#">شهادات معتمدة</a></li>
+                        <li><a href="#">المنتدى العلمي</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@molecularmodeling.org</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                    <form style="margin-top: 1rem;">
+                        <input type="email" placeholder="اشترك في نشرتنا" style="width: 100%; padding: 0.8rem; border: none; border-radius: 5px; margin-bottom: 1rem;">
+                        <button type="submit" style="width: 100%; padding: 0.8rem; background: var(--accent-blue); color: var(--dark-blue); border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">اشترك</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 منصة النمذجة الجزيئية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Hide loader when page loads
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Animated statistics counter
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200;
+
+        const countUp = (counter) => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const increment = target / speed;
+
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(() => countUp(counter), 10);
+            } else {
+                counter.innerText = target;
+            }
+        };
+
+        const statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    countUp(entry.target);
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => {
+            statsObserver.observe(counter);
+        });
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.right = '0';
+            navLinks.style.background = 'white';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.width = '100%';
+            navLinks.style.padding = '1rem';
+            navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+        });
+
+        // Form submission prevention
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('شكراً لاشتراكك في نشرتنا البريدية!');
+                this.reset();
+            });
+        });
+
+        // Add hover effect to gallery items
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                const placeholder = this.querySelector('.model-placeholder');
+                if (placeholder) {
+                    placeholder.style.transform = 'scale(1.1)';
+                    placeholder.style.transition = 'transform 0.3s ease';
+                }
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                const placeholder = this.querySelector('.model-placeholder');
+                if (placeholder) {
+                    placeholder.style.transform = 'scale(1)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 // Mobile Menu Toggle
 function toggleMobileMenu() {
     const mobileMenu = document.getElementById('mobileMenu');
-    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('show');
 }
 
 // Scroll to Subjects Section
@@ -12,24 +12,20 @@ function scrollToSubjects() {
 
 // Modal Functions
 function showLoginModal() {
-    const loginModal = document.getElementById('loginModal');
-    loginModal.classList.remove('hidden');
+    document.getElementById('loginModal').classList.remove('hidden');
     document.body.style.overflow = 'hidden';
 }
 
 function showRegisterModal() {
-    const registerModal = document.getElementById('registerModal');
-    registerModal.classList.remove('hidden');
+    document.getElementById('registerModal').classList.remove('hidden');
     document.body.style.overflow = 'hidden';
 }
 
 function closeModal(modalId) {
-    const modal = document.getElementById(modalId);
-    modal.classList.add('hidden');
+    document.getElementById(modalId).classList.add('hidden');
     document.body.style.overflow = 'auto';
 }
 
-// Switch between Login and Register Modals
 function switchToRegister() {
     closeModal('loginModal');
     setTimeout(() => {
@@ -44,172 +40,177 @@ function switchToLogin() {
     }, 300);
 }
 
-// Form Submissions
+// Form Handlers
 function handleLogin(event) {
     event.preventDefault();
     
-    // Get form data
+    // Get form values
     const email = event.target.querySelector('input[type="email"]').value;
     const password = event.target.querySelector('input[type="password"]').value;
     
-    // Simulate login process
-    setTimeout(() => {
-        closeModal('loginModal');
-        showNotification('تم تسجيل الدخول بنجاح!', 'success');
-        
-        // Reset form
-        event.target.reset();
-    }, 1000);
+    // Simple validation
+    if (!email || !password) {
+        showNotification('يرجى ملء جميع الحقول', 'error');
+        return;
+    }
+    
+    // Simulate login success
+    showNotification('تم تسجيل الدخول بنجاح', 'success');
+    closeModal('loginModal');
+    
+    // In a real app, you would send the data to a server
+    console.log('Login attempt:', { email, password });
 }
 
 function handleRegister(event) {
     event.preventDefault();
     
-    // Get form data
-    const fullName = event.target.querySelector('input[type="text"]').value;
-    const email = event.target.querySelector('input[type="email"]').value;
-    const password = event.target.querySelector('input[type="password"]').value;
-    const confirmPassword = event.target.querySelectorAll('input[type="password"]')[1].value;
+    // Get form values
+    const fullName = event.target.querySelectorAll('input')[0].value;
+    const email = event.target.querySelectorAll('input')[1].value;
+    const password = event.target.querySelectorAll('input')[2].value;
+    const confirmPassword = event.target.querySelectorAll('input')[3].value;
     
-    // Validate passwords match
+    // Validation
+    if (!fullName || !email || !password || !confirmPassword) {
+        showNotification('يرجى ملء جميع الحقول', 'error');
+        return;
+    }
+    
     if (password !== confirmPassword) {
         showNotification('كلمات المرور غير متطابقة', 'error');
         return;
     }
     
-    // Simulate registration process
-    setTimeout(() => {
-        closeModal('registerModal');
-        showNotification('تم إنشاء الحساب بنجاح!', 'success');
-        
-        // Reset form
-        event.target.reset();
-    }, 1000);
+    if (password.length < 6) {
+        showNotification('كلمة المرور يجب أن تكون 6 أحرف على الأقل', 'error');
+        return;
+    }
+    
+    // Simulate registration success
+    showNotification('تم إنشاء الحساب بنجاح', 'success');
+    closeModal('registerModal');
+    
+    // In a real app, you would send the data to a server
+    console.log('Registration attempt:', { fullName, email, password });
 }
 
 function handleContactSubmit(event) {
     event.preventDefault();
     
-    // Get form data
-    const name = event.target.querySelector('input[type="text"]').value;
-    const email = event.target.querySelectorAll('input[type="email"]')[0].value;
-    const subject = event.target.querySelectorAll('input[type="text"]')[1].value;
+    // Get form values
+    const name = event.target.querySelectorAll('input')[0].value;
+    const email = event.target.querySelectorAll('input')[1].value;
+    const subject = event.target.querySelectorAll('input')[2].value;
     const message = event.target.querySelector('textarea').value;
     
+    // Validation
+    if (!name || !email || !subject || !message) {
+        showNotification('يرجى ملء جميع الحقول', 'error');
+        return;
+    }
+    
     // Simulate form submission
-    setTimeout(() => {
-        showNotification('تم إرسال رسالتك بنجاح!', 'success');
-        
-        // Reset form
-        event.target.reset();
-    }, 1000);
+    showNotification('تم إرسال رسالتك بنجاح', 'success');
+    event.target.reset();
+    
+    // In a real app, you would send the data to a server
+    console.log('Contact form submission:', { name, email, subject, message });
 }
 
 // Notification System
-function showNotification(message, type = 'success') {
-    const notificationContainer = document.getElementById('notificationContainer');
+function showNotification(message, type = 'info') {
+    const container = document.getElementById('notificationContainer');
     
     // Create notification element
     const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
+    notification.className = `notification ${type}`;
     
     // Add icon based on type
-    const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+    let icon = '';
+    if (type === 'success') icon = '<i class="fas fa-check-circle"></i>';
+    if (type === 'error') icon = '<i class="fas fa-exclamation-circle"></i>';
+    if (type === 'info') icon = '<i class="fas fa-info-circle"></i>';
     
-    notification.innerHTML = `
-        <div class="notification-icon">
-            <i class="fas ${icon}"></i>
-        </div>
-        <div>${message}</div>
-    `;
+    notification.innerHTML = `${icon} <span>${message}</span>`;
     
     // Add to container
-    notificationContainer.appendChild(notification);
+    container.appendChild(notification);
     
-    // Trigger animation
+    // Auto remove after 5 seconds
     setTimeout(() => {
-        notification.classList.add('show');
-    }, 10);
-    
-    // Remove after 5 seconds
-    setTimeout(() => {
-        notification.classList.remove('show');
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(100%)';
+        
         setTimeout(() => {
-            notificationContainer.removeChild(notification);
+            container.removeChild(notification);
         }, 300);
     }, 5000);
 }
 
-// Subject Modal
-function showSubjectModal(subjectName) {
-    const subjectModal = document.getElementById('subjectModal');
-    const subjectContent = document.getElementById('subjectContent');
-    
-    // Simulate loading subject content
-    subjectContent.innerHTML = `
-        <div class="text-center">
-            <div class="spinner-border text-purple-600" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-            <p class="mt-3">جاري تحميل محتوى مادة ${subjectName}...</p>
-        </div>
-    `;
-    
-    // Show modal
-    subjectModal.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-    
-    // Simulate content loading
-    setTimeout(() => {
-        subjectContent.innerHTML = `
-            <h2 class="text-3xl font-bold mb-6">${subjectName}</h2>
-            <div class="mb-6">
-                <img src="https://picsum.photos/seed/${subjectName}/800/400.jpg" alt="${subjectName}" class="img-fluid rounded-lg mb-4">
-            </div>
-            <div class="mb-6">
-                <h3 class="text-xl font-semibold mb-3">وصف المادة</h3>
-                <p class="text-gray-600 mb-4">
-                    هذا وصف تفصيلي لمادة ${subjectName}. تحتوي هذه المادة على محتوى تعليمي شامل يغطي جميع الجوانب الأساسية للموضوع.
-                </p>
-            </div>
-            <div class="mb-6">
-                <h3 class="text-xl font-semibold mb-3">المحتويات</h3>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">مقدمة في ${subjectName}</li>
-                    <li class="list-group-item">المبادئ الأساسية</li>
-                    <li class="list-group-item">التطبيقات العملية</li>
-                    <li class="list-group-item">الدراسات المتقدمة</li>
-                    <li class="list-group-item">التقييم النهائي</li>
-                </ul>
-            </div>
-            <div class="text-center">
-                <button class="btn btn-purple btn-lg" onclick="closeModal('subjectModal')">إغلاق</button>
-            </div>
-        `;
-    }, 1500);
-}
-
-// Add event listeners to subject cards
+// Initialize tooltips and other Bootstrap components
 document.addEventListener('DOMContentLoaded', function() {
-    const subjectCards = document.querySelectorAll('.card');
-    
-    subjectCards.forEach(card => {
-        const titleElement = card.querySelector('.card-title');
-        if (titleElement) {
-            const subjectName = titleElement.textContent;
-            card.addEventListener('click', function() {
-                showSubjectModal(subjectName);
-            });
-        }
+    // Initialize Bootstrap tooltips
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
     });
     
-    // Close modals on escape key
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
-            const openModal = document.querySelector('.fixed.inset-0.z-50:not(.hidden)');
-            if (openModal) {
-                closeModal(openModal.id);
+    // Add smooth scrolling to all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
-        }
+        });
     });
+    
+    // Add animation to stat cards when they come into view
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all stat cards
+    document.querySelectorAll('.stat-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(card);
+    });
+});
+
+// Close modals when pressing Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        const loginModal = document.getElementById('loginModal');
+        const registerModal = document.getElementById('registerModal');
+        const subjectModal = document.getElementById('subjectModal');
+        
+        if (!loginModal.classList.contains('hidden')) {
+            closeModal('loginModal');
+        }
+        
+        if (!registerModal.classList.contains('hidden')) {
+            closeModal('registerModal');
+        }
+        
+        if (!subjectModal.classList.contains('hidden')) {
+            closeModal('subjectModal');
+        }
+    }
 });

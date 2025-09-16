@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الديناميكا الجزيئية - عالم الذرات والجزيئات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a8a;
+            --secondary-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --light-purple: #a78bfa;
+            --dark-purple: #6d28d9;
+            --white: #ffffff;
+            --light-gray: #f8fafc;
+            --dark-gray: #1e293b;
+            --text-color: #334155;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.9), rgba(139, 92, 246, 0.9)),
+                        url('https://picsum.photos/seed/molecules/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--light-purple);
+            color: var(--dark-purple);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: var(--white);
+        }
+
+        /* Floating Molecules Animation */
+        .molecules {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .molecule {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            to {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-purple);
+        }
+
+        /* Introduction Section */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .intro-visual {
+            position: relative;
+            height: 400px;
+            background: url('https://picsum.photos/seed/atom-structure/600/400.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Concepts Grid */
+        .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .concept-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary-blue), var(--accent-purple));
+        }
+
+        .concept-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .concept-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .concept-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Simulation Section */
+        .simulation-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-top: 3rem;
+        }
+
+        .simulation-visual {
+            height: 400px;
+            background: linear-gradient(135deg, #1e3a8a, #8b5cf6);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .particle {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: move 5s infinite ease-in-out;
+        }
+
+        @keyframes move {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(100px, -50px); }
+            50% { transform: translate(-50px, 100px); }
+            75% { transform: translate(50px, 50px); }
+        }
+
+        /* Applications Section */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .application-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .application-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .application-icon {
+            font-size: 2.5rem;
+            color: var(--accent-purple);
+            margin-bottom: 1rem;
+        }
+
+        /* Research Section */
+        .research-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .research-item {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .research-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .research-year {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            min-width: 100px;
+        }
+
+        .research-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Resources Section */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .resource-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .resource-content {
+            padding: 1.5rem;
+        }
+
+        .resource-list {
+            list-style: none;
+        }
+
+        .resource-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .resource-list li:last-child {
+            border-bottom: none;
+        }
+
+        .resource-link {
+            color: var(--secondary-blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .resource-link:hover {
+            color: var(--accent-purple);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--light-purple);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--light-purple);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-purple);
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--light-purple);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--primary-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--accent-purple);
+            transform: translateY(-5px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .research-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Interactive Elements */
+        .interactive-demo {
+            background: linear-gradient(135deg, #f0f9ff, #e0e7ff);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .demo-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .demo-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--secondary-blue);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .demo-btn:hover {
+            background: var(--accent-purple);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                الديناميكا الجزيئية
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#intro">مقدمة</a></li>
+                <li><a href="#concepts">المفاهيم</a></li>
+                <li><a href="#simulation">محاكاة</a></li>
+                <li><a href="#applications">تطبيقات</a></li>
+                <li><a href="#research">أبحاث</a></li>
+                <li><a href="#resources">موارد</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="molecules">
+            <div class="molecule" style="left: 10%; animation-delay: 0s;"></div>
+            <div class="molecule" style="left: 20%; animation-delay: 2s;"></div>
+            <div class="molecule" style="left: 30%; animation-delay: 4s;"></div>
+            <div class="molecule" style="left: 40%; animation-delay: 6s;"></div>
+            <div class="molecule" style="left: 50%; animation-delay: 8s;"></div>
+            <div class="molecule" style="left: 60%; animation-delay: 10s;"></div>
+            <div class="molecule" style="left: 70%; animation-delay: 12s;"></div>
+            <div class="molecule" style="left: 80%; animation-delay: 14s;"></div>
+            <div class="molecule" style="left: 90%; animation-delay: 16s;"></div>
+        </div>
+        <div class="hero-content">
+            <h1>عالم الديناميكا الجزيئية</h1>
+            <p>اكتشف عالم الذرات والجزيئات وتفاعلاتها، وتعلم كيف تحرك القوى الأساسية الكون الذي نعيش فيه</p>
+            <a href="#intro" class="cta-button">ابدأ الرحلة</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="section">
+        <div class="container">
+            <h2 class="section-title">ما هي الديناميكا الجزيئية؟</h2>
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <h3>مقدمة في عالم الذرات والجزيئات</h3>
+                    <p>الديناميكا الجزيئية هي فرع من الفيزياء والكيمياء يدرس حركة الذرات والجزيئات وكيفية تفاعلها مع بعضها البعض تحت تأثير القوى المختلفة.</p>
+                    <p>تهتم الديناميكا الجزيئية بفهم:</p>
+                    <p>• حركة الجزيئات في المواد المختلفة</p>
+                    <p>• القوى بين الجزيئية وكيفية تأثيرها على الخصائص المادية</p>
+                    <p>• تفاعلات الجزيئات وتشكل الروابط الكيميائية</p>
+                    <p>• سلوك المواد على المستوى الجزيئي</p>
+                    <p>• تطبيقات عملية في الصناعة والطب والتكنولوجيا</p>
+                </div>
+                <div class="intro-visual"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Concepts Section -->
+    <section id="concepts" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">المفاهيم الأساسية</h2>
+            <div class="concepts-grid">
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-circle-nodes"></i>
+                    </div>
+                    <h3>الذرات والجزيئات</h3>
+                    <p>الوحدات الأساسية للمادة، حيث تتكون الجزيئات من ذرات مرتبطة ببعضها البعض عبر روابط كيميائية</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-arrows-to-circle"></i>
+                    </div>
+                    <h3>القوى بين الجزيئية</h3>
+                    <p>القوى التي تؤثر بين الجزيئات المختلفة مثل قوى فان دير فالس والروابط الهيدروجينية</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-wave-square"></i>
+                    </div>
+                    <h3>الطاقة الحركية</h3>
+                    <p>الطاقة المرتبطة بحركة الجزيئات، والتي تزداد بزيادة درجة الحرارة</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-magnet"></i>
+                    </div>
+                    <h3>الروابط الكيميائية</h3>
+                    <p>القوى التي تربط الذرات معاً لتكوين الجزيئات، مثل الروابط التساهمية والأيونية</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-temperature-high"></i>
+                    </div>
+                    <h3>درجة الحرارة</h3>
+                    <p>مقياس متوسط الطاقة الحركية للجزيئات في المادة</p>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-compress"></i>
+                    </div>
+                    <h3>الضغط</h3>
+                    <p>القوة التي تمارسها الجزيئات المتحركة على جدران الحاوية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulation Section -->
+    <section id="simulation" class="section">
+        <div class="container">
+            <h2 class="section-title">محاكاة تفاعلية</h2>
+            <div class="simulation-container">
+                <h3 style="text-align: center; color: var(--primary-blue); margin-bottom: 2rem;">حركة الجزيئات في الغاز</h3>
+                <div class="simulation-visual">
+                    <div class="particle" style="top: 20%; left: 20%;"></div>
+                    <div class="particle" style="top: 50%; left: 50%; animation-delay: 1s;"></div>
+                    <div class="particle" style="top: 80%; left: 30%; animation-delay: 2s;"></div>
+                    <div class="particle" style="top: 30%; left: 70%; animation-delay: 3s;"></div>
+                    <div class="particle" style="top: 60%; left: 40%; animation-delay: 4s;"></div>
+                    <div style="z-index: 10;">
+                        <i class="fas fa-flask" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                        <p>محاكاة حركة الجزيئات العشوائية</p>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">كل نقطة تمثل جزيئاً يتحرك بحرية</p>
+                    </div>
+                </div>
+                <div class="demo-controls">
+                    <button class="demo-btn" onclick="changeTemperature('cold')">برودة</button>
+                    <button class="demo-btn" onclick="changeTemperature('normal')">عادية</button>
+                    <button class="demo-btn" onclick="changeTemperature('hot')">ساخنة</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">التطبيقات العملية</h2>
+            <div class="applications-grid">
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3>الصيدلة</h3>
+                    <p>تصميم الأدوية وفهم تفاعلها مع البروتينات في الجسم</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>المواد المتقدمة</h3>
+                    <p>تصميم مواد جديدة بخصائص متميزة للصناعة والتكنولوجيا</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>البيولوجيا الجزيئية</h3>
+                    <p>فهم آليات عمل البروتينات والأحماض النووية</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>الهندسة الكيميائية</h3>
+                    <p>تحسين العمليات الصناعية وتطوير محفزات جديدة</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <h3>الطاقة النظيفة</h3>
+                    <p>تطوير خلايا شمسية وبطاريات أكثر كفاءة</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>الحوسبة العلمية</h3>
+                    <p>محاكاة الأنظمة المعقدة باستخدام الحواسيب الفائقة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="section">
+        <div class="container">
+            <h2 class="section-title">أحدث الأبحاث والتطورات</h2>
+            <div class="research-timeline">
+                <div class="research-item">
+                    <div class="research-year">2023</div>
+                    <div class="research-content">
+                        <h3>اكتشاف آلية جديدة لنقل البروتينات</h3>
+                        <p>فريق بحثي يستخدم محاكاة الديناميكا الجزيئية لفهم كيفية انتقال البروتينات عبر أغشية الخلايا</p>
+                    </div>
+                </div>
+                <div class="research-item">
+                    <div class="research-year">2022</div>
+                    <div class="research-content">
+                        <h3>تطوير مواد فائقة التوصيل</h3>
+                        <p>استخدام الديناميكا الجزيئية لتصميم مواد توصل الكهرباء بدون مقاومة عند درجات حرارة أعلى</p>
+                    </div>
+                </div>
+                <div class="research-item">
+                    <div class="research-year">2021</div>
+                    <div class="research-content">
+                        <h3>محاكاة فيروس كورونا</h3>
+                        <p>دراسة تفاعل بروتين السنبke مع الخلايا البشرية لتطوير لقاحات وعلاجات أكثر فعالية</p>
+                    </div>
+                </div>
+                <div class="research-item">
+                    <div class="research-year">2020</div>
+                    <div class="research-content">
+                        <h3>الذكاء الاصطناعي والديناميكا الجزيئية</h3>
+                        <p>دمج تقنيات التعلم العميق مع محاكيات الديناميكا الجزيئية لتسريع اكتشاف الأدوية</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">موارد تعليمية ومراجع</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-header">
+                        <h3><i class="fas fa-book"></i> كتب مرجعية</h3>
+                    </div>
+                    <div class="resource-content">
+                        <ul class="resource-list">
+                            <li>
+                                <span>مقدمة في الديناميكا الجزيئية</span>
+                                <a href="#" class="resource-link">تحميل</a>
+                            </li>
+                            <li>
+                                <span>الفيزياء الإحصائية للجزيئات</span>
+                                <a href="#" class="resource-link">تحميل</a>
+                            </li>
+                            <li>
+                                <span>محاكيات الحاسوب في الكيمياء</span>
+                                <a href="#" class="resource-link">تحميل</a>
+                            </li>
+                            <li>
+                                <span>القوى بين الجزيئية</span>
+                                <a href="#" class="resource-link">تحميل</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-header">
+                        <h3><i class="fas fa-video"></i> فيديوهات تعليمية</h3>
+                    </div>
+                    <div class="resource-content">
+                        <ul class="resource-list">
+                            <li>
+                                <span>مبادئ الديناميكا الجزيئية</span>
+                                <a href="#" class="resource-link">مشاهدة</a>
+                            </li>
+                            <li>
+                                <span>تثبيت وتشغيل برامج المحاكاة</span>
+                                <a href="#" class="resource-link">مشاهدة</a>
+                            </li>
+                            <li>
+                                <span>تحليل نتائج المحاكاة</span>
+                                <a href="#" class="resource-link">مشاهدة</a>
+                            </li>
+                            <li>
+                                <span>تطبيقات عملية في البحث</span>
+                                <a href="#" class="resource-link">مشاهدة</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-header">
+                        <h3><i class="fas fa-flask"></i> برامج محاكاة</h3>
+                    </div>
+                    <div class="resource-content">
+                        <ul class="resource-list">
+                            <li>
+                                <span>GROMACS</span>
+                                <a href="#" class="resource-link">تحميل</a>
+                            </li>
+                            <li>
+                                <span>NAMD</span>
+                                <a href="#" class="resource-link">تحميل</a>
+                            </li>
+                            <li>
+                                <span>AMBER</span>
+                                <a href="#" class="resource-link">تحميل</a>
+                            </li>
+                            <li>
+                                <span>VMD - Visualization</span>
+                                <a href="#" class="resource-link">تحميل</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-header">
+                        <h3><i class="fas fa-graduation-cap"></i> دورات تدريبية</h3>
+                    </div>
+                    <div class="resource-content">
+                        <ul class="resource-list">
+                            <li>
+                                <span>مقدمة في الديناميكا الجزيئية</span>
+                                <a href="#" class="resource-link">التسجيل</a>
+                            </li>
+                            <li>
+                                <span>المحاكاة المتقدمة</span>
+                                <a href="#" class="resource-link">التسجيل</a>
+                            </li>
+                            <li>
+                                <span>تحليل البيانات الجزيئية</span>
+                                <a href="#" class="resource-link">التسجيل</a>
+                            </li>
+                            <li>
+                                <span>مشروع تخرج في الديناميكا</span>
+                                <a href="#" class="resource-link">التسجيل</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن الموقع</h3>
+                    <p>منصة تعليمية متخصصة في الديناميكا الجزيئية، تقدم محتوى علمي دقيق ومبسط للطلاب والباحثين والمهتمين بعالم الذرات والجزيئات.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#intro">مقدمة</a></li>
+                        <li><a href="#concepts">المفاهيم الأساسية</a></li>
+                        <li><a href="#simulation">محاكاة</a></li>
+                        <li><a href="#applications">التطبيقات</a></li>
+                        <li><a href="#research">أبحاث</a></li>
+                        <li><a href="#resources">موارد</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> العنوان: كلية العلوم، مبنى الفيزياء</li>
+                        <li><i class="fas fa-phone"></i> الهاتف: +966 12 345 6789</li>
+                        <li><i class="fas fa-envelope"></i> البريد: info@moldyn.edu.sa</li>
+                        <li><i class="fas fa-clock"></i> ساعات العمل: 9:00 ص - 5:00 م</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>النشرة البريدية</h3>
+                    <p>اشترك في نشرتنا للحصول على آخر التحديثات العلمية</p>
+                    <form style="margin-top: 1rem;">
+                        <input type="email" placeholder="بريدك الإلكتروني" style="width: 100%; padding: 0.8rem; border: none; border-radius: 5px; margin-bottom: 1rem;">
+                        <button type="submit" style="width: 100%; padding: 0.8rem; background: var(--accent-purple); color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">اشترك الآن</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 عالم الديناميكا الجزيئية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Interactive demo functions
+        function changeTemperature(temp) {
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach(particle => {
+                particle.style.animationDuration = temp === 'cold' ? '10s' : temp === 'hot' ? '2s' : '5s';
+            });
+            
+            // Show temperature change notification
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: var(--primary-blue);
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 10px;
+                z-index: 10000;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            `;
+            notification.textContent = `تم تغيير الحرارة إلى: ${temp === 'cold' ? 'باردة' : temp === 'hot' ? 'ساخنة' : 'عادية'}`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 2000);
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.right = '0';
+            navLinks.style.background = 'white';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.width = '100%';
+            navLinks.style.padding = '1rem';
+            navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+        });
+
+        // Form submission prevention
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('شكراً لاشتراكك في نشرتنا البريدية!');
+            this.reset();
+        });
+
+        // Add animation on scroll for research items
+        const researchObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.research-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(-20px)';
+            item.style.transition = 'all 0.6s ease';
+            researchObserver.observe(item);
+        });
+
+        // Add hover effect to concept cards
+        document.querySelectorAll('.concept-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

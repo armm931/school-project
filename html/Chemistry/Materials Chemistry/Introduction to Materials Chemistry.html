@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مقدمة في كيمياء المواد - عالم المواد المذهل</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a8a;
+            --light-blue: #3b82f6;
+            --accent-blue: #60a5fa;
+            --dark-gray: #1f2937;
+            --light-gray: #f3f4f6;
+            --white: #ffffff;
+            --text-color: #374151;
+            --gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(30, 58, 138, 0.85), rgba(59, 130, 246, 0.85)),
+                        url('https://picsum.photos/seed/materials-chemistry/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--white);
+            color: var(--primary-blue);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: var(--accent-blue);
+            color: white;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-blue);
+        }
+
+        /* Introduction Section */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .intro-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .intro-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Material Types */
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .material-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .material-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .material-icon {
+            height: 120px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .material-content {
+            padding: 1.5rem;
+        }
+
+        .material-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .material-content p {
+            color: var(--text-color);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Properties Section */
+        .properties-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .property-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .property-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .property-icon {
+            font-size: 2.5rem;
+            color: var(--light-blue);
+            margin-bottom: 1rem;
+        }
+
+        .property-item h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Applications Section */
+        .applications-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .application-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .application-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .app-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .app-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .application-card:hover .app-image img {
+            transform: scale(1.1);
+        }
+
+        .app-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+        }
+
+        .app-overlay h3 {
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .app-content {
+            padding: 1.5rem;
+        }
+
+        /* Innovations Section */
+        .innovations-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .innovation-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .innovation-item:hover {
+            transform: translateX(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .innovation-year {
+            background: var(--gradient);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: bold;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .innovation-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Experiments Section */
+        .experiments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .experiment-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .experiment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .experiment-header {
+            background: var(--gradient);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .experiment-header h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .experiment-content {
+            padding: 1.5rem;
+        }
+
+        .experiment-steps {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .experiment-steps li {
+            counter-increment: step-counter;
+            margin-bottom: 1rem;
+            padding-right: 2.5rem;
+            position: relative;
+        }
+
+        .experiment-steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            right: 0;
+            top: 0;
+            background: var(--light-blue);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 200px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(30, 58, 138, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay i {
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--light-gray);
+        }
+
+        .faq-question h3 {
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+        }
+
+        .faq-toggle {
+            font-size: 1.2rem;
+            color: var(--light-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 200px;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-blue);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--light-blue);
+        }
+
+        .submit-btn {
+            background: var(--gradient);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-blue);
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-blue);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .innovation-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--primary-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--light-blue);
+            transform: translateY(-5px);
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-atom {
+            width: 80px;
+            height: 80px;
+            border: 3px solid var(--light-blue);
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto 1rem;
+            animation: rotate 2s linear infinite;
+        }
+
+        .loader-atom::before,
+        .loader-atom::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+        }
+
+        .loader-atom::before {
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .loader-atom::after {
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-atom"></div>
+            <h2 style="color: var(--primary-blue);">جاري تحميل عالم المواد...</h2>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-atom"></i>
+                كيمياء المواد
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#intro">مقدمة</a></li>
+                <li><a href="#materials">أنواع المواد</a></li>
+                <li><a href="#properties">الخصائص</a></li>
+                <li><a href="#applications">التطبيقات</a></li>
+                <li><a href="#innovations">الابتكارات</a></li>
+                <li><a href="#experiments">تجارب</a></li>
+                <li><a href="#gallery">معرض</a></li>
+                <li><a href="#faq">الأسئلة</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>مقدمة في كيمياء المواد</h1>
+            <p>اكتشف عالم المواد المذهل وتعلم عن بنية المادة وخصائصها وتطبيقاتها في حياتنا اليومية</p>
+            <a href="#intro" class="cta-button">ابدأ رحلتك العلمية</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="section">
+        <div class="container">
+            <h2 class="section-title">ما هي كيمياء المواد؟</h2>
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <h3>علم المواد في لمحة</h3>
+                    <p>كيمياء المواد هي فرع من فروع الكيمياء يركز على دراسة المواد المختلفة من حيث:</p>
+                    <p>• <strong>التركيب الكيميائي:</strong> العناصر والمركبات التي تتكون منها المادة</p>
+                    <p>• <strong>البنية الذرية:</strong> ترتيب الذرات والجزيئات في المادة</p>
+                    <p>• <strong>الخصائص الفيزيائية:</strong> الكثافة، الناقلية، الصلابة، وغيرها</p>
+                    <p>• <strong>السلوك الكيميائي:</strong> كيفية تفاعل المادة مع المواد الأخرى</p>
+                    <p>• <strong>التطبيقات العملية:</strong> استخدامات المادة في الصناعة والتكنولوجيا</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://picsum.photos/seed/materials-science/600/400.jpg" alt="علم المواد">
+                </div>
+            </div>
+            <div class="intro-grid" style="margin-top: 3rem;">
+                <div class="intro-image">
+                    <img src="https://picsum.photos/seed/chemistry-lab/600/400.jpg" alt="مختبر الكيمياء">
+                </div>
+                <div class="intro-text">
+                    <h3>أهمية دراسة كيمياء المواد</h3>
+                    <p>تعتبر كيمياء المواد من العلوم الأساسية التي تدعم العديد من الصناعات والتطبيقات:</p>
+                    <p>• تطوير مواد جديدة بخصائص متفوقة</p>
+                    <p>• تحسين المواد الحالية لزيادة كفاءتها</p>
+                    <p>• فهم سلوك المواد في الظروف المختلفة</p>
+                    <p>• ابتكار حلول للمشكلات البيئية والصناعية</p>
+                    <p>• دعم التطور التكنولوجي والعلمي</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Materials Types Section -->
+    <section id="materials" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">أنواع المواد الرئيسية</h2>
+            <div class="materials-grid">
+                <div class="material-card" onclick="showMaterialDetails('metals')">
+                    <div class="material-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="material-content">
+                        <h3>المواد الفلزية</h3>
+                        <p>مواد تتميز بلمعانها، ناقليتها العالية للحرارة والكهرباء، وقابليتها للطرق والسحب. تشمل الحديد، الألومنيوم، النحاس، والذهب.</p>
+                    </div>
+                </div>
+                <div class="material-card" onclick="showMaterialDetails('ceramics')">
+                    <div class="material-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <div class="material-content">
+                        <h3>المواد السيراميكية</h3>
+                        <p>مواد غير عضوية تتميز بصلابتها العالية، مقاومتها للحرارة، وعزلها الكهربائي. تشمل الخزف، الزجاج، والأسمنت.</p>
+                    </div>
+                </div>
+                <div class="material-card" onclick="showMaterialDetails('polymers')">
+                    <div class="material-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="material-content">
+                        <h3>المواد البوليمرية</h3>
+                        <p>سلاسل طويلة من الجزيئات تتميز بمرونتها وخفة وزنها. تشمل البلاستيك، المطاط، والألياف الصناعية.</p>
+                    </div>
+                </div>
+                <div class="material-card" onclick="showMaterialDetails('composites')">
+                    <div class="material-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="material-content">
+                        <h3>المواد المركبة</h3>
+                        <p>مواد هجينة تجمع بين خصائص نوعين أو أكثر من المواد للحصول على خصائص متفوقة. تشمل ألياف الكربون والزجاج.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Properties Section -->
+    <section id="properties" class="section">
+        <div class="container">
+            <h2 class="section-title">خصائص المواد</h2>
+            <div class="properties-container">
+                <div class="property-item">
+                    <div class="property-icon">
+                        <i class="fas fa-weight-hanging"></i>
+                    </div>
+                    <h4>الكثافة</h4>
+                    <p>كتلة المادة لوحدة الحجم، تحدد ثقل المادة النسبي</p>
+                </div>
+                <div class="property-item">
+                    <div class="property-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h4>الناقلية</h4>
+                    <p>قدرة المادة على توصيل الحرارة والكهرباء</p>
+                </div>
+                <div class="property-item">
+                    <div class="property-icon">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <h4>الصلابة</h4>
+                    <p>مقاومة المادة للخدش والتشوه</p>
+                </div>
+                <div class="property-item">
+                    <div class="property-icon">
+                        <i class="fas fa-temperature-high"></i>
+                    </div>
+                    <h4>درجة الانصهار</h4>
+                    <p>الدرجة التي تتحول فيها المادة من الحالة الصلبة إلى السائلة</p>
+                </div>
+                <div class="property-item">
+                    <div class="property-icon">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </div>
+                    <h4>المرونة</h4>
+                    <p>قدرة المادة على العودة إلى شكلها الأصلي بعد إزالة القوة المؤثرة</p>
+                </div>
+                <div class="property-item">
+                    <div class="property-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>المقاومة</h4>
+                    <p>قدرة المادة على مقاومة التآكل والتلف</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">تطبيقات المواد في الحياة</h2>
+            <div class="applications-showcase">
+                <div class="application-card">
+                    <div class="app-image">
+                        <img src="https://picsum.photos/seed/construction/400/200.jpg" alt="تطبيقات البناء">
+                        <div class="app-overlay">
+                            <h3>قطاع البناء والتشييد</h3>
+                        </div>
+                    </div>
+                    <div class="app-content">
+                        <p>تستخدم المواد المختلفة مثل الخرسانة، الفولاذ، والزجاج في بناء المباني والجسور والمنشآت الحديثة.</p>
+                    </div>
+                </div>
+                <div class="application-card">
+                    <div class="app-image">
+                        <img src="https://picsum.photos/seed/electronics/400/200.jpg" alt="تطبيقات الإلكترونيات">
+                        <div class="app-overlay">
+                            <h3>الإلكترونيات والتكنولوجيا</h3>
+                        </div>
+                    </div>
+                    <div class="app-content">
+                        <p>المواد شبه الناقلة مثل السيليكون أساس صناعة الرقائق الإلكترونية والأجهزة الذكية.</p>
+                    </div>
+                </div>
+                <div class="application-card">
+                    <div class="app-image">
+                        <img src="https://picsum.photos/seed/medical/400/200.jpg" alt="تطبيقات طبية">
+                        <div class="app-overlay">
+                            <h3>التطبيقات الطبية</h3>
+                        </div>
+                    </div>
+                    <div class="app-content">
+                        <p>تستخدم المواد الحيوية المتوافقة في صناعة الأطراف الصناعية والأجهزة الطبية المزروعة.</p>
+                    </div>
+                </div>
+                <div class="application-card">
+                    <div class="app-image">
+                        <img src="https://picsum.photos/seed/transportation/400/200.jpg" alt="تطبيقات النقل">
+                        <div class="app-overlay">
+                            <h3>صناعة النقل</h3>
+                        </div>
+                    </div>
+                    <div class="app-content">
+                        <p>المواد الخفيفة والمتينة مثل ألياف الكربون تستخدم في صناعة السيارات والطائرات الحديثة.</p>
+                    </div>
+                </div>
+                <div class="application-card">
+                    <div class="app-image">
+                        <img src="https://picsum.photos/seed/energy/400/200.jpg" alt="تطبيقات الطاقة">
+                        <div class="app-overlay">
+                            <h3>قطاع الطاقة</h3>
+                        </div>
+                    </div>
+                    <div class="app-content">
+                        <p>تستخدم المواد المتقدمة في الخلايا الشمسية والبطاريات وتخزين الطاقة.</p>
+                    </div>
+                </div>
+                <div class="application-card">
+                    <div class="app-image">
+                        <img src="https://picsum.photos/seed/environment/400/200.jpg" alt="تطبيقات بيئية">
+                        <div class="app-overlay">
+                            <h3>الحلول البيئية</h3>
+                        </div>
+                    </div>
+                    <div class="app-content">
+                        <p>تطوير مواد قابلة للتحلل وأغشية ترشيح لمعالجة المياه والهواء الملوث.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Innovations Section -->
+    <section id="innovations" class="section">
+        <div class="container">
+            <h2 class="section-title">أحدث الابتكارات في عالم المواد</h2>
+            <div class="innovations-timeline">
+                <div class="innovation-item">
+                    <div class="innovation-year">2023</div>
+                    <div class="innovation-content">
+                        <h3>الجرافين المعدني</h3>
+                        <p>تطوير مواد جرافينية محسنة خصائصها الكهربائية والميكانيكية لتطبيقات الإلكترونيات المرنة</p>
+                    </div>
+                </div>
+                <div class="innovation-item">
+                    <div class="innovation-year">2022</div>
+                    <div class="innovation-content">
+                        <h3>المواد الذكية</h3>
+                        <p>ابتكار مواد قادرة على تغيير خصائصها استجابةً للمؤثرات الخارجية مثل الحرارة والضوء</p>
+                    </div>
+                </div>
+                <div class="innovation-item">
+                    <div class="innovation-year">2021</div>
+                    <div class="innovation-content">
+                        <h3>المواد النانوية الطبية</h3>
+                        <p>تطوير جزيئات نانوية تستهدف الخلايا السرطانية بدقة عالية لتقليل الآثار الجانبية</p>
+                    </div>
+                </div>
+                <div class="innovation-item">
+                    <div class="innovation-year">2020</div>
+                    <div class="innovation-content">
+                        <h3>البطاريات الصلبة</h3>
+                        <p>ابتكار بطاريات ليثيوم-أيون صلبة أكثر أماناً وكفاءة من البطاريات السائلة التقليدية</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiments Section -->
+    <section id="experiments" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">تجارب عملية وتفاعلية</h2>
+            <div class="experiments-grid">
+                <div class="experiment-card">
+                    <div class="experiment-header">
+                        <h3><i class="fas fa-flask"></i> تجربة كثافة المواد</h3>
+                        <p>تعلم كيفية قياس كثافة المواد المختلفة</p>
+                    </div>
+                    <div class="experiment-content">
+                        <h4>المواد المطلوبة:</h4>
+                        <p>• ميزان دقيق</p>
+                        <p>• أسطوانة مدرجة</p>
+                        <p>• عينات من مواد مختلفة (حديد، ألومنيوم، بلاستيك)</p>
+                        <p>• ماء</p>
+                        
+                        <h4 style="margin-top: 1rem;">الخطوات:</h4>
+                        <ol class="experiment-steps">
+                            <li>وزن كل عينة باستخدام الميزان الدقيق</li>
+                            <li>املأ الأسطوانة المدرجة بمقدار معين من الماء</li>
+                            <li>اغمس العينة في الماء وسجل التغير في الحجم</li>
+                            <li>احسب الكثافة: الكتلة ÷ الحجم</li>
+                            <li>قارن النتائج بين المواد المختلفة</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="experiment-card">
+                    <div class="experiment-header">
+                        <h3><i class="fas fa-bolt"></i> تجربة الناقلية الكهربائية</h3>
+                        <p>اكتشف أي المواد توصل الكهرباء أفضل</p>
+                    </div>
+                    <div class="experiment-content">
+                        <h4>المواد المطلوبة:</h4>
+                        <p>• بطارية 9 فولت</p>
+                        <p>• لمبة صغيرة</p>
+                        <p>• أسلاك توصيل</p>
+                        <p>• عينات من مواد مختلفة (نحاس، خشب، بلاستيك، ورق)</p>
+                        
+                        <h4 style="margin-top: 1rem;">الخطوات:</h4>
+                        <ol class="experiment-steps">
+                            <li>قم بتوصيل الدائرة الكهربائية مع ترك مسافة للعينة</li>
+                            <li>ضع عينة النحاس في المساحة و观察 اللمبة</li>
+                            <li>كرر التجربة مع كل مادة على حدة</li>
+                            <li>سجل أي المواد تضيء اللمبة</li>
+                            <li>صنف المواد إلى نواقل وعوازل</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="experiment-card">
+                    <div class="experiment-header">
+                        <h3><i class="fas fa-magnet"></i> تجربة الخصائص المغناطيسية</h3>
+                        <p>تعرف على المواد المغناطيسية وغير المغناطيسية</p>
+                    </div>
+                    <div class="experiment-content">
+                        <h4>المواد المطلوبة:</h4>
+                        <p>• مغناطيس قوي</p>
+                        <p>• عينات متنوعة (حديد، نحاس، ألومنيوم، ورق، بلاستيك)</p>
+                        <p>• ورقة لتسجيل النتائج</p>
+                        
+                        <h4 style="margin-top: 1rem;">الخطوات:</h4>
+                        <ol class="experiment-steps">
+                            <li>اقرب المغناطيس من عينة الحديد</li>
+                            <li>لاحظ إذا كانت العينة تنجذب للمغناطيس</li>
+                            <li>كرر التجربة مع جميع العينات</li>
+                            <li>صنف المواد إلى مغناطيسية وغير مغناطيسية</li>
+                            <li>حاول تفسير سبب اختلاف السلوك</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section">
+        <div class="container">
+            <h2 class="section-title">معرض الصور</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openGallery(0)">
+                    <img src="https://picsum.photos/seed/metal-structure/300/200.jpg" alt="بنية الفلزات">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openGallery(1)">
+                    <img src="https://picsum.photos/seed/polymer-chains/300/200.jpg" alt="سلاسل البوليمر">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openGallery(2)">
+                    <img src="https://picsum.photos/seed/crystal-structure/300/200.jpg" alt="البنية البلورية">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openGallery(3)">
+                    <img src="https://picsum.photos/seed/composite-material/300/200.jpg" alt="المواد المركبة">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openGallery(4)">
+                    <img src="https://picsum.photos/seed/nanomaterials/300/200.jpg" alt="المواد النانوية">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openGallery(5)">
+                    <img src="https://picsum.photos/seed/smart-materials/300/200.jpg" alt="المواد الذكية">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">الأسئلة الشائعة</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>ما الفرق بين كيمياء المواد والكيمياء التقليدية؟</h3>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>كيمياء المواد تركز على دراسة الخصائص والتطبيقات العملية للمواد، بينما الكيمياء التقليدية تهتم أكثر بالتفاعلات الكيميائية والتركيب الجزيئي. كيمياء المواد أكثر تطبيقية وتربط بين النظرية والتطبيق الصناعي.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>لماذا تختلف خصائص المواد رغم تشابه تركيبها الكيميائي؟</h3>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الخصائص تعتمد ليس فقط على التركيب الكيميائي بل أيضاً على البنية البلورية، الترتيب الذري، وجود الشوائب، وطريقة التصنيع. هذه العوامل تؤثر بشكل كبير على سلوك المادة.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>ما هي المواد النانوية ولماذا مهمة؟</h3>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>المواد النانوية هي مواد أبعادها بين 1-100 نانومتر. تكتسب خصائص فريدة في هذا المقياس مثل زيادة مساحة السطح وتغير الخصائص البصرية والكهربائية. تستخدم في الطب، الإلكترونيات، والطاقة.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>كيف تساهم كيمياء المواد في حماية البيئة؟</h3>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>تساهم من خلال تطوير مواد قابلة للتحلل، أغشية ترشيح لتنقية المياه، مواد امتصاص للتلوث، مواد خفيفة تقلل استهلاك الوقود، وتقنيات تخزين الطاقة النظيفة.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>ما هي المواد الذكية وكيف تعمل؟</h3>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>المواد الذكية هي مواد قادرة على تغيير خصائصها استجابةً لمؤثرات خارجية مثل الحرارة، الضوء، الكهرباء، أو الإجهاد الميكانيكي. أمثلة: السبائك التي تتذكر شكلها، الزجاج الذي يغير لونه، والمواد الكهروضوئية.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">اتصل بنا</h2>
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--primary-blue);">أرسل لنا رسالة</h3>
+                    <form onsubmit="handleFormSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">الاسم الكامل</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">البريد الإلكتروني</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">الموضوع</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">الرسالة</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">إرسال الرسالة</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--primary-blue);">معلومات التواصل</h3>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>العنوان</h4>
+                            <p>مختبرات كيمياء المواد، كلية العلوم، الجامعة</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>الهاتف</h4>
+                            <p>+966 12 345 6789</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>البريد الإلكتروني</h4>
+                            <p>info@materials-chemistry.edu</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h4>ساعات العمل</h4>
+                            <p>الأحد - الخميس: 8:00 ص - 5:00 م</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن الموقع</h3>
+                    <p>منصة تعليمية متخصصة في تقديم محتوى شامل عن كيمياء المواد للطلاب والباحثين والمهتمين بهذا المجال العلمي المهم.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#intro">مقدمة في كيمياء المواد</a></li>
+                        <li><a href="#materials">أنواع المواد</a></li>
+                        <li><a href="#properties">خصائص المواد</a></li>
+                        <li><a href="#applications">التطبيقات العملية</a></li>
+                        <li><a href="#experiments">تجارب عملية</a></li>
+                        <li><a href="#gallery">معرض الصور</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>المصادر التعليمية</h3>
+                    <ul>
+                        <li><a href="#">كتب مرجعية</a></li>
+                        <li><a href="#">أوراق بحثية</a></li>
+                        <li><a href="#">فيديوهات تعليمية</a></li>
+                        <li><a href="#">محاكاة تفاعلية</a></li>
+                        <li><a href="#">اختبارات ذاتية</a></li>
+                        <li><a href="#">منتدى النقاش</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>النشرة البريدية</h3>
+                    <p>اشترك في نشرتنا البريدية للحصول على آخر التحديثات والمقالات العلمية</p>
+                    <form style="margin-top: 1rem;" onsubmit="handleNewsletter(event)">
+                        <input type="email" placeholder="بريدك الإلكتروني" style="width: 100%; padding: 0.8rem; border: none; border-radius: 5px; margin-bottom: 1rem;">
+                        <button type="submit" style="width: 100%; padding: 0.8rem; background: var(--light-blue); color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">اشترك الآن</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 مقدمة في كيمياء المواد. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Hide loader when page loads
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Material details function
+        function showMaterialDetails(type) {
+            const materials = {
+                metals: {
+                    title: 'المواد الفلزية',
+                    content: 'المواد الفلزية هي مواد تتميز بوجود روابط فلزية بين ذراتها. هذه الروابط تسمح بحركة الإلكترونات بحرية، مما يمنح الفلزات خصائصها المميزة مثل التوصيل الكهربائي والحراري العالي، واللمعان المعدني، والقابلية للطرق والسحب. تشمل أمثلة شائعة: الحديد، الألومنيوم، النحاس، الذهب، والفضة.'
+                },
+                ceramics: {
+                    title: 'المواد السيراميكية',
+                    content: 'المواد السيراميكية هي مواد غير عضوية تتميز بوجود روابط أيونية أو تساهمية قوية. هذه الروابط تمنحها خصائص مثل الصلابة العالية، مقاومة الحرارة، والعزل الكهربائي. تستخدم في تطبيقات متنوعة من الخزف والزجاج إلى المكونات الإلكترونية المتقدمة.'
+                },
+                polymers: {
+                    title: 'المواد البوليمرية',
+                    content: 'المواد البوليمرية تتكون من سلاسل طويلة من الجزيئات المتكررة تسمى المونومرات. تتميز بخفتها، مرونتها، وسهولة تشكيلها. تشمل البلاستيك، المطاط، والألياف الصناعية. يمكن أن تكون طبيعية مثل الحرير والخشب، أو صناعية مثل البولي إيثيلين والنايلون.'
+                },
+                composites: {
+                    title: 'المواد المركبة',
+                    content: 'المواد المركبة هي مواد هجينة تجمع بين مادتين أو أكثر لتحقيق خصائص متفوقة. تتكون عادة من مادة مقوية (مثل ألياف الكربون) ومادة رابطة (مثل الراتنجات). تتميز بقوة عالية ووزن خفيف، وتستخدم في صناعة الطائرات والسيارات الرياضية والمعدات الرياضية.'
+                }
+            };
+
+            const material = materials[type];
+            if (material) {
+                alert(`${material.title}\n\n${material.content}`);
+            }
+        }
+
+        // FAQ Toggle
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-answer').classList.remove('active');
+                }
+            });
+            
+            // Toggle current FAQ
+            faqItem.classList.toggle('active');
+            answer.classList.toggle('active');
+        }
+
+        // Gallery functions
+        function openGallery(index) {
+            const galleryTitles = [
+                'بنية الفلزات المجهرية',
+                'سلاسل البوليمر الطويلة',
+                'البنية البلورية للمواد',
+                'المواد المركبة المتقدمة',
+                'المواد النانوية تحت المجهر',
+                'المواد الذكية في العمل'
+            ];
+            
+            alert(`صورة: ${galleryTitles[index]}\n\nهذه صورة توضيحية تظهر التفاصيل الدقيقة للمادة. يمكن استخدامها في الدراسة والبحث العلمي.`);
+        }
+
+        // Form submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert('شكراً لتواصلك معنا! سنقوم بالرد على رسالتك في أقرب وقت ممكن.');
+            event.target.reset();
+        }
+
+        // Newsletter subscription
+        function handleNewsletter(event) {
+            event.preventDefault();
+            alert('شكراً لاشتراكك في نشرتنا البريدية! ستصلك آخر التحديثات والمقالات العلمية.');
+            event.target.reset();
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.width = '100%';
+                navLinks.style.padding = '1rem';
+                navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
