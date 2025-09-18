@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المواد الإلكترونية - بوابة المعرفة التكنولوجية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0066cc;
+            --dark-blue: #003d7a;
+            --light-blue: #4da6ff;
+            --accent-blue: #80bfff;
+            --silver: #c0c0c0;
+            --dark-silver: #808080;
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+            background: var(--light-gray);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--light-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo i {
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--light-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--light-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(0, 51, 102, 0.9), rgba(0, 102, 204, 0.8)),
+                        url('https://picsum.photos/seed/electronic-materials/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(77, 166, 255, 0.1) 0%, transparent 50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(45deg, var(--white), var(--light-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: var(--light-blue);
+            color: var(--dark-blue);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--light-blue);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(77, 166, 255, 0.4);
+            background: var(--white);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            background: var(--light-blue);
+            color: var(--dark-blue);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-dark {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .section-gray {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-dark .section-title {
+            color: var(--light-blue);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--dark-silver);
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 3px;
+            background: var(--light-blue);
+        }
+
+        /* Materials Grid */
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .material-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .material-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--light-blue));
+        }
+
+        .material-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 102, 204, 0.2);
+        }
+
+        .material-icon {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--light-blue), var(--primary-blue));
+            color: var(--white);
+            font-size: 4rem;
+        }
+
+        .material-content {
+            padding: 2rem;
+        }
+
+        .material-content h3 {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .material-content p {
+            color: var(--text-color);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .material-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .material-link:hover {
+            gap: 1rem;
+        }
+
+        /* Applications Section */
+        .applications-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .application-item {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .application-item:hover {
+            border-color: var(--light-blue);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 102, 204, 0.15);
+        }
+
+        .application-icon {
+            font-size: 3.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--light-blue), var(--primary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .application-item h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* News Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .news-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 102, 204, 0.2);
+        }
+
+        .news-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.1);
+        }
+
+        .news-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .news-content {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--dark-silver);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .news-content h3 {
+            color: var(--primary-blue);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .news-content p {
+            color: var(--text-color);
+            line-height: 1.8;
+            flex: 1;
+        }
+
+        .read-more {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 1rem;
+        }
+
+        /* Research Section */
+        .research-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .research-card {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .research-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+
+        .research-card:hover::before {
+            top: -30%;
+            right: -30%;
+        }
+
+        .research-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 102, 204, 0.3);
+        }
+
+        .research-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--light-blue);
+        }
+
+        .research-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .research-card p {
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        /* Gallery Section */
+        .gallery-container {
+            margin-top: 4rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            height: 250px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 51, 102, 0.9), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay h4 {
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        /* Statistics */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .stat-box {
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .stat-box:hover {
+            border-color: var(--light-blue);
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--primary-blue), var(--light-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            color: var(--text-color);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: white;
+            padding: 4rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--light-blue));
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--light-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-section a:hover {
+            color: var(--light-blue);
+            transform: translateX(-5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light-blue);
+            text-align: center;
+            line-height: 45px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: var(--light-blue);
+            color: var(--dark-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(77, 166, 255, 0.4);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--light-blue);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .materials-grid,
+            .applications-container,
+            .news-grid,
+            .research-showcase,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--primary-blue);
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 102, 204, 0.3);
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--light-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(77, 166, 255, 0.4);
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-circle {
+            width: 80px;
+            height: 80px;
+            border: 3px solid rgba(77, 166, 255, 0.3);
+            border-top-color: var(--light-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            color: var(--light-blue);
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-circle"></div>
+            <div class="loader-text">جاري التحميل...</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-microchip"></i>
+                المواد الإلكترونية
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#materials">المواد</a></li>
+                <li><a href="#applications">التطبيقات</a></li>
+                <li><a href="#news">الأخبار</a></li>
+                <li><a href="#research">الأبحاث</a></li>
+                <li><a href="#gallery">المعرض</a></li>
+                <li><a href="#statistics">الإحصائيات</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>عالم المواد الإلكترونية</h1>
+            <p>اكتشف أحدث التطورات في عالم المواد الإلكترونية وأشباه الموصلات والمواد النانوية التي تشكل مستقبل التكنولوجيا</p>
+            <div class="hero-buttons">
+                <a href="#materials" class="btn-primary">استكشف المواد</a>
+                <a href="#research" class="btn-secondary">الأبحاث الحديثة</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Materials Section -->
+    <section id="materials" class="section">
+        <div class="container">
+            <h2 class="section-title">أنواع المواد الإلكترونية</h2>
+            <p class="section-subtitle">تعرف على أهم أنواع المواد الإلكترونية وخصائصها واستخداماتها في الصناعات المختلفة</p>
+            
+            <div class="materials-grid">
+                <div class="material-card">
+                    <div class="material-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <div class="material-content">
+                        <h3>أشباه الموصلات</h3>
+                        <p>المواد الأساسية في صناعة الإلكترونيات الحديثة، مثل السيليكون والجرمانيوم، التي تمتلك خصائص توصيل متوسطة بين الموصلات والعوازل.</p>
+                        <a href="#" class="material-link">
+                            اقرأ المزيد <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="material-card">
+                    <div class="material-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="material-content">
+                        <h3>الموصلات الفائقة</h3>
+                        <p>مواد تفقد مقاومتها الكهربائية تمامًا عند درجات حرارة منخفضة جدًا، مما يسمح بتدفق التيار الكهربائي بدون فقدان للطاقة.</p>
+                        <a href="#" class="material-link">
+                            اقرأ المزيد <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="material-card">
+                    <div class="material-icon">
+                        <i class="fas fa-virus"></i>
+                    </div>
+                    <div class="material-content">
+                        <h3>المواد النانوية</h3>
+                        <p>مواد ذات أبعاد نانومترية تتمتع بخصائص فريدة تختلف عن خصائص المواد الكلية، وتستخدم في تطبيقات متطورة مثل الإلكترونيات المرنة.</p>
+                        <a href="#" class="material-link">
+                            اقرأ المزيد <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="material-card">
+                    <div class="material-icon">
+                        <i class="fas fa-magnet"></i>
+                    </div>
+                    <div class="material-content">
+                        <h3>المواد المغناطيسية</h3>
+                        <p>مواد تتفاعل مع المجالات المغناطيسية وتستخدم في صناعة المحركات والمحولات وأجهزة تخزين البيانات والذاكرة الإلكترونية.</p>
+                        <a href="#" class="material-link">
+                            اقرأ المزيد <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="material-card">
+                    <div class="material-icon">
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                    <div class="material-content">
+                        <h3>مواد البطاريات</h3>
+                        <p>مواد متخصصة في تخزين الطاقة الكهربائية، مثل الليثيوم أيون، التي تشكل أساس الأجهزة المحمولة والمركبات الكهربائية.</p>
+                        <a href="#" class="material-link">
+                            اقرأ المزيد <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="material-card">
+                    <div class="material-icon">
+                        <i class="fas fa-solar-panel"></i>
+                    </div>
+                    <div class="material-content">
+                        <h3>المواد الضوئية</h3>
+                        <p>مواد تحول الطاقة الضوئية إلى طاقة كهربائية أو العكس، وتستخدم في الخلايا الشمسية والشاشات الإلكترونية وأجهزة الإضاءة.</p>
+                        <a href="#" class="material-link">
+                            اقرأ المزيد <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="section section-gray">
+        <div class="container">
+            <h2 class="section-title">التطبيقات والاستخدامات</h2>
+            <p class="section-subtitle">استكشف كيفية استخدام المواد الإلكترونية في مختلف الصناعات والتطبيقات التكنولوجية</p>
+            
+            <div class="applications-container">
+                <div class="application-item">
+                    <div class="application-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>الأجهزة المحمولة</h3>
+                    <p>تستخدم المواد الإلكترونية في صناعة الهواتف الذكية والأجهزة اللوحية والساعات الذكية</p>
+                </div>
+
+                <div class="application-item">
+                    <div class="application-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>السيارات الكهربائية</h3>
+                    <p>المواد الإلكترونية المتقدمة في أنظمة البطاريات والمحركات الإلكترونية</p>
+                </div>
+
+                <div class="application-item">
+                    <div class="application-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>الأجهزة الطبية</h3>
+                    <p>أجهزة طبية دقيقة تعتمد على المواد الإلكترونية في التشخيص والعلاج</p>
+                </div>
+
+                <div class="application-item">
+                    <div class="application-icon">
+                        <i class="fas fa-satellite"></i>
+                    </div>
+                    <h3>الفضاء والاتصالات</h3>
+                    <p>مواد متخصصة في صناعة الأقمار الصناعية وأنظمة الاتصالات المتقدمة</p>
+                </div>
+
+                <div class="application-item">
+                    <div class="application-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>الذكاء الاصطناعي</h3>
+                    <p>معالجات إلكترونية متخصصة في تعلم الآلة والذكاء الاصطناعي</p>
+                </div>
+
+                <div class="application-item">
+                    <div class="application-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>الأمن السيبراني</h3>
+                    <p>مواد إلكترونية متقدمة لتأمين البيانات والأنظمة الإلكترونية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="section">
+        <div class="container">
+            <h2 class="section-title">آخر الأخبار التكنولوجية</h2>
+            <p class="section-subtitle">تابع أحدث التطورات والابتكارات في عالم المواد الإلكترونية</p>
+            
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://picsum.photos/seed/electronic-news1/600/400.jpg" alt="خبر إلكتروني">
+                        <div class="news-badge">مستجد</div>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span><i class="fas fa-calendar-alt"></i> 18 ديسمبر 2023</span>
+                            <span><i class="fas fa-user"></i> فريق التحرير</span>
+                        </div>
+                        <h3>اكتشاف مادة نانوية ثورية في تخزين الطاقة</h3>
+                        <p>فريق من الباحثين يعلن عن اكتشاف مادة نانوية جديدة تضاعف سعة تخزين البطاريات بنسبة 300%</p>
+                        <a href="#" class="read-more">قراءة المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://picsum.photos/seed/electronic-news2/600/400.jpg" alt="خبر إلكتروني">
+                        <div class="news-badge">تكنولوجيا</div>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span><i class="fas fa-calendar-alt"></i> 15 ديسمبر 2023</span>
+                            <span><i class="fas fa-user"></i> فريق التحرير</span>
+                        </div>
+                        <h3>ثورة في صناعة الرقائق الإلكترونية بمعمارية 2 نانومتر</h3>
+                        <p>شركة تكنولوجية كبرى تعلن عن بدء إنتاج رقائق إلكترونية بتقنية 2 نانومتر</p>
+                        <a href="#" class="read-more">قراءة المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://picsum.photos/seed/electronic-news3/600/400.jpg" alt="خبر إلكتروني">
+                        <div class="news-badge">بحث</div>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span><i class="fas fa-calendar-alt"></i> 12 ديسمبر 2023</span>
+                            <span><i class="fas fa-user"></i> فريق التحرير</span>
+                        </div>
+                        <h3>تطوير مادة موصل فائق تعمل في درجة حرارة الغرفة</h3>
+                        <p>إنجاز علمي هام يفتح الباب أمام تطبيقات عملية في نقل الطاقة بدون فقد</p>
+                        <a href="#" class="read-more">قراءة المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">الأبحاث والدراسات العلمية</h2>
+            <p class="section-subtitle">أحدث الأبحاث العلمية في مجال المواد الإلكترونية والتطورات المستقبلية</p>
+            
+            <div class="research-showcase">
+                <div class="research-card">
+                    <div class="research-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>مواد الجرافين ثنائية الأبعاد</h3>
+                    <p>أبحاث متقدمة في تطوير تطبيقات الجرافين في الإلكترونيات المرنة والشاشات الشفافة</p>
+                </div>
+
+                <div class="research-card">
+                    <div class="research-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>الإلكترونيات الحيوية</h3>
+                    <p>دمج المواد الإلكترونية مع الأنسجة الحية لتطوير أجهزة طبية ذكية</p>
+                </div>
+
+                <div class="research-card">
+                    <div class="research-icon">
+                        <i class="fas fa-quantum"></i>
+                    </div>
+                    <h3>الحوسبة الكمومية</h3>
+                    <p>مواد متقدمة لبناء أجهزة كمبيوتر كمومية قادرة على حل معادلات معقدة</p>
+                </div>
+
+                <div class="research-card">
+                    <div class="research-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>الإلكترونيات العصبية</h3>
+                    <p>محاكاة الدماغ البشري باستخدام مواد إلكترونية متطورة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section section-gray">
+        <div class="container">
+            <h2 class="section-title">معرض المواد الإلكترونية</h2>
+            <p class="section-subtitle">استكشف معرض الصور التفاعلي للمواد الإلكترونية وتطبيقاتها</p>
+            
+            <div class="gallery-container">
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://picsum.photos/seed/silicon-wafer/400/300.jpg" alt="رقيقة سيليكون">
+                        <div class="gallery-overlay">
+                            <h4>رقيقة سيليكون</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://picsum.photos/seed/graphene/400/300.jpg" alt="جرافين">
+                        <div class="gallery-overlay">
+                            <h4>جرافين</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://picsum.photos/seed/quantum-dot/400/300.jpg" alt="نقاط كمية">
+                        <div class="gallery-overlay">
+                            <h4>نقاط كمية</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://picsum.photos/seed/superconductor/400/300.jpg" alt="موصل فائق">
+                        <div class="gallery-overlay">
+                            <h4>موصل فائق</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://picsum.photos/seed/nanotube/400/300.jpg" alt="أنابيب نانوية">
+                        <div class="gallery-overlay">
+                            <h4>أنابيب نانوية</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://picsum.photos/seed/organic-electronics/400/300.jpg" alt="إلكترونيات عضوية">
+                        <div class="gallery-overlay">
+                            <h4>إلكترونيات عضوية</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section id="statistics" class="section">
+        <div class="container">
+            <h2 class="section-title">إحصائيات السوق</h2>
+            <p class="section-subtitle">أرقام وإحصائيات عن سوق المواد الإلكترونية العالمي</p>
+            
+            <div class="stats-container">
+                <div class="stat-box">
+                    <div class="stat-number" data-target="520">0</div>
+                    <div class="stat-label">مليار دولار حجم السوق العالمي</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" data-target="15">0</div>
+                    <div class="stat-label">٪ نمو سنوي متوقع</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" data-target="2800">0</div>
+                    <div class="stat-label">براءة اختراع مسجلة</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" data-target="450">0</div>
+                    <div class="stat-label">شركة رائدة في المجال</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-microchip"></i> من نحن</h3>
+                    <p>منصة رائدة متخصصة في تقديم المعلومات الدقيقة والمحدثة عن المواد الإلكترونية وأحدث التطورات التكنولوجية في هذا المجال الحيوي.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-link"></i> روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#materials">أنواع المواد</a></li>
+                        <li><a href="#applications">التطبيقات</a></li>
+                        <li><a href="#research">الأبحاث</a></li>
+                        <li><a href="#news">الأخبار</a></li>
+                        <li><a href="#gallery">المعرض</a></li>
+                        <li><a href="#">الدراسات العلمية</a></li>
+                        <li><a href="#">المؤتمرات والفعاليات</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-book"></i> الموارد التعليمية</h3>
+                    <ul>
+                        <li><a href="#">دليل المواد الإلكترونية</a></li>
+                        <li><a href="#">الدورات التدريبية</a></li>
+                        <li><a href="#">الورش البحثية</a></li>
+                        <li><a href="#">المكتبة الرقمية</a></li>
+                        <li><a href="#">فيديوهات تعليمية</a></li>
+                        <li><a href="#">الشهادات المعتمدة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-envelope"></i> تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> العنوان: مركز البحث العلمي، الحي التكنولوجي</li>
+                        <li><i class="fas fa-phone"></i> الهاتف: +966 12 345 6789</li>
+                        <li><i class="fas fa-envelope"></i> البريد: info@electronicmaterials.com</li>
+                        <li><i class="fas fa-clock"></i> ساعات العمل: 9:00 ص - 6:00 م</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 بوابة المواد الإلكترونية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Hide loader when page loads
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(0, 0, 0, 0.95)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.3)';
+            } else {
+                navbar.style.background = 'rgba(0, 0, 0, 0.9)';
+                navbar.style.boxShadow = 'none';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Animated statistics counter
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200;
+
+        const countUp = (counter) => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const increment = target / speed;
+
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(() => countUp(counter), 10);
+            } else {
+                counter.innerText = target;
+            }
+        };
+
+        const statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    countUp(entry.target);
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => {
+            statsObserver.observe(counter);
+        });
+
+        // Gallery item click handler
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const title = this.querySelector('h4').textContent;
+                alert(`تم اختيار: ${title}`);
+            });
+        });
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'rgba(0, 0, 0, 0.95)';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.width = '100%';
+                navLinks.style.padding = '1rem';
+                navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.3)';
+            }
+        });
+
+        // Add hover effect to material cards
+        document.querySelectorAll('.material-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+    </script>
+</body>
+</html>
