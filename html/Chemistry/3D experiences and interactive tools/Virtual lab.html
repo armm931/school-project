@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المعمل الكيميائي الافتراضي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --success: #27ae60;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --bg-light: #f8f9fa;
+            --border: #ddd;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--dark);
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--warning);
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(52, 73, 94, 0.8)), url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .lab-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .experiments {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .experiment-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .experiment-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .experiment-img {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .experiment-content {
+            padding: 20px;
+        }
+
+        .experiment-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .experiment-content p {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .difficulty {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .beginner {
+            background-color: rgba(39, 174, 96, 0.2);
+            color: var(--success);
+        }
+
+        .intermediate {
+            background-color: rgba(243, 156, 18, 0.2);
+            color: var(--warning);
+        }
+
+        .advanced {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: var(--danger);
+        }
+
+        .lab-simulator {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            padding: 30px;
+            color: white;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .simulator-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 20px;
+        }
+
+        .lab-equipment {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .equipment-item {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            width: 120px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .equipment-item:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .equipment-item i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .beaker-container {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 500px;
+            position: relative;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .beaker {
+            width: 200px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.3);
+            border: 3px solid white;
+            border-radius: 0 0 20px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .beaker::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -30px;
+            width: 260px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.3);
+            border: 3px solid white;
+            border-radius: 10px;
+        }
+
+        .liquid {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background: linear-gradient(to top, #3498db, #5dade2);
+            transition: height 1s ease;
+            border-radius: 0 0 17px 17px;
+        }
+
+        .chemicals {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .chemical {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            width: 100px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chemical:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .chemical i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .reaction-info {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: right;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .safety-tips {
+            background-color: #fff3cd;
+            border-right: 4px solid var(--warning);
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+
+        .safety-tips h3 {
+            color: var(--warning);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .safety-tips ul {
+            padding-right: 20px;
+        }
+
+        .safety-tips li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        .close-modal:hover {
+            color: var(--danger);
+        }
+
+        .experiment-details h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .experiment-details .materials {
+            background-color: var(--bg-light);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .experiment-details .materials h3 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .experiment-details .steps {
+            counter-reset: step-counter;
+        }
+
+        .experiment-details .steps li {
+            counter-increment: step-counter;
+            margin-bottom: 15px;
+            position: relative;
+            padding-right: 40px;
+        }
+
+        .experiment-details .steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            right: 0;
+            top: 0;
+            background-color: var(--secondary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .lab-equipment, .chemicals {
+                justify-content: center;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-flask"></i>
+                <div>
+                    <h1>المعمل الكيميائي الافتراضي</h1>
+                    <div class="tagline">تجارب كيميائية آمنة في بيئة افتراضية</div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#experiments">التجارب</a></li>
+                    <li><a href="#simulator">المحاكي</a></li>
+                    <li><a href="#safety">السلامة</a></li>
+                    <li><a href="#about">من نحن</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>مرحباً بك في المعمل الكيميائي الافتراضي</h2>
+            <p>اكتشف عالم الكيمياء بأمان ومتعة من خلال منصتنا التفاعلية التي تتيح لك إجراء تجارب كيميائية افتراضية دون أي مخاطر</p>
+            <a href="#experiments" class="btn">ابدأ التجارب الآن</a>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="features">
+            <div class="feature-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>تجارب آمنة 100%</h3>
+                <p>أجرِ جميع التجارب الكيميائية في بيئة افتراضية آمنة تماماً دون تعريض نفسك لأي مخاطر</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-vial"></i>
+                <h3>مجموعة واسعة من التجارب</h3>
+                <p>استكشف أكثر من 50 تجربة كيميائية تغطي مختلف مجالات الكيمياء من الأساسية إلى المتقدمة</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>تعليم تفاعلي</h3>
+                <p>تعلم المفاهيم الكيميائية بطريقة عملية وتفاعلية مع شرح تفصيلي لكل خطوة من خطوات التجربة</p>
+            </div>
+        </section>
+
+        <section class="lab-section" id="experiments">
+            <h2 class="section-title">التجارب الكيميائية المتاحة</h2>
+            
+            <div class="safety-tips">
+                <h3><i class="fas fa-exclamation-triangle"></i> نصائح السلامة قبل البدء</h3>
+                <ul>
+                    <li>تأكد من قراءة تعليمات السلامة قبل إجراء أي تجربة</li>
+                    <li>استخدم المعدات الواقية الافتراضية المتاحة في المحاكي</li>
+                    <li>لا تحاول تطبيق هذه التجارب في الواقع دون إشراف متخصص</li>
+                    <li>اتبع التعليمات بدقة لضمان نتائج صحيحة وآمنة</li>
+                </ul>
+            </div>
+
+            <div class="experiments">
+                <div class="experiment-card" onclick="openExperiment('neutralization')">
+                    <div class="experiment-img" style="background-image: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+                    <div class="experiment-content">
+                        <h3>تعادل الحمض والقاعدة</h3>
+                        <p>تجربة تفاعل حمض الهيدروكلوريك مع هيدروكسيد الصوديوم</p>
+                        <span class="difficulty beginner">مبتدئ</span>
+                        <a href="#" class="btn">ابدأ التجربة</a>
+                    </div>
+                </div>
+                
+                <div class="experiment-card" onclick="openExperiment('electrolysis')">
+                    <div class="experiment-img" style="background-image: url('https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+                    <div class="experiment-content">
+                        <h3>تحليل الماء الكهربائي</h3>
+                        <p>فصل الماء إلى عناصره الأساسية (الهيدروجين والأكسجين)</p>
+                        <span class="difficulty intermediate">متوسط</span>
+                        <a href="#" class="btn">ابدأ التجربة</a>
+                    </div>
+                </div>
+                
+                <div class="experiment-card" onclick="openExperiment('crystallization')">
+                    <div class="experiment-img" style="background-image: url('https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+                    <div class="experiment-content">
+                        <h3>تبلور ملح الطعام</h3>
+                        <p>تكوين بلورات ملح الطعام من خلال عملية التبخير</p>
+                        <span class="difficulty beginner">مبتدئ</span>
+                        <a href="#" class="btn">ابدأ التجربة</a>
+                    </div>
+                </div>
+                
+                <div class="experiment-card" onclick="openExperiment('volcano')">
+                    <div class="experiment-img" style="background-image: url('https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+                    <div class="experiment-content">
+                        <h3>بركان الصودا والخل</h3>
+                        <p>تفاعل كيميائي يحاكي ثوران البركان باستخدام مواد يومية</p>
+                        <span class="difficulty beginner">مبتدئ</span>
+                        <a href="#" class="btn">ابدأ التجربة</a>
+                    </div>
+                </div>
+                
+                <div class="experiment-card" onclick="openExperiment('ph-indicator')">
+                    <div class="experiment-img" style="background-image: url('https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+                    <div class="experiment-content">
+                        <h3>دلائل الأس الهيدروجيني</h3>
+                        <p>تحديد حموضة أو قلوية المحاليل باستخدام دلائل طبيعية</p>
+                        <span class="difficulty intermediate">متوسط</span>
+                        <a href="#" class="btn">ابدأ التجربة</a>
+                    </div>
+                </div>
+                
+                <div class="experiment-card" onclick="openExperiment('precipitation')">
+                    <div class="experiment-img" style="background-image: url('https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+                    <div class="experiment-content">
+                        <h3>تفاعل الترسيب</h3>
+                        <p>تكوين رواسب صلبة من خلال تفاعل محاليل مختلفة</p>
+                        <span class="difficulty advanced">متقدم</span>
+                        <a href="#" class="btn">ابدأ التجربة</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="lab-simulator" id="simulator">
+            <h2 class="section-title">محاكي المعمل الافتراضي</h2>
+            <p>جرب إجراء تجربة كيميائية مباشرة في محاكينا التفاعلي</p>
+            
+            <div class="simulator-container">
+                <div class="lab-equipment">
+                    <div class="equipment-item" onclick="selectEquipment('beaker')">
+                        <i class="fas fa-vial"></i>
+                        <div>دورق</div>
+                    </div>
+                    <div class="equipment-item" onclick="selectEquipment('test-tube')">
+                        <i class="fas fa-test-tube"></i>
+                        <div>أنبوبة اختبار</div>
+                    </div>
+                    <div class="equipment-item" onclick="selectEquipment('burner')">
+                        <i class="fas fa-fire"></i>
+                        <div>موقد بنزن</div>
+                    </div>
+                    <div class="equipment-item" onclick="selectEquipment('scale')">
+                        <i class="fas fa-balance-scale"></i>
+                        <div>ميزان</div>
+                    </div>
+                </div>
+                
+                <div class="beaker-container">
+                    <div class="beaker">
+                        <div class="liquid" id="liquid"></div>
+                    </div>
+                    <div style="margin-top: 20px; font-weight: bold;">المحلول في الدورق</div>
+                </div>
+                
+                <div class="chemicals">
+                    <div class="chemical" onclick="addChemical('hcl')">
+                        <i class="fas fa-tint" style="color: #3498db;"></i>
+                        <div>حمض الهيدروكلوريك</div>
+                    </div>
+                    <div class="chemical" onclick="addChemical('naoh')">
+                        <i class="fas fa-tint" style="color: #e74c3c;"></i>
+                        <div>هيدروكسيد الصوديوم</div>
+                    </div>
+                    <div class="chemical" onclick="addChemical('water')">
+                        <i class="fas fa-tint" style="color: #5dade2;"></i>
+                        <div>ماء</div>
+                    </div>
+                    <div class="chemical" onclick="addChemical('phenolphthalein')">
+                        <i class="fas fa-tint" style="color: #f39c12;"></i>
+                        <div>فينولفثالين</div>
+                    </div>
+                </div>
+                
+                <div class="reaction-info" id="reaction-info">
+                    اختر مواد كيميائية لإضافتها إلى الدورق ومراقبة التفاعل
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <button class="btn" onclick="resetBeaker()">إعادة تعيين الدورق</button>
+                    <button class="btn" onclick="startExperiment('neutralization')">بدء تجربة التعادل</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>المعمل الكيميائي الافتراضي</h3>
+                    <p>منصة تعليمية تفاعلية تتيح للطلاب والمعلمين إجراء تجارب كيميائية افتراضية بأمان وموثوقية.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#experiments">التجارب</a></li>
+                        <li><a href="#simulator">المحاكي</a></li>
+                        <li><a href="#safety">السلامة</a></li>
+                        <li><a href="#about">من نحن</a></li>
+                        <li><a href="#contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>تجارب شائعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">تعادل الحمض والقاعدة</a></li>
+                        <li><a href="#">تحليل الماء الكهربائي</a></li>
+                        <li><a href="#">تبلور ملح الطعام</a></li>
+                        <li><a href="#">بركان الصودا والخل</a></li>
+                        <li><a href="#">دلائل الأس الهيدروجيني</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>معلومات الاتصال</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-envelope"></i> info@virtuallab.sa</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 المعمل الكيميائي الافتراضي. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- نافذة منبثقة لتفاصيل التجربة -->
+    <div id="experiment-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="experiment-details" id="experiment-details">
+                <!-- سيتم تحميل المحتوى هنا ديناميكياً -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // بيانات التجارب
+        const experiments = {
+            neutralization: {
+                title: "تجربة تعادل الحمض والقاعدة",
+                image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                difficulty: "مبتدئ",
+                description: "في هذه التجربة، سنقوم بمزج حمض الهيدروكلوريك (HCl) مع هيدروكسيد الصوديوم (NaOH) لمراقبة تفاعل التعادل وتكوين الملح والماء.",
+                materials: [
+                    "حمض الهيدروكلوريك (HCl) 0.1M",
+                    "هيدروكسيد الصوديوم (NaOH) 0.1M",
+                    "دلائل الأس الهيدروجيني (فينولفثالين)",
+                    "دورق مخروطي",
+                    "قطارة",
+                    "حامل دورق",
+                    "ميزان"
+                ],
+                steps: [
+                    "ضع 50 مل من حمض الهيدروكلوريك في الدورق المخروطي",
+                    "أضف بضع قطرات من الفينولفثالين إلى الحمض",
+                    "استخدم القطارة لإضافة هيدروكسيد الصوديوم ببطء إلى الحمض مع التحريك المستمر",
+                    "لاحظ تغير اللون عند نقطة التعادل",
+                    "سجل كمية القاعدة المستهلكة للوصول إلى نقطة التعادل",
+                    "احسب تركيز الحمض باستخدام معادلة التعادل"
+                ],
+                safety: [
+                    "ارتدِ نظارات واقية وقفازات",
+                    "تعامل مع الأحماض والقواعد بحذر",
+                    "لا تخلط المواد الكيميائية بشكل عشوائي",
+                    "اغسل يديك جيداً بعد انتهاء التجربة"
+                ]
+            },
+            electrolysis: {
+                title: "تجربة تحليل الماء الكهربائي",
+                image: "https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                difficulty: "متوسط",
+                description: "تجربة توضيحية لعملية تحليل الماء إلى عناصره الأساسية (الهيدروجين والأكسجين) باستخدام التيار الكهربائي.",
+                materials: [
+                    "جهاز تحليل كهربائي",
+                    "ماء مقطر",
+                    "حمض الكبريتيك المخفف",
+                    "أسلاك توصيل",
+                    "مصدر تيار مستمر",
+                    "أنابيب اختبار",
+                    "مصباح كهربائي"
+                ],
+                steps: [
+                    "جهز جهاز التحليل الكهربائي",
+                    "املأ الحاوية بالماء المقطر مع إضافة قليل من حمض الكبريتيك لزيادة التوصيل الكهربائي",
+                    "صل الأقطاب الكهربائية بمصدر التيار",
+                    "ضع أنابيب الاختبار فوق كل قطب لجمع الغازات الناتجة",
+                    "شغل التيار الكهربائي ولاحظ تكون فقاعات الغاز",
+                    "سجل حجم الغاز المتكون عند كل قطب",
+                    "اختبر الغازات المتكونة (الهيدروجين والأكسجين)"
+                ],
+                safety: [
+                    "لا تلمس الأقطاب الكهربائية أثناء عمل الجهاز",
+                    "ابتعد عن مصادر الاشتعال بسبب وجود الهيدروجين",
+                    "استخدم نظارات واقية",
+                    "لا تستخدم تياراً عالياً جداً"
+                ]
+            },
+            crystallization: {
+                title: "تجربة تبلور ملح الطعام",
+                image: "https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                difficulty: "مبتدئ",
+                description: "تجربة توضح عملية تكوين بلورات ملح الطعام من خلال تبخير الماء من محلول مشبع.",
+                materials: [
+                    "ملح طعام (كلوريد الصوديوم)",
+                    "ماء",
+                    "دورق",
+                    "سخان",
+                    "صفيحة تسخين",
+                    "مرشح ورقي",
+                    "قمع",
+                    "صندوق بتري"
+                ],
+                steps: [
+                    "أذب 100 غرام من ملح الطعام في 200 مل من الماء الساخن",
+                    "استمر في إضافة الملح مع التحريك حتى لا يذوب المزيد",
+                    "رشح المحلول الساخن لإزالة أي شوائب",
+                    "صب المحلول المصفى في صندوق بتري",
+                    "اترك المحلول في مكان دافئ لعدة أيام",
+                    "لاحظ تكون البلورات تدريجياً",
+                    "افحص البلورات تحت المجهر إذا توفر"
+                ],
+                safety: [
+                    "احذر من الماء الساخن",
+                    "استخدم قفازات عند التعامل مع المحاليل الساخنة",
+                    "لا تستخدم أواني الأكل للتجارب الكيميائية"
+                ]
+            },
+            volcano: {
+                title: "تجربة بركان الصودا والخل",
+                image: "https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                difficulty: "مبتدئ",
+                description: "تجربة ممتعة تحاكي ثوران البركان من خلال تفاعل بين الصودا (بيكربونات الصوديوم) والخل (حمض الأسيتيك).",
+                materials: [
+                    "بيكربونات الصوديوم (صودا الخبز)",
+                    "خل أبيض",
+                    "صابون سائل",
+                    "صبغة طعام حمراء",
+                    "زجاجة بلاستيكية",
+                    "طين أو معجون لتشكيل البركان",
+                    "صينية"
+                ],
+                steps: [
+                    "شكل البركان حول الزجاجة البلاستيكية باستخدام الطين أو المعجون",
+                    "ضع الزجاجة في منتصف الصينية",
+                    "أضف 2 ملعقة كبيرة من بيكربونات الصوديوم إلى الزجاجة",
+                    "أضف بضع قطرات من الصابون السائل والصبغة الحمراء",
+                    "اخلط نصف كوب من الخل مع كمية قليلة من الماء الدافئ",
+                    "اسكب خليط الخل بسرعة في الزجاجة",
+                    "لاحظ ثوران البركان وتكوين الرغوة"
+                ],
+                safety: [
+                    "أجرِ التجربة في مكان مفتوح أو فوق صحيفة",
+                    "ارتدِ ملابس قديمة قد تتسخ",
+                    "لا تلمس الخليط بعد تفاعله",
+                    "اغسل يديك بعد انتهاء التجربة"
+                ]
+            },
+            'ph-indicator': {
+                title: "تجربة دلائل الأس الهيدروجيني",
+                image: "https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                difficulty: "متوسط",
+                description: "تجربة توضح كيفية استخدام دلائل الأس الهيدروجيني الطبيعية لتحديد حموضة أو قلوية المحاليل المختلفة.",
+                materials: [
+                    "ملفوف أحمر",
+                    "ماء",
+                    "خل أبيض",
+                    "صودا الخبز",
+                    "عصير ليمون",
+                    "منظف",
+                    "أواني زجاجية",
+                    "مرشح ورقي",
+                    "قطارة"
+                ],
+                steps: [
+                    "قطع الملفوف الأحمر إلى قطع صغيرة",
+                    "اغلي الملفوف في الماء لمدة 10 دقائق",
+                    "صفِّ الماء ليصبح لونه أرجوانياً (هذا هو دليل الأس الهيدروجيني الطبيعي)",
+                    "جهز عدة محاليل (خل، ماء، صودا مذابة في الماء، عصير ليمون، منظف مخفف)",
+                    "ضع قطرات من دليل الملفوف في كل محلول",
+                    "لاحظ تغير اللون في كل محلول",
+                    "سجل الألوان وقارنها بمقياس الأس الهيدروجيني"
+                ],
+                safety: [
+                    "احذر من الماء الساخن",
+                    "لا تشرب أي من المحاليل المستخدمة",
+                    "اغسل يديك بعد التعامل مع المواد الكيميائية",
+                    "استخدم أواني نظيفة"
+                ]
+            },
+            precipitation: {
+                title: "تجربة تفاعل الترسيب",
+                image: "https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                difficulty: "متقدم",
+                description: "تجربة توضح تكوين رواسب صلبة غير قابلة للذوبان من خلال تفاعل بين محاليل أيونية مختلفة.",
+                materials: [
+                    "نترات الفضة (AgNO3)",
+                    "كلوريد الصوديوم (NaCl)",
+                    "كبريتات النحاس (CuSO4)",
+                    "هيدروكسيد الصوديوم (NaOH)",
+                    "أنابيب اختبار",
+                    "حامل أنابيب",
+                    "قطارة",
+                    "مرشح ورقي",
+                    "قمع"
+                ],
+                steps: [
+                    "جهز محاليل مخففة من كل مادة كيميائية",
+                    "ضع 5 مل من نترات الفضة في أنبوبة اختبار",
+                    "أضف ببطء 5 مل من كلوريد الصوديوم إلى أنبوبة نترات الفضة",
+                    "لاحظ تكون راسب أبيض (كلوريد الفضة)",
+                    "كرر العملية مع كبريتات النحاس وهيدروكسيد الصوديوم",
+                    "لاحظ تكون راسب أزرق (هيدروكسيد النحاس)",
+                    "صفِّ الرواسب باستخدام المرشح الورقي",
+                    "جفف الرواسب وفحصها"
+                ],
+                safety: [
+                    "ارتدِ نظارات واقية وقفازات",
+                    "تعامل مع نترات الفضة بحذر فهي مادة سامة",
+                    "لا تخلط المواد الكيميائية بشكل عشوائي",
+                    "اغسل يديك جيداً بعد انتهاء التجربة"
+                ]
+            }
+        };
+
+        // متغيرات المحاكي
+        let beakerContents = [];
+        let currentEquipment = null;
+
+        // فتح نافذة تفاصيل التجربة
+        function openExperiment(experimentId) {
+            const experiment = experiments[experimentId];
+            if (!experiment) return;
+            
+            const modal = document.getElementById('experiment-modal');
+            const detailsContainer = document.getElementById('experiment-details');
+            
+            let difficultyClass = '';
+            if (experiment.difficulty === 'مبتدئ') difficultyClass = 'beginner';
+            else if (experiment.difficulty === 'متوسط') difficultyClass = 'intermediate';
+            else if (experiment.difficulty === 'متقدم') difficultyClass = 'advanced';
+            
+            let materialsList = experiment.materials.map(material => `<li>${material}</li>`).join('');
+            let stepsList = experiment.steps.map(step => `<li>${step}</li>`).join('');
+            let safetyList = experiment.safety.map(safety => `<li>${safety}</li>`).join('');
+            
+            detailsContainer.innerHTML = `
+                <h2>${experiment.title}</h2>
+                <div style="display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
+                    <img src="${experiment.image}" alt="${experiment.title}" style="width: 300px; height: 200px; object-fit: cover; border-radius: 8px;">
+                    <div style="flex: 1;">
+                        <p style="margin-bottom: 15px; font-size: 1.1rem;">${experiment.description}</p>
+                        <span class="difficulty ${difficultyClass}">${experiment.difficulty}</span>
+                    </div>
+                </div>
+                
+                <div class="materials">
+                    <h3>المواد المطلوبة:</h3>
+                    <ul>${materialsList}</ul>
+                </div>
+                
+                <h3>خطوات التجربة:</h3>
+                <ol class="steps">${stepsList}</ol>
+                
+                <h3>إرشادات السلامة:</h3>
+                <ul>${safetyList}</ul>
+                
+                <div style="margin-top: 30px; text-align: center;">
+                    <button class="btn" onclick="closeModal()">إغلاق</button>
+                    <button class="btn" onclick="startExperiment('${experimentId}')">بدء التجربة في المحاكي</button>
+                </div>
+            `;
+            
+            modal.style.display = 'flex';
+        }
+
+        // إغلاق النافذة المنبثقة
+        function closeModal() {
+            document.getElementById('experiment-modal').style.display = 'none';
+        }
+
+        // اختيار المعدات
+        function selectEquipment(equipment) {
+            currentEquipment = equipment;
+            document.getElementById('reaction-info').innerHTML = `تم اختيار: ${getEquipmentName(equipment)}`;
+        }
+
+        // الحصول على اسم المعدات
+        function getEquipmentName(equipment) {
+            const names = {
+                'beaker': 'دورق',
+                'test-tube': 'أنبوبة اختبار',
+                'burner': 'موقد بنزن',
+                'scale': 'ميزان'
+            };
+            return names[equipment] || equipment;
+        }
+
+        // إضافة مادة كيميائية
+        function addChemical(chemical) {
+            if (beakerContents.includes(chemical)) {
+                document.getElementById('reaction-info').innerHTML = `${getChemicalName(chemical)} موجود بالفعل في الدورق`;
+                return;
+            }
+            
+            beakerContents.push(chemical);
+            updateBeakerDisplay();
+            checkReaction();
+        }
+
+        // الحصول على اسم المادة الكيميائية
+        function getChemicalName(chemical) {
+            const names = {
+                'hcl': 'حمض الهيدروكلوريك',
+                'naoh': 'هيدروكسيد الصوديوم',
+                'water': 'ماء',
+                'phenolphthalein': 'فينولفثالين'
+            };
+            return names[chemical] || chemical;
+        }
+
+        // تحديث عرض الدورق
+        function updateBeakerDisplay() {
+            const liquid = document.getElementById('liquid');
+            const contentsCount = beakerContents.length;
+            
+            // تحديث ارتفاع السائل
+            liquid.style.height = `${contentsCount * 25}%`;
+            
+            // تحديث لون السائل حسب المحتويات
+            if (beakerContents.includes('hcl') && beakerContents.includes('naoh') && beakerContents.includes('phenolphthalein')) {
+                liquid.style.background = 'linear-gradient(to top, #f39c12, #f1c40f)';
+            } else if (beakerContents.includes('naoh') && beakerContents.includes('phenolphthalein')) {
+                liquid.style.background = 'linear-gradient(to top, #e74c3c, #c0392b)';
+            } else if (beakerContents.includes('hcl') && beakerContents.includes('phenolphthalein')) {
+                liquid.style.background = 'linear-gradient(to top, #3498db, #2980b9)';
+            } else if (beakerContents.includes('hcl') && beakerContents.includes('naoh')) {
+                liquid.style.background = 'linear-gradient(to top, #2ecc71, #27ae60)';
+            } else if (beakerContents.includes('hcl')) {
+                liquid.style.background = 'linear-gradient(to top, #3498db, #2980b9)';
+            } else if (beakerContents.includes('naoh')) {
+                liquid.style.background = 'linear-gradient(to top, #e74c3c, #c0392b)';
+            } else if (beakerContents.includes('water')) {
+                liquid.style.background = 'linear-gradient(to top, #5dade2, #3498db)';
+            } else if (beakerContents.includes('phenolphthalein')) {
+                liquid.style.background = 'linear-gradient(to top, #f39c12, #f1c40f)';
+            }
+            
+            // تحديث معلومات التفاعل
+            const contentsNames = beakerContents.map(c => getChemicalName(c)).join(' + ');
+            document.getElementById('reaction-info').innerHTML = `محتويات الدورق: ${contentsNames}`;
+        }
+
+        // فحص التفاعل
+        function checkReaction() {
+            const reactionInfo = document.getElementById('reaction-info');
+            
+            // تفاعل التعادل
+            if (beakerContents.includes('hcl') && beakerContents.includes('naoh')) {
+                reactionInfo.innerHTML = `
+                    <strong>تفاعل التعادل!</strong><br>
+                    حمض الهيدروكلوريك + هيدروكسيد الصوديوم → كلوريد الصوديوم + ماء<br>
+                    <span style="color: #2ecc71;">تم تكوين ملح وماء (محايد)</span>
+                `;
+                
+                if (beakerContents.includes('phenolphthalein')) {
+                    reactionInfo.innerHTML += `<br><span style="color: #f39c12;">اللون يتحول إلى الأصفر عند نقطة التعادل</span>`;
+                }
+            }
+            // تفاعل القاعدة مع الفينولفثالين
+            else if (beakerContents.includes('naoh') && beakerContents.includes('phenolphthalein')) {
+                reactionInfo.innerHTML = `
+                    <strong>تفاعل القاعدة مع الفينولفثالين!</strong><br>
+                    <span style="color: #e74c3c;">اللون يتحول إلى الوردي في الوسط القلوي</span>
+                `;
+            }
+            // تفاعل الحمض مع الفينولفثالين
+            else if (beakerContents.includes('hcl') && beakerContents.includes('phenolphthalein')) {
+                reactionInfo.innerHTML = `
+                    <strong>تفاعل الحمض مع الفينولفثالين!</strong><br>
+                    <span style="color: #3498db;">اللون يبقى عديم اللون في الوسط الحمضي</span>
+                `;
+            }
+            // إضافة الماء
+            else if (beakerContents.includes('water')) {
+                reactionInfo.innerHTML = `
+                    <strong>تمت إضافة الماء!</strong><br>
+                    <span style="color: #5dade2;">الماء مذيب عديم اللون والرائحة</span>
+                `;
+            }
+            // إضافة الفينولفثالين وحده
+            else if (beakerContents.includes('phenolphthalein')) {
+                reactionInfo.innerHTML = `
+                    <strong>تمت إضافة الفينولفثالين!</strong><br>
+                    <span style="color: #f39c12;">الفينولفثالين دليل حمض-قاعدة يتحول للون الوردي في القلويات</span>
+                `;
+            }
+        }
+
+        // إعادة تعيين الدورق
+        function resetBeaker() {
+            beakerContents = [];
+            const liquid = document.getElementById('liquid');
+            liquid.style.height = '0%';
+            document.getElementById('reaction-info').innerHTML = 'تم إعادة تعيين الدورق. اختر مواد كيميائية جديدة.';
+        }
+
+        // بدء تجربة محددة في المحاكي
+        function startExperiment(experimentId) {
+            closeModal();
+            
+            // التمرير إلى قسم المحاكي
+            document.getElementById('simulator').scrollIntoView({ behavior: 'smooth' });
+            
+            // إعادة تعيين الدورق
+            resetBeaker();
+            
+            // إعداد التجربة حسب النوع
+            switch(experimentId) {
+                case 'neutralization':
+                    document.getElementById('reaction-info').innerHTML = `
+                        <strong>تجربة تعادل الحمض والقاعدة جاهزة!</strong><br>
+                        أضف حمض الهيدروكلوريك أولاً، ثم هيدروكسيد الصوديوم، وأخيراً الفينولفثالين لمراقبة تغير اللون.
+                    `;
+                    break;
+                case 'electrolysis':
+                    document.getElementById('reaction-info').innerHTML = `
+                        <strong>تجربة تحليل الماء الكهربائي!</strong><br>
+                        هذه التجربة تتطلب جهازاً خاصاً غير متوفر في المحاكي البسيط. يمكنك مشاهدة التجربة في قسم التجارب.
+                    `;
+                    break;
+                case 'crystallization':
+                    document.getElementById('reaction-info').innerHTML = `
+                        <strong>تجربة تبلور ملح الطعام!</strong><br>
+                        أضف الماء أولاً، ثم أضف ملح الطعام بكميات كبيرة حتى لا يذوب المزيد.
+                    `;
+                    addChemical('water');
+                    break;
+                case 'volcano':
+                    document.getElementById('reaction-info').innerHTML = `
+                        <strong>تجربة بركان الصودا والخل!</strong><br>
+                        أضف الصودا (بيكربونات الصوديوم) أولاً، ثم أضف الخل (حمض الهيدروكلوريك) لمراقبة التفاعل.
+                    `;
+                    break;
+                case 'ph-indicator':
+                    document.getElementById('reaction-info').innerHTML = `
+                        <strong>تجربة دلائل الأس الهيدروجيني!</strong><br>
+                        أضف الفينولفثالين أولاً، ثم جرب إضافة مواد مختلفة (حمض أو قاعدة) لمراقبة تغير اللون.
+                    `;
+                    addChemical('phenolphthalein');
+                    break;
+                case 'precipitation':
+                    document.getElementById('reaction-info').innerHTML = `
+                        <strong>تجربة تفاعل الترسيب!</strong><br>
+                        أضف نترات الفضة أولاً، ثم أضف كلوريد الصوديوم لمراقبة تكون الراسب الأبيض.
+                    `;
+                    break;
+            }
+        }
+
+        // إغلاق النافذة عند النقر خارجها
+        window.onclick = function(event) {
+            const modal = document.getElementById('experiment-modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

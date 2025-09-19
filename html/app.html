@@ -15,7 +15,120 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/app.css">
+    <style>
+        /* Custom styles for the website */
+        :root {
+            --primary-color: #7e22ce;
+            --primary-hover: #6b21a8;
+            --secondary-color: #f3f4f6;
+        }
+        
+        /* Gradient background for hero section */
+        .gradient-bg {
+            background: linear-gradient(135deg, #7e22ce 0%, #a855f7 100%);
+        }
+        
+        /* Animation classes */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        /* Custom button styles */
+        .btn-primary-custom {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.375rem 0.75rem;
+            border-radius: 0.375rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary-custom:hover {
+            background-color: var(--primary-hover);
+            color: white;
+        }
+        
+        /* Card hover effects */
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Stat cards animation */
+        .stat-card {
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Notification styles */
+        .notification {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-right: 4px solid var(--primary-color);
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+        
+        .notification.success {
+            border-right-color: #10b981;
+        }
+        
+        .notification.error {
+            border-right-color: #ef4444;
+        }
+        
+        /* Mobile menu transition */
+        #mobileMenu {
+            transition: max-height 0.3s ease;
+        }
+        
+        /* Form input focus styles */
+        input:focus, textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(126, 34, 206, 0.1);
+        }
+        
+        /* RTL fixes */
+        .btn-group > .btn:not(:first-child) {
+            margin-right: -1px;
+        }
+        
+        .btn-group > .btn:not(:last-child) {
+            margin-left: 0;
+            margin-right: -1px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .card-group {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .card-group .card {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -28,9 +141,12 @@
                 </div>
                 
                 <div class="hidden md:flex items-center space-x-6">
-                    <a href="#home" class="nav-link text-gray-600 hover:text-purple-600 transition">الرئيسية</a>
-                    <a href="#subjects" class="nav-link text-gray-600 hover:text-purple-600 transition">المواد الدراسية</a>
+                    <a href="#home" class="nav-link text-gray-600 hover:text-purple-600 transition"> Home </a>
+                    <br>
+                    <a href="#subjects" class="nav-link text-gray-600 hover:text-purple-600 transition"> Study materials </a>
+                    <br>
                     <a href="#about" class="nav-link text-gray-600 hover:text-purple-600 transition">حول المنصة</a>
+                    <br>
                     <a href="#contact" class="nav-link text-gray-600 hover:text-purple-600 transition">تواصل معنا</a>
                 </div>
                 
@@ -57,7 +173,6 @@
                 <a href="#about" class="block py-2 text-gray-600 hover:text-purple-600">حول المنصة</a>
                 <br>
                 <a href="#contact" class="block py-2 text-gray-600 hover:text-purple-600">تواصل معنا</a>
-                <br>
             </div>
         </nav>
     </header>
@@ -123,7 +238,7 @@
                             </p>
                         </div>
                         <div class="card-footer">
-                            <small class="text-body-secondary"><a href="/html/Chemistry/Chemistry.html" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
+                            <small class="text-body-secondary"><a href="/html/Chemistry/Chemistry.html" onclick="showSubjectDetails('chemistry')" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
                         </div>
                     </div>
                 </div>
@@ -139,7 +254,7 @@
                             </p>
                         </div>
                         <div class="card-footer">
-                            <small class="text-body-secondary"><a href="/html/Physics/Physics.html" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
+                            <small class="text-body-secondary"><a href="" onclick="showSubjectDetails('physics')" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
                         </div>
                     </div>
                 </div>
@@ -155,7 +270,7 @@
                             </p>
                         </div>
                         <div class="card-footer">
-                            <small class="text-body-secondary"><a href="/html/mathematics/mathmatics.html" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
+                            <small class="text-body-secondary"><a href="#" onclick="showSubjectDetails('mathematics')" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
                         </div>
                     </div>
                 </div>
@@ -171,7 +286,7 @@
                             </p>
                         </div>
                         <div class="card-footer">
-                            <small class="text-body-secondary"><a href="/html/Programming/Programming.html" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
+                            <small class="text-body-secondary"><a href="" onclick="showSubjectDetails('programming')" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
                         </div>
                     </div>
                 </div>
@@ -187,7 +302,7 @@
                             </p>
                         </div>
                         <div class="card-footer">
-                            <small class="text-body-secondary"><a href="/html/Biology/Biology.html" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
+                            <small class="text-body-secondary"><a href="#" onclick="showSubjectDetails('biology')" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
                         </div>
                     </div>
                 </div>
@@ -203,12 +318,13 @@
                             </p>
                         </div>
                         <div class="card-footer">
-                            <small class="text-body-secondary"><a href="/html/Geology/Geology.html" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
+                            <small class="text-body-secondary"><a href="#" onclick="showSubjectDetails('geology')" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
                         </div>
                     </div>
                 </div>
             </div>
             <br>
+            
             <div class="card-group mt-4">
                 <!-- Design Card -->
                 <div class="card">
@@ -220,10 +336,10 @@
                         </p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-body-secondary"><a href="/html/Design/Design.html" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
+                        <small class="text-body-secondary"><a href="#" onclick="showSubjectDetails('design')" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
                     </div>
                 </div>
-                <br>
+                
                 <!-- 3D Design Card -->
                 <div class="card">
                     <img src="/img/3D Design.jpeg" class="card-img-top" alt="التصميم ثلاثي الأبعاد">
@@ -234,10 +350,10 @@
                         </p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-body-secondary"><a href="/html/3D Design/3D Design.html" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
+                        <small class="text-body-secondary"><a href="#" onclick="showSubjectDetails('3ddesign')" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
                     </div>
                 </div>
-                <br>
+                
                 <!-- Languages Card -->
                 <div class="card">
                     <img src="/img/1-989985.webp" class="card-img-top" alt="اللغات">
@@ -248,7 +364,54 @@
                         </p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-body-secondary"><a href="/html/Languages/Languages.html" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
+                        <small class="text-body-secondary"><a href="#" onclick="showSubjectDetails('languages')" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="/img/تخصص-دراسة-علم-الفلك.jpg" class="card-img-top" alt="علم الفلك">
+                    <div class="card-body">
+                        <h5 class="card-title">علم الفلك</h5>
+                        <p class="card-text">
+                            علم الفلك هو علم طبيعي يدرس كل شيء خارج الغلاف الجوي للأرض، بما في ذلك الأجرام السماوية مثل النجوم والكواكب والمجرات، والظواهر الفلكية كالكسوف والخسوف.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-body-secondary"><a href="#" onclick="showSubjectDetails('astronomy')" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card h-100">
+                    <img src="/img/World_Map--Age_of_Government-r2.svg.png" class="card-img-top" alt="تاريخ الدول">
+                    <div class="card-body">
+                        <h5 class="card-title">تاريخ الدول</h5>
+                        <p class="card-text">
+                            تاريخ الدول هو الدراسة التاريخية للكيانات السياسية التي أنشأها البشر عبر العصور، بما في ذلك تطور أنظمتها السياسية من الحكم الذاتي البسيط إلى الديمقراطيات الحديثة.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-body-secondary"><a href="#" onclick="showSubjectDetails('history')" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card h-100">
+                    <img src="/img/CMB_Timeline300_no_WMAP.jpg" class="card-img-top" alt="علم الكون">
+                    <div class="card-body">
+                        <h5 class="card-title">علم الكون</h5>
+                        <p class="card-text">
+                            علم الكون، المعروف أيضاً باسم علم الكونيات، هو فرع من علم الفلك يدرس أصل ونشأة وتطور وبنية الكون ككل، بما في ذلك كل ما يحتويه من مادة وطاقة.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-body-secondary"><a href="#" onclick="showSubjectDetails('cosmology')" class="btn btn-sm btn-primary-custom">التفاصيل</a></small>
                     </div>
                 </div>
             </div>
@@ -337,8 +500,8 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">روابط سريعة</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#home" class="hover:text-white transition">الرئيسية</a></li>
-                        <li><a href="#subjects" class="hover:text-white transition">المواد الدراسية</a></li>
+                        <li><a href="#home" class="hover:text-white transition">Home</a></li>
+                        <li><a href="#subjects" class="hover:text-white transition">Study materials</a></li>
                         <li><a href="#about" class="hover:text-white transition">حول المنصة</a></li>
                         <li><a href="#contact" class="hover:text-white transition">تواصل معنا</a></li>
                     </ul>
@@ -346,10 +509,10 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">المواد الدراسية</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">الكيمياء</a></li>
-                        <li><a href="#" class="hover:text-white transition">الفيزياء</a></li>
-                        <li><a href="#" class="hover:text-white transition">الرياضيات</a></li>
-                        <li><a href="#" class="hover:text-white transition">البرمجة</a></li>
+                        <li><a href="#" onclick="showSubjectDetails('chemistry')" class="hover:text-white transition">الكيمياء</a></li>
+                        <li><a href="#" onclick="showSubjectDetails('physics')" class="hover:text-white transition">الفيزياء</a></li>
+                        <li><a href="#" onclick="showSubjectDetails('mathematics')" class="hover:text-white transition">الرياضيات</a></li>
+                        <li><a href="#" onclick="showSubjectDetails('programming')" class="hover:text-white transition">البرمجة</a></li>
                     </ul>
                 </div>
                 <div>
@@ -466,6 +629,245 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
     
     <!-- Custom JS -->
-    <script src="/js/app.js"></script>
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Scroll to subjects section
+        function scrollToSubjects() {
+            document.getElementById('subjects').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Modal functions
+        function showLoginModal() {
+            document.getElementById('loginModal').classList.remove('hidden');
+        }
+
+        function showRegisterModal() {
+            document.getElementById('registerModal').classList.remove('hidden');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        function switchToRegister() {
+            closeModal('loginModal');
+            showRegisterModal();
+        }
+
+        function switchToLogin() {
+            closeModal('registerModal');
+            showLoginModal();
+        }
+
+        // Form handlers
+        function handleLogin(event) {
+            event.preventDefault();
+            // Here you would normally send the login data to your server
+            showNotification('تم تسجيل الدخول بنجاح', 'success');
+            closeModal('loginModal');
+        }
+
+        function handleRegister(event) {
+            event.preventDefault();
+            // Here you would normally send the registration data to your server
+            showNotification('تم إنشاء الحساب بنجاح', 'success');
+            closeModal('registerModal');
+        }
+
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            // Here you would normally send the contact form data to your server
+            showNotification('تم إرسال رسالتك بنجاح', 'success');
+            event.target.reset();
+        }
+
+        // Subject details
+        function showSubjectDetails(subject) {
+            const subjectContent = document.getElementById('subjectContent');
+            
+            // Sample subject data - in a real app, this would come from an API
+            const subjects = {
+                chemistry: {
+                    title: 'الكيمياء',
+                    description: 'عِلْمُ الكِيمِيَاءِ هو العلم الذي يدرس المادة والتغيُّرات التي تطرأ عليها، تحديدًا بدراسة خواصها، بِنيتها، تركيبها، سلوكها، تفاعلاتها وما تحدثه من خلالها.',
+                    courses: [
+                        { title: 'الكيمياء العضوية', level: 'متوسط', duration: '8 أسابيع' },
+                        { title: 'الكيمياء غير العضوية', level: 'متقدم', duration: '10 أسابيع' },
+                        { title: 'الكيمياء التحليلية', level: 'متوسط', duration: '6 أسابيع' }
+                    ]
+                },
+                physics: {
+                    title: 'الفيزياء',
+                    description: 'الفِيزِيَاءُ أو علم الفيزياء أو الفِيزِيقَا هو العلم الذي يدرس المفاهيم الأساسية مثل الطاقة، القوة، والزمان، وكل ما ينبع من هذا، مثل الكتلة، المادة وحركتها.',
+                    courses: [
+                        { title: 'ميكانيكا كلاسيكية', level: 'مبتدئ', duration: '6 أسابيع' },
+                        { title: 'الكهرومغناطيسية', level: 'متوسط', duration: '8 أسابيع' },
+                        { title: 'الفيزياء الكمية', level: 'متقدم', duration: '12 أسبوع' }
+                    ]
+                },
+                mathematics: {
+                    title: 'الرياضيات',
+                    description: 'الرِّيَاضِيَّات هي مجموعة من المعارف المجردة الناتجة عن الاستنتاجات المنطقية المطبقة على مُختلف الكائنات الرياضية مثل المجموعات، والأعداد، والأشكال والبنيات والتحويلات.',
+                    courses: [
+                        { title: 'الجبر الخطي', level: 'متوسط', duration: '8 أسابيع' },
+                        { title: 'حساب التفاضل والتكامل', level: 'مبتدئ', duration: '10 أسابيع' },
+                        { title: 'الإحصاء والاحتمالات', level: 'متوسط', duration: '8 أسابيع' }
+                    ]
+                },
+                programming: {
+                    title: 'البرمجة',
+                    description: 'البرمجة هي عملية كتابة تعليمات وتوجيه أوامر لجهاز الحاسوب أو أي جهاز آخر لتوجيه هذا الجهاز وإعلامه بكيفية التعامل مع البيانات.',
+                    courses: [
+                        { title: 'مقدمة في بايثون', level: 'مبتدئ', duration: '6 أسابيع' },
+                        { title: 'تطوير الويب', level: 'متوسط', duration: '10 أسابيع' },
+                        { title: 'خوارزميات وهياكل البيانات', level: 'متقدم', duration: '12 أسبوع' }
+                    ]
+                },
+                biology: {
+                    title: 'الأحياء',
+                    description: 'علم الأحياء هو علم طبيعي يُعنى بدراسة الحياة والكائنات الحية، بما في ذلك هياكلها ووظائفها ونموها وتطورها وتوزيعها وتصنيفها.',
+                    courses: [
+                        { title: 'علم الخلية', level: 'مبتدئ', duration: '6 أسابيع' },
+                        { title: 'علم الوراثة', level: 'متوسط', duration: '8 أسابيع' },
+                        { title: 'علم البيئة', level: 'متوسط', duration: '8 أسابيع' }
+                    ]
+                },
+                geology: {
+                    title: 'الجيولوجيا',
+                    description: 'الجيولوجيا، أو علم الأرض، هو العلم الذي يدرس الأرض الصلبة وصخورها، والعمليات التي تحدث عليها، وتاريخها، ومحتوياتها، ومظاهرها التضاريسية.',
+                    courses: [
+                        { title: 'علم الصخور', level: 'مبتدئ', duration: '6 أسابيع' },
+                        { title: 'علم الزلازل', level: 'متقدم', duration: '10 أسابيع' },
+                        { title: 'جيولوجيا البترول', level: 'متقدم', duration: '12 أسبوع' }
+                    ]
+                },
+                design: {
+                    title: 'التصميم',
+                    description: 'التصميم هو عملية إبداعية منهجية لتخطيط وابتكار حلول عملية ووظيفية وجمالية لمشكلة معينة.',
+                    courses: [
+                        { title: 'مبادئ التصميم الجرافيكي', level: 'مبتدئ', duration: '6 أسابيع' },
+                        { title: 'تصميم واجهة المستخدم', level: 'متوسط', duration: '8 أسابيع' },
+                        { title: 'تصميم تجربة المستخدم', level: 'متقدم', duration: '10 أسابيع' }
+                    ]
+                },
+                '3ddesign': {
+                    title: 'التصميم ثلاثي الأبعاد',
+                    description: 'العرض ثلاثي الأبعاد هو عملية تصميم صور ثنائية الأبعاد واقعية من موديلات ثلاثية الأبعاد.',
+                    courses: [
+                        { title: 'مقدمة في Blender', level: 'مبتدئ', duration: '8 أسابيع' },
+                        { title: 'النمذجة ثلاثية الأبعاد', level: 'متوسط', duration: '10 أسابيع' },
+                        { title: 'الرسوم المتحركة ثلاثية الأبعاد', level: 'متقدم', duration: '12 أسبوع' }
+                    ]
+                },
+                languages: {
+                    title: 'اللغات',
+                    description: 'اللغات هي أنظمة معقدة من الإشارات والرموز، وهي أساس التواصل والتفكير البشري.',
+                    courses: [
+                        { title: 'اللغة الإنجليزية للمبتدئين', level: 'مبتدئ', duration: '12 أسبوع' },
+                        { title: 'اللغة الفرنسية للمبتدئين', level: 'مبتدئ', duration: '12 أسبوع' },
+                        { title: 'اللغة الإسبانية للمبتدئين', level: 'مبتدئ', duration: '12 أسبوع' }
+                    ]
+                },
+                astronomy: {
+                    title: 'علم الفلك',
+                    description: 'علم الفلك هو علم طبيعي يدرس كل شيء خارج الغلاف الجوي للأرض، بما في ذلك الأجرام السماوية مثل النجوم والكواكب والمجرات، والظواهر الفلكية كالكسوف والخسوف.',
+                    courses: [
+                        { title: 'مقدمة في علم الفلك', level: 'مبتدئ', duration: '8 أسابيع' },
+                        { title: 'علم الكونيات', level: 'متقدم', duration: '12 أسبوع' },
+                        { title: 'علم الفلك الرصدي', level: 'متوسط', duration: '10 أسابيع' }
+                    ]
+                },
+                history: {
+                    title: 'تاريخ الدول',
+                    description: 'تاريخ الدول هو الدراسة التاريخية للكيانات السياسية التي أنشأها البشر عبر العصور، بما في ذلك تطور أنظمتها السياسية من الحكم الذاتي البسيط إلى الديمقراطيات الحديثة.',
+                    courses: [
+                        { title: 'تاريخ الحضارات القديمة', level: 'مبتدئ', duration: '8 أسابيع' },
+                        { title: 'تاريخ الإمبراطوريات', level: 'متوسط', duration: '10 أسابيع' },
+                        { title: 'تاريخ الدول الحديثة', level: 'متقدم', duration: '12 أسبوع' }
+                    ]
+                },
+                cosmology: {
+                    title: 'علم الكون',
+                    description: 'علم الكون، المعروف أيضاً باسم علم الكونيات، هو فرع من علم الفلك يدرس أصل ونشأة وتطور وبنية الكون ككل، بما في ذلك كل ما يحتويه من مادة وطاقة.',
+                    courses: [
+                        { title: 'نظرية الانفجار العظيم', level: 'متقدم', duration: '10 أسابيع' },
+                        { title: 'المادة المظلمة والطاقة المظلمة', level: 'متقدم', duration: '12 أسبوع' },
+                        { title: 'بنية الكون الكبيرة', level: 'متقدم', duration: '12 أسبوع' }
+                    ]
+                }
+            };
+            
+            const subjectData = subjects[subject];
+            
+            if (subjectData) {
+                subjectContent.innerHTML = `
+                    <h2 class="text-3xl font-bold mb-4">${subjectData.title}</h2>
+                    <p class="text-gray-600 mb-6">${subjectData.description}</p>
+                    
+                    <h3 class="text-2xl font-semibold mb-4">الدورات المتاحة</h3>
+                    <div class="space-y-4">
+                        ${subjectData.courses.map(course => `
+                            <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                                <h4 class="text-xl font-semibold">${course.title}</h4>
+                                <div class="flex flex-wrap gap-4 mt-2">
+                                    <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">${course.level}</span>
+                                    <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">${course.duration}</span>
+                                </div>
+                                <button class="mt-4 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">
+                                    التسجيل في الدورة
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                
+                document.getElementById('subjectModal').classList.remove('hidden');
+            }
+        }
+
+        // Notification system
+        function showNotification(message, type = 'success') {
+            const notificationContainer = document.getElementById('notificationContainer');
+            
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'} ml-2 text-${type === 'success' ? 'green' : 'red'}-500"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            notificationContainer.appendChild(notification);
+            
+            // Auto remove notification after 5 seconds
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(-100%)';
+                setTimeout(() => {
+                    notificationContainer.removeChild(notification);
+                }, 300);
+            }, 5000);
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

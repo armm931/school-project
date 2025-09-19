@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محلل طيفي - تحليل وتفسير الأطياف الكيميائية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .spectrum-container {
+            position: relative;
+            height: 400px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .peak-marker {
+            position: absolute;
+            width: 2px;
+            background: #ef4444;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .peak-marker:hover {
+            width: 4px;
+            background: #dc2626;
+        }
+        
+        .peak-info {
+            position: absolute;
+            background: #1f2937;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+        }
+        
+        .peak-marker:hover + .peak-info {
+            opacity: 1;
+        }
+        
+        .upload-area {
+            border: 2px dashed #cbd5e1;
+            transition: all 0.3s ease;
+        }
+        
+        .upload-area:hover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.05);
+        }
+        
+        .upload-area.dragover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+        
+        .result-card {
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .tab-active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .molecule-3d {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #e0e7ff, #c7d2fe);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .atom {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 14px;
+        }
+        
+        .bond {
+            position: absolute;
+            background: #6b7280;
+            transform-origin: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-reverse space-x-4">
+                    <i class="fas fa-atom text-3xl"></i>
+                    <div>
+                        <h1 class="text-2xl font-bold">محلل طيفي</h1>
+                        <p class="text-sm opacity-90">تحليل وتفسير الأطياف الكيميائية</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex space-x-reverse space-x-6">
+                    <a href="#" class="hover:text-purple-200 transition">الرئيسية</a>
+                    <a href="#" class="hover:text-purple-200 transition">قاعدة البيانات</a>
+                    <a href="#" class="hover:text-purple-200 transition">الأدوات</a>
+                    <a href="#" class="hover:text-purple-200 transition">عن الموقع</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Upload Section -->
+        <section class="mb-8">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-bold mb-4 flex items-center">
+                    <i class="fas fa-upload ml-2 text-purple-600"></i>
+                    رفع ملف الطيف
+                </h2>
+                
+                <div class="upload-area rounded-lg p-8 text-center" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt text-5xl text-gray-400 mb-4"></i>
+                    <p class="text-gray-600 mb-2">اسحب وأفلت ملف الطيف هنا أو</p>
+                    <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition" onclick="document.getElementById('fileInput').click()">
+                        اختر ملف
+                    </button>
+                    <input type="file" id="fileInput" class="hidden" accept=".csv,.txt,.jdx,.dx">
+                    <p class="text-sm text-gray-500 mt-2">الصيغ المدعومة: CSV, TXT, JCAMP-DX</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analysis Tabs -->
+        <section class="mb-8">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="flex border-b">
+                    <button class="tab-btn tab-active px-6 py-3 font-medium transition" data-tab="ir">
+                        طيف الأشعة تحت الحمراء (IR)
+                    </button>
+                    <button class="tab-btn px-6 py-3 font-medium hover:bg-gray-100 transition" data-tab="nmr">
+                        طيف الرنين النووي (NMR)
+                    </button>
+                    <button class="tab-btn px-6 py-3 font-medium hover:bg-gray-100 transition" data-tab="ms">
+                        طيف الكتلة (MS)
+                    </button>
+                    <button class="tab-btn px-6 py-3 font-medium hover:bg-gray-100 transition" data-tab="uv">
+                        طيف الأشعة فوق البنفسجية (UV-Vis)
+                    </button>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="p-6">
+                    <!-- IR Tab -->
+                    <div id="ir-tab" class="tab-content">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h3 class="font-bold mb-3">عرض الطيف</h3>
+                                <div class="spectrum-container">
+                                    <canvas id="irChart"></canvas>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="font-bold mb-3">التحليل التلقائي</h3>
+                                <div id="irAnalysis" class="space-y-3">
+                                    <div class="result-card bg-blue-50 p-4 rounded-lg">
+                                        <h4 class="font-semibold text-blue-800 mb-2">
+                                            <i class="fas fa-info-circle ml-1"></i>
+                                            النتائج الأولية
+                                        </h4>
+                                        <p class="text-sm text-gray-700">يرجى رفع ملف الطيف لبدء التحليل</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NMR Tab -->
+                    <div id="nmr-tab" class="tab-content hidden">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h3 class="font-bold mb-3">عرض الطيف</h3>
+                                <div class="spectrum-container">
+                                    <canvas id="nmrChart"></canvas>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="font-bold mb-3">تفسير الذرات</h3>
+                                <div id="nmrAnalysis" class="space-y-3">
+                                    <div class="result-card bg-green-50 p-4 rounded-lg">
+                                        <h4 class="font-semibold text-green-800 mb-2">
+                                            <i class="fas fa-flask ml-1"></i>
+                                            تحليل NMR
+                                        </h4>
+                                        <p class="text-sm text-gray-700">يرجى رفع ملف الطيف لبدء التحليل</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MS Tab -->
+                    <div id="ms-tab" class="tab-content hidden">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h3 class="font-bold mb-3">عرض الطيف</h3>
+                                <div class="spectrum-container">
+                                    <canvas id="msChart"></canvas>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="font-bold mb-3">تحليل الكتلة</h3>
+                                <div id="msAnalysis" class="space-y-3">
+                                    <div class="result-card bg-purple-50 p-4 rounded-lg">
+                                        <h4 class="font-semibold text-purple-800 mb-2">
+                                            <i class="fas fa-weight ml-1"></i>
+                                            تحليل الكتلة الجزيئية
+                                        </h4>
+                                        <p class="text-sm text-gray-700">يرجى رفع ملف الطيف لبدء التحليل</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- UV Tab -->
+                    <div id="uv-tab" class="tab-content hidden">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h3 class="font-bold mb-3">عرض الطيف</h3>
+                                <div class="spectrum-container">
+                                    <canvas id="uvChart"></canvas>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="font-bold mb-3">تحليل الامتصاص</h3>
+                                <div id="uvAnalysis" class="space-y-3">
+                                    <div class="result-card bg-yellow-50 p-4 rounded-lg">
+                                        <h4 class="font-semibold text-yellow-800 mb-2">
+                                            <i class="fas fa-sun ml-1"></i>
+                                            تحليل UV-Vis
+                                        </h4>
+                                        <p class="text-sm text-gray-700">يرجى رفع ملف الطيف لبدء التحليل</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Database Search -->
+        <section class="mb-8">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-bold mb-4 flex items-center">
+                    <i class="fas fa-database ml-2 text-purple-600"></i>
+                    البحث في قاعدة البيانات
+                </h2>
+                
+                <div class="grid md:grid-cols-3 gap-4 mb-4">
+                    <input type="text" id="compoundSearch" placeholder="اسم المركب أو الصيغة الكيميائية" 
+                           class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                    <select class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                        <option>نوع الطيف</option>
+                        <option>IR</option>
+                        <option>NMR</option>
+                        <option>MS</option>
+                        <option>UV-Vis</option>
+                    </select>
+                    <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">
+                        <i class="fas fa-search ml-2"></i>
+                        بحث
+                    </button>
+                </div>
+
+                <div id="databaseResults" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Sample Results -->
+                    <div class="border rounded-lg p-4 hover:shadow-lg transition cursor-pointer">
+                        <div class="molecule-3d mx-auto mb-3">
+                            <div class="atom" style="background: #ef4444; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                                C
+                            </div>
+                            <div class="atom" style="background: #3b82f6; top: 30%; left: 70%;">
+                                O
+                            </div>
+                            <div class="bond" style="width: 60px; height: 2px; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(45deg);"></div>
+                        </div>
+                        <h3 class="font-bold text-center">ميثانول</h3>
+                        <p class="text-sm text-gray-600 text-center">CH₃OH</p>
+                        <div class="mt-2 text-xs text-gray-500">
+                            <p>IR: 3300 cm⁻¹ (O-H)</p>
+                            <p>NMR: δ 3.3 (s, 3H)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Section -->
+        <section class="mb-8">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-bold mb-4 flex items-center">
+                    <i class="fas fa-tools ml-2 text-purple-600"></i>
+                    الأدوات المساعدة
+                </h2>
+                
+                <div class="grid md:grid-cols-4 gap-4">
+                    <button class="p-4 border rounded-lg hover:bg-purple-50 hover:border-purple-600 transition text-center">
+                        <i class="fas fa-calculator text-2xl text-purple-600 mb-2"></i>
+                        <p class="font-medium">حساب التركيز</p>
+                    </button>
+                    <button class="p-4 border rounded-lg hover:bg-purple-50 hover:border-purple-600 transition text-center">
+                        <i class="fas fa-chart-line text-2xl text-purple-600 mb-2"></i>
+                        <p class="font-medium">معايرة المنحنى</p>
+                    </button>
+                    <button class="p-4 border rounded-lg hover:bg-purple-50 hover:border-purple-600 transition text-center">
+                        <i class="fas fa-bezier-curve text-2xl text-purple-600 mb-2"></i>
+                        <p class="font-medium">تنعيم البيانات</p>
+                    </button>
+                    <button class="p-4 border rounded-lg hover:bg-purple-50 hover:border-purple-600 transition text-center">
+                        <i class="fas fa-file-export text-2xl text-purple-600 mb-2"></i>
+                        <p class="font-medium">تصدير النتائج</p>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="font-bold mb-3">عن الموقع</h3>
+                    <p class="text-sm text-gray-400">منصة متخصصة في تحليل وتفسير الأطياف الكيميائية باستخدام أحدث التقنيات والخوارزميات.</p>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-3">روابط سريعة</h3>
+                    <ul class="text-sm text-gray-400 space-y-1">
+                        <li><a href="#" class="hover:text-white transition">دليل المستخدم</a></li>
+                        <li><a href="#" class="hover:text-white transition">المراجع العلمية</a></li>
+                        <li><a href="#" class="hover:text-white transition">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-3">تابعنا</h3>
+                    <div class="flex space-x-reverse space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-4 text-center text-sm text-gray-400">
+                <p>&copy; 2024 محلل طيفي. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Charts
+        let irChart, nmrChart, msChart, uvChart;
+
+        // Tab functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const tab = this.dataset.tab;
+                
+                // Update active tab
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('tab-active'));
+                this.classList.add('tab-active');
+                
+                // Show corresponding content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                document.getElementById(`${tab}-tab`).classList.remove('hidden');
+                
+                // Initialize chart if not already done
+                initializeChart(tab);
+            });
+        });
+
+        // Initialize charts
+        function initializeChart(type) {
+            const ctx = document.getElementById(`${type}Chart`);
+            if (!ctx) return;
+
+            // Generate sample data
+            const data = generateSampleData(type);
+            
+            if (type === 'ir' && !irChart) {
+                irChart = new Chart(ctx, {
+                    type: 'line',
+                    data: data,
+                    options: getChartOptions('طيف IR', 'cm⁻¹', 'النقل')
+                });
+            } else if (type === 'nmr' && !nmrChart) {
+                nmrChart = new Chart(ctx, {
+                    type: 'line',
+                    data: data,
+                    options: getChartOptions('طيف NMR', 'ppm', 'الشدة')
+                });
+            } else if (type === 'ms' && !msChart) {
+                msChart = new Chart(ctx, {
+                    type: 'line',
+                    data: data,
+                    options: getChartOptions('طيف الكتلة', 'm/z', 'الشدة النسبية')
+                });
+            } else if (type === 'uv' && !uvChart) {
+                uvChart = new Chart(ctx, {
+                    type: 'line',
+                    data: data,
+                    options: getChartOptions('طيف UV-Vis', 'nm', 'الامتصاص')
+                });
+            }
+        }
+
+        // Generate sample data for different spectrum types
+        function generateSampleData(type) {
+            let labels, data;
+            
+            switch(type) {
+                case 'ir':
+                    labels = Array.from({length: 100}, (_, i) => 4000 - i * 35);
+                    data = labels.map(x => {
+                        // Simulate IR peaks
+                        let y = Math.random() * 10;
+                        if (x > 3300 && x < 3400) y += 80; // O-H stretch
+                        if (x > 2900 && x < 3000) y += 60; // C-H stretch
+                        if (x > 1700 && x < 1750) y += 90; // C=O stretch
+                        if (x > 1200 && x < 1300) y += 50; // C-O stretch
+                        return y;
+                    });
+                    break;
+                case 'nmr':
+                    labels = Array.from({length: 50}, (_, i) => 10 - i * 0.2);
+                    data = labels.map(x => {
+                        let y = Math.random() * 5;
+                        if (x > 1.9 && x < 2.1) y += 80; // CH3
+                        if (x > 3.2 && x < 3.4) y += 60; // CH2
+                        if (x > 7.2 && x < 7.4) y += 40; // aromatic
+                        return y;
+                    });
+                    break;
+                case 'ms':
+                    labels = Array.from({length: 100}, (_, i) => i * 2);
+                    data = labels.map(x => {
+                        let y = Math.random() * 10;
+                        if (x > 30 && x < 32) y += 100; // M+1
+                        if (x > 58 && x < 60) y += 90;  // M+
+                        if (x > 15 && x < 17) y += 50;  // CH3+
+                        return y;
+                    });
+                    break;
+                case 'uv':
+                    labels = Array.from({length: 80}, (_, i) => 200 + i * 3);
+                    data = labels.map(x => {
+                        let y = Math.random() * 0.1;
+                        if (x > 250 && x < 260) y += 0.8; // π→π*
+                        if (x > 280 && x < 290) y += 0.6; // n→π*
+                        return y;
+                    });
+                    break;
+            }
+            
+            return {
+                labels: labels,
+                datasets: [{
+                    label: 'الشدة',
+                    data: data,
+                    borderColor: '#667eea',
+                    backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 0,
+                    pointHoverRadius: 5
+                }]
+            };
+        }
+
+        // Chart options
+        function getChartOptions(title, xLabel, yLabel) {
+            return {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: title,
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        }
+                    },
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: xLabel
+                        },
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: yLabel
+                        },
+                        beginAtZero: true
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                }
+            };
+        }
+
+        // File upload functionality
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        function handleFiles(files) {
+            if (files.length > 0) {
+                const file = files[0];
+                // Simulate file processing
+                showNotification('جاري معالجة الملف...', 'info');
+                
+                setTimeout(() => {
+                    processSpectrumData(file.name);
+                    showNotification('تم تحليل الطيف بنجاح!', 'success');
+                }, 2000);
+            }
+        }
+
+        function processSpectrumData(filename) {
+            // Simulate spectrum analysis
+            const activeTab = document.querySelector('.tab-active').dataset.tab;
+            updateAnalysisResults(activeTab);
+        }
+
+        function updateAnalysisResults(type) {
+            const analysisDiv = document.getElementById(`${type}Analysis`);
+            
+            switch(type) {
+                case 'ir':
+                    analysisDiv.innerHTML = `
+                        <div class="result-card bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-800 mb-2">
+                                <i class="fas fa-info-circle ml-1"></i>
+                                النتائج المحتملة
+                            </h4>
+                            <ul class="text-sm text-gray-700 space-y-1">
+                                <li>• ذروة عند 3300 cm⁻¹: مجموعة هيدروكسيل (O-H)</li>
+                                <li>• ذروة عند 2950 cm⁻¹: مجموعة ألكيل (C-H)</li>
+                                <li>• ذروة قوية عند 1715 cm⁻¹: مجموعة كربونيل (C=O)</li>
+                                <li>• ذروة عند 1200 cm⁻¹: مجموعة إيثر (C-O)</li>
+                            </ul>
+                        </div>
+                        <div class="result-card bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-800 mb-2">
+                                <i class="fas fa-lightbulb ml-1"></i>
+                                التفسير المقترح
+                            </h4>
+                            <p class="text-sm text-gray-700">الطيف يشير إلى وجود مركب يحتوي على مجموعة كربونيل ومجموعة هيدروكسيل، قد يكون حمض كربوكسيلي أو كحول.</p>
+                        </div>
+                    `;
+                    break;
+                case 'nmr':
+                    analysisDiv.innerHTML = `
+                        <div class="result-card bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-800 mb-2">
+                                <i class="fas fa-flask ml-1"></i>
+                                إشارات NMR
+                            </h4>
+                            <ul class="text-sm text-gray-700 space-y-1">
+                                <li>• δ 2.0 (s, 3H): مجموعة ميثيل</li>
+                                <li>• δ 3.3 (s, 2H): مجموعة ميثيلين</li>
+                                <li>• δ 7.3 (m, 5H): حلقة بنزين</li>
+                            </ul>
+                        </div>
+                        <div class="result-card bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-800 mb-2">
+                                <i class="fas fa-atom ml-1"></i>
+                                الهيكل المقترح
+                            </h4>
+                            <p class="text-sm text-gray-700">الإشارات تشير إلى وجود مركب فينيل إيثانون أو مشتق منه.</p>
+                        </div>
+                    `;
+                    break;
+                case 'ms':
+                    analysisDiv.innerHTML = `
+                        <div class="result-card bg-purple-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-800 mb-2">
+                                <i class="fas fa-weight ml-1"></i>
+                                تحليل الكتلة
+                            </h4>
+                            <ul class="text-sm text-gray-700 space-y-1">
+                                <li>• m/z 59: ذروة الأيون الجزيئي [M]+</li>
+                                <li>• m/z 31: شظية [CH2OH]+</li>
+                                <li>• m/z 15: شظية [CH3]+</li>
+                            </ul>
+                        </div>
+                        <div class="result-card bg-indigo-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-indigo-800 mb-2">
+                                <i class="fas fa-calculator ml-1"></i>
+                                الصيغة الجزيئية
+                            </h4>
+                            <p class="text-sm text-gray-700">الكتلة الجزيئية 59 تشير إلى الصيغة C2H6O (إيثانول أو ثنائي ميثيل إيثر).</p>
+                        </div>
+                    `;
+                    break;
+                case 'uv':
+                    analysisDiv.innerHTML = `
+                        <div class="result-card bg-yellow-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-yellow-800 mb-2">
+                                <i class="fas fa-sun ml-1"></i>
+                                امتصاص UV-Vis
+                            </h4>
+                            <ul class="text-sm text-gray-700 space-y-1">
+                                <li>• λmax = 255 nm: انتقال π→π*</li>
+                                <li>• λmax = 285 nm: انتقال n→π*</li>
+                                <li>• ε = 15,000 L·mol⁻¹·cm⁻¹</li>
+                            </ul>
+                        </div>
+                        <div class="result-card bg-orange-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-orange-800 mb-2">
+                                <i class="fas fa-eye ml-1"></i>
+                                التفسير البصري
+                            </h4>
+                            <p class="text-sm text-gray-700">الامتصاص في المنطقة فوق البنفسجية يشير إلى وجود نظام مترافق أو مجموعة كروموفور.</p>
+                        </div>
+                    `;
+                    break;
+            }
+        }
+
+        // Notification system
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg text-white z-50 ${
+                type === 'success' ? 'bg-green-500' : 
+                type === 'error' ? 'bg-red-500' : 
+                'bg-blue-500'
+            }`;
+            notification.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas ${
+                        type === 'success' ? 'fa-check-circle' : 
+                        type === 'error' ? 'fa-exclamation-circle' : 
+                        'fa-info-circle'
+                    } ml-2"></i>
+                    ${message}
+                </div>
+            `;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Initialize IR chart on load
+        window.addEventListener('load', () => {
+            initializeChart('ir');
+        });
+
+        // Search functionality
+        document.getElementById('compoundSearch').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            // Simulate search
+            if (searchTerm.length > 2) {
+                showNotification('جاري البحث...', 'info');
+                setTimeout(() => {
+                    showNotification('تم العثور على نتائج', 'success');
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسبة التراكيز الكيميائية</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --light-bg: #ecf0f1;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background-color: var(--primary-color) !important;
+            box-shadow: var(--card-shadow);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .calculator-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .calculator-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .calculator-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .form-control, .form-select {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 10px 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+        }
+
+        .btn-calculate {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-calculate:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .result-box {
+            background-color: #f8f9fa;
+            border: 2px solid var(--success-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .result-box.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-title {
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .result-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-right: 4px solid var(--secondary-color);
+        }
+
+        .result-item label {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .result-item span {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+        }
+
+        .formula-box {
+            background-color: #e8f4f8;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+
+        .unit-badge {
+            background-color: var(--warning-color);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin-right: 5px;
+        }
+
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+
+        .icon-feature {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .error-message {
+            background-color: #fee;
+            border: 1px solid var(--danger-color);
+            color: var(--danger-color);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .calculator-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-flask"></i> حاسبة التراكيز
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#concentration">تركيز المحاليل</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#mixing">خلط المحاليل</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#dilution">تخفيف المحاليل</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1><i class="fas fa-calculator"></i> حاسبة التراكيز الكيميائية</h1>
+            <p class="lead">احسب تراكيز المحاليل واخلطها بدقة وسهولة</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Concentration Calculator -->
+        <section id="concentration" class="calculator-card">
+            <h3><i class="fas fa-vial"></i> حاسبة تركيز المحاليل</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">نوع التركيز</label>
+                        <select class="form-select" id="concentrationType">
+                            <option value="molarity">المولارية (M)</option>
+                            <option value="percent">النسبة المئوية (% w/v)</option>
+                            <option value="normality">النورمالية (N)</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">الكتلة <span class="unit-badge">g</span></label>
+                        <input type="number" class="form-control" id="mass" placeholder="أدخل الكتلة" step="0.01">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">الكتلة المولية <span class="unit-badge">g/mol</span></label>
+                        <input type="number" class="form-control" id="molarMass" placeholder="أدخل الكتلة المولية" step="0.01">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">حجم المحلول <span class="unit-badge">L</span></label>
+                        <input type="number" class="form-control" id="volume" placeholder="أدخل الحجم" step="0.01">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">التكافؤ (للنورمالية فقط)</label>
+                        <input type="number" class="form-control" id="equivalence" placeholder="أدخل التكافؤ" step="1" value="1">
+                    </div>
+                    <button class="btn btn-calculate" onclick="calculateConcentration()">
+                        <i class="fas fa-calculator"></i> احسب التركيز
+                    </button>
+                </div>
+            </div>
+            <div class="error-message" id="concentrationError"></div>
+            <div class="result-box" id="concentrationResult">
+                <div class="result-title"><i class="fas fa-check-circle"></i> النتيجة</div>
+                <div id="concentrationResults"></div>
+            </div>
+        </section>
+
+        <!-- Mixing Solutions Calculator -->
+        <section id="mixing" class="calculator-card">
+            <h3><i class="fas fa-flask"></i> حاسبة خلط المحاليل</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>المحلول الأول</h5>
+                    <div class="mb-3">
+                        <label class="form-label">التركيز الأول <span class="unit-badge">M</span></label>
+                        <input type="number" class="form-control" id="conc1" placeholder="أدخل التركيز الأول" step="0.01">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">الحجم الأول <span class="unit-badge">L</span></label>
+                        <input type="number" class="form-control" id="vol1" placeholder="أدخل الحجم الأول" step="0.01">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h5>المحلول الثاني</h5>
+                    <div class="mb-3">
+                        <label class="form-label">التركيز الثاني <span class="unit-badge">M</span></label>
+                        <input type="number" class="form-control" id="conc2" placeholder="أدخل التركيز الثاني" step="0.01">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">الحجم الثاني <span class="unit-badge">L</span></label>
+                        <input type="number" class="form-control" id="vol2" placeholder="أدخل الحجم الثاني" step="0.01">
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-calculate" onclick="calculateMixing()">
+                <i class="fas fa-calculator"></i> احسب التركيز النهائي
+            </button>
+            <div class="error-message" id="mixingError"></div>
+            <div class="result-box" id="mixingResult">
+                <div class="result-title"><i class="fas fa-check-circle"></i> نتيجة الخلط</div>
+                <div id="mixingResults"></div>
+            </div>
+        </section>
+
+        <!-- Dilution Calculator -->
+        <section id="dilution" class="calculator-card">
+            <h3><i class="fas fa-tint"></i> حاسبة تخفيف المحاليل</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">التركيز الأولي <span class="unit-badge">M</span></label>
+                        <input type="number" class="form-control" id="initialConc" placeholder="أدخل التركيز الأولي" step="0.01">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">التركيز النهائي المطلوب <span class="unit-badge">M</span></label>
+                        <input type="number" class="form-control" id="finalConc" placeholder="أدخل التركيز النهائي" step="0.01">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">الحجم النهائي المطلوب <span class="unit-badge">L</span></label>
+                        <input type="number" class="form-control" id="finalVol" placeholder="أدخل الحجم النهائي" step="0.01">
+                    </div>
+                    <button class="btn btn-calculate" onclick="calculateDilution()">
+                        <i class="fas fa-calculator"></i> احسب التخفيف
+                    </button>
+                </div>
+            </div>
+            <div class="error-message" id="dilutionError"></div>
+            <div class="result-box" id="dilutionResult">
+                <div class="result-title"><i class="fas fa-check-circle"></i> نتيجة التخفيف</div>
+                <div id="dilutionResults"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2024 حاسبة التراكيز الكيميائية. جميع الحقوق محفوظة.</p>
+            <p class="mb-0">مصممة للطلاب والباحثين والمختبرات</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Concentration Calculator
+        function calculateConcentration() {
+            const mass = parseFloat(document.getElementById('mass').value);
+            const molarMass = parseFloat(document.getElementById('molarMass').value);
+            const volume = parseFloat(document.getElementById('volume').value);
+            const type = document.getElementById('concentrationType').value;
+            const equivalence = parseFloat(document.getElementById('equivalence').value) || 1;
+            
+            const errorDiv = document.getElementById('concentrationError');
+            const resultDiv = document.getElementById('concentrationResult');
+            const resultsDiv = document.getElementById('concentrationResults');
+            
+            // Validation
+            if (!mass || !molarMass || !volume) {
+                showError(errorDiv, 'يرجى ملء جميع الحقول المطلوبة');
+                return;
+            }
+            
+            if (mass <= 0 || molarMass <= 0 || volume <= 0) {
+                showError(errorDiv, 'يجب أن تكون جميع القيم موجبة');
+                return;
+            }
+            
+            errorDiv.style.display = 'none';
+            
+            let result = 0;
+            let unit = '';
+            let formula = '';
+            
+            switch(type) {
+                case 'molarity':
+                    result = mass / (molarMass * volume);
+                    unit = 'M';
+                    formula = 'M = mass / (molar mass × volume)';
+                    break;
+                case 'percent':
+                    result = (mass / (volume * 1000)) * 100;
+                    unit = '% w/v';
+                    formula = '% w/v = (mass / (volume × 1000)) × 100';
+                    break;
+                case 'normality':
+                    result = (mass * equivalence) / (molarMass * volume);
+                    unit = 'N';
+                    formula = 'N = (mass × equivalence) / (molar mass × volume)';
+                    break;
+            }
+            
+            resultsDiv.innerHTML = `
+                <div class="result-item">
+                    <label>التركيز المحسوب:</label>
+                    <span>${result.toFixed(4)} ${unit}</span>
+                </div>
+                <div class="formula-box">
+                    ${formula}
+                </div>
+            `;
+            
+            resultDiv.classList.add('show');
+        }
+        
+        // Mixing Solutions Calculator
+        function calculateMixing() {
+            const conc1 = parseFloat(document.getElementById('conc1').value);
+            const vol1 = parseFloat(document.getElementById('vol1').value);
+            const conc2 = parseFloat(document.getElementById('conc2').value);
+            const vol2 = parseFloat(document.getElementById('vol2').value);
+            
+            const errorDiv = document.getElementById('mixingError');
+            const resultDiv = document.getElementById('mixingResult');
+            const resultsDiv = document.getElementById('mixingResults');
+            
+            // Validation
+            if (!conc1 || !vol1 || !conc2 || !vol2) {
+                showError(errorDiv, 'يرجى ملء جميع الحقول المطلوبة');
+                return;
+            }
+            
+            if (conc1 <= 0 || vol1 <= 0 || conc2 <= 0 || vol2 <= 0) {
+                showError(errorDiv, 'يجب أن تكون جميع القيم موجبة');
+                return;
+            }
+            
+            errorDiv.style.display = 'none';
+            
+            const totalMoles = (conc1 * vol1) + (conc2 * vol2);
+            const totalVolume = vol1 + vol2;
+            const finalConc = totalMoles / totalVolume;
+            
+            resultsDiv.innerHTML = `
+                <div class="result-item">
+                    <label>التركيز النهائي:</label>
+                    <span>${finalConc.toFixed(4)} M</span>
+                </div>
+                <div class="result-item">
+                    <label>الحجم الإجمالي:</label>
+                    <span>${totalVolume.toFixed(4)} L</span>
+                </div>
+                <div class="formula-box">
+                    C_final = (C₁V₁ + C₂V₂) / (V₁ + V₂)
+                </div>
+            `;
+            
+            resultDiv.classList.add('show');
+        }
+        
+        // Dilution Calculator
+        function calculateDilution() {
+            const initialConc = parseFloat(document.getElementById('initialConc').value);
+            const finalConc = parseFloat(document.getElementById('finalConc').value);
+            const finalVol = parseFloat(document.getElementById('finalVol').value);
+            
+            const errorDiv = document.getElementById('dilutionError');
+            const resultDiv = document.getElementById('dilutionResult');
+            const resultsDiv = document.getElementById('dilutionResults');
+            
+            // Validation
+            if (!initialConc || !finalConc || !finalVol) {
+                showError(errorDiv, 'يرجى ملء جميع الحقول المطلوبة');
+                return;
+            }
+            
+            if (initialConc <= 0 || finalConc <= 0 || finalVol <= 0) {
+                showError(errorDiv, 'يجب أن تكون جميع القيم موجبة');
+                return;
+            }
+            
+            if (finalConc >= initialConc) {
+                showError(errorDiv, 'يجب أن يكون التركيز النهائي أقل من التركيز الأولي');
+                return;
+            }
+            
+            errorDiv.style.display = 'none';
+            
+            const initialVol = (finalConc * finalVol) / initialConc;
+            const waterVolume = finalVol - initialVol;
+            const dilutionFactor = initialConc / finalConc;
+            
+            resultsDiv.innerHTML = `
+                <div class="result-item">
+                    <label>حجم المحلول المركز المطلوب:</label>
+                    <span>${initialVol.toFixed(4)} L</span>
+                </div>
+                <div class="result-item">
+                    <label>حجم الماء المطلوب إضافته:</label>
+                    <span>${waterVolume.toFixed(4)} L</span>
+                </div>
+                <div class="result-item">
+                    <label>عامل التخفيف:</label>
+                    <span>${dilutionFactor.toFixed(2)}x</span>
+                </div>
+                <div class="formula-box">
+                    C₁V₁ = C₂V₂
+                </div>
+            `;
+            
+            resultDiv.classList.add('show');
+        }
+        
+        // Utility function to show errors
+        function showError(element, message) {
+            element.textContent = message;
+            element.style.display = 'block';
+        }
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Add input validation
+        document.querySelectorAll('input[type="number"]').forEach(input => {
+            input.addEventListener('input', function() {
+                if (this.value < 0) {
+                    this.value = 0;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
