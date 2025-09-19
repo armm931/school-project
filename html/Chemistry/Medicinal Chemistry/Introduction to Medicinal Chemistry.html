@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مقدمة في الكيمياء الطبية - بوابة المعرفة الدوائية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #2c5aa0;
+            --light-blue: #4dabf7;
+            --accent-blue: #74c0fc;
+            --dark-blue: #1c3a5a;
+            --medical-green: #37b24d;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+            --text-color: #2d3436;
+            --purple: #7950f2;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(44, 90, 160, 0.9), rgba(55, 178, 77, 0.8)),
+                        url('https://picsum.photos/seed/chemistry-lab/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--medical-green);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button:hover, .cta-button-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-blue);
+        }
+
+        /* Introduction Section */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .intro-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .feature-tag {
+            background: var(--light-blue);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .intro-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .intro-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Applications Grid */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .application-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .application-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--medical-green));
+        }
+
+        .application-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .application-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .application-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Drugs Section */
+        .drugs-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .drug-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .drug-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .drug-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .drug-content {
+            padding: 1.5rem;
+        }
+
+        .drug-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .drug-info-item {
+            text-align: center;
+        }
+
+        .drug-info-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.3rem;
+        }
+
+        .drug-info-value {
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        /* Technologies Section */
+        .tech-timeline {
+            position: relative;
+            padding: 3rem 0;
+        }
+
+        .tech-timeline::before {
+            content: '';
+            position: absolute;
+            right: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary-blue), var(--medical-green));
+            transform: translateX(50%);
+        }
+
+        .tech-item {
+            position: relative;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .tech-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            position: relative;
+        }
+
+        .tech-item:nth-child(odd) .tech-content {
+            margin-right: auto;
+        }
+
+        .tech-item:nth-child(even) .tech-content {
+            margin-left: auto;
+        }
+
+        .tech-icon {
+            position: absolute;
+            right: 50%;
+            top: 50%;
+            transform: translate(50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            z-index: 1;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* News Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.1);
+        }
+
+        .news-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--medical-green);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-date {
+            color: var(--light-blue);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Educational Section */
+        .edu-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .edu-tab {
+            padding: 0.8rem 2rem;
+            background: var(--light-gray);
+            color: var(--text-color);
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .edu-tab.active {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .edu-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .edu-content.active {
+            display: block;
+        }
+
+        .edu-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .edu-box h4 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .formula {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            margin: 1rem 0;
+            font-size: 1.2rem;
+        }
+
+        /* Career Section */
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .career-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .career-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .career-icon {
+            font-size: 2.5rem;
+            color: var(--medical-green);
+            margin-bottom: 1rem;
+        }
+
+        .career-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .career-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .career-stat {
+            text-align: center;
+        }
+
+        .career-stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        .career-stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--light-blue);
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--medical-green);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-timeline::before {
+                right: 30px;
+            }
+
+            .tech-content {
+                width: calc(100% - 60px);
+                margin-right: 60px !important;
+            }
+
+            .tech-icon {
+                right: 30px;
+            }
+
+            .edu-tabs {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--primary-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--dark-blue);
+            transform: translateY(-5px);
+        }
+
+        /* Loading animation */
+        .molecule {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            color: var(--primary-blue);
+            animation: rotate 2s linear infinite;
+            z-index: 9999;
+            display: none;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-flask"></i>
+                الكيمياء الطبية
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#introduction">مقدمة</a></li>
+                <li><a href="#applications">التطبيقات</a></li>
+                <li><a href="#drugs">الأدوية</a></li>
+                <li><a href="#technologies">التقنيات</a></li>
+                <li><a href="#news">الأخبار</a></li>
+                <li><a href="#education">تعليمي</a></li>
+                <li><a href="#career">الوظائف</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>مقدمة في الكيمياء الطبية</h1>
+            <p>استكشف عالم الكيمياء الطبية المذهل - من الجزيئات إلى الأدوية، ومن المختبرات إلى العيادات</p>
+            <div class="cta-buttons">
+                <a href="#introduction" class="cta-button">ابدأ التعلم</a>
+                <a href="#applications" class="cta-button cta-button-secondary">اكتشف التطبيقات</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="introduction" class="section">
+        <div class="container">
+            <h2 class="section-title">ما هي الكيمياء الطبية؟</h2>
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <h3>علم يربط الكيمياء بالطب</h3>
+                    <p>الكيمياء الطبية هي فرع متعدد التخصصات يجمع بين الكيمياء والصيدلة وعلم الأحياء لفهم وتطوير المركبات الكيميائية التي يمكن استخدامها كعلاجات للأمراض.</p>
+                    <p>تهتم الكيمياء الطبية بتصميم وتخليق وتطوير المركبات الدوائية، وفهم آلية عملها في الجسم، وتحسين فعاليتها وسلامتها.</p>
+                    <div class="intro-features">
+                        <span class="feature-tag">تصميم الأدوية</span>
+                        <span class="feature-tag">تخليق كيميائي</span>
+                        <span class="feature-tag">علم الأدوية</span>
+                        <span class="feature-tag">تحليل دوائي</span>
+                        <span class="feature-tag">تطوير علاجي</span>
+                    </div>
+                </div>
+                <div class="intro-image">
+                    <img src="https://picsum.photos/seed/medical-chemistry/600/400.jpg" alt="الكيمياء الطبية">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">تطبيقات الكيمياء الطبية</h2>
+            <div class="applications-grid">
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3>اكتشاف وتطوير الأدوية</h3>
+                    <p>تصميم وتطوير مركبات جديدة لعلاج الأمراض المختلفة، بدءاً من الفكرة وحتى الوصول إلى الدواء النهائي</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>تحليل الأدوية</h3>
+                    <p>تطوير طرق تحليلية متطورة لفحص نقاء الأدوية وتركيزها وثباتها في الظروف المختلفة</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>علم الأدوية الجزيئي</h3>
+                    <p>دراسة التفاعلات بين الأدوية والجزيئات البيولوجية على المستوى الجزيئي والخلوي</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>الكيمياء العصبية</h3>
+                    <p>دراسة المواد الكيميائية في الجهاز العصبي وتأثيرها على وظائف الدماغ والسلوك</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>السموم الدوائية</h3>
+                    <p>تقييم سلامة الأدوية وتحديد الجرعات الآمنة ودراسة الآثار الجانبية المحتملة</p>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>النمذجة الجزيئية</h3>
+                    <p>استخدام الحاسوب لنمذجة الجزيئات والتنبؤ بخواصها وتفاعلاتها البيولوجية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Drugs Section -->
+    <section id="drugs" class="section">
+        <div class="container">
+            <h2 class="section-title">أمثلة على الأدوية الشائعة</h2>
+            <div class="drugs-showcase">
+                <div class="drug-card">
+                    <div class="drug-header">
+                        <h3>الباراسيتامول</h3>
+                        <p>مسكن ألم وخافض حرارة</p>
+                    </div>
+                    <div class="drug-content">
+                        <div class="drug-info">
+                            <div class="drug-info-item">
+                                <div class="drug-info-label">الصيغة الكيميائية</div>
+                                <div class="drug-info-value">C₈H₉NO₂</div>
+                            </div>
+                            <div class="drug-info-item">
+                                <div class="drug-info-label">الوزن الجزيئي</div>
+                                <div class="drug-info-value">151.16</div>
+                            </div>
+                        </div>
+                        <p><strong>التركيب:</strong> مشتق من البارا-أمينوفينول، يعمل عن طريق تثبيط إنزيم السيكلوأوكسجيناز في الدماغ.</p>
+                        <p><strong>الاستخدامات:</strong> علاج الصداع، الحمى، آلام العضلات والمفاصل الخفيفة.</p>
+                    </div>
+                </div>
+                <div class="drug-card">
+                    <div class="drug-header" style="background: linear-gradient(135deg, var(--medical-green), var(--light-blue));">
+                        <h3>الأسبرين</h3>
+                        <p>مضاد التهاب ومميع دم</p>
+                    </div>
+                    <div class="drug-content">
+                        <div class="drug-info">
+                            <div class="drug-info-item">
+                                <div class="drug-info-label">الصيغة الكيميائية</div>
+                                <div class="drug-info-value">C₉H₈O₄</div>
+                            </div>
+                            <div class="drug-info-item">
+                                <div class="drug-info-label">الوزن الجزيئي</div>
+                                <div class="drug-info-value">180.16</div>
+                            </div>
+                        </div>
+                        <p><strong>التركيب:</strong> حمض الساليسيليك الأسيتيل، يعمل عن طريق تثبيط إنزيم السيكلوأوكسجاز بشكل لا رجعة فيه.</p>
+                        <p><strong>الاستخدامات:</strong> تخفيف الألم، خفض الحرارة، منع تجلط الدم، الوقاية من النوبات القلبية.</p>
+                    </div>
+                </div>
+                <div class="drug-card">
+                    <div class="drug-header" style="background: linear-gradient(135deg, var(--purple), var(--light-blue));">
+                        <h3>الميتفورمين</h3>
+                        <p>علاج السكري</p>
+                    </div>
+                    <div class="drug-content">
+                        <div class="drug-info">
+                            <div class="drug-info-item">
+                                <div class="drug-info-label">الصيغة الكيميائية</div>
+                                <div class="drug-info-value">C₄H₁₁N₅</div>
+                            </div>
+                            <div class="drug-info-item">
+                                <div class="drug-info-label">الوزن الجزيئي</div>
+                                <div class="drug-info-value">129.16</div>
+                            </div>
+                        </div>
+                        <p><strong>التركيب:</strong> مشتق من البيجوانيد، يعمل عن طريق تقليل إنتاج الجلوكوز في الكبد وزيادة حساسية الأنسولين.</p>
+                        <p><strong>الاستخدامات:</strong> علاج السكري من النوع 2، السيطرة على مستويات السكر في الدم.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section id="technologies" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">التقنيات الحديثة في الكيمياء الطبية</h2>
+            <div class="tech-timeline">
+                <div class="tech-item">
+                    <div class="tech-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="tech-content">
+                        <h3>الذكاء الاصطناعي في اكتشاف الأدوية</h3>
+                        <p>استخدام الخوارزميات المتقدمة والتعلم الآلي للتنبؤ بخصائص المركبات الكيميائية وتسريع عملية اكتشاف الأدوية الجديدة</p>
+                    </div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <div class="tech-content">
+                        <h3>الطباعة ثلاثية الأبعاد للأدوية</h3>
+                        <p>تقنية تسمح بطباعة الأدوية بشكل مخصص لكل مريض، مع تحكم دقيق في الجرعة والتحرير المتدرج للمادة الفعالة</p>
+                    </div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <div class="tech-content">
+                        <h3>علم الجينوم الدوائي</h3>
+                        <p>دراسة كيفية تأثير الجينات الفردية على استجابة المريض للأدوية، مما يسمح بتطوير علاجات شخصية</p>
+                    </div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="tech-content">
+                        <h3>المختبرات على رقاقة</h3>
+                        <p>أجهزة مصغرة تجمع بين عمليات المختبر المختلفة على شريحة واحدة، مما يسمح بإجراء تحاليل سريعة ودقيقة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="section">
+        <div class="container">
+            <h2 class="section-title">آخر الأخبار والاكتشافات العلمية</h2>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://picsum.photos/seed/news-medical1/400/200.jpg" alt="خبر طبي">
+                        <span class="news-badge">اكتشاف جديد</span>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">
+                            <i class="fas fa-calendar-alt"></i> 18 ديسمبر 2023
+                        </div>
+                        <h3>اكتشاف مركب جديد لعلاج السرطان</h3>
+                        <p>فريق من الباحثين يعلن عن اكتشاف مركب كيميائي جديد يظهر فعالية واعدة في علاج أنواع متعددة من السرطان</p>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://picsum.photos/seed/news-medical2/400/200.jpg" alt="خبر طبي">
+                        <span class="news-badge">تقنية</span>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">
+                            <i class="fas fa-calendar-alt"></i> 15 ديسمبر 2023
+                        </div>
+                        <h3>تطوير لقاح جديد باستخدام تقنية الحمض النووي</h3>
+                        <p>باحثون يطورون لقاحاً مبتكراً يستخدم تقنية الحمض النووي لتوفير حماية طويلة الأمد ضد الفيروسات</p>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://picsum.photos/seed/news-medical3/400/200.jpg" alt="خبر طبي">
+                        <span class="news-badge">بحث</span>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">
+                            <i class="fas fa-calendar-alt"></i> 12 ديسمبر 2023
+                        </div>
+                        <h3>دراسة جديدة تكشف عن آلية عمل مضادات الاكتئاب</h3>
+                        <p>دراسة متعمقة تكشف عن آليات عمل جديدة لمضادات الاكتئاب، مما يفتح الباب لتطوير علاجات أكثر فعالية</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Educational Section -->
+    <section id="education" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">مفاهيم تعليمية</h2>
+            <div class="edu-tabs">
+                <button class="edu-tab active" onclick="showTab('basics')">الأساسيات</button>
+                <button class="edu-tab" onclick="showTab('formulas')">الصيغ الكيميائية</button>
+                <button class="edu-tab" onclick="showTab('reactions')">التفاعلات</button>
+                <button class="edu-tab" onclick="showTab('examples')">أمثلة عملية</button>
+            </div>
+            
+            <div id="basics" class="edu-content active">
+                <div class="edu-box">
+                    <h4>المفاهيم الأساسية في الكيمياء الطبية</h4>
+                    <p><strong>1. العلاقة التركيبية-الفعالية (SAR):</strong> دراسة كيفية تأثير تغيير البنية الكيميائية للمركب على نشاطه البيولوجي.</p>
+                    <p><strong>2. المستقبلات الدوائية:</strong> بروتينات على سطح الخلايا ترتبط بالأدوية وتنقل إشارات داخل الخلية.</p>
+                    <p><strong>3. التوافر الحيوي:</strong> نسبة الدواء التي تصل إلى الدورة الدموية وتصل إلى موقع عملها.</p>
+                    <p><strong>4. نصف العمر:</strong> الوقت اللازم لانخفاض تركيز الدواء في الدم إلى النصف.</p>
+                </div>
+            </div>
+            
+            <div id="formulas" class="edu-content">
+                <div class="edu-box">
+                    <h4>الصيغ الكيميائية الشائعة</h4>
+                    <p><strong>صيغة الباراسيتامول:</strong></p>
+                    <div class="formula">C₈H₉NO₂</div>
+                    <p><strong>صيغة الإيبوبروفين:</strong></p>
+                    <div class="formula">C₁₃H₁₈O₂</div>
+                    <p><strong>صيغة الأموكسيسيلين:</strong></p>
+                    <div class="formula">C₁₆H₁₉N₃O₅S</div>
+                </div>
+            </div>
+            
+            <div id="reactions" class="edu-content">
+                <div class="edu-box">
+                    <h4>التفاعلات الكيميائية في الأدوية</h4>
+                    <p><strong>تفاعل الاسترة:</strong> يستخدم في إنتاج الإسترات من الأحماض الكربوكسيلية والكحولات.</p>
+                    <div class="formula">R-COOH + R'-OH → R-COO-R' + H₂O</div>
+                    <p><strong>تفاعل الأميدات:</strong> مهم في تخليق البروتينات والعديد من الأدوية.</p>
+                    <div class="formula">R-COOH + R'-NH₂ → R-CONH-R' + H₂O</div>
+                </div>
+            </div>
+            
+            <div id="examples" class="edu-content">
+                <div class="edu-box">
+                    <h4>أمثلة عملية</h4>
+                    <p><strong>مثال 1: تخليق الأسبرين</strong>
+                    <p>يتم تحضير الأسبرين من تفاعل حمض الساليسيليك مع حمض الأسيتيك في وجود حمض الكبريتيك كعامل حفز.</p>
+                    <p><strong>مثال 2: تحليل الباراسيتامول</strong>
+                    <p>يمكن تحليل الباراسيتامول باستخدام تقنيات كروماتوغرافيا السائل عالية الأداء (HPLC) لتحديد نقاوته وتركيزه.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Section -->
+    <section id="career" class="section">
+        <div class="container">
+            <h2 class="section-title">فرص العمل والدراسة</h2>
+            <div class="career-grid">
+                <div class="career-card">
+                    <div class="career-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>الدراسات الجامعية</h3>
+                    <p>تخصصات الكيمياء الطبية والصيدلة والكيمياء الحيوية في الجامعات المرموقة</p>
+                    <div class="career-stats">
+                        <div class="career-stat">
+                            <div class="career-stat-value">4+</div>
+                            <div class="career-stat-label">سنوات دراسة</div>
+                        </div>
+                        <div class="career-stat">
+                            <div class="career-stat-value">95%</div>
+                            <div class="career-stat-label">معدل توظيف</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="career-card">
+                    <div class="career-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>الصناعة الدوائية</h3>
+                    <p>عمل في شركات الأدوية العالمية والمحلية في البحث والتطوير والإنتاج</p>
+                    <div class="career-stats">
+                        <div class="career-stat">
+                            <div class="career-stat-value">25%</div>
+                            <div class="career-stat-label">نمو سنوي</div>
+                        </div>
+                        <div class="career-stat">
+                            <div class="career-stat-value">15K+</div>
+                            <div class="career-stat-label">وظيفة متاحة</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="career-card">
+                    <div class="career-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>البحث العلمي</h3>
+                    <p>العمل في المختبرات البحثية والجامعات لتطوير علاجات جديدة ومبتكرة</p>
+                    <div class="career-stats">
+                        <div class="career-stat">
+                            <div class="career-stat-value">30%</div>
+                            <div class="career-stat-label">زيادة تمويل</div>
+                        </div>
+                        <div class="career-stat">
+                            <div class="career-stat-value">500+</div>
+                            <div class="career-stat-label">مشروع بحثي</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="career-card">
+                    <div class="career-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <h3>القطاع الصحي</h3>
+                    <p>العمل في المستشفيات والمراكز الصحية في مجال الصيدلة السريرية</p>
+                    <div class="career-stats">
+                        <div class="career-stat">
+                            <div class="career-stat-value">20%</div>
+                            <div class="career-stat-label">نمو القطاع</div>
+                        </div>
+                        <div class="career-stat">
+                            <div class="career-stat-value">8K+</div>
+                            <div class="career-stat-label">وظيفة متاحة</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>من نحن</h3>
+                    <p>منصة تعليمية متخصصة في الكيمياء الطبية، تقدم محتوى شامل وموثوق للطلاب والباحثين والمهتمين بهذا المجال المهم.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#introduction">مقدمة في الكيمياء الطبية</a></li>
+                        <li><a href="#applications">التطبيقات العملية</a></li>
+                        <li><a href="#drugs">الأدوية الشائعة</a></li>
+                        <li><a href="#technologies">التقنيات الحديثة</a></li>
+                        <li><a href="#education">المحتوى التعليمي</a></li>
+                        <li><a href="#career">فرص العمل</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>الموارد التعليمية</h3>
+                    <ul>
+                        <li><a href="#">دروس تفاعلية</a></li>
+                        <li><a href="#">فيديوهات تعليمية</a></li>
+                        <li><a href="#">اختبارات ذاتية</a></li>
+                        <li><a href="#">مراجع علمية</a></li>
+                        <li><a href="#">منتدى النقاش</a></li>
+                        <li><a href="#">المكتبة الرقمية</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>النشرة البريدية</h3>
+                    <p>اشترك في نشرتنا البريدية للحصول على آخر التحديثات والمقالات العلمية</p>
+                    <form style="margin-top: 1rem;">
+                        <input type="email" placeholder="بريدك الإلكتروني" style="width: 100%; padding: 0.8rem; border: none; border-radius: 5px; margin-bottom: 1rem;">
+                        <button type="submit" style="width: 100%; padding: 0.8rem; background: var(--medical-green); color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">اشترك الآن</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 مقدمة في الكيمياء الطبية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Tab functionality
+        function showTab(tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.edu-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.edu-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.width = '100%';
+                navLinks.style.padding = '1rem';
+                navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Form submission prevention
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('شكراً لاشتراكك في نشرتنا البريدية!');
+            this.reset();
+        });
+
+        // Add hover effect to cards
+        document.querySelectorAll('.application-card, .drug-card, .news-card, .career-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>

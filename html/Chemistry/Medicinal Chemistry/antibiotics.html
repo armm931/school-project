@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المضادات الحيوية - الدليل الشامل</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0066cc;
+            --light-blue: #4da6ff;
+            --accent-blue: #b3d9ff;
+            --dark-blue: #004499;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+            --text-color: #2d3436;
+            --red: #dc3545;
+            --green: #28a745;
+            --yellow: #ffc107;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 102, 204, 0.9), rgba(0, 102, 204, 0.9)),
+                        url('https://picsum.photos/seed/medicine/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent-blue);
+            color: var(--dark-blue);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: var(--white);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-blue);
+        }
+
+        /* Introduction Section */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .intro-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .intro-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Antibiotics Types */
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .type-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-blue);
+        }
+
+        .type-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .type-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .type-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .type-card ul {
+            list-style: none;
+            padding-right: 1.5rem;
+        }
+
+        .type-card ul li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .type-card ul li::before {
+            content: '•';
+            position: absolute;
+            right: -1.5rem;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        /* Usage Guide */
+        .usage-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-blue);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        /* Resistance Section */
+        .resistance-alert {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 2px solid var(--yellow);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .resistance-alert h3 {
+            color: #856404;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .resistance-alert p {
+            color: #856404;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .resistance-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .resistance-stat {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-bottom: 4px solid var(--red);
+        }
+
+        .resistance-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--red);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Side Effects */
+        .effects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .effect-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .effect-card:hover {
+            transform: translateX(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .effect-icon {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            min-width: 60px;
+        }
+
+        .effect-content h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--light-blue);
+            color: var(--dark-blue);
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-icon.active {
+            transform: rotate(180deg);
+        }
+
+        /* Medical Professionals Section */
+        .medical-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            color: white;
+            padding: 4rem 0;
+            margin-top: 3rem;
+        }
+
+        .medical-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .medical-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .medical-features {
+            list-style: none;
+        }
+
+        .medical-features li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .medical-features i {
+            color: var(--accent-blue);
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-blue);
+            color: var(--dark-blue);
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .intro-grid,
+            .medical-content {
+                grid-template-columns: 1fr;
+            }
+
+            .usage-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--primary-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--dark-blue);
+            transform: translateY(-5px);
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .warning-box i {
+            font-size: 1.5rem;
+            color: var(--red);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-pills"></i>
+                المضادات الحيوية
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#intro">ما هي المضادات؟</a></li>
+                <li><a href="#types">الأنواع</a></li>
+                <li><a href="#usage">دليل الاستخدام</a></li>
+                <li><a href="#resistance">المقاومة</a></li>
+                <li><a href="#effects">الآثار الجانبية</a></li>
+                <li><a href="#faq">الأسئلة</a></li>
+                <li><a href="#medical">للطبيب</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>دليل المضادات الحيوية الشامل</h1>
+            <p>مصدر موثوق للمعلومات عن المضادات الحيوية، استخداماتها، آثارها الجانبية، وكيفية الاستخدام الآمن والفعال</p>
+            <a href="#intro" class="cta-button">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="section">
+        <div class="container">
+            <h2 class="section-title">ما هي المضادات الحيوية؟</h2>
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <h3>تعريف المضادات الحيوية</h3>
+                    <p>المضادات الحيوية هي أدوية تستخدم لعلاج الالتهابات البكتيرية عن طريق قتل البكتيريا أو منع نموها وتكاثرها. تعتبر هذه الأدوية من أهم الإنجازات الطبية في القرن العشرين.</p>
+                    <p>تعمل المضادات الحيوية بشكل انتقائي على البكتيريا دون التأثير على خلايا الجسم البشري، مما يجعلها فعالة في علاج العديد من الأمراض التي كانت قاتلة في الماضي.</p>
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <strong>مهم:</strong> المضادات الحيوية لا تعالج الالتهابات الفيروسية مثل نزلات البرد والإنفلونزا.
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-image">
+                    <img src="https://picsum.photos/seed/antibiotics/600/400.jpg" alt="المضادات الحيوية">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Types Section -->
+    <section id="types" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">أنواع المضادات الحيوية الرئيسية</h2>
+            <div class="types-grid">
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>البنسلينات</h3>
+                    <p>أقدم وأشهر مجموعة من المضادات الحيوية</p>
+                    <ul>
+                        <li>أموكسيسيلين</li>
+                        <li>أمبيسيلين</li>
+                        <li>بنزاثين بنسلين</li>
+                        <li>فعالة ضد البكتيريا الإيجابية</li>
+                    </ul>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>السيفالوسبورينات</h3>
+                    <p>مجموعة واسعة الطيف تستخدم في العديد من الالتهابات</p>
+                    <ul>
+                        <li>سيفالكسين</li>
+                        <li>سيفترياكسون</li>
+                        <li>سيفوتاكسيم</li>
+                        <li>تستخدم في الالتهابات الشديدة</li>
+                    </ul>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-virus"></i>
+                    </div>
+                    <h3>الماكروليدات</h3>
+                    <p>فعالة ضد البكتيريا غير النموذجية</p>
+                    <ul>
+                        <li>أزيثروميسين</li>
+                        <li>كلاريثروميسين</li>
+                        <li>إريثروميسين</li>
+                        <li>تستخدم في التهابات الجهاز التنفسي</li>
+                    </ul>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-bacterium"></i>
+                    </div>
+                    <h3>الفلووروكينولونات</h3>
+                    <p>مضادات حيوية واسعة الطيف</p>
+                    <ul>
+                        <li>سيبروفلوكساسين</li>
+                        <li>ليفوفلوكساسين</li>
+                        <li>موكسيفلوكساسين</li>
+                        <li>تستخدم في التهابات المسالك البولية</li>
+                    </ul>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-syringe"></i>
+                    </div>
+                    <h3>الأمينوجليكوزيدات</h3>
+                    <p>مضادات حيوية قوية تستخدم في الحالات الشديدة</p>
+                    <ul>
+                        <li>جنتاميسين</li>
+                        <li>أميكاسين</li>
+                        <li>توبراميسين</li>
+                        <li>تستخدم في الالتهابات الخطيرة</li>
+                    </ul>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-tablets"></i>
+                    </div>
+                    <h3>التتراسايكلينات</h3>
+                    <p>مضادات حيوية واسعة الطيف</p>
+                    <ul>
+                        <li>دوكسي سيكلين</li>
+                        <li>تتراسايكلين</li>
+                        <li>مينوسايكلين</li>
+                        <li>تستخدم في حب الشباب والالتهابات</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Usage Guide Section -->
+    <section id="usage" class="section">
+        <div class="container">
+            <h2 class="section-title">دليل الاستخدام الصحيح للمضادات الحيوية</h2>
+            <div class="usage-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>استشر الطبيب</h3>
+                    <p>لا تستخدم المضادات الحيوية دون وصفة طبية. استشر الطبيب للتشخيص الصحيح والعلاج المناسب.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>اتبع الجرعة المحددة</h3>
+                    <p>خذ الدواء بالجرعة والتوقيت المحددين من قبل الطبيب. لا تزيد أو تقلل الجرعة من تلقاء نفسك.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>أكمل العلاج</h3>
+                    <p>أكمل مدة العلاج كاملة حتى لو شعرت بتحسن. التوقف المبكر يؤدي إلى عودة العدوى.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>لا تشارك الدواء</h3>
+                    <p>لا تعطِ مضاداتك الحيوية للآخرين أو تستخدم أدوية الآخرين. كل حالة تحتاج إلى علاج خاص.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resistance Section -->
+    <section id="resistance" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">مخاطر مقاومة المضادات الحيوية</h2>
+            <div class="resistance-alert">
+                <h3><i class="fas fa-exclamation-triangle"></i> تحذير عاجل</h3>
+                <p>مقاومة المضادات الحيوية هي أحد أكبر التهديدات للصحة العامة في العالم اليوم. الاستخدام غير المناسب للمضادات الحيوية يؤدي إلى تطوير بكتيريا مقاومة لا تستجيب للعلاجات المتاحة.</p>
+            </div>
+            <div class="resistance-stats">
+                <div class="resistance-stat">
+                    <div class="resistance-number">700</div>
+                    <div class="stat-label">ألف وفاة سنوياً بسبب المقاومة</div>
+                </div>
+                <div class="resistance-stat">
+                    <div class="resistance-number">10</div>
+                    <div class="stat-label">ملايين حالة وفاة بحلول 2050</div>
+                </div>
+                <div class="resistance-stat">
+                    <div class="resistance-number">50</div>
+                    <div class="stat-label">٪ زيادة في المقاومة خلال 10 سنوات</div>
+                </div>
+                <div class="resistance-stat">
+                    <div class="resistance-number">30</div>
+                    <div class="stat-label">٪ من المضادات الحيوية تستخدم بشكل غير ضروري</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Side Effects Section -->
+    <section id="effects" class="section">
+        <div class="container">
+            <h2 class="section-title">الآثار الجانبية الشائعة</h2>
+            <div class="effects-grid">
+                <div class="effect-card">
+                    <div class="effect-icon">
+                        <i class="fas fa-stomach"></i>
+                    </div>
+                    <div class="effect-content">
+                        <h4>اضطرابات الجهاز الهضمي</h4>
+                        <p>غثيان، قيء، إسهال، آلام بطن. هذه هي أكثر الآثار الجانبية شيوعاً.</p>
+                    </div>
+                </div>
+                <div class="effect-card">
+                    <div class="effect-icon">
+                        <i class="fas fa-allergies"></i>
+                    </div>
+                    <div class="effect-content">
+                        <h4>الحساسية</h4>
+                        <p>طفح جلدي، حكة، تورم. في حالات نادرة قد تحدث صدمة تحسسية خطيرة.</p>
+                    </div>
+                </div>
+                <div class="effect-card">
+                    <div class="effect-icon">
+                        <i class="fas fa-bacterium"></i>
+                    </div>
+                    <div class="effect-content">
+                        <h4>التهاب المهبل الفطري</h4>
+                        <p>يحدث لدى النساء بسبب قتل البكتيريا النافعة في المهبل.</p>
+                    </div>
+                </div>
+                <div class="effect-card">
+                    <div class="effect-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="effect-content">
+                        <h4>الحساسية للضوء</h4>
+                        <p>بعض المضادات الحيوية تجعل الجلد حساساً لأشعة الشمس.</p>
+                    </div>
+                </div>
+                <div class="effect-card">
+                    <div class="effect-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="effect-content">
+                        <h4>الدوخة والصداع</h4>
+                        <p>قد تشعر بالدوخة أو الصداع أثناء تناول بعض المضادات الحيوية.</p>
+                    </div>
+                </div>
+                <div class="effect-card">
+                    <div class="effect-icon">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="effect-content">
+                        <h4>تلف الكلى والكبد</h4>
+                        <p>بعض المضادات الحيوية قد تسبب تلفاً مؤقتاً أو دائماً للكلى أو الكبد.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">الأسئلة الشائعة</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>متى أحتاج إلى مضاد حيوي؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>تحتاج إلى مضاد حيوي فقط عندما يكون لديك التهاب بكتيري مؤكد أو محتمل. لا تستخدم المضادات الحيوية للالتهابات الفيروسية مثل نزلات البرد، الإنفلونزا، أو التهاب الحلق الفيروسي. استشر الطبيب للتشخيص الصحيح.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>ماذا يحدث إذا توقفت عن تناول المضاد الحيوي مبكراً؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>التوقف المبكر عن تناول المضاد الحيوي يؤدي إلى عودة العدوى وقد يسبب تطوير بكتيريا مقاومة. يجب دائماً إكمال مدة العلاج كاملة كما وصفها الطبيب.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>هل يمكنني تناول المضادات الحيوية مع الأدوية الأخرى؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>بعض المضادات الحيوية قد تتفاعل مع أدوية أخرى مثل مميعات الدم، حبوب منع الحمل، أو بعض أدوية الضغط. أخبر طبيبك بجميع الأدوية التي تتناولها قبل وصف المضاد الحيوي.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>ما الفرق بين المضادات الحيوية واسعة وضيقة الطيف؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>المضادات الحيوية ضيقة الطيف تستهدف أنواع محددة من البكتيريا، بينما واسعة الطيف تستهدف مجموعة واسعة من البكتيريا. الأطباء يفضلون المضادات ضيقة الطيف عند معرفة نوع البكتيريا المسببة للعدوى.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>هل يمكنني شرب الكحول أثناء تناول المضادات الحيوية؟</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>بشكل عام، يفضل تجنب الكحول أثناء تناول المضادات الحيوية. بعض المضادات الحيوية مثل الميترونيدازول قد تسبب تفاعلات خطيرة مع الكحول. استشر طبيبك للحصول على نصائح محددة.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Medical Professionals Section -->
+    <section id="medical" class="medical-section">
+        <div class="container">
+            <div class="medical-content">
+                <div class="medical-text">
+                    <h3>معلومات للأطباء والصيادلة</h3>
+                    <p>نقدم معلومات متخصصة ومحدثة للممارسين الصحيين لمساعدتهم في اتخاذ قرارات علاجية مستنيرة.</p>
+                    <ul class="medical-features">
+                        <li><i class="fas fa-check-circle"></i> أحدث المبادئ التوجيهية العلاجية</li>
+                        <li><i class="fas fa-check-circle"></i> بيانات المقاومة المحلية والعالمية</li>
+                        <li><i class="fas fa-check-circle"></i> تفاعلات الأدوية المحتملة</li>
+                        <li><i class="fas fa-check-circle"></i> جرعات الأطفال والبالغين</li>
+                        <li><i class="fas fa-check-circle"></i> بدائل العلاج للمرضى الحساسين</li>
+                    </ul>
+                </div>
+                <div class="intro-image">
+                    <img src="https://picsum.photos/seed/doctor/500/400.jpg" alt="طبيب">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>من نحن</h3>
+                    <p>منصة تعليمية طبية تقدم معلومات دقيقة وموثقة عن المضادات الحيوية لزيادة الوعي الصحي وتعزيز الاستخدام الرشيد للأدوية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#intro">ما هي المضادات؟</a></li>
+                        <li><a href="#types">الأنواع الرئيسية</a></li>
+                        <li><a href="#usage">دليل الاستخدام</a></li>
+                        <li><a href="#resistance">المقاومة</a></li>
+                        <li><a href="#effects">الآثار الجانبية</a></li>
+                        <li><a href="#faq">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تحذير طبي</h3>
+                    <p>المعلومات المقدمة في هذا الموقع هي لأغراض تعليمية فقط ولا تغني عن الاستشارة الطبية المتخصصة. استشر طبيبك قبل اتخاذ أي قرار طبي.</p>
+                    <p style="margin-top: 1rem;"><strong>في حالات الطوارئ:</strong><br>اتصل بالطوارئ المحلية أو اذهب إلى أقرب مستشفى.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@antibiotics-guide.com</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                    <form style="margin-top: 1rem;">
+                        <input type="email" placeholder="بريدك الإلكتروني" style="width: 100%; padding: 0.8rem; border: none; border-radius: 5px; margin-bottom: 1rem;">
+                        <button type="submit" style="width: 100%; padding: 0.8rem; background: var(--accent-blue); color: var(--dark-blue); border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">اشترك في النشرة</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 دليل المضادات الحيوية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // FAQ Toggle
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('.faq-icon');
+            
+            answer.classList.toggle('active');
+            icon.classList.toggle('active');
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.right = '0';
+            navLinks.style.background = 'white';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.width = '100%';
+            navLinks.style.padding = '1rem';
+            navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+        });
+
+        // Form submission prevention
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('شكراً لاشتراكك في نشرتنا البريدية!');
+            this.reset();
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.type-card, .step-card, .effect-card, .resistance-stat').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

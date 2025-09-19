@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مركز أدوية السرطان - دليلك الشامل لعلاجات السرطان</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0066cc;
+            --light-blue: #4da6ff;
+            --accent-blue: #b3d9ff;
+            --dark-blue: #004499;
+            --medical-green: #28a745;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+            --text-color: #2d3436;
+            --warning-red: #dc3545;
+            --info-yellow: #ffc107;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 102, 204, 0.85), rgba(0, 102, 204, 0.85)),
+                        url('https://picsum.photos/seed/medical-cancer/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-primary {
+            background: var(--medical-green);
+            color: white;
+        }
+
+        .cta-secondary {
+            background: white;
+            color: var(--primary-blue);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-blue);
+        }
+
+        /* Treatment Types */
+        .treatments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .treatment-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            border-top: 4px solid var(--primary-blue);
+        }
+
+        .treatment-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .treatment-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .treatment-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .treatment-card p {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Drugs Database */
+        .drugs-section {
+            background: var(--light-gray);
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1.5rem;
+            border: 2px solid var(--accent-blue);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .search-button {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-button:hover {
+            background: var(--dark-blue);
+        }
+
+        .drugs-table {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .drugs-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .drugs-table th {
+            background: var(--primary-blue);
+            color: white;
+            padding: 1rem;
+            text-align: right;
+            font-weight: 600;
+        }
+
+        .drugs-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            text-align: right;
+        }
+
+        .drugs-table tr:hover {
+            background: var(--light-gray);
+        }
+
+        .drug-type {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .type-chemo {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .type-targeted {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .type-immuno {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        /* News Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.1);
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-date {
+            color: var(--primary-blue);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .news-tag {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: var(--primary-blue);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Patient Resources */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .resource-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .resource-icon {
+            font-size: 3rem;
+            color: var(--medical-green);
+            margin-bottom: 1rem;
+        }
+
+        .resource-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: var(--primary-blue);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--dark-blue);
+        }
+
+        .faq-question h3 {
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        /* Emergency Banner */
+        .emergency-banner {
+            background: var(--warning-red);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 999;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .emergency-banner.show {
+            transform: translateY(0);
+        }
+
+        .emergency-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .emergency-close {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-blue);
+            color: var(--primary-blue);
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .drugs-table {
+                overflow-x: auto;
+            }
+
+            .drugs-table table {
+                min-width: 600px;
+            }
+
+            .emergency-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--primary-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 998;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--dark-blue);
+            transform: translateY(-5px);
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-pills"></i>
+                مركز أدوية السرطان
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#treatments">أنواع العلاج</a></li>
+                <li><a href="#drugs">قاعدة الأدوية</a></li>
+                <li><a href="#news">الأخبار</a></li>
+                <li><a href="#resources">موارد المرضى</a></li>
+                <li><a href="#faq">الأسئلة</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>مركز أدوية السرطان</h1>
+            <p>دليلك الشامل لأحدث علاجات السرطان والأدوية المستهدفة والعلاجات المناعية</p>
+            <div class="cta-buttons">
+                <a href="#treatments" class="cta-button cta-primary">استكشف العلاجات</a>
+                <a href="#drugs" class="cta-button cta-secondary">ابحث عن دواء</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Treatment Types Section -->
+    <section id="treatments" class="section">
+        <div class="container">
+            <h2 class="section-title">أنواع علاجات السرطان</h2>
+            <div class="treatments-grid">
+                <div class="treatment-card">
+                    <div class="treatment-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>العلاج الكيميائي</h3>
+                    <p>يستخدم أدوية قوية لقتل الخلايا السرطانية سريعة النمو. يعمل على مستوى الجسم بالكامل ويعالج العديد من أنواع السرطان.</p>
+                </div>
+                <div class="treatment-card">
+                    <div class="treatment-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>العلاج المستهدف</h3>
+                    <p>يستهدف بروتينات محددة في الخلايا السرطانية لمنع نموها وانقسامها. أقل تأثيراً على الخلايا السليمة.</p>
+                </div>
+                <div class="treatment-card">
+                    <div class="treatment-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>العلاج المناعي</h3>
+                    <p>يقوي جهاز المناعة لمحاربة السرطان. يستخدم أجساماً مضادة وعوامل بيولوجية لتنشيط الاستجابة المناعية.</p>
+                </div>
+                <div class="treatment-card">
+                    <div class="treatment-icon">
+                        <i class="fas fa-radiation"></i>
+                    </div>
+                    <h3>العلاج الإشعاعي</h3>
+                    <p>يستخدم أشعة عالية الطاقة لتدمير الخلايا السرطانية وتقليص الأورام. يمكن استخدامه بشكل موضعي أو شامل.</p>
+                </div>
+                <div class="treatment-card">
+                    <div class="treatment-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>العلاج الهرموني</h3>
+                    <p>يمنع أو يقلل من إنتاج الهرمونات التي تساعد على نمو أنواع معينة من السرطان مثل سرطان الثدي والبروستاتا.</p>
+                </div>
+                <div class="treatment-card">
+                    <div class="treatment-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>العلاجات التجريبية</h3>
+                    <p>يشمل العلاجات الجديدة قيد البحث السريري مثل العلاج الجيني والعلاج بالخلايا CAR-T والعلاجات النانوية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Drugs Database Section -->
+    <section id="drugs" class="section section-alt drugs-section">
+        <div class="container">
+            <h2 class="section-title">قاعدة بيانات الأدوية</h2>
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="ابحث عن دواء أو نوع سرطان..." id="drugSearch">
+                <button class="search-button" onclick="searchDrugs()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="drugs-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>اسم الدواء</th>
+                            <th>النوع</th>
+                            <th>يستخدم لعلاج</th>
+                            <th>الآثار الجانبية الشائعة</th>
+                        </tr>
+                    </thead>
+                    <tbody id="drugsTableBody">
+                        <tr>
+                            <td><strong>باكليتاكسل (Paclitaxel)</strong></td>
+                            <td><span class="drug-type type-chemo">كيميائي</span></td>
+                            <td>سرطان الثدي، الرئة، المبيض</td>
+                            <td>تساقط الشعر، غثيان، انخفاض خلايا الدم</td>
+                        </tr>
+                        <tr>
+                            <td><strong>تراستوزوماب (Trastuzumab)</strong></td>
+                            <td><span class="drug-type type-targeted">مستهدف</span></td>
+                            <td>سرطان الثدي HER2+</td>
+                            <td>حمى، قشعريرة، مشاكل في القلب</td>
+                        </tr>
+                        <tr>
+                            <td><strong>بمبروليزوماب (Pembrolizumab)</strong></td>
+                            <td><span class="drug-type type-immuno">مناعي</span></td>
+                            <td>سرطان الرئة، الجلد، المعدة</td>
+                            <td>تعب، طفح جلدي، مشاكل في الغدة الدرقية</td>
+                        </tr>
+                        <tr>
+                            <td><strong>سيسبلاتين (Cisplatin)</strong></td>
+                            <td><span class="drug-type type-chemo">كيميائي</span></td>
+                            <td>سرطان الخصية، الرئة، المثانة</td>
+                            <td>غثيان، تقيؤ، تلف الكلى</td>
+                        </tr>
+                        <tr>
+                            <td><strong>إماتينيب (Imatinib)</strong></td>
+                            <td><span class="drug-type type-targeted">مستهدف</span></td>
+                            <td>سرطان الدم النخاعي المزمن</td>
+                            <td>تورم، غثيان، تقلصات عضلية</td>
+                        </tr>
+                        <tr>
+                            <td><strong>نيفولوماب (Nivolumab)</strong></td>
+                            <td><span class="drug-type type-immuno">مناعي</span></td>
+                            <td>سرطان الكلى، الرئة، الجلد</td>
+                            <td>تعب، سعال، فقدان الشهية</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="section">
+        <div class="container">
+            <h2 class="section-title">آخر الأخبار والأبحاث</h2>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://picsum.photos/seed/cancer-research1/400/200.jpg" alt="بحث سرطاني">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">
+                            <i class="fas fa-calendar-alt"></i> 18 ديسمبر 2023
+                        </div>
+                        <span class="news-tag">بحث جديد</span>
+                        <h3>اكتشاف علاج مستهدف جديد لسرطان البنكرياس</h3>
+                        <p>أعلن باحثون عن تطوير دواء جديد يستهدف بروتيناً محدداً في خلايا سرطان البنكرياس، مع نتائج واعدة في التجارب السريرية المبكرة.</p>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://picsum.photos/seed/cancer-research2/400/200.jpg" alt="علاج مناعي">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">
+                            <i class="fas fa-calendar-alt"></i> 15 ديسمبر 2023
+                        </div>
+                        <span class="news-tag">علاج مناعي</span>
+                        <h3>نجاح العلاج المناعي المركب في علاج سرطان الرئة</h3>
+                        <p>أظهرت دراسة جديدة أن استخدام علاجين مناعيين معاً زاد من معدلات البقاء على قيد الحياة لمرضى سرطان الرئة غير الخلوي بنسبة 40%.</p>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://picsum.photos/seed/cancer-research3/400/200.jpg" alt="علاج جيني">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">
+                            <i class="fas fa-calendar-alt"></i> 12 ديسمبر 2023
+                        </div>
+                        <span class="news-tag">علاج جيني</span>
+                        <h3>تقدم في العلاج الجيني لسرطان الدم</h3>
+                        <p>حقق باحثون تقدماً كبيراً في تقنية CAR-T لعلاج سرطان الدم، مع انخفاض كبير في الآثار الجانبية وزيادة الفعالية.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Patient Resources Section -->
+    <section id="resources" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">موارد المرضى</h2>
+            <div class="resources-grid">
+                <div class="resource-card" onclick="showResource('guide')">
+                    <div class="resource-icon">
+                        <i class="fas fa-book-medical"></i>
+                    </div>
+                    <h3>دليل المريض</h3>
+                    <p>معلومات شاملة عن العلاجات والآثار الجانبية وكيفية التعامل معها</p>
+                </div>
+                <div class="resource-card" onclick="showResource('nutrition')">
+                    <div class="resource-icon">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <h3>التغذية</h3>
+                    <p>نصائح غذائية خلال العلاج ووصفات صحية لتقوية الجسم</p>
+                </div>
+                <div class="resource-card" onclick="showResource('support')">
+                    <div class="resource-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>الدعم النفسي</h3>
+                    <p>مجموعات دعم وموارد نفسية للمرضى وعائلاتهم</p>
+                </div>
+                <div class="resource-card" onclick="showResource('clinical')">
+                    <div class="resource-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>الدراسات السريرية</h3>
+                    <p>معلومات عن التجارب السريرية المتاحة وكيفية المشاركة</p>
+                </div>
+                <div class="resource-card" onclick="showResource('financial')">
+                    <div class="resource-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>الدعم المالي</h3>
+                    <p>معلومات عن التأمين والمساعدات المالية المتاحة</p>
+                </div>
+                <div class="resource-card" onclick="showResource('emergency')">
+                    <div class="resource-icon">
+                        <i class="fas fa-ambulance"></i>
+                    </div>
+                    <h3>الطوارئ</h3>
+                    <p>معلومات عن متى تطلب الرعاية الطبية الطارئة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+        <div class="container">
+            <h2 class="section-title">الأسئلة الشائعة</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>ما هي الآثار الجانبية الشائعة للعلاج الكيميائي؟</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الآثار الجانبية الشائعة تشمل تساقط الشعر، الغثيان والقيء، التعب، انخفاض خلايا الدم البيضاء، وفقدان الشهية. تختلف هذه الآثار من شخص لآخر ويمكن إدارتها بالأدوية الداعمة والرعاية الذاتية.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>كيف يختلف العلاج المستهدف عن العلاج الكيميائي؟</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>العلاج المستهدف يهاجم بروتينات أو جينات محددة في الخلايا السرطانية، بينما العلاج الكيميائي يهاجم جميع الخلايا سريعة الانقسام. هذا يجعل العلاج المستهدف أقل تأثيراً على الخلايا السليمة وأقل آثاراً جانبية.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>ما هو العلاج المناعي وكيف يعمل؟</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>العلاج المناعي هو نوع من العلاج يستخدم جهاز المناعة في الجسم لمحاربة السرطان. يعمل عن طريق إزالة الكوابح التي تمنع جهاز المناعة من مهاجمة الخلايا السرطانية، أو عن طريق تنشيط الخلايا المناعية بشكل مباشر.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>كم تستمر فترة العلاج؟</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>تختلف فترة العلاج حسب نوع السرطان ومرحلته ونوع العلاج المستخدم. قد تستمر من عدة أسابيع إلى عدة أشهر. يحدد الطبيب الخطة العلاجية المناسبة لكل حالة بناءً على عدة عوامل.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>هل يمكن تناول المكملات الغذائية أثناء العلاج؟</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>يجب استشارة الطبيب قبل تناول أي مكملات غذائية أو فيتامينات أثناء العلاج. بعض المكملات قد تتفاعل مع أدوية العلاج أو تؤثر على فعاليتها. يفضل الحصول على العناصر الغذائية من نظام غذائي متوازن.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Banner -->
+    <div class="emergency-banner" id="emergencyBanner">
+        <button class="emergency-close" onclick="closeEmergency()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="emergency-content">
+            <i class="fas fa-exclamation-triangle" style="font-size: 1.5rem;"></i>
+            <span>في حالة الطوارئ الطبية، اتصل بالرقم الطارئ: <strong>937</strong> أو اذهب إلى أقرب مستشفى</span>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>من نحن</h3>
+                    <p>مركز أدوية السرطان هو منصة موثوقة تقدم معلومات شاملة ومحدثة عن علاجات السرطان والأدوية المستخدمة، بهدف مساعدة المرضى وأسرهم على فهم خيارات العلاج المتاحة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#treatments">أنواع العلاج</a></li>
+                        <li><a href="#drugs">قاعدة الأدوية</a></li>
+                        <li><a href="#news">آخر الأخبار</a></li>
+                        <li><a href="#resources">موارد المرضى</a></li>
+                        <li><a href="#faq">الأسئلة الشائعة</a></li>
+                        <li><a href="#">الدراسات السريرية</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> العنوان: شارع الطب، المبنى الطبي</li>
+                        <li><i class="fas fa-phone"></i> الهاتف: +966 12 345 6789</li>
+                        <li><i class="fas fa-envelope"></i> البريد: info@cancerdrugs.sa</li>
+                        <li><i class="fas fa-clock"></i> ساعات العمل: 8:00 ص - 5:00 م</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>النشرة البريدية</h3>
+                    <p>اشترك في نشرتنا البريدية للحصول على آخر التحديثات عن علاجات السرطان</p>
+                    <form style="margin-top: 1rem;">
+                        <input type="email" placeholder="بريدك الإلكتروني" style="width: 100%; padding: 0.8rem; border: none; border-radius: 5px; margin-bottom: 1rem;">
+                        <button type="submit" style="width: 100%; padding: 0.8rem; background: var(--medical-green); color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">اشترك الآن</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 مركز أدوية السرطان. جميع الحقوق محفوظة. | <a href="#" style="color: var(--accent-blue);">سياسة الخصوصية</a> | <a href="#" style="color: var(--accent-blue);">شروط الاستخدام</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Show emergency banner after 3 seconds
+        setTimeout(() => {
+            document.getElementById('emergencyBanner').classList.add('show');
+        }, 3000);
+
+        // Close emergency banner
+        function closeEmergency() {
+            document.getElementById('emergencyBanner').classList.remove('show');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // FAQ Toggle
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const allItems = document.querySelectorAll('.faq-item');
+            
+            // Close all other items
+            allItems.forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Toggle current item
+            faqItem.classList.toggle('active');
+        }
+
+        // Search functionality
+        function searchDrugs() {
+            const searchTerm = document.getElementById('drugSearch').value.toLowerCase();
+            const tableRows = document.querySelectorAll('#drugsTableBody tr');
+            
+            tableRows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Real-time search
+        document.getElementById('drugSearch').addEventListener('input', searchDrugs);
+
+        // Resource card click handler
+        function showResource(type) {
+            const messages = {
+                guide: 'جاري تحميل دليل المريض الشامل...',
+                nutrition: 'جاري تحميل معلومات التغذية...',
+                support: 'جاري تحميل موارد الدعم النفسي...',
+                clinical: 'جاري تحميل معلومات الدراسات السريرية...',
+                financial: 'جاري تحميل معلومات الدعم المالي...',
+                emergency: 'جاري تحميل معلومات الطوارئ...'
+            };
+            
+            // Create a modal or redirect to resource page
+            alert(messages[type] || 'جاري تحميل المورد...');
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.width = '100%';
+                navLinks.style.padding = '1rem';
+                navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Form submission prevention
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('شكراً لاشتراكك في نشرتنا البريدية!');
+            this.reset();
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.treatment-card, .news-card, .resource-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

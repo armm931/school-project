@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المواد المركبة - بوابة المعرفة والتكنولوجيا</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a8a;
+            --light-blue: #3b82f6;
+            --accent-orange: #f97316;
+            --dark-gray: #1f2937;
+            --light-gray: #f3f4f6;
+            --white: #ffffff;
+            --text-color: #374151;
+            --gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-orange);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(30, 58, 138, 0.85), rgba(59, 130, 246, 0.85)),
+                        url('https://picsum.photos/seed/composite-materials/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent-orange);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: #ea580c;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-orange);
+        }
+
+        /* Introduction Section */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .intro-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: var(--light-gray);
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateX(-5px);
+        }
+
+        .feature-item i {
+            color: var(--accent-orange);
+            font-size: 1.2rem;
+        }
+
+        .intro-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .intro-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Types Section */
+        .types-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .type-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .type-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .type-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .type-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .type-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .type-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Applications Section */
+        .applications-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .app-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .app-icon {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--light-gray);
+            font-size: 3rem;
+            color: var(--primary-blue);
+        }
+
+        .app-content {
+            padding: 1.5rem;
+        }
+
+        .app-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Manufacturing Section */
+        .manufacturing-process {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--accent-orange);
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .step-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Research Section */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .research-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .research-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .research-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .research-card:hover .research-image img {
+            transform: scale(1.1);
+        }
+
+        .research-content {
+            padding: 1.5rem;
+        }
+
+        .research-tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--light-blue);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .research-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Market Stats */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            color: var(--accent-orange);
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-orange);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-orange);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-blue);
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-orange);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .intro-features {
+                grid-template-columns: 1fr;
+            }
+
+            .process-step {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--accent-orange);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: #ea580c;
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-layer-group"></i>
+                المواد المركبة
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#intro">مقدمة</a></li>
+                <li><a href="#types">الأنواع</a></li>
+                <li><a href="#applications">التطبيقات</a></li>
+                <li><a href="#manufacturing">التصنيع</a></li>
+                <li><a href="#research">الأبحاث</a></li>
+                <li><a href="#market">السوق</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>بوابة المواد المركبة</h1>
+            <p>منصة شاملة تقدم معلومات دقيقة ومحدثة عن المواد المركبة، أنواعها، تطبيقاتها، وأحدث التطورات في هذا المجال التكنولوجي المتقدم</p>
+            <a href="#intro" class="cta-button">استكشف العالم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="section">
+        <div class="container">
+            <h2 class="section-title">ما هي المواد المركبة؟</h2>
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <h3>تعريف المواد المركبة</h3>
+                    <p>المواد المركبة هي مواد هندسية متطورة تتكون من مادتين أو أكثر ذات خصائص فيزيائية وكيميائية مختلفة، تدمج معاً لإنتاج مادة جديدة ذات خصائص متفوقة على مكوناتها الفردية.</p>
+                    <p>تتميز هذه المواد بقوة عالية، وزن خفيف، ومقاومة ممتازة للتآكل والتعب، مما يجعلها الخيار المثالي للعديد من التطبيقات الصناعية المتقدمة.</p>
+                    
+                    <div class="intro-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>قوة عالية</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>وزن خفيف</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>مقاومة تآكل</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>مرونة تصميم</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-image">
+                    <img src="https://picsum.photos/seed/composite-intro/600/400.jpg" alt="المواد المركبة">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Types Section -->
+    <section id="types" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">أنواع المواد المركبة</h2>
+            <div class="types-container">
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <h3>المواد المركبة ذات المصفوفة البوليمرية</h3>
+                    <p>الأكثر شيوعاً واستخداماً، تتكون من ألياف (زجاجية، كربونية، أراميد) مغروسة في مصفوفة بوليمرية. تستخدم في الطيران والسيارات والرياضة.</p>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3>المواد المركبة ذات المصفوفة المعدنية</h3>
+                    <p>تتكون من ألياف سيراميكية أو أكسيدية مغروسة في مصفوفة معدنية (ألومنيوم، تيتانيوم). تتميز بمقاومة حرارية عالية وتستخدم في الفضاء.</p>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>المواد المركبة السيراميكية</h3>
+                    <p>مصممة لتحمل درجات حرارة عالية جداً، تستخدم في تطبيقات الفضاء والمحركات النفاثة وأجزاء المركبات عالية الأداء.</p>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>المواد المركبة الهجينة</h3>
+                    <p>تجمع بين أكثر من نوع من الألياف أو المصفوفات لتحقيق خصائص متوازنة ومحسنة، مثل الجمع بين ألياف الكربون والزجاج.</p>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>المواد المركبة النانوية</h3>
+                    <p>أحدث تطور في مجال المواد المركبة، تستخدم جسيمات نانوية لتعزيز الخصائص الميكانيكية والحرارية والكهربائية بشكل كبير.</p>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>المواد المركبة الصديقة للبيئة</h3>
+                    <p>تستخدم أليافاً طبيعية (قصب، كتان، خيزران) ومصفوفات قابلة للتحلل، تركز على الاستدامة وحماية البيئة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="section">
+        <div class="container">
+            <h2 class="section-title">التطبيقات الصناعية</h2>
+            <div class="applications-showcase">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>الطيران والفضاء</h3>
+                        <p>هياكل الطائرات، الأجنحة، أجزاء المركبات الفضائية</p>
+                    </div>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>السيارات</h3>
+                        <p>هياكل السيارات، الأجزاء الخارجية، أنظمة التعليق</p>
+                    </div>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>البناء</h3>
+                        <p>ألواح البناء، التعزيزات الهيكلية، الواجهات المعمارية</p>
+                    </div>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>الطبية</h3>
+                        <p>الأطراف الصناعية، غرسات الأسنان، أجهزة طبية</p>
+                    </div>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>الطاقة</h3>
+                        <p>رياح توربينات، ألواح شمسية، أنابيب النفط والغاز</p>
+                    </div>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-football-ball"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>الرياضة</h3>
+                        <p>مضارب التنس، دراجات هوائية، معدات رياضية</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Manufacturing Section -->
+    <section id="manufacturing" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">عمليات التصنيع</h2>
+            <div class="manufacturing-process">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>تصميم المواد</h3>
+                        <p>اختيار المكونات المناسبة (الألياف والمصفوفة) وتحديد النسب المثلى لتحقيق الخصائص المطلوبة. يشمل هذا المرحلة النمذجة الحاسوبية والمحاكاة.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>تحضير المواد</h3>
+                        <p>معالجة الألياف وتجهيز المصفوفة. يشمل تنظيف الألياف، تطبيق معالجات السطح، وإعداد البوليمرات أو المعادن الأساسية.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>التصنيع</h3>
+                        <p>استخدام تقنيات مثل القولبة بالحقن، اللف، الضغط، أو السحب لدمج المكونات معاً. اختيار التقنية يعتمد على التطبيق والمواد المستخدمة.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>المعالجة الحرارية</h3>
+                        <p>تسخين المادة لتحقيق التفاعلات الكيميائية المطلوبة وتحسين الخصائص الميكانيكية. درجة الحرارة والوقت يعتمدان على نوع المادة.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>الاختبار والجودة</h3>
+                        <p>إجراء اختبارات ميكانيكية وحرارية وكيميائية للتأكد من مطابقة المنتج للمواصفات المطلوبة. يشمل اختبار الشد، الانضغاط، والصدم.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="section">
+        <div class="container">
+            <h2 class="section-title">أحدث الأبحاث والابتكارات</h2>
+            <div class="research-grid">
+                <article class="research-card">
+                    <div class="research-image">
+                        <img src="https://picsum.photos/seed/research1/400/200.jpg" alt="بحث علمي">
+                    </div>
+                    <div class="research-content">
+                        <span class="research-tag">مواد نانوية</span>
+                        <h3>تطوير مواد مركبة نانوية ذات قوة فائقة</h3>
+                        <p>باحثون يطورون مواد مركبة جديدة باستخدام جسيمات نانوية من الجرافين، مما يزيد من القوة بنسبة 300% مع الحفاظ على الوزن الخفيف.</p>
+                    </div>
+                </article>
+                <article class="research-card">
+                    <div class="research-image">
+                        <img src="https://picsum.photos/seed/research2/400/200.jpg" alt="بحث علمي">
+                    </div>
+                    <div class="research-content">
+                        <span class="research-tag">مستدامة</span>
+                        <h3>مواد مركبة قابلة لإعادة التدوير بالكامل</h3>
+                        <p>ابتكار جديد في مجال المواد المركبة الصديقة للبيئة، حيث يمكن فصل المكونات وإعادة استخدامها بشكل كامل.</p>
+                    </div>
+                </article>
+                <article class="research-card">
+                    <div class="research-image">
+                        <img src="https://picsum.photos/seed/research3/400/200.jpg" alt="بحث علمي">
+                    </div>
+                    <div class="research-content">
+                        <span class="research-tag">ذكية</span>
+                        <h3>مواد مركبة ذاتية الشفاء</h3>
+                        <p>تطوير مواد مركبة تحتوي على كبسولات دقيقة تطلق مواد علاجية عند حدوث تشققات، مما يسمح للمادة بإصلاح نفسها تلقائياً.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Section -->
+    <section id="market" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">سوق المواد المركبة</h2>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-number">113</div>
+                    <div class="stat-label">مليار دولار حجم السوق العالمي</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="stat-number">12.5</div>
+                    <div class="stat-label">٪ معدل النمو السنوي</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <div class="stat-number">4500</div>
+                    <div class="stat-label">شركة مصنعة عالمياً</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-number">2.5M</div>
+                    <div class="stat-label">وظيفة في القطاع</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>من نحن</h3>
+                    <p>منصة رائدة متخصصة في تقديم المعرفة والمعلومات عن المواد المركبة، تدعم الباحثين والمهندسين والصناعيين في هذا المجال التكنولوجي المتقدم.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#intro">مقدمة في المواد المركبة</a></li>
+                        <li><a href="#types">أنواع المواد المركبة</a></li>
+                        <li><a href="#applications">التطبيقات الصناعية</a></li>
+                        <li><a href="#manufacturing">عمليات التصنيع</a></li>
+                        <li><a href="#research">أحدث الأبحاث</a></li>
+                        <li><a href="#market">بيانات السوق</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>خدماتنا</h3>
+                    <ul>
+                        <li><a href="#">الاستشارات الفنية</a></li>
+                        <li><a href="#">التدريب والتأهيل</a></li>
+                        <li><a href="#">البحث والتطوير</a></li>
+                        <li><a href="#">الاختبارات المعملية</a></li>
+                        <li><a href="#">المؤتمرات والفعاليات</a></li>
+                        <li><a href="#">النشر العلمي</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> العنوان: مركز البحث العلمي، الحي التكنولوجي</li>
+                        <li><i class="fas fa-phone"></i> الهاتف: +966 12 345 6789</li>
+                        <li><i class="fas fa-envelope"></i> البريد: info@composites.gov.sa</li>
+                        <li><i class="fas fa-clock"></i> ساعات العمل: 8:00 ص - 5:00 م</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 بوابة المواد المركبة. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.type-card, .app-card, .process-step, .research-card, .stat-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = 'all 0.6s ease';
+            observer.observe(item);
+        });
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.width = '100%';
+                navLinks.style.padding = '1rem';
+                navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Add hover effect to feature items
+        document.querySelectorAll('.feature-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.background = '#e5e7eb';
+            });
+            item.addEventListener('mouseleave', function() {
+                this.style.background = '#f3f4f6';
+            });
+        });
+    </script>
+</body>
+</html>

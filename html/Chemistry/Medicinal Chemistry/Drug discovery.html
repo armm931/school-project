@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مركز اكتشاف الأدوية - رحلة الابتكار الدوائي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0066cc;
+            --light-blue: #4da6ff;
+            --accent-blue: #e6f2ff;
+            --dark-blue: #004499;
+            --medical-green: #00cc66;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+            --text-color: #2d3436;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 102, 204, 0.9), rgba(0, 102, 204, 0.9)),
+                        url('https://picsum.photos/seed/pharma-lab/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--medical-green);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button-secondary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: white;
+            text-decoration: none;
+            border: 2px solid white;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover, .cta-button-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--medical-green);
+        }
+
+        /* Drug Discovery Process */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary-blue);
+        }
+
+        .process-step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            color: var(--medical-green);
+            margin-bottom: 1rem;
+        }
+
+        .process-step h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Technologies Section */
+        .tech-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tech-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .tech-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .tech-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .tech-card:hover .tech-image img {
+            transform: scale(1.1);
+        }
+
+        .tech-content {
+            padding: 1.5rem;
+        }
+
+        .tech-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: var(--primary-blue);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Discoveries Gallery */
+        .discoveries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .discovery-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .discovery-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .discovery-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .discovery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .discovery-card:hover .discovery-image img {
+            transform: scale(1.1);
+        }
+
+        .discovery-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--medical-green);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .discovery-content {
+            padding: 1.5rem;
+        }
+
+        .discovery-date {
+            color: var(--light-blue);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .discovery-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .discovery-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .member-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+            border: 5px solid var(--accent-blue);
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-name {
+            font-size: 1.2rem;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .member-title {
+            color: var(--medical-green);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .member-bio {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: var(--accent-blue);
+            color: var(--primary-blue);
+            text-align: center;
+            line-height: 35px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Partnership Section */
+        .partnership-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .partnership-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .partnership-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .partnership-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .partner-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            color: var(--text-color);
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: right;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+
+        .form-submit {
+            background: var(--medical-green);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .form-submit:hover {
+            background: #00aa55;
+            transform: translateY(-2px);
+        }
+
+        /* News Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-image {
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.1);
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-category {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: var(--primary-blue);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--medical-green);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--medical-green);
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--primary-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--dark-blue);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .process-grid,
+            .tech-cards,
+            .discoveries-grid,
+            .team-grid,
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-capsules"></i>
+                مركز اكتشاف الأدوية
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#process">مراحل الاكتشاف</a></li>
+                <li><a href="#technologies">التقنيات</a></li>
+                <li><a href="#discoveries">الاكتشافات</a></li>
+                <li><a href="#team">الفريق</a></li>
+                <li><a href="#partnership">الشراكة</a></li>
+                <li><a href="#news">الأخبار</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>مركز اكتشاف الأدوية</h1>
+            <p>نقطة التقاء العلم والابتكار لتطوير علاجات جديدة تغير حياة الملايين حول العالم</p>
+            <div class="cta-buttons">
+                <a href="#process" class="cta-button">استكشف المراحل</a>
+                <a href="#discoveries" class="cta-button-secondary">الاكتشافات الحديثة</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Drug Discovery Process -->
+    <section id="process" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">مراحل اكتشاف الأدوية</h2>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>الاكتشاف الأولي</h3>
+                    <p>تحديد الهدف العلاجي والبحث عن المركبات المحتملة التي يمكن أن تتفاعل معه</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>التحسين والتصميم</h3>
+                    <p>تعديل الهياكل الكيميائية لتحسين الفعالية وتقليل الآثار الجانبية</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h3>ما قبل السريري</h3>
+                    <p>الاختبارات المختبرية والحيوية لتقييم السلامة والفعالية</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3>التجارب السريرية</h3>
+                    <p>الاختبارات على البشر لتأكيد الفعالية والسلامة في المراحل الثلاث</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <div class="step-icon">
+                        <i class="fas fa-file-medical"></i>
+                    </div>
+                    <h3>الموافقة التنظيمية</h3>
+                    <p>تقديم المستندات للهيئات التنظيمية للحصول على تصريح التسويق</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">6</div>
+                    <div class="step-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>الإنتاج والتوزيع</h3>
+                    <p>التصنيع على نطاق واسع وتوزيع الدواء للمرضى</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section id="technologies" class="section">
+        <div class="container">
+            <h2 class="section-title">أحدث التقنيات في اكتشاف الأدوية</h2>
+            <div class="tech-cards">
+                <div class="tech-card">
+                    <div class="tech-image">
+                        <img src="https://picsum.photos/seed/ai-pharma/400/200.jpg" alt="الذكاء الاصطناعي">
+                    </div>
+                    <div class="tech-content">
+                        <h3>الذكاء الاصطناعي</h3>
+                        <p>استخدام خوارزميات التعلم الآلي للتنبؤ بخصائص المركبات وتسريع عملية الاكتشاف</p>
+                        <span class="tech-tag">تقنية متقدمة</span>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-image">
+                        <img src="https://picsum.photos/seed/supercomputer/400/200.jpg" alt="الحوسبة الفائقة">
+                    </div>
+                    <div class="tech-content">
+                        <h3>الحوسبة الفائقة</h3>
+                        <p>محاكاة تفاعلات الجزيئات المعقدة وتحليل البيانات الضخمة بسرعة فائقة</p>
+                        <span class="tech-tag">بنية تحتية</span>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-image">
+                        <img src="https://picsum.photos/seed/genomics/400/200.jpg" alt="الجينوم">
+                    </div>
+                    <div class="tech-content">
+                        <h3>علم الجينوم</h3>
+                        <p>تحليل التسلسل الجيني لتطوير علاجات مخصصة لكل مريض</p>
+                        <span class="tech-tag">طب دقيق</span>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-image">
+                        <img src="https://picsum.photos/seed/crispr/400/200.jpg" alt="تقنية CRISPR">
+                    </div>
+                    <div class="tech-content">
+                        <h3>تقنية CRISPR</h3>
+                        <p>تحرير الجينات بدقة لعلاج الأمراض الوراثية على المستوى الجيني</p>
+                        <span class="tech-tag">ثورة بيولوجية</span>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-image">
+                        <img src="https://picsum.photos/seed/nanotech/400/200.jpg" alt="تقنية النانو">
+                    </div>
+                    <div class="tech-content">
+                        <h3>تقنية النانو</h3>
+                        <p>تصميم أدوية نانوية تستهدف الخلايا المريضة بدقة وتقلل الآثار الجانبية</p>
+                        <span class="tech-tag">دقة عالية</span>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-image">
+                        <img src="https://picsum.photos/seed/robotics/400/200.jpg" alt="الروبوتات">
+                    </div>
+                    <div class="tech-content">
+                        <h3>الأتمتة والروبوتات</h3>
+                        <p>أنظمة آلية لإجراء آلاف التجارب بشكل متوازل وبأداء عالٍ</p>
+                        <span class="tech-tag">كفاءة عالية</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discoveries Gallery -->
+    <section id="discoveries" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">أحدث الاكتشافات الدوائية</h2>
+            <div class="discoveries-grid">
+                <div class="discovery-card">
+                    <div class="discovery-image">
+                        <img src="https://picsum.photos/seed/drug1/400/250.jpg" alt="علاج السرطان">
+                        <div class="discovery-badge">مبتكر</div>
+                    </div>
+                    <div class="discovery-content">
+                        <div class="discovery-date">
+                            <i class="fas fa-calendar-alt"></i> ديسمبر 2023
+                        </div>
+                        <h3>علاج جديد لسرطان الرئة</h3>
+                        <p>علاج مستهدف يزيد معدلات البقاء على قيد الحياة بنسبة 40% مع آثار جانبية محدودة</p>
+                        <div class="discovery-stats">
+                            <div class="stat">
+                                <div class="stat-number">95%</div>
+                                <div class="stat-label">فعالية</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">3</div>
+                                <div class="stat-label">مراحل سريرية</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">2025</div>
+                                <div class="stat-label">تسويق متوقع</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="discovery-card">
+                    <div class="discovery-image">
+                        <img src="https://picsum.photos/seed/drug2/400/250.jpg" alt="علاج ألزهايمر">
+                        <div class="discovery-badge">مهم</div>
+                    </div>
+                    <div class="discovery-content">
+                        <div class="discovery-date">
+                            <i class="fas fa-calendar-alt"></i> نوفمبر 2023
+                        </div>
+                        <h3>علاج ثوري لمرض ألزهايمر</h3>
+                        <p>أول علاج يبطئ تقدم المرض بنسبة 60% من خلال استهداف بروتينات أميلويد</p>
+                        <div class="discovery-stats">
+                            <div class="stat">
+                                <div class="stat-number">88%</div>
+                                <div class="stat-label">فعالية</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">2</div>
+                                <div class="stat-label">مراحل سريرية</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">2026</div>
+                                <div class="stat-label">تسويق متوقع</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="discovery-card">
+                    <div class="discovery-image">
+                        <img src="https://picsum.photos/seed/drug3/400/250.jpg" alt="علاج السكري">
+                        <div class="discovery-badge">واعد</div>
+                    </div>
+                    <div class="discovery-content">
+                        <div class="discovery-date">
+                            <i class="fas fa-calendar-alt"></i> أكتوبر 2023
+                        </div>
+                        <h3>علاج شامل للسكري من النوع 2</h3>
+                        <p>علاج واحد يتحكم في سكر الدم ويحمي القلب ويقلل الوزن بشكل فعال</p>
+                        <div class="discovery-stats">
+                            <div class="stat">
+                                <div class="stat-number">92%</div>
+                                <div class="stat-label">فعالية</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">1</div>
+                                <div class="stat-label">مرحلة سريرية</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">2027</div>
+                                <div class="stat-label">تسويق متوقع</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section">
+        <div class="container">
+            <h2 class="section-title">فريق البحث والخبراء</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://picsum.photos/seed/scientist1/150/150.jpg" alt="د. أحمد محمد">
+                    </div>
+                    <h3 class="member-name">د. أحمد محمد</h3>
+                    <p class="member-title">مدير البحث العلمي</p>
+                    <p class="member-bio">خبير في الكيمياء الدوائية بأكثر من 20 عاماً من الخبرة في اكتشاف الأدوية المضادة للسرطان</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://picsum.photos/seed/scientist2/150/150.jpg" alt="د. فاطمة علي">
+                    </div>
+                    <h3 class="member-name">د. فاطمة علي</h3>
+                    <p class="member-title">رئيسة قسم البيولوجيا الجزيئية</p>
+                    <p class="member-bio">متخصصة في علم الجينوم وتطوير العلاجات الدقيقة باستخدام تقنيات CRISPR</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://picsum.photos/seed/scientist3/150/150.jpg" alt="د. محمود حسن">
+                    </div>
+                    <h3 class="member-name">د. محمود حسن</h3>
+                    <p class="member-title">خبير الذكاء الاصطناعي</p>
+                        <p class="member-bio">يطور خوارزميات تعلم الآلي لتسريع اكتشاف الأدوية والتنبؤ بفاعليتها</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://picsum.photos/seed/scientist4/150/150.jpg" alt="د. سارة أحمد">
+                    </div>
+                    <h3 class="member-name">د. سارة أحمد</h3>
+                    <p class="member-title">مديرة التجارب السريرية</p>
+                    <p class="member-bio">تشرف على إجراء التجارب السريرية وتضمن جودة البيانات وسلامة المرضى</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Section -->
+    <section class="partnership-section">
+        <div class="container">
+            <div class="partnership-content">
+                <h2>انضم إلى شركائنا في الابتكار</h2>
+                <p>نحن نبحث عن شركات ومؤسسات للتعاون في تطوير علاجات ثورية تغير مستقبل الرعاية الصحية</p>
+                
+                <form class="partner-form">
+                    <div class="form-group">
+                        <label for="company">اسم الشركة/المؤسسة</label>
+                        <input type="text" id="company" name="company" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">اسم المسؤول</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="type">نوع الشراكة</label>
+                        <select id="type" name="type">
+                            <option value="">اختر نوع الشراكة</option>
+                            <option value="research">بحث وتطوير</option>
+                            <option value="funding">تمويل</option>
+                            <option value="manufacturing">تصنيع</option>
+                            <option value="distribution">توزيع</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">رسالة إضافية</label>
+                        <textarea id="message" name="message" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">تقديم طلب الشراكة</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">آخر الأخبار والفعاليات</h2>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://picsum.photos/seed/news1/400/180.jpg" alt="خبر">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category">بحث</span>
+                        <div class="news-date">
+                            <i class="fas fa-calendar-alt"></i> 18 ديسمبر 2023
+                        </div>
+                        <h3>إطلاق مشروع بحثي جديد لعلاج الأمراض النادرة</h3>
+                        <p>بدأ مركزنا مشروعاً بحثياً مبتكراً بالتعاون مع جامعات عالمية لتطوير علاجات للأمراض النادرة</p>
+                        <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://picsum.photos/seed/news2/400/180.jpg" alt="خبر">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category">فعالية</span>
+                        <div class="news-date">
+                            <i class="fas fa-calendar-alt"></i> 15 ديسمبر 2023
+                        </div>
+                        <h3>المؤتمر الدولي لاكتشاف الأدوية 2024</h3>
+                        <p>نستضيف المؤتمر الدولي السنوي الذي يجمع خبراء من حول العالم لمناقشة أحدث التطورات</p>
+                        <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://picsum.photos/seed/news3/400/180.jpg" alt="خبر">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category">إنجاز</span>
+                        <div class="news-date">
+                            <i class="fas fa-calendar-alt"></i> 10 ديسمبر 2023
+                        </div>
+                        <h3>حصولنا على براءة اختراع لتقنية جديدة</h3>
+                        <p>تم تسجيل براءة اختراع لتقنية مبتكرة في توصيل الأدوية باستخدام النانوتكنولوجي</p>
+                        <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>من نحن</h3>
+                    <p>مركز متخصص في اكتشاف وتطوير الأدوية باستخدام أحدث التقنيات العلمية والابتكارات الطبية</p>
+                    <div class="social-links" style="margin-top: 1rem;">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#process">مراحل الاكتشاف</a></li>
+                        <li><a href="#technologies">التقنيات</a></li>
+                        <li><a href="#discoveries">الاكتشافات</a></li>
+                        <li><a href="#team">الفريق</a></li>
+                        <li><a href="#partnership">الشراكة</a></li>
+                        <li><a href="#news">الأخبار</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>خدماتنا</h3>
+                    <ul>
+                        <li><a href="#">البحث والتطوير</a></li>
+                        <li><a href="#">الاستشارات الدوائية</a></li>
+                        <li><a href="#">التجارب السريرية</a></li>
+                        <li><a href="#">التصنيع الدوائي</a></li>
+                        <li><a href="#">التراخيص التنظيمية</a></li>
+                        <li><a href="#">التدريب والتأهيل</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>المدينة العلمية، المبنى البحثي</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        <span>+966 12 345 6789</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@drugdiscovery.org</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-clock"></i>
+                        <span>الأحد - الخميس: 8:00 ص - 5:00 م</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 مركز اكتشاف الأدوية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.process-step, .tech-card, .discovery-card, .team-member, .news-card').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = 'all 0.6s ease';
+            observer.observe(item);
+        });
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.width = '100%';
+                navLinks.style.padding = '1rem';
+                navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Form submission
+        document.querySelector('.partner-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('شكراً لتقديم طلب الشراكة! سنتواصل معك قريباً.');
+            this.reset();
+        });
+
+        // Add hover effect to cards
+        document.querySelectorAll('.process-step, .tech-card, .discovery-card, .team-member, .news-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>

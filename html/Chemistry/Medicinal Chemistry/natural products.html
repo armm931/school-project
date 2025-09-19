@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الطبيعة الذهبية - منتجات طبيعية وتعليمية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #2d5016;
+            --light-green: #6b8e23;
+            --accent-green: #8fbc8f;
+            --earth-brown: #8b4513;
+            --cream: #f5f5dc;
+            --light-cream: #faf8f3;
+            --white: #ffffff;
+            --dark-text: #333333;
+            --light-text: #666666;
+            --accent-brown: #a0522d;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            overflow-x: hidden;
+            background-color: var(--light-cream);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+
+        .logo i {
+            font-size: 2.2rem;
+            color: var(--light-green);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-icons a {
+            color: var(--primary-green);
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-icons a:hover {
+            color: var(--light-green);
+            transform: scale(1.1);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--primary-green);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(45, 80, 22, 0.9), rgba(139, 69, 19, 0.8)),
+                        url('https://picsum.photos/seed/natural-products/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,106.7C1248,96,1344,96,1392,96L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: var(--accent-green);
+            color: var(--primary-green);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-green);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .section-cream {
+            background: var(--cream);
+        }
+
+        .section-white {
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent-brown);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--light-text);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--light-green), var(--accent-brown));
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            color: var(--light-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--light-text);
+            line-height: 1.8;
+        }
+
+        /* Products Section */
+        .products-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.8rem;
+            background: white;
+            border: 2px solid var(--accent-green);
+            color: var(--primary-green);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--accent-green);
+            color: white;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent-green);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .product-content {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            color: var(--light-green);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            color: var(--primary-green);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-description {
+            color: var(--light-text);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            font-weight: 700;
+        }
+
+        .product-btn {
+            background: var(--light-green);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .product-btn:hover {
+            background: var(--primary-green);
+            transform: scale(1.05);
+        }
+
+        /* Education Section */
+        .education-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .education-text h3 {
+            font-size: 2.2rem;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .education-text p {
+            font-size: 1.1rem;
+            color: var(--light-text);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .education-features {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .education-features li {
+            padding: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--dark-text);
+        }
+
+        .education-features i {
+            color: var(--light-green);
+            font-size: 1.2rem;
+        }
+
+        .education-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .education-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .education-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Courses Section */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .course-duration {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(45, 80, 22, 0.9);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .course-content {
+            padding: 2rem;
+        }
+
+        .course-title {
+            font-size: 1.4rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .course-description {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .course-students {
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+
+        .course-students i {
+            color: var(--light-green);
+            margin-left: 0.3rem;
+        }
+
+        .course-rating {
+            color: var(--accent-brown);
+        }
+
+        .course-rating i {
+            margin-left: 0.2rem;
+        }
+
+        /* Benefits Section */
+        .benefits-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--cream);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .benefit-icon i {
+            font-size: 2.5rem;
+            color: var(--light-green);
+        }
+
+        .benefit-item h3 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Blog Section */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-image {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.1);
+        }
+
+        .blog-content {
+            padding: 2rem;
+        }
+
+        .blog-date {
+            color: var(--light-text);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .blog-title {
+            font-size: 1.4rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .read-more {
+            color: var(--light-green);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-green), var(--earth-brown));
+            color: white;
+            text-align: center;
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: white;
+            color: var(--primary-green);
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-green);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-green);
+        }
+
+        .footer-section p {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-green);
+            transform: translateX(-5px);
+        }
+
+        .footer-contact {
+            list-style: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-contact i {
+            color: var(--accent-green);
+            font-size: 1.2rem;
+            width: 25px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-green);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--light-green);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--primary-green);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .education-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 200px;
+            }
+            
+            .cta-section h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 350px;
+            height: 100vh;
+            background: white;
+            z-index: 1001;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-header {
+            padding: 1.5rem;
+            background: var(--primary-green);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mobile-nav-close {
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-nav-links {
+            padding: 2rem;
+            list-style: none;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-nav-links a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                الطبيعة الذهبية
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#products">المنتجات</a></li>
+                <li><a href="#education">التعليم</a></li>
+                <li><a href="#benefits">الفوائد</a></li>
+                <li><a href="#blog">المدونة</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                <a href="#"><i class="fas fa-user"></i></a>
+            </div>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <div class="mobile-nav-header">
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                الطبيعة الذهبية
+            </div>
+            <div class="mobile-nav-close">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="#home">الرئيسية</a></li>
+            <li><a href="#products">المنتجات</a></li>
+            <li><a href="#education">التعليم</a></li>
+            <li><a href="#benefits">الفوائد</a></li>
+            <li><a href="#blog">المدونة</a></li>
+            <li><a href="#contact">اتصل بنا</a></li>
+        </ul>
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>اكتشف جمال الطبيعة في منتجاتنا</h1>
+            <p>منصتنا التعليمية تقدم لك أفضل المنتجات الطبيعية 100% مع معرفة عميقة بفوائدها واستخداماتها</p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn btn-primary">تسوق الآن</a>
+                <a href="#education" class="btn btn-secondary">ابدأ التعلم</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section section-cream">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">لماذا تختار الطبيعة الذهبية؟</h2>
+                <p class="section-subtitle">نحن نقدم لك تجربة فريدة تجمع بين جودة المنتجات الطبيعية والمعرفة العلمية الموثوقة</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>منتجات معتمدة</h3>
+                    <p>جميع منتجاتنا حاصلة على شهادات الجودة العالمية وتخضع لفحوصات صارمة لضمان نقائها</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>100% طبيعي</h3>
+                    <p>نلتزم بتقديم منتجات خالية تماماً من المواد الكيميائية والمواد الحافظة الضارة</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>محتوى تعليمي</h3>
+                    <p>دورات ومقالات تعليمية مفصلة تشرح فوائد كل منتج وطريقة استخدامه الأمثل</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="section section-white">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">منتجاتنا الطبيعية</h2>
+                <p class="section-subtitle">اكتشف مجموعتنا المتنوعة من المنتجات الطبيعية عالية الجودة</p>
+            </div>
+            <div class="products-filter">
+                <button class="filter-btn active" data-filter="all">الكل</button>
+                <button class="filter-btn" data-filter="oils">الزيوت</button>
+                <button class="filter-btn" data-filter="herbs">الأعشاب</button>
+                <button class="filter-btn" data-filter="cosmetics">مستحضرات التجميل</button>
+                <button class="filter-btn" data-filter="food">أغذية</button>
+            </div>
+            <div class="products-grid">
+                <div class="product-card" data-category="oils">
+                    <div class="product-image">
+                        <img src="https://picsum.photos/seed/lavender-oil/400/300.jpg" alt="زيت اللافندر">
+                        <span class="product-badge">الأكثر مبيعاً</span>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">زيوت عطرية</div>
+                        <h3 class="product-title">زيت اللافندر النقي</h3>
+                        <p class="product-description">زيت لافندر 100% طبيعي، مثالي للاسترخاء وتحسين جودة النوم</p>
+                        <div class="product-footer">
+                            <span class="product-price">89 ريال</span>
+                            <button class="product-btn">أضف للسلة</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="herbs">
+                    <div class="product-image">
+                        <img src="https://picsum.photos/seed/chamomile/400/300.jpg" alt="البابونج">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">أعشاب طبية</div>
+                        <h3 class="product-title">أزهار البابونج العضوي</h3>
+                        <p class="product-description">بابونج عضوي معروف بخصائصه المهدئة والمفيدة للجهاز الهضمي</p>
+                        <div class="product-footer">
+                            <span class="product-price">45 ريال</span>
+                            <button class="product-btn">أضف للسلة</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="cosmetics">
+                    <div class="product-image">
+                        <img src="https://picsum.photos/seed/honey-mask/400/300.jpg" alt="قناع العسل">
+                        <span class="product-badge">جديد</span>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">عناية بالبشرة</div>
+                        <h3 class="product-title">قناع العسل الطبيعي</h3>
+                        <p class="product-description">قناع ترطيب وتنقية للبشرة مصنوع من عسل مانوكا النقي</p>
+                        <div class="product-footer">
+                            <span class="product-price">120 ريال</span>
+                            <button class="product-btn">أضف للسلة</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="food">
+                    <div class="product-image">
+                        <img src="https://picsum.photos/seed/honey/400/300.jpg" alt="العسل الطبيعي">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">أغذية طبيعية</div>
+                        <h3 class="product-title">عسل الجبل الطبيعي</h3>
+                        <p class="product-description">عسل طبيعي 100% من أعالي الجبال، غني بالمعادن والفيتامينات</p>
+                        <div class="product-footer">
+                            <span class="product-price">75 ريال</span>
+                            <button class="product-btn">أضف للسلة</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="oils">
+                    <div class="product-image">
+                        <img src="https://picsum.photos/seed/tea-tree-oil/400/300.jpg" alt="زيت شجرة الشاي">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">زيوت عطرية</div>
+                        <h3 class="product-title">زيت شجرة الشاي</h3>
+                        <p class="product-description">زيت طبيعي مضاد للبكتيريا، مثالي لعلاج حب الشباب والتهابات الجلد</p>
+                        <div class="product-footer">
+                            <span class="product-price">95 ريال</span>
+                            <button class="product-btn">أضف للسلة</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="herbs">
+                    <div class="product-image">
+                        <img src="https://picsum.photos/seed/mint/400/300.jpg" alt="النعناع">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">أعشاب طبية</div>
+                        <h3 class="product-title">أوراق النعناع الطازجة</h3>
+                        <p class="product-description">نعناع طازج مجفف، مفيد للهضم وتنقية التنفس</p>
+                        <div class="product-footer">
+                            <span class="product-price">35 ريال</span>
+                            <button class="product-btn">أضف للسلة</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section section-cream">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">المنصة التعليمية</h2>
+                <p class="section-subtitle">تعلم كل ما تحتاج معرفته عن المنتجات الطبيعية وفوائدها</p>
+            </div>
+            <div class="education-content">
+                <div class="education-text">
+                    <h3>اكتشف قوة الطبيعة من خلال العلم</h3>
+                    <p>منصتنا التعليمية توفر لك محتوى شامل وموثوق عن المنتجات الطبيعية، من مصادرها وطرق استخلاصها إلى فوائدها الصحية وطريقة استخدامها الأمثل.</p>
+                    <p>نحن نؤمن بأن المعرفة هي مفتاح الاستفادة القصوى من خيرات الطبيعة، ولهذا نقدم:</p>
+                    <ul class="education-features">
+                        <li><i class="fas fa-check-circle"></i> دورات تفاعلية مع خبراء في الطب الطبيعي</li>
+                        <li><i class="fas fa-check-circle"></i> مقالات علمية مدعومة بالأبحاث الحديثة</li>
+                        <li><i class="fas fa-check-circle"></i> فيديوهات توضيحية لطرق الاستخدام</li>
+                        <li><i class="fas fa-check-circle"></i> كتب إلكترونية مجانية</li>
+                        <li><i class="fas fa-check-circle"></i> منتدى تفاعلي لتبادل الخبرات</li>
+                    </ul>
+                </div>
+                <div class="education-image">
+                    <img src="https://picsum.photos/seed/education-natural/600/400.jpg" alt="التعليم الطبيعي">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="section section-white">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">الدورات التعليمية</h2>
+                <p class="section-subtitle">انضم إلى آلاف الطلاب الذين تعلموا معنا</p>
+            </div>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="https://picsum.photos/seed/course1/400/250.jpg" alt="مقدمة في الزيوت العطرية">
+                        <span class="course-duration">4 أسابيع</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">مقدمة في الزيوت العطرية</h3>
+                        <p class="course-description">تعلم أساسيات الزيوت العطرية، أنواعها، فوائدها، وطرق استخدامها الآمنة</p>
+                        <div class="course-meta">
+                            <span class="course-students"><i class="fas fa-users"></i> 1,234 طالب</span>
+                            <span class="course-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i> 4.9
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="https://picsum.photos/seed/course2/400/250.jpg" alt="العلاج بالأعشاب">
+                        <span class="course-duration">6 أسابيع</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">العلاج بالأعشاب للمبتدئين</h3>
+                        <p class="course-description">اكتشف عالم الأعشاب الطبية وكيفية استخدامها لعلاج الأمراض الشائعة</p>
+                        <div class="course-meta">
+                            <span class="course-students"><i class="fas fa-users"></i> 856 طالب</span>
+                            <span class="course-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i> 4.8
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="https://picsum.photos/seed/course3/400/250.jpg" alt="العناية الطبيعية بالبشرة">
+                        <span class="course-duration">3 أسابيع</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">العناية الطبيعية بالبشرة</h3>
+                        <p class="course-description">صنع مستحضرات تجميل طبيعية في المنزل لجميع أنواع البشرة</p>
+                        <div class="course-meta">
+                            <span class="course-students"><i class="fas fa-users"></i> 2,145 طالب</span>
+                            <span class="course-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i> 5.0
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="section section-cream">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">الفوائد الصحية</h2>
+                <p class="section-subtitle">اكتشف الفوائد العديدة للمنتجات الطبيعية على صحتك</p>
+            </div>
+            <div class="benefits-container">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>صحة القلب</h3>
+                    <p>المنتجات الطبيعية تساعد في خفض ضغط الدم والكوليسترول</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>تحسين الذاكرة</h3>
+                    <p>بعض الأعشاب والزيوت تعزز الوظائف المعرفية والذاكرة</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <h3>نوم أفضل</h3>
+                    <p>المنتجات الطبيعية تساعد على الاسترخاء وتحسين جودة النوم</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>تعزيز المناعة</h3>
+                    <p>تقوية جهاز المناعة لمقاومة الأمراض والعدوى</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3>تقليل التوتر</h3>
+                    <p>الروائح الطبيعية تساعد في تهدئة الأعصاب وتقليل القلق</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <h3>تحسين المزاج</h3>
+                    <p>بعض المنتجات الطبيعية تساعد في تحسين الحالة المزاجية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="section section-white">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">المدونة</h2>
+                <p class="section-subtitle">آخر المقالات والأخبار عن عالم المنتجات الطبيعية</p>
+            </div>
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://picsum.photos/seed/blog1/400/250.jpg" alt="أفضل الزيوت للشعر">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">
+                            <i class="fas fa-calendar-alt"></i> 15 ديسمبر 2023
+                        </div>
+                        <h3 class="blog-title">أفضل 5 زيوت طبيعية لنمو الشعر الصحي</h3>
+                        <p class="blog-excerpt">اكتشف أفضل الزيوت الطبيعية التي تساعد على تقوية الشعر ومنع تساقطه...</p>
+                        <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://picsum.photos/seed/blog2/400/250.jpg" alt="العلاج بالأعشاب">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">
+                            <i class="fas fa-calendar-alt"></i> 12 ديسمبر 2023
+                        </div>
+                        <h3 class="blog-title">دليلك الشامل للعلاج بالأعشاب في المنزل</h3>
+                        <p class="blog-excerpt">تعلم كيفية استخدام الأعشاب الشائعة لعلاج الأمراض البسيطة...</p>
+                        <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://picsum.photos/seed/blog3/400/250.jpg" alt="مستحضرات التجميل">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">
+                            <i class="fas fa-calendar-alt"></i> 10 ديسمبر 2023
+                        </div>
+                        <h3 class="blog-title">كيف تصنع مستحضرات تجميل طبيعية في المنزل</h3>
+                        <p class="blog-excerpt">وصفات سهلة لصنع مستحضرات تجميل طبيعية آمنة وفعالة...</p>
+                        <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>انضم إلى مجتمع الطبيعة الذهبية اليوم</h2>
+                <p>احصل على خصم 20% على أول طلب لك واشترك في نشرتنا البريدية لتلقي نصائح وعروض حصرية</p>
+                <a href="#" class="cta-button">سجل الآن مجاناً</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن الطبيعة الذهبية</h3>
+                    <p>منصتنا الرائدة في تقديم المنتجات الطبيعية عالية الجودة والمحتوى التعليمي الموثوق. نحن نسعى لنشر الوعي بأهمية الطبيعة في حياتنا اليومية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#products"><i class="fas fa-angle-left"></i> المنتجات</a></li>
+                        <li><a href="#education"><i class="fas fa-angle-left"></i> الدورات التعليمية</a></li>
+                        <li><a href="#benefits"><i class="fas fa-angle-left"></i> الفوائد الصحية</a></li>
+                        <li><a href="#blog"><i class="fas fa-angle-left"></i> المدونة</a></li>
+                        <li><a href="#"><i class="fas fa-angle-left"></i> الشروط والأحكام</a></li>
+                        <li><a href="#"><i class="fas fa-angle-left"></i> سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>المنتجات</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-angle-left"></i> الزيوت العطرية</a></li>
+                        <li><a href="#"><i class="fas fa-angle-left"></i> الأعشاب الطبية</a></li>
+                        <li><a href="#"><i class="fas fa-angle-left"></i> مستحضرات التجميل</a></li>
+                        <li><a href="#"><i class="fas fa-angle-left"></i> الأغذية الطبيعية</a></li>
+                        <li><a href="#"><i class="fas fa-angle-left"></i> منتجات العناية</a></li>
+                        <li><a href="#"><i class="fas fa-angle-left"></i> المكملات الغذائية</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>شارع الملك فهد، الرياض، المملكة العربية السعودية</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+966 12 345 6789</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@altabiahaldhahabia.com</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>الأحد - الخميس: 9:00 ص - 6:00 م</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 الطبيعة الذهبية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const mobileNavClose = document.querySelector('.mobile-nav-close');
+        const overlay = document.querySelector('.overlay');
+
+        mobileMenu.addEventListener('click', function() {
+            mobileNav.classList.add('active');
+            overlay.classList.add('active');
+        });
+
+        mobileNavClose.addEventListener('click', function() {
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        overlay.addEventListener('click', function() {
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        // Product filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                
+                productCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                        card.style.animation = 'fadeInUp 0.5s ease';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Add to cart functionality
+        const productBtns = document.querySelectorAll('.product-btn');
+        productBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const productName = this.closest('.product-card').querySelector('.product-title').textContent;
+                
+                // Create notification
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 100px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: var(--light-green);
+                    color: white;
+                    padding: 1rem 2rem;
+                    border-radius: 10px;
+                    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+                    z-index: 10000;
+                    font-weight: 600;
+                    animation: slideDown 0.3s ease;
+                `;
+                notification.textContent = `تمت إضافة ${productName} إلى السلة بنجاح!`;
+                
+                document.body.appendChild(notification);
+                
+                // Remove notification after 3 seconds
+                setTimeout(() => {
+                    notification.style.animation = 'slideUp 0.3s ease';
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 300);
+                }, 3000);
+            });
+        });
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translate(-50%, -20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translate(-50%, 0);
+                }
+            }
+            
+            @keyframes slideUp {
+                from {
+                    opacity: 1;
+                    transform: translate(-50%, 0);
+                }
+                to {
+                    opacity: 0;
+                    transform: translate(-50%, -20px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Form submission prevention
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('شكراً لتسجيلك! سنتواصل معك قريباً.');
+                this.reset();
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الحرائك الدوائية - بوابة المعرفة الدوائية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a8a;
+            --light-blue: #3b82f6;
+            --accent-blue: #60a5fa;
+            --dark-blue: #1e40af;
+            --white: #ffffff;
+            --light-gray: #f8fafc;
+            --medium-gray: #e2e8f0;
+            --dark-gray: #334155;
+            --text-color: #1e293b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+            background: var(--light-gray);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.9), rgba(59, 130, 246, 0.8)),
+                        url('https://picsum.photos/seed/pharmacy/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent-blue);
+            color: var(--dark-blue);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: var(--white);
+        }
+
+        .cta-button-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button-secondary:hover {
+            background: white;
+            color: var(--dark-blue);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-blue);
+        }
+
+        /* ADME Grid */
+        .adme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .adme-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .adme-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary-blue);
+        }
+
+        .adme-card:nth-child(1)::before { background: var(--success); }
+        .adme-card:nth-child(2)::before { background: var(--light-blue); }
+        .adme-card:nth-child(3)::before { background: var(--warning); }
+        .adme-card:nth-child(4)::before { background: var(--danger); }
+
+        .adme-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .adme-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .adme-card:nth-child(1) .adme-icon { color: var(--success); }
+        .adme-card:nth-child(2) .adme-icon { color: var(--light-blue); }
+        .adme-card:nth-child(3) .adme-icon { color: var(--warning); }
+        .adme-card:nth-child(4) .adme-icon { color: var(--danger); }
+
+        .adme-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Concepts Section */
+        .concepts-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .concept-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .concept-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .concept-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .concept-content h3 {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .concept-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .concept-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--medium-gray);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: padding-right 0.3s ease;
+        }
+
+        .concept-list li:hover {
+            padding-right: 1rem;
+        }
+
+        .concept-list i {
+            color: var(--primary-blue);
+            width: 20px;
+        }
+
+        /* Calculator Section */
+        .calculator-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-top: 3rem;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .calc-input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .calc-input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark-gray);
+            font-weight: 500;
+        }
+
+        .calc-input-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--medium-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .calc-input-group input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+
+        .calc-button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .calc-button:hover {
+            background: var(--dark-blue);
+            transform: translateY(-2px);
+        }
+
+        .calc-results {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            color: var(--dark-gray);
+        }
+
+        .result-value {
+            font-weight: bold;
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+        }
+
+        /* Factors Section */
+        .factors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .factor-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .factor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .factor-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--light-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .factor-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Clinical Applications */
+        .clinical-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            padding: 0.8rem 1.5rem;
+            background: var(--medium-gray);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tab-button.active {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Resources Section */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .resource-icon {
+            height: 120px;
+            background: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .resource-content {
+            padding: 1.5rem;
+        }
+
+        .resource-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .resource-content p {
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+
+        .resource-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .resource-link:hover {
+            gap: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-blue);
+            color: var(--dark-blue);
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .concepts-container,
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .clinical-tabs {
+                justify-content: center;
+            }
+
+            .tab-button {
+                font-size: 0.9rem;
+                padding: 0.6rem 1rem;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--primary-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--dark-blue);
+            transform: translateY(-5px);
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-pills"></i>
+                الحرائك الدوائية
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#adme">العمليات الأساسية</a></li>
+                <li><a href="#concepts">المفاهيم</a></li>
+                <li><a href="#calculator">الحاسبة</a></li>
+                <li><a href="#factors">العوامل المؤثرة</a></li>
+                <li><a href="#clinical">التطبيقات السريرية</a></li>
+                <li><a href="#resources">الموارد</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>بوابة الحرائك الدوائية</h1>
+            <p>منصة تعليمية شاملة تشرح مفاهيم الحرائك الدوائية (ADME) والمفاهيم المتقدمة في الصيدلة السريرية</p>
+            <div class="cta-buttons">
+                <a href="#adme" class="cta-button">ابدأ التعلم</a>
+                <a href="#calculator" class="cta-button cta-button-secondary">جرب الحاسبة الدوائية</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ADME Section -->
+    <section id="adme" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">العمليات الأساسية (ADME)</h2>
+            <div class="adme-grid">
+                <div class="adme-card">
+                    <div class="adme-icon">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                    <h3>الامتصاص (A)</h3>
+                    <p>عملية انتقال الدواء من موقع الإعطاء إلى الدورة الدموية. تشمل العوامل المؤثرة: الذوبانية، الاستقرار، والخصائص الفيزيائية الكيميائية.</p>
+                </div>
+                <div class="adme-card">
+                    <div class="adme-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>التوزيع (D)</h3>
+                    <p>انتشار الدواء من الدورة الدموية إلى الأنسجة المختلفة. يعتمد على: الارتباط بالبروتينات، تدفق الدم، وحاجز الدماغ الدموي.</p>
+                </div>
+                <div class="adme-card">
+                    <div class="adme-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>الأيض (M)</h3>
+                    <p>تحويل الدواء إلى مركبات أكثر قابلية للذوبان بواسطة إنزيمات الكبد (خاصة سيتوكروم P450). يؤثر على فعالية الدواء وسميته.</p>
+                </div>
+                <div class="adme-card">
+                    <div class="adme-icon">
+                        <i class="fas fa-trash-alt"></i>
+                    </div>
+                    <h3>الإخراج (E)</h3>
+                    <p>إزالة الدواء ومستقلباته من الجسم主要通过 الكلى والكبد. يشمل: الترشيح الكبيبي، الإفراز الأنابيبي، وإعادة الامتصاص.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Concepts Section -->
+    <section id="concepts" class="section">
+        <div class="container">
+            <h2 class="section-title">المفاهيم المتقدمة في الحرائك الدوائية</h2>
+            <div class="concepts-container">
+                <div class="concept-image">
+                    <img src="https://picsum.photos/seed/pharmacokinetics/600/400.jpg" alt="مفاهيم الحرائك الدوائية">
+                </div>
+                <div class="concept-content">
+                    <h3>المعلمات الدوائية الأساسية</h3>
+                    <p>فهم هذه المفاهيم ضروري لتحديد الجرعات المناسبة وتجنب الآثار الجانبية:</p>
+                    <ul class="concept-list">
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span><strong>نصف العمر (t½):</strong> الزمن اللازم لانخفاض تركيز الدواء في الدم إلى النصف</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-cube"></i>
+                            <span><strong>الحجم الظاهري للتوزيع (Vd):</strong> الحجم النظري الذي يوزع فيه الدواء في الجسم</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span><strong>التخليص (Cl):</strong> حجم الدم الذي يتم تنظيفه من الدواء في وحدة الزمن</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-chart-line"></i>
+                            <span><strong>المساحة تحت المنحنى (AUC):</strong> تقيس التعرض الكلي للدواء مع الزمن</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-mountain"></i>
+                            <span><strong>التركيز الأقصى (Cmax):</strong> أعلى تركيز للدواء في الدم بعد الجرعة</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-hourglass-half"></i>
+                            <span><strong>الزمن للوصول للتركيز الأقصى (Tmax):</strong> الزمن للوصول إلى Cmax</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">الحاسبة الدوائية</h2>
+            <div class="calculator-container">
+                <p style="text-align: center; font-size: 1.1rem; color: var(--dark-gray); margin-bottom: 2rem;">
+                    احسب المعلمات الدوائية الأساسية باستخدام هذه الحاسبة البسيطة
+                </p>
+                <div class="calculator-grid">
+                    <div>
+                        <h3 style="margin-bottom: 1.5rem; color: var(--primary-blue);">البيانات المدخلة</h3>
+                        <div class="calc-input-group">
+                            <label for="dose">الجرعة (mg)</label>
+                            <input type="number" id="dose" placeholder="أدخل الجرعة" value="500">
+                        </div>
+                        <div class="calc-input-group">
+                            <label for="vd">الحجم الظاهري للتوزيع (L)</label>
+                            <input type="number" id="vd" placeholder="أدخل Vd" value="50">
+                        </div>
+                        <div class="calc-input-group">
+                            <label for="ke">ثابت الإزالة (h⁻¹)</label>
+                            <input type="number" id="ke" step="0.01" placeholder="أدخل ke" value="0.173">
+                        </div>
+                        <div class="calc-input-group">
+                            <label for="f">التوافر الحيوي (%)</label>
+                            <input type="number" id="f" placeholder="أدخل التوافر الحيوي" value="80">
+                        </div>
+                        <button class="calc-button" onclick="calculatePK()">
+                            <i class="fas fa-calculator"></i> احسب
+                        </button>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 1.5rem; color: var(--primary-blue);">النتائج</h3>
+                        <div class="calc-results">
+                            <div class="result-item">
+                                <span class="result-label">نصف العمر (t½)</span>
+                                <span class="result-value" id="half-life">--</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">التخليص (Cl)</span>
+                                <span class="result-value" id="clearance">--</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">التركيز الأولي (C₀)</span>
+                                <span class="result-value" id="c0">--</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">AUC</span>
+                                <span class="result-value" id="auc">--</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Factors Section -->
+    <section id="factors" class="section">
+        <div class="container">
+            <h2 class="section-title">العوامل المؤثرة على الحرائك الدوائية</h2>
+            <div class="factors-grid">
+                <div class="factor-card">
+                    <div class="factor-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>العوامل الفسيولوجية</h3>
+                    <p>العمر، الجنس، الوزن، الحالة الغذائية، الحمل، والرضاعة تؤثر جميعها على امتصاص وتوزيع وأيض الدواء.</p>
+                </div>
+                <div class="factor-card">
+                    <div class="factor-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>العوامل الوراثية</h3>
+                    <p>الاختلافات في إنزيمات الأيض (خاصة سيتوكروم P450) تؤدي إلى اختلافات فردية في استجابة الدواء.</p>
+                </div>
+                <div class="factor-card">
+                    <div class="factor-icon">
+                        <i class="fas fa-procedures"></i>
+                    </div>
+                    <h3>العوامل المرضية</h3>
+                    <p>أمراض الكبد والكلى، قصور القلب، وأمراض الجهاز الهضمي تغير بشكل كبير من الحرائك الدوائية.</p>
+                </div>
+                <div class="factor-card">
+                    <div class="factor-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3>التداخلات الدوائية</h3>
+                    <p>بعض الأدوية تؤثر على إنزيمات الأيض أو بروتينات النقل، مما يغير من تركيز الأدوية الأخرى في الجسم.</p>
+                </div>
+                <div class="factor-card">
+                    <div class="factor-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>العوامل الغذائية</h3>
+                    <p>الطعام يمكن أن يزيد أو يقلل من امتصاص بعض الأدوية. بعض الأطعمة تتفاعل مع إنزيمات الأيض.</p>
+                </div>
+                <div class="factor-card">
+                    <div class="factor-icon">
+                        <i class="fas fa-smoking"></i>
+                    </div>
+                    <h3>نمط الحياة</h3>
+                    <p>التدخين، الكحول، والتمارين الرياضية تؤثر على الأيض الدوائي وتغير من فعالية الدواء.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clinical Applications Section -->
+    <section id="clinical" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">التطبيقات السريرية</h2>
+            <div class="clinical-tabs">
+                <button class="tab-button active" onclick="showTab('dosing')">تحديد الجرعات</button>
+                <button class="tab-button" onclick="showTab('monitoring')">المراقبة العلاجية</button>
+                <button class="tab-button" onclick="showTab('adjustment')">تعديل الجرعات</button>
+                <button class="tab-button" onclick="showTab('interactions')">التداخلات الدوائية</button>
+            </div>
+            
+            <div id="dosing" class="tab-content active">
+                <h3>تحديد الجرعات الأمثل</h3>
+                <p>يعتمد تحديد الجرعات المناسبة على فهم الحرائك الدوائية للدواء:</p>
+                <ul style="margin-top: 1rem; padding-right: 2rem;">
+                    <li>حساب الجرعة التحميلية بناءً على الحجم الظاهري للتوزيع</li>
+                    <li>تحديد الجرعة الصيانة بناءً على التخليص</li>
+                    <li>مراعاة فترة نصف العمر لتحديد تكرار الجرعات</li>
+                    <li>النظر في التوافر الحيوي للدواء</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>مثال:</strong> دواء بحجم توزيع 50 لتر وتخليص 10 لتر/ساعة يحتاج جرعة تحميلية 500mg وجرعة صيانة 100mg كل 6 ساعات.</p>
+            </div>
+            
+            <div id="monitoring" class="tab-content">
+                <h3>المراقبة العلاجية للأدوية (TDM)</h3>
+                <p>المراقبة العلاجية ضرورية للأدوية ذات النافذة العلاجية الضيقة:</p>
+                <ul style="margin-top: 1rem; padding-right: 2rem;">
+                    <li>قياس تركيز الدواء في الدم للتأكد من فعاليته</li>
+                    <li>تجنب السمية الناتجة عن التركيزات العالية</li>
+                    <li>تعديل الجرعات بناءً على النتائج</li>
+                    <li>مراقبة التفاعلات مع أدوية أخرى</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>أمثلة:</strong> الديجوكسين، الليثيوم، الفينيتوين، ثيوفيلين، ومضادات التخثر.</p>
+            </div>
+            
+            <div id="adjustment" class="tab-content">
+                <h3>تعديل الجرعات في الحالات الخاصة</h3>
+                <p>يجب تعديل الجرعات في الحالات التالية:</p>
+                <ul style="margin-top: 1rem; padding-right: 2rem;">
+                    <li><strong>قصور الكلى:</strong> تقليل الجرعة أو زيادة الفترة بين الجرعات</li>
+                    <li><strong>قصور الكبد:</strong> تعديل الجرعة للأدوية التي تستقلب في الكبد</li>
+                    <li><strong>كبار السن:</strong> تقليل الجرعة بسبب انخفاض وظائف الأعضاء</li>
+                    <li><strong>الأطفال:</strong> تعديل الجرعة بناءً على الوزن أو مساحة سطح الجسم</li>
+                </ul>
+            </div>
+            
+            <div id="interactions" class="tab-content">
+                <h3>التداخلات الدوائية الهامة</h3>
+                <p>التداخلات الدوائية يمكن أن تكون خطيرة وتتطلب انتباهاً خاصاً:</p>
+                <ul style="margin-top: 1rem; padding-right: 2rem;">
+                    <li><strong>تداخلات الأيض:</strong> مثبطات أو محفزات إنزيمات سيتوكروم P450</li>
+                    <li><strong>تداخلات الامتصاص:</strong> مضادات الحموضة تقلل امتصاص بعض الأدوية</li>
+                    <li><strong>تداخلات الارتباط البروتيني:</strong> تنافس على مواقع الارتباط</li>
+                    <li><strong>تداخلات الإخراج:</strong> تأثير على وظائف الكلى أو الكبد</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="section">
+        <div class="container">
+            <h2 class="section-title">الموارد التعليمية</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>الكتب المرجعية</h3>
+                        <p>مجموعة من أفضل الكتب في الحرائك الدوائية والصيدلة السريرية</p>
+                        <a href="#" class="resource-link">
+                            تصفح الكتب <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>محاضرات فيديو</h3>
+                        <p>سلسلة من المحاضرات المصورة تشرح المفاهيم الأساسية والمتقدمة</p>
+                        <a href="#" class="resource-link">
+                            شاهد المحاضرات <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>أدوات حسابية</h3>
+                        <p>حاسبات متقدمة لجميع المعلمات الدوائية وتحليل المنحنيات</p>
+                        <a href="#" class="resource-link">
+                            استخدم الأدوات <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>الدراسات الحالة</h3>
+                        <p>حالات سريرية واقعية تطبق مفاهيم الحرائك الدوائية عملياً</p>
+                        <a href="#" class="resource-link">
+                            اقرأ الحالات <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>الرسوم البيانية</h3>
+                        <p>مجموعة من الرسوم التوضيحية والمنحنيات الدوائية التفاعلية</p>
+                        <a href="#" class="resource-link">
+                            استكشف الرسوم <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>الاختبارات</h3>
+                        <p>اختبارات تفاعلية لتقييم فهمك لمفاهيم الحرائك الدوائية</p>
+                        <a href="#" class="resource-link">
+                            ابدأ الاختبار <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>من نحن</h3>
+                    <p>منصة تعليمية متخصصة في الحرائك الدوائية، تقدم محتوى علمي دقيق ومحدث للصيادلة والأطباء وطلاب العلوم الصحية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#adme">العمليات الأساسية</a></li>
+                        <li><a href="#concepts">المفاهيم المتقدمة</a></li>
+                        <li><a href="#calculator">الحاسبة الدوائية</a></li>
+                        <li><a href="#factors">العوامل المؤثرة</a></li>
+                        <li><a href="#clinical">التطبيقات السريرية</a></li>
+                        <li><a href="#resources">الموارد التعليمية</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>الأقسام</h3>
+                    <ul>
+                        <li><a href="#">الصيدلة السريرية</a></li>
+                        <li><a href="#">الصيدلة الصناعية</a></li>
+                        <li><a href="#">الصيدلة الإكلينيكية</a></li>
+                        <li><a href="#">السموم الدوائية</a></li>
+                        <li><a href="#">الصيدلة الحيوية</a></li>
+                        <li><a href="#">الصيدلة العلاجية</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@pharmacokinetics.edu</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                        <li><i class="fas fa-clock"></i> من السبت إلى الخميس: 9 ص - 5 م</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 بوابة الحرائك الدوائية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Tab functionality
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from all tab buttons
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Pharmacokinetics Calculator
+        function calculatePK() {
+            // Get input values
+            const dose = parseFloat(document.getElementById('dose').value);
+            const vd = parseFloat(document.getElementById('vd').value);
+            const ke = parseFloat(document.getElementById('ke').value);
+            const f = parseFloat(document.getElementById('f').value) / 100;
+
+            // Calculate parameters
+            const halfLife = (0.693 / ke).toFixed(2);
+            const clearance = (vd * ke).toFixed(2);
+            const c0 = ((dose * f) / vd).toFixed(2);
+            const auc = ((dose * f) / clearance).toFixed(2);
+
+            // Display results
+            document.getElementById('half-life').textContent = halfLife + ' ساعة';
+            document.getElementById('clearance').textContent = clearance + ' L/h';
+            document.getElementById('c0').textContent = c0 + ' mg/L';
+            document.getElementById('auc').textContent = auc + ' mg·h/L';
+
+            // Add animation to results
+            const results = document.querySelectorAll('.result-value');
+            results.forEach(result => {
+                result.style.animation = 'fadeIn 0.5s ease';
+            });
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.width = '100%';
+                navLinks.style.padding = '1rem';
+                navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Add hover effects to cards
+        document.querySelectorAll('.adme-card, .factor-card, .resource-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Initialize calculator with default values
+        window.addEventListener('load', function() {
+            calculatePK();
+        });
+
+        // Form validation for calculator
+        document.querySelectorAll('.calc-input-group input').forEach(input => {
+            input.addEventListener('input', function() {
+                if (this.value < 0) {
+                    this.value = 0;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة أيض الأدوية - المنصة العلمية المتخصصة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0066cc;
+            --light-blue: #4d94ff;
+            --accent-blue: #b3d1ff;
+            --dark-blue: #004499;
+            --medical-green: #00a86b;
+            --light-green: #4cd964;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+            --text-color: #2c3e50;
+            --red: #dc3545;
+            --orange: #fd7e14;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 102, 204, 0.9), rgba(0, 102, 204, 0.8)),
+                        url('https://picsum.photos/seed/pharmacy/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--medical-green);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: var(--light-green);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-blue);
+        }
+
+        /* Introduction Section */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .intro-text {
+            padding: 2rem;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .intro-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .intro-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Metabolism Systems */
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .system-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .system-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--primary-blue);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .system-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .system-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .system-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .system-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Factors Section */
+        .factors-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .factor-item {
+            background: linear-gradient(135deg, var(--light-blue), var(--accent-blue));
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .factor-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.3);
+        }
+
+        .factor-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Drug Interactions */
+        .interactions-section {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-top: 3rem;
+        }
+
+        .interaction-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .interaction-type {
+            background: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-right: 4px solid var(--primary-blue);
+        }
+
+        .interaction-type h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tests Section */
+        .tests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .test-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .test-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .test-header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .test-content {
+            padding: 1.5rem;
+        }
+
+        .test-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--medical-green);
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        /* Case Studies */
+        .case-studies {
+            margin-top: 3rem;
+        }
+
+        .case-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-right: 5px solid var(--medical-green);
+            transition: all 0.3s ease;
+        }
+
+        .case-card:hover {
+            transform: translateX(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .case-title {
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Research Section */
+        .research-timeline {
+            position: relative;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .research-timeline::before {
+            content: '';
+            position: absolute;
+            right: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-blue);
+            transform: translateX(50%);
+        }
+
+        .research-item {
+            position: relative;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+        }
+
+        .research-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .research-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            position: relative;
+        }
+
+        .research-item:nth-child(odd) .research-content {
+            margin-right: auto;
+        }
+
+        .research-item:nth-child(even) .research-content {
+            margin-left: auto;
+        }
+
+        .research-year {
+            position: absolute;
+            right: 50%;
+            top: 50%;
+            transform: translate(50%, -50%);
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        /* Educational Resources */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .resource-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin: 2rem 0;
+        }
+
+        .resource-content {
+            padding: 0 2rem 2rem;
+        }
+
+        .resource-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--primary-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .resource-button:hover {
+            background: var(--dark-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--light-green);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--light-green);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--medical-green);
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--light-green);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .research-timeline::before {
+                right: 30px;
+            }
+
+            .research-content {
+                width: calc(100% - 60px);
+                margin-right: 60px !important;
+            }
+
+            .research-year {
+                right: 30px;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--primary-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--dark-blue);
+            transform: translateY(-5px);
+        }
+
+        /* Interactive Elements */
+        .metabolism-diagram {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .diagram-placeholder {
+            height: 400px;
+            background: url('https://picsum.photos/seed/metabolism/1200/400.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .diagram-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 102, 204, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Alert Box */
+        .alert-box {
+            background: linear-gradient(135deg, var(--medical-green), var(--light-green));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .alert-box i {
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-pills"></i>
+                أيض الأدوية
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#introduction">مقدمة</a></li>
+                <li><a href="#systems">أنظمة الأيض</a></li>
+                <li><a href="#factors">العوامل المؤثرة</a></li>
+                <li><a href="#interactions">التفاعلات</a></li>
+                <li><a href="#tests">الاختبارات</a></li>
+                <li><a href="#cases">دراسات الحالة</a></li>
+                <li><a href="#research">الأبحاث</a></li>
+                <li><a href="#resources">الموارد</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>بوابة أيض الأدوية</h1>
+            <p>منصة علمية متخصصة تقدم معلومات دقيقة وشاملة عن كيفية معالجة الجسم للأدوية والعمليات الحيوية المرتبطة بها</p>
+            <a href="#introduction" class="cta-button">ابدأ التعلم</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="introduction" class="section">
+        <div class="container">
+            <h2 class="section-title">مقدمة في أيض الأدوية</h2>
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <h3>ما هو أيض الأدوية؟</h3>
+                    <p>أيض الأدوية (Drug Metabolism) هو عملية تحويل الجسم للمواد الكيميائية الدوائية إلى مواد أخرى أكثر قابلية للذوبان في الماء، مما يسهل خروجها من الجسم.</p>
+                    <p>تحدث هذه العملية بشكل أساسي في الكبد عبر إنزيمات خاصة، وتلعب دوراً حاسماً في:</p>
+                    <p>• تحديد فعالية الدواء ومدة تأثيره</p>
+                    <p>• منع تراكم الدواء السام في الجسم</p>
+                    <p>• التأثير على تفاعلات الأدوية مع بعضها البعض</p>
+                    <p>• تحديد الجرعات المناسبة للمرضى</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://picsum.photos/seed/metabolism-intro/600/400.jpg" alt="أيض الأدوية">
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <i class="fas fa-info-circle"></i>
+                <div>
+                    <strong>معلومة مهمة:</strong> فهم أيض الأدوية أساسي لضمان العلاج الآمن والفعال، وتختلف سرعة الأيض من شخص لآخر حسب العوامل الوراثية والبيئية.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metabolism Systems Section -->
+    <section id="systems" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">أنظمة الأيض في الجسم</h2>
+            <div class="systems-grid">
+                <div class="system-card">
+                    <div class="system-icon">
+                        <i class="fas fa-liver"></i>
+                    </div>
+                    <h3>الإنزيمات الكبدية</h3>
+                    <p>النظام الرئيسي لأيض الأدوية، يشمل عائلة سيتوكروم P450 وإنزيمات المرحلة الثانية مثل UDP-glucuronosyltransferases</p>
+                </div>
+                <div class="system-card">
+                    <div class="system-icon">
+                        <i class="fas fa-kidneys"></i>
+                    </div>
+                    <h3>الجهاز البولي</h3>
+                    <p>يساهم في إخراج المستقلبات النشطة وغير النشطة، ويؤثر على تركيز الدواء في الدم</p>
+                </div>
+                <div class="system-card">
+                    <div class="system-icon">
+                        <i class="fas fa-lungs"></i>
+                    </div>
+                    <h3>الجهاز التنفسي</h3>
+                    <p>يساهم في إخراج بعض الأدوية المتطايرة ومستقلباتها من خلال الزفير</p>
+                </div>
+                <div class="system-card">
+                    <div class="system-icon">
+                        <i class="fas fa-intestine"></i>
+                    </div>
+                    <h3>الجهاز الهضمي</h3>
+                    <p>يحتوي على إنزيمات أيض وبكتيريا معوية تؤثر على امتصاص وتكسير بعض الأدوية</p>
+                </div>
+                <div class="system-card">
+                    <div class="system-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>الحاجز الدموي الدماغي</h3>
+                    <p>يحتوي على إنزيمات خاصة تؤثر على دخول الأدوية إلى الدماغ وأيضها</p>
+                </div>
+                <div class="system-card">
+                    <div class="system-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3>الدم والبلازما</h3>
+                    <p>تحتوي على إنزيمات مثل إسترازات البلازما التي تؤثر على بعض الأدوية</p>
+                </div>
+            </div>
+
+            <div class="metabolism-diagram">
+                <h3>رسم توضيحي لعملية الأيض</h3>
+                <div class="diagram-placeholder">
+                    <div class="diagram-overlay">
+                        <div>
+                            <i class="fas fa-project-diagram" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <p>رسم تفاعلي يوضح مراحل أيض الدواء في الجسم</p>
+                            <p style="font-size: 0.9rem; margin-top: 0.5rem;">الامتصاص → التوزيع → الأيض → الإخراج</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Factors Section -->
+    <section id="factors" class="section">
+        <div class="container">
+            <h2 class="section-title">العوامل المؤثرة على أيض الأدوية</h2>
+            <div class="factors-container">
+                <div class="factor-item">
+                    <div class="factor-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>العوامل الوراثية</h3>
+                    <p>الاختلافات الجينية في إنزيمات الأيض تؤثر على سرعة وكفاءة معالجة الأدوية</p>
+                </div>
+                <div class="factor-item">
+                    <div class="factor-icon">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <h3>العمر</h3>
+                    <p>كبار السن والأطفال لديهم أنظمة أيض مختلفة تتطلب تعديل الجرعات</p>
+                </div>
+                <div class="factor-item">
+                    <div class="factor-icon">
+                        <i class="fas fa-venus-mars"></i>
+                    </div>
+                    <h3>الجنس</h3>
+                    <p>الاختلافات الهرمونية بين الذكور والإناث تؤثر على أيض بعض الأدوية</p>
+                </div>
+                <div class="factor-item">
+                    <div class="factor-icon">
+                        <i class="fas fa-weight"></i>
+                    </div>
+                    <h3>الوزن والكتلة</h3>
+                    <p>تؤثر على توزيع الدواء وتركيزه في الدم</p>
+                </div>
+                <div class="factor-item">
+                    <div class="factor-icon">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <h3>النظام الغذائي</h3>
+                    <p>بعض الأطعمة تثبط أو تنشط إنزيمات الأيض</p>
+                </div>
+                <div class="factor-item">
+                    <div class="factor-icon">
+                        <i class="fas fa-smoking"></i>
+                    </div>
+                    <h3>العادات الحياتية</h3>
+                    <p>التدخين والكحول تؤثر بشكل كبير على كفاءة الأيض</p>
+                </div>
+                <div class="factor-item">
+                    <div class="factor-icon">
+                        <i class="fas fa-disease"></i>
+                    </div>
+                    <h3>الحالات المرضية</h3>
+                    <p>أمراض الكبد والكلى تؤثر بشكل مباشر على أيض الأدوية</p>
+                </div>
+                <div class="factor-item">
+                    <div class="factor-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3>الأدوية الأخرى</h3>
+                    <p>التفاعلات الدوائية تغير من سرعة الأيض</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactions Section -->
+    <section id="interactions" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">التفاعلات الدوائية</h2>
+            <div class="interactions-section">
+                <h3>أنواع التفاعلات الدوائية المتعلقة بالأيض</h3>
+                <div class="interaction-types">
+                    <div class="interaction-type">
+                        <h4><i class="fas fa-arrow-up"></i> تثبيط الأيض</h4>
+                        <p>عندما يقلل دواء من نشاط إنزيم الأيض، مما يؤدي إلى زيادة تركيز الدواء الآخر في الدم وزيادة تأثيره أو سمية</p>
+                        <p><strong>مثال:</strong> جريب فروت يثبط CYP3A4</p>
+                    </div>
+                    <div class="interaction-type">
+                        <h4><i class="fas fa-arrow-down"></i> تنشيط الأيض</h4>
+                        <p>عندما يزيد دواء من نشاط إنزيم الأيض، مما يؤدي إلى تقليل فعالية الدواء الآخر</p>
+                        <p><strong>مثال:</strong> ريفامبيسين ينشط CYP3A4</p>
+                    </div>
+                    <div class="interaction-type">
+                        <h4><i class="fas fa-exchange-alt"></i> تنافس الإنزيمات</h4>
+                        <p>عندما يتنافس دوائان على نفس إنزيم الأيض، مما يؤدي إلى تغير في تركيز كلا الدوائين</p>
+                        <p><strong>مثال:</strong> وارفارين وفينيتوين</p>
+                    </div>
+                </div>
+
+                <div class="alert-box" style="background: linear-gradient(135deg, var(--red), #ff6b6b);">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <div>
+                        <strong>تحذير:</strong> التفاعلات الدوائية قد تكون خطيرة وتتطلب استشارة الطبيب أو الصيدلي قبل تناول أي أدوية جديدة.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tests Section -->
+    <section id="tests" class="section">
+        <div class="container">
+            <h2 class="section-title">اختبارات وظائف الأيض</h2>
+            <div class="tests-grid">
+                <div class="test-card">
+                    <div class="test-header">
+                        <h3><i class="fas fa-liver"></i> اختبارات وظائف الكبد</h3>
+                    </div>
+                    <div class="test-content">
+                        <p>تقيس قدرة الكبد على أيض الأدوية وإزالة السموم من الجسم</p>
+                        <div class="test-value">ALT/AST</div>
+                        <p><strong>القيمة الطبيعية:</strong> 7-56 وحدة/لتر</p>
+                        <p><strong>الأهمية:</strong> ارتفاعها يشير إلى تلف خلايا الكبد</p>
+                    </div>
+                </div>
+                <div class="test-card">
+                    <div class="test-header">
+                        <h3><i class="fas fa-kidneys"></i> اختبارات وظائف الكلى</h3>
+                    </div>
+                    <div class="test-content">
+                        <p>تقيس قدرة الكلى على إخراج المستقلبات الدوائية من الجسم</p>
+                        <div class="test-value">الكرياتينين</div>
+                        <p><strong>القيمة الطبيعية:</strong> 0.6-1.2 ملغ/ديسيلتر</p>
+                        <p><strong>الأهمية:</strong> ارتفاعه يشهر إلى ضعف وظائف الكلى</p>
+                    </div>
+                </div>
+                <div class="test-card">
+                    <div class="test-header">
+                        <h3><i class="fas fa-vial"></i> اختبارات إنزيمات الأيض</h3>
+                    </div>
+                    <div class="test-content">
+                        <p>تحدد النمط الوراثي لإنزيمات الأيض المحددة</p>
+                        <div class="test-value">CYP450</div>
+                        <p><strong>الأنماط:</strong> سريع، متوسط، بطيئ الأيض</p>
+                        <p><strong>الأهمية:</strong> تخصيص الجرعات حسب النمط الوراثي</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section id="cases" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">دراسات حالة وأمثلة عملية</h2>
+            <div class="case-studies">
+                <div class="case-card">
+                    <div class="case-title">
+                        <i class="fas fa-file-medical"></i>
+                        حالة: وارفارين والمضادات الحيوية
+                    </div>
+                    <p><strong>السيناريو:</strong> مريض يتناول وارفارين لتسييل الدم وصف له مضاد حيوي جديد</p>
+                    <p><strong>التفاعل:</strong> المضاد الحيوي يثبط إنزيم CYP2C9 المسؤول عن أيض الوارفارين</p>
+                    <p><strong>النتيجة:</strong> زيادة تركيز الوارفارين في الدم وخطر النزيف</p>
+                    <p><strong>الحل:</strong> مراقبة INR بشكل متكرر وتعديل جرعة الوارفارين</p>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-title">
+                        <i class="fas fa-file-medical"></i>
+                        حالة: الكوديين والأطفال
+                    </div>
+                    <p><strong>السيناريو:</strong> طفل يعاني من نقص إنزيم CYP2D6 اللازم لتحويل الكوديين إلى Morphine</p>
+                    <p><strong>التفاعل:</strong> عدم فعالية الكوديين كمخدر</p>
+                    <p><strong>النتيجة:</strong> عدم السيطرة على الألم</p>
+                    <p><strong>الحل:</strong> استخدام بدائل لا تعتمد على هذا الإنزيم</p>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-title">
+                        <i class="fas fa-file-medical"></i>
+                        حالة: الستاتينات وعصير الجريب فروت
+                    </div>
+                    <p><strong>السيناريو:</strong> مريض يتناول دواء خفض الكوليسترول ويشرب عصير الجريب فروت بانتظام</p>
+                    <p><strong>التفاعل:</strong> الجريب فروت يثبط CYP3A4 ويزيد تركيز الستاتين</p>
+                    <p><strong>النتيجة:</strong> زيادة خطر تلف العضلات</p>
+                    <p><strong>الحل:</strong> تجنب تناول الجريب فروت مع الستاتين</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="section">
+        <div class="container">
+            <h2 class="section-title">أحدث الأبحاث والتطورات</h2>
+            <div class="research-timeline">
+                <div class="research-item">
+                    <div class="research-year">2023</div>
+                    <div class="research-content">
+                        <h4>اكتشاف إنزيمات أيض جديدة</h4>
+                        <p>تم اكتشاف عائلة جديدة من إنزيمات الأيض قد تفسر بعض التفاعلات الدوائية غير المعروفة سابقاً</p>
+                    </div>
+                </div>
+                <div class="research-item">
+                    <div class="research-year">2022</div>
+                    <div class="research-content">
+                        <h4>الطب الدقيق وأيض الأدوية</h4>
+                        <p>تطوير نماذج ذكاء اصطناعي للتنبؤ بسرعة أيض الأدوية بناءً على التركيب الكيميائي</p>
+                    </div>
+                </div>
+                <div class="research-item">
+                    <div class="research-year">2021</div>
+                    <div class="research-content">
+                        <h4>تأثير الميكروبيوم المعوي</h4>
+                        <p>أظهرت دراسات أن بكتيريا الأمعاء تلعب دوراً مهماً في أيض بعض الأدوية</p>
+                    </div>
+                </div>
+                <div class="research-item">
+                    <div class="research-year">2020</div>
+                    <div class="research-content">
+                        <h4>النانوتكنولوجي والأيض</h4>
+                        <p>تطوير أنظمة توصيل دوائية ذكية تتجاوز أنظمة الأيض التقليدية</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Educational Resources Section -->
+    <section id="resources" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">الموارد التعليمية</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>دليل الأيض الدوائي الشامل</h3>
+                        <p>مرجع كامل يغطي جميع جوانب أيض الأدوية مع أمثلة عملية وتطبيقات سريرية</p>
+                        <a href="#" class="resource-button">تحميل PDF</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>محاضرات فيديو تفاعلية</h3>
+                        <p>سلسلة محاضرات فيديو تشرح مفاهيم أيض الأدوية بشكل مبسط وواضح</p>
+                        <a href="#" class="resource-button">مشاهدة</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3">حاسبة الجرعات الدوائية</h3>
+                        <p>أداة تفاعلية لحساب الجرعات المناسبة بناءً على العوامل المؤثرة على الأيض</p>
+                        <a href="#" class="resource-button">استخدام</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>قاعدة بيانات التفاعلات</h3>
+                        <p>قاعدة بيانات شاملة للتفاعلات الدوائية المتعلقة بالأيض مع تحديثات مستمرة</p>
+                        <a href="#" class="resource-button">بحث</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>شهادات معتمدة</h3>
+                        <p>برامج تدريبية معتمدة تقدم شهادات في مجال أيض الأدوية والعلاج الدوائي</p>
+                        <a href="#" class="resource-button">التسجيل</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>منتدى النقاش</h3>
+                        <p>منصة تفاعلية لمناقشة حالات الأيض الدوائية وتبادل الخبرات بين المهنيين</p>
+                        <a href="#" class="resource-button">انضم الآن</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>من نحن</h3>
+                    <p>منصة علمية متخصصة في أيض الأدوية تقدم معلومات دقيقة ومحدثة للعاملين في المجال الصحي وطلاب الطب والصيدلة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#introduction">مقدمة في الأيض</a></li>
+                        <li><a href="#systems">أنظمة الأيض</a></li>
+                        <li><a href="#factors">العوامل المؤثرة</a></li>
+                        <li><a href="#interactions">التفاعلات الدوائية</a></li>
+                        <li><a href="#tests">الاختبارات المعملية</a></li>
+                        <li><a href="#cases">دراسات الحالة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>الموارد العلمية</h3>
+                    <ul>
+                        <li><a href="#">المقالات العلمية</a></li>
+                        <li><a href="#">الكتب المرجعية</a></li>
+                        <li><a href="#">الأدلة العلاجية</a></li>
+                        <li><a href="#">المجلات الطبية</a></li>
+                        <li><a href="#">المؤتمرات العلمية</a></li>
+                        <li><a href="#">البرامج التدريبية</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> العنوان: مركز البحوث الدوائية، الطابق الخامس</li>
+                        <li><i class="fas fa-phone"></i> الهاتف: +966 12 345 6789</li>
+                        <li><i class="fas fa-envelope"></i> البريد: info@drugmetabolism.org</li>
+                        <li><i class="fas fa-clock"></i> ساعات العمل: 9:00 ص - 5:00 م</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 بوابة أيض الأدوية. جميع الحقوق محفوظة. | <a href="#" style="color: var(--light-green);">سياسة الخصوصية</a> | <a href="#" style="color: var(--light-green);">شروط الاستخدام</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+
+            // Show/hide scroll to top button
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Timeline animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.research-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.right = '0';
+            navLinks.style.background = 'white';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.width = '100%';
+            navLinks.style.padding = '1rem';
+            navLinks.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+        });
+
+        // Add hover effects to cards
+        document.querySelectorAll('.system-card, .factor-item, .test-card, .resource-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Form submission prevention
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('تم إرسال طلبك بنجاح! سنتواصل معك قريباً.');
+                this.reset();
+            });
+        });
+
+        // Add animation on page load
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
