@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تاريخ دول العالم - موسوعة شاملة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap');
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .region-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .region-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .country-card {
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .country-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .country-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .search-container {
+            position: relative;
+        }
+        
+        .search-container i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6b7280;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-right: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #3b82f6;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            right: 5px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% - 20px);
+            background: #e5e7eb;
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .map-container {
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .loading-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <i class="fas fa-globe-americas text-3xl text-blue-600"></i>
+                    <h1 class="text-2xl font-bold text-gray-800">تاريخ دول العالم</h1>
+                </div>
+                <nav class="hidden md:flex space-x-6 space-x-reverse">
+                    <a href="#home" class="text-gray-600 hover:text-blue-600 transition">الرئيسية</a>
+                    <a href="#regions" class="text-gray-600 hover:text-blue-600 transition">المناطق</a>
+                    <a href="#search" class="text-gray-600 hover:text-blue-600 transition">البحث</a>
+                    <a href="#about" class="text-gray-600 hover:text-blue-600 transition">حول الموقع</a>
+                </nav>
+                <button class="md:hidden text-gray-600" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40">
+        <div class="bg-white w-64 h-full p-6">
+            <button onclick="toggleMobileMenu()" class="mb-6">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            <nav class="space-y-4">
+                <a href="#home" class="block text-gray-600 hover:text-blue-600 transition">الرئيسية</a>
+                <a href="#regions" class="block text-gray-600 hover:text-blue-600 transition">المناطق</a>
+                <a href="#search" class="block text-gray-600 hover:text-blue-600 transition">البحث</a>
+                <a href="#about" class="block text-gray-600 hover:text-blue-600 transition">حول الموقع</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 fade-in">استكشف تاريخ العالم</h2>
+                <p class="text-xl mb-8 fade-in">رحلة عبر الزمن لاستكشاف تاريخ 203 دولة حول العالم</p>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto fade-in">
+                    <div class="stat-card p-4 rounded-lg">
+                        <div class="text-3xl font-bold">22</div>
+                        <div class="text-sm">العالم العربي</div>
+                    </div>
+                    <div class="stat-card p-4 rounded-lg">
+                        <div class="text-3xl font-bold">44</div>
+                        <div class="text-sm">أوروبا</div>
+                    </div>
+                    <div class="stat-card p-4 rounded-lg">
+                        <div class="text-3xl font-bold">48</div>
+                        <div class="text-sm">آسيا</div>
+                    </div>
+                    <div class="stat-card p-4 rounded-lg">
+                        <div class="text-3xl font-bold">54</div>
+                        <div class="text-sm">أفريقيا</div>
+                    </div>
+                    <div class="stat-card p-4 rounded-lg">
+                        <div class="text-3xl font-bold">35</div>
+                        <div class="text-sm">الأمريكتان</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section id="search" class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto">
+                <h3 class="text-2xl font-bold text-center mb-8">ابحث عن دولة</h3>
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="اكتب اسم الدولة..."
+                        class="w-full px-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                        oninput="searchCountries()"
+                    >
+                </div>
+                <div id="searchResults" class="mt-4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Regions Section -->
+    <section id="regions" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">المناطق الجغرافية</h2>
+            
+            <!-- World Map Visualization -->
+            <div class="map-container p-8 mb-12 text-white">
+                <div class="text-center mb-6">
+                    <h3 class="text-2xl font-bold mb-2">خريطة العالم التفاعلية</h3>
+                    <p class="opacity-90">انقر على أي منطقة لاستكشاف دولها</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    <button onclick="showRegion('arab')" class="bg-white bg-opacity-20 hover:bg-opacity-30 p-4 rounded-lg transition">
+                        <i class="fas fa-mosque text-3xl mb-2"></i>
+                        <div class="font-bold">العالم العربي</div>
+                        <div class="text-sm">22 دولة</div>
+                    </button>
+                    <button onclick="showRegion('europe')" class="bg-white bg-opacity-20 hover:bg-opacity-30 p-4 rounded-lg transition">
+                        <i class="fas fa-landmark text-3xl mb-2"></i>
+                        <div class="font-bold">أوروبا</div>
+                        <div class="text-sm">44 دولة</div>
+                    </button>
+                    <button onclick="showRegion('asia')" class="bg-white bg-opacity-20 hover:bg-opacity-30 p-4 rounded-lg transition">
+                        <i class="fas fa-torii-gate text-3xl mb-2"></i>
+                        <div class="font-bold">آسيا</div>
+                        <div class="text-sm">48 دولة</div>
+                    </button>
+                    <button onclick="showRegion('africa')" class="bg-white bg-opacity-20 hover:bg-opacity-30 p-4 rounded-lg transition">
+                        <i class="fas fa-tree text-3xl mb-2"></i>
+                        <div class="font-bold">أفريقيا</div>
+                        <div class="text-sm">54 دولة</div>
+                    </button>
+                    <button onclick="showRegion('americas')" class="bg-white bg-opacity-20 hover:bg-opacity-30 p-4 rounded-lg transition">
+                        <i class="fas fa-mountain text-3xl mb-2"></i>
+                        <div class="font-bold">الأمريكتان</div>
+                        <div class="text-sm">35 دولة</div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Region Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Arab World -->
+                <div class="region-card bg-white rounded-xl shadow-lg overflow-hidden" onclick="showRegion('arab')">
+                    <div class="h-48 bg-gradient-to-br from-green-600 to-green-800 flex items-center justify-center">
+                        <i class="fas fa-mosque text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">العالم العربي</h3>
+                        <p class="text-gray-600 mb-4">22 دولة عربية تربطها اللغة والثقافة والتاريخ المشترك</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">منطقة الشرق الأوسط وشمال أفريقيا</span>
+                            <i class="fas fa-arrow-left text-blue-600"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Europe -->
+                <div class="region-card bg-white rounded-xl shadow-lg overflow-hidden" onclick="showRegion('europe')">
+                    <div class="h-48 bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
+                        <i class="fas fa-landmark text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">أوروبا</h3>
+                        <p class="text-gray-600 mb-4">44 دولة أوروبية بمختلف ثقافاتها وتاريخها العريق</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">قارة أوروبا</span>
+                            <i class="fas fa-arrow-left text-blue-600"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Asia -->
+                <div class="region-card bg-white rounded-xl shadow-lg overflow-hidden" onclick="showRegion('asia')">
+                    <div class="h-48 bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center">
+                        <i class="fas fa-torii-gate text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">آسيا</h3>
+                        <p class="text-gray-600 mb-4">48 دولة آسيوية بأكبر قارة في العالم</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">قارة آسيا</span>
+                            <i class="fas fa-arrow-left text-blue-600"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Africa -->
+                <div class="region-card bg-white rounded-xl shadow-lg overflow-hidden" onclick="showRegion('africa')">
+                    <div class="h-48 bg-gradient-to-br from-yellow-600 to-yellow-800 flex items-center justify-center">
+                        <i class="fas fa-tree text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">أفريقيا</h3>
+                        <p class="text-gray-600 mb-4">54 دولة أفريقية بتنوعها الثقافي والتاريخي</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">قارة أفريقيا</span>
+                            <i class="fas fa-arrow-left text-blue-600"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Americas -->
+                <div class="region-card bg-white rounded-xl shadow-lg overflow-hidden" onclick="showRegion('americas')">
+                    <div class="h-48 bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center">
+                        <i class="fas fa-mountain text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">الأمريكتان</h3>
+                        <p class="text-gray-600 mb-4">35 دولة في أمريكا الشمالية والجنوبية</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">قارتي أمريكا</span>
+                            <i class="fas fa-arrow-left text-blue-600"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countries Display Section -->
+    <section id="countriesSection" class="py-16 bg-gray-100 hidden">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between mb-8">
+                <h2 id="regionTitle" class="text-3xl font-bold"></h2>
+                <button onclick="hideCountries()" class="text-blue-600 hover:text-blue-800">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <div id="countriesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Countries will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Country Details Modal -->
+    <div id="countryModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 id="modalTitle" class="text-3xl font-bold"></h3>
+                        <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-times text-2xl"></i>
+                        </button>
+                    </div>
+                    <div id="modalContent">
+                        <!-- Content will be dynamically loaded -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-8">حول الموقع</h2>
+                <p class="text-lg text-gray-600 mb-6">
+                    موقع تاريخ دول العالم هو منصة تعليمية شاملة تقدم معلومات مفصلة عن تاريخ 203 دولة حول العالم.
+                    نهدف إلى توفير مصدر موثوق وسهل الوصول للمعرفة التاريخية لكل المهتمين بتاريخ الحضارات والشعوب.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                    <div class="text-center">
+                        <i class="fas fa-book text-4xl text-blue-600 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">مصادر موثوقة</h4>
+                        <p class="text-gray-600">نستند إلى مصادر تاريخية معتمدة وأبحاث أكاديمية</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-globe text-4xl text-blue-600 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">تغطية شاملة</h4>
+                        <p class="text-gray-600">جميع دول العالم بتفاصيل تاريخية دقيقة</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-users text-4xl text-blue-600 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">سهل الاستخدام</h4>
+                        <p class="text-gray-600">واجهة بديهية وتجربة مستخدم مميزة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-xl font-bold mb-4">تاريخ دول العالم</h4>
+                    <p class="text-gray-400">مصدرك الموثوق للتاريخ العالمي</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">روابط سريعة</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#home" class="hover:text-white transition">الرئيسية</a></li>
+                        <li><a href="#regions" class="hover:text-white transition">المناطق</a></li>
+                        <li><a href="#search" class="hover:text-white transition">البحث</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">تواصل معنا</h4>
+                    <div class="flex space-x-4 space-x-reverse">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">النشرة البريدية</h4>
+                    <p class="text-gray-400 mb-4">اشترك للحصول على آخر التحديثات</p>
+                    <div class="flex">
+                        <input type="email" placeholder="بريدك الإلكتروني" class="px-4 py-2 rounded-l-lg text-gray-800 w-full">
+                        <button class="bg-blue-600 px-4 py-2 rounded-r-lg hover:bg-blue-700 transition">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 تاريخ دول العالم. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample country data
+        const countriesData = {
+            arab: [
+                { name: 'السعودية', capital: 'الرياض', population: '34.8 مليون', founded: '1932', flag: '🇸🇦', history: 'تأسست المملكة العربية السعودية على يد الملك عبد العزيز آل سعود عام 1932م. تعتبر مهد الإسلام وموقع الحرمين الشريفين.' },
+                { name: 'مصر', capital: 'القاهرة', population: '102.3 مليون', founded: '3100 ق.م', flag: '🇪🇬', history: 'مصر من أقدم الحضارات في العالم، يعود تاريخها إلى أكثر من 5000 عام. اشتهرت بالفراعنة والأهرامات.' },
+                { name: 'الإمارات', capital: 'أبوظبي', population: '9.9 مليون', founded: '1971', flag: '🇦🇪', history: 'تأسست دولة الإمارات العربية المتحدة عام 1971م من اتحاد سبع إمارات. تعتبر من أحدث الدول تطوراً في المنطقة.' },
+                { name: 'المغرب', capital: 'الرباط', population: '37.3 مليون', founded: '789', flag: '🇲🇦', history: 'المغرب دولة عربية في شمال أفريقيا، تتميز بتاريخ عريق وتنوع ثقافي فريد.' },
+                { name: 'الجزائر', capital: 'الجزائر', population: '43.9 مليون', founded: '1962', flag: '🇩🇿', history: 'الجزائر أكبر دولة عربية مساحة، نالت استقلالها من فرنسا عام 1962 بعد ثورة التحرير.' },
+                { name: 'تونس', capital: 'تونس', population: '11.8 مليون', founded: '1956', flag: '🇹🇳', history: 'تونس موطن الحضارة القرطاجية، وأول دولة عربية تشهد ثورة الربيع العربي عام 2011.' },
+                { name: 'ليبيا', capital: 'طرابلس', population: '6.9 مليون', founded: '1951', flag: '🇱🇾', history: 'ليبيا دولة عربية في شمال أفريقيا، غنية بالآثار الرومانية والإسلامية.' },
+                { name: 'سوريا', capital: 'دمشق', population: '17.5 مليون', founded: '1946', flag: '🇸🇾', history: 'سوريا من أقدم الدول في العالم، دمشق هي أقدم عاصمة مأهولة بشكل مستمر.' },
+                { name: 'لبنان', capital: 'بيروت', population: '6.8 مليون', founded: '1943', flag: '🇱🇧', history: 'لبنان بلد التنوع الثقافي والديني، يعود تاريخه إلى الفينيقيين القدماء.' },
+                { name: 'الأردن', capital: 'عمان', population: '10.5 مليون', founded: '1946', flag: '🇯🇴', history: 'الأردن يضم مواقع أثرية هامة مثل البتراء، إحدى عجائب الدنيا السبع.' },
+                { name: 'العراق', capital: 'بغداد', population: '40.2 مليون', founded: '1932', flag: '🇮🇶', history: 'العراق مهد الحضارات القديمة، بلاد ما بين النهرين ومسقط رأس الحضارة السومرية.' },
+                { name: 'الكويت', capital: 'مدينة الكويت', population: '4.3 مليون', founded: '1961', flag: '🇰🇼', history: 'الكويت دولة خليجية صغيرة غنية بالنفط، تعتبر مركزاً مالياً وتجارياً مهماً.' },
+                { name: 'قطر', capital: 'الدوحة', population: '2.9 مليون', founded: '1971', flag: '🇶🇦', history: 'قطر دولة خليجية غنية بالغاز الطبيعي، استضافت كأس العالم 2022.' },
+                { name: 'البحرين', capital: 'المنامة', population: '1.5 مليون', founded: '1971', flag: '🇧🇭', history: 'البحرين أقدم دولة خليجية تستقل، تتميز بتنوعها الاقتصادي.' },
+                { name: 'عمان', capital: 'مسقط', population: '4.6 مليون', founded: '751', flag: '🇴🇲', history: 'عمان دولة عربية لها تاريخ بحري عريق، تمتلك سواحل طويلة على المحيط الهندي.' },
+                { name: 'اليمن', capital: 'صنعاء', population: '30.5 مليون', founded: '1990', flag: '🇾🇪', history: 'اليمن موطن مملكة سبأ، ويضم مدناً تاريخية مثل صنعاء وعدن.' },
+                { name: 'السودان', capital: 'الخرطوم', population: '45.7 مليون', founded: '1956', flag: '🇸🇩', history: 'السودان أكبر دولة عربية مساحة بعد الجزائر، غني بالحضارة النوبية.' },
+                { name: 'موريتانيا', capital: 'نواكشوط', population: '4.6 مليون', founded: '1960', flag: '🇲🇷', history: 'موريتانيا دولة عربية في غرب أفريقيا، تتميز بتراثها الصحراوي الفريد.' },
+                { name: 'الصومال', capital: 'مقديشو', population: '16.4 مليون', founded: '1960', flag: '🇸🇴', history: 'الصومال دولة عربية في القرن الأفريقي، تمتلك أطول ساحل في أفريقيا.' },
+                { name: 'جيبوتي', capital: 'جيبوتي', population: '1.1 مليون', founded: '1977', flag: '🇩🇯', history: 'جيبوتي دولة عربية صغيرة في القرن الأفريقي، موقع استراتيجي مهم.' },
+                { name: 'جزر القمر', capital: 'موروني', population: '0.9 مليون', founded: '1975', flag: '🇰🇲', history: 'جزر القمر دولة عربية في المحيط الهندي، تتكون من أربع جزر رئيسية.' },
+                { name: 'فلسطين', capital: 'القدس', population: '5.2 مليون', founded: '1988', flag: '🇵🇸', history: 'فلسطين أرض الرسالات ومهد الديانات السماوية، تتميز بأهميتها التاريخية والدينية.' }
+            ],
+            europe: [
+                { name: 'فرنسا', capital: 'باريس', population: '67.4 مليون', founded: '843', flag: '🇫🇷', history: 'فرنسا من أقوى الدول الأوروبية، عاصمتها باريس مدينة النور والفنون.' },
+                { name: 'ألمانيا', capital: 'برلين', population: '83.2 مليون', founded: '843', flag: '🇩🇪', history: 'ألمانيا قوة اقتصادية كبرى في أوروبا، عاصمتها برلين رمز للوحدة الألمانية.' },
+                { name: 'المملكة المتحدة', capital: 'لندن', population: '67.5 مليون', founded: '927', flag: '🇬🇧', history: 'المملكة المتحدة تتكون من إنجلترا واسكتلندا وويلز وأيرلندا الشمالية.' },
+                { name: 'إيطاليا', capital: 'روما', population: '59.1 مليون', founded: '1861', flag: '🇮🇹', history: 'إيطاليا مهد الإمبراطورية الرومانية وعصر النهضة الأوروبية.' },
+                { name: 'إسبانيا', capital: 'مدريد', population: '47.4 مليون', founded: '1479', flag: '🇪🇸', history: 'إسبانيا دولة غنية بالتراث الثقافي، عاصمتها مدريد مركز فني وثقافي.' },
+                { name: 'روسيا', capital: 'موسكو', population: '144.4 مليون', founded: '862', flag: '🇷🇺', history: 'روسيا أكبر دولة في العالم مساحة، تمتد عبر قارتي أوروبا وآسيا.' },
+                { name: 'النرويج', capital: 'أوسلو', population: '5.4 مليون', founded: '872', flag: '🇳🇴', history: 'النرويج دولة اسكندنافية معروفة بجمالها الطبيعي ومناظرها الخلابة.' },
+                { name: 'السويد', capital: 'ستوكهولم', population: '10.4 مليون', founded: '800', flag: '🇸🇪', history: 'السويد من الدول الإسكندنافية، معروفة بنظامها الاجتماعي المتقدم.' },
+                { name: 'فنلندا', capital: 'هلسنكي', population: '5.5 مليون', founded: '1917', flag: '🇫🇮', history: 'فنلندا دولة إسكندنافية، عاصمتها هلسنكي مركز للتصميم والابتكار.' },
+                { name: 'الدنمارك', capital: 'كوبنهاغن', population: '5.9 مليون', founded: '800', flag: '🇩🇰', history: 'الدنمارك أقدم مملكة في العالم، معروفة بسعادتها وجودة الحياة.' },
+                { name: 'هولندا', capital: 'أمستردام', population: '17.4 مليون', founded: '1581', flag: '🇳🇱', history: 'هولندا دولة منخفضة الأرض، عاصمتها أمستردام مدينة القنوات المائية.' },
+                { name: 'بلجيكا', capital: 'بروكسل', population: '11.6 مليون', founded: '1830', flag: '🇧🇪', history: 'بلجيكا مقر الاتحاد الأوروبي وحلف الناتو، عاصمتها بروكسل.' },
+                { name: 'سويسرا', capital: 'برن', population: '8.7 مليون', founded: '1291', flag: '🇨🇭', history: 'سويسرا دولة محايدة، معروفة بجبال الألب وبنوكها المالية.' },
+                { name: 'النمسا', capital: 'فيينا', population: '9 مليون', founded: '976', flag: '🇦🇹', history: 'النمسا موطن الموسيقى الكلاسيكية، عاصمتها فيينا مدينة الموسيقى.' },
+                { name: 'بولندا', capital: 'وارسو', population: '37.8 مليون', founded: '966', flag: '🇵🇱', history: 'بولندا دولة في وسط أوروبا، عاصمتها وارسو تعرضت للتدمير في الحرب العالمية الثانية.' },
+                { name: 'التشيك', capital: 'براغ', population: '10.7 مليون', founded: '870', flag: '🇨🇿', history: 'التشيك دولة في وسط أوروبا، عاصمتها براغ مدينة من العصور الوسطى.' },
+                { name: 'سلوفاكيا', capital: 'براتيسلافا', population: '5.5 مليون', founded: '1993', flag: '🇸🇰', history: 'سلوفاكيا دولة في وسط أوروبا، انفصلت عن التشيك عام 1993.' },
+                { name: 'المجر', capital: 'بودابست', population: '9.6 مليون', founded: '895', flag: '🇭🇺', history: 'المجر دولة في وسط أوروبا، عاصمتها بودابست مدينة على ضفاف نهر الدانوب.' },
+                { name: 'رومانيا', capital: 'بوخارست', population: '19.3 مليون', founded: '1859', flag: '🇷🇴', history: 'رومانيا دولة في جنوب شرق أوروبا، معروفة بقلاع دراكولا الأسطورية.' },
+                { name: 'بلغاريا', capital: 'صوفيا', population: '6.9 مليون', founded: '681', flag: '🇧🇬', history: 'بلغاريا دولة في جنوب شرق أوروبا، إحدى أقدم الدول في أوروبا.' },
+                { name: 'صربيا', capital: 'بلغراد', population: '6.9 مليون', founded: '768', flag: '🇷🇸', history: 'صربيا دولة في البلقان، عاصمتها بلغراد إحدى أقدم العواصم الأوروبية.' },
+                { name: 'كرواتيا', capital: 'زغرب', population: '4 مليون', founded: '879', flag: '🇭🇷', history: 'كرواتيا دولة على البحر الأدرياتيكي، معروفة بسواحلها الجميلة.' },
+                { name: 'البوسنة والهرسك', capital: 'سراييفو', population: '3.3 مليون', founded: '1992', flag: '🇧🇦', history: 'البوسنة والهرسك دولة في البلقان، عاصمتها سراييفو مدينة متعددة الثقافات.' },
+                { name: 'الجبل الأسود', capital: 'بودغوريتسا', population: '0.6 مليون', founded: '2006', flag: '🇲🇪', history: 'الجبل الأسود أصغر دولة في البلقان، استقلت عن صربيا عام 2006.' },
+                { name: 'كوسوفو', capital: 'بريشتينا', population: '1.8 مليون', founded: '2008', flag: '🇽🇰', history: 'كوسوفو أصغر دولة في أوروبا، أعلنت استقلالها عام 2008.' },
+                { name: 'ألبانيا', capital: 'تيرانا', population: '2.8 مليون', founded: '1190', flag: '🇦🇱', history: 'ألبانيا دولة في البلقان، معروفة بجبالها وشواطئها الجميلة.' },
+                { name: 'مقدونيا الشمالية', capital: 'سكوبيه', population: '2.1 مليون', founded: '1991', flag: '🇲🇰', history: 'مقدونيا الشمالية دولة في البلقان، غيرت اسمها عام 2019.' },
+                { name: 'اليونان', capital: 'أثينا', population: '10.7 مليون', founded: '3000 ق.م', flag: '🇬🇷', history: 'اليونان مهد الحضارة الغربية والديمقراطية، عاصمتها أثينا.' },
+                { name: 'البرتغال', capital: 'لشبونة', population: '10.3 مليون', founded: '868', flag: '🇵🇹', history: 'البرتغال دالة بحرية تاريخية، عاصمتها لشبونة على ضفاف نهر تاجة.' },
+                { name: 'أيرلندا', capital: 'دبلن', population: '5 مليون', founded: '1922', flag: '🇮🇪', history: 'أيرلندا جزيرة في أوروبا الغربية، معروفة بمناظرها الخضراء.' },
+                { name: 'لوكسمبورغ', capital: 'لوكسمبورغ', population: '0.6 مليون', founded: '963', flag: '🇱🇺', history: 'لوكسمبورغ أصغر دولة في الاتحاد الأوروبي، مركز مالي مهم.' },
+                { name: 'ليختنشتاين', capital: 'فادوز', population: '39 ألف', founded: '1719', flag: '🇱🇮', history: 'ليختنشتاين أصغر دولة ناطقة بالألمانية، دولة بدون مطار.' },
+                { name: 'موناكو', capital: 'موناكو', population: '39 ألف', founded: '1215', flag: '🇲🇨', history: 'موناكو ثاني أصغر دولة في العالم، معروفة بكازينو مونتي كارلو.' },
+                { name: 'سان مارينو', capital: 'سان مارينو', population: '34 ألف', founded: '301', flag: '🇸🇲', history: 'سان مارينو أقدم جمهورية في العالم، محاطة بإيطاليا.' },
+                { name: 'الفاتيكان', capital: 'الفاتيكان', population: '800', founded: '1929', flag: '🇻🇦', history: 'الفاتيكان أصغر دولة في العالم، مقر الكنيسة الكاثوليكية.' },
+                { name: 'مالطا', capital: 'فاليتا', population: '0.5 مليون', founded: '1964', flag: '🇲🇹', history: 'مالطا أرخبيل في البحر المتوسط، غني بالتاريخ والآثار.' },
+                { name: 'قبرص', capital: 'نيقوسيا', population: '1.2 مليون', founded: '1960', flag: '🇨🇾', history: 'قبرص جزيرة في البحر المتوسط، تقع عند تقاطع ثلاث قارات.' },
+                { name: 'إستونيا', capital: 'تالين', population: '1.3 مليون', founded: '1918', flag: '🇪🇪', history: 'إستونيا دولة البلطيق، رائدة في الحكومة الإلكترونية.' },
+                { name: 'لاتفيا', capital: 'ريغا', population: '1.9 مليون', founded: '1918', flag: '🇱🇻', history: 'لاتفيا دولة البلطيق، عاصمتها ريغا مدينة اليونسكو للتراث العالمي.' },
+                { name: 'ليتوانيا', capital: 'فيلنيوس', population: '2.7 مليون', founded: '1918', flag: '🇱🇹', history: 'ليتوانيا دولة البلطيق، كانت أكبر دولة في أوروبا في القرن 15.' },
+                { name: 'أوكرانيا', capital: 'كييف', population: '43.7 مليون', founded: '1991', flag: '🇺🇦', history: 'أوكرانيا دولة في شرق أوروبا، عاصمتها كييف مدينة أم روسيا.' },
+                { name: 'بيلاروسيا', capital: 'مينسك', population: '9.4 مليون', founded: '1991', flag: '🇧🇾', history: 'بيلاروسيا دولة في شرق أوروبا، عاصمتها مينسك تعرضت للتدمير في الحرب.' },
+                { name: 'مولدوفا', capital: 'كيشيناو', population: '2.6 مليون', founded: '1991', flag: '🇲🇩', history: 'مولدوفا دولة في شرق أوروبا، أصغر دولة في أوروبا من حيث المساحة.' },
+                { name: 'أندورا', capital: 'أندورا لا فيلا', population: '77 ألف', founded: '1278', flag: '🇦🇩', history: 'أندورا دولة جبلية صغيرة بين فرنسا وإسبانيا.' }
+            ],
+            asia: [
+                { name: 'الصين', capital: 'بكين', population: '1.4 مليار', founded: '221 ق.م', flag: '🇨🇳', history: 'الصين من أقدم الحضارات في العالم، لديها تاريخ يمتد لأكثر من 5000 عام.' },
+                { name: 'الهند', capital: 'نيودلهي', population: '1.4 مليار', founded: '1947', flag: '🇮🇳', history: 'الهند ثاني أكبر دولة في العالم سكاناً، مهد الحضارة الهندوسية والبوذية.' },
+                { name: 'إندونيسيا', capital: 'جاكارتا', population: '273.5 مليون', founded: '1945', flag: '🇮🇩', history: 'إندونيسيا أكبر دولة جزرية في العالم، تضم أكثر من 17000 جزيرة.' },
+                { name: 'باكستان', capital: 'إسلام آباد', population: '220.9 مليون', founded: '1947', flag: '🇵🇰', history: 'باكستان دولة إسلامية في جنوب آسيا، تأسست بعد تقسيم الهند.' },
+                { name: 'بنغلاديش', capital: 'دكا', population: '164.7 مليون', founded: '1971', flag: '🇧🇩', history: 'بنغلاديش دولة في جنوب آسيا، نالت استقلالها عن باكستان عام 1971.' },
+                { name: 'اليابان', capital: 'طوكيو', population: '125.8 مليون', founded: '660 ق.م', flag: '🇯🇵', history: 'اليابان أرخبيل في شرق آسيا، معروفة بتقنيتها المتقدمة وثقافتها الفريدة.' },
+                { name: 'الفلبين', capital: 'مانيلا', population: '109.6 مليون', founded: '1946', flag: '🇵🇭', history: 'الفلبين أرخبيل في جنوب شرق آسيا، كانت مستعمرة إسبانية ثم أمريكية.' },
+                { name: 'فيتنام', capital: 'هانوي', population: '97.3 مليون', founded: '1945', flag: '🇻🇳', history: 'فيتنام دولة في جنوب شرق آسيا، خاضت حرباً طويلة ضد الولايات المتحدة.' },
+                { name: 'تركيا', capital: 'أنقرة', population: '84.3 مليون', founded: '1923', flag: '🇹🇷', history: 'تركيا دولة تمتد بين قارتي آسيا وأوروبا، مهد الإمبراطورية العثمانية.' },
+                { name: 'إيران', capital: 'طهران', population: '84 مليون', founded: '1979', flag: '🇮🇷', history: 'إيران دولة في غرب آسيا، موطن الإمبراطورية الفارسية القديمة.' },
+                { name: 'تايلاند', capital: 'بانكوك', population: '69.8 مليون', founded: '1238', flag: '🇹🇭', history: 'تايلاند دولة في جنوب شرق آسيا، الوحيدة في المنطقة التي لم تستعمر.' },
+                { name: 'ميانمار', capital: 'نايبيداو', population: '54.4 مليون', founded: '1948', flag: '🇲🇲', history: 'ميانمار دولة في جنوب شرق آسيا، كانت تعرف سابقاً ببورما.' },
+                { name: 'كوريا الجنوبية', capital: 'سيول', population: '51.7 مليون', founded: '1948', flag: '🇰🇷', history: 'كوريا الجنوبية دولة في شرق آسيا، قوة تكنولوجية واقتصادية كبرى.' },
+                { name: 'العراق', capital: 'بغداد', population: '40.2 مليون', founded: '1932', flag: '🇮🇶', history: 'العراق مهد الحضارات القديمة، بلاد ما بين النهرين.' },
+                { name: 'أفغانستان', capital: 'كابول', population: '38.9 مليون', founded: '1919', flag: '🇦🇫', history: 'أفغانستان دولة في وسط آسيا، تعرف بموقعها الاستراتيجي.' },
+                { name: 'المملكة العربية السعودية', capital: 'الرياض', population: '34.8 مليون', founded: '1932', flag: '🇸🇦', history: 'السعودية أكبر دولة في الشرق الأوسط، مهد الإسلام وموقع الحرمين.' },
+                { name: 'أوزبكستان', capital: 'طشقند', population: '34.2 مليون', founded: '1991', flag: '🇺🇿', history: 'أوزبكستان دولة في وسط آسيا، موطن طريق الحرير القديم.' },
+                { name: 'ماليزيا', capital: 'كوالالمبور', population: '32.4 مليون', founded: '1963', flag: '🇲🇾', history: 'ماليزيا دولة في جنوب شرق آسيا، تتكون من جزأين رئيسيين.' },
+                { name: 'نيبال', capital: 'كاتماندو', population: '30 مليون', founded: '1768', flag: '🇳🇵', history: 'نيبال دولة جبلية في جنوب آسيا، موطن جبل إيفرست.' },
+                { name: 'فنزويلا', capital: 'كاراكاس', population: '28.4 مليون', founded: '1811', flag: '🇻🇪', history: 'فنزويلا دولة في أمريكا الجنوبية، غنية بالنفط.' },
+                { name: 'اليمن', capital: 'صنعاء', population: '30.5 مليون', founded: '1990', flag: '🇾🇪', history: 'اليمن موطن مملكة سبأ، ويضم مدناً تاريخية.' },
+                { name: 'سريلانكا', capital: 'كولومبو', population: '21.9 مليون', founded: '1948', flag: '🇱🇰', history: 'سريلانكا جزيرة في جنوب آسيا، معروفة بشايها وتماسيحها.' },
+                { name: 'كازاخستان', capital: 'نور سلطان', population: '18.8 مليون', founded: '1991', flag: '🇰🇿', history: 'كازاخستان أكبر دولة غير ساحلية في العالم، غنية بالموارد الطبيعية.' },
+                { name: 'سوريا', capital: 'دمشق', population: '17.5 مليون', founded: '1946', flag: '🇸🇾', history: 'سوريا من أقدم الدول في العالم، دمشق أقدم عاصمة مأهولة.' },
+                { name: 'كمبوديا', capital: 'بنوم بنه', population: '16.7 مليون', founded: '1953', flag: '🇰🇭', history: 'كمبوديا موطن معبد أنغكور وات، أحد عجائب العالم.' },
+                { name: 'تشاد', capital: 'نجامينا', population: '16.4 مليون', founded: '1960', flag: '🇹🇩', history: 'تشاد دولة في وسط أفريقيا، غنية بالموارد المعدنية.' },
+                { name: 'تايلاند', capital: 'بانكوك', population: '69.8 مليون', founded: '1238', flag: '🇹🇭', history: 'تايلاند دولة في جنوب شرق آسيا، مركز سياحي مهم.' },
+                { name: 'تركمانستان', capital: 'عشق آباد', population: '6 مليون', founded: '1991', flag: '🇹🇲', history: 'تركمانستان دولة في وسط آسيا، غنية بالغاز الطبيعي.' },
+                { name: 'سنغافورة', capital: 'سنغافورة', population: '5.9 مليون', founded: '1965', flag: '🇸🇬', history: 'سنغافورة دولة مدينة، مركز مالي وتجاري عالمي.' },
+                { name: 'قيرغيزستان', capital: 'بشكيك', population: '6.5 مليون', founded: '1991', flag: '🇰🇬', history: 'قيرغيزستان دولة جبلية في وسط آسيا، تعرف بجبالها.' },
+                { name: 'لاوس', capital: 'فينتيان', population: '7.3 مليون', founded: '1949', flag: '🇱🇦', history: 'لاوس دولة غير ساحلية في جنوب شرق آسيا، معروفة بجمالها الطبيعي.' },
+                { name:  "لبنان", capital: "بيروت", population: "6.8 مليون", founded: '1943', flag:"🇱🇧", history: 'لبنان بلد التنوع الثقافي يعود تاريخه للفينيقيين.' },
+                { name: 'تيمور الشرقية', capital: 'ديلي', population: '1.3 مليون', founded: '2002', flag: '🇹🇱', history: 'تيمور الشرقية أصغر دولة في آسيا، نالت استقلالها عام 2002.' },
+                { name: 'الإمارات العربية المتحدة', capital: 'أبوظبي', population: '9.9 مليون', founded: '1971', flag: '🇦🇪', history: 'الإمارات اتحاد سبع إمارات، من أحدث الدول تطوراً.' },
+                { name: 'قطر', capital: 'الدوحة', population: '2.9 مليون', founded: '1971', flag: '🇶🇦', history: 'قطر دولة خليجية غنية بالغاز، استضافت كأس العالم 2022.' },
+                { name: 'البحرين', capital: 'المنامة', population: '1.5 مليون', founded: '1971', flag: '🇧🇭', history: 'البحرين أقدم دولة خليجية تستقل، مركز مالي مهم.' },
+                { name: 'بروناي', capital: 'بندر سري بكاوان', population: '0.4 مليون', founded: '1984', flag: '🇧🇳', history: 'بروناي دولة غنية بالنفط في جزيرة بورنيو.' },
+                { name: 'جزر المالديف', capital: 'ماليه', population: '0.5 مليون', founded: '1965', flag: '🇲🇻', history: 'جزر المالديف أرخبيل في المحيط الهندي، وجهة سياحية شهيرة.' },
+                { name: 'بوتان', capital: 'ثيمفو', population: '0.8 مليون', founded: '1947', flag: '🇧🇹', history: 'بوتان دولة جبلية في الهيمالايا، تعرف بسعادتها الوطنية.' },
+                { name: 'مونغوليا', capital: 'أولان باتور', population: '3.3 مليون', founded: '1911', flag: '🇲🇳', history: 'مونغوليا موطن جنكيز خان، إمبراطورية أكبر إمبراطورية في التاريخ.' },
+                { name: 'تايوان', capital: 'تايبيه', population: '23.8 مليون', founded: '1949', flag: '🇹🇼', history: 'تايوان جزيرة في شرق آسيا، مركز تكنولوجي مهم.' },
+                { name: 'هونغ كونغ', capital: 'هونغ كونغ', population: '7.5 مليون', founded: '1997', flag: '🇭🇰', history: 'هونغ كونغ منطقة إدارية خاصة في الصين، مركز مالي عالمي.' },
+                { name: 'ماكاو', capital: 'ماكاو', population: '0.7 مليون', founded: '1999', flag: '🇲🇴', history: 'ماكاو منطقة إدارية خاصة في الصين، معروفة بكازينوهاتها.' }
+            ],
+            africa: [
+                { name: 'نيجيريا', capital: 'أبوجا', population: '206.1 مليون', founded: '1960', flag: '🇳🇬', history: 'نيجيريا أكبر دولة في أفريقيا سكاناً، غنية بالنفط والثقافة.' },
+                { name: 'إثيوبيا', capital: 'أديس أبابا', population: '114.9 مليون', founded: '980 ق.م', flag: '🇪🇹', history: 'إثيوبيا من أقدم الدول في أفريقيا، لم تخضع للاستعمار الأوروبي.' },
+                { name: 'مصر', capital: 'القاهرة', population: '102.3 مليون', founded: '3100 ق.م', flag: '🇪🇬', history: 'مصر من أقدم الحضارات، عاصمة الفراعنة والأهرامات.' },
+                { name: 'جمهورية الكونغو الديمقراطية', capital: 'كينشاسا', population: '89.6 مليون', founded: '1960', flag: '🇨🇩', history: 'الكونغو الديمقراطية أكبر دولة في أفريقيا مساحة، غنية بالموارد.' },
+                { name: 'جنوب أفريقيا', capital: 'بريتوريا', population: '59.3 مليون', founded: '1910', flag: '🇿🇦', history: 'جنوب أفريقيا قوة اقتصادية في أفريقيا، عرفت بنظام الفصل العنصري.' },
+                { name: 'تنزانيا', capital: 'دودوما', population: '59.7 مليون', founded: '1964', flag: '🇹🇿', history: 'تنزانيا موطن جبل كليمانجارو، أعلى قمة في أفريقيا.' },
+                { name: 'كينيا', capital: 'نيروبي', population: '53.8 مليون', founded: '1963', flag: '🇰🇪', history: 'كينيا موطن السفاري، عاصمتها نيروبي مركز إقليمي مهم.' },
+                { name: 'أوغندا', capital: 'كامبالا', population: '45.7 مليون', founded: '1962', flag: '🇺🇬', history: 'أوغندا موطن بحيرة فيكتوريا، أكبر بحيرة في أفريقيا.' },
+                { name: 'الجزائر', capital: 'الجزائر', population: '43.9 مليون', founded: '1962', flag: '🇩🇿', history: 'الجزائر أكبر دولة عربية مساحة، نالت استقلالها من فرنسا.' },
+                { name: 'السودان', capital: 'الخرطوم', population: '45.7 مليون', founded: '1956', flag: '🇸🇩', history: 'السودان أكبر دولة عربية مساحة بعد الجزائر، غني بالحضارة النوبية.' },
+                { name: 'المغرب', capital: 'الرباط', population: '37.3 مليون', founded: '789', flag: '🇲🇦', history: 'المغرب دولة عربية في شمال أفريقيا، تتميز بتنوعها الثقافي.' },
+                { name: 'أنغولا', capital: 'لواندا', population: '32.9 مليون', founded: '1975', flag: '🇦🇴', history: 'أنغولا دولة في جنوب غرب أفريقيا، غنية بالنفط والماس.' },
+                { name: 'موزمبيق', capital: 'مابوتو', population: '31.3 مليون', founded: '1975', flag: '🇲🇿', history: 'موزمبيق دولة في جنوب شرق أفريقيا، كانت مستعمرة برتغالية.' },
+                { name: 'غانا', capital: 'أكرا', population: '31.1 مليون', founded: '1957', flag: '🇬🇭', history: 'غانا أول دولة في أفريقيا جنوب الصحراء تنال الاستقلال.' },
+                { name: 'مدغشقر', capital: 'أنتاناناريفو', population: '27.7 مليون', founded: '1960', flag: '🇲🇬', history: 'مدغشقر رابع أكبر جزيرة في العالم، معروفة بتنوعها البيولوجي.' },
+                { name: 'الكاميرون', capital: 'ياوندي', population: '26.5 مليون', founded: '1960', flag: '🇨🇲', history: 'الكاميرون تعرف بأفريقيا المصغرة لتنوعها الجغرافي.' },
+                { name: 'ساحل العاج', capital: 'ياموسوكرو', population: '26.4 مليون', founded: '1960', flag: '🇨🇮', history: 'ساحل العاج من أكبر منتجي الكاكاو في العالم.' },
+                { name: 'نيجر', capital: 'نيامي', population: '24.2 مليون', founded: '1960', flag: '🇳🇪', history: 'نيجر دولة غير ساحلية في غرب أفريقيا، غنية باليورانيوم.' },
+                { name: 'بوركينا فاسو', capital: 'واغادوغو', population: '21.5 مليون', founded: '1960', flag: '🇧🇫', history: 'بوركينا فاسو دولة غير ساحلية في غرب أفريقيا.' },
+                { name: 'مالي', capital: 'باماكو', population: '20.3 مليون', founded: '1960', flag: '🇲🇱', history: 'مالي موطن إمبراطورية مالي القديمة، غنية بالذهب.' },
+                { name: 'مالاوي', capital: 'ليلونغوي', population: '19.1 مليون', founded: '1964', flag: '🇲🇼', history: 'مالاوي تعرف ببحيرة ملاوي، ثالث أكبر بحيرة في أفريقيا.' },
+                { name: 'زامبيا', capital: 'لوساكا', population: '18.4 مليون', founded: '1964', flag: '🇿🇲', history: 'زامبيا موطن شلالات فيكتوريا، إحدى عجائب الطبيعة.' },
+                { name: 'سنغال', capital: 'داكار', population: '16.7 مليون', founded: '1960', flag: '🇸🇳', history: 'سنغال دولة في غرب أفريقيا، عاصمتها داكار مركز ثقافي.' },
+                { name: 'تشاد', capital: 'نجامينا', population: '16.4 مليون', founded: '1960', flag: '🇹🇩', history: 'تشاد دولة في وسط أفريقيا، غنية بالموارد المعدنية.' },
+                { name:  "الصومال", capital: 'مقديشو', population: '16.4 مليون', founded: '1960', flag: '🇸🇴', history: 'الصومال دولة في القرن الأفريقي، تمتلك أطول ساحل في أفريقيا.' },
+                { name: 'زيمبابوي', capital: 'هراري', population: '14.9 مليون', founded: '1980', flag: '🇿🇼', history: 'زيمبابوي موطن حضارة زيمبابوي العظيمة.' },
+                { name: 'غينيا', capital: 'كوناكري', population: '13.1 مليون', founded: '1958', flag: '🇬🇳', history: 'غينيا دولة في غرب أفريقيا، غنية بالبوكسيت.' },
+                { name: 'رواندا', capital: 'كيغالي', population: '12.9 مليون', founded: '1962', flag: '🇷🇼', history: 'رواندا تعرف بأرض الألف تل، شهدت إبادة جماعية عام 1994.' },
+                { name: 'بنين', capital: 'بورتو نوفو', population: '12.1 مليون', founded: '1960', flag: '🇧🇯', history: 'بنين دولة في غرب أفريقيا، موطن عبيد الساحل.' },
+                { name: 'بوروندي', capital: 'بوجومبورا', population: '11.9 مليون', founded: '1962', flag: '🇧🇮', history: 'بوروندي دولة غير ساحلية في شرق أفريقيا.' },
+                { name: 'تونس', capital: 'تونس', population: '11.8 مليون', founded: '1956', flag: '🇹🇳', history: 'تونس موطن الحضارة القرطاجية، وأول دولة عربية تشهد ثورة.' },
+                { name: 'جنوب السودان', capital: 'جوبا', population: '11.2 مليون', founded: '2011', flag: '🇸🇸', history: 'جنوب السودان أحدث دولة في العالم، انفصلت عن السودان عام 2011.' },
+                { name: 'توغو', capital: 'لوميه', population: '8.3 مليون', founded: '1960', flag: '🇹🇬', history: 'توغو دولة في غرب أفريقيا، عاصمتها لوميه مركز تجاري.' },
+                { name: 'سيراليون', capital: 'فريتاون', population: '7.9 مليون', founded: '1961', flag: '🇸🇱', history: 'سيراليون دولة في غرب أفريقيا، عاصمتها فريتاون تأسست كملجأ للعبيد.' },
+                { name: 'ليبيا', capital: 'طرابلس', population: '6.9 مليون', founded: '1951', flag: '🇱🇾', history: 'ليبيا دولة عربية في شمال أفريقيا، غنية بالآثار الرومانية.' },
+                { name: 'لاوس', capital: 'فينتيان', population: '7.3 مليون', founded: '1949', flag: '🇱🇦', history: 'لاوس دولة غير ساحلية في جنوب شرق آسيا.' },
+                { name: 'موريتانيا', capital: 'نواكشوط', population: '4.6 مليون', founded: '1960', flag: '🇲🇷', history: 'موريتانيا دولة عربية في غرب أفريقيا، تتميز بتراثها الصحراوي.' },
+                { name: 'النيجر', capital: 'نيامي', population: '24.2 مليون', founded: '1960', flag: '🇳🇪', history: 'النيجر دولة غير ساحلية في غرب أفريقيا.' },
+                { name: 'إريتريا', capital: 'أسمرة', population: '3.5 مليون', founded: '1993', flag: '🇪🇷', history: 'إريتريا دولة في القرن الأفريقي، نالت استقلالها عن إثيوبيا.' },
+                { name: 'دجيبوتي', capital: 'جيبوتي', population: '1.1 مليون', founded: '1977', flag: '🇩🇯', history: 'دجيبوتي دولة عربية صغيرة في القرن الأفريقي.' },
+                { name: 'غامبيا', capital: 'بانجول', population: '2.4 مليون', founded: '1965', flag: '🇬🇲', history: 'غامبيا أصغر دولة في أفريقيا البرية، تحيط بها السنغال.' },
+                { name: 'بوتسوانا', capital: 'جابورون', population: '2.4 مليون', founded: '1966', flag: '🇧🇼', history: 'بوتسوانا دولة في جنوب أفريقيا، معروفة بالماس والسياحة.' },
+                { name: 'غينيا الاستوائية', capital: 'مالابو', population: '1.4 مليون', founded: '1968', flag: '🇬🇶', history: 'غينيا الاستوائية دولة في وسط أفريقيا، غنية بالنفط.' },
+                { name: 'موريشيوس', capital: 'بورت لويس', population: '1.3 مليون', founded: '1968', flag: '🇲🇺', history: 'موريشيوس جزيرة في المحيط الهندي، معروفة بجمالها الطبيعي.' },
+                { name: 'غينيا بيساو', capital: 'بيساو', population: '2 مليون', founded: '1974', flag: '🇬🇼', history: 'غينيا بيساو دولة في غرب أفريقيا، كانت مستعمرة برتغالية.' },
+                { name: 'ليسوتو', capital: 'ماسيرو', population: '2.1 مليون', founded: '1966', flag: '🇱🇸', history: 'ليسوتو دولة غير ساحلية محاطة بجنوب أفريقيا.' },
+                { name: 'ساو تومي وبرينسيب', capital: 'ساو تومي', population: '0.2 مليون', founded: '1975', flag: '🇸🇹', history: 'ساو تومي وبرينسيب أصغر دولة في أفريقيا، كانت مستعمرة برتغالية.' },
+                { name: 'سيشل', capital: 'فيكتوريا', population: '0.1 مليون', founded: '1976', flag: '🇸🇨', history: 'سيشل أرخبيل في المحيط الهندي، وجهة سياحية فاخرة.' },
+                { name: 'جزر القمر', capital: 'موروني', population: '0.9 مليون', founded: '1975', flag: '🇰🇲', history: 'جزر القمر دولة عربية في المحيط الهندي.' },
+                { name: 'الرأس الأخضر', capital: 'برايا', population: '0.6 مليون', founded: '1975', flag: '🇨🇻', history: 'الرأس الأخضر أرخبيل في المحيط الأطلسي، كانت مستعمرة برتغالية.' }
+            ],
+            americas: [
+                { name: 'الولايات المتحدة', capital: 'واشنطن', population: '331 مليون', founded: '1776', flag: '🇺🇸', history: 'الولايات المتحدة قوة عظمى، تأسست بعد الثورة ضد بريطانيا.' },
+                { name: 'البرازيل', capital: 'برازيليا', population: '212.6 مليون', founded: '1822', flag: '🇧🇷', history: 'البرازيل أكبر دولة في أمريكا الجنوبية، نالت استقلالها عن البرتغال.' },
+                { name: 'المكسيك', capital: 'مكسيكو سيتي', population: '128.9 مليون', founded: '1810', flag: '🇲🇽', history: 'المكسيك موطن حضارة الأزتيك والمايا، نالت استقلالها عن إسبانيا.' },
+                { name: 'كولومبيا', capital: 'بوغوتا', population: '50.9 مليون', founded: '1810', flag: '🇨🇴', history: 'كولومبيا دولة في أمريكا الجنوبية، معروفة بالقهوة والزمرد.' },
+                { name: 'الأرجنتين', capital: 'بوينس آيرس', population: '45.2 مليون', founded: '1816', flag: '🇦🇷', history: 'الأرجنتين ثاني أكبر دولة في أمريكا الجنوبية، معروفة بالتانغو وكرة القدم.' },
+                { name: 'كندا', capital: 'أوتاوا', population: '38 مليون', founded: '1867', flag: '🇨🇦', history: 'كندا ثاني أكبر دولة في العالم، عضو في الكومنولث البريطاني.' },
+                { name: 'بيرو', capital: 'ليما', population: '32.9 مليون', founded: '1821', flag: '🇵🇪', history: 'بيرو موطن حضارة الإنكا، معروفة بماتشو بيتشو.' },
+                { name: 'فنزويلا', capital: 'كاراكاس', population: '28.4 مليون', founded: '1811', flag: '🇻🇪', history: 'فنزويلا دولة في أمريكا الجنوبية، غنية بالنفط.' },
+                { name: 'تشيلي', capital: 'سانتياغو', population: '19.1 مليون', founded: '1818', flag: '🇨🇱', history: 'تشيلي دولة ضيقة وطويلة في أمريكا الجنوبية.' },
+                { name: 'غواتيمالا', capital: 'مدينة غواتيمالا', population: '17.9 مليون', founded: '1821', flag: '🇬🇹', history: 'غواتيمالا موطن حضارة المايا، في أمريكا الوسطى.' },
+                { name: 'الإكوادور', capital: 'كيتو', population: '17.6 مليون', founded: '1822', flag: '🇪🇨', history: 'الإكوادور دولة في أمريكا الجنوبية، موطن جزر غالاباغوس.' },
+                { name: 'بوليفيا', capital: 'سوكري', population: '11.7 مليون', founded: '1825', flag: '🇧🇴', history: 'بوليفيا دولة غير ساحلية في أمريكا الجنوبية، موطن بحيرة تيتيكاكا.' },
+                { name: 'كوبا', capital: 'هافانا', population: '11.3 مليون', founded: '1902', flag: '🇨🇺', history: 'كوبا جزيرة في البحر الكاريبي، اشتهرت بالثورة الكوبية.' },
+                { name: 'هايتي', capital: 'بورت أو برانس', population: '11.4 مليون', founded: '1804', flag: '🇭🇹', history: 'هايتي أول دولة سوداء مستقلة، في أمريكا الوسطى.' },
+                { name: 'جمهورية الدومينيكان', capital: 'سانتو دومينغو', population: '10.8 مليون', founded: '1844', flag: '🇩🇴', history: 'جمهورية الدومينيكان تشترك مع هايتي في جزيرة هيسبانيولا.' },
+                { name: 'هندوراس', capital: 'تيغوسيغالبا', population: '9.9 مليون', founded: '1821', flag: '🇭🇳', history: 'هندوراس دولة في أمريكا الوسطى، معروفة بمناخها الاستوائي.' },
+                { name: 'باراغواي', capital: 'أسونسيون', population: '7.1 مليون', founded: '1811', flag: '🇵🇾', history: 'باراغواي دولة غير ساحلية في أمريكا الجنوبية.' },
+                { name: 'السلفادور', capital: 'سان سلفادور', population: '6.5 مليون', founded: '1821', flag: '🇸🇻', history: 'السلفادور أصغر دولة في أمريكا الوسطى.' },
+                { name: 'نيكاراغوا', capital: 'ماناغوا', population: '6.6 مليون', founded: '1821', flag: '🇳🇮', history: 'نيكاراغوا دولة في أمريكا الوسطى، معروفة ببحيراتها.' },
+                { name: 'كوستاريكا', capital: 'سان خوسيه', population: '5.1 مليون', founded: '1821', flag: '🇨🇷', history: 'كوستاريكا دولة في أمريكا الوسطى، معروفة بتنوعها البيولوجي.' },
+                { name: 'بنما', capital: 'مدينة بنما', population: '4.3 مليون', founded: '1903', flag: '🇵🇦', history: 'بنما موطن قناة بنما، التي تربط المحيط الأطلسي بالهادئ.' },
+                { name: 'أوروغواي', capital: 'مونتيفيديو', population: '3.5 مليون', founded: '1828', flag: '🇺🇾', history: 'أوروغواي ثاني أصغر دولة في أمريكا الجنوبية.' },
+                { name: 'جامايكا', capital: 'كينغستون', population: '2.9 مليون', founded: '1962', flag: '🇯🇲', history: 'جامايكا جزيرة في البحر الكاريبي، معروفة بالريغي والبوب.' },
+                { name: 'ترينيداد وتوباغو', capital: 'بورت أوف سبين', population: '1.4 مليون', founded: '1962', flag: '🇹🇹', history: 'ترينيداد وتوباغو دولة جزرية في البحر الكاريبي.' },
+                { name: 'غيانا', capital: 'جورج تاون', population: '0.8 مليون', founded: '1966', flag: '🇬🇾', history: 'غيانا دولة في أمريكا الجنوبية، الوحيدة التي تتحدث الإنجليزية.' },
+                { name: 'سورينام', capital: 'باراماريبو', population: '0.6 مليون', founded: '1975', flag: '🇸🇷', history: 'سورينام دولة في أمريكا الجنوبية، الوحيدة التي تتحدث الهولندية.' },
+                { name: 'بليز', capital: 'بلموبان', population: '0.4 مليون', founded: '1981', flag: '🇧🇿', history: 'بليز دولة في أمريكا الوسطى، معروفة بالحاجز المرجاني.' },
+                { name: 'غيانا الفرنسية', capital: 'كاين', population: '0.3 مليون', founded: '1946', flag: '🇬🇫', history: 'غيانا الفرنسية إقليم فرنسي في أمريكا الجنوبية.' },
+                { name: 'باربادوس', capital: 'بريدج تاون', population: '0.3 مليون', founded: '1966', flag: '🇧🇧', history: 'باربادوس جزيرة في البحر الكاريبي، معروفة بجمالها.' },
+                { name: 'سانت لوسيا', capital: 'كاستريس', population: '0.2 مليون', founded: '1979', flag: '🇱🇨', history: 'سانت لوسيا جزيرة في البحر الكاريبي، معروفة بجبالها.' },
+                { name: 'غرينادا', capital: 'سانت جورج', population: '0.1 مليون', founded: '1974', flag: '🇬🇩', history: 'غرينادا جزيرة في البحر الكاريبي، معروفة بالتوابل.' },
+                { name: 'سانت فينسنت والغرينادين', capital: 'كينغستاون', population: '0.1 مليون', founded: '1979', flag: '🇻🇨', history: 'سانت فينسنت والغرينادين دولة جزرية في البحر الكاريبي.' },
+                { name: 'أنتيغوا وباربودا', capital: 'سانت جون', population: '0.1 مليون', founded: '1981', flag: '🇦🇬', history: 'أنتيغوا وباربودا دولة جزرية في البحر الكاريبي.' },
+                { name: 'دومينيكا', capital: 'روزو', population: '0.07 مليون', founded: '1978', flag: '🇩🇲', history: 'دومينيكا جزيرة في البحر الكاريبي، معروفة بجمالها الطبيعي.' },
+                { name: 'سانت كيتس ونيفيس', capital: 'باستير', population: '0.05 مليون', founded: '1983', flag: '🇰🇳', history: 'سانت كيتس ونيفيس أصغر دولة في الأمريكتين.' }
+            ]
+        };
+
+        let currentRegion = '';
+        let allCountries = [];
+
+        // Initialize all countries array
+        Object.keys(countriesData).forEach(region => {
+            allCountries = allCountries.concat(countriesData[region].map(country => ({...country, region})));
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Show region countries
+        function showRegion(region) {
+            currentRegion = region;
+            const section = document.getElementById('countriesSection');
+            const grid = document.getElementById('countriesGrid');
+            const title = document.getElementById('regionTitle');
+            
+            const regionNames = {
+                arab: 'العالم العربي',
+                europe: 'أوروبا',
+                asia: 'آسيا',
+                africa: 'أفريقيا',
+                americas: 'الأمريكتان'
+            };
+            
+            title.textContent = regionNames[region];
+            section.classList.remove('hidden');
+            
+            // Clear grid
+            grid.innerHTML = '';
+            
+            // Add loading spinner
+            grid.innerHTML = '<div class="col-span-full flex justify-center"><div class="loading-spinner"></div></div>';
+            
+            // Simulate loading
+            setTimeout(() => {
+                grid.innerHTML = '';
+                countriesData[region].forEach((country, index) => {
+                    const card = createCountryCard(country, region);
+                    grid.appendChild(card);
+                    
+                    // Animate cards
+                    setTimeout(() => {
+                        card.classList.add('show');
+                    }, index * 50);
+                });
+            }, 500);
+            
+            // Scroll to section
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Create country card
+        function createCountryCard(country, region) {
+            const card = document.createElement('div');
+            card.className = 'country-card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer';
+            card.onclick = () => showCountryDetails(country, region);
+            
+            card.innerHTML = `
+                <div class="h-32 bg-gradient-to-br ${getRegionColor(region)} flex items-center justify-center">
+                    <span class="text-6xl">${country.flag}</span>
+                </div>
+                <div class="p-4">
+                    <h4 class="text-xl font-bold mb-2">${country.name}</h4>
+                    <p class="text-sm text-gray-600 mb-1"><i class="fas fa-city ml-1"></i> ${country.capital}</p>
+                    <p class="text-sm text-gray-600"><i class="fas fa-users ml-1"></i> ${country.population}</p>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Get region color
+        function getRegionColor(region) {
+            const colors = {
+                arab: 'from-green-500 to-green-700',
+                europe: 'from-blue-500 to-blue-700',
+                asia: 'from-red-500 to-red-700',
+                africa: 'from-yellow-500 to-yellow-700',
+                americas: 'from-purple-500 to-purple-700'
+            };
+            return colors[region] || 'from-gray-500 to-gray-700';
+        }
+
+        // Hide countries section
+        function hideCountries() {
+            document.getElementById('countriesSection').classList.add('hidden');
+        }
+
+        // Show country details
+        function showCountryDetails(country, region) {
+            const modal = document.getElementById('countryModal');
+            const title = document.getElementById('modalTitle');
+            const content = document.getElementById('modalContent');
+            
+            title.innerHTML = `${country.flag} ${country.name}`;
+            
+            content.innerHTML = `
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <h5 class="font-bold text-gray-700 mb-2">العاصمة</h5>
+                            <p class="text-lg">${country.capital}</p>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <h5 class="font-bold text-gray-700 mb-2">السكان</h5>
+                            <p class="text-lg">${country.population}</p>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <h5 class="font-bold text-gray-700 mb-2">التأسيس</h5>
+                            <p class="text-lg">${country.founded}</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h5 class="text-xl font-bold mb-3">نبذة تاريخية</h5>
+                        <p class="text-gray-700 leading-relaxed">${country.history}</p>
+                    </div>
+                    
+                    <div>
+                        <h5 class="text-xl font-bold mb-3">الجدول الزمني</h5>
+                        <div class="space-y-4">
+                            <div class="timeline-item">
+                                <div class="font-bold">${country.founded}</div>
+                                <div class="text-gray-600">تأسيس الدولة</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="font-bold">القرن 20</div>
+                                <div class="text-gray-600">التطور الحديث</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="font-bold">القرن 21</div>
+                                <div class="text-gray-600">العصر الحالي</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center space-x-4 space-x-reverse">
+                        <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                            <i class="fas fa-book ml-2"></i>اقرأ المزيد
+                        </button>
+                        <button class="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-300 transition">
+                            <i class="fas fa-share ml-2"></i>مشاركة
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('countryModal').classList.add('hidden');
+        }
+
+        // Search countries
+        function searchCountries() {
+            const input = document.getElementById('searchInput');
+            const results = document.getElementById('searchResults');
+            const query = input.value.toLowerCase().trim();
+            
+            if (query.length === 0) {
+                results.innerHTML = '';
+                return;
+            }
+            
+            const matches = allCountries.filter(country => 
+                country.name.toLowerCase().includes(query) ||
+                country.capital.toLowerCase().includes(query)
+            );
+            
+            if (matches.length === 0) {
+                results.innerHTML = '<p class="text-gray-500 text-center">لا توجد نتائج</p>';
+                return;
+            }
+            
+            results.innerHTML = `
+                <div class="bg-white rounded-lg shadow-lg max-h-96 overflow-y-auto">
+                    ${matches.slice(0, 10).map(country => `
+                        <div class="p-4 border-b hover:bg-gray-50 cursor-pointer transition" onclick="showCountryDetails(${JSON.stringify(country).replace(/"/g, '&quot;')}, '${country.region}')">
+                            <div class="flex items-center">
+                                <span class="text-2xl ml-3">${country.flag}</span>
+                                <div>
+                                    <div class="font-bold">${country.name}</div>
+                                    <div class="text-sm text-gray-600">${country.capital} - ${country.population}</div>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('countryModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    // Close mobile menu if open
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all region cards
+        document.querySelectorAll('.region-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

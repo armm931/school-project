@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>علم الكون - استكشف أسرار الكون</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        /* خلفية النجوم المتحركة */
+        .stars-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            overflow: hidden;
+        }
+        
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        /* تأثير التمرير السلس */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* تأثير الظهور عند التمرير */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* تأثير الماوس على البطاقات */
+        .cosmic-card {
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .cosmic-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* تأثير النبض للعناوين */
+        .pulse-title {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* تأثير الدوران للكواكب */
+        .planet-orbit {
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* تأثير الموجة */
+        .wave {
+            animation: wave 3s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* شريط التمرير المخصص */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #090A0F;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #4A5568;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #718096;
+        }
+        
+        /* تأثير النص المتوهج */
+        .glow-text {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+                         0 0 20px rgba(255, 255, 255, 0.3),
+                         0 0 30px rgba(255, 255, 255, 0.2);
+        }
+        
+        /* تأثير الجسيمات */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white overflow-x-hidden">
+    <!-- خلفية النجوم -->
+    <div class="stars-bg">
+        <div class="stars" id="stars"></div>
+    </div>
+    
+    <!-- شريط التنقل -->
+    <nav class="fixed top-0 w-full bg-black/50 backdrop-blur-md z-50 border-b border-white/10">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <i class="fas fa-rocket text-2xl text-blue-400"></i>
+                    <h1 class="text-2xl font-bold glow-text">علم الكون</h1>
+                </div>
+                <div class="hidden md:flex space-x-6 space-x-reverse">
+                    <a href="#home" class="hover:text-blue-400 transition-colors">الرئيسية</a>
+                    <a href="#solar-system" class="hover:text-blue-400 transition-colors">المجموعة الشمسية</a>
+                    <a href="#galaxies" class="hover:text-blue-400 transition-colors">المجرات</a>
+                    <a href="#black-holes" class="hover:text-blue-400 transition-colors">الثقوب السوداء</a>
+                    <a href="#phenomena" class="hover:text-blue-400 transition-colors">الظواهر الكونية</a>
+                </div>
+                <button id="menu-toggle" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            <!-- القائمة المتجاوبة -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+                <a href="#home" class="block hover:text-blue-400 transition-colors">الرئيسية</a>
+                <a href="#solar-system" class="block hover:text-blue-400 transition-colors">المجموعة الشمسية</a>
+                <a href="#galaxies" class="block hover:text-blue-400 transition-colors">المجرات</a>
+                <a href="#black-holes" class="block hover:text-blue-400 transition-colors">الثقوب السوداء</a>
+                <a href="#phenomena" class="block hover:text-blue-400 transition-colors">الظواهر الكونية</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- القسم الرئيسي -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-5xl md:text-7xl font-bold mb-6 pulse-title glow-text">
+                استكشف أسرار الكون
+            </h2>
+            <p class="text-xl md:text-2xl mb-8 text-gray-300">
+                رحلة لا نهائية في عجائب الفضاء والزمان
+            </p>
+            <div class="flex justify-center space-x-4 space-x-reverse">
+                <button onclick="scrollToSection('solar-system')" class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-full transition-all transform hover:scale-105">
+                    ابدأ الرحلة
+                </button>
+                <button onclick="playCosmicVideo()" class="border border-blue-400 hover:bg-blue-400/20 px-8 py-3 rounded-full transition-all">
+                    <i class="fas fa-play ml-2"></i>شاهد الفيديو
+                </button>
+            </div>
+            <!-- أيقونات متحركة -->
+            <div class="mt-16 flex justify-center space-x-8 space-x-reverse">
+                <div class="wave">
+                    <i class="fas fa-sun text-4xl text-yellow-400"></i>
+                </div>
+                <div class="wave" style="animation-delay: 0.5s;">
+                    <i class="fas fa-globe text-4xl text-blue-400"></i>
+                </div>
+                <div class="wave" style="animation-delay: 1s;">
+                    <i class="fas fa-meteor text-4xl text-purple-400"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- المجموعة الشمسية -->
+    <section id="solar-system" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 fade-in">
+                المجموعة الشمسية
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- الشمس -->
+                <div class="cosmic-card rounded-xl p-6 fade-in">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-sun text-6xl text-yellow-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">الشمس</h3>
+                    <p class="text-gray-300 mb-4">
+                        نجمنا المحلي، مصدر الطاقة الرئيسي للحياة على الأرض. يبلغ قطرها حوالي 1.4 مليون كيلومتر.
+                    </p>
+                    <div class="flex justify-between text-sm">
+                        <span>درجة الحرارة: 5,778 كلفن</span>
+                        <span>العمر: 4.6 مليار سنة</span>
+                    </div>
+                </div>
+                
+                <!-- عطارد -->
+                <div class="cosmic-card rounded-xl p-6 fade-in">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-circle text-6xl text-gray-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">عطارد</h3>
+                    <p class="text-gray-300 mb-4">
+                        أصغر كواكب المجموعة الشمسية وأقربها للشمس. يتميز بدرجات حرارة متطرفة.
+                    </p>
+                    <div class="flex justify-between text-sm">
+                        <span>المسافة من الشمس: 57.9 مليون كم</span>
+                        <span>فترة الدوران: 88 يوم</span>
+                    </div>
+                </div>
+                
+                <!-- الزهرة -->
+                <div class="cosmic-card rounded-xl p-6 fade-in">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-circle text-6xl text-orange-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">الزهرة</h3>
+                    <p class="text-gray-300 mb-4">
+                        يطلق عليه "نجمة الصباح" أو "نجمة المساء". أدفأ كوكب في المجموعة الشمسية.
+                    </p>
+                    <div class="flex justify-between text-sm">
+                        <span>المسافة من الشمس: 108.2 مليون كم</span>
+                        <span>فترة الدوران: 225 يوم</span>
+                    </div>
+                </div>
+                
+                <!-- الأرض -->
+                <div class="cosmic-card rounded-xl p-6 fade-in">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-globe text-6xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">الأرض</h3>
+                    <p class="text-gray-300 mb-4">
+                        كوكبنا الجميل، الوحيد المعروف بوجود الحياة. يحتوي على 71% ماء.
+                    </p>
+                    <div class="flex justify-between text-sm">
+                        <span>المسافة من الشمس: 149.6 مليون كم</span>
+                        <span>فترة الدوران: 365.25 يوم</span>
+                    </div>
+                </div>
+                
+                <!-- المريخ -->
+                <div class="cosmic-card rounded-xl p-6 fade-in">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-circle text-6xl text-red-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">المريخ</h3>
+                    <p class="text-gray-300 mb-4">
+                        الكوكب الأحمر، يعتبر الهدف الرئيسي لاستكشاف الفضاء بسبب احتمالية وجود حياة سابقة.
+                    </p>
+                    <div class="flex justify-between text-sm">
+                        <span>المسافة من الشمس: 227.9 مليون كم</span>
+                        <span>فترة الدوران: 687 يوم</span>
+                    </div>
+                </div>
+                
+                <!-- المشتري -->
+                <div class="cosmic-card rounded-xl p-6 fade-in">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-circle text-6xl text-yellow-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">المشتري</h3>
+                    <p class="text-gray-300 mb-4">
+                        أكبر كوكب في المجموعة الشمسية، عملاق غازي له 79 قمراً معروفاً.
+                    </p>
+                    <div class="flex justify-between text-sm">
+                        <span>المسافة من الشمس: 778.5 مليون كم</span>
+                        <span>فترة الدوران: 11.86 سنة</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- المجرات -->
+    <section id="galaxies" class="py-20 bg-black/30">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 fade-in">
+                عالم المجرات
+            </h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <h3 class="text-3xl font-bold mb-6">مجرة درب التبانة</h3>
+                    <p class="text-gray-300 mb-4">
+                        مجرتنا التي نعيش فيها، تحتوي على حوالي 200-400 مليار نجم. يبلغ قطرها حوالي 100,000 سنة ضوئية.
+                    </p>
+                    <p class="text-gray-300 mb-6">
+                        تقع الشمس في أحد أذرع المجرة الحلزونية، وتدور حول مركز المجرة مرة كل 225-250 مليون سنة.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white/10 rounded-lg p-4">
+                            <i class="fas fa-star text-2xl text-yellow-400 mb-2"></i>
+                            <h4 class="font-bold">عدد النجوم</h4>
+                            <p class="text-sm">200-400 مليار</p>
+                        </div>
+                        <div class="bg-white/10 rounded-lg p-4">
+                            <i class="fas fa-expand text-2xl text-blue-400 mb-2"></i>
+                            <h4 class="font-bold">القطر</h4>
+                            <p class="text-sm">100,000 سنة ضوئية</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative fade-in">
+                    <div class="cosmic-card rounded-xl p-8">
+                        <div class="planet-orbit w-64 h-64 mx-auto relative">
+                            <div class="absolute inset-0 rounded-full border-2 border-blue-400/30"></div>
+                            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-gradient-to-br from-blue-400 to-purple-600 opacity-50"></div>
+                            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rounded-full"></div>
+                            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rounded-full"></div>
+                            <div class="absolute top-1/2 left-0 transform -translate-y-1/2 w-4 h-4 bg-white rounded-full"></div>
+                            <div class="absolute top-1/2 right-0 transform -translate-y-1/2 w-4 h-4 bg-white rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- أنواع المجرات -->
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="cosmic-card rounded-xl p-6 text-center fade-in">
+                    <i class="fas fa-circle-notch text-5xl text-blue-400 mb-4"></i>
+                    <h4 class="text-xl font-bold mb-3">المجرات الحلزونية</h4>
+                    <p class="text-gray-300">
+                        مثل مجرتنا، تتميز بأذرع حلزونية متفرعة من المركز.
+                    </p>
+                </div>
+                <div class="cosmic-card rounded-xl p-6 text-center fade-in">
+                    <i class="fas fa-circle text-5xl text-orange-400 mb-4"></i>
+                    <h4 class="text-xl font-bold mb-3">المجرات الإهليلجية</h4>
+                    <p class="text-gray-300">
+                        شكل بيضاوي، تحتوي على نجوم قديمة وقليل من الغاز والغبار.
+                    </p>
+                </div>
+                <div class="cosmic-card rounded-xl p-6 text-center fade-in">
+                    <i class="fas fa-asterisk text-5xl text-purple-400 mb-4"></i>
+                    <h4 class="text-xl font-bold mb-3">المجرات غير المنتظمة</h4>
+                    <p class="text-gray-300">
+                        لا تملك شكلاً محدداً، غالباً ما تكون نتيجة تصادم مجري.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- الثقوب السوداء -->
+    <section id="black-holes" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 fade-in">
+                الثقوب السوداء
+            </h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="cosmic-card rounded-xl p-8 mb-8 fade-in">
+                    <h3 class="text-3xl font-bold mb-6">ما هو الثقب الأسود؟</h3>
+                    <p class="text-gray-300 mb-6 text-lg">
+                        الثقب الأسود هو منطقة في الفضاء تكون قوة الجاذبية فيها قوية جداً لدرجة أن لا شيء يمكنه الهروب منها، 
+                        حتى الضوء. تتكون عندما تنهار النجوم الضخمة في نهاية حياتها.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-lg p-6">
+                            <h4 class="text-xl font-bold mb-3">أفق الحدث</h4>
+                            <p class="text-gray-300">
+                                الحد الذي لا يمكن لأي شيء العبور منه والعودة. بمجرد عبوره، لا يمكن الهروب.
+                            </p>
+                        </div>
+                        <div class="bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-lg p-6">
+                            <h4 class="text-xl font-bold mb-3">التفرد</h4>
+                            <p class="text-gray-300">
+                                النقطة في مركز الثقب الأسود حيث تتجمع كل الكتلة في حجم لا نهائي.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- أنواع الثقوب السوداء -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="cosmic-card rounded-xl p-6 text-center fade-in">
+                        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-gray-600 to-black"></div>
+                        <h4 class="text-xl font-bold mb-3">الثقوب النجمية</h4>
+                        <p class="text-gray-300">
+                            تتكون من انهيار النجوم الضخمة. كتلتها تتراوح بين 5-100 كتلة شمسية.
+                        </p>
+                    </div>
+                    <div class="cosmic-card rounded-xl p-6 text-center fade-in">
+                        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-gray-700 to-black"></div>
+                        <h4 class="text-xl font-bold mb-3">الثقوب فائقة الكتلة</h4>
+                        <p class="text-gray-300">
+                        توجد في مراكز المجرات. كتلتها تصل إلى مليارات الكتل الشمسية.
+                        </p>
+                    </div>
+                    <div class="cosmic-card rounded-xl p-6 text-center fade-in">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-gray-500 to-black"></div>
+                        <h4 class="text-xl font-bold mb-3">الثقوب الأولية</h4>
+                        <p class="text-gray-300">
+                            ثقوب سوداء نظرية قد تكون تكونت في بداية الكون.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- الظواهر الكونية -->
+    <section id="phenomena" class="py-20 bg-black/30">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 fade-in">
+                الظواهر الكونية المذهلة
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- المستعرات العظمى -->
+                <div class="cosmic-card rounded-xl p-6 fade-in">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-burst text-5xl text-orange-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">المستعرات العظمى</h3>
+                    <p class="text-gray-300">
+                        انفجارات نجمية هائلة تطلق طاقة أكثر من الشمس في حياتها كلها.
+                    </p>
+                </div>
+                
+                <!-- النجوم النابضة -->
+                <div class="cosmic-card rounded-xl p-6 fade-in">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-satellite-dish text-5xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">النجوم النابضة</h3>
+                    <p class="text-gray-300">
+                        نجوم نيوترونية تدور بسرعة وتصدر إشارات راديو منتظمة.
+                    </p>
+                </div>
+                
+                <!-- السدم -->
+                <div class="cosmic-card rounded-xl p-6 fade-in">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-cloud text-5xl text-purple-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">السدم</h3>
+                    <p class="text-gray-300">
+                        سحب ضخمة من الغاز والغبار في الفضاء، مواقع ولادة النجوم الجديدة.
+                    </p>
+                </div>
+                
+                <!-- المذنبات -->
+                <div class="cosmic-card rounded-xl p-6 fade-in">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-meteor text-5xl text-cyan-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">المذنبات</h3>
+                    <p class="text-gray-300">
+                        أجسام جليدية تدور حول الشمس وتشكل ذيلاً عند الاقتراب منها.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- الجدول الزمني للكون -->
+            <div class="mt-16 cosmic-card rounded-xl p-8 fade-in">
+                <h3 class="text-3xl font-bold mb-8 text-center">الجدول الزمني للكون</h3>
+                <div class="relative">
+                    <div class="absolute right-1/2 transform translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-400 to-purple-600"></div>
+                    <div class="space-y-8">
+                        <div class="flex items-center">
+                            <div class="w-1/2 text-right pr-8">
+                                <h4 class="text-xl font-bold">الانفجار العظيم</h4>
+                                <p class="text-gray-300">13.8 مليار سنة</p>
+                            </div>
+                            <div class="w-4 h-4 bg-blue-400 rounded-full relative z-10"></div>
+                            <div class="w-1/2"></div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-1/2"></div>
+                            <div class="w-4 h-4 bg-purple-400 rounded-full relative z-10"></div>
+                            <div class="w-1/2 text-left pl-8">
+                                <h4 class="text-xl font-bold">تشكل النجوم الأولى</h4>
+                                <p class="text-gray-300">13.6 مليار سنة</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-1/2 text-right pr-8">
+                                <h4 class="text-xl font-bold">تشكل مجرتنا</h4>
+                                <p class="text-gray-300">13.2 مليار سنة</p>
+                            </div>
+                            <div class="w-4 h-4 bg-blue-400 rounded-full relative z-10"></div>
+                            <div class="w-1/2"></div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-1/2"></div>
+                            <div class="w-4 h-4 bg-purple-400 rounded-full relative z-10"></div>
+                            <div class="w-1/2 text-left pl-8">
+                                <h4 class="text-xl font-bold">تشكل الشمس</h4>
+                                <p class="text-gray-300">4.6 مليار سنة</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-1/2 text-right pr-8">
+                                <h4 class="text-xl font-bold">ظهور الحياة على الأرض</h4>
+                                <p class="text-gray-300">3.5 مليار سنة</p>
+                            </div>
+                            <div class="w-4 h-4 bg-blue-400 rounded-full relative z-10"></div>
+                            <div class="w-1/2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- التذييل -->
+    <footer class="bg-black/80 py-12 border-t border-white/10">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">علم الكون</h3>
+                    <p class="text-gray-400">
+                        اكتشف أسرار الكون وتعلم عن المجرات والنجوم والظواهر الكونية المذهلة.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4">روابط سريعة</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#solar-system" class="hover:text-white transition-colors">المجموعة الشمسية</a></li>
+                        <li><a href="#galaxies" class="hover:text-white transition-colors">المجرات</a></li>
+                        <li><a href="#black-holes" class="hover:text-white transition-colors">الثقوب السوداء</a></li>
+                        <li><a href="#phenomena" class="hover:text-white transition-colors">الظواهر الكونية</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4">تابعنا</h4>
+                    <div class="flex space-x-4 space-x-reverse">
+                        <a href="#" class="text-2xl hover:text-blue-400 transition-colors">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-2xl hover:text-blue-400 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-2xl hover:text-blue-400 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-2xl hover:text-blue-400 transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-white/10 text-center text-gray-400">
+                <p>&copy; 2024 علم الكون. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // إنشاء النجوم في الخلفية
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const numberOfStars = 200;
+            
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // تأثير الظهور عند التمرير
+        function handleScrollAnimation() {
+            const elements = document.querySelectorAll('.fade-in');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                
+                if (elementTop < window.innerHeight && elementBottom > 0) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        // التمرير السلس إلى القسم
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // تشغيل فيديو وهمي
+        function playCosmicVideo() {
+            alert('سيتم تشغيل فيديو تعريفي عن الكون قريباً!');
+        }
+        
+        // تأثير الجسيمات عند تحريك الماوس
+        function createParticle(x, y) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = x + 'px';
+            particle.style.top = y + 'px';
+            document.body.appendChild(particle);
+            
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = Math.random() * 2 + 1;
+            const lifetime = Math.random() * 1000 + 500;
+            
+            let posX = x;
+            let posY = y;
+            
+            const animate = () => {
+                posX += Math.cos(angle) * velocity;
+                posY += Math.sin(angle) * velocity;
+                particle.style.left = posX + 'px';
+                particle.style.top = posY + 'px';
+                particle.style.opacity = parseFloat(particle.style.opacity || 1) - 0.02;
+                
+                if (parseFloat(particle.style.opacity) > 0) {
+                    requestAnimationFrame(animate);
+                } else {
+                    particle.remove();
+                }
+            };
+            
+            requestAnimationFrame(animate);
+            setTimeout(() => particle.remove(), lifetime);
+        }
+        
+        // تبديل القائمة المتجاوبة
+        document.getElementById('menu-toggle').addEventListener('click', () => {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // إغلاق القائمة عند النقر على رابط
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+        
+        // أحداث التهيئة
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            handleScrollAnimation();
+            
+            // تأثير الجسيمات عند تحريك الماوس
+            let particleTimer;
+            document.addEventListener('mousemove', (e) => {
+                clearTimeout(particleTimer);
+                particleTimer = setTimeout(() => {
+                    if (Math.random() > 0.9) {
+                        createParticle(e.clientX, e.clientY);
+                    }
+                }, 50);
+            });
+        });
+        
+        // مراقبة التمرير
+        window.addEventListener('scroll', handleScrollAnimation);
+        
+        // تأثير التكبير عند التمرير
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const nav = document.querySelector('nav');
+            
+            if (scrollTop > lastScrollTop) {
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                nav.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+    </script>
+</body>
+</html>

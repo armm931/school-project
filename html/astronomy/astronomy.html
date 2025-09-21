@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عالم الفلك - استكشف الكون</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap');
+        
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        /* خلفية النجوم المتحركة */
+        .stars-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #0a0e27 0%, #1a1f3a 50%, #2d1b69 100%);
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        /* تأثير التمرير السلس */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* تأثير الماوس على الأزرار */
+        .btn-glow {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-glow:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* تأثير الكروت */
+        .card-hover {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* تأثير النص المتحرك */
+        .typing-effect {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 3s steps(40, end);
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        /* تأثير الموجة */
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='0.1' d='M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+        }
+        
+        /* تأثير الدوران للكواكب */
+        .planet {
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* شريط التمرير المخصص */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1a1f3a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #4a5568;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #718096;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- خلفية النجوم -->
+    <div class="stars-bg" id="starsBg"></div>
+    
+    <!-- شريط التنقل -->
+    <nav class="fixed top-0 w-full bg-gray-900 bg-opacity-90 backdrop-blur-md z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2 space-x-reverse">
+                    <i class="fas fa-rocket text-3xl text-purple-400"></i>
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                        عالم الفلك
+                    </h1>
+                </div>
+                <div class="hidden md:flex space-x-6 space-x-reverse">
+                    <a href="#home" class="hover:text-purple-400 transition">الرئيسية</a>
+                    <a href="#galaxies" class="hover:text-purple-400 transition">المجرات</a>
+                    <a href="#planets" class="hover:text-purple-400 transition">الكواكب</a>
+                    <a href="#stars" class="hover:text-purple-400 transition">النجوم</a>
+                    <a href="#phenomena" class="hover:text-purple-400 transition">الظواهر</a>
+                    <a href="#quiz" class="hover:text-purple-400 transition">اختبار</a>
+                </div>
+                <button id="menuToggle" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- القائمة المتجاوبة -->
+        <div id="mobileMenu" class="hidden md:hidden bg-gray-800 bg-opacity-95">
+            <div class="container mx-auto px-4 py-4 space-y-3">
+                <a href="#home" class="block hover:text-purple-400 transition">الرئيسية</a>
+                <a href="#galaxies" class="block hover:text-purple-400 transition">المجرات</a>
+                <a href="#planets" class="block hover:text-purple-400 transition">الكواكب</a>
+                <a href="#stars" class="block hover:text-purple-400 transition">النجوم</a>
+                <a href="#phenomena" class="block hover:text-purple-400 transition">الظواهر</a>
+                <a href="#quiz" class="block hover:text-purple-400 transition">اختبار</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- القسم الرئيسي -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative pt-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-5xl md:text-7xl font-bold mb-6 typing-effect">
+                استكشف عجائب الكون
+            </h2>
+            <p class="text-xl md:text-2xl mb-8 text-gray-300">
+                رحلة لا نهائية في أعماق الفضاء لاستكشاف أسرار الكون
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button onclick="scrollToSection('galaxies')" class="btn-glow bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-full text-lg font-semibold">
+                    <i class="fas fa-galaxy ml-2"></i>
+                    ابدأ الرحلة
+                </button>
+                <button onclick="showInfo()" class="btn-glow bg-pink-600 hover:bg-pink-700 px-8 py-4 rounded-full text-lg font-semibold">
+                    <i class="fas fa-info-circle ml-2"></i>
+                    تعلم المزيد
+                </button>
+            </div>
+            <!-- كوكب متحرك -->
+            <div class="absolute bottom-20 left-10 w-32 h-32 bg-gradient-to-br from-blue-400 to-purple-600 rounded-full planet opacity-50"></div>
+        </div>
+        <div class="wave"></div>
+    </section>
+    
+    <!-- قسم المجرات -->
+    <section id="galaxies" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                المجرات
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+                    <img src="https://picsum.photos/seed/milkyway/400/250" alt="درب التبانة" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-2xl font-bold mb-3">درب التبانة</h3>
+                    <p class="text-gray-300 mb-4">مجرتنا التي نعيش فيها، تحتوي على أكثر من 200 مليار نجم وتمتد لمسافة 100,000 سنة ضوئية.</p>
+                    <button onclick="showGalaxyDetails('milkyway')" class="text-purple-400 hover:text-purple-300 font-semibold">
+                        اقرأ المزيد <i class="fas fa-arrow-left mr-1"></i>
+                    </button>
+                </div>
+                <div class="card-hover bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+                    <img src="https://picsum.photos/seed/andromeda/400/250" alt="مجرة أندروميدا" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-2xl font-bold mb-3">مجرة أندروميدا</h3>
+                    <p class="text-gray-300 mb-4">أقرب مجرة كبيرة إلينا، تبعد حوالي 2.5 مليون سنة ضوئية وتتجه نحو مجرتنا.</p>
+                    <button onclick="showGalaxyDetails('andromeda')" class="text-purple-400 hover:text-purple-300 font-semibold">
+                        اقرأ المزيد <i class="fas fa-arrow-left mr-1"></i>
+                    </button>
+                </div>
+                <div class="card-hover bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+                    <img src="https://picsum.photos/seed/sombrero/400/250" alt="مجرة السومبريرو" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-2xl font-bold mb-3">مجرة السومبريرو</h3>
+                    <p class="text-gray-300 mb-4">مجرة حلزونية غير منتظمة تشبه القبعة، تقع على بعد 29 مليون سنة ضوئية.</p>
+                    <button onclick="showGalaxyDetails('sombrero')" class="text-purple-400 hover:text-purple-300 font-semibold">
+                        اقرأ المزيد <i class="fas fa-arrow-left mr-1"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- قسم الكواكب -->
+    <section id="planets" class="py-20 bg-gray-800 bg-opacity-30">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+                كواكب المجموعة الشمسية
+            </h2>
+            <div class="relative">
+                <div class="flex overflow-x-auto pb-8 scrollbar-hide" id="planetsContainer">
+                    <!-- سيتم إضافة الكواكب بواسطة JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- قسم النجوم -->
+    <section id="stars" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                عالم النجوم
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="w-24 h-24 mx-auto mb-4 bg-yellow-400 rounded-full flex items-center justify-center">
+                        <i class="fas fa-sun text-4xl text-gray-900"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">النجم القزم</h3>
+                    <p class="text-gray-300">أصغر أنواع النجوم، تعيش لمليارات السنين</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-24 h-24 mx-auto mb-4 bg-blue-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-star text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">النجم العملاق</h3>
+                    <p class="text-gray-300">نجوم ضخمة تصل إلى 100 ضعف حجم الشمس</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-24 h-24 mx-auto mb-4 bg-red-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-fire text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">المستعر الأعظم</h3>
+                    <p class="text-gray-300">انفجار نجمي هائل يضيء المجرات بأكملها</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-24 h-24 mx-auto mb-4 bg-purple-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-circle-notch text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">الثقب الأسود</h3>
+                    <p class="text-gray-300">بقايا النجوم الضخمة ذات الجاذبية الهائلة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- قسم الظواهر الفلكية -->
+    <section id="phenomena" class="py-20 bg-gray-800 bg-opacity-30">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
+                الظواهر الفلكية
+            </h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl p-8">
+                    <h3 class="text-3xl font-bold mb-4">الخسوف والكسوف</h3>
+                    <p class="mb-6">ظواهر تحدث عندما تحجب الأرض أو القمر ضوء الشمس، مما يخلق مناظر مذهلة في السماء.</p>
+                    <div class="flex items-center space-x-4 space-x-reverse">
+                        <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full">قمري</span>
+                        <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full">شمسي</span>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-blue-600 to-green-600 rounded-xl p-8">
+                    <h3 class="text-3xl font-bold mb-4">الشهب والنيازك</h3>
+                    <p class="mb-6">جزيئات صغيرة تدخل الغلاف الجوي للأرض وتحترق، مما يخلق خطوطاً مضيئة في السماء.</p>
+                    <div class="flex items-center space-x-4 space-x-reverse">
+                        <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full">الدشات النيزكية</span>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-yellow-600 to-orange-600 rounded-xl p-8">
+                    <h3 class="text-3xl font-bold mb-4">الشفق القطبي</h3>
+                    <p class="mb-6">ظاهرة ضوئية رائعة تحدث في المناطق القطبية بسبب تفاعل الجسيمات الشمسية مع الغلاف الجوي.</p>
+                    <div class="flex items-center space-x-4 space-x-reverse">
+                        <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full">أورورا</span>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-red-600 to-pink-600 rounded-xl p-8">
+                    <h3 class="text-3xl font-bold mb-4">المذنبات</h3>
+                    <p class="mb-6">أجسام جليدية تدور حول الشمس وتظهر لها ذيول مضيئة عند اقترابها من الشمس.</p>
+                    <div class="flex items-center space-x-4 space-x-reverse">
+                        <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full">هالي</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- قسم الاختبار -->
+    <section id="quiz" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+                اختبر معلوماتك الفلكية
+            </h2>
+            <div class="max-w-2xl mx-auto bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-xl p-8">
+                <div id="quizContainer">
+                    <div class="mb-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg">السؤال <span id="currentQuestion">1</span> من <span id="totalQuestions">5</span></span>
+                            <span class="text-lg">النتيجة: <span id="score">0</span></span>
+                        </div>
+                        <div class="w-full bg-gray-700 rounded-full h-2">
+                            <div id="progressBar" class="bg-gradient-to-r from-purple-400 to-pink-400 h-2 rounded-full transition-all duration-300" style="width: 20%"></div>
+                        </div>
+                    </div>
+                    <div id="questionContainer">
+                        <h3 id="questionText" class="text-2xl font-bold mb-6"></h3>
+                        <div id="answersContainer" class="space-y-3">
+                            <!-- سيتم إضافة الخيارات بواسطة JavaScript -->
+                        </div>
+                    </div>
+                    <div id="resultContainer" class="hidden text-center">
+                        <h3 class="text-3xl font-bold mb-4">انتهى الاختبار!</h3>
+                        <p class="text-xl mb-6">نتيجتك: <span id="finalScore" class="text-purple-400 font-bold"></span></p>
+                        <button onclick="restartQuiz()" class="btn-glow bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-full">
+                            إعادة الاختبار
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- التذييل -->
+    <footer class="bg-gray-900 py-8 border-t border-gray-800">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex justify-center space-x-6 space-x-reverse mb-4">
+                <a href="#" class="text-2xl hover:text-purple-400 transition"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-2xl hover:text-purple-400 transition"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-2xl hover:text-purple-400 transition"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-2xl hover:text-purple-400 transition"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p class="text-gray-400">© 2024 عالم الفلك. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+    
+    <!-- نافذة منبثقة للمعلومات -->
+    <div id="infoModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-gray-800 rounded-xl p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h3 id="modalTitle" class="text-2xl font-bold"></h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <div id="modalContent" class="text-gray-300"></div>
+        </div>
+    </div>
+    
+    <script>
+        // إنشاء خلفية النجوم
+        function createStars() {
+            const starsBg = document.getElementById('starsBg');
+            const numberOfStars = 200;
+            
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsBg.appendChild(star);
+            }
+        }
+        
+        // تبديل القائمة المتجاوبة
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // إغلاق القائمة عند النقر على رابط
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // التمرير إلى قسم معين
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // معلومات الكواكب
+        const planets = [
+            {
+                name: 'عطارد',
+                color: 'from-gray-400 to-gray-600',
+                description: 'أقرب كوكب إلى الشمس، سطحها مليء بالفوهات',
+                facts: ['درجة الحرارة: -173°C إلى 427°C', 'يوم واحد = 59 يوم أرضي', 'لا يوجد غلاف جوي']
+            },
+            {
+                name: 'الزهرة',
+                color: 'from-yellow-400 to-orange-500',
+                description: 'أكثر الكواكب سخونة في المجموعة الشمسية',
+                facts: ['درجة الحرارة: 462°C', 'يوم واحد = 243 يوم أرضي', 'غلاف جوي كثيف من CO2']
+            },
+            {
+                name: 'الأرض',
+                color: 'from-blue-400 to-green-500',
+                description: 'كوكبنا الوحيد المعروف بالحياة',
+                facts: ['درجة الحرارة: -88°C إلى 58°C', 'يوم واحد = 24 ساعة', '70% من السطح ماء']
+            },
+            {
+                name: 'المريخ',
+                color: 'from-red-400 to-orange-600',
+                description: 'الكوكب الأحمر، هدف استكشاف البشر',
+                facts: ['درجة الحرارة: -143°C إلى 35°C', 'يوم واحد = 24.6 ساعة', 'له قمران: فوبوس وديموس']
+            },
+            {
+                name: 'المشتري',
+                color: 'from-orange-400 to-red-600',
+                description: 'أكبر كوكب في المجموعة الشمسية',
+                facts: ['درجة الحرارة: -108°C', 'يوم واحد = 9.9 ساعة', 'له 79 قمراً معروفاً']
+            },
+            {
+                name: 'زحل',
+                color: 'from-yellow-300 to-orange-400',
+                description: 'الكوكب المعروف بحلقاته الجميلة',
+                facts: ['درجة الحرارة: -139°C', 'يوم واحد = 10.7 ساعة', 'له 82 قمراً معروفاً']
+            },
+            {
+                name: 'أورانوس',
+                color: 'from-cyan-400 to-blue-500',
+                description: 'الكوكب الذي يدور على جانبه',
+                facts: ['درجة الحرارة: -197°C', 'يوم واحد = 17.2 ساعة', 'له 27 قمراً معروفاً']
+            },
+            {
+                name: 'نبتون',
+                color: 'from-blue-500 to-purple-600',
+                description: 'أبعد كوكب في المجموعة الشمسية',
+                facts: ['درجة الحرارة: -201°C', 'يوم واحد = 16.1 ساعة', 'له 14 قمراً معروفاً']
+            }
+        ];
+        
+        // عرض الكواكب
+        function displayPlanets() {
+            const container = document.getElementById('planetsContainer');
+            
+            planets.forEach((planet, index) => {
+                const planetCard = document.createElement('div');
+                planetCard.className = 'flex-shrink-0 w-64 bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 card-hover';
+                planetCard.innerHTML = `
+                    <div class="w-32 h-32 mx-auto mb-4 bg-gradient-to-br ${planet.color} rounded-full flex items-center justify-center">
+                        <i class="fas fa-globe text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-center">${planet.name}</h3>
+                    <p class="text-gray-300 text-center mb-4">${planet.description}</p>
+                    <div class="space-y-1">
+                        ${planet.facts.map(fact => `<p class="text-sm text-gray-400">• ${fact}</p>`).join('')}
+                    </div>
+                `;
+                container.appendChild(planetCard);
+            });
+        }
+        
+        // أسئلة الاختبار
+        const quizQuestions = [
+            {
+                question: 'ما هو أقرب كوكب إلى الشمس؟',
+                answers: ['عطارد', 'الزهرة', 'الأرض', 'المريخ'],
+                correct: 0
+            },
+            {
+                question: 'كم يبلغ عدد الكواكب في المجموعة الشمسية؟',
+                answers: ['7', '8', '9', '10'],
+                correct: 1
+            },
+            {
+                question: 'ما هو اسم مجرتنا؟',
+                answers: ['أندروميدا', 'درب التبانة', 'السومبريرو', 'سديم الجبار'],
+                correct: 1
+            },
+            {
+                question: 'ما هو أكبر كوكب في المجموعة الشمسية؟',
+                answers: ['زحل', 'المشتري', 'نبتون', 'أورانوس'],
+                correct: 1
+            },
+            {
+                question: 'ما هي الظاهرة التي تحدث عندما يحجب القمر ضوء الشمس عن الأرض؟',
+                answers: ['خسوف قمري', 'كسوف شمسي', 'شفق قطبي', 'مذنب'],
+                correct: 1
+            }
+        ];
+        
+        let currentQuestionIndex = 0;
+        let score = 0;
+        
+        // بدء الاختبار
+        function startQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            document.getElementById('questionContainer').classList.remove('hidden');
+            document.getElementById('resultContainer').classList.add('hidden');
+            showQuestion();
+        }
+        
+        // عرض السؤال الحالي
+        function showQuestion() {
+            const question = quizQuestions[currentQuestionIndex];
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+            document.getElementById('totalQuestions').textContent = quizQuestions.length;
+            document.getElementById('score').textContent = score;
+            document.getElementById('progressBar').style.width = ((currentQuestionIndex + 1) / quizQuestions.length * 100) + '%';
+            
+            document.getElementById('questionText').textContent = question.question;
+            
+            const answersContainer = document.getElementById('answersContainer');
+            answersContainer.innerHTML = '';
+            
+            question.answers.forEach((answer, index) => {
+                const button = document.createElement('button');
+                button.className = 'w-full text-right bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-lg transition';
+                button.textContent = answer;
+                button.onclick = () => checkAnswer(index);
+                answersContainer.appendChild(button);
+            });
+        }
+        
+        // التحقق من الإجابة
+        function checkAnswer(selectedIndex) {
+            const question = quizQuestions[currentQuestionIndex];
+            const buttons = document.getElementById('answersContainer').getElementsByTagName('button');
+            
+            if (selectedIndex === question.correct) {
+                score++;
+                buttons[selectedIndex].classList.add('bg-green-600');
+            } else {
+                buttons[selectedIndex].classList.add('bg-red-600');
+                buttons[question.correct].classList.add('bg-green-600');
+            }
+            
+            // تعطيل الأزرار
+            Array.from(buttons).forEach(button => {
+                button.disabled = true;
+                button.classList.remove('hover:bg-gray-600');
+            });
+            
+            setTimeout(() => {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < quizQuestions.length) {
+                    showQuestion();
+                } else {
+                    showResult();
+                }
+            }, 1500);
+        }
+        
+        // عرض النتيجة النهائية
+        function showResult() {
+            document.getElementById('questionContainer').classList.add('hidden');
+            document.getElementById('resultContainer').classList.remove('hidden');
+            document.getElementById('finalScore').textContent = `${score} من ${quizQuestions.length}`;
+        }
+        
+        // إعادة الاختبار
+        function restartQuiz() {
+            startQuiz();
+        }
+        
+        // عرض معلومات المجرات
+        function showGalaxyDetails(galaxy) {
+            const galaxyInfo = {
+                milkyway: {
+                    title: 'مجرة درب التبانة',
+                    content: `
+                        <p class="mb-4">مجرة درب التبانة هي مجرتنا التي نعيش فيها، وهي مجرة حلزونية ضخمة تحتوي على ما بين 200-400 مليار نجم.</p>
+                        <h4 class="text-xl font-bold mb-2">الحقائق المذهلة:</h4>
+                        <ul class="list-disc list-inside space-y-2 mb-4">
+                            <li>قطر المجرة حوالي 100,000 سنة ضوئية</li>
+                            <li>تقع الشمس على بعد 26,000 سنة ضوئية من مركز المجرة</li>
+                            <li>تدور الشمس حول مركز المجرة مرة كل 225-250 مليون سنة</li>
+                            <li>يوجد في مركز المجرة ثقب أسود هائل يسمى القوس أ*</li>
+                        </ul>
+                        <p>مجرة درب التبانة هي جزء من المجموعة المحلية التي تضم أكثر من 50 مجرة.</p>
+                    `
+                },
+                andromeda: {
+                    title: 'مجرة أندروميدا',
+                    content: `
+                        <p class="mb-4">مجرة أندروميدا (M31) هي أقرب مجرة كبيرة إلينا، وهي مجرة حلزونية أكبر من مجرتنا.</p>
+                        <h4 class="text-xl font-bold mb-2">الحقائق المذهلة:</h4>
+                        <ul class="list-disc list-inside space-y-2 mb-4">
+                            <li>تبعد عن الأرض حوالي 2.5 مليون سنة ضوئية</li>
+                            <li>تحتوي على تريليون نجم تقريباً</li>
+                            <li>قطرها حوالي 220,000 سنة ضوئية</li>
+                            <li>تتجه نحو مجرة درب التبانة بسرعة 110 كم/ثانية</li>
+                        </ul>
+                        <p>من المتوقع أن تصطدم مجرة أندروميدا بمجرة درب التبانة بعد حوالي 4.5 مليار سنة.</p>
+                    `
+                },
+                sombrero: {
+                    title: 'مجرة السومبريرو',
+                    content: `
+                        <p class="mb-4">مجرة السومبريرو (M104) هي مجرة غير منتظمة تشبه قبعة السومبريرو المكسيكية.</p>
+                        <h4 class="text-xl font-bold mb-2">الحقائق المذهلة:</h4>
+                        <ul class="list-disc list-inside space-y-2 mb-4">
+                            <li>تقع على بعد 29 مليون سنة ضوئية</li>
+                            <li>قطرها حوالي 50,000 سنة ضوئية</li>
+                            <li>تحتوي على 800 مليار نجم تقريباً</li>
+                            <li>تمتلك حلقة غبارية كثيفة حول مركزها</li>
+                        </ul>
+                        <p>تتميز هذه المجرة بمظهرها الفريد الذي يجعلها واحدة من أشهر المجرات في السماء.</p>
+                    `
+                }
+            };
+            
+            const info = galaxyInfo[galaxy];
+            document.getElementById('modalTitle').textContent = info.title;
+            document.getElementById('modalContent').innerHTML = info.content;
+            document.getElementById('infoModal').classList.remove('hidden');
+        }
+        
+        // عرض معلومات عامة
+        function showInfo() {
+            document.getElementById('modalTitle').textContent = 'مرحباً بك في عالم الفلك';
+            document.getElementById('modalContent').innerHTML = `
+                <p class="mb-4">علم الفلك هو علم دراسة الأجرام السماوية والكون ككل. يبحث هذا العلم في أصل الكون وتطوره، ودراسة النجوم والمجرات والكواكب والظواهر الفلكية.</p>
+                <h4 class="text-xl font-bold mb-2">فروع علم الفلك:</h4>
+                <ul class="list-disc list-inside space-y-2 mb-4">
+                    <li>علم الفلك الرصدي: دراسة الأجرام السماوية باستخدام التلسكوبات</li>
+                    <li>علم الفلك النظري: استخدام النماذج الرياضية لفهم الظواهر الفلكية</li>
+                    <li>علم الكونيات: دراسة أصل وتطور الكون ككل</li>
+                    <li>علم الفلك الشمسي: دراسة النظام الشمسي ومكوناته</li>
+                </ul>
+                <p>استكشف موقعنا لاكتشاف أسرار الكون المذهلة!</p>
+            `;
+            document.getElementById('infoModal').classList.remove('hidden');
+        }
+        
+        // إغلاق النافذة المنبثقة
+        function closeModal() {
+            document.getElementById('infoModal').classList.add('hidden');
+        }
+        
+        // إغلاق النافذة عند النقر خارجها
+        document.getElementById('infoModal').addEventListener('click', (e) => {
+            if (e.target.id === 'infoModal') {
+                closeModal();
+            }
+        });
+        
+        // تهيئة الصفحة
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            displayPlanets();
+            startQuiz();
+        });
+        
+        // تأثير التمرير
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-xl');
+            } else {
+                nav.classList.remove('shadow-xl');
+            }
+        });
+    </script>
+</body>
+</html>
